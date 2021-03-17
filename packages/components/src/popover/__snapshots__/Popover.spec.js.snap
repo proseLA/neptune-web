@@ -3,7 +3,7 @@
 exports[`Popover on desktop renders correctly when open is true 1`] = `
 <div>
   <span
-    class="np-popover"
+    class="np-popover d-inline-block"
   >
     <span
       class="d-inline-block"
@@ -61,7 +61,7 @@ exports[`Popover on desktop renders correctly when open is true 1`] = `
 exports[`Popover on mobile renders 1`] = `
 <div>
   <span
-    class="np-popover"
+    class="np-popover d-inline-block"
   >
     <span
       class="d-inline-block"
