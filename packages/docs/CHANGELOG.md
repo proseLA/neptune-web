@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.0.1...@transferwise/neptune-docs@11.0.2) (2021-03-17)
+
+
+### Bug Fixes
+
+* docs for ie11 ([#851](https://github.com/transferwise/neptune-web/issues/851)) ([fd3f453](https://github.com/transferwise/neptune-web/commit/fd3f453a7237d906d8bd818b96d714696f2de87c))
+
+
+
+
+
 ## [11.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.0.0...@transferwise/neptune-docs@11.0.1) (2021-03-16)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
