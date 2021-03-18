@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.0.4...@transferwise/neptune-docs@11.1.0) (2021-03-18)
+
+
+### Features
+
+* Accordion changes ([#848](https://github.com/transferwise/neptune-web/issues/848)) ([fd06e43](https://github.com/transferwise/neptune-web/commit/fd06e43930fc791b6e9c97af88d7871bb76b2247))
+
+
+
+
+
 ## [11.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.0.3...@transferwise/neptune-docs@11.0.4) (2021-03-17)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
