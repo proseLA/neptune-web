@@ -15,14 +15,16 @@ const Accordion = ({ items, onClick, indexOpen }) => {
     setItemsOpen(newItems);
   };
 
-  return items.map((item, index) => (
-    <AccordionItem
-      key={item.id || index}
-      onClick={() => handleOnClick(index)}
-      open={itemsOpen[index]}
-      {...item}
-    />
-  ));
+  return items.map((item, index) => {
+    return (
+      <AccordionItem
+        key={item.id || index}
+        open={itemsOpen[index]}
+        {...item}
+        onClick={() => handleOnClick(index)}
+      />
+    );
+  });
 };
 
 Accordion.propTypes = {

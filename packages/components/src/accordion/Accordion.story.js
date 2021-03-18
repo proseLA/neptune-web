@@ -16,6 +16,7 @@ export const basic = () => {
       content:
         'Lauri Ipsum is simply dummy text of the printing and typesetting industry. Lauri Ipsum has been the industry ever since the 1500s, when',
       id: 'Item 1',
+      onClick: (index) => console.log('ok', index),
     },
     {
       title: 'Item 2',

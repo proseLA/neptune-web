@@ -50,11 +50,14 @@ describe('Accordion', () => {
 
   describe('open and close', () => {
     it('opens an item when clicked', () => {
-      const { getAllByRole, container } = render(<Accordion items={items} />);
+      const onClick = jest.fn();
+      const { getAllByRole, container } = render(<Accordion items={items} onClick={onClick} />);
       userEvent.click(getAllByRole('button')[0]);
 
       expect(container).toMatchSnapshot();
       expect(container.querySelectorAll('.closed')).toHaveLength(2);
+      expect(onClick).toHaveBeenCalledTimes(1);
+      expect(onClick).toHaveBeenCalledWith(0);
     });
   });
 
