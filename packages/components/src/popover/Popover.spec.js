@@ -100,7 +100,7 @@ describe('Popover', () => {
       expect(getPanel()).not.toBeInTheDocument();
     });
 
-    it('renders role status for assistive technologies readers', async () => {
+    it('renders role status for assistive technologies readers with content', async () => {
       await waitFor(() => {
         render(
           <Popover {...props}>
@@ -117,6 +117,24 @@ describe('Popover', () => {
       expect(screen.getByRole('status').innerHTML).toBe(`${props.title}${props.content}`);
       expect(screen.getByRole('status')).toHaveClass('sr-only');
     });
+  });
+
+  it('renders role status for assistive technologies readers with aria content', async () => {
+    await waitFor(() => {
+      render(
+        <Popover ariaContent="ariaContent" {...props}>
+          <button type="button">Open</button>
+        </Popover>,
+      );
+    });
+
+    expect(screen.queryByRole('status')).toBeNull();
+
+    fireEvent.click(getTrigger());
+
+    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.getByRole('status').innerHTML).toBe(`${props.title}ariaContent`);
+    expect(screen.getByRole('status')).toHaveClass('sr-only');
   });
 
   describe('on mobile', () => {

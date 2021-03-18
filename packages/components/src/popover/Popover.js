@@ -8,7 +8,7 @@ import { logActionRequiredIf } from '../utilities';
 
 import './Popover.css';
 
-const Popover = ({ children, className, content, preferredPlacement, title }) => {
+const Popover = ({ children, className, ariaContent, content, preferredPlacement, title }) => {
   logActionRequired({ preferredPlacement });
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ const Popover = ({ children, className, content, preferredPlacement, title }) =>
         {open && (
           <span role="status" className="sr-only">
             {title}
-            {content}
+            {ariaContent || content}
           </span>
         )}
       </span>
@@ -70,6 +70,7 @@ Popover.Placement = {
 
 Popover.defaultProps = {
   className: undefined,
+  ariaContent: undefined,
   preferredPlacement: Popover.Placement.RIGHT,
   title: undefined,
 };
@@ -78,6 +79,7 @@ Popover.propTypes = {
   children: Types.node.isRequired,
   className: Types.string,
   content: Types.node.isRequired,
+  ariaContent: Types.string,
   /** @DEPRECATED LEFT_TOP/RIGHT_TOP use TOP instead, @DEPRECATED BOTTOM_RIGHT/BOTTOM_LEFT use BOTTOM instead */
   preferredPlacement: Types.oneOf([
     Popover.Placement.TOP,
