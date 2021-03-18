@@ -1,21 +1,50 @@
+@import (reference) '@transferwise/neptune-css/src/less/addons/_spacing-utilities.less';
+
+@media (--screen-sm-max) {
+  .tw-accordion-item {
+    .accordion-content {
+      .media-body {
+        .m-l-0;
+      }
+    }
+  }
+}
+
 .tw-accordion-item {
   display: block;
   width: 100%;
-  padding: 10px 24px;
+
+  .btn {
+    border: none;
+  }
+
   &:hover {
-    background-color: #fff !important; // overrides bootstrap rule for .decision
+    background-color: var(
+      --color-background-screen
+    ) !important; // overrides bootstrap rule for .decision
   }
 
   .chevron {
     vertical-align: middle;
   }
 
+  .media {
+    color: var(--color-text-primary);
+    flex-wrap: wrap;
+  }
+
+  .media-body {
+    white-space: normal;
+  }
+
+  .accordion-content {
+    cursor: auto;
+  }
+
   &.closed {
     .accordion-content {
-      height: 0;
       max-height: 0;
       overflow: hidden;
-      padding-bottom: 0 !important;
     }
   }
 }
