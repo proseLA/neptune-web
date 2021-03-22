@@ -16,6 +16,7 @@
  */
 interface Badge {
   type: string;
+  // yyyy-mm-dd
   expiryDate?: string;
 }
 
@@ -136,10 +137,6 @@ const sections: MainSection[] = [
     title: 'Blog',
     dir: 'blog',
     fileOrder: ['Home'],
-    badge: {
-      type: 'new',
-      expiryDate: '15-03-2021',
-    },
     sidebar: false,
   },
 ];
