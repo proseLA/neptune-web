@@ -14,12 +14,18 @@ import { useEffect } from 'react';
  * });`
  *
  * */
-export const useConditionalListener = ({ attachListener, callback, eventType }) => {
+export const useConditionalListener = ({ attachListener, callback, eventType, parent }) => {
   useEffect(() => {
     if (attachListener) {
-      document.addEventListener(eventType, callback, true);
+      if (typeof parent !== 'undefined') {
+        parent.addEventListener(eventType, callback, true);
+      }
     }
 
-    return () => document.removeEventListener(eventType, callback, true);
+    return () => {
+      if (typeof parent !== 'undefined') {
+        parent.removeEventListener(eventType, callback, true);
+      }
+    };
   }, [attachListener]);
 };

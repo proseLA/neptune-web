@@ -11,6 +11,7 @@ import keyCodes from '../keyCodes';
 
 const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open, position }) => {
   const windowRef = typeof window === 'undefined' ? undefined : window;
+  const parent = typeof document === 'undefined' ? undefined : document;
 
   const ref = useRef(null);
 
@@ -20,6 +21,7 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
       // onClose gets called when click is outside of popover.
       ![ref, anchorRef].some((el) => el?.current?.contains(event.target)) && onClose(),
     attachListener: open,
+    parent,
   });
 
   useConditionalListener({
@@ -27,6 +29,7 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
     // onClose gets called when key down is ESCAPE.
     callback: (event) => event.keyCode === keyCodes.ESCAPE && onClose(),
     attachListener: open,
+    parent,
   });
 
   const items = [

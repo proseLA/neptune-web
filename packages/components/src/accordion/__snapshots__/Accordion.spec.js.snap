@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion defaults renders an empty list when no items are passed 1`] = `<div />`;
+
+exports[`Accordion open and close opens an item when clicked 1`] = `
+<div>
+  <div
+    class="tw-accordion-item decision p-a-0"
+  >
+    <button
+      aria-expanded="true"
+      class="tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3 p-b-2"
+      type="button"
+    >
+      <div
+        class="media"
+      >
+        <div
+          class="media-left hidden-xs hidden-sm p-r-2"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-freeze "
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="24"
+              width="24"
+            >
+              <path
+                d="M13.002 5.643L15.6 3.565 14.348 2 12 3.878 9.652 2 8.4 3.565l2.598 2.078v4.621l-4.003-2.31-.5-3.29-1.981.303.452 2.972-2.8 1.094.729 1.867 3.098-1.21L9.996 12l-4.003 2.31-3.098-1.21-.73 1.867 2.801 1.094-.452 2.972 1.98.302.501-3.288 4.003-2.311v4.621L8.4 20.435 9.652 22 12 20.122 14.348 22l1.252-1.565-2.598-2.078v-4.621l4.003 2.31.5 3.29 1.981-.303-.452-2.972 2.8-1.094-.729-1.867-3.098 1.21L14.004 12l4.003-2.31 3.098 1.21.73-1.867-2.801-1.094.452-2.972-1.98-.302-.501 3.288-4.003 2.311V5.643z"
+              />
+            </svg>
+          </span>
+        </div>
+        <div
+          class="media-body text-xs-left title"
+        >
+          <span
+            class="h5"
+          >
+            This is title number one
+          </span>
+        </div>
+        <div
+          class="media-right d-flex align-items-center"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-chevron-up tw-chevron chevron-color top"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </button>
+    <div
+      class="accordion-content media "
+    >
+      <div
+        aria-hidden="false"
+        class="media-body m-r-5 p-b-3 m-l-5"
+      >
+        Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
+      </div>
+    </div>
+  </div>
+  <div
+    class="tw-accordion-item decision p-a-0 closed"
+  >
+    <button
+      aria-expanded="false"
+      class="tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3 p-b-3"
+      type="button"
+    >
+      <div
+        class="media"
+      >
+        <div
+          class="media-left hidden-xs hidden-sm p-r-2"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-new "
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="24"
+              width="24"
+            >
+              <path
+                d="M17.197 3.966a.518.518 0 01-.231.231l-1.68.84a.517.517 0 000 .926l1.68.84c.1.05.181.131.231.231l.84 1.68c.19.381.735.381.926 0l.84-1.68c.05-.1.131-.181.231-.231l1.68-.84a.517.517 0 000-.926l-1.68-.84a.518.518 0 01-.231-.231l-.84-1.68a.517.517 0 00-.926 0l-.84 1.68z"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M10.894 6.553a1 1 0 00-1.788 0L6.92 10.92l-4.368 2.185a1 1 0 000 1.788L6.92 17.08l2.185 4.368a1 1 0 001.788 0l2.185-4.368 4.368-2.185a1 1 0 000-1.788L13.08 10.92l-2.185-4.368zm-2.333 5.56L10 9.237l1.439 2.878a1 1 0 00.447.447L14.764 14l-2.878 1.439a1 1 0 00-.447.447L10 18.764l-1.439-2.878a1 1 0 00-.447-.447L5.236 14l2.878-1.439a1 1 0 00.447-.447z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+        <div
+          class="media-body text-xs-left title"
+        >
+          <span
+            class="h5"
+          >
+            This is title two
+          </span>
+        </div>
+        <div
+          class="media-right d-flex align-items-center"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-chevron-up tw-chevron chevron-color bottom"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </button>
+    <div
+      class="accordion-content media "
+    >
+      <div
+        aria-hidden="true"
+        class="media-body m-r-5 p-b-3 m-l-5"
+      >
+        Lauri Ipsum is simply dummy text of the printing and typesetting industry.
+      </div>
+    </div>
+  </div>
+  <div
+    class="tw-accordion-item decision p-a-0 closed"
+  >
+    <button
+      aria-expanded="false"
+      class="tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3 p-b-3"
+      type="button"
+    >
+      <div
+        class="media"
+      >
+        <div
+          class="media-left hidden-xs hidden-sm p-r-2"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-emoji "
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="24"
+              width="24"
+            >
+              <path
+                d="M9.1 11a1.6 1.6 0 100-3.2 1.6 1.6 0 000 3.2zM16.7 9.4a1.6 1.6 0 11-3.2 0 1.6 1.6 0 013.2 0zM16 14a4 4 0 01-8 0h8z"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 11-16 0 8 8 0 0116 0z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+        <div
+          class="media-body text-xs-left title"
+        >
+          <span
+            class="h5"
+          >
+            This is title three
+          </span>
+        </div>
+        <div
+          class="media-right d-flex align-items-center"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-chevron-up tw-chevron chevron-color bottom"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </button>
+    <div
+      class="accordion-content media "
+    >
+      <div
+        aria-hidden="true"
+        class="media-body m-r-5 p-b-3 m-l-5"
+      >
+        Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
+      </div>
+    </div>
+  </div>
+</div>
+`;

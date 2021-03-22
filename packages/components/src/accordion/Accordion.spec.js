@@ -1,146 +1,73 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { Freeze, Emoji, New } from '@transferwise/icons';
 
-import Accordion from '.';
-import AccordionItem from './AccordionItem';
+import { render, screen, userEvent } from '../test-utils';
+import Accordion from './Accordion';
 
 describe('Accordion', () => {
-  let component;
-  let props;
+  const items = [
+    {
+      title: 'This is title number one',
+      content: 'Lauri Ipsum has been the industry standard dummy text ever since the 1500s.',
+      icon: <Freeze />,
+    },
+    {
+      title: 'This is title two',
+      content: 'Lauri Ipsum is simply dummy text of the printing and typesetting industry.',
+      icon: <New />,
+    },
+    {
+      title: 'This is title three',
+      content: 'Lauri Ipsum has been the industry standard dummy text ever since the 1500s.',
+      icon: <Emoji />,
+    },
+  ];
 
-  describe('when there are no items', () => {
-    beforeEach(() => {
-      component = createComponent({ items: [] });
-    });
-
-    it('renders empty list', () => {
-      expect(component.find(AccordionItem)).toHaveLength(0);
-    });
-  });
-
-  describe('when there are items', () => {
-    beforeEach(() => {
-      props = {
-        items: [
-          {
-            title: 'a',
-            content: 'b',
-          },
-          {
-            title: 'c',
-            content: <h1>I&apos;m a h1 element</h1>,
-          },
-        ],
-      };
-      component = createComponent(props);
-    });
-
-    it('renders all the items', () => {
-      expect(component.find(AccordionItem)).toHaveLength(2);
-    });
-
-    it('passes title and content forward to AccordionItem', () => {
-      const firstItem = component.find(AccordionItem).first();
-      const secondItem = component.find(AccordionItem).at(1);
-      expect(firstItem.prop('title')).toBe(props.items[0].title);
-      expect(firstItem.prop('content')).toBe(props.items[0].content);
-      expect(secondItem.prop('title')).toBe(props.items[1].title);
-      expect(secondItem.prop('content')).toBe(props.items[1].content);
+  describe('defaults', () => {
+    it('renders an empty list when no items are passed', () => {
+      expect(render(<Accordion items={[]} />).container).toMatchSnapshot();
     });
   });
 
-  describe('when an item is clicked', () => {
-    const onClickMock = jest.fn();
-
-    beforeEach(() => {
-      props = {
-        items: [
-          {
-            title: 'a',
-            content: 'b',
-          },
-        ],
-        onClick: onClickMock,
-      };
-      component = createComponent(props);
+  describe('items', () => {
+    it('renders a list with all items closed if items passed', () => {
+      render(<Accordion items={items} />);
+      const openItem = screen.queryByRole('expanded');
+      expect(openItem).not.toBeInTheDocument();
     });
 
-    it('onOpen event fires then onClose event fires', () => {
-      component.find(AccordionItem).simulate('click', 0);
-      expect(onClickMock).toHaveBeenCalledWith(0);
+    it('renders a list with a specified item open if indexOpen is set', () => {
+      const { container } = render(<Accordion items={items} indexOpen={1} />);
+      const openItems = container.querySelectorAll('.tw-accordion-item[aria-expanded="true"]');
+      expect(openItems.length).toBe(1);
+
+      const openItem = container.querySelector(
+        '.tw-accordion-item[aria-expanded="true"] .title .h5',
+      );
+      expect(openItem.innerHTML).toBe(items[1].title);
     });
   });
 
-  describe('when it defaults closed', () => {
-    beforeEach(() => {
-      props = {
-        items: [
-          {
-            title: 'a',
-            content: 'b',
-          },
-          {
-            title: 'c',
-            content: <h1>I&apos;m a h1 element</h1>,
-          },
-        ],
-      };
-      component = createComponent(props);
-    });
+  describe('open and close', () => {
+    it('opens an item when clicked', () => {
+      const { getAllByRole, container } = render(<Accordion items={items} />);
+      userEvent.click(getAllByRole('button')[0]);
 
-    it('opens no item', () => {
-      const firstItem = component.find(AccordionItem).first();
-      const secondItem = component.find(AccordionItem).at(1);
-      // eslint-disable-next-line eqeqeq
-      expect(firstItem.prop('isOpen')).toEqual(false);
-      expect(secondItem.prop('isOpen')).toEqual(false);
+      expect(container).toMatchSnapshot();
+      expect(container.querySelectorAll('.closed')).toHaveLength(2);
     });
   });
 
-  describe('when it opens based on the index provided', () => {
-    beforeEach(() => {
-      props = {
-        items: [
-          {
-            title: 'a',
-            content: 'b',
-          },
-          {
-            title: 'c',
-            content: <h1>I&apos;m a h1 element</h1>,
-          },
-          {
-            title: 'd',
-            content: 'third item',
-          },
-        ],
-        indexOpen: 2,
-      };
-      component = createComponent(props);
-    });
+  describe('onClick', () => {
+    it('calls onClick when an item is clicked', () => {
+      const onClick = jest.fn();
 
-    it('opens the selected accordion item', () => {
-      const firstItem = component.find(AccordionItem).first();
-      const thirdItem = component.find(AccordionItem).at(2);
-      expect(firstItem.prop('isOpen')).toEqual(false);
-      expect(thirdItem.prop('isOpen')).toEqual(true);
-    });
+      const { getAllByRole } = render(<Accordion items={items} onClick={onClick} />);
 
-    it('opens the selected accordion item when prop changes too', () => {
-      const firstItem = component.find(AccordionItem).first();
-      const thirdItem = component.find(AccordionItem).at(2);
-      expect(firstItem.prop('isOpen')).toEqual(false);
-      expect(thirdItem.prop('isOpen')).toEqual(true);
+      userEvent.click(getAllByRole('button')[0]);
 
-      props.indexOpen = 0;
-      component.setProps(props, () => {
-        const updatedFirstItem = component.find(AccordionItem).first();
-        const updatedThirdItem = component.find(AccordionItem).at(2);
-        expect(updatedFirstItem.prop('isOpen')).toEqual(true);
-        expect(updatedThirdItem.prop('isOpen')).toEqual(false);
-      });
+      expect(onClick).toHaveBeenCalledTimes(1);
+      expect(onClick).toHaveBeenCalledWith(0);
     });
   });
-
-  const createComponent = (p) => shallow(<Accordion {...p} />);
 });

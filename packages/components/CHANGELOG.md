@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.0.2...@transferwise/components@35.1.0) (2021-03-18)
+
+
+### Features
+
+* Accordion changes ([#848](https://github.com/transferwise/neptune-web/issues/848)) ([fd06e43](https://github.com/transferwise/neptune-web/commit/fd06e43930fc791b6e9c97af88d7871bb76b2247))
+
+
+
+
+
+## [35.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.0.1...@transferwise/components@35.0.2) (2021-03-17)
+
+
+### Bug Fixes
+
+* add inline block to popover ([#856](https://github.com/transferwise/neptune-web/issues/856)) ([b064e81](https://github.com/transferwise/neptune-web/commit/b064e81489baca1aa75fb3f27d4cb76ed4567357))
+
+
+
+
+
+## [35.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.0.0...@transferwise/components@35.0.1) (2021-03-16)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
 # [35.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@34.4.1...@transferwise/components@35.0.0) (2021-03-15)
 
 

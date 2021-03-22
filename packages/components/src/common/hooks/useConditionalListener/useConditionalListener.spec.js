@@ -8,6 +8,7 @@ describe('useConditionalListener', () => {
     eventType: 'click',
     callback: jest.fn(),
     attachListener: true,
+    parent: document,
   };
   beforeEach(() => {
     jest.clearAllMocks();
