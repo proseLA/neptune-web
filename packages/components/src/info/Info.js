@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { HelpCircle as HelpCircleIcon } from '@transferwise/icons';
 import Popover from '../popover';
@@ -50,17 +50,17 @@ Info.Presentation = {
 Info.Size = { SMALL: Size.SMALL, LARGE: Size.LARGE };
 
 Info.propTypes = {
-  'aria-label': Types.string.isRequired,
+  'aria-label': PropTypes.string.isRequired,
   /** Extra classes applied to Info */
-  className: Types.string,
+  className: PropTypes.string,
   /** Content displayed inside a Popover a Modal */
-  content: Types.node,
+  content: PropTypes.node,
   /** Decides whether to display content in a Popover or a Modal */
-  presentation: Types.oneOf([Info.Presentation.MODAL, Info.Presentation.POPOVER]),
+  presentation: PropTypes.oneOf([Info.Presentation.MODAL, Info.Presentation.POPOVER]),
   /** Decides the size of help Icon */
-  size: Types.oneOf([Info.Size.SMALL, Info.Size.LARGE]),
+  size: PropTypes.oneOf([Info.Size.SMALL, Info.Size.LARGE]),
   /** Title displayed inside a Popover a Modal */
-  title: Types.node,
+  title: PropTypes.node,
 };
 
 Info.defaultProps = {

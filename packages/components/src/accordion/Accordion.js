@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import AccordionItem from './AccordionItem';
 import './Accordion.css';
 
@@ -26,16 +26,16 @@ const Accordion = ({ items, onClick, indexOpen }) => {
 };
 
 Accordion.propTypes = {
-  indexOpen: Types.number,
-  items: Types.arrayOf(
-    Types.shape({
-      id: Types.string,
-      title: Types.node.isRequired,
-      content: Types.node.isRequired,
-      icon: Types.node,
+  indexOpen: PropTypes.number,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.node.isRequired,
+      content: PropTypes.node.isRequired,
+      icon: PropTypes.node,
     }),
   ).isRequired,
-  onClick: Types.func,
+  onClick: PropTypes.func,
 };
 
 Accordion.defaultProps = {

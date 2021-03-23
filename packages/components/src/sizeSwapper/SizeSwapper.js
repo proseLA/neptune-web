@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Breakpoint } from '../common';
@@ -52,11 +52,11 @@ SizeSwapper.Layout = Layout;
 
 SizeSwapper.propTypes = {
   /** List of items that will appear at the specified breakpoint and presented in row or columns depending on layout  */
-  items: Types.arrayOf(
-    Types.shape({
-      items: Types.arrayOf(Types.element),
-      breakpoint: Types.number,
-      layout: Types.oneOf([SizeSwapper.Layout.COLUMN]),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      items: PropTypes.arrayOf(PropTypes.element),
+      breakpoint: PropTypes.number,
+      layout: PropTypes.oneOf([SizeSwapper.Layout.COLUMN]),
     }),
   ).isRequired,
 };

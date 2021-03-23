@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
 
@@ -90,25 +90,25 @@ Decision.Type = { NAVIGATION: 'NAVIGATION' };
 
 Decision.propTypes = {
   /**  A list of elements to be rendered */
-  options: Types.arrayOf(
-    Types.shape({
-      description: Types.node,
-      disabled: Types.bool,
-      href: requiredIf(Types.string, (props) => props.type === Decision.Type.NAVIGATION),
-      media: Types.shape({
-        block: Types.node.isRequired,
-        list: Types.node.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.node,
+      disabled: PropTypes.bool,
+      href: requiredIf(PropTypes.string, (props) => props.type === Decision.Type.NAVIGATION),
+      media: PropTypes.shape({
+        block: PropTypes.node.isRequired,
+        list: PropTypes.node.isRequired,
       }),
-      onClick: Types.func.isRequired,
-      title: Types.node.isRequired,
+      onClick: PropTypes.func.isRequired,
+      title: PropTypes.node.isRequired,
     }),
   ).isRequired,
   /**  Handles the display mode of the component */
-  presentation: Types.oneOf([Decision.Presentation.LIST, Decision.Presentation.LIST_BLOCK]),
+  presentation: PropTypes.oneOf([Decision.Presentation.LIST, Decision.Presentation.LIST_BLOCK]),
   /** Size currently affects only Tile dimension */
-  size: Types.oneOf([Decision.Size.SMALL, Decision.Size.MEDIUM]),
+  size: PropTypes.oneOf([Decision.Size.SMALL, Decision.Size.MEDIUM]),
   /** Decide which kind of element type needs to be rendered ex: Navigation Options or in the future Radio or Checkbox Options */
-  type: Types.oneOf([Decision.Type.NAVIGATION]),
+  type: PropTypes.oneOf([Decision.Type.NAVIGATION]),
 };
 
 Decision.defaultProps = {

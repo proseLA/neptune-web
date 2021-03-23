@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Dimmer from '../../dimmer';
@@ -21,9 +21,9 @@ const BottomSheet = forwardRef(({ children, open, className }, ref) => (
 ));
 
 BottomSheet.propTypes = {
-  children: Types.node.isRequired,
-  className: Types.string,
-  open: Types.bool,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  open: PropTypes.bool,
 };
 
 BottomSheet.defaultProps = {

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { cloneElement } from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   CheckCircle as CheckCircleIcon,
   PendingCircle as PendingCircleIcon,
@@ -108,31 +108,31 @@ Summary.Status = {
 
 Summary.propTypes = {
   /** Action displayed at the bottom of the Summary */
-  action: Types.shape({
-    text: Types.node.isRequired,
-    href: Types.string.isRequired,
-    'aria-label': Types.string,
-    target: Types.string,
-    onClick: Types.func,
+  action: PropTypes.shape({
+    text: PropTypes.node.isRequired,
+    href: PropTypes.string.isRequired,
+    'aria-label': PropTypes.string,
+    target: PropTypes.string,
+    onClick: PropTypes.func,
   }),
   /** Decides which html element should wrap the Summary */
-  as: Types.elementType,
+  as: PropTypes.elementType,
   /** Extra classes applied to Summary */
-  className: Types.string,
+  className: PropTypes.string,
   /** @DEPRECATED please use description instead */
-  content: deprecated(Types.node, {
+  content: deprecated(PropTypes.node, {
     component: 'Summary',
     newProp: 'description',
     expiryDate,
   }),
   /** Summary description */
   // eslint-disable-next-line
-  description: Types.node,
+  description: PropTypes.node,
   /** @DEPRECATED please use info instead */
   help: deprecated(
-    Types.shape({
-      content: Types.node.isRequired,
-      title: Types.node,
+    PropTypes.shape({
+      content: PropTypes.node.isRequired,
+      title: PropTypes.node,
     }),
     {
       component: 'Summary',
@@ -142,25 +142,25 @@ Summary.propTypes = {
   ),
   /** Infos displayed on help Icon click inside Popover or Modal */
   // eslint-disable-next-line
-  info: Types.shape({
-    'aria-label': Types.string.isRequired,
-    content: Types.node.isRequired,
-    presentation: Types.oneOf([Info.Presentation.POPOVER, Info.Presentation.MODAL]),
-    title: Types.node,
+  info: PropTypes.shape({
+    'aria-label': PropTypes.string.isRequired,
+    content: PropTypes.node.isRequired,
+    presentation: PropTypes.oneOf([Info.Presentation.POPOVER, Info.Presentation.MODAL]),
+    title: PropTypes.node,
   }),
   /** @DEPRECATED please use icon instead */
-  illustration: deprecated(Types.node, {
+  illustration: deprecated(PropTypes.node, {
     component: 'Summary',
     newProp: 'icon',
     expiryDate,
   }),
   /** Main Summary Icon */
   // eslint-disable-next-line
-  icon: requiredIf(Types.node, ({ illustration }) => !illustration),
+  icon: requiredIf(PropTypes.node, ({ illustration }) => !illustration),
   /** Decides the badge applied to Icon */
-  status: Types.oneOf([Summary.Status.NOT_DONE, Summary.Status.DONE, Summary.Status.PENDING]),
+  status: PropTypes.oneOf([Summary.Status.NOT_DONE, Summary.Status.DONE, Summary.Status.PENDING]),
   /** Summary title */
-  title: Types.node.isRequired,
+  title: PropTypes.node.isRequired,
 };
 
 Summary.defaultProps = {

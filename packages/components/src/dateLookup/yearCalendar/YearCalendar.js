@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Header from '../header';
 import YearCalendarTable from './table';
@@ -33,13 +33,13 @@ class YearCalendar extends PureComponent {
 }
 
 YearCalendar.propTypes = {
-  selectedDate: Types.instanceOf(Date),
-  min: Types.instanceOf(Date),
-  max: Types.instanceOf(Date),
-  viewYear: Types.number.isRequired,
-  placeholder: Types.string.isRequired,
-  onSelect: Types.func.isRequired,
-  onViewDateUpdate: Types.func.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
+  min: PropTypes.instanceOf(Date),
+  max: PropTypes.instanceOf(Date),
+  viewYear: PropTypes.number.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onViewDateUpdate: PropTypes.func.isRequired,
 };
 
 YearCalendar.defaultProps = {

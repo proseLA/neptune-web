@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, useEffect } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { usePopper } from 'react-popper';
 
@@ -99,17 +99,17 @@ Panel.defaultProps = {
 };
 
 Panel.propTypes = {
-  arrow: Types.bool,
-  className: Types.string,
-  children: Types.node.isRequired,
-  open: Types.bool,
-  position: Types.oneOf([
+  arrow: PropTypes.bool,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  open: PropTypes.bool,
+  position: PropTypes.oneOf([
     Panel.Position.BOTTOM,
     Panel.Position.LEFT,
     Panel.Position.RIGHT,
     Panel.Position.TOP,
   ]),
-  anchorRef: Types.shape({ current: Types.shape({}) }).isRequired,
+  anchorRef: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
 };
 
 export default Panel;

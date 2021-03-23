@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
 import Avatar from '../../avatar';
 
@@ -39,8 +39,8 @@ AvatarWrapper.defaultProps = {
 };
 
 AvatarWrapper.propTypes = {
-  url: Types.string,
-  profileType: Types.oneOf([
+  url: PropTypes.string,
+  profileType: PropTypes.oneOf([
     AvatarWrapper.ProfileType.PERSONAL,
     AvatarWrapper.ProfileType.BUSINESS,
   ]),

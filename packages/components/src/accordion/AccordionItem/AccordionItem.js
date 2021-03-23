@@ -1,5 +1,5 @@
 import React, { cloneElement } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isString } from '@transferwise/neptune-validation';
 
@@ -47,12 +47,12 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
 };
 
 AccordionItem.propTypes = {
-  content: Types.node.isRequired,
-  icon: Types.node,
-  id: Types.string,
-  open: Types.bool.isRequired,
-  onClick: Types.func.isRequired,
-  title: Types.node.isRequired,
+  content: PropTypes.node.isRequired,
+  icon: PropTypes.node,
+  id: PropTypes.string,
+  open: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  title: PropTypes.node.isRequired,
 };
 
 AccordionItem.defaultProps = {

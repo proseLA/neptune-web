@@ -1,5 +1,5 @@
 import React, { Children } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import './NavigationOptionsList.css';
 
@@ -16,5 +16,5 @@ export default function NavigationOptionList({ children }) {
 }
 
 NavigationOptionList.propTypes = {
-  children: Types.node.isRequired,
+  children: PropTypes.node.isRequired,
 };

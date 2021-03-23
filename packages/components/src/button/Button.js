@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import requiredIf from 'react-required-if';
 
@@ -59,21 +59,21 @@ Button.Size = {
 };
 
 Button.propTypes = {
-  block: Types.bool,
-  children: Types.node.isRequired,
-  className: Types.string,
-  disabled: Types.bool,
-  htmlType: Types.oneOf(['submit', 'reset', 'button']),
-  loading: Types.bool,
+  block: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  htmlType: PropTypes.oneOf(['submit', 'reset', 'button']),
+  loading: PropTypes.bool,
   // eslint-disable-next-line
-  onClick: requiredIf(Types.func, (props) => props.htmlType !== 'submit'),
-  priority: Types.oneOf([
+  onClick: requiredIf(PropTypes.func, (props) => props.htmlType !== 'submit'),
+  priority: PropTypes.oneOf([
     Button.Priority.PRIMARY,
     Button.Priority.SECONDARY,
     Button.Priority.TERTIARY,
   ]),
   /** @DEPRECATED Type.PRIMARY, Type.PAY, Type.SECONDARY, Type.DANGER, Type.LINK */
-  type: Types.oneOf([
+  type: PropTypes.oneOf([
     Button.Type.ACCENT,
     Button.Type.POSITIVE,
     Button.Type.NEGATIVE,
@@ -84,7 +84,7 @@ Button.propTypes = {
     Button.Type.LINK,
   ]),
   /** @DEPRECATED Size.EXTRA_SMALL */
-  size: Types.oneOf([
+  size: PropTypes.oneOf([
     Button.Size.EXTRA_SMALL,
     Button.Size.SMALL,
     Button.Size.MEDIUM,

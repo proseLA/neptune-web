@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import SlidingPanel from '../slidingPanel';
 
@@ -10,9 +10,9 @@ const Sticky = ({ open, position, children }) => (
 );
 
 Sticky.propTypes = {
-  open: Types.bool,
-  position: Types.oneOf(['top', 'bottom']),
-  children: Types.node,
+  open: PropTypes.bool,
+  position: PropTypes.oneOf(['top', 'bottom']),
+  children: PropTypes.node,
 };
 
 Sticky.defaultProps = {

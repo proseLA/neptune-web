@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Sentiment } from '../common';
 import withArrow, { ArrowPosition } from '../alert/withArrow';
@@ -34,9 +34,9 @@ InlineAlert.Type = {
 };
 
 InlineAlert.propTypes = {
-  children: Types.node.isRequired,
-  className: Types.string,
-  type: Types.oneOf(Object.values(InlineAlert.Type)),
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  type: PropTypes.oneOf(Object.values(InlineAlert.Type)),
 };
 
 InlineAlert.defaultProps = {

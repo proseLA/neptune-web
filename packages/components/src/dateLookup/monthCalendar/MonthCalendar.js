@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
 import Header from '../header';
@@ -48,14 +48,14 @@ class MonthCalendar extends PureComponent {
 }
 
 MonthCalendar.propTypes = {
-  selectedDate: Types.instanceOf(Date),
-  min: Types.instanceOf(Date),
-  max: Types.instanceOf(Date),
-  viewYear: Types.number.isRequired,
-  placeholder: Types.string.isRequired,
-  onSelect: Types.func.isRequired,
-  onLabelClick: Types.func.isRequired,
-  onViewDateUpdate: Types.func.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
+  min: PropTypes.instanceOf(Date),
+  max: PropTypes.instanceOf(Date),
+  viewYear: PropTypes.number.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onLabelClick: PropTypes.func.isRequired,
+  onViewDateUpdate: PropTypes.func.isRequired,
 };
 
 MonthCalendar.defaultProps = {

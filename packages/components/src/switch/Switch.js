@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { CheckCircle, CrossCircle } from '@transferwise/icons';
 import './Switch.css';
@@ -53,17 +53,17 @@ const Switch = (props) => {
 
 Switch.propTypes = {
   /** Used to describe the purpose of the switch. To be used if there is no external label (i.e. aria-labelledby is null) */
-  'aria-label': Types.string,
+  'aria-label': PropTypes.string,
   /** A reference to a label that describes the purpose of the switch. Ignored if aria-label is provided */
-  'aria-labelledby': Types.string,
+  'aria-labelledby': PropTypes.string,
   /** Whether the switch is checked or not */
-  checked: Types.bool,
+  checked: PropTypes.bool,
   /** Classes to apply to the switch container */
-  className: Types.string,
+  className: PropTypes.string,
   /** ID to apply to the switch container */
-  id: Types.string,
+  id: PropTypes.string,
   /** Function called when the switch is toggled */
-  onClick: Types.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 Switch.defaultProps = {

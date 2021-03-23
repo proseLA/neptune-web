@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import WithDisplayFormat from '../withDisplayFormat';
 
 const TextareaWithDisplayFormat = (props) => (
@@ -7,8 +7,8 @@ const TextareaWithDisplayFormat = (props) => (
 );
 
 TextareaWithDisplayFormat.propTypes = {
-  displayPattern: Types.string.isRequired,
-  onChange: Types.func.isRequired,
+  displayPattern: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default TextareaWithDisplayFormat;

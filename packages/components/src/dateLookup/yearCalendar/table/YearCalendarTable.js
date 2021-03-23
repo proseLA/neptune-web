@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
 import TableLink from '../../tableLink';
@@ -46,12 +46,12 @@ const YearCalendarTable = ({ selectedDate, min, max, viewYear, placeholder, onSe
 };
 
 YearCalendarTable.propTypes = {
-  selectedDate: Types.instanceOf(Date),
-  min: Types.instanceOf(Date),
-  max: Types.instanceOf(Date),
-  viewYear: Types.number.isRequired,
-  placeholder: Types.string.isRequired,
-  onSelect: Types.func.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
+  min: PropTypes.instanceOf(Date),
+  max: PropTypes.instanceOf(Date),
+  viewYear: PropTypes.number.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 YearCalendarTable.defaultProps = {
