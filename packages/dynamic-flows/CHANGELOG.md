@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.10](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.2.9...@transferwise/dynamic-flows@12.2.10) (2021-03-24)
+
+
+### Bug Fixes
+
+* Reduce threshold for display secondary ([#860](https://github.com/transferwise/neptune-web/issues/860)) ([acef9d1](https://github.com/transferwise/neptune-web/commit/acef9d11345a6b11200f32fc40547ee945a2323f))
+
+
+
+
+
 ## [12.2.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.2.8...@transferwise/dynamic-flows@12.2.9) (2021-03-24)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
