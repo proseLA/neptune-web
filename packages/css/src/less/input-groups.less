@@ -91,16 +91,6 @@
       border-color: @input-border-hover;
     }
   }
-
-  > :first-child .btn,
-  > :first-child .btn-group {
-    .border-right-radius(0);
-  }
-
-  > :last-child .btn,
-  > :last-child .btn-group {
-    .border-left-radius(0);
-  }
 }
 
 // Sizing options
@@ -218,6 +208,19 @@
 .input-group .form-control:last-child {
   border-right-width: 1px;
   .border-right-radius(@border-radius-base);
+}
+
+// stylelint-disable-next-line no-duplicate-selectors
+.input-group {
+  > :first-child .btn,
+  > :first-child .btn-group {
+    .border-right-radius(0);
+  }
+
+  > :last-child .btn,
+  > :last-child .btn-group {
+    .border-left-radius(0);
+  }
 }
 
 // Button input groups
