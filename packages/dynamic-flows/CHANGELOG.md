@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.2.12...@transferwise/dynamic-flows@12.3.0) (2021-04-01)
+
+
+### Features
+
+* Promoted oneOf checkbox ([#876](https://github.com/transferwise/neptune-web/issues/876)) ([dec3324](https://github.com/transferwise/neptune-web/commit/dec3324cc46fce448dea734e44c0a3ce631cae2e))
+
+
+
+
+
 ## [12.2.12](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.2.11...@transferwise/dynamic-flows@12.2.12) (2021-03-31)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
