@@ -63,6 +63,36 @@ describe('Decision', () => {
     });
   });
 
+  describe(`when presentation is ${Decision.Presentation.LIST_BLOCK_GRID}`, () => {
+    beforeEach(() => {
+      ({ container } = render(
+        <Decision {...props} presentation={Decision.Presentation.LIST_BLOCK_GRID} />,
+      ));
+    });
+
+    it('renders only Navigation Option before first breakpoint', () => {
+      expect(getNavigationOption()).toBeInTheDocument();
+      expect(getTile()).not.toBeInTheDocument();
+    });
+
+    it('renders only Tile after first breakpoint', () => {
+      resetClientWidth(Breakpoint.SMALL);
+      fireEvent(window, new Event('resize'));
+
+      expect(getNavigationOption()).not.toBeInTheDocument();
+      expect(getTile()).toBeInTheDocument();
+      expect(getTile()).not.toHaveClass('np-tile--small');
+    });
+
+    it('renders container as a grid', () => {
+      resetClientWidth(Breakpoint.SMALL);
+      fireEvent(window, new Event('resize'));
+
+      expect(container.querySelector('.np-decision')).toHaveClass('np-decision--grid');
+      expect(container.querySelector('.np-size-swapper')).toHaveClass('flex-wrap');
+    });
+  });
+
   describe(`when presentation is ${Decision.Presentation.LIST_BLOCK} and size is Small`, () => {
     beforeEach(() => {
       ({ container } = render(

@@ -38,6 +38,7 @@ const SizeSwapper = forwardRef(({ items }, ref) => {
     <div
       className={classNames('np-size-swapper d-flex', {
         'flex-column': itemsToRender && itemsToRender.layout === Layout.COLUMN,
+        'flex-wrap': itemsToRender && itemsToRender.wrap,
       })}
       style={{ visibility: clientWidth ? 'visible' : 'hidden' }}
       ref={parentRef}
@@ -57,6 +58,7 @@ SizeSwapper.propTypes = {
       items: PropTypes.arrayOf(PropTypes.element),
       breakpoint: PropTypes.number,
       layout: PropTypes.oneOf([SizeSwapper.Layout.COLUMN]),
+      wrap: PropTypes.bool,
     }),
   ).isRequired,
 };

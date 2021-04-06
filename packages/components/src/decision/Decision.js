@@ -11,9 +11,10 @@ import { Size } from '../common';
 
 const Decision = ({ options, presentation, type, size }) => {
   if (type === Decision.Type.NAVIGATION) {
-    const { LIST_BLOCK } = Decision.Presentation;
-    if (presentation === LIST_BLOCK) {
+    const { LIST_BLOCK, LIST_BLOCK_GRID } = Decision.Presentation;
+    if (presentation === LIST_BLOCK || presentation === LIST_BLOCK_GRID) {
       const isSmall = size === Decision.Size.SMALL;
+      const isGrid = presentation === LIST_BLOCK_GRID;
       const items = [
         {
           items: [],
@@ -22,6 +23,7 @@ const Decision = ({ options, presentation, type, size }) => {
         {
           items: [],
           breakpoint: isSmall ? SizeSwapper.Breakpoint.EXTRA_SMALL : SizeSwapper.Breakpoint.SMALL,
+          wrap: isGrid,
         },
       ];
 
@@ -42,7 +44,9 @@ const Decision = ({ options, presentation, type, size }) => {
           );
           items[1].items.push(
             <Tile
-              className={`np-decision__tile${isSmall ? '--small' : ''}`}
+              className={classNames(`np-decision__tile${isSmall ? '--small' : ''}`, {
+                'np-decision__tile--fixed-width': isGrid,
+              })}
               description={description}
               disabled={disabled}
               href={href}
@@ -57,7 +61,12 @@ const Decision = ({ options, presentation, type, size }) => {
       );
 
       return (
-        <div className={classNames('np-decision', { 'np-decision--small': isSmall })}>
+        <div
+          className={classNames('np-decision', {
+            'np-decision--small': isSmall,
+            'np-decision--grid': isGrid,
+          })}
+        >
           <SizeSwapper items={items} />
         </div>
       );
@@ -84,6 +93,7 @@ Decision.Size = { SMALL: Size.SMALL, MEDIUM: Size.MEDIUM };
 Decision.Presentation = {
   LIST: 'LIST',
   LIST_BLOCK: 'LIST_BLOCK',
+  LIST_BLOCK_GRID: 'LIST_BLOCK_GRID',
 };
 
 Decision.Type = { NAVIGATION: 'NAVIGATION' };
@@ -104,7 +114,11 @@ Decision.propTypes = {
     }),
   ).isRequired,
   /**  Handles the display mode of the component */
-  presentation: PropTypes.oneOf([Decision.Presentation.LIST, Decision.Presentation.LIST_BLOCK]),
+  presentation: PropTypes.oneOf([
+    Decision.Presentation.LIST,
+    Decision.Presentation.LIST_BLOCK,
+    Decision.Presentation.LIST_BLOCK_GRID,
+  ]),
   /** Size currently affects only Tile dimension */
   size: PropTypes.oneOf([Decision.Size.SMALL, Decision.Size.MEDIUM]),
   /** Decide which kind of element type needs to be rendered ex: Navigation Options or in the future Radio or Checkbox Options */
