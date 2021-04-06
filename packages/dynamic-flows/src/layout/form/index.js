@@ -16,7 +16,7 @@ const DynamicForm = (props) => {
   return (
     <JsonSchemaForm
       schema={form.schema}
-      model={form.model}
+      model={props.model}
       submitted={props.submitted}
       onChange={onChange}
       className={getMarginBottom(form.margin || 'lg')}
@@ -28,7 +28,6 @@ const DynamicForm = (props) => {
 };
 
 DynamicForm.propTypes = {
-  onModelChange: Types.func.isRequired,
   component: Types.shape({
     // eslint-disable-next-line react/forbid-prop-types
     schema: Types.object,
@@ -38,13 +37,16 @@ DynamicForm.propTypes = {
     margin: marginModel,
     orientation: orientationModel,
   }).isRequired,
+  model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
   submitted: Types.bool.isRequired,
-  errors: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
-  onPersistAsync: Types.func.isRequired,
+  errors: Types.oneOfType([Types.string, Types.object, Types.array]),
   baseUrl: Types.string.isRequired,
+  onModelChange: Types.func.isRequired,
+  onPersistAsync: Types.func.isRequired,
 };
 
 DynamicForm.defaultProps = {
+  model: null,
   errors: null,
 };
 

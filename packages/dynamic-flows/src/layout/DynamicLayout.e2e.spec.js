@@ -18,6 +18,7 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
 
   const model = { an: 'example' };
   const schema = {
+    id: 'example',
     type: 'object',
     properties: {
       an: { type: 'string' },
