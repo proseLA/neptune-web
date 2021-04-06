@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.6...@transferwise/components@35.2.0) (2021-04-06)
+
+
+### Features
+
+* support grid use-case in Decision ([#875](https://github.com/transferwise/neptune-web/issues/875)) ([e20c882](https://github.com/transferwise/neptune-web/commit/e20c882bb1d93720e6fd6df59047d2d0d298924e))
+
+
+
+
+
 ## [35.1.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.5...@transferwise/components@35.1.6) (2021-03-31)
 
 **Note:** Version bump only for package @transferwise/components
