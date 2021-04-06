@@ -1,5 +1,5 @@
 import React, { useRef, useState, cloneElement } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { Position } from '../common';
@@ -75,11 +75,11 @@ Popover.defaultProps = {
 };
 
 Popover.propTypes = {
-  children: Types.node.isRequired,
-  className: Types.string,
-  content: Types.node.isRequired,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  content: PropTypes.node.isRequired,
   /** @DEPRECATED LEFT_TOP/RIGHT_TOP use TOP instead, @DEPRECATED BOTTOM_RIGHT/BOTTOM_LEFT use BOTTOM instead */
-  preferredPlacement: Types.oneOf([
+  preferredPlacement: PropTypes.oneOf([
     Popover.Placement.TOP,
     Popover.Placement.RIGHT,
     Popover.Placement.BOTTOM,
@@ -89,7 +89,7 @@ Popover.propTypes = {
     Popover.Placement.BOTTOM_RIGHT,
     Popover.Placement.BOTTOM_LEFT,
   ]),
-  title: Types.node,
+  title: PropTypes.node,
 };
 
 const deprecatedPlacements = {

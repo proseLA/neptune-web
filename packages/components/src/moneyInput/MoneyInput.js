@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isEmpty } from '@transferwise/neptune-validation';
 import Select from '../select';
@@ -10,13 +10,13 @@ import { Size } from '../common/propsValues/size';
 import messages from './MoneyInput.messages';
 import { formatAmount, parseAmount } from './currencyFormatting';
 
-const Currency = Types.shape({
-  header: Types.string,
-  value: Types.string,
-  label: Types.string,
-  currency: Types.string,
-  note: Types.string,
-  searchable: Types.string,
+const Currency = PropTypes.shape({
+  header: PropTypes.string,
+  value: PropTypes.string,
+  label: PropTypes.string,
+  currency: PropTypes.string,
+  note: PropTypes.string,
+  searchable: PropTypes.string,
 });
 const CUSTOM_ACTION = 'CUSTOM_ACTION';
 
@@ -291,23 +291,23 @@ function sortOptionsLabelsToFirst(options, query) {
 MoneyInput.Size = { SMALL: Size.SMALL, MEDIUM: Size.MEDIUM, LARGE: Size.LARGE };
 
 MoneyInput.propTypes = {
-  id: Types.string,
-  currencies: Types.arrayOf(Currency).isRequired,
+  id: PropTypes.string,
+  currencies: PropTypes.arrayOf(Currency).isRequired,
   selectedCurrency: Currency.isRequired,
-  onCurrencyChange: Types.func,
-  placeholder: Types.number,
-  amount: Types.number,
-  size: Types.oneOf([MoneyInput.Size.SMALL, MoneyInput.Size.MEDIUM, MoneyInput.Size.LARGE]),
-  onAmountChange: Types.func,
-  addon: Types.node,
-  searchPlaceholder: Types.string,
+  onCurrencyChange: PropTypes.func,
+  placeholder: PropTypes.number,
+  amount: PropTypes.number,
+  size: PropTypes.oneOf([MoneyInput.Size.SMALL, MoneyInput.Size.MEDIUM, MoneyInput.Size.LARGE]),
+  onAmountChange: PropTypes.func,
+  addon: PropTypes.node,
+  searchPlaceholder: PropTypes.string,
   /**
    * Allows the consumer to react to searching, while the search itself is handled internally. Called with `{ searchQuery: string, filteredOptions: Currency[]  }`
    */
-  onSearchChange: Types.func,
-  customActionLabel: Types.node,
-  onCustomAction: Types.func,
-  classNames: Types.objectOf(Types.string),
+  onSearchChange: PropTypes.func,
+  customActionLabel: PropTypes.node,
+  onCustomAction: PropTypes.func,
+  classNames: PropTypes.objectOf(PropTypes.string),
 };
 
 MoneyInput.defaultProps = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatDate, formatNumber } from '@transferwise/formatting';
 import { formatUsingPattern } from '../utils/text-format';
@@ -57,21 +57,21 @@ const FormattedValue = ({ field, value }) => {
 };
 
 FormattedValue.propTypes = {
-  field: Types.shape({
-    control: Types.string.isRequired,
-    displayFormat: Types.string,
-    refreshRequirementsOnChange: Types.bool,
-    title: Types.string.isRequired,
-    type: Types.string.isRequired,
-    width: Types.string,
-    tagClassName: Types.shape({
-      h3: Types.bool,
+  field: PropTypes.shape({
+    control: PropTypes.string.isRequired,
+    displayFormat: PropTypes.string,
+    refreshRequirementsOnChange: PropTypes.bool,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    width: PropTypes.string,
+    tagClassName: PropTypes.shape({
+      h3: PropTypes.bool,
     }),
     // eslint-disable-next-line react/forbid-prop-types
-    values: Types.arrayOf(Types.shape({ value: Types.any })),
+    values: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.any })),
   }).isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  value: Types.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
 
 export default FormattedValue;

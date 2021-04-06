@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
 
@@ -23,13 +23,13 @@ const Nudge = ({ media, title, link, href, onDismiss, id, className }) => (
 );
 
 Nudge.propTypes = {
-  media: Types.node.isRequired,
-  title: Types.node.isRequired,
-  link: Types.node.isRequired,
-  href: Types.string.isRequired,
-  onDismiss: Types.func.isRequired,
-  id: Types.string,
-  className: Types.string,
+  media: PropTypes.node.isRequired,
+  title: PropTypes.node.isRequired,
+  link: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+  onDismiss: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Nudge.defaultProps = {

@@ -1,0 +1,89 @@
+{
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Their email",
+          "type": "string",
+          "placeholder": "example@example.ex"
+        }
+      }
+    },
+    {
+      "title": "Recipient Bank Details",
+      "oneOf": [
+        {
+          "title": "Sort Code",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Full name",
+              "type": "string"
+            },
+            "sortcode": {
+              "title": "Sort Code",
+              "type": "string"
+            },
+            "account": {
+              "title": "Account number",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "title": "IBAN",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Full name",
+              "type": "string"
+            },
+            "iban": {
+              "title": "IBAN",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "title": "General details",
+          "description": "Tell us about yourself",
+          "type": "object",
+          "promoted": true,
+          "alert": {
+            "type": "alert",
+            "context": "info",
+            "markdown": "Enter your recipient's email above and we'll send them a link with clear instructions to claim the money securely."
+          },
+          "properties": {
+            "name": {
+              "title": "Full name",
+              "type": "string"
+            }
+          },
+          "image": {
+            "url": "https://picsum.photos/id/237/200/300",
+            "type": "image"
+          }
+        }
+      ],
+      "control": "tab",
+      "promotion": {
+        "default": "other",
+        "checkedMeans": "other",
+        "control": "checkbox",
+        "other": {
+          "title": "I know their bank details",
+          "icon": {
+            "name": "bank",
+            "type": "icon"
+          },
+          "heading": {
+            "text": "Bank details",
+            "type": "heading"
+          }
+        }
+      }
+    }
+  ]
+}

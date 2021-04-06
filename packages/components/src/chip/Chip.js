@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
 import './Chip.css';
@@ -17,10 +17,10 @@ const Chip = (props) => {
 };
 
 Chip.propTypes = {
-  label: Types.string.isRequired,
-  onRemove: Types.func.isRequired,
-  className: Types.string,
-  hasError: Types.bool,
+  label: PropTypes.string.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  hasError: PropTypes.bool,
 };
 
 Chip.defaultProps = {

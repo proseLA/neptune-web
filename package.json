@@ -73,7 +73,8 @@
     "lint": "lerna run lint --parallel --since main --no-prefix",
     "preinstall": "node enforce-yarn.js",
     "create-component": "files-scaffold",
-    "test:visual": "lerna run test:visual --stream"
+    "test:visual": "lerna run test:visual --stream",
+    "gh-pages-cleanup": " node ./bin/gh-page-cleanup.js"
   },
   "husky": {
     "hooks": {
@@ -85,8 +86,11 @@
     "**/!(*.code).js": [
       "eslint --fix"
     ],
-    "*.{less,yaml,yml,json}": [
+    "*.{yaml,yml,json}": [
       "prettier --find-config-path --write"
+    ],
+    "*.{less,css}": [
+      "stylelint --fix"
     ]
   },
   "browserslist": [

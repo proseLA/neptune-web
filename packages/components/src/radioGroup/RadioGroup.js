@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import Radio from '../radio';
 
 class RadioGroup extends Component {
@@ -41,19 +41,19 @@ class RadioGroup extends Component {
 }
 
 RadioGroup.propTypes = {
-  radios: Types.arrayOf(
-    Types.shape({
-      id: Types.string,
-      value: Types.oneOfType([Types.number, Types.string]),
-      secondary: Types.string,
-      label: Types.string.isRequired,
-      disabled: Types.bool,
-      readOnly: Types.bool,
+  radios: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      secondary: PropTypes.string,
+      label: PropTypes.string.isRequired,
+      disabled: PropTypes.bool,
+      readOnly: PropTypes.bool,
     }),
   ).isRequired,
-  onChange: Types.func.isRequired,
-  selectedValue: Types.oneOfType([Types.number, Types.string]),
-  name: Types.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  selectedValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  name: PropTypes.string.isRequired,
 };
 
 RadioGroup.defaultProps = {

@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
 
@@ -523,57 +523,57 @@ export default class Select extends Component {
 }
 
 Select.propTypes = {
-  placeholder: Types.string,
-  id: Types.string,
-  required: Types.bool,
-  disabled: Types.bool,
-  inverse: Types.bool,
-  dropdownRight: Types.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  dropdownWidth: Types.oneOf(['sm', 'md', 'lg']),
-  size: Types.oneOf(['sm', 'md', 'lg']),
-  block: Types.bool,
-  selected: Types.shape({
+  placeholder: PropTypes.string,
+  id: PropTypes.string,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  inverse: PropTypes.bool,
+  dropdownRight: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  dropdownWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  block: PropTypes.bool,
+  selected: PropTypes.shape({
     // eslint-disable-next-line react/forbid-prop-types
-    value: Types.any.isRequired,
-    label: Types.node,
-    icon: Types.node,
-    currency: Types.string,
-    note: Types.node,
-    secondary: Types.node,
+    value: PropTypes.any.isRequired,
+    label: PropTypes.node,
+    icon: PropTypes.node,
+    currency: PropTypes.string,
+    note: PropTypes.node,
+    secondary: PropTypes.node,
   }),
   /**
    * Search toggle
    * if `true` default search functionality being enabled (not case sensitive search in option labels & currency props)
    * if `function` you can define your own search function to implement custom search experience. This search function used while filtering the options array. The custom search function takes two parameters. First is the option the second is the keyword.
    */
-  search: Types.oneOfType([Types.bool, Types.func]),
-  onChange: Types.func.isRequired,
-  onFocus: Types.func,
-  onBlur: Types.func,
-  options: Types.arrayOf(
-    Types.shape({
+  search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
       // eslint-disable-next-line react/forbid-prop-types
-      value: Types.any,
-      label: Types.node,
-      header: Types.node,
-      icon: Types.node,
-      currency: Types.string,
-      note: Types.node,
-      secondary: Types.node,
-      separator: Types.bool,
-      disabled: Types.bool,
-      searchStrings: Types.arrayOf(Types.string),
+      value: PropTypes.any,
+      label: PropTypes.node,
+      header: PropTypes.node,
+      icon: PropTypes.node,
+      currency: PropTypes.string,
+      note: PropTypes.node,
+      secondary: PropTypes.node,
+      separator: PropTypes.bool,
+      disabled: PropTypes.bool,
+      searchStrings: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
   /**
    * To have full control of your search value and response use `onSearchChange` function combined with `searchValue` and custom filtering on the options array.
    * DO NOT USE TOGETHER WITH `search` PROPERTY
    */
-  onSearchChange: Types.func,
-  searchValue: Types.string,
-  searchPlaceholder: Types.string,
-  classNames: Types.objectOf(Types.string),
-  dropdownUp: Types.bool,
+  onSearchChange: PropTypes.func,
+  searchValue: PropTypes.string,
+  searchPlaceholder: PropTypes.string,
+  classNames: PropTypes.objectOf(PropTypes.string),
+  dropdownUp: PropTypes.bool,
 };
 
 Select.defaultProps = {

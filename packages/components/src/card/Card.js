@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
 
@@ -69,18 +69,18 @@ const Card = ({
 const hasChildren = ({ children }) => children;
 
 Card.propTypes = {
-  as: Types.elementType,
+  as: PropTypes.elementType,
   // eslint-disable-next-line
-  isExpanded: requiredIf(Types.bool, hasChildren),
-  title: Types.node.isRequired,
-  details: Types.node.isRequired,
+  isExpanded: requiredIf(PropTypes.bool, hasChildren),
+  title: PropTypes.node.isRequired,
+  details: PropTypes.node.isRequired,
   // eslint-disable-next-line
-  onClick: requiredIf(Types.func, hasChildren),
-  icon: Types.node.isRequired,
-  children: Types.node,
-  id: Types.string,
-  className: Types.string,
-  'data-testid': Types.string,
+  onClick: requiredIf(PropTypes.func, hasChildren),
+  icon: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  id: PropTypes.string,
+  className: PropTypes.string,
+  'data-testid': PropTypes.string,
 };
 
 Card.defaultProps = {

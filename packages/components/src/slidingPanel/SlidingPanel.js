@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import './SlidingPanel.css';
@@ -45,12 +45,12 @@ const SlidingPanel = forwardRef(
 );
 
 SlidingPanel.propTypes = {
-  children: Types.node,
-  className: Types.string,
-  open: Types.bool,
-  position: Types.oneOf(['top', 'bottom', 'left', 'right']),
-  showSlidingPanelBorder: Types.bool,
-  slidingPanelPositionFixed: Types.bool,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  open: PropTypes.bool,
+  position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  showSlidingPanelBorder: PropTypes.bool,
+  slidingPanelPositionFixed: PropTypes.bool,
 };
 
 SlidingPanel.defaultProps = {

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import Types from 'prop-types';
-import { RadioGroup } from '@transferwise/components';
 import ObjectSchema from '../objectSchema';
 import GenericSchema from '../genericSchema';
 import DynamicAlert from '../../layout/alert';
+import PromotedOneOfControl from './control/PromotedOneOfControl';
 
 const isPromoted = (schema) => schema.promoted === true;
 
 const PromotedOneOfSchema = (props) => {
-  const defaultSelection = 'promoted';
-  const [selection, setSelection] = useState(defaultSelection);
-
-  const promotedOneOf = props.schema.oneOf.find(isPromoted);
+  const [selection, setSelection] = useState(props.schema.promotion.default || 'promoted');
 
   const promotedAlert = props.schema.alert;
+  const promotedOneOf = props.schema.oneOf.find(isPromoted);
+
   const getPromotedObjectSchema = (promotedSchema) => {
     return {
       ...promotedSchema,
@@ -44,30 +43,15 @@ const PromotedOneOfSchema = (props) => {
 
   const otherOneOf = getOtherOneOf(props.schema);
 
-  const radios = [
-    {
-      value: 'promoted',
-      label: promotedOneOf.title,
-      secondary: promotedOneOf.description,
-    },
-    {
-      value: 'other',
-      label: props.schema.promotion.other.title,
-      secondary: props.schema.promotion.other.description,
-    },
-  ];
-
   return (
     <>
       {promotedAlert && <DynamicAlert component={promotedAlert} />}
-      <div className="form-group">
-        <RadioGroup
-          name="promoted-selection"
-          onChange={(value) => setSelection(value)}
-          selectedValue={selection}
-          radios={radios}
-        />
-      </div>
+      <PromotedOneOfControl
+        promotedOneOf={{ title: promotedOneOf.title, description: promotedOneOf.description }}
+        promotion={props.schema.promotion}
+        selection={selection}
+        setSelection={setSelection}
+      />
 
       {selection === 'promoted' && <ObjectSchema {...props} schema={promotedObjectSchema} />}
       {selection === 'other' && <GenericSchema {...props} schema={otherOneOf} />}
@@ -79,6 +63,12 @@ PromotedOneOfSchema.propTypes = {
   schema: Types.shape({
     oneOf: Types.arrayOf(Types.object).isRequired,
     promotion: Types.shape({
+      default: Types.string,
+      promoted: Types.shape({
+        control: Types.string,
+        checkedMeans: Types.string,
+        title: Types.string,
+      }),
       other: Types.shape({
         title: Types.string,
         heading: Types.shape({

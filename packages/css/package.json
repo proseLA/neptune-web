@@ -1,7 +1,7 @@
 {
   "name": "@transferwise/neptune-css",
   "description": "Neptune CSS library",
-  "version": "9.0.0",
+  "version": "9.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -36,7 +36,8 @@
     "copy:images": "cpx 'src/img/**' dist/img",
     "copy:fonts": "cpx 'src/fonts/*' dist/fonts",
     "prettier": "prettier --write src/less/*.less",
-    "lintless": "stylelint ./src/less",
+    "lint": "yarn lintless",
+    "lintless": "stylelint './src/(less|props|variables)/**' '!**/bootstrap-forms.less'",
     "lintless:fix": "yarn lintless --fix"
   },
   "dependencies": {

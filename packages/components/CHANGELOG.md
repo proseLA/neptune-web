@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.6...@transferwise/components@35.2.0) (2021-04-06)
+
+
+### Features
+
+* support grid use-case in Decision ([#875](https://github.com/transferwise/neptune-web/issues/875)) ([e20c882](https://github.com/transferwise/neptune-web/commit/e20c882bb1d93720e6fd6df59047d2d0d298924e))
+
+
+
+
+
+## [35.1.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.5...@transferwise/components@35.1.6) (2021-03-31)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.4...@transferwise/components@35.1.5) (2021-03-24)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.3...@transferwise/components@35.1.4) (2021-03-24)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.2...@transferwise/components@35.1.3) (2021-03-23)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.1...@transferwise/components@35.1.2) (2021-03-23)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.0...@transferwise/components@35.1.1) (2021-03-22)
+
+
+### Bug Fixes
+
+* popover positioning ([#865](https://github.com/transferwise/neptune-web/issues/865)) ([686fa57](https://github.com/transferwise/neptune-web/commit/686fa57fb46ade257e60be4d5c5bfdbe59a03d4e))
+
+
+
+
+
 # [35.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.0.2...@transferwise/components@35.1.0) (2021-03-18)
 
 

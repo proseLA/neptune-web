@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Size } from '../common';
 
@@ -35,11 +35,11 @@ Badge.Border = {
 };
 
 Badge.propTypes = {
-  badge: Types.node.isRequired,
-  size: Types.oneOf([Badge.Size.LARGE, Badge.Size.MEDIUM, Badge.Size.SMALL]),
-  border: Types.oneOf([Badge.Border.DARK, Badge.Border.LIGHT]),
-  className: Types.string,
-  children: Types.node.isRequired,
+  badge: PropTypes.node.isRequired,
+  size: PropTypes.oneOf([Badge.Size.LARGE, Badge.Size.MEDIUM, Badge.Size.SMALL]),
+  border: PropTypes.oneOf([Badge.Border.DARK, Badge.Border.LIGHT]),
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 Badge.defaultProps = {

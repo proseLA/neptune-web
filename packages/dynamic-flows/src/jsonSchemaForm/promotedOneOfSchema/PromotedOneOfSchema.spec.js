@@ -7,6 +7,8 @@ import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
 import GenericSchema from '../genericSchema';
 import DynamicAlert from '../../layout/alert';
+import PromotedOneOfControl from './control/PromotedOneOfControl';
+import PromotedOneOfRadioControl from './control/PromotedOneOfRadioControl';
 
 describe('Given a PromotedOneOfSchema component', () => {
   let component;
@@ -116,13 +118,13 @@ describe('Given a PromotedOneOfSchema component', () => {
       component = shallow(<PromotedOneOfSchema {...props} />);
     });
 
-    it('should display a radio selection with the promoted option and other options', () => {
-      expect(component.find(RadioGroup)).toHaveLength(1);
+    it('should render PromotedOneOfControl', () => {
+      expect(component.find(PromotedOneOfControl)).toHaveLength(1);
     });
 
     it('should default to the promoted option', () => {
-      const radio = component.find(RadioGroup);
-      expect(radio.props().selectedValue).toBe('promoted');
+      const control = component.find(PromotedOneOfControl);
+      expect(control.props().selection).toBe('promoted');
     });
 
     it('should display the promoted option', () => {
@@ -166,7 +168,7 @@ describe('Given a PromotedOneOfSchema component', () => {
 
           component = shallow(<PromotedOneOfSchema {...props} />);
 
-          component.find(RadioGroup).simulate('change', 'other');
+          getRadioGroup(component).simulate('change', 'other');
           objectSchema = component.find(GenericSchema).dive().find(ObjectSchema);
         });
 
@@ -190,7 +192,7 @@ describe('Given a PromotedOneOfSchema component', () => {
         let oneOfSchema;
 
         beforeEach(() => {
-          component.find(RadioGroup).simulate('change', 'other');
+          getRadioGroup(component).simulate('change', 'other');
           oneOfSchema = component.find(GenericSchema).dive().find(OneOfSchema);
         });
 
@@ -222,4 +224,13 @@ const expectPropsToBeEqual = (wrapper, props) => {
   expect(wrapper.props().errors).toBe(props.errors);
   expect(wrapper.props().translations).toBe(props.translations);
   expect(wrapper.props().onPersistAsync).toBe(props.onPersistAsync);
+};
+
+const getRadioGroup = (component) => {
+  return component
+    .find(PromotedOneOfControl)
+    .dive()
+    .find(PromotedOneOfRadioControl)
+    .dive()
+    .find(RadioGroup);
 };

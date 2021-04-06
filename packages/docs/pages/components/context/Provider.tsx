@@ -54,8 +54,4 @@ export default function PageContent(): ReactElement {
 
 export const meta: Meta = {
   name: 'Provider',
-  badge: {
-    type: 'new',
-    expiryDate: '01-03-2021',
-  },
 };

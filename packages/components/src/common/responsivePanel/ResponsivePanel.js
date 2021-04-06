@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Position } from '..';
 import { useConditionalListener } from '../hooks';
@@ -75,14 +75,14 @@ ResponsivePanel.defaultProps = {
 };
 
 ResponsivePanel.propTypes = {
-  arrow: Types.bool,
-  children: Types.node.isRequired,
-  className: Types.string,
+  arrow: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   /** Function attached to document click and keydown. It gets called when a close condition provided is met. */
-  onClose: Types.func.isRequired,
-  open: Types.bool,
-  anchorRef: Types.shape({ current: Types.shape({}) }).isRequired,
-  position: Types.oneOf([
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+  anchorRef: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
+  position: PropTypes.oneOf([
     ResponsivePanel.Position.TOP,
     ResponsivePanel.Position.RIGHT,
     ResponsivePanel.Position.LEFT,

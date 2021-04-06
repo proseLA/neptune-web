@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Header = React.forwardRef((props, ref) => {
@@ -47,11 +47,11 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
-  bottomContent: Types.node,
-  className: Types.string,
-  layout: Types.oneOf([Header.Layout.HORIZONTAL, Header.Layout.VERTICAL]),
-  leftContent: Types.node,
-  rightContent: Types.node,
+  bottomContent: PropTypes.node,
+  className: PropTypes.string,
+  layout: PropTypes.oneOf([Header.Layout.HORIZONTAL, Header.Layout.VERTICAL]),
+  leftContent: PropTypes.node,
+  rightContent: PropTypes.node,
 };
 
 export default Header;

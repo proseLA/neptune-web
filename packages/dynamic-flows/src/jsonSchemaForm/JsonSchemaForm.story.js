@@ -12,6 +12,7 @@ import JsonSchemaForm from './JsonSchemaForm';
 
 import simpleSchema from './schemas/simple.json';
 import promotedOneOfSchema from './schemas/promotedOneOf.json';
+import promotedOneOfCheckboxSchema from './schemas/promotedOneOfCheckbox.json';
 import oneOfSchema from './schemas/oneOf.json';
 import allOfSchema from './schemas/allOf.json';
 import audRecipientSchema from './schemas/audRecipient.json';
@@ -30,6 +31,7 @@ export const basic = () => {
   const schemas = {
     simple: simpleSchema,
     promotedOneOf: promotedOneOfSchema,
+    promotedOneOfCheckbox: promotedOneOfCheckboxSchema,
     oneOf: oneOfSchema,
     allOf: allOfSchema,
     'AUD Recipient': audRecipientSchema,

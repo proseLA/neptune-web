@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 import CheckboxButton from '../checkboxButton';
@@ -46,16 +46,16 @@ const Checkbox = ({
 };
 
 Checkbox.propTypes = {
-  id: Types.string,
-  checked: Types.bool,
-  required: Types.bool,
-  disabled: Types.bool,
-  readOnly: Types.bool,
-  label: Types.node.isRequired,
-  secondary: Types.string,
-  onFocus: Types.func,
-  onChange: Types.func.isRequired,
-  onBlur: Types.func,
+  id: PropTypes.string,
+  checked: PropTypes.bool,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  label: PropTypes.node.isRequired,
+  secondary: PropTypes.string,
+  onFocus: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
 };
 
 Checkbox.defaultProps = {

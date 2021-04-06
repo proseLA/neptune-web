@@ -15,7 +15,7 @@ const mapIcon = (icon) => (icon ? getCurrencyFlag(icon.name) : null);
 
 const getOptionDescription = (title, description) => {
   if (title && description) {
-    const keyForDescription = (title + description).length > 50 ? 'secondary' : 'note';
+    const keyForDescription = (title + description).length > 30 ? 'secondary' : 'note';
     return { [keyForDescription]: description };
   }
   return undefined;

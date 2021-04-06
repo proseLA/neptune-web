@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Size } from '../common';
 
@@ -28,16 +28,16 @@ const Loader = (props) => {
 Loader.Size = Size;
 
 Loader.propTypes = {
-  small: Types.bool,
-  size: Types.oneOf([
+  small: PropTypes.bool,
+  size: PropTypes.oneOf([
     Loader.Size.EXTRA_SMALL,
     Loader.Size.SMALL,
     Loader.Size.MEDIUM,
     Loader.Size.LARGE,
     Loader.Size.EXTRA_LARGE,
   ]),
-  classNames: Types.objectOf(Types.string),
-  'data-testid': Types.string,
+  classNames: PropTypes.objectOf(PropTypes.string),
+  'data-testid': PropTypes.string,
 };
 Loader.defaultProps = {
   small: false,

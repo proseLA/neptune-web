@@ -1,5 +1,5 @@
-import React, { useState, forwardRef } from 'react';
-import Types from 'prop-types';
+import React, { useState, forwardRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { usePopper } from 'react-popper';
 
@@ -47,10 +47,18 @@ const Panel = forwardRef(
       });
     }
 
-    const { styles, attributes } = usePopper(anchorRef.current, popperElement, {
+    const { styles, attributes, forceUpdate } = usePopper(anchorRef.current, popperElement, {
       placement,
       modifiers,
     });
+
+    // If the trigger is not visible when the position is calculated, it will be incorrect. Because this can happen repeatedly (on resize for example),
+    // it is most simple just to always position before opening
+    useEffect(() => {
+      if (open && forceUpdate) {
+        forceUpdate();
+      }
+    }, [open]);
 
     return (
       // Popper recommends to use the popper element as a wrapper around an inner element that can have any CSS property transitioned for animations.
@@ -91,17 +99,17 @@ Panel.defaultProps = {
 };
 
 Panel.propTypes = {
-  arrow: Types.bool,
-  className: Types.string,
-  children: Types.node.isRequired,
-  open: Types.bool,
-  position: Types.oneOf([
+  arrow: PropTypes.bool,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  open: PropTypes.bool,
+  position: PropTypes.oneOf([
     Panel.Position.BOTTOM,
     Panel.Position.LEFT,
     Panel.Position.RIGHT,
     Panel.Position.TOP,
   ]),
-  anchorRef: Types.shape({ current: Types.shape({}) }).isRequired,
+  anchorRef: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
 };
 
 export default Panel;

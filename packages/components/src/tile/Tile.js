@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Size, Key } from '../common';
@@ -48,17 +48,17 @@ Tile.Size = Size;
 
 Tile.propTypes = {
   /** Classes to apply to the Tile container */
-  className: Types.string,
-  description: Types.node,
-  disabled: Types.bool,
-  href: Types.string.isRequired,
+  className: PropTypes.string,
+  description: PropTypes.node,
+  disabled: PropTypes.bool,
+  href: PropTypes.string.isRequired,
   /** Accepts only Avatar and images */
-  media: Types.node.isRequired,
+  media: PropTypes.node.isRequired,
   /** Function called onClick or onKeyDown */
-  onClick: Types.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   /** The size applied to Tile */
-  size: Types.oneOf([Tile.Size.SMALL, Tile.Size.MEDIUM]),
-  title: Types.node.isRequired,
+  size: PropTypes.oneOf([Tile.Size.SMALL, Tile.Size.MEDIUM]),
+  title: PropTypes.node.isRequired,
 };
 
 Tile.defaultProps = {

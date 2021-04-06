@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 const Option = ({ currency, label, note, secondary, icon, classNames, selected }) => {
   const style = (classes) =>
@@ -27,13 +27,13 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
 };
 
 Option.propTypes = {
-  label: Types.node.isRequired,
-  currency: Types.string,
-  note: Types.node,
-  secondary: Types.node,
-  icon: Types.node,
-  classNames: Types.objectOf(Types.string),
-  selected: Types.bool,
+  label: PropTypes.node.isRequired,
+  currency: PropTypes.string,
+  note: PropTypes.node,
+  secondary: PropTypes.node,
+  icon: PropTypes.node,
+  classNames: PropTypes.objectOf(PropTypes.string),
+  selected: PropTypes.bool,
 };
 
 Option.defaultProps = {

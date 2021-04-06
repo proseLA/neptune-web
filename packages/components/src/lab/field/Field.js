@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import InlineAlert from '../../inlineAlert';
@@ -171,18 +171,18 @@ function getMessage({
 }
 
 Field.propTypes = {
-  children: Types.node.isRequired,
-  error: Types.node,
-  help: Types.node,
-  id: Types.string.isRequired,
-  initValue: Types.oneOfType([Types.string, Types.number, Types.bool]),
-  onChange: Types.func.isRequired,
-  submitted: Types.bool,
-  label: Types.node,
-  type: Types.oneOf(['string', 'number', 'boolean']).isRequired,
-  validation: Types.shape({
-    value: Types.oneOfType([Types.bool, Types.number]),
-    message: Types.node,
+  children: PropTypes.node.isRequired,
+  error: PropTypes.node,
+  help: PropTypes.node,
+  id: PropTypes.string.isRequired,
+  initValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool,
+  label: PropTypes.node,
+  type: PropTypes.oneOf(['string', 'number', 'boolean']).isRequired,
+  validation: PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+    message: PropTypes.node,
   }).isRequired,
 };
 

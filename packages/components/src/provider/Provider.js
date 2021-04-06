@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 import en from '../../i18n/en.json';
 import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
@@ -31,12 +31,12 @@ function Provider({ i18n, children }) {
 }
 
 Provider.propTypes = {
-  i18n: Types.shape({
-    locale: Types.string.isRequired,
-    messages: Types.shape.isRequired,
-    defaultRichTextElements: Types.shape({}),
+  i18n: PropTypes.shape({
+    locale: PropTypes.string.isRequired,
+    messages: PropTypes.shape.isRequired,
+    defaultRichTextElements: PropTypes.shape({}),
   }).isRequired,
-  children: Types.node,
+  children: PropTypes.node,
 };
 
 Provider.defaultProps = {

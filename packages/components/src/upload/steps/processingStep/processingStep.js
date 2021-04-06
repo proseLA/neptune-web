@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import ProcessIndicator from '../../../processIndicator';
 
 const ProcessingStep = (props) => {
@@ -41,13 +41,13 @@ const ProcessingStep = (props) => {
 };
 
 ProcessingStep.propTypes = {
-  isComplete: Types.bool.isRequired,
-  isError: Types.bool.isRequired,
-  isSuccess: Types.bool.isRequired,
-  onAnimationCompleted: Types.func.isRequired,
-  onClear: Types.func.isRequired,
-  psButtonText: Types.string.isRequired,
-  psProcessingText: Types.string.isRequired,
+  isComplete: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
+  onAnimationCompleted: PropTypes.func.isRequired,
+  onClear: PropTypes.func.isRequired,
+  psButtonText: PropTypes.string.isRequired,
+  psProcessingText: PropTypes.string.isRequired,
 };
 
 export default ProcessingStep;

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import hightlight from '../util/highlight';
@@ -28,14 +28,14 @@ const Option = (props) => {
 };
 
 Option.propTypes = {
-  option: Types.shape({
-    label: Types.string.isRequired,
-    note: Types.string,
-    secondary: Types.string,
+  option: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    note: PropTypes.string,
+    secondary: PropTypes.string,
   }).isRequired,
-  query: Types.string,
-  selected: Types.bool,
-  onClick: Types.func,
+  query: PropTypes.string,
+  selected: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 Option.defaultProps = {
