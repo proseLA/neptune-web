@@ -66,6 +66,7 @@ const severalExamplesOfSupportedLocales = [
   'ru',
   'de',
   'tr',
+  'he-IL',
 ];
 
 const ProviderDecorator = (storyFn) => {
