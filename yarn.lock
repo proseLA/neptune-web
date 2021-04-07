@@ -3535,6 +3535,11 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.7.0.tgz#5f7760965170f7f1e2910d2498c5be88b47a2a8c"
   integrity sha512-V3WyEc8ZyAuOQ2fpFuTuYYOd2tV4NePeSdxaHYgYAOs7ERLxlcFi2XsmgI5LJFdAUmJKXsg8jaIiVTkTHQygQw==
 
+"@pxblue/storybook-rtl-addon@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/storybook-rtl-addon/-/storybook-rtl-addon-1.0.0.tgz#8465143d5f62132410fcae99d487d84c0317c05e"
+  integrity sha512-ZAE/1F/+Qn7g4INxwBpjS1hpIE9BQga878sA1b8oHPnSLi1Pl1TrTBo+cw5GyGiIiuym5xkFtTB3RBVZU9F0FQ==
+
 "@reach/router@^1.3.3":
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.4.tgz#d2574b19370a70c80480ed91f3da840136d10f8c"
