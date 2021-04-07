@@ -4353,9 +4353,9 @@
     prompt "^1.0.0"
 
 "@transferwise/formatting@^2.1.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@transferwise/formatting/-/formatting-2.6.0.tgz#8c518c52f569dc8745b6314b78d52c42eb1703a4"
-  integrity sha512-L3SZvfFXi4l0gFfyqIp2npN+YsCyb466JztkloWy1/I7qmIzTp4bB20R2hadm3dBjTEKvbv4caL/JrRuM+1VGg==
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@transferwise/formatting/-/formatting-2.7.0.tgz#73366e2447ea4fb973e72c08b6f125ed4010ff34"
+  integrity sha512-iLa+iZIIGnweOta2co2RUwGHndp9PqJtpVcijM1n1tEd6zMJMA1zK+m5n6rum1o8GuV/Z4E7SxzFKvvTNn1Zsw==
 
 "@transferwise/icons@^2.6.0":
   version "2.6.0"
