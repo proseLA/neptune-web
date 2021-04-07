@@ -128,7 +128,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
   describe('when we receive a form step', () => {
     it('should convert it into a layout', () => {
       const schema = {
-        id: 'thing',
+        $id: 'thing',
         type: 'object',
         properties: {
           a: {
@@ -232,14 +232,14 @@ describe('Given a utility service for handling dynamic layouts', () => {
   describe('when asked to inline schemas referenced by id', () => {
     const schemas = [
       {
-        id: '#myDetails',
+        $id: '#myDetails',
         type: 'object',
         properties: {
           name: { type: 'string' },
         },
       },
       {
-        id: '#myAddress',
+        $id: '#myAddress',
         type: 'object',
         properties: {
           address: { type: 'string' },
@@ -251,11 +251,15 @@ describe('Given a utility service for handling dynamic layouts', () => {
       const simpleLayout = [
         {
           type: 'form',
-          $schema: '#myDetails',
+          schema: {
+            $ref: '#myDetails',
+          },
         },
         {
           type: 'form',
-          $schema: '#myAddress',
+          schema: {
+            $ref: '#myAddress',
+          },
         },
       ];
 
@@ -263,7 +267,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         {
           type: 'form',
           schema: {
-            id: '#myDetails',
+            $id: '#myDetails',
             type: 'object',
             properties: {
               name: { type: 'string' },
@@ -273,7 +277,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         {
           type: 'form',
           schema: {
-            id: '#myAddress',
+            $id: '#myAddress',
             type: 'object',
             properties: {
               address: { type: 'string' },
@@ -292,7 +296,9 @@ describe('Given a utility service for handling dynamic layouts', () => {
           components: [
             {
               type: 'form',
-              $schema: '#myAddress',
+              schema: {
+                $ref: '#myAddress',
+              },
             },
           ],
         },
@@ -305,7 +311,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'form',
               schema: {
-                id: '#myAddress',
+                $id: '#myAddress',
                 type: 'object',
                 properties: {
                   address: { type: 'string' },
@@ -326,13 +332,17 @@ describe('Given a utility service for handling dynamic layouts', () => {
           left: [
             {
               type: 'form',
-              $schema: '#myDetails',
+              schema: {
+                $ref: '#myDetails',
+              },
             },
           ],
           right: [
             {
               type: 'form',
-              $schema: '#myAddress',
+              schema: {
+                $ref: '#myAddress',
+              },
             },
           ],
         },
@@ -345,7 +355,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'form',
               schema: {
-                id: '#myDetails',
+                $id: '#myDetails',
                 type: 'object',
                 properties: {
                   name: { type: 'string' },
@@ -357,7 +367,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'form',
               schema: {
-                id: '#myAddress',
+                $id: '#myAddress',
                 type: 'object',
                 properties: {
                   address: { type: 'string' },
