@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.2.0...@transferwise/components@35.3.0) (2021-04-07)
+
+
+### Features
+
+* rtl provider ([#841](https://github.com/transferwise/neptune-web/issues/841)) ([4956bb7](https://github.com/transferwise/neptune-web/commit/4956bb777791aae9c355f02ef84bda23e2bff72c))
+
+
+
+
+
 # [35.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.6...@transferwise/components@35.2.0) (2021-04-06)
 
 
