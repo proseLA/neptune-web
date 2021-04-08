@@ -1,7 +1,7 @@
 {
   "name": "@transferwise/neptune-css",
-  "description": "Neptune CSS is TransferWise's Design System CSS library",
-  "version": "8.1.1",
+  "description": "Neptune CSS library",
+  "version": "9.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -10,8 +10,8 @@
   },
   "keywords": [],
   "author": {
-    "name": "TransferWise",
-    "url": "https://transferwise.com/"
+    "name": "Wise",
+    "url": "https://wise.com/"
   },
   "bugs": {
     "url": "https://github.com/transferwise/neptune-web/issues"
@@ -36,7 +36,8 @@
     "copy:images": "cpx 'src/img/**' dist/img",
     "copy:fonts": "cpx 'src/fonts/*' dist/fonts",
     "prettier": "prettier --write src/less/*.less",
-    "lintless": "stylelint ./src/less",
+    "lint": "yarn lintless",
+    "lintless": "stylelint './src/(less|props|variables)/**' '!**/bootstrap-forms.less'",
     "lintless:fix": "yarn lintless --fix"
   },
   "dependencies": {
@@ -47,7 +48,7 @@
   "devDependencies": {
     "@mdx-js/loader": "^1.5.8",
     "@next/mdx": "^9.0.5",
-    "@transferwise/less-config": "^3.0.0",
+    "@transferwise/less-config": "^3.0.1",
     "@zeit/next-css": "^1.0.1",
     "next": "^9.5.5",
     "prop-types": "^15.7.2",

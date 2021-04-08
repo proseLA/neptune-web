@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Header from '../header';
 import Stepper from '../stepper';
@@ -106,21 +106,21 @@ FlowNavigation.defaultProps = {
 };
 
 FlowNavigation.propTypes = {
-  activeStep: Types.number,
+  activeStep: PropTypes.number,
   /** An Avatar */
-  avatar: Types.element,
-  logo: Types.node.isRequired,
+  avatar: PropTypes.element,
+  logo: PropTypes.node.isRequired,
   /** Called when the close button is clicked. If not provided the close button won't show */
-  onClose: Types.func,
+  onClose: PropTypes.func,
   /** Called when the back button is clicked. If not provided the back button won't show. The back button only shows on small screens */
-  onGoBack: Types.func,
-  done: Types.bool,
+  onGoBack: PropTypes.func,
+  done: PropTypes.bool,
   /** Steps to be displayed in stepper. If you don't need the stepper, please use OverlayHeader instead */
-  steps: Types.arrayOf(
-    Types.shape({
-      label: Types.node.isRequired,
-      onClick: Types.func,
-      hoverLabel: Types.node,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node.isRequired,
+      onClick: PropTypes.func,
+      hoverLabel: PropTypes.node,
     }),
   ).isRequired,
 };

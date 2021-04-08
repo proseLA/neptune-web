@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import RadioButton from '../common/RadioButton';
 
@@ -15,14 +15,14 @@ const Radio = ({ label, id, disabled, secondary, ...otherProps }) => (
 );
 
 Radio.propTypes = {
-  checked: Types.bool,
-  disabled: Types.bool,
-  id: Types.string,
-  label: Types.string.isRequired,
-  name: Types.string.isRequired,
-  onChange: Types.func.isRequired,
-  secondary: Types.string,
-  value: Types.oneOfType([Types.number, Types.string]),
+  checked: PropTypes.bool,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  secondary: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Radio.defaultProps = {

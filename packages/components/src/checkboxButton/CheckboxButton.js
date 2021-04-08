@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './CheckboxButton.css';
@@ -15,11 +15,11 @@ const CheckboxButton = ({ checked, className, disabled, onChange, ...rest }) => 
 
 CheckboxButton.propTypes = {
   /* Provide this if the CheckboxButton is being used without a label */
-  'aria-label': Types.string,
-  checked: Types.bool,
-  className: Types.string,
-  disabled: Types.bool,
-  onChange: Types.func.isRequired,
+  'aria-label': PropTypes.string,
+  checked: PropTypes.bool,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
 };
 
 CheckboxButton.defaultProps = {

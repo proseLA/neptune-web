@@ -205,13 +205,13 @@ function inlineFormSchemas(layout, schemas, model) {
 }
 
 function inlineFormSchema(formComponent, schemas, model) {
-  if (formComponent.$schema) {
+  if (formComponent.schema.$ref) {
     const newForm = {
       ...formComponent,
-      schema: getSchemaById(schemas, formComponent.$schema),
+      schema: getSchemaById(schemas, formComponent.schema.$ref),
       model,
     };
-    delete newForm.$schema;
+    delete newForm.schema.$ref;
     return newForm;
   }
   return { ...formComponent, model };
@@ -233,7 +233,7 @@ function inlineColumnsFormSchemas(columnsComponent, schemas, model) {
 }
 
 function getSchemaById(schemas, id) {
-  return schemas.find((schema) => schema.id === id);
+  return schemas.find((schema) => schema.$id === id);
 }
 
 export { convertStepToLayout, inlineFormSchemas };

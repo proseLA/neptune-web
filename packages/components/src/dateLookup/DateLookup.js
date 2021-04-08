@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import KeyCodes from '../common/keyCodes';
 import { Size, MonthFormat, Breakpoint } from '../common';
@@ -301,17 +301,17 @@ class DateLookup extends PureComponent {
 }
 
 DateLookup.propTypes = {
-  value: Types.instanceOf(Date),
-  min: Types.instanceOf(Date),
-  max: Types.instanceOf(Date),
-  size: Types.oneOf([DateLookup.Size.SMALL, DateLookup.Size.MEDIUM, DateLookup.Size.LARGE]),
-  placeholder: Types.string,
-  label: Types.string,
-  monthFormat: Types.oneOf([DateLookup.MonthFormat.LONG, DateLookup.MonthFormat.SHORT]),
-  disabled: Types.bool,
-  onChange: Types.func.isRequired,
-  onFocus: Types.func,
-  onBlur: Types.func,
+  value: PropTypes.instanceOf(Date),
+  min: PropTypes.instanceOf(Date),
+  max: PropTypes.instanceOf(Date),
+  size: PropTypes.oneOf([DateLookup.Size.SMALL, DateLookup.Size.MEDIUM, DateLookup.Size.LARGE]),
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  monthFormat: PropTypes.oneOf([DateLookup.MonthFormat.LONG, DateLookup.MonthFormat.SHORT]),
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 DateLookup.defaultProps = {

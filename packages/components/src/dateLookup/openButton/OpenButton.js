@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
 import Chevron from '../../chevron';
@@ -39,13 +39,13 @@ const OpenButton = ({ selectedDate, size, placeholder, label, monthFormat, disab
 };
 
 OpenButton.propTypes = {
-  selectedDate: Types.instanceOf(Date),
-  size: Types.oneOf([Size.SMALL, Size.MEDIUM, Size.LARGE]),
-  placeholder: Types.string.isRequired,
-  label: Types.string.isRequired,
-  monthFormat: Types.oneOf(Object.values(MonthFormat)).isRequired,
-  disabled: Types.bool.isRequired,
-  onClick: Types.func.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
+  size: PropTypes.oneOf([Size.SMALL, Size.MEDIUM, Size.LARGE]),
+  placeholder: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  monthFormat: PropTypes.oneOf(Object.values(MonthFormat)).isRequired,
+  disabled: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 OpenButton.defaultProps = {

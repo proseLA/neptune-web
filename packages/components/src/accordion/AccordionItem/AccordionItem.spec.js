@@ -1,74 +1,50 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { Freeze } from '@transferwise/icons';
 
-import AccordionItem from '.';
-import Chevron from '../../chevron';
-
-const { Orientation } = Chevron;
+import { render, userEvent } from '../../test-utils';
+import AccordionItem from './AccordionItem';
 
 describe('AccordionItem', () => {
-  let component;
   const props = {
-    title: 'Hello',
-    content: 'world!',
-    isOpen: false,
-    index: 1,
+    title: 'This is title number one',
+    content: 'Lauri Ipsum has been the industry standard dummy text ever since the 1500s.',
+    open: false,
     onClick: jest.fn(),
   };
 
-  describe('when closed', () => {
-    beforeEach(() => {
-      component = shallow(<AccordionItem {...props} />);
+  describe('open / close', () => {
+    it('renders an item closed', () => {
+      expect(render(<AccordionItem {...props} />).container).toMatchSnapshot();
     });
 
-    it('displays the title', () => {
-      expect(getTitle().text()).toBe(props.title);
-    });
-
-    it(`does have class closed`, () => {
-      expect(contentClosed()).toHaveLength(1);
-    });
-
-    it('chevron points down', () => {
-      expect(getChevron().prop('orientation')).toEqual(Orientation.BOTTOM);
-    });
-
-    it('still has hidden content', () => {
-      const htmlElement = <h4>whoop</h4>;
-      component.setProps({ content: htmlElement });
-    });
-
-    it('removes close class on click', () => {
-      clickButton();
-      expect(props.onClick).toHaveBeenCalledWith(1);
+    it('renders an item open', () => {
+      expect(render(<AccordionItem {...props} open />).container).toMatchSnapshot();
     });
   });
 
-  describe('when open', () => {
-    beforeEach(() => {
-      component = shallow(<AccordionItem {...props} isOpen />);
+  describe('icons', () => {
+    it('renders the icon if passed', () => {
+      const { container } = render(<AccordionItem {...props} icon={<Freeze />} />);
+
+      expect(container.querySelector('.tw-icon-freeze')).toBeInTheDocument();
     });
 
-    it('displays the title', () => {
-      expect(getTitle().text()).toBe(props.title);
-    });
+    it('will always render icons at 24px', () => {
+      const { container } = render(<AccordionItem {...props} icon={<Freeze size={16} />} />);
 
-    it(`doesn't have class closed`, () => {
-      expect(contentClosed()).toHaveLength(0);
-    });
-
-    it('chevron points up', () => {
-      expect(getChevron().prop('orientation')).toBe(Orientation.TOP);
-    });
-
-    it('displays the content when its an HTML element', () => {
-      const htmlElement = <h4>whoop</h4>;
-      component.setProps({ content: htmlElement });
+      expect(container.querySelector('.tw-icon-freeze svg')).toHaveAttribute('width', '24');
     });
   });
 
-  const getTitle = () => component.find('.h5');
-  const getChevron = () => component.find(Chevron);
-  const contentClosed = () => component.find('.closed');
-  const clickButton = () => component.find('button').simulate('click');
+  describe('onClick', () => {
+    it('calls onClick when item is clicked', () => {
+      const onClick = jest.fn();
+
+      const { getByRole } = render(<AccordionItem {...props} onClick={onClick} />);
+
+      userEvent.click(getByRole('button'));
+
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
+  });
 });

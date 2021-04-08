@@ -9,7 +9,7 @@ exports[`FlowNavigation on mobile renders as expected 1`] = `
       class="np-header d-flex flex-wrap np-flow-navigation__content p-x-3 np-flow-navigation--xs-max"
     >
       <div
-        class="align-items-center d-flex flex__item--8"
+        class="align-items-center np-header__left d-flex flex__item--8"
       >
         <div>
           BackButton
@@ -25,7 +25,7 @@ exports[`FlowNavigation on mobile renders as expected 1`] = `
         />
       </div>
       <div
-        class="align-items-center d-flex justify-content-end flex__item--4 "
+        class="align-items-center d-flex np-header__right justify-content-end flex__item--4 "
       >
         <div
           class="tw-avatar tw-avatar--md tw-avatar--initials tw-avatar--light"
@@ -157,7 +157,7 @@ exports[`FlowNavigation renders as expected 1`] = `
       class="np-header d-flex flex-wrap np-flow-navigation__content p-x-3 np-flow-navigation--sm np-flow-navigation--lg"
     >
       <div
-        class="align-items-center d-flex"
+        class="align-items-center np-header__left d-flex"
       >
         <img
           alt="logo"
@@ -167,7 +167,7 @@ exports[`FlowNavigation renders as expected 1`] = `
         />
       </div>
       <div
-        class="align-items-center d-flex justify-content-end order-2"
+        class="align-items-center d-flex np-header__right justify-content-end order-2"
       >
         <div
           class="tw-avatar tw-avatar--md tw-avatar--initials tw-avatar--light"

@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Option from '../common/Option';
 import CheckboxButton from '../checkboxButton';
@@ -18,15 +18,15 @@ const CheckboxOption = ({ media, title, content, name, checked, onChange, comple
 };
 
 CheckboxOption.propTypes = {
-  checked: Types.bool,
-  complex: Types.bool,
-  content: Types.node,
-  disabled: Types.bool,
-  id: Types.string,
-  media: Types.node,
-  name: Types.string.isRequired,
-  onChange: Types.func.isRequired,
-  title: Types.node.isRequired,
+  checked: PropTypes.bool,
+  complex: PropTypes.bool,
+  content: PropTypes.node,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  media: PropTypes.node,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  title: PropTypes.node.isRequired,
 };
 
 CheckboxOption.defaultProps = {

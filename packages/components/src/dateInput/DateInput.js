@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import '../common/polyfills/closest';
 import Select from '../select';
@@ -282,23 +282,23 @@ DateInput.DateMode = DateMode;
 DateInput.MonthFormat = MonthFormat;
 
 DateInput.propTypes = {
-  disabled: Types.bool,
-  size: Types.oneOf([DateInput.Size.SMALL, DateInput.Size.MEDIUM, DateInput.Size.LARGE]),
-  value: Types.oneOfType([Types.string, Types.instanceOf(Date)]),
-  onChange: Types.func.isRequired, // eslint-disable-line
-  onFocus: Types.func,
-  onBlur: Types.func,
-  dayLabel: Types.string,
-  monthLabel: Types.string,
-  yearLabel: Types.string,
-  monthFormat: Types.oneOf([DateInput.MonthFormat.LONG, DateInput.MonthFormat.SHORT]),
-  mode: Types.oneOf([DateInput.DateMode.DAY_MONTH_YEAR, DateInput.DateMode.MONTH_YEAR]),
-  placeholders: Types.shape({
-    day: Types.node,
-    month: Types.node,
-    year: Types.node,
+  disabled: PropTypes.bool,
+  size: PropTypes.oneOf([DateInput.Size.SMALL, DateInput.Size.MEDIUM, DateInput.Size.LARGE]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  onChange: PropTypes.func.isRequired, // eslint-disable-line
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  dayLabel: PropTypes.string,
+  monthLabel: PropTypes.string,
+  yearLabel: PropTypes.string,
+  monthFormat: PropTypes.oneOf([DateInput.MonthFormat.LONG, DateInput.MonthFormat.SHORT]),
+  mode: PropTypes.oneOf([DateInput.DateMode.DAY_MONTH_YEAR, DateInput.DateMode.MONTH_YEAR]),
+  placeholders: PropTypes.shape({
+    day: PropTypes.node,
+    month: PropTypes.node,
+    year: PropTypes.node,
   }),
-  id: Types.string,
+  id: PropTypes.string,
 };
 
 DateInput.defaultProps = {

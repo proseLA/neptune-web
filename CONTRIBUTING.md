@@ -44,36 +44,11 @@ The full list of commands available to run from the root directory are:
 - `build` - builds all packages
 - `clean` - removes `node_modules` and cached builds from all packages
 - `docs` - builds all packages and starts the Neptune Web docs
-- `lint` - lints all packages
-- `test` - runs tests in all packages (includes a lint)
+- `lint` - lints all packages (JS, TS and style files)
+- `test` - runs tests in all packages
 - `create-component` - creates all the necessary files needed when a react component gets added to the library
 
 As said above, we recommend running most commands from within the package you're working in.
-
-## Fix / format on save
-
-We use a combination of ESLint, Prettier and Stylelint to check our code for bugs. These tools have the option to run on save, which we recommend.
-
-### VSCode
-
-In `settings.json` (use the command `Open Settings (JSON)` to get there):
-
-```json
-{
-  "css.validate": false,
-  "less.validate": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
-  },
-  "[css]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
-  },
-  "[less]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
-  }
-}
-```
 
 ## Testing
 

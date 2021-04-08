@@ -49,11 +49,12 @@ describe('Given a component for dynamically rendering columns', () => {
     component = shallow(
       <DynamicColumns
         component={columns}
-        onAction={onAction}
-        onModelChange={onModelChange}
+        model={model}
         submitted={false}
         errors={{}}
-        model={model}
+        baseUrl="dynamic-columns-base-url"
+        onModelChange={onModelChange}
+        onAction={onAction}
         onPersistAsync={onPersistAsync}
       />,
     );

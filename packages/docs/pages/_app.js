@@ -11,6 +11,7 @@ import {
 } from '@transferwise/components/build/es/polyfill/common/locale';
 import Layout from '../components/Layout';
 import '@transferwise/neptune-css/dist/css/neptune.css';
+import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
 
@@ -54,7 +55,8 @@ class MyApp extends App {
     return (
       <Provider i18n={{ locale, messages }}>
         <Head>
-          <title>Neptune Design System — TransferWise</title>
+          <title>Neptune Web - the Wise Design System on Web</title>
+          <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
         </Head>
 
         <Layout>

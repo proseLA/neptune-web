@@ -1,6 +1,6 @@
 import '@transferwise/neptune-css/dist/css/chevron.css';
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ChevronUp } from '@transferwise/icons';
 import { Size, Position } from '../common';
@@ -27,7 +27,7 @@ const ExtraSmallChevron = ({ className }) => (
 );
 
 ExtraSmallChevron.propTypes = {
-  className: Types.string,
+  className: PropTypes.string,
 };
 
 ExtraSmallChevron.defaultProps = {
@@ -55,15 +55,15 @@ Chevron.Orientation = Position;
 Chevron.Size = Size;
 
 Chevron.propTypes = {
-  orientation: Types.oneOf([
+  orientation: PropTypes.oneOf([
     Chevron.Orientation.TOP,
     Chevron.Orientation.BOTTOM,
     Chevron.Orientation.LEFT,
     Chevron.Orientation.RIGHT,
   ]),
-  size: Types.oneOf([Chevron.Size.EXTRA_SMALL, Chevron.Size.SMALL, Chevron.Size.MEDIUM]),
-  disabled: Types.bool,
-  className: Types.string,
+  size: PropTypes.oneOf([Chevron.Size.EXTRA_SMALL, Chevron.Size.SMALL, Chevron.Size.MEDIUM]),
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Chevron.defaultProps = {

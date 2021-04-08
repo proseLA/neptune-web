@@ -3,7 +3,6 @@
 # dependencies
 
 node_modules
-
 # testing
 
 /coverage
@@ -58,7 +57,7 @@ storybook-static
 .idea
 *.iws
 *.iml
-.vscode
+.history
 
 temp-bundle-sizes.js
 temp-tabular-props.js

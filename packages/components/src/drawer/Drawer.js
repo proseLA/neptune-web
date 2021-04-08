@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
-import Types from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
 import SlidingPanel from '../slidingPanel';
 import Dimmer from '../dimmer';
-import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
 import './Drawer.css';
 import { Position } from '../common/propsValues/position';
 import { logActionRequiredIf } from '../utilities';
@@ -28,25 +27,9 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
     }
   };
 
-  useEffect(() => {
-    return () => {
-      if (open) {
-        removeNoScrollBodyClass();
-      }
-    };
-  }, []);
-
-  const handleOnEnter = () => {
-    addNoScrollBodyClass();
-  };
-
-  const handleOnExit = () => {
-    removeNoScrollBodyClass();
-  };
-
   return (
     <Dimmer open={open} onClose={onClose}>
-      <SlidingPanel open={open} position={position} onEnter={handleOnEnter} onExit={handleOnExit}>
+      <SlidingPanel open={open} position={position}>
         <div className="np-drawer">
           <div
             className={classNames('np-drawer-header', 'np-drawer-p-x', {
@@ -87,17 +70,17 @@ Drawer.Position = { LEFT: Position.LEFT, RIGHT: Position.RIGHT };
 
 Drawer.propTypes = {
   /** The content to appear in the drawer body. */
-  children: Types.node,
+  children: PropTypes.node,
   /** The content to appear in the drawer footer. */
-  footerContent: Types.node,
+  footerContent: PropTypes.node,
   /** The content to appear in the drawer header. */
-  headerTitle: Types.string,
+  headerTitle: PropTypes.string,
   /** The action to perform on close click. */
-  onClose: Types.func,
+  onClose: PropTypes.func,
   /** The status of Drawer either open or not. */
-  open: Types.bool,
+  open: PropTypes.bool,
   /** The placement of Drawer on the screen either left or right. */
-  position: Types.oneOf([Drawer.Position.LEFT, Drawer.Position.RIGHT]),
+  position: PropTypes.oneOf([Drawer.Position.LEFT, Drawer.Position.RIGHT]),
 };
 
 Drawer.defaultProps = {

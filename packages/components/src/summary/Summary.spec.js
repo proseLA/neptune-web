@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../test-utils';
+import { render, waitFor, fireEvent } from '../test-utils';
 import Summary from './Summary';
 
 describe('Summary', () => {
@@ -8,26 +8,59 @@ describe('Summary', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('renders full component', () => {
-    const { asFragment } = render(
-      <Summary
-        action={{
-          text: 'text',
-          href: 'href',
-          'aria-label': 'aria-label',
-        }}
-        description="description"
-        info={{
-          title: 'title',
-          content: 'description',
-          'aria-label': 'aria-label',
-        }}
-        icon={<strong>icon</strong>}
-        status={Summary.Status.DONE}
-        title="title"
-      />,
-    );
-    expect(asFragment()).toMatchSnapshot();
+  it('renders full component', async () => {
+    let container;
+    await waitFor(() => {
+      ({ container } = render(
+        <Summary
+          action={{
+            text: 'text',
+            href: 'href',
+            'aria-label': 'aria-label',
+          }}
+          description="description"
+          info={{
+            title: 'title',
+            content: 'description',
+            'aria-label': 'aria-label',
+          }}
+          icon={<strong>icon</strong>}
+          status={Summary.Status.DONE}
+          title="title"
+        />,
+      ));
+
+      expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe('action', () => {
+    const onClickStub = jest.fn();
+    const props = {
+      icon: <strong>icon</strong>,
+      title: 'Hello world',
+      action: {
+        text: 'text',
+        href: 'href',
+        target: '_blank',
+        onClick: onClickStub,
+      },
+    };
+
+    it('sets target on the link', () => {
+      const { getByText } = render(<Summary {...props} />);
+
+      const el = getByText('text');
+      expect(el).toHaveAttribute('target', props.action.target);
+    });
+
+    it('runs the onClick callback provided', () => {
+      const { container } = render(<Summary {...props} />);
+
+      fireEvent.click(container.querySelector('.np-summary__action'));
+
+      expect(onClickStub).toBeCalledTimes(1);
+    });
   });
 
   describe('statuses', () => {

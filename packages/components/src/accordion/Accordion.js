@@ -1,66 +1,46 @@
-import React, { PureComponent } from 'react';
-import Types from 'prop-types';
-import AccordionItem from './AccordionItem';
+import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
+import AccordionItem from './AccordionItem';
 import './Accordion.css';
 
-/* eslint-disable react/no-array-index-key */
-class Accordion extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      indexOpen: props.indexOpen,
-    };
-  }
-
-  /* eslint-disable react/no-did-update-set-state */
-  componentDidUpdate(prevProps) {
-    if (prevProps.indexOpen !== this.props.indexOpen) {
-      this.setState({ indexOpen: this.props.indexOpen });
+const Accordion = ({ items, onClick, indexOpen }) => {
+  const [itemsOpen, setItemsOpen] = useState(() => items.map((val, index) => index === indexOpen));
+  const handleOnClick = (index) => {
+    if (onClick) {
+      onClick(index);
     }
-  }
-
-  handleOnClick = (index) => {
-    this.setState((prevState) => {
-      return { indexOpen: prevState.indexOpen === index ? -1 : index };
-    });
-    if (this.props.onClick) {
-      this.props.onClick(index);
-    }
+    const newItems = [...itemsOpen];
+    newItems[index] = !itemsOpen[index];
+    setItemsOpen(newItems);
   };
 
-  render() {
-    return (
-      <>
-        {this.props.items.map((item, index) => (
-          <AccordionItem
-            id={item.id}
-            key={item.id || index}
-            index={index}
-            isOpen={index === this.state.indexOpen}
-            onClick={this.handleOnClick}
-            {...item}
-          />
-        ))}
-      </>
-    );
-  }
-}
+  return items.map((item, index) => (
+    <AccordionItem
+      key={item.id || index}
+      onClick={() => handleOnClick(index)}
+      open={itemsOpen[index]}
+      {...item}
+    />
+  ));
+};
 
 Accordion.propTypes = {
-  items: Types.arrayOf(
-    Types.shape({
-      id: Types.string,
-      title: Types.node.isRequired,
-      content: Types.node.isRequired,
+  indexOpen: PropTypes.number,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.node.isRequired,
+      content: PropTypes.node.isRequired,
+      icon: PropTypes.node,
     }),
   ).isRequired,
-  onClick: Types.func,
-  indexOpen: Types.number,
+  onClick: PropTypes.func,
 };
 
 Accordion.defaultProps = {
-  onClick: null,
   indexOpen: -1,
+  onClick: null,
 };
+
 export default Accordion;

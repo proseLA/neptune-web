@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
 import { getDayNames, isWithinRange } from '../../../common/dateUtils';
@@ -121,12 +121,12 @@ class DayCalendarTable extends PureComponent {
 }
 
 DayCalendarTable.propTypes = {
-  selectedDate: Types.instanceOf(Date),
-  min: Types.instanceOf(Date),
-  max: Types.instanceOf(Date),
-  viewMonth: Types.number.isRequired,
-  viewYear: Types.number.isRequired,
-  onSelect: Types.func.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
+  min: PropTypes.instanceOf(Date),
+  max: PropTypes.instanceOf(Date),
+  viewMonth: PropTypes.number.isRequired,
+  viewYear: PropTypes.number.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 DayCalendarTable.defaultProps = {

@@ -1,5 +1,5 @@
 import React, { cloneElement, useState, useRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import requiredIf from 'react-required-if';
 import { InfoCircle, CheckCircle, Alert as AlertIcon, AlertCircle } from '@transferwise/icons';
@@ -118,25 +118,25 @@ Alert.Type = Sentiment;
 
 Alert.propTypes = {
   /** An optional call to action to sit under the main body of the alert. If your label is short, use aria-label to provide more context */
-  action: Types.shape({
-    'aria-label': Types.string,
-    href: Types.string.isRequired,
-    target: Types.string,
-    text: Types.node.isRequired,
+  action: PropTypes.shape({
+    'aria-label': PropTypes.string,
+    href: PropTypes.string.isRequired,
+    target: PropTypes.string,
+    text: PropTypes.node.isRequired,
   }),
-  className: Types.string,
+  className: PropTypes.string,
   /** An optional icon. If not provided, we will default the icon to something appropriate for the type */
-  icon: Types.element,
+  icon: PropTypes.element,
   /** The main body of the alert. Accepts plain text and bold words specified with **double stars** */
-  message: requiredIf(Types.node, ({ children }) => !children),
+  message: requiredIf(PropTypes.node, ({ children }) => !children),
   /** The presence of the onDismiss handler will trigger the visibility of the close button */
-  onDismiss: Types.func,
+  onDismiss: PropTypes.func,
   /** The type dictates which icon and colour will be used */
-  type: Types.oneOf(Object.values(Alert.Type)),
+  type: PropTypes.oneOf(Object.values(Alert.Type)),
 
   /** @DEPRECATED */
   arrow: deprecated(
-    Types.oneOf([
+    PropTypes.oneOf([
       ArrowPosition.TOP_LEFT,
       ArrowPosition.TOP,
       ArrowPosition.TOP_RIGHT,
@@ -148,7 +148,7 @@ Alert.propTypes = {
   ),
   /** @DEPRECATED */
   children: deprecated(
-    requiredIf(Types.node, ({ message }) => !message),
+    requiredIf(PropTypes.node, ({ message }) => !message),
     {
       component: 'Alert',
       message:
@@ -157,7 +157,7 @@ Alert.propTypes = {
     },
   ),
   /** @DEPRECATED */
-  dismissible: deprecated(Types.bool, {
+  dismissible: deprecated(PropTypes.bool, {
     component: 'Alert',
     message: 'The Alert will now be considered dismissible if an `onDismiss` hander is present.',
     expiryDate: new Date('03-01-2021'),

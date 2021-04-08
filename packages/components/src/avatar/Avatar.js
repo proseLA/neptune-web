@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { Size, Theme } from '../common';
@@ -40,13 +40,13 @@ Avatar.Type = {
 };
 
 Avatar.propTypes = {
-  backgroundColor: Types.string,
-  children: Types.node,
-  className: Types.string,
-  outlined: Types.bool,
-  size: Types.oneOf([Avatar.Size.SMALL, Avatar.Size.MEDIUM, Avatar.Size.LARGE]),
-  theme: Types.oneOf([Theme.LIGHT, Theme.DARK]),
-  type: Types.oneOf([
+  backgroundColor: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  outlined: PropTypes.bool,
+  size: PropTypes.oneOf([Avatar.Size.SMALL, Avatar.Size.MEDIUM, Avatar.Size.LARGE]),
+  theme: PropTypes.oneOf([Theme.LIGHT, Theme.DARK]),
+  type: PropTypes.oneOf([
     Avatar.Type.THUMBNAIL,
     Avatar.Type.ICON,
     Avatar.Type.EMOJI,

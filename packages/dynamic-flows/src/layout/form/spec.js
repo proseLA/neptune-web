@@ -33,10 +33,11 @@ describe('Given a component for dynamically rendering forms', () => {
     component = shallow(
       <DynamicForm
         component={spec}
-        onModelChange={onModelChange}
+        model={model}
         submitted={submitted}
         errors={errors}
-        model={model}
+        baseUrl="dynamic-form-spec-base-url"
+        onModelChange={onModelChange}
         onPersistAsync={onPersistAsync}
       />,
     );
@@ -57,10 +58,19 @@ describe('Given a component for dynamically rendering forms', () => {
 
   describe('when the form triggers a model change', () => {
     beforeEach(() => {
-      component.find(JsonSchemaForm).simulate('change', model, schema.properties, 'example');
+      component.find(JsonSchemaForm).simulate(
+        'change',
+        model,
+        {
+          an: { type: 'string' },
+        },
+        'example',
+      );
     });
     it('should broadcast onAction', () => {
-      expect(onModelChange).toHaveBeenCalledWith(model, schema, 'example', schema.properties);
+      expect(onModelChange).toHaveBeenCalledWith(model, schema, 'example', {
+        an: { type: 'string' },
+      });
     });
   });
 });

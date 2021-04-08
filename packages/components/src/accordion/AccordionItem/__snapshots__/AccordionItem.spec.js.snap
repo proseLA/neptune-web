@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccordionItem open / close renders an item closed 1`] = `
+<div>
+  <div
+    class="tw-accordion-item decision p-a-0 closed"
+  >
+    <button
+      aria-expanded="false"
+      class="tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3 p-b-3"
+      type="button"
+    >
+      <div
+        class="media"
+      >
+        <div
+          class="media-body text-xs-left title"
+        >
+          <span
+            class="h5"
+          >
+            This is title number one
+          </span>
+        </div>
+        <div
+          class="media-right d-flex align-items-center"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-chevron-up tw-chevron chevron-color bottom"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </button>
+    <div
+      class="accordion-content media "
+    >
+      <div
+        aria-hidden="true"
+        class="media-body m-r-5 p-b-3"
+      >
+        Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AccordionItem open / close renders an item open 1`] = `
+<div>
+  <div
+    class="tw-accordion-item decision p-a-0"
+  >
+    <button
+      aria-expanded="true"
+      class="tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3 p-b-2"
+      type="button"
+    >
+      <div
+        class="media"
+      >
+        <div
+          class="media-body text-xs-left title"
+        >
+          <span
+            class="h5"
+          >
+            This is title number one
+          </span>
+        </div>
+        <div
+          class="media-right d-flex align-items-center"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-chevron-up tw-chevron chevron-color top"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4l-6.6 6.653L2.537 11.8 8 6.293l5.463 5.507 1.137-1.147L8 4z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </button>
+    <div
+      class="accordion-content media "
+    >
+      <div
+        aria-hidden="false"
+        class="media-body m-r-5 p-b-3"
+      >
+        Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
+      </div>
+    </div>
+  </div>
+</div>
+`;

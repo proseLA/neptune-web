@@ -34,11 +34,12 @@ const DynamicBox = (props) => {
       <div className={getMarginBottom(box.margin || 'lg') + getBorderClass(box.border)}>
         <DynamicLayout
           components={box.components}
-          onModelChange={props.onModelChange}
-          onAction={props.onAction}
+          model={props.model}
           submitted={props.submitted}
           errors={props.errors}
-          model={props.model}
+          baseUrl={props.baseUrl}
+          onModelChange={props.onModelChange}
+          onAction={props.onAction}
           onPersistAsync={props.onPersistAsync}
         />
       </div>
@@ -51,11 +52,12 @@ const DynamicBox = (props) => {
         <div className={getBorderClass(box.border)}>
           <DynamicLayout
             components={box.components}
-            onModelChange={props.onModelChange}
-            onAction={props.onAction}
+            model={props.model}
             submitted={props.submitted}
             errors={props.errors}
-            model={props.model}
+            baseUrl={props.baseUrl}
+            onModelChange={props.onModelChange}
+            onAction={props.onAction}
             onPersistAsync={props.onPersistAsync}
           />
         </div>
@@ -65,17 +67,18 @@ const DynamicBox = (props) => {
 };
 
 DynamicBox.propTypes = {
-  onAction: Types.func.isRequired,
-  onModelChange: Types.func.isRequired,
   component: Types.shape({
     components: Types.arrayOf(Types.shape({})),
     margin: marginModel,
     border: Types.bool,
     width: Types.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   }).isRequired,
-  submitted: Types.bool.isRequired,
   model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
+  submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
+  baseUrl: Types.string.isRequired,
+  onModelChange: Types.func.isRequired,
+  onAction: Types.func.isRequired,
   onPersistAsync: Types.func.isRequired,
 };
 

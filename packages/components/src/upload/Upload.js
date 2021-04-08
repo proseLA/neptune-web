@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Plus as PlusIcon } from '@transferwise/icons';
 import { UploadImageStep, MediaUploadStep, ProcessingStep, CompleteStep } from './steps';
@@ -354,37 +354,37 @@ class Upload extends PureComponent {
 Upload.UploadStep = UPLOAD_STEPS;
 
 Upload.propTypes = {
-  animationDelay: Types.number,
-  csButtonText: Types.string,
-  csFailureText: Types.string,
-  csSuccessText: Types.string,
-  csTooLargeMessage: Types.string,
-  csWrongTypeMessage: Types.string,
-  httpOptions: Types.shape({
-    url: Types.string.isRequired,
-    method: Types.oneOf(['POST', 'PUT', 'PATCH']),
-    fileInputName: Types.string,
+  animationDelay: PropTypes.number,
+  csButtonText: PropTypes.string,
+  csFailureText: PropTypes.string,
+  csSuccessText: PropTypes.string,
+  csTooLargeMessage: PropTypes.string,
+  csWrongTypeMessage: PropTypes.string,
+  httpOptions: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    method: PropTypes.oneOf(['POST', 'PUT', 'PATCH']),
+    fileInputName: PropTypes.string,
     // eslint-disable-next-line react/forbid-prop-types
-    data: Types.object,
+    data: PropTypes.object,
     // eslint-disable-next-line react/forbid-prop-types
-    headers: Types.object,
+    headers: PropTypes.object,
   }),
-  maxSize: Types.number,
-  onCancel: Types.func,
-  onFailure: Types.func,
-  onStart: Types.func,
-  onSuccess: Types.func,
-  psButtonText: Types.string,
-  psProcessingText: Types.string,
-  size: Types.oneOf(['sm', 'md', 'lg']),
-  usAccept: Types.oneOf(ACCEPTED_FORMAT),
-  usButtonText: Types.string,
-  usDisabled: Types.bool,
-  usDropMessage: Types.string,
-  usHelpImage: Types.node,
-  usLabel: Types.string,
-  usPlaceholder: Types.string,
-  uploadStep: Types.oneOf([
+  maxSize: PropTypes.number,
+  onCancel: PropTypes.func,
+  onFailure: PropTypes.func,
+  onStart: PropTypes.func,
+  onSuccess: PropTypes.func,
+  psButtonText: PropTypes.string,
+  psProcessingText: PropTypes.string,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  usAccept: PropTypes.oneOf(ACCEPTED_FORMAT),
+  usButtonText: PropTypes.string,
+  usDisabled: PropTypes.bool,
+  usDropMessage: PropTypes.string,
+  usHelpImage: PropTypes.node,
+  usLabel: PropTypes.string,
+  usPlaceholder: PropTypes.string,
+  uploadStep: PropTypes.oneOf([
     Upload.UploadStep.UPLOAD_IMAGE_STEP,
     Upload.UploadStep.MEDIA_UPLOAD_STEP,
   ]),

@@ -4,7 +4,7 @@ import { text } from '@storybook/addon-knobs';
 import { Home as HomeIcon } from '@transferwise/icons';
 
 import Summary from './Summary';
-import Info from './info';
+import Info from '../info';
 
 export default {
   component: Summary,
@@ -63,6 +63,19 @@ export const basic = () => {
           presentation: Info.Presentation.MODAL,
           'aria-label': 'Please click here to know more about your address update status',
         }}
+        icon={<HomeIcon size={24} />}
+        title="We’re verifying your address"
+        status={Summary.Status.PENDING}
+      />
+      <Summary
+        action={{
+          text: 'Open in new tab',
+          href: '#change-address',
+          target: '_blank',
+          callback: () => {},
+        }}
+        as="li"
+        description="10 Downing Street, Westminster, London SW1A 2AA."
         icon={<HomeIcon size={24} />}
         title="We’re verifying your address"
         status={Summary.Status.PENDING}

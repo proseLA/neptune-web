@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import { Cross as CrossIcon } from '@transferwise/icons';
 import KEY_CODES from '../common/keyCodes';
 import './Modal.css';
-import { Size, Position, addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
+import { Size, Position } from '../common';
 import Dimmer from '../dimmer';
 
 const TRANSITION_DURATION_IN_MILLISECONDS = 150;
@@ -38,9 +38,6 @@ class Modal extends Component {
   }
 
   componentWillUnmount() {
-    if (this.props.open) {
-      removeNoScrollBodyClass();
-    }
     document.removeEventListener('keydown', this.onEscape);
   }
 
@@ -50,14 +47,6 @@ class Modal extends Component {
     if (event.target === event.currentTarget && onClose && closeOnClick) {
       onClose(event);
     }
-  };
-
-  handleOnEnter = () => {
-    addNoScrollBodyClass();
-  };
-
-  handleOnClose = () => {
-    removeNoScrollBodyClass();
   };
 
   checkSpecialClasses = (classToCheck) => {
@@ -90,8 +79,6 @@ class Modal extends Component {
         <CSSTransition
           appear
           in={open}
-          onEnter={this.handleOnEnter}
-          onExited={this.handleOnClose}
           classNames={{ enterDone: 'in' }}
           timeout={TRANSITION_DURATION_IN_MILLISECONDS}
           unmountOnExit
@@ -180,21 +167,21 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  title: Types.node,
-  body: Types.node.isRequired,
-  footer: Types.node,
-  size: Types.oneOf([
+  title: PropTypes.node,
+  body: PropTypes.node.isRequired,
+  footer: PropTypes.node,
+  size: PropTypes.oneOf([
     Modal.Size.SMALL,
     Modal.Size.MEDIUM,
     Modal.Size.LARGE,
     Modal.Size.EXTRA_LARGE,
   ]),
-  onClose: Types.func.isRequired,
-  className: Types.string,
-  open: Types.bool.isRequired,
-  closeOnClick: Types.bool,
-  scroll: Types.oneOf([Modal.Scroll.CONTENT, Modal.Scroll.VIEWPORT]),
-  position: Types.oneOf([Modal.Position.TOP, Modal.Position.CENTER]),
+  onClose: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  open: PropTypes.bool.isRequired,
+  closeOnClick: PropTypes.bool,
+  scroll: PropTypes.oneOf([Modal.Scroll.CONTENT, Modal.Scroll.VIEWPORT]),
+  position: PropTypes.oneOf([Modal.Position.TOP, Modal.Position.CENTER]),
 };
 
 Modal.defaultProps = {

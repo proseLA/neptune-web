@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { Cross as CrossIcon } from '@transferwise/icons';
@@ -34,9 +34,9 @@ CloseButton.Size = {
 };
 
 CloseButton.propTypes = {
-  onClick: Types.func.isRequired,
-  className: Types.string,
-  size: Types.oneOf(Object.values(CloseButton.Size)),
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  size: PropTypes.oneOf(Object.values(CloseButton.Size)),
 };
 
 CloseButton.defaultProps = {

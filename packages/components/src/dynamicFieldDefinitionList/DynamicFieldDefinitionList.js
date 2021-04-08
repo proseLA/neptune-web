@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import DefinitionList from '../definitionList';
 import { prepFields } from '../common/requirements';
@@ -22,10 +22,10 @@ const DynamicFieldDefinitionList = ({ model, title, layout, fields }) => (
 DynamicFieldDefinitionList.Layout = Layout;
 
 DynamicFieldDefinitionList.propTypes = {
-  model: Types.shape({}).isRequired,
-  fields: Types.shape({}).isRequired,
-  title: Types.string,
-  layout: Types.oneOf([
+  model: PropTypes.shape({}).isRequired,
+  fields: PropTypes.shape({}).isRequired,
+  title: PropTypes.string,
+  layout: PropTypes.oneOf([
     DynamicFieldDefinitionList.Layout.VERTICAL_TWO_COLUMN,
     DynamicFieldDefinitionList.Layout.VERTICAL_ONE_COLUMN,
     DynamicFieldDefinitionList.Layout.HORIZONTAL_JUSTIFIED,

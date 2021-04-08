@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   CrossCircle as CrossCircleIcon,
   CheckCircle as CheckCircleIcon,
@@ -32,8 +32,8 @@ InstructionsList.defaultProps = {
 };
 
 InstructionsList.propTypes = {
-  dos: Types.arrayOf(Types.node),
-  donts: Types.arrayOf(Types.node),
+  dos: PropTypes.arrayOf(PropTypes.node),
+  donts: PropTypes.arrayOf(PropTypes.node),
 };
 
 export default InstructionsList;
