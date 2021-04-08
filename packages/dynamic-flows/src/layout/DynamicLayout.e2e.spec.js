@@ -70,7 +70,6 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
         schema,
         'other example',
         schema.properties.an,
-        schema,
       );
     });
   });
