@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.5.0...@transferwise/dynamic-flows@12.6.0) (2021-04-08)
+
+
+### Features
+
+* include action references in layout service ([a30e36f](https://github.com/transferwise/neptune-web/commit/a30e36f690430a9cf9f548b7a9476daf279d5648))
+
+
+
+
+
 # [12.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.4.6...@transferwise/dynamic-flows@12.5.0) (2021-04-08)
 
 
