@@ -1,0 +1,19 @@
+import { Logo, LogoType } from '@transferwise/components';
+
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import code from '../../../liveEditorCode/logo.code';
+
+Renders a Wise or Wise Business logo in normal or inverse.
+
+<div>
+  <LiveEditorBlock code={code} scope={{ Logo, LogoType }} />
+  <GeneratePropsTable componentName="Logo" />
+</div>
+
+export const meta = {
+  name: 'Logo',
+  badge: {
+    type: 'new',
+    expiryDate: '2021-04-30',
+  },
+};

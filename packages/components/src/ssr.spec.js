@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import * as components from '.';
 import en from '../i18n/en.json';
 
-const excluded = ['useSnackbar', 'Provider'];
+const excluded = ['useSnackbar', 'Provider', 'LogoType'];
 
 function isNotExcluded(componentName) {
   return !excluded.includes(componentName);

@@ -5,8 +5,8 @@ import FlowNavigation from './FlowNavigation';
 import OverlayHeader from '../overlayHeader';
 import Avatar from '../avatar';
 
-import fastFlagLogo from '../../public/assets/fast_flag.svg';
 import AvatarWrapper from '../common/avatarWrapper';
+import Logo, { LogoType } from '../logo';
 
 export default {
   component: FlowNavigation,
@@ -36,63 +36,7 @@ export const withAvatarIcon = () => {
             </Avatar>
           )
         }
-        logo={
-          <img
-            alt="logo"
-            src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
-            height="24"
-          />
-        }
-        onClose={showCloseButton && (() => setClosed(true))}
-        onGoBack={
-          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
-        }
-        activeStep={activeStep}
-        done={done}
-        steps={[
-          {
-            label: 'Amount',
-            hoverLabel: (
-              <>
-                <div>
-                  <strong>100 GBP</strong>
-                </div>
-                0.2351 ETH
-              </>
-            ),
-            onClick: () => setActiveStep(0),
-          },
-          {
-            label: 'You',
-            hoverLabel: (
-              <>
-                <div>
-                  <strong>Elena Durante</strong>
-                </div>
-                elenadurante@test.com
-              </>
-            ),
-            onClick: () => setActiveStep(1),
-          },
-          { label: 'Recipient', hoverLabel: 'Daniele Tomboro', onClick: () => setActiveStep(2) },
-          { label: 'Review', hoverLabel: 'Antonio Dozortevo', onClick: () => setActiveStep(3) },
-          {
-            label: 'Pay',
-            hoverLabel: 'Enrico Gusso II',
-            onClick: () => setActiveStep(4),
-          },
-        ]}
-      />
-
-      <FlowNavigation
-        avatar={false}
-        logo={
-          <img
-            alt="logo"
-            src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
-            height="24"
-          />
-        }
+        logo={<Logo />}
         onClose={showCloseButton && (() => setClosed(true))}
         onGoBack={
           showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
@@ -142,62 +86,7 @@ export const withAvatarIcon = () => {
             </Avatar>
           )
         }
-        logo={
-          <img
-            alt="logo"
-            src="https://wise.com/public-resources/assets/logos/wise/brand_logo_business.svg"
-            height="24"
-          />
-        }
-        onClose={false}
-        onGoBack={
-          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
-        }
-        activeStep={activeStep}
-        done={done}
-        steps={[
-          {
-            label: 'Amount',
-            hoverLabel: (
-              <>
-                <div>
-                  <strong>100 GBP</strong>
-                </div>
-                0.2351 ETH
-              </>
-            ),
-            onClick: () => setActiveStep(0),
-          },
-          {
-            label: 'You',
-            hoverLabel: (
-              <>
-                <div>
-                  <strong>Elena Durante</strong>
-                </div>
-                elenadurante@test.com
-              </>
-            ),
-            onClick: () => setActiveStep(1),
-          },
-          { label: 'Recipient', hoverLabel: 'Daniele Tomboro', onClick: () => setActiveStep(2) },
-          { label: 'Review', hoverLabel: 'Antonio Dozortevo', onClick: () => setActiveStep(3) },
-          {
-            label: 'Pay',
-            hoverLabel: 'Enrico Gusso II',
-            onClick: () => setActiveStep(4),
-          },
-        ]}
-      />
-      <FlowNavigation
-        avatar={false}
-        logo={
-          <img
-            alt="logo"
-            src="https://wise.com/public-resources/assets/logos/wise/brand_logo_business.svg"
-            height="24"
-          />
-        }
+        logo={<Logo type={LogoType.WISE_BUSINESS} />}
         onClose={showCloseButton && (() => setClosed(true))}
         onGoBack={
           showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
@@ -238,7 +127,106 @@ export const withAvatarIcon = () => {
           },
         ]}
       />
-      <div style={{ backgroundColor: 'green', width: '538px', height: '30px', margin: '0 auto' }} />
+
+      <FlowNavigation
+        avatar={false}
+        logo={<Logo />}
+        onClose={showCloseButton && (() => setClosed(true))}
+        onGoBack={
+          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
+        }
+        activeStep={activeStep}
+        done={done}
+        steps={[
+          {
+            label: 'Amount',
+            hoverLabel: (
+              <>
+                <div>
+                  <strong>100 GBP</strong>
+                </div>
+                0.2351 ETH
+              </>
+            ),
+            onClick: () => setActiveStep(0),
+          },
+          {
+            label: 'You',
+            hoverLabel: (
+              <>
+                <div>
+                  <strong>Elena Durante</strong>
+                </div>
+                elenadurante@test.com
+              </>
+            ),
+            onClick: () => setActiveStep(1),
+          },
+          { label: 'Recipient', hoverLabel: 'Daniele Tomboro', onClick: () => setActiveStep(2) },
+          { label: 'Review', hoverLabel: 'Antonio Dozortevo', onClick: () => setActiveStep(3) },
+          {
+            label: 'Pay',
+            hoverLabel: 'Enrico Gusso II',
+            onClick: () => setActiveStep(4),
+          },
+        ]}
+      />
+
+      <FlowNavigation
+        avatar={false}
+        logo={<Logo type={LogoType.WISE_BUSINESS} />}
+        onClose={showCloseButton && (() => setClosed(true))}
+        onGoBack={
+          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
+        }
+        activeStep={activeStep}
+        done={done}
+        steps={[
+          {
+            label: 'Amount',
+            hoverLabel: (
+              <>
+                <div>
+                  <strong>100 GBP</strong>
+                </div>
+                0.2351 ETH
+              </>
+            ),
+            onClick: () => setActiveStep(0),
+          },
+          {
+            label: 'You',
+            hoverLabel: (
+              <>
+                <div>
+                  <strong>Elena Durante</strong>
+                </div>
+                elenadurante@test.com
+              </>
+            ),
+            onClick: () => setActiveStep(1),
+          },
+          { label: 'Recipient', hoverLabel: 'Daniele Tomboro', onClick: () => setActiveStep(2) },
+          { label: 'Review', hoverLabel: 'Antonio Dozortevo', onClick: () => setActiveStep(3) },
+          {
+            label: 'Pay',
+            hoverLabel: 'Enrico Gusso II',
+            onClick: () => setActiveStep(4),
+          },
+        ]}
+      />
+      <div
+        className="bg--dark"
+        style={{
+          textAlign: 'center',
+          width: '538px',
+          height: '30px',
+          margin: '24px auto',
+          color: 'white',
+        }}
+      >
+        Content to test that the flow nav is centred
+      </div>
     </>
   ) : null;
 };
@@ -257,16 +245,9 @@ export const withCustomAvatarImage = () => {
       avatar={
         !showAvatar ? null : (
           <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.MEDIUM}>
-            <img src={fastFlagLogo} alt="avatar" />
+            <img src="http://placekitten.com/100/100" alt="avatar" />
           </Avatar>
         )
-      }
-      logo={
-        <img
-          alt="logo"
-          src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
-          height="24"
-        />
       }
       onClose={showCloseButton && (() => setClosed(true))}
       onGoBack={
@@ -324,16 +305,9 @@ export const withAvatar = () => {
       avatar={
         !showAvatar ? null : (
           <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.MEDIUM}>
-            <img src={fastFlagLogo} alt="avatar" />
+            <img src="http://placekitten.com/100/100" alt="avatar" />
           </Avatar>
         )
-      }
-      logo={
-        <img
-          alt="logo"
-          src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
-          height="24"
-        />
       }
       onClose={showCloseButton && (() => setClosed(true))}
       onGoBack={
@@ -390,13 +364,6 @@ export const withAvatarWrapper = () => {
     <FlowNavigation
       done={done}
       avatar={<AvatarWrapper url={avatarURL} profileType={profileType} />}
-      logo={
-        <img
-          alt="logo"
-          src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
-          height="24"
-        />
-      }
       onClose={showCloseButton && (() => setClosed(true))}
       onGoBack={
         showMobileBackButton && (() => setActiveStep(activeStep - 1 > 0 ? activeStep - 1 : 0))
@@ -458,13 +425,6 @@ export const withOverlayHeaderComparison = () => {
               </Avatar>
             ) : null
           }
-          logo={
-            <img
-              alt="logo"
-              src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
-              height="24"
-            />
-          }
           onClose={showCloseButton && (() => setClosed(true))}
           onGoBack={
             showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
@@ -476,13 +436,6 @@ export const withOverlayHeaderComparison = () => {
       </div>
       <div style={{ border: '1px solid #e8e8e8' }}>
         <OverlayHeader
-          logo={
-            <img
-              alt="logo"
-              src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
-              height="24"
-            />
-          }
           onClose={showCloseButton && (() => setClosed(true))}
           avatar={
             showAvatar ? (
