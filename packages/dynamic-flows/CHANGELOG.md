@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.4.6...@transferwise/dynamic-flows@12.5.0) (2021-04-08)
+
+
+### Features
+
+* add logo component ([#885](https://github.com/transferwise/neptune-web/issues/885)) ([0110516](https://github.com/transferwise/neptune-web/commit/0110516d85a551956095b44675dae15a581b594e))
+
+
+
+
+
 ## [12.4.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.4.5...@transferwise/dynamic-flows@12.4.6) (2021-04-07)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
