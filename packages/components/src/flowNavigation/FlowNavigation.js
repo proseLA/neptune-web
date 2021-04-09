@@ -11,6 +11,7 @@ import { Theme, Breakpoint } from '../common';
 import { useClientWidth } from '../common/hooks';
 
 import './FlowNavigation.css';
+import Logo from '../logo';
 
 // Size switches on parent container which may or may not have the same size as the window.
 const containerBreakpoints = {
@@ -100,6 +101,7 @@ FlowNavigation.Theme = Theme;
 FlowNavigation.defaultProps = {
   activeStep: 0,
   avatar: undefined,
+  logo: <Logo />,
   onGoBack: undefined,
   onClose: undefined,
   done: false,
@@ -109,7 +111,7 @@ FlowNavigation.propTypes = {
   activeStep: PropTypes.number,
   /** An Avatar */
   avatar: PropTypes.element,
-  logo: PropTypes.node.isRequired,
+  logo: PropTypes.node,
   /** Called when the close button is clicked. If not provided the close button won't show */
   onClose: PropTypes.func,
   /** Called when the back button is clicked. If not provided the back button won't show. The back button only shows on small screens */

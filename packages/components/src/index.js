@@ -60,3 +60,4 @@ export { default as Nudge } from './nudge';
 export { default as InlineAlert } from './inlineAlert';
 export { default as AvatarWrapper } from './common/avatarWrapper';
 export { default as Info } from './info';
+export { default as Logo, LogoType } from './logo';

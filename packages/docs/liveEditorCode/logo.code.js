@@ -1,0 +1,1 @@
+<Logo type={LogoType.WISE} />;

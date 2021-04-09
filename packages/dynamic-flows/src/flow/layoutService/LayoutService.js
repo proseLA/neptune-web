@@ -134,10 +134,13 @@ function convertStepImageToDynamicImage(url) {
 }
 
 function convertStepActionToDynamicAction(action) {
+  const newAction = { ...action, label: action.title }
+  delete newAction.type
+  delete newAction.title
   return {
     type: 'button',
     context: action.type,
-    action: { ...action, type: undefined },
+    action: newAction,
   };
 }
 
@@ -178,8 +181,7 @@ function isWideForm() {
   return false;
 }
 
-function inlineFormSchemas(layout, schemas, model) {
-  // console.log('inlining form schemas');
+function inlineReferences(layout, schemas, actions, model) {
   if (!layout) {
     return [];
   }
@@ -192,12 +194,16 @@ function inlineFormSchemas(layout, schemas, model) {
       return inlineFormSchema(component, schemas, model);
     }
 
+    if (component.type === 'action') {
+      return inlineAction(component, actions)
+    }
+
     if (component.type === 'box') {
-      return inlineBoxFormSchemas(component, schemas, model);
+      return inlineBoxFormSchemas(component, schemas, actions, model);
     }
 
     if (component.type === 'columns') {
-      return inlineColumnsFormSchemas(component, schemas, model);
+      return inlineColumnsFormSchemas(component, schemas, actions, model);
     }
 
     return component;
@@ -217,18 +223,28 @@ function inlineFormSchema(formComponent, schemas, model) {
   return { ...formComponent, model };
 }
 
-function inlineBoxFormSchemas(boxComponent, schemas, model) {
+function inlineAction(actionComponent, actions) {
+  if (actionComponent.$ref) {
+    const newAction = getActionById(actions, actionComponent.$ref);
+    delete newAction.$ref;
+    return convertStepActionToDynamicAction(newAction);
+  }
+
+  return actionComponent;
+}
+
+function inlineBoxFormSchemas(boxComponent, schemas, actions, model) {
   return {
     ...boxComponent,
-    components: inlineFormSchemas(boxComponent.components, schemas, model),
+    components: inlineReferences(boxComponent.components, schemas, actions, model),
   };
 }
 
-function inlineColumnsFormSchemas(columnsComponent, schemas, model) {
+function inlineColumnsFormSchemas(columnsComponent, schemas, actions, model) {
   return {
     ...columnsComponent,
-    left: inlineFormSchemas(columnsComponent.left, schemas, model),
-    right: inlineFormSchemas(columnsComponent.right, schemas, model),
+    left: inlineReferences(columnsComponent.left, schemas, actions, model),
+    right: inlineReferences(columnsComponent.right, schemas, actions, model),
   };
 }
 
@@ -236,4 +252,8 @@ function getSchemaById(schemas, id) {
   return schemas.find((schema) => schema.$id === id);
 }
 
-export { convertStepToLayout, inlineFormSchemas };
+function getActionById(actions, id) {
+  return actions.find((action) => action.$id === id);
+}
+
+export { convertStepToLayout, inlineReferences };

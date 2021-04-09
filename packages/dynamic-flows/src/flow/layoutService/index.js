@@ -1,1 +1,1 @@
-export { convertStepToLayout, inlineFormSchemas } from './LayoutService';
+export { convertStepToLayout, inlineReferences } from './LayoutService';

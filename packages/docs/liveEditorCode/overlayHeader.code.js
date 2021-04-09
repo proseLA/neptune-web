@@ -5,6 +5,6 @@
       profileType={AvatarWrapper.ProfileType.BUSINESS}
     />
   }
-  logo={<img alt="logo" src="./../../static/assets/img/wise_logo.svg" width="138" />}
+  logo={<Logo />}
   onClose={() => console.log('Close clicked')}
 />;
