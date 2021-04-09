@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Types from 'prop-types';
 
 import DynamicLayout from '../layout/index';
-import { convertStepToLayout, inlineFormSchemas } from './layoutService';
+import { convertStepToLayout, inlineReferences } from './layoutService';
 
 import { request } from './stepService';
 
@@ -100,7 +100,7 @@ const DynamicFlow = (props) => {
 
     const layout = step.layout ? step.layout : convertStepToLayout(step);
 
-    return inlineFormSchemas(layout, step.schemas);
+    return inlineReferences(layout, step.schemas, step.actions);
   };
 
   // When we get a new specification from outside, reinitialise.
