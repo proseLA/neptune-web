@@ -1,9 +1,18 @@
 import React, { StrictMode } from 'react';
-import { addParameters } from '@storybook/react';
+import { select } from '@storybook/addon-knobs';
 
+import { Provider } from '@transferwise/components';
+import {
+  getLangFromLocale,
+  DEFAULT_LOCALE,
+  DEFAULT_LANG,
+} from '@transferwise/components/build/es/polyfill/common/locale';
+import componentTranslations from '@transferwise/components/build/i18n';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
+
+import translations from '../build/i18n';
 
 import './storybook.css';
 
@@ -45,4 +54,34 @@ const CenterDecorator = (storyFn) => (
   </div>
 );
 
-export const decorators = [StrictModeDecorator, CenterDecorator];
+// list is not exhaustive but should enough for testing diff edge cases
+// feel free to add more during development
+const severalExamplesOfSupportedLocales = [
+  DEFAULT_LOCALE,
+  'en-US',
+  'ja-JP',
+  'zh-HK',
+  'es',
+  'fr',
+  'ru',
+  'de',
+  'tr',
+];
+
+const ProviderDecorator = (storyFn) => {
+  const locale = select('locale (global)', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
+  const lang = getLangFromLocale(locale);
+  // eslint-disable-next-line fp/no-mutating-assign
+  const supportedLangs = {
+    ...(translations[lang] || translations[DEFAULT_LANG]),
+    ...(componentTranslations[lang] || componentTranslations[DEFAULT_LANG]),
+  };
+  const messages = supportedLangs[lang];
+  const props = {
+    i18n: { locale, messages },
+    children: storyFn(),
+  };
+  return <Provider {...props} />;
+};
+
+export const decorators = [StrictModeDecorator, CenterDecorator, ProviderDecorator];
