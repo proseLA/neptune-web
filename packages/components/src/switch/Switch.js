@@ -6,8 +6,10 @@ import './Switch.css';
 import { logActionRequiredIf } from '../utilities';
 
 import KeyCodes from '../common/keyCodes';
+import { useDirection } from '../common/hooks';
 
 const Switch = (props) => {
+  const { isRTL } = useDirection();
   const { checked, className, id, onClick } = props;
   const handleKeyDown = (event) => {
     if (event.code === 32 || event.keyCode === KeyCodes.SPACE) {
@@ -30,7 +32,9 @@ const Switch = (props) => {
         'np-switch',
         {
           'np-switch--unchecked': !checked,
-          'np-switch--checked': checked,
+          'np-switch--checked': checked && !isRTL,
+          'np-switch--checked-rtl': checked && isRTL,
+          'rtl-flex': isRTL,
         },
         className,
       )}
