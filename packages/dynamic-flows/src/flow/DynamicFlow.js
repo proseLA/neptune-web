@@ -84,6 +84,8 @@ const DynamicFlow = (props) => {
     props.onStepChange(step);
   };
 
+  const onPersistAsync = () => {};
+
   const updateStepSpecification = (step) => {
     setStepSpecification(step);
     setLayout(getLayout(step));
@@ -132,12 +134,14 @@ const DynamicFlow = (props) => {
       {layout && (
         <DynamicLayout
           components={layout}
-          onAction={onAction}
-          onModelChange={onModelChange}
           submitted={submitted}
           locale={props.locale}
           model={model}
           errors={validations}
+          baseUrl={props.baseUrl}
+          onAction={onAction}
+          onModelChange={onModelChange}
+          onPersistAsync={onPersistAsync}
         />
       )}
     </>
@@ -151,11 +155,13 @@ DynamicFlow.propTypes = {
   onClose: Types.func.isRequired,
   onStepChange: Types.func,
   locale: Types.string,
+  baseUrl: Types.string,
 };
 
 DynamicFlow.defaultProps = {
   locale: 'en-GB',
   onStepChange: () => {},
+  baseUrl: '',
 };
 
 export default DynamicFlow;
