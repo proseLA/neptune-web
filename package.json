@@ -89,7 +89,7 @@
     "*.{yaml,yml,json}": [
       "prettier --find-config-path --write"
     ],
-    "*.{less,css}": [
+    "**/!(bootstrap-forms).{less,css}": [
       "stylelint --fix"
     ]
   },
