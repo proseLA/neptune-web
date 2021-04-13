@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { isArray } from '@transferwise/neptune-validation';
+import classNames from 'classnames';
 import { Size } from '../common';
+
+import { useDirection } from '../common/hooks';
 
 import Select from '../select';
 import {
@@ -35,6 +38,7 @@ const PhoneNumberInput = (props) => {
     countryCode,
   } = props;
   const { locale } = useIntl();
+  const { isRTL } = useDirection();
 
   const getInitialValue = () => {
     const { initialValue } = props;
@@ -123,7 +127,7 @@ const PhoneNumberInput = (props) => {
 
   return (
     <div className="tw-telephone">
-      <div className="tw-telephone__country-select">
+      <div className={classNames('tw-telephone__country-select', { 'space-left': isRTL })}>
         <Select
           options={options}
           selected={{ value: prefix, label: prefix }}
@@ -145,7 +149,7 @@ const PhoneNumberInput = (props) => {
             inputMode="numeric"
             value={suffix}
             type="text"
-            className="form-control"
+            className={classNames('form-control', { 'align-right': isRTL })}
             disabled={disabled}
             onChange={handleInputChange}
             onPaste={handlePaste}
