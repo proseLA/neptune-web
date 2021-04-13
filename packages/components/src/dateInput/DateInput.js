@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import '../common/polyfills/closest';
@@ -9,6 +10,7 @@ import { Size, DateMode, MonthFormat } from '../common';
 
 import { explodeDate, convertToLocalMidnight } from './utils';
 import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/dateUtils';
+import { useDirection } from '../common/hooks';
 import './DateInput.css';
 
 const MonthBeforeDay = ['en-US', 'ja-JP'];
@@ -29,6 +31,7 @@ const DateInput = ({
   placeholders,
   id,
 }) => {
+  const { isRTL } = useDirection();
   const { locale } = useIntl();
   const getDateObject = () => {
     if (value && isDateValid(value)) {
@@ -201,7 +204,9 @@ const DateInput = ({
   };
 
   const monthYearOnly = mode === DateMode.MONTH_YEAR;
-  const monthWidth = monthYearOnly ? 'col-sm-8' : 'col-sm-5';
+  const pullRight = isRTL ? 'pull-right' : '';
+  const placeholderAlignRight = isRTL ? 'placeholder-align-right' : '';
+  const monthWidth = monthYearOnly ? `col-sm-8 ${pullRight}` : `col-sm-5 ${pullRight}`;
   const monthBeforeDay = MonthBeforeDay.indexOf(locale) > -1;
 
   return (
@@ -214,14 +219,14 @@ const DateInput = ({
       <div className="row">
         {monthBeforeDay && <div className={monthWidth}>{getSelectElement()}</div>}
         {!monthYearOnly && (
-          <div className="col-sm-3">
+          <div className={classNames('col-sm-3', { 'pull-right': isRTL })}>
             <div className={`input-group-${size}`}>
               <label>
                 <span className="sr-only">{dayLabel}</span>
                 <input
                   type="number"
                   name="day"
-                  className="form-control"
+                  className={classNames('form-control', { placeholderAlignRight })}
                   value={day || ''}
                   onChange={(event) => handleDayChange(event)}
                   placeholder={placeholders.day}
@@ -241,7 +246,7 @@ const DateInput = ({
               <input
                 type="number"
                 name="year"
-                className="form-control"
+                className={classNames('form-control', { placeholderAlignRight })}
                 placeholder={placeholders.year}
                 value={year || ''}
                 onChange={(event) => handleYearChange(event)}
