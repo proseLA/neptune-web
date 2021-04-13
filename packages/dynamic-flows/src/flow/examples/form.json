@@ -30,25 +30,25 @@
     }
   ],
   "model": {
-    "name": "default"
+    "name": "Jo Smith"
   },
   "actions": [
     {
       "type": "primary",
       "url": "/confirm",
-      "label": "Submit",
+      "title": "Submit",
       "method": "POST"
     },
     {
       "type": "warning",
       "url": "/final",
-      "label": "Skip",
+      "title": "Skip",
       "method": "GET"
     },
     {
       "type": "failure",
       "url": "/error",
-      "label": "Fail submission",
+      "title": "Fail submission",
       "method": "POST"
     }
   ]

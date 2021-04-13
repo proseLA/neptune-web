@@ -19,13 +19,13 @@
     {
       "type": "primary",
       "url": "/form",
-      "label": "Yes, continue",
+      "title": "Yes, continue",
       "method": "GET"
     },
     {
       "type": "warning",
       "url": "/decision",
-      "label": "No, go back",
+      "title": "No, go back",
       "method": "GET"
     }
   ]
