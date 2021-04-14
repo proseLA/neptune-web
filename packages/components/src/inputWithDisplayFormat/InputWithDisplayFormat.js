@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WithDisplayFormat from '../withDisplayFormat';
 import { useDirection } from '../common/hooks';
-import './InputWithDisplayFormat.css';
 
 const InputWithDisplayFormat = (props) => {
   const { isRTL } = useDirection();
-  const alignRight = isRTL ? 'align-right' : '';
+  const alignRight = isRTL && 'text-xs-right';
   return (
     <WithDisplayFormat
       {...props}

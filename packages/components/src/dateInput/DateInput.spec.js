@@ -52,7 +52,7 @@ const DAY_SELECTOR = 'input[name="day"]';
 const MONTH_SELECTOR = 'Select';
 const YEAR_SELECTOR = 'input[name="year"]';
 
-jest.mock('../common/hooks/');
+jest.mock('../common/hooks/useDirection');
 jest.mock('react-intl');
 jest.mock('@transferwise/formatting', () => {
   return {

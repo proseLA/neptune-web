@@ -8,7 +8,7 @@ import { fakeEvent } from '../common/fakeEvents';
 import { useDirection } from '../common/hooks';
 
 jest.mock('react-intl');
-jest.mock('../common/hooks');
+jest.mock('../common/hooks/useDirection');
 
 const simulatePaste = (el, value) =>
   el.simulate('paste', { nativeEvent: { clipboardData: { getData: () => value } } });
@@ -324,16 +324,7 @@ describe('Given a telephone number component', () => {
   describe('RTL locale is active', () => {
     it('should apply correct rtl classes', () => {
       component = shallow(<PhoneNumberInput {...props} />);
-      expect(component.find('input').hasClass('align-right')).toEqual(true);
-    });
-  });
-
-  describe('RTL locale is not active', () => {
-    it('should apply correct rtl classes', () => {
-      useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
-      component = shallow(<PhoneNumberInput {...props} />);
-      expect(component.hasClass('rtl-flex')).toEqual(false);
-      expect(component.find('input').hasClass('align-right')).toEqual(false);
+      expect(component.find('.tw-telephone__number-input--rtl')).toHaveLength(1);
     });
   });
 

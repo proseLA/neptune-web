@@ -127,7 +127,7 @@ const PhoneNumberInput = (props) => {
 
   return (
     <div className="tw-telephone">
-      <div className={classNames('tw-telephone__country-select', { 'space-left': isRTL })}>
+      <div className="tw-telephone__country-select">
         <Select
           options={options}
           selected={{ value: prefix, label: prefix }}
@@ -142,14 +142,18 @@ const PhoneNumberInput = (props) => {
         />
       </div>
 
-      <div className="tw-telephone__number-input">
+      <div
+        className={classNames(
+          isRTL ? 'tw-telephone__number-input--rtl' : 'tw-telephone__number-input',
+        )}
+      >
         <div className={`input-group input-group-${size}`}>
           <input
             name="phoneNumber"
             inputMode="numeric"
             value={suffix}
             type="text"
-            className={classNames('form-control', { 'align-right': isRTL })}
+            className="form-control"
             disabled={disabled}
             onChange={handleInputChange}
             onPaste={handlePaste}

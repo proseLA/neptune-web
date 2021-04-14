@@ -9,7 +9,6 @@ import InputWithDisplayFormat from '.';
 jest.mock('../common/hooks/useDirection');
 
 describe('InputWithDisplayFormat', () => {
-  const testProps = { displayPattern: '*', onChange: jest.fn() };
   function renderInput(props) {
     return render(<InputWithDisplayFormat displayPattern="*" onChange={jest.fn()} {...props} />);
   }
@@ -43,14 +42,8 @@ describe('InputWithDisplayFormat', () => {
     });
 
     it('applies correct rtl css class when isRTL is true', () => {
-      const component = shallow(<InputWithDisplayFormat {...testProps} />);
-      expect(component.hasClass('align-right')).toEqual(true);
-    });
-
-    it('does not apply rtl css class when isRTL is false', () => {
-      useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
-      const component = shallow(<InputWithDisplayFormat {...testProps} />);
-      expect(component.hasClass('align-right')).toEqual(false);
+      const component = shallow(<InputWithDisplayFormat displayPattern="*" onChange={jest.fn()} />);
+      expect(component.hasClass('text-xs-right')).toEqual(true);
     });
   });
 });

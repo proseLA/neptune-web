@@ -204,9 +204,9 @@ const DateInput = ({
   };
 
   const monthYearOnly = mode === DateMode.MONTH_YEAR;
-  const pullRight = isRTL ? 'pull-right' : '';
-  const placeholderAlignRight = isRTL ? 'placeholder-align-right' : '';
-  const monthWidth = monthYearOnly ? `col-sm-8 ${pullRight}` : `col-sm-5 ${pullRight}`;
+  const monthWidth = monthYearOnly
+    ? `col-sm-8 ${isRTL ? 'pull-right' : ''}`
+    : `col-sm-5 ${isRTL ? 'pull-right' : ''}`;
   const monthBeforeDay = MonthBeforeDay.indexOf(locale) > -1;
 
   return (
@@ -226,7 +226,7 @@ const DateInput = ({
                 <input
                   type="number"
                   name="day"
-                  className={classNames('form-control', { placeholderAlignRight })}
+                  className="form-control"
                   value={day || ''}
                   onChange={(event) => handleDayChange(event)}
                   placeholder={placeholders.day}
@@ -246,7 +246,7 @@ const DateInput = ({
               <input
                 type="number"
                 name="year"
-                className={classNames('form-control', { placeholderAlignRight })}
+                className="form-control"
                 placeholder={placeholders.year}
                 value={year || ''}
                 onChange={(event) => handleYearChange(event)}

@@ -42,14 +42,9 @@ describe('Summary', () => {
   });
 
   it('does not apply rtl classes when isRTL is false', () => {
-    const { container } = render(<Summary icon={<strong>icon</strong>} title="Hello world" />);
-    expect(container.querySelector('.np-summary__body').classList.contains('m-r-2')).toEqual(false);
-  });
-
-  it('does not apply rtl classes when isRTL is false', () => {
     useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
     const { container } = render(<Summary icon={<strong>icon</strong>} title="Hello world" />);
-    expect(container.querySelector('.np-summary__body').classList.contains('m-r-2')).toEqual(true);
+    expect(container.querySelector('.np-summary__body')).toHaveClass('m-r-2');
   });
 
   describe('action', () => {
