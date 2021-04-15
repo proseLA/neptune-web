@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 
 import DynamicFlow from '.';
 import DynamicLayout from '../layout';
-import { convertStepToLayout, inlineFormSchemas } from './layoutService';
+import { convertStepToLayout, inlineReferences } from './layoutService';
 import { request } from './stepService';
 
 jest.mock('./layoutService');
@@ -15,7 +15,7 @@ jest.mock('../layout', () => 'layout');
 const layoutService = jest.requireActual('./layoutService');
 
 convertStepToLayout.mockImplementation(layoutService.convertStepToLayout);
-inlineFormSchemas.mockImplementation(layoutService.inlineFormSchemas);
+inlineReferences.mockImplementation(layoutService.inlineReferences);
 
 describe('Given a component for rendering a dynamic flow', () => {
   let component;
@@ -189,7 +189,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     onClose = jest.fn();
     onStepChange = jest.fn();
     convertStepToLayout.mockClear();
-    inlineFormSchemas.mockClear();
+    inlineReferences.mockClear();
     // request.mockClear();
   });
 
@@ -237,7 +237,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     it('should inline any schemas referenced by id using the layout service', () => {
-      expect(inlineFormSchemas).toHaveBeenCalled();
+      expect(inlineReferences).toHaveBeenCalled();
     });
   });
 
