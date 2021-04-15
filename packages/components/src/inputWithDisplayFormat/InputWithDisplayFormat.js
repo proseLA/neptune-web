@@ -5,7 +5,7 @@ import { useDirection } from '../common/hooks';
 
 const InputWithDisplayFormat = (props) => {
   const { isRTL } = useDirection();
-  const alignRight = isRTL && 'text-xs-right';
+  const alignRight = isRTL ? 'text-xs-right' : '';
   return (
     <WithDisplayFormat
       {...props}
