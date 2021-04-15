@@ -5,7 +5,7 @@ import FlowNavigation from './FlowNavigation';
 import OverlayHeader from '../overlayHeader';
 import Avatar from '../avatar';
 
-import AvatarWrapper from '../common/avatarWrapper';
+import AvatarWrapper from '../avatarWrapper';
 import Logo, { LogoType } from '../logo';
 
 export default {
