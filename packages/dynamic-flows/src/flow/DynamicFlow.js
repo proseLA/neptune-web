@@ -11,7 +11,7 @@ import { request } from './stepService';
  *
  * The dynamic flow component is responsible for the asynchronous actions occuring
  * within a dynamic flow, managing transitions between steps as well as refreshing
- * requirements.  It does control any view logic, but takes the step definition
+ * requirements.  It doesn't control any view logic, but takes the step definition
  * and reformats it to use a DynamicLayout for presentation.
  */
 const DynamicFlow = (props) => {
@@ -64,7 +64,7 @@ const DynamicFlow = (props) => {
     setModel(newModel);
     setModelIsValid(isValid);
 
-    if (triggerSchema.refreshRequirements) {
+    if (triggerSchema.refreshRequirementsOnChange) {
       const action = { method: 'POST', url: stepSpecification.refreshFormUrl };
 
       const response = await request(action, newModel);
