@@ -33,8 +33,7 @@ const Switch = (props) => {
         {
           'np-switch--unchecked': !checked,
           'np-switch--checked': checked && !isRTL,
-          'np-switch--checked-rtl': checked && isRTL,
-          'rtl-flex': isRTL,
+          'np-switch--checked--rtl': checked && isRTL,
         },
         className,
       )}

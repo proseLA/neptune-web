@@ -82,15 +82,9 @@ describe('Switch', () => {
     expect(props.onClick).toHaveBeenCalled();
   });
 
-  it('should apply correct css classes when isRTL is false', () => {
-    const { container } = render(<Switch {...props} />);
-    expect(container.firstChild).toHaveClass('np-switch');
-  });
-
   it('should apply correct css classes when isRTL is true', () => {
     useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
-    const { container } = render(<Switch {...props} checked />);
-    expect(container.firstChild).toHaveClass('rtl-flex');
-    expect(container.firstChild).toHaveClass('np-switch--checked-rtl');
+    render(<Switch {...props} checked />);
+    expect(screen.getByRole('switch')).toHaveClass('np-switch--checked--rtl');
   });
 });
