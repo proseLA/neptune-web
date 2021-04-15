@@ -148,7 +148,6 @@ const DynamicFlow = (props) => {
   );
 };
 
-// TODO make flowURl required
 // eslint-disable-next-line
 DynamicFlow.propTypes = {
   flowUrl: Types.string.isRequired,
