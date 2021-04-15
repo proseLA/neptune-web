@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.3.1...@transferwise/neptune-docs@11.4.0) (2021-04-15)
+
+
+### Features
+
+* add initials and badge logic to AvatarWrapper ([#896](https://github.com/transferwise/neptune-web/issues/896)) ([aa895e3](https://github.com/transferwise/neptune-web/commit/aa895e324dd3039e50deed4d381567da73ef426a))
+
+
+
+
+
 ## [11.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.3.0...@transferwise/neptune-docs@11.3.1) (2021-04-08)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
