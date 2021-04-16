@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [35.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.5.0...@transferwise/components@35.5.1) (2021-04-16)
+
+
+### Bug Fixes
+
+* using requestAnimationFrame to perform the calculation before the next repaint ([#899](https://github.com/transferwise/neptune-web/issues/899)) ([d196340](https://github.com/transferwise/neptune-web/commit/d196340cf12461fe5d628318042bcb0a609c8db1))
+
+
+
+
+
 # [35.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.4.0...@transferwise/components@35.5.0) (2021-04-15)
 
 
