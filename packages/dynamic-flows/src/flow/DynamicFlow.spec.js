@@ -5,10 +5,14 @@ import { mount } from 'enzyme';
 import DynamicFlow from '.';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
-import { request } from './stepService';
+
+import * as stepService from './stepService';
+
+jest.mock('./stepService', () => ({
+  request: jest.fn(),
+}));
 
 jest.mock('./layoutService');
-jest.mock('./stepService');
 jest.mock('../layout', () => 'layout');
 
 // We want to use the original implementation so everything continues to function
@@ -21,6 +25,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   let component;
   let onClose;
   let onStepChange;
+  let request;
 
   const successAction = {
     label: 'Submit',
@@ -185,6 +190,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   }
 
   beforeEach(() => {
+    request = jest.spyOn(stepService, 'request');
     request.mockImplementation(mockApi);
     onClose = jest.fn();
     onStepChange = jest.fn();
