@@ -43,7 +43,12 @@ describe('ResponsivePanel', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-
+  beforeEach(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+  });
+  afterAll(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
   let container;
 
   describe('on desktop', () => {

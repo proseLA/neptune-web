@@ -28,6 +28,12 @@ describe('Popover', () => {
   let rerender;
 
   describe('on desktop', () => {
+    beforeEach(() => {
+      jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+    });
+    afterAll(() => {
+      window.requestAnimationFrame.mockRestore();
+    });
     it('renders correctly when open is true', async () => {
       await waitFor(() => {
         ({ container } = render(

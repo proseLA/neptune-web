@@ -33,10 +33,12 @@ describe('FlowNavigation', () => {
   };
   beforeEach(() => {
     resetClientWidth(Breakpoint.LARGE + 1);
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
   });
 
   afterAll(() => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
+    window.requestAnimationFrame.mockRestore();
   });
 
   const props = {
