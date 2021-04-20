@@ -3,6 +3,10 @@ import { render, fireEvent, cleanup } from '../test-utils';
 
 import Nudge from '.';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
+
 describe('Nudge', () => {
   const defaultProps = {
     media: (
@@ -15,6 +19,10 @@ describe('Nudge', () => {
     href: '#',
     onDismiss: jest.fn(),
   };
+
+  beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+  });
 
   afterEach(cleanup);
 
@@ -54,5 +62,10 @@ describe('Nudge', () => {
     const { getByRole } = render(<Nudge {...defaultProps} className="happy-nudge" />);
     const parentContainer = getByRole('img').parentElement.parentElement;
     expect(parentContainer).toHaveClass('happy-nudge');
+  });
+
+  it('applies correct css classes when isRTL is true', () => {
+    const { container } = render(<Nudge {...defaultProps} />);
+    expect(container.querySelector('.media-right')).toBeInTheDocument();
   });
 });
