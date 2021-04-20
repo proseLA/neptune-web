@@ -4,11 +4,16 @@ import ObjectSchema from '../objectSchema';
 import GenericSchema from '../genericSchema';
 import DynamicAlert from '../../layout/alert';
 import PromotedOneOfControl from './control/PromotedOneOfControl';
+import { getSelectionFromModel } from './PromotedOneOfSchemaModelMatcher';
 
 const isPromoted = (schema) => schema.promoted === true;
 
 const PromotedOneOfSchema = (props) => {
-  const [selection, setSelection] = useState(props.schema.promotion.default || 'promoted');
+  const [selection, setSelection] = useState(
+    getSelectionFromModel(props.schema, props.model) ||
+      props.schema.promotion.default ||
+      'promoted',
+  );
 
   const promotedAlert = props.schema.alert;
   const promotedOneOf = props.schema.oneOf.find(isPromoted);
@@ -79,8 +84,11 @@ PromotedOneOfSchema.propTypes = {
     }),
     alert: Types.shape({}),
   }).isRequired,
+  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
 };
 
-PromotedOneOfSchema.defaultProps = {};
+PromotedOneOfSchema.defaultProps = {
+  model: null,
+};
 
 export default PromotedOneOfSchema;

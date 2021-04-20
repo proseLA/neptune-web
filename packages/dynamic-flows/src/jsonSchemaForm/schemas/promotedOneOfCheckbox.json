@@ -28,6 +28,10 @@
             "account": {
               "title": "Account number",
               "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "const": "SortCode"
             }
           }
         },
@@ -42,6 +46,10 @@
             "iban": {
               "title": "IBAN",
               "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "const": "Iban"
             }
           }
         },
@@ -59,6 +67,10 @@
             "name": {
               "title": "Full name",
               "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "const": "Email"
             }
           },
           "image": {
