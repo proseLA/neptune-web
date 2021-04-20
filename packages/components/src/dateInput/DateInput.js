@@ -204,9 +204,13 @@ const DateInput = ({
   };
 
   const monthYearOnly = mode === DateMode.MONTH_YEAR;
-  const monthWidth = monthYearOnly
-    ? `col-sm-8 ${isRTL ? 'pull-right' : ''}`
-    : `col-sm-5 ${isRTL ? 'pull-right' : ''}`;
+
+  const monthWidth = classNames({
+    'col-sm-8': monthYearOnly,
+    'col-sm-5': !monthYearOnly,
+    'pull-right': isRTL,
+  });
+
   const monthBeforeDay = MonthBeforeDay.indexOf(locale) > -1;
 
   return (

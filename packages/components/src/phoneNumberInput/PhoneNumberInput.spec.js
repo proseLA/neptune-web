@@ -324,7 +324,7 @@ describe('Given a telephone number component', () => {
   describe('RTL locale is active', () => {
     it('should apply correct rtl classes', () => {
       component = shallow(<PhoneNumberInput {...props} />);
-      expect(component.find('.tw-telephone__number-input--rtl')).toHaveLength(1);
+      expect(component.find('.tw-telephone--rtl')).toHaveLength(1);
     });
   });
 

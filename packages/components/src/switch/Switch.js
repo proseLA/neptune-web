@@ -30,10 +30,11 @@ const Switch = (props) => {
     <span
       className={classnames(
         'np-switch',
+
         {
+          'np-switch--rtl': isRTL,
           'np-switch--unchecked': !checked,
-          'np-switch--checked': checked && !isRTL,
-          'np-switch--checked--rtl': checked && isRTL,
+          'np-switch--checked': checked,
         },
         className,
       )}

@@ -126,7 +126,7 @@ const PhoneNumberInput = (props) => {
   const { prefix, suffix } = getSuffixPrefix(internalValue);
 
   return (
-    <div className="tw-telephone">
+    <div className={classNames('tw-telephone', { 'tw-telephone--rtl': isRTL })}>
       <div className="tw-telephone__country-select">
         <Select
           options={options}
@@ -142,11 +142,7 @@ const PhoneNumberInput = (props) => {
         />
       </div>
 
-      <div
-        className={classNames(
-          isRTL ? 'tw-telephone__number-input--rtl' : 'tw-telephone__number-input',
-        )}
-      >
+      <div className="tw-telephone__number-input">
         <div className={`input-group input-group-${size}`}>
           <input
             name="phoneNumber"

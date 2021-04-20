@@ -85,6 +85,6 @@ describe('Switch', () => {
   it('should apply correct css classes when isRTL is true', () => {
     useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
     render(<Switch {...props} checked />);
-    expect(screen.getByRole('switch')).toHaveClass('np-switch--checked--rtl');
+    expect(screen.getByRole('switch')).toHaveClass('np-switch--rtl');
   });
 });
