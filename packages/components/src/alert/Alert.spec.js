@@ -10,6 +10,7 @@ import {
 
 import { render, cleanup, screen, userEvent, fireEvent } from '../test-utils';
 import Alert from './Alert';
+import { useDirection } from '../common/hooks';
 
 jest.mock('react', () => {
   const originReact = jest.requireActual('react');
@@ -19,6 +20,8 @@ jest.mock('react', () => {
     useRef: mUseRef,
   };
 });
+
+jest.mock('../common/hooks/useDirection');
 
 describe('Alert', () => {
   let component;
@@ -46,6 +49,7 @@ describe('Alert', () => {
   beforeAll(() => {
     mockedWarn = jest.fn();
     console.warn = mockedWarn;
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
   });
 
   afterEach(() => {
@@ -385,6 +389,21 @@ describe('Alert', () => {
       expect(window.open).not.toHaveBeenCalled();
       fireEvent.touchEnd(closeButton);
       expect(window.open).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('RTL support', () => {
+    it('applies correct classes when isRTL is false', () => {
+      ({ container } = render(<Alert message="rtl" />));
+      expect(container.querySelector('.alert__message')).toHaveClass('p-l-2');
+      expect(container.querySelector('.alert__message')).not.toHaveClass('p-r-2');
+    });
+
+    it('applies correct classes when isRTL is true', () => {
+      useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+      ({ container } = render(<Alert message="rtl" />));
+      expect(container.querySelector('.alert__message')).not.toHaveClass('p-l-2');
+      expect(container.querySelector('.alert__message')).toHaveClass('p-r-2');
     });
   });
 });
