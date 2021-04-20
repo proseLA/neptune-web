@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.6.4...@transferwise/dynamic-flows@12.7.0) (2021-04-20)
+
+
+### Features
+
+* Promoted oneof model matcher ([#901](https://github.com/transferwise/neptune-web/issues/901)) ([1ae4a79](https://github.com/transferwise/neptune-web/commit/1ae4a79a11b3910067fe4ca8bc51eb50660a7cb5))
+
+
+
+
+
 ## [12.6.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.6.3...@transferwise/dynamic-flows@12.6.4) (2021-04-19)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
