@@ -58,6 +58,6 @@ export { default as Switch } from './switch';
 export { default as Decision } from './decision';
 export { default as Nudge } from './nudge';
 export { default as InlineAlert } from './inlineAlert';
-export { default as AvatarWrapper } from './common/avatarWrapper';
+export { default as AvatarWrapper } from './avatarWrapper';
 export { default as Info } from './info';
 export { default as Logo, LogoType } from './logo';

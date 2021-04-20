@@ -29,14 +29,24 @@ const DynamicButton = (props) => {
   const getButtonType = (context) => {
     switch (context) {
       case 'primary':
-        return Button.Type.PRIMARY;
+        return Button.Type.ACCENT;
       case 'success':
-        return Button.Type.PAY;
+        return Button.Type.POSITIVE;
       case 'failure':
       case 'warning':
-        return Button.Type.DANGER;
+        return Button.Type.NEGATIVE;
       default:
-        return Button.Type.SECONDARY;
+        return Button.Type.ACCENT;
+    }
+  };
+
+  const getButtonPriority = (context) => {
+    switch (context) {
+      case 'primary':
+      case 'success':
+        return Button.Priority.PRIMARY;
+      default:
+        return Button.Priority.SECONDARY;
     }
   };
 
@@ -44,6 +54,7 @@ const DynamicButton = (props) => {
     <Button
       size={getButtonSize(component.size)}
       type={getButtonType(component.context)}
+      priority={getButtonPriority(component.context)}
       block
       className={getActionClasses(component.action)}
       onClick={() => onAction(component.action)}

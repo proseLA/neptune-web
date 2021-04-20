@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
 import OverlayHeader from './OverlayHeader';
 import Avatar from '../avatar';
-import AvatarWrapper from '../common/avatarWrapper';
+import AvatarWrapper from '../avatarWrapper';
 import Logo from '../logo';
 
 export default {
