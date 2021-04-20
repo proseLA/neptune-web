@@ -141,19 +141,11 @@ describe('Given a component for rendering a dynamic flow', () => {
   };
 
   const resolve = (response) => {
-    return new Promise((promiseResolve) => {
-      setTimeout(() => {
-        promiseResolve(response);
-      }, 0);
-    });
+    return Promise.resolve(response);
   };
 
   const reject = (response) => {
-    return new Promise((promiseResolve, promiseReject) => {
-      setTimeout(() => {
-        promiseReject(response);
-      }, 0);
-    });
+    return Promise.reject(response);
   };
 
   const mockApi = (action, model) => {
