@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.5.2...@transferwise/components@35.6.0) (2021-04-21)
+
+
+### Features
+
+* make the DateLookup clearable ([#891](https://github.com/transferwise/neptune-web/issues/891)) ([590c9b5](https://github.com/transferwise/neptune-web/commit/590c9b5624e1cbc948e05923494b62b48fe74cd3))
+
+
+
+
+
 ## [35.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.5.1...@transferwise/components@35.5.2) (2021-04-19)
 
 **Note:** Version bump only for package @transferwise/components

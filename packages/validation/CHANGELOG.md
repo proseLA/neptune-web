@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-validation@2.0.13...@transferwise/neptune-validation@2.1.0) (2021-04-21)
+
+
+### Features
+
+* make the DateLookup clearable ([#891](https://github.com/transferwise/neptune-web/issues/891)) ([590c9b5](https://github.com/transferwise/neptune-web/commit/590c9b5624e1cbc948e05923494b62b48fe74cd3))
+
+
+
+
+
 ## [2.0.13](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-validation@2.0.12...@transferwise/neptune-validation@2.0.13) (2021-04-07)
 
 **Note:** Version bump only for package @transferwise/neptune-validation
