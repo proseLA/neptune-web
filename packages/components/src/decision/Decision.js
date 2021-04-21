@@ -8,8 +8,10 @@ import NavigationOption from '../navigationOption';
 import Tile from '../tile';
 import './Decision.css';
 import { Size } from '../common';
+import { useDirection } from '../common/hooks';
 
 const Decision = ({ options, presentation, type, size }) => {
+  const { isRTL } = useDirection();
   if (type === Decision.Type.NAVIGATION) {
     const { LIST_BLOCK, LIST_BLOCK_GRID } = Decision.Presentation;
     if (presentation === LIST_BLOCK || presentation === LIST_BLOCK_GRID) {
@@ -65,6 +67,7 @@ const Decision = ({ options, presentation, type, size }) => {
           className={classNames('np-decision', {
             'np-decision--small': isSmall,
             'np-decision--grid': isGrid,
+            'np-decision--rtl': isRTL,
           })}
         >
           <SizeSwapper items={items} />

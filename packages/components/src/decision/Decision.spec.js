@@ -5,8 +5,10 @@ import { render, fireEvent } from '../test-utils';
 import Decision from '.';
 import Avatar from '../avatar';
 import { Breakpoint } from '../common';
+import { useDirection } from '../common/hooks';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
+jest.mock('../common/hooks/useDirection');
 
 describe('Decision', () => {
   const props = {
@@ -43,6 +45,7 @@ describe('Decision', () => {
   beforeEach(() => {
     resetClientWidth(Breakpoint.EXTRA_SMALL - 1);
     jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
   });
 
   describe(`when presentation is ${Decision.Presentation.LIST_BLOCK}`, () => {
@@ -129,6 +132,18 @@ describe('Decision', () => {
     it('renders Navigation Option before breakpoint', () => {
       expect(getNavigationOption()).toBeInTheDocument();
       expect(getTile()).not.toBeInTheDocument();
+    });
+  });
+
+  describe('rtl support', () => {
+    beforeEach(() => {
+      ({ container } = render(
+        <Decision {...props} presentation={Decision.Presentation.LIST_BLOCK} />,
+      ));
+    });
+
+    it('should apply correct css classes when isRTL is true', () => {
+      expect(container.querySelector('.np-decision')).toHaveClass('np-decision--rtl');
     });
   });
 
