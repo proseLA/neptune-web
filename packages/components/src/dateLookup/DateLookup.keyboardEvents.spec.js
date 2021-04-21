@@ -7,9 +7,11 @@ import { fakeKeyDownEventForKey } from '../common/fakeEvents';
 import DateLookup from '.';
 
 const defaultLocale = 'en-GB';
+
 jest.mock('react-intl', () => ({
   injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
   useIntl: () => ({ locale: defaultLocale }),
+  defineMessages: (translations) => translations,
 }));
 
 describe('DateLookup (keyboard events)', () => {

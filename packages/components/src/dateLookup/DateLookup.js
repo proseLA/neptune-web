@@ -6,7 +6,7 @@ import { Size, MonthFormat, Breakpoint } from '../common';
 import { isWithinRange, moveToWithinRange } from '../common/dateUtils';
 import { getStartOfDay } from './getStartOfDay';
 
-import OpenButton from './openButton';
+import DateTrigger from './dateTrigger';
 import DayCalendar from './dayCalendar';
 import MonthCalendar from './monthCalendar';
 import YearCalendar from './yearCalendar';
@@ -268,19 +268,25 @@ class DateLookup extends PureComponent {
     );
   };
 
+  handleClear = () => {
+    this.props.onChange(null);
+    this.focusOn('.np-date-trigger');
+  };
+
   render() {
     const { selectedDate, open, isMobile } = this.state;
 
-    const { size, placeholder, label, monthFormat, disabled } = this.props;
+    const { size, placeholder, label, monthFormat, disabled, clearable, value } = this.props;
     return (
       <div // eslint-disable-line jsx-a11y/no-static-element-interactions
         ref={this.element}
         className={`btn-group btn-block dropdown ${open ? 'open' : ''}`}
         onKeyDown={this.handleKeyDown}
       >
-        <OpenButton
+        <DateTrigger
           {...{ selectedDate, size, placeholder, label, monthFormat, disabled }}
           onClick={this.open}
+          onClear={!disabled && clearable && value ? this.handleClear : null}
         />
         {isMobile ? (
           <Dimmer open={open} onClose={this.close}>
@@ -312,6 +318,7 @@ DateLookup.propTypes = {
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  clearable: PropTypes.bool,
 };
 
 DateLookup.defaultProps = {
@@ -325,6 +332,7 @@ DateLookup.defaultProps = {
   disabled: false,
   onFocus: null,
   onBlur: null,
+  clearable: false,
 };
 
 export default DateLookup;

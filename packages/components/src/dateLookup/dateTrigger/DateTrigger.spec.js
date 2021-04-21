@@ -1,16 +1,23 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+
 import { shallow } from 'enzyme';
 import * as formatting from '@transferwise/formatting';
 
-import OpenButton from '.';
+import DateTrigger from '.';
+import Chevron from '../../chevron';
+import { fakeKeyDownEventForKey } from '../../common/fakeEvents';
 
-jest.mock('react-intl');
+const defaultLocale = 'en-GB';
+jest.mock('react-intl', () => ({
+  useIntl: () => ({ locale: defaultLocale, formatMessage: (id) => `${id}` }),
+  defineMessages: (translations) => translations,
+}));
+
 jest.mock('@transferwise/formatting', () => ({
   formatDate: jest.fn().mockReturnValue('1.2.3'),
 }));
 
-describe('OpenButton', () => {
+describe('DateTrigger', () => {
   const selectedDate = new Date(1990, 11, 27);
   const locale = 'en-GB';
   let component;
@@ -24,9 +31,10 @@ describe('OpenButton', () => {
       monthFormat: 'long',
       disabled: false,
       onClick: jest.fn(),
+      onClear: null,
     };
-    useIntl.mockReturnValue({ locale });
-    component = shallow(<OpenButton {...props} />);
+
+    component = shallow(<DateTrigger {...props} />);
   });
 
   it('shows placeholder', () => {
@@ -91,6 +99,39 @@ describe('OpenButton', () => {
     expect(button().hasClass('btn-lg')).toBe(true);
   });
 
-  const button = () => component.find('button');
+  it('shows chevron button when onClear is not provided', () => {
+    expect(clearButton()).toHaveLength(0);
+    expect(chevron()).toHaveLength(1);
+  });
+
+  it('shows clear button when onClear is provided', () => {
+    component.setProps({ onClear: jest.fn() });
+    expect(clearButton()).toHaveLength(1);
+  });
+
+  it('calls onClear when user press Space', () => {
+    const onClear = jest.fn();
+    component.setProps({ onClear });
+    clearButton().simulate('keydown', fakeKeyDownEventForKey(32));
+    expect(onClear).toHaveBeenCalled();
+  });
+
+  it('calls onClear when user press Enter', () => {
+    const onClear = jest.fn();
+    component.setProps({ onClear });
+    clearButton().simulate('keydown', fakeKeyDownEventForKey(13));
+    expect(onClear).toHaveBeenCalled();
+  });
+
+  it(`doesn't call onClear when user press a random key`, () => {
+    const onClear = jest.fn();
+    component.setProps({ onClear });
+    clearButton().simulate('keydown', fakeKeyDownEventForKey(6));
+    expect(onClear).not.toHaveBeenCalled();
+  });
+
+  const button = () => component.find('.dropdown-toggle');
+  const clearButton = () => component.find('.clear-btn');
+  const chevron = () => component.find(Chevron);
   const label = () => component.find('.control-label');
 });
