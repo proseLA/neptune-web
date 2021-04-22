@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Chevron from '../chevron';
 import Option from '../common/Option';
 import './Card.css';
+import { Key } from '../common';
 
 const Card = ({
   as: Element,
@@ -20,6 +21,7 @@ const Card = ({
   ...rest
 }) => {
   const isOpen = !!(isExpanded && children);
+  const TOGGLE_KEYS = [Key.ENTER, ...Key.SPACE];
 
   return (
     <Element
@@ -27,13 +29,22 @@ const Card = ({
       id={id}
       data-testid={rest['data-testid']}
     >
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/interactive-supports-focus, jsx-a11y/no-static-element-interactions */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
+        aria-expanded={isExpanded}
         className={classNames('p-a-panel tw-card__panel', {
           'tw-card__panel--inactive': !children,
         })}
         role={children ? 'button' : null}
-        onClick={() => children && onClick(!isExpanded)}
+        onClick={() => children && onClick(!isExpanded)} // TODO: Consider renaming to onExpand as Card can be expanded with keyboard
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        tabIndex={children ? 0 : undefined}
+        onKeyDown={(event) => {
+          if (TOGGLE_KEYS.includes(event.key) && children) {
+            event.preventDefault();
+            onClick(!isExpanded);
+          }
+        }}
       >
         <Option
           as="div"
