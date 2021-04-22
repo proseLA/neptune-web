@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.6.0...@transferwise/components@35.7.0) (2021-04-22)
+
+
+### Features
+
+* make Card expandable with keyboard ([#902](https://github.com/transferwise/neptune-web/issues/902)) ([b62a21a](https://github.com/transferwise/neptune-web/commit/b62a21a54b29823c4d689d145fa7bf44a21a4df3))
+
+
+
+
+
 # [35.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.5.2...@transferwise/components@35.6.0) (2021-04-21)
 
 
