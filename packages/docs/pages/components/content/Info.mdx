@@ -1,0 +1,15 @@
+import { Info } from '@transferwise/components';
+
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import code from '../../../liveEditorCode/info.code';
+
+Opens a Popover or Modal based on presentation prop.
+
+<div>
+  <LiveEditorBlock code={code} scope={{ Info }} />
+  <GeneratePropsTable componentName="Info" />
+</div>
+
+export const meta = {
+  name: 'Info',
+};

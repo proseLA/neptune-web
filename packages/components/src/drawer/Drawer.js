@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
 import SlidingPanel from '../slidingPanel';
@@ -70,17 +70,17 @@ Drawer.Position = { LEFT: Position.LEFT, RIGHT: Position.RIGHT };
 
 Drawer.propTypes = {
   /** The content to appear in the drawer body. */
-  children: Types.node,
+  children: PropTypes.node,
   /** The content to appear in the drawer footer. */
-  footerContent: Types.node,
+  footerContent: PropTypes.node,
   /** The content to appear in the drawer header. */
-  headerTitle: Types.string,
+  headerTitle: PropTypes.string,
   /** The action to perform on close click. */
-  onClose: Types.func,
+  onClose: PropTypes.func,
   /** The status of Drawer either open or not. */
-  open: Types.bool,
+  open: PropTypes.bool,
   /** The placement of Drawer on the screen either left or right. */
-  position: Types.oneOf([Drawer.Position.LEFT, Drawer.Position.RIGHT]),
+  position: PropTypes.oneOf([Drawer.Position.LEFT, Drawer.Position.RIGHT]),
 };
 
 Drawer.defaultProps = {

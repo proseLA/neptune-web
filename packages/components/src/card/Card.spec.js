@@ -107,6 +107,11 @@ describe('Card', () => {
       expect(defaultProps.onClick).toBeCalledWith(!defaultProps.isExpanded);
     });
 
+    it('calls onClick with inverse of current isExpanded value when toggle panel is toggled with keyboard', () => {
+      keyboardTogglePanel(true);
+      expect(defaultProps.onClick).toBeCalledWith(!defaultProps.isExpanded);
+    });
+
     it('renders a chevron', () => {
       expect(chevron({ children })).not.toBe(null);
     });
@@ -162,10 +167,17 @@ describe('Card', () => {
     return container.querySelector('.tw-card.active');
   };
   const clickTogglePanel = (withChildren) => {
+    const togglePanel = findPanel(withChildren);
+    fireEvent.click(togglePanel);
+  };
+  const keyboardTogglePanel = (withChildren) => {
+    const togglePanel = findPanel(withChildren);
+    fireEvent.keyDown(togglePanel, { key: 'Spacebar', keycode: 'Spacebar' });
+  };
+  const findPanel = (withChildren) => {
     const props = withChildren ? { children } : {};
     const { container } = renderCard(props);
-    const togglePanel = container.querySelector('.tw-card__panel');
-    fireEvent.click(togglePanel);
+    return container.querySelector('.tw-card__panel');
   };
   const chevron = (renderProps) => {
     const { container } = renderCard(renderProps);

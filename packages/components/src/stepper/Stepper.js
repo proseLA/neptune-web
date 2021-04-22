@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Stepper.css';
 import Tooltip from '../tooltip';
@@ -70,15 +70,15 @@ const Stepper = ({ steps, activeStep, className }) => {
 /* eslint-enable react/no-array-index-key */
 
 Stepper.propTypes = {
-  steps: Types.arrayOf(
-    Types.shape({
-      label: Types.node.isRequired,
-      onClick: Types.func,
-      hoverLabel: Types.node,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node.isRequired,
+      onClick: PropTypes.func,
+      hoverLabel: PropTypes.node,
     }),
   ).isRequired,
-  activeStep: Types.number,
-  className: Types.string,
+  activeStep: PropTypes.number,
+  className: PropTypes.string,
 };
 
 Stepper.defaultProps = {

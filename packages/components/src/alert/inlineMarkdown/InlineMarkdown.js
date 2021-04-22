@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import Markdown from '../../markdown';
 import { MarkdownNodeTypes } from '../../common/markdownNodeTypes';
 
@@ -10,8 +10,8 @@ const InlineMarkdown = (props) => {
 };
 
 InlineMarkdown.propTypes = {
-  children: Types.string.isRequired,
-  className: Types.string,
+  children: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 InlineMarkdown.defaultProps = {

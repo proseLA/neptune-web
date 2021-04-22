@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Status, Size } from '../common';
@@ -99,18 +99,18 @@ class ProcessIndicator extends Component {
   }
 }
 ProcessIndicator.propTypes = {
-  status: Types.oneOf([
+  status: PropTypes.oneOf([
     ProcessIndicator.Status.PROCESSING,
     ProcessIndicator.Status.FAILED,
     ProcessIndicator.Status.SUCCEEDED,
     ProcessIndicator.Status.HIDDEN,
   ]),
-  size: Types.oneOf([
+  size: PropTypes.oneOf([
     ProcessIndicator.Size.EXTRA_SMALL,
     ProcessIndicator.Size.SMALL,
     ProcessIndicator.Size.EXTRA_LARGE,
   ]),
-  onAnimationCompleted: Types.func,
+  onAnimationCompleted: PropTypes.func,
 };
 
 ProcessIndicator.defaultProps = {

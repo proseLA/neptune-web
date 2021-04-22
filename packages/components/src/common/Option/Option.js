@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import requiredIf from 'react-required-if';
 
@@ -58,21 +58,21 @@ const Option = ({
 );
 
 Option.propTypes = {
-  media: Types.node,
-  htmlFor: Types.string,
-  title: Types.node.isRequired,
-  content: Types.node,
-  onClick: Types.func,
-  href: requiredIf(Types.string, (props) => props.as === 'a'),
-  as: Types.elementType,
-  disabled: Types.bool,
-  button: Types.node,
-  decision: Types.bool,
-  complex: Types.bool,
-  inverseMediaCircle: Types.bool,
-  className: Types.string,
-  showMediaAtAllSizes: Types.bool,
-  showMediaCircle: Types.bool,
+  media: PropTypes.node,
+  htmlFor: PropTypes.string,
+  title: PropTypes.node.isRequired,
+  content: PropTypes.node,
+  onClick: PropTypes.func,
+  href: requiredIf(PropTypes.string, (props) => props.as === 'a'),
+  as: PropTypes.elementType,
+  disabled: PropTypes.bool,
+  button: PropTypes.node,
+  decision: PropTypes.bool,
+  complex: PropTypes.bool,
+  inverseMediaCircle: PropTypes.bool,
+  className: PropTypes.string,
+  showMediaAtAllSizes: PropTypes.bool,
+  showMediaCircle: PropTypes.bool,
 };
 
 Option.defaultProps = {

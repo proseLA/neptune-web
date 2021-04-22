@@ -7,19 +7,11 @@
       done={false}
       avatar={
         <AvatarWrapper
-          url="https://github.com/transferwise.png"
+          url="http://placekitten.com/100/100"
           profileType={AvatarWrapper.ProfileType.PERSONAL}
         />
       }
-      logo={
-        <img
-          alt="logo"
-          src="./../../static/assets/img/wise_logo.svg"
-          width="138"
-          width="138"
-          height="24"
-        />
-      }
+      logo={<Logo />}
       onClose={() => setClosed(true)}
       onGoBack={() => setActiveStep(activeStep - 1 > 0 ? activeStep - 1 : 0)}
       steps={[

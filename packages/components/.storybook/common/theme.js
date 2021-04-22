@@ -1,7 +1,5 @@
 import { create } from '@storybook/theming';
 
-import Logo from './wise_logo.svg';
-
 export default create({
   base: 'light',
 
@@ -35,7 +33,7 @@ export default create({
 
   brandTitle: 'Wise',
   brandUrl: 'https://wise.com',
-  brandImage: Logo,
+  brandImage: 'https://wise.com/public-resources/assets/logos/wise/brand_logo.svg',
 
   showSearchBox: false,
 });

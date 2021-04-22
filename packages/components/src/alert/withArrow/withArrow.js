@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const ArrowPosition = {
@@ -21,7 +21,7 @@ function withArrow(Alert, arrow) {
   );
 
   AlertWithArrow.propTypes = {
-    className: Types.string,
+    className: PropTypes.string,
   };
 
   AlertWithArrow.defaultProps = {

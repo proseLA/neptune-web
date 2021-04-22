@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import commonmark from 'commonmark';
 import difference from 'lodash.difference';
 import { MarkdownNodeTypes } from '../common/markdownNodeTypes';
@@ -64,11 +64,11 @@ function stripNodes({ blockList, parsed }) {
 }
 
 Markdown.propTypes = {
-  children: Types.string.isRequired,
-  as: Types.elementType,
-  className: Types.string,
-  allowList: Types.arrayOf(Types.oneOf(NODE_TYPE_LIST)),
-  blockList: Types.arrayOf(Types.oneOf(NODE_TYPE_LIST)),
+  children: PropTypes.string.isRequired,
+  as: PropTypes.elementType,
+  className: PropTypes.string,
+  allowList: PropTypes.arrayOf(PropTypes.oneOf(NODE_TYPE_LIST)),
+  blockList: PropTypes.arrayOf(PropTypes.oneOf(NODE_TYPE_LIST)),
 };
 
 Markdown.defaultProps = {

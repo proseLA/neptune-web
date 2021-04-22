@@ -10,7 +10,8 @@
       label="label"
       monthFormat="long"
       disabled={false}
-      onChange={v => setDate(v)}
+      onChange={(v) => setDate(v)}
+      clearable={false}
     />
   );
 };

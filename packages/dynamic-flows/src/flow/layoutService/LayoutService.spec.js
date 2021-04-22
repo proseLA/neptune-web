@@ -1,4 +1,4 @@
-import { convertStepToLayout } from '.';
+import { convertStepToLayout, inlineReferences } from '.';
 
 describe('Given a utility service for handling dynamic layouts', () => {
   describe('when we receive a decision step', () => {
@@ -25,7 +25,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
 
       const decisionLayout = [
         {
-          type: 'title',
+          type: 'heading',
           text: decisionStep.title,
           size: 'lg',
           margin: 'lg',
@@ -40,16 +40,16 @@ describe('Given a utility service for handling dynamic layouts', () => {
           type: 'decision',
           options: [
             {
-              text: option1.title,
-              description: option1.description,
+              text: option1.description,
               action: {
+                label: option1.title,
                 method: 'GET',
                 url: option1.url,
               },
             },
             {
-              text: option2.title,
               action: {
+                label: option2.title,
                 method: 'GET',
                 url: option2.url,
                 disabled: true,
@@ -86,7 +86,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
 
       const finalLayout = [
         {
-          type: 'title',
+          type: 'heading',
           text: finalStep.title,
           size: 'lg',
           margin: 'lg',
@@ -113,9 +113,9 @@ describe('Given a utility service for handling dynamic layouts', () => {
           width: 'md',
           components: [
             {
-              type: 'action',
+              type: 'button',
               context: exitAction.type,
-              action: { ...exitAction, type: undefined },
+              action: { ...exitAction, label: exitAction.title, title: undefined, type: undefined },
             },
           ],
         },
@@ -128,7 +128,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
   describe('when we receive a form step', () => {
     it('should convert it into a layout', () => {
       const schema = {
-        id: 'thing',
+        $id: 'thing',
         type: 'object',
         properties: {
           a: {
@@ -163,10 +163,6 @@ describe('Given a utility service for handling dynamic layouts', () => {
         ],
       };
 
-      const model = {
-        a: 1,
-      };
-
       const formStep = {
         type: 'form',
         key: 'create-thing',
@@ -175,13 +171,12 @@ describe('Given a utility service for handling dynamic layouts', () => {
         refreshFormUrl: '/thing-requirements',
         actions: [submitAction, cancelAction],
         reviewFields,
-        model,
         schemas: [schema],
       };
 
       const finalLayout = [
         {
-          type: 'title',
+          type: 'heading',
           text: formStep.title,
           size: 'lg',
           margin: 'lg',
@@ -209,7 +204,6 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'form',
               schema,
-              model,
             },
           ],
         },
@@ -218,20 +212,302 @@ describe('Given a utility service for handling dynamic layouts', () => {
           width: 'md',
           components: [
             {
-              type: 'action',
+              type: 'button',
               context: submitAction.type,
-              action: { ...submitAction, type: undefined },
+              action: {
+                ...submitAction,
+                label: submitAction.title,
+                title: undefined,
+                type: undefined,
+              },
             },
             {
-              type: 'action',
+              type: 'button',
               context: cancelAction.type,
-              action: { ...cancelAction, type: undefined },
+              action: {
+                ...cancelAction,
+                label: cancelAction.title,
+                title: undefined,
+                type: undefined,
+              },
             },
           ],
         },
       ];
 
       expect(convertStepToLayout(formStep)).toEqual(finalLayout);
+    });
+  });
+
+  describe('when asked to inline references by id', () => {
+    const schemas = [
+      {
+        $id: '#myDetails',
+        type: 'object',
+        properties: {
+          name: { type: 'string' },
+        },
+      },
+      {
+        $id: '#myAddress',
+        type: 'object',
+        properties: {
+          address: { type: 'string' },
+        },
+      },
+    ];
+
+    const actions = [
+      {
+        $id: '#submitMyDetails',
+        title: 'Continue',
+        url: '/v3',
+        type: 'primary',
+        method: 'POST',
+        disabled: false,
+      },
+      {
+        $id: '#submitMyAddress',
+        title: 'Continue',
+        url: '/v3',
+        type: 'primary',
+        method: 'POST',
+        disabled: false,
+      },
+    ];
+
+    it('should inline schema of top level form components', () => {
+      const simpleLayout = [
+        {
+          type: 'form',
+          schema: {
+            $ref: '#myDetails',
+          },
+        },
+        {
+          type: 'form',
+          schema: {
+            $ref: '#myAddress',
+          },
+        },
+        {
+          type: 'action',
+          $ref: '#submitMyDetails',
+        },
+        {
+          type: 'action',
+          $ref: '#submitMyAddress',
+        },
+      ];
+
+      const expected = [
+        {
+          type: 'form',
+          schema: {
+            $id: '#myDetails',
+            type: 'object',
+            properties: {
+              name: { type: 'string' },
+            },
+          },
+        },
+        {
+          type: 'form',
+          schema: {
+            $id: '#myAddress',
+            type: 'object',
+            properties: {
+              address: { type: 'string' },
+            },
+          },
+        },
+        {
+          type: 'button',
+          context: 'primary',
+          action: {
+            $id: '#submitMyDetails',
+            label: 'Continue',
+            url: '/v3',
+            method: 'POST',
+            disabled: false,
+          },
+        },
+        {
+          type: 'button',
+          context: 'primary',
+          action: {
+            $id: '#submitMyAddress',
+            label: 'Continue',
+            url: '/v3',
+            method: 'POST',
+            disabled: false,
+          },
+        },
+      ];
+
+      expect(inlineReferences(simpleLayout, schemas, actions)).toEqual(expected);
+    });
+
+    it('should inline schemas inside boxes', () => {
+      const boxLayout = [
+        {
+          type: 'box',
+          components: [
+            {
+              type: 'form',
+              schema: {
+                $ref: '#myAddress',
+              },
+            },
+            {
+              type: 'action',
+              $ref: '#submitMyAddress',
+            },
+          ],
+        },
+      ];
+
+      const expected = [
+        {
+          type: 'box',
+          components: [
+            {
+              type: 'form',
+              schema: {
+                $id: '#myAddress',
+                type: 'object',
+                properties: {
+                  address: { type: 'string' },
+                },
+              },
+            },
+            {
+              type: 'button',
+              context: 'primary',
+              action: {
+                $id: '#submitMyAddress',
+                label: 'Continue',
+                url: '/v3',
+                method: 'POST',
+                disabled: false,
+              },
+            },
+          ],
+        },
+      ];
+
+      expect(inlineReferences(boxLayout, schemas, actions)).toEqual(expected);
+    });
+
+    it('should inline schemas inside columns', () => {
+      const columnLayout = [
+        {
+          type: 'columns',
+          left: [
+            {
+              type: 'form',
+              schema: {
+                $ref: '#myDetails',
+              },
+            },
+            {
+              type: 'action',
+              $ref: '#submitMyDetails',
+            },
+          ],
+          right: [
+            {
+              type: 'form',
+              schema: {
+                $ref: '#myAddress',
+              },
+            },
+            {
+              type: 'action',
+              $ref: '#submitMyAddress',
+            },
+          ],
+        },
+      ];
+
+      const expected = [
+        {
+          type: 'columns',
+          left: [
+            {
+              type: 'form',
+              schema: {
+                $id: '#myDetails',
+                type: 'object',
+                properties: {
+                  name: { type: 'string' },
+                },
+              },
+            },
+            {
+              type: 'button',
+              context: 'primary',
+              action: {
+                $id: '#submitMyDetails',
+                label: 'Continue',
+                url: '/v3',
+                method: 'POST',
+                disabled: false,
+              },
+            },
+          ],
+          right: [
+            {
+              type: 'form',
+              schema: {
+                $id: '#myAddress',
+                type: 'object',
+                properties: {
+                  address: { type: 'string' },
+                },
+              },
+            },
+            {
+              type: 'button',
+              context: 'primary',
+              action: {
+                $id: '#submitMyAddress',
+                label: 'Continue',
+                url: '/v3',
+                method: 'POST',
+                disabled: false,
+              },
+            },
+          ],
+        },
+      ];
+
+      expect(inlineReferences(columnLayout, schemas, actions)).toEqual(expected);
+    });
+  });
+
+  describe('when asked to inline schemas and there are no schemas', () => {
+    const layout = [
+      {
+        type: 'heading',
+        text: 'Title',
+      },
+      {
+        type: 'paragraph',
+        text: 'Lorem Ipsum',
+      },
+    ];
+
+    it('should return the original layout', () => {
+      expect(inlineReferences(layout, undefined)).toEqual(layout);
+      expect(inlineReferences(layout, [])).toEqual(layout);
+    });
+  });
+
+  describe('when asked to inline schemas and there is no layout', () => {
+    it('should return an empty layout', () => {
+      expect(inlineReferences(undefined, undefined)).toEqual([]);
+      expect(inlineReferences(undefined, [])).toEqual([]);
     });
   });
 });

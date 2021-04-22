@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import DateLookup from '.';
-import OpenButton from './openButton';
+import DateTrigger from './dateTrigger';
 import DayCalendar from './dayCalendar';
 import MonthCalendar from './monthCalendar';
 import YearCalendar from './yearCalendar';
@@ -11,6 +11,7 @@ const defaultLocale = 'en-GB';
 jest.mock('react-intl', () => ({
   injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
   useIntl: () => ({ locale: defaultLocale }),
+  defineMessages: (translations) => translations,
 }));
 
 describe('DateLookup view', () => {
@@ -34,17 +35,18 @@ describe('DateLookup view', () => {
   });
 
   it('shows open button', () => {
-    expect(openButton()).toHaveLength(1);
+    expect(dateTrigger()).toHaveLength(1);
   });
 
   it('passes props forward to open button', () => {
-    expect(+openButton().prop('selectedDate')).toBe(+date);
-    expect(openButton().prop('size')).toBe('lg');
-    expect(openButton().prop('placeholder')).toBe('Asd..');
-    expect(openButton().prop('label')).toBe('Date..');
-    expect(openButton().prop('monthFormat')).toBe('long');
-    expect(openButton().prop('disabled')).toBe(false);
-    expect(openButton().prop('onClick')).toBe(component.instance().open);
+    expect(+dateTrigger().prop('selectedDate')).toBe(+date);
+    expect(dateTrigger().prop('size')).toBe('lg');
+    expect(dateTrigger().prop('placeholder')).toBe('Asd..');
+    expect(dateTrigger().prop('label')).toBe('Date..');
+    expect(dateTrigger().prop('monthFormat')).toBe('long');
+    expect(dateTrigger().prop('disabled')).toBe(false);
+    expect(dateTrigger().prop('onClick')).toBe(component.instance().open);
+    expect(dateTrigger().prop('children')).not.toBe(null);
   });
 
   it('does not show calendar initially', () => {
@@ -56,6 +58,11 @@ describe('DateLookup view', () => {
     component.setState({ open: true });
     expect(component.find('.dropdown').hasClass('open')).toBe(true);
     expect(component.find('.dropdown-menu')).toHaveLength(1);
+  });
+
+  it('passes onClear prop to open button', () => {
+    component.setProps({ clearable: true });
+    expect(dateTrigger().prop('onClear')).not.toBe(null);
   });
 
   describe('when in day mode', () => {
@@ -136,7 +143,7 @@ describe('DateLookup view', () => {
     });
   });
 
-  const openButton = () => component.find(OpenButton);
+  const dateTrigger = () => component.find(DateTrigger);
   const dayCalendar = () => component.find(DayCalendar);
   const monthCalendar = () => component.find(MonthCalendar);
   const yearCalendar = () => component.find(YearCalendar);

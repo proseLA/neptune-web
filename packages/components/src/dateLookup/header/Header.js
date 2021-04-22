@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import Chevron from '../../chevron';
 
 const btnClasses = 'btn-link p-a-0 text-no-decoration font-weight-bold';
@@ -29,10 +29,10 @@ const Header = ({ label, onLabelClick, onPreviousClick, onNextClick }) => (
 );
 
 Header.propTypes = {
-  label: Types.string,
-  onLabelClick: Types.func,
-  onPreviousClick: Types.func.isRequired,
-  onNextClick: Types.func.isRequired,
+  label: PropTypes.string,
+  onLabelClick: PropTypes.func,
+  onPreviousClick: PropTypes.func.isRequired,
+  onNextClick: PropTypes.func.isRequired,
 };
 
 Header.defaultProps = {

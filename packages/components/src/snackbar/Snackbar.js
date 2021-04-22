@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import withNextPortal from '../withNextPortal/withNextPortal';
 
@@ -104,14 +104,14 @@ export class Snackbar extends Component {
 }
 
 Snackbar.propTypes = {
-  action: Types.shape({
-    label: Types.string.isRequired,
-    onClick: Types.func.isRequired,
+  action: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
   }),
-  text: Types.node.isRequired,
-  theme: Types.oneOf([Theme.LIGHT, Theme.DARK]),
-  timeout: Types.number.isRequired,
-  timestamp: Types.number.isRequired,
+  text: PropTypes.node.isRequired,
+  theme: PropTypes.oneOf([Theme.LIGHT, Theme.DARK]),
+  timeout: PropTypes.number.isRequired,
+  timestamp: PropTypes.number.isRequired,
 };
 
 Snackbar.defaultProps = {

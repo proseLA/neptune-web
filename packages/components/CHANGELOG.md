@@ -3,6 +3,224 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.6.0...@transferwise/components@35.7.0) (2021-04-22)
+
+
+### Features
+
+* make Card expandable with keyboard ([#902](https://github.com/transferwise/neptune-web/issues/902)) ([b62a21a](https://github.com/transferwise/neptune-web/commit/b62a21a54b29823c4d689d145fa7bf44a21a4df3))
+
+
+
+
+
+# [35.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.5.2...@transferwise/components@35.6.0) (2021-04-21)
+
+
+### Features
+
+* make the DateLookup clearable ([#891](https://github.com/transferwise/neptune-web/issues/891)) ([590c9b5](https://github.com/transferwise/neptune-web/commit/590c9b5624e1cbc948e05923494b62b48fe74cd3))
+
+
+
+
+
+## [35.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.5.1...@transferwise/components@35.5.2) (2021-04-19)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.5.0...@transferwise/components@35.5.1) (2021-04-16)
+
+
+### Bug Fixes
+
+* using requestAnimationFrame to perform the calculation before the next repaint ([#899](https://github.com/transferwise/neptune-web/issues/899)) ([d196340](https://github.com/transferwise/neptune-web/commit/d196340cf12461fe5d628318042bcb0a609c8db1))
+
+
+
+
+
+# [35.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.4.0...@transferwise/components@35.5.0) (2021-04-15)
+
+
+### Features
+
+* add initials and badge logic to AvatarWrapper ([#896](https://github.com/transferwise/neptune-web/issues/896)) ([aa895e3](https://github.com/transferwise/neptune-web/commit/aa895e324dd3039e50deed4d381567da73ef426a))
+
+
+
+
+
+# [35.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.3.3...@transferwise/components@35.4.0) (2021-04-08)
+
+
+### Features
+
+* add logo component ([#885](https://github.com/transferwise/neptune-web/issues/885)) ([0110516](https://github.com/transferwise/neptune-web/commit/0110516d85a551956095b44675dae15a581b594e))
+
+
+
+
+
+## [35.3.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.3.2...@transferwise/components@35.3.3) (2021-04-07)
+
+
+### Bug Fixes
+
+* bug bash 2021 ([#883](https://github.com/transferwise/neptune-web/issues/883)) ([faaab17](https://github.com/transferwise/neptune-web/commit/faaab17c43883f4f1d012dcd7e75c22d33cefcf1)), closes [#862](https://github.com/transferwise/neptune-web/issues/862) [#861](https://github.com/transferwise/neptune-web/issues/861) [#855](https://github.com/transferwise/neptune-web/issues/855) [#859](https://github.com/transferwise/neptune-web/issues/859)
+
+
+
+
+
+## [35.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.3.1...@transferwise/components@35.3.2) (2021-04-07)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.3.0...@transferwise/components@35.3.1) (2021-04-07)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+# [35.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.2.0...@transferwise/components@35.3.0) (2021-04-07)
+
+
+### Features
+
+* rtl provider ([#841](https://github.com/transferwise/neptune-web/issues/841)) ([4956bb7](https://github.com/transferwise/neptune-web/commit/4956bb777791aae9c355f02ef84bda23e2bff72c))
+
+
+
+
+
+# [35.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.6...@transferwise/components@35.2.0) (2021-04-06)
+
+
+### Features
+
+* support grid use-case in Decision ([#875](https://github.com/transferwise/neptune-web/issues/875)) ([e20c882](https://github.com/transferwise/neptune-web/commit/e20c882bb1d93720e6fd6df59047d2d0d298924e))
+
+
+
+
+
+## [35.1.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.5...@transferwise/components@35.1.6) (2021-03-31)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.4...@transferwise/components@35.1.5) (2021-03-24)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.3...@transferwise/components@35.1.4) (2021-03-24)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.2...@transferwise/components@35.1.3) (2021-03-23)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.1...@transferwise/components@35.1.2) (2021-03-23)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [35.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.1.0...@transferwise/components@35.1.1) (2021-03-22)
+
+
+### Bug Fixes
+
+* popover positioning ([#865](https://github.com/transferwise/neptune-web/issues/865)) ([686fa57](https://github.com/transferwise/neptune-web/commit/686fa57fb46ade257e60be4d5c5bfdbe59a03d4e))
+
+
+
+
+
+# [35.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.0.2...@transferwise/components@35.1.0) (2021-03-18)
+
+
+### Features
+
+* Accordion changes ([#848](https://github.com/transferwise/neptune-web/issues/848)) ([fd06e43](https://github.com/transferwise/neptune-web/commit/fd06e43930fc791b6e9c97af88d7871bb76b2247))
+
+
+
+
+
+## [35.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.0.1...@transferwise/components@35.0.2) (2021-03-17)
+
+
+### Bug Fixes
+
+* add inline block to popover ([#856](https://github.com/transferwise/neptune-web/issues/856)) ([b064e81](https://github.com/transferwise/neptune-web/commit/b064e81489baca1aa75fb3f27d4cb76ed4567357))
+
+
+
+
+
+## [35.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.0.0...@transferwise/components@35.0.1) (2021-03-16)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+# [35.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@34.4.1...@transferwise/components@35.0.0) (2021-03-15)
+
+
+* feat!: components v35 release (#849) ([7250476](https://github.com/transferwise/neptune-web/commit/725047641b4b086fd36cd70d4ccb92a3d805fdc1)), closes [#849](https://github.com/transferwise/neptune-web/issues/849) [#737](https://github.com/transferwise/neptune-web/issues/737) [#771](https://github.com/transferwise/neptune-web/issues/771) [#822](https://github.com/transferwise/neptune-web/issues/822) [#835](https://github.com/transferwise/neptune-web/issues/835) [#838](https://github.com/transferwise/neptune-web/issues/838) [#760](https://github.com/transferwise/neptune-web/issues/760) [#850](https://github.com/transferwise/neptune-web/issues/850)
+
+
+### BREAKING CHANGES
+
+* Read on for details.
+* Tabs no longer animate on click by default
+* aria-label is now mandatory
+* Popover has had extensive refactoring to use a new positioning engine (popper). There are several breaking changes.
+
+- children: changed type
+- classNames: changed type
+- containsFocusableElement: removed
+- content: changed type
+- open: addeed, component now stateless provide state
+- clickOutsideCallback: added
+- title: changed type
+
+
+
+
+
 ## [34.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@34.4.0...@transferwise/components@34.4.1) (2021-03-05)
 
 **Note:** Version bump only for package @transferwise/components

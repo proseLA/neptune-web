@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
 import { MonthFormat } from '../../common';
@@ -54,15 +54,15 @@ class DayCalendar extends PureComponent {
 }
 
 DayCalendar.propTypes = {
-  selectedDate: Types.instanceOf(Date),
-  min: Types.instanceOf(Date),
-  max: Types.instanceOf(Date),
-  viewMonth: Types.number.isRequired,
-  viewYear: Types.number.isRequired,
-  monthFormat: Types.oneOf([MonthFormat.LONG, MonthFormat.SHORT]).isRequired,
-  onSelect: Types.func.isRequired,
-  onLabelClick: Types.func.isRequired,
-  onViewDateUpdate: Types.func.isRequired,
+  selectedDate: PropTypes.instanceOf(Date),
+  min: PropTypes.instanceOf(Date),
+  max: PropTypes.instanceOf(Date),
+  viewMonth: PropTypes.number.isRequired,
+  viewYear: PropTypes.number.isRequired,
+  monthFormat: PropTypes.oneOf([MonthFormat.LONG, MonthFormat.SHORT]).isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onLabelClick: PropTypes.func.isRequired,
+  onViewDateUpdate: PropTypes.func.isRequired,
 };
 
 DayCalendar.defaultProps = {

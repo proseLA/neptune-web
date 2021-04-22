@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
@@ -42,11 +42,11 @@ const PaginationLink = ({ disabled, active, pageNumber, onClick, children }) => 
 };
 
 PaginationLink.propTypes = {
-  disabled: Types.bool,
-  active: Types.bool,
-  onClick: Types.func.isRequired,
-  pageNumber: Types.number.isRequired,
-  children: Types.node.isRequired,
+  disabled: PropTypes.bool,
+  active: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
+  pageNumber: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 PaginationLink.defaultProps = {

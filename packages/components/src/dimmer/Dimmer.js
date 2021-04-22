@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import withNextPortal from '../withNextPortal/withNextPortal';
@@ -71,12 +71,12 @@ export const DimmerContentWrapper = ({ children, handleOnClose }) => {
 };
 
 Dimmer.propTypes = {
-  scrollable: Types.bool,
-  open: Types.bool,
-  children: Types.node,
-  onClose: Types.func,
-  fadeContentOnExit: Types.bool,
-  fadeContentOnEnter: Types.bool,
+  scrollable: PropTypes.bool,
+  open: PropTypes.bool,
+  children: PropTypes.node,
+  onClose: PropTypes.func,
+  fadeContentOnExit: PropTypes.bool,
+  fadeContentOnEnter: PropTypes.bool,
 };
 
 Dimmer.defaultProps = {

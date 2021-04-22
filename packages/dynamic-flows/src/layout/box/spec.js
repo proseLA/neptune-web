@@ -39,18 +39,23 @@ describe('Given a component for dynamically rendering a box of other components'
     component = shallow(
       <DynamicBox
         component={box}
-        onAction={onAction}
-        onModelChange={onModelChange}
+        model={model}
         submitted={false}
         errors={{}}
-        onPersistAsync={onPersistAsync}
         baseUrl="dynamic-box-base-url"
+        onModelChange={onModelChange}
+        onAction={onAction}
+        onPersistAsync={onPersistAsync}
       />,
     );
   });
 
   it('should use a DynamicLayout to render the child components', () => {
     expect(component.find(DynamicLayout).prop('components')).toBe(box.components);
+  });
+
+  it('should pass the child component the model', () => {
+    expect(component.find(DynamicLayout).prop('model')).toBe(model);
   });
 
   describe('when the child layout triggers an action', () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { isArray } from '@transferwise/neptune-validation';
 import { Size } from '../common';
 
@@ -162,20 +162,20 @@ const PhoneNumberInput = (props) => {
 PhoneNumberInput.Size = Size;
 
 PhoneNumberInput.propTypes = {
-  required: Types.bool,
-  disabled: Types.bool,
-  initialValue: Types.string,
-  onChange: Types.func.isRequired,
-  onFocus: Types.func,
-  onBlur: Types.func,
-  countryCode: Types.string,
-  searchPlaceholder: Types.string,
-  size: Types.oneOf([
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  initialValue: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  countryCode: PropTypes.string,
+  searchPlaceholder: PropTypes.string,
+  size: PropTypes.oneOf([
     PhoneNumberInput.Size.SMALL,
     PhoneNumberInput.Size.MEDIUM,
     PhoneNumberInput.Size.LARGE,
   ]),
-  placeholder: Types.string,
+  placeholder: PropTypes.string,
 };
 
 PhoneNumberInput.defaultProps = {

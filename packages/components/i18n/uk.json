@@ -1,0 +1,20 @@
+{
+  "neptune.CloseButton.ariaLabel": "Закрити",
+  "neptune.MoneyInput.Select.placeholder": "Виберіть варіант…",
+  "neptune.Pagination.ariaLabel": "Перехід за сторінками",
+  "neptune.PaginationLink.ariaLabel.active": "Перейти на сторінку {pageNumber}",
+  "neptune.PaginationLink.ariaLabel.inactive": "Ця сторінка, сторінка {pageNumber}",
+  "neptune.Summary.statusDone": "Виконано",
+  "neptune.Summary.statusNotDone": "Не виконано",
+  "neptune.Summary.statusPending": "Виконується",
+  "neptune.Upload.csButtonText": "Завантажити інший файл?",
+  "neptune.Upload.csFailureText": "Не завантажено. Повторіть спробу.",
+  "neptune.Upload.csSuccessText": "Завантаження завершено!",
+  "neptune.Upload.csTooLargeMessage": "Завантажте файл завбільшки до 5 МБ",
+  "neptune.Upload.csWrongTypeMessage": "Тип файлу не підтримується. Спробуйте завантажити інший файл.",
+  "neptune.Upload.psButtonText": "Скасувати",
+  "neptune.Upload.psProcessingText": "Завантаження…",
+  "neptune.Upload.usButtonText": "Або виберіть файл",
+  "neptune.Upload.usDropMessage": "Перетягніть файл, щоб почати завантаження",
+  "neptune.Upload.usPlaceholder": "Перетягніть файл завбільшки до 5 МБ"
+}

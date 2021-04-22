@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useHasIntersected } from '../common/hooks';
 import './Image.css';
@@ -53,15 +53,15 @@ const Image = ({ id, src, alt, onLoad, onError, className, loading, stretch, shr
 };
 
 Image.propTypes = {
-  id: Types.string,
-  src: Types.string.isRequired,
-  alt: Types.string.isRequired,
-  onLoad: Types.func,
-  onError: Types.func,
-  className: Types.string,
-  loading: Types.oneOf(['lazy', 'eager']),
-  stretch: Types.bool,
-  shrink: Types.bool,
+  id: PropTypes.string,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
+  className: PropTypes.string,
+  loading: PropTypes.oneOf(['lazy', 'eager']),
+  stretch: PropTypes.bool,
+  shrink: PropTypes.bool,
 };
 
 Image.defaultProps = {
