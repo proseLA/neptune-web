@@ -82,10 +82,13 @@ class MoneyInput extends Component {
 
   handlePaste = (event) => {
     const paste = (event.clipboardData || window.clipboardData).getData('text');
-    this.setState({
-      formattedAmount: formatAmount(paste, this.props.selectedCurrency.currency, this.locale),
-    });
-    this.onAmountChange(paste);
+    if (!Number.isNaN(parseFloat(paste))) {
+      this.setState({
+        formattedAmount: formatAmount(paste, this.props.selectedCurrency.currency, this.locale),
+      });
+      this.onAmountChange(paste);
+    }
+
     event.preventDefault();
   };
 
