@@ -70,15 +70,9 @@ export function parseAmount(number, currency, locale) {
   const precision = getCurrencyDecimals(currency);
   const groupSeparator = isNumberLocaleSupported() ? (10000).toLocaleString(validLocale)[2] : ',';
   const decimalSeparator = getDecimalSeparator(validLocale);
-  const trimmedNumber = number.replace(/\s/g, '');
-  const numberWithoutGroupSeparator = trimmedNumber.replace(
-    new RegExp(`\\${groupSeparator}`, 'g'),
-    '',
-  );
-  const numberWithStandardDecimalSeparator = numberWithoutGroupSeparator.replace(
-    new RegExp(`\\${decimalSeparator}`, 'g'),
-    '.',
-  );
+  const numberWithStandardDecimalSeparator = (number ? `${number}` : '')
+    .replace(new RegExp(`\\${groupSeparator}`, 'g'), '')
+    .replace(new RegExp(`\\${decimalSeparator}`, 'g'), '.');
   const parsedAmount = parseFloat(
     parseFloat(numberWithStandardDecimalSeparator).toFixed(precision),
   );

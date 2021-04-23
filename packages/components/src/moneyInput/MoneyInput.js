@@ -80,17 +80,23 @@ class MoneyInput extends Component {
     }
   };
 
-  onAmountChange = (event) => {
-    const { value } = event.target;
+  handlePaste = (event) => {
+    const paste = (event.clipboardData || window.clipboardData).getData('text');
+    this.setState({
+      formattedAmount: formatAmount(paste, this.props.selectedCurrency.currency, this.locale),
+    });
+    this.onAmountChange(paste);
+    event.preventDefault();
+  };
+
+  onAmountChange = (value) => {
     this.setState({
       formattedAmount: value,
     });
     const parsed = isEmpty(value)
       ? null
       : parseAmount(value, this.props.selectedCurrency.currency, this.locale);
-    if (!Number.isNaN(parsed)) {
-      this.props.onAmountChange(parsed);
-    }
+    this.props.onAmountChange(parsed);
   };
 
   onAmountBlur = () => {
@@ -181,9 +187,10 @@ class MoneyInput extends Component {
           inputMode="decimal"
           className={classNames(this.style('form-control'))}
           onKeyDown={this.handleKeyDown}
-          onChange={this.onAmountChange}
+          onChange={(event) => this.onAmountChange(event.target.value)}
           onFocus={this.onAmountFocus}
           onBlur={this.onAmountBlur}
+          onPaste={this.handlePaste}
           disabled={disabled}
           placeholder={formatAmountIfSet(
             this.props.placeholder,
