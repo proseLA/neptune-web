@@ -1,12 +1,26 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Drawer from '.';
-
-import { fakeKeyDownEventForKey } from '../common/fakeEvents';
-import KEY_CODES from '../common/keyCodes';
 
 jest.mock('../common');
 jest.useFakeTimers();
+
+// eslint-disable-next-line react/prop-types
+jest.mock('../dimmer', () => ({ open, children }) =>
+  open ? <div className="dimmer">{children}</div> : null,
+);
+// eslint-disable-next-line react/prop-types
+jest.mock('../slidingPanel', () => ({ open, children }) =>
+  open ? <div className="sliding-panel">{children}</div> : null,
+);
+
+const defaultLocale = 'en-GB';
+
+jest.mock('react-intl', () => ({
+  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
+  useIntl: () => ({ locale: defaultLocale, formatMessage: (id) => `${id}` }),
+  defineMessages: (translations) => translations,
+}));
 
 describe('Drawer', () => {
   let component;
@@ -25,28 +39,6 @@ describe('Drawer', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-  });
-
-  describe('updating the body class', () => {
-    beforeEach(() => {
-      component = mount(<Drawer {...props} open={false} />);
-    });
-  });
-
-  it('renders slidingPanel with right props', () => {
-    const slidingPanel = component.find('ForwardRef');
-    expect(slidingPanel).toHaveLength(1);
-    expect(slidingPanel.prop('open')).toBe(props.open);
-    expect(slidingPanel.prop('position')).toBe(props.position);
-  });
-
-  it('renders dimmer  with right props', () => {
-    // For some reasons Dimmer is rendered as Component
-    const dimmer = component.find('ForwardRef').parent();
-    expect(dimmer).toHaveLength(1);
-    expect(dimmer.prop('open')).toBe(props.open);
-    expect(dimmer.prop('fadeContentOnExit')).toBe(props.fadeContentOnExit);
-    expect(dimmer.prop('onClose')).toBe(props.onClose);
   });
 
   it('renders drawer header if title is provided', () => {
@@ -78,24 +70,5 @@ describe('Drawer', () => {
     component.setProps({ children: 'content', footerContent: 'content' });
     expect(component.find('.np-drawer-p-x')).toHaveLength(3);
     expect(component.find('.np-drawer-p-y')).toHaveLength(1);
-  });
-
-  it('renders close button', () => {
-    expect(component.find(`.np-drawer-header .close`)).toHaveLength(1);
-  });
-
-  it('calls onClose when user clicks close button', () => {
-    expect(props.onClose).not.toBeCalled();
-    component.find(`.np-drawer-header .close`).simulate('click');
-    expect(props.onClose).toBeCalled();
-  });
-
-  it('calls onClose when user press right key on close button', () => {
-    expect(props.onClose).not.toBeCalled();
-    const closeButton = component.find(`.np-drawer-header .close`);
-    closeButton.simulate('keyDown', fakeKeyDownEventForKey(KEY_CODES.DOWN));
-    expect(props.onClose).not.toBeCalled();
-    closeButton.simulate('keyDown', fakeKeyDownEventForKey(KEY_CODES.ESCAPE));
-    expect(props.onClose).toBeCalled();
   });
 });

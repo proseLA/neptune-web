@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Cross as CrossIcon } from '@transferwise/icons';
+
 import SlidingPanel from '../slidingPanel';
 import Dimmer from '../dimmer';
 import './Drawer.css';
 import { Position } from '../common/propsValues/position';
 import { logActionRequiredIf } from '../utilities';
-
-import KEY_CODES from '../common/keyCodes';
+import CloseButton from '../common/closeButton';
 
 const Drawer = ({ children, footerContent, headerTitle, onClose, open, position }) => {
   logActionRequiredIf(
@@ -16,19 +15,8 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
     !onClose,
   );
 
-  const handleOnKeyDown = (event) => {
-    if (
-      event.keyCode === KEY_CODES.ESCAPE ||
-      event.key === 'Escape' ||
-      event.keyCode === KEY_CODES.ENTER ||
-      event.key === KEY_CODES.ENTER
-    ) {
-      onClose(event);
-    }
-  };
-
   return (
-    <Dimmer open={open} onClose={onClose}>
+    <Dimmer open={open} onClick={onClose}>
       <SlidingPanel open={open} position={position}>
         <div className="np-drawer">
           <div
@@ -36,16 +24,7 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
               'np-drawer-header--withborder': headerTitle,
             })}
           >
-            <div
-              role="button"
-              className="np-drawer-header close"
-              tabIndex={0}
-              onClick={onClose}
-              onKeyDown={onClose && handleOnKeyDown}
-              aria-label="Close"
-            >
-              <CrossIcon size={24} />
-            </div>
+            <CloseButton className="np-drawer-header" onClick={onClose} />
             {headerTitle && (
               <div className="align-heading m-l-2">
                 <div className="np-drawer-header--title h3">{headerTitle}</div>

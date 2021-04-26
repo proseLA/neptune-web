@@ -1,12 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ReactDOM from 'react-dom';
 
 import Modal from './Modal';
-import { fakeEvent } from '../common/fakeEvents';
 
 jest.useFakeTimers();
 jest.mock('../common');
+
+const defaultLocale = 'en-GB';
+
+jest.mock('react-intl', () => ({
+  useIntl: () => ({ locale: defaultLocale, formatMessage: (id) => `${id}` }),
+  defineMessages: (translations) => translations,
+}));
 
 describe('Modal', () => {
   let component;
@@ -26,22 +31,6 @@ describe('Modal', () => {
   describe('renders', () => {
     it('default dialog', () => {
       expect(modal()).toHaveLength(1);
-    });
-
-    it('with proper positioning classes', () => {
-      expect(modal().hasClass('align-items-center')).toBe(true);
-      expect(modal().hasClass('align-items-start')).toBe(false);
-
-      component.setProps({ position: Modal.Position.TOP });
-      expect(modal().hasClass('align-items-center')).toBe(false);
-      expect(modal().hasClass('align-items-start')).toBe(true);
-    });
-
-    it('with proper scroll classes', () => {
-      expect(modal().hasClass('tw-modal--content')).toBe(false);
-
-      component.setProps({ scroll: Modal.Scroll.CONTENT });
-      expect(modal().hasClass('tw-modal--content')).toBe(true);
     });
 
     it('with right size when passed down the props', () => {
@@ -147,16 +136,6 @@ describe('Modal', () => {
       expect(onClose).toHaveBeenCalledTimes(1);
     });
 
-    it('calls close handler if click outside the content and closeOnClick is set to true', () => {
-      const onClose = jest.fn();
-      component.setProps({ onClose, closeOnClick: false });
-      clickOutsideDialog();
-      expect(onClose).not.toBeCalled();
-      component.setProps({ closeOnClick: true });
-      clickOutsideDialog();
-      expect(onClose).toHaveBeenCalledTimes(1);
-    });
-
     it('only calls close handler once when setting open to false in onClose handler', () => {
       const onClose = jest.fn(() => {
         component.setProps({ open: false });
@@ -168,44 +147,8 @@ describe('Modal', () => {
       expect(onClose).toHaveBeenCalledTimes(1);
     });
 
-    it('closes on `esc` keypress', () => {
-      ReactDOM.createPortal = jest.fn();
-      ReactDOM.createPortal.mockImplementation((attr) => attr.props.children.props.children);
-      const onClose = jest.fn();
-      component = mount(<Modal title="Some title" body="Some body" onClose={onClose} open />);
-
-      expect(onClose).not.toBeCalled();
-      pressEscapeOnComponent();
-      expect(onClose).toHaveBeenCalledTimes(1);
-      ReactDOM.createPortal.mockClear();
-    });
-
-    it('closes on `esc` keypress on document', () => {
-      ReactDOM.createPortal = jest.fn();
-      ReactDOM.createPortal.mockImplementation(() => null);
-      const onClose = jest.fn();
-      component = mount(<Modal title="Some title" body="Some body" onClose={onClose} open />);
-      expect(onClose).not.toBeCalled();
-      pressEscapeOnBody();
-      expect(onClose).toHaveBeenCalledTimes(1);
-      ReactDOM.createPortal.mockClear();
-    });
-
     const clickCloseButton = () => {
       component.find('.close').simulate('click');
-    };
-
-    const clickOutsideDialog = () => {
-      modal().simulate('click', fakeEvent());
-    };
-
-    const pressEscapeOnComponent = () => {
-      component.simulate('keyDown');
-      documentEventCallbacks.keydown({ key: 'Escape' });
-    };
-
-    const pressEscapeOnBody = () => {
-      documentEventCallbacks.keydown({ key: 'Escape', target: document });
     };
   });
 
