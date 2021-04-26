@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@9.0.2...@transferwise/neptune-css@9.1.0) (2021-04-26)
+
+
+### Features
+
+* add FocusBoundary ([#895](https://github.com/transferwise/neptune-web/issues/895)) ([f0651bc](https://github.com/transferwise/neptune-web/commit/f0651bc52fecc94535573a13907904d1bd2f7450))
+
+
+
+
+
 ## [9.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@9.0.1...@transferwise/neptune-css@9.0.2) (2021-03-24)
 
 
