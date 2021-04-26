@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.7.0...@transferwise/components@35.8.0) (2021-04-26)
+
+
+### Features
+
+* add ref to Card component ([#913](https://github.com/transferwise/neptune-web/issues/913)) ([baf9ab4](https://github.com/transferwise/neptune-web/commit/baf9ab4223ceeaebcf43d22d00365f0410dd349a))
+
+
+
+
+
 # [35.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.6.0...@transferwise/components@35.7.0) (2021-04-22)
 
 
