@@ -8,18 +8,19 @@ import Option from '../common/Option';
 import './Card.css';
 import { Key } from '../common';
 
-const Card = ({
-  as: Element,
-  isExpanded,
-  title,
-  details,
-  children,
-  onClick,
-  icon,
-  id,
-  className,
-  ...rest
-}) => {
+const Card = React.forwardRef((props, ref) => {
+  const {
+    as: Element,
+    isExpanded,
+    title,
+    details,
+    children,
+    onClick,
+    icon,
+    id,
+    className,
+    ...rest
+  } = props;
   const isOpen = !!(isExpanded && children);
   const TOGGLE_KEYS = [Key.ENTER, ...Key.SPACE];
 
@@ -28,6 +29,7 @@ const Card = ({
       className={classNames('tw-card list-group-item p-a-0', className, { active: isOpen })}
       id={id}
       data-testid={rest['data-testid']}
+      ref={ref}
     >
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
@@ -75,7 +77,7 @@ const Card = ({
       )}
     </Element>
   );
-};
+});
 
 const hasChildren = ({ children }) => children;
 
