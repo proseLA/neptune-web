@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, forwardRef } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -6,6 +6,7 @@ import { isEmpty } from '@transferwise/neptune-validation';
 import Select from '../select';
 import './MoneyInput.css';
 import { Size } from '../common/propsValues/size';
+import keyCodes from '../common/keyCodes';
 
 import messages from './MoneyInput.messages';
 import { formatAmount, parseAmount } from './currencyFormatting';
@@ -27,6 +28,7 @@ const formatAmountIfSet = (amount, currency, locale) => {
 class MoneyInput extends Component {
   constructor(props) {
     super(props);
+    this.inputRef = this.props.inputRef;
     this.locale = this.props.intl.locale;
     this.formatMessage = this.props.intl.formatMessage;
     this.state = {
@@ -52,17 +54,52 @@ class MoneyInput extends Component {
     }
   }
 
-  onAmountChange = (event) => {
-    const { value } = event.target;
+  isInputAllowedForKeyEvent = (event) => {
+    const { keyCode, metaKey, key } = event;
+    const isNumberKey = !Number.isNaN(parseInt(key, 10));
+
+    return (
+      isNumberKey ||
+      metaKey ||
+      keyCode === keyCodes.BACKSPACE ||
+      keyCode === keyCodes.COMMA ||
+      keyCode === keyCodes.PERIOD ||
+      keyCode === keyCodes.DOWN ||
+      keyCode === keyCodes.UP ||
+      keyCode === keyCodes.LEFT ||
+      keyCode === keyCodes.RIGHT ||
+      keyCode === keyCodes.ENTER ||
+      keyCode === keyCodes.ESCAPE ||
+      keyCode === keyCodes.TAB
+    );
+  };
+
+  handleKeyDown = (event) => {
+    if (!this.isInputAllowedForKeyEvent(event)) {
+      event.preventDefault();
+    }
+  };
+
+  handlePaste = (event) => {
+    const paste = (event.clipboardData || window.clipboardData).getData('text');
+    if (!Number.isNaN(parseFloat(paste))) {
+      this.setState({
+        formattedAmount: formatAmount(paste, this.props.selectedCurrency.currency, this.locale),
+      });
+      this.onAmountChange(paste);
+    }
+
+    event.preventDefault();
+  };
+
+  onAmountChange = (value) => {
     this.setState({
       formattedAmount: value,
     });
     const parsed = isEmpty(value)
       ? null
       : parseAmount(value, this.props.selectedCurrency.currency, this.locale);
-    if (!Number.isNaN(parsed)) {
-      this.props.onAmountChange(parsed);
-    }
+    this.props.onAmountChange(parsed);
   };
 
   onAmountBlur = () => {
@@ -147,13 +184,16 @@ class MoneyInput extends Component {
       >
         <input
           id={this.props.id}
+          ref={this.props.inputRef}
           value={this.state.formattedAmount}
           type="text"
           inputMode="decimal"
           className={classNames(this.style('form-control'))}
-          onChange={this.onAmountChange}
+          onKeyDown={this.handleKeyDown}
+          onChange={(event) => this.onAmountChange(event.target.value)}
           onFocus={this.onAmountFocus}
           onBlur={this.onAmountBlur}
+          onPaste={this.handlePaste}
           disabled={disabled}
           placeholder={formatAmountIfSet(
             this.props.placeholder,
@@ -292,6 +332,10 @@ MoneyInput.Size = { SMALL: Size.SMALL, MEDIUM: Size.MEDIUM, LARGE: Size.LARGE };
 
 MoneyInput.propTypes = {
   id: PropTypes.string,
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   currencies: PropTypes.arrayOf(Currency).isRequired,
   selectedCurrency: Currency.isRequired,
   onCurrencyChange: PropTypes.func,
@@ -312,6 +356,7 @@ MoneyInput.propTypes = {
 
 MoneyInput.defaultProps = {
   id: null,
+  inputRef: null,
   size: MoneyInput.Size.LARGE,
   addon: null,
   searchPlaceholder: '',
@@ -325,4 +370,12 @@ MoneyInput.defaultProps = {
   classNames: {},
 };
 
-export default injectIntl(MoneyInput);
+const MoneyInputWithIntl = injectIntl(MoneyInput);
+
+const MoneyInputWithRef = forwardRef((props, ref) => (
+  <MoneyInputWithIntl inputRef={ref} {...props} />
+));
+
+MoneyInputWithRef.Size = MoneyInput.Size;
+
+export default MoneyInputWithRef;
