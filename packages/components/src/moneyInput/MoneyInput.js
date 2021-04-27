@@ -1,4 +1,4 @@
-import React, { Component, forwardRef } from 'react';
+import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -28,7 +28,6 @@ const formatAmountIfSet = (amount, currency, locale) => {
 class MoneyInput extends Component {
   constructor(props) {
     super(props);
-    this.inputRef = this.props.inputRef;
     this.locale = this.props.intl.locale;
     this.formatMessage = this.props.intl.formatMessage;
     this.state = {
@@ -184,7 +183,6 @@ class MoneyInput extends Component {
       >
         <input
           id={this.props.id}
-          ref={this.props.inputRef}
           value={this.state.formattedAmount}
           type="text"
           inputMode="decimal"
@@ -332,10 +330,6 @@ MoneyInput.Size = { SMALL: Size.SMALL, MEDIUM: Size.MEDIUM, LARGE: Size.LARGE };
 
 MoneyInput.propTypes = {
   id: PropTypes.string,
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]),
   currencies: PropTypes.arrayOf(Currency).isRequired,
   selectedCurrency: Currency.isRequired,
   onCurrencyChange: PropTypes.func,
@@ -356,7 +350,6 @@ MoneyInput.propTypes = {
 
 MoneyInput.defaultProps = {
   id: null,
-  inputRef: null,
   size: MoneyInput.Size.LARGE,
   addon: null,
   searchPlaceholder: '',
@@ -370,12 +363,4 @@ MoneyInput.defaultProps = {
   classNames: {},
 };
 
-const MoneyInputWithIntl = injectIntl(MoneyInput);
-
-const MoneyInputWithRef = forwardRef((props, ref) => (
-  <MoneyInputWithIntl inputRef={ref} {...props} />
-));
-
-MoneyInputWithRef.Size = MoneyInput.Size;
-
-export default MoneyInputWithRef;
+export default injectIntl(MoneyInput);
