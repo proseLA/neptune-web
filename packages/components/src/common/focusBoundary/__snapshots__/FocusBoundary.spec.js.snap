@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FocusBoundary renders component 1`] = `
+<div>
+  <span
+    class="np-focus-boundary d-inline-block outline-none"
+    tabindex="-1"
+  >
+    <a
+      href="test"
+    >
+      Test
+    </a>
+  </span>
+</div>
+`;

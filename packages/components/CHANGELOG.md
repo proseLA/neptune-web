@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [35.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.8.0...@transferwise/components@35.9.0) (2021-04-26)
+
+
+### Features
+
+* add FocusBoundary ([#895](https://github.com/transferwise/neptune-web/issues/895)) ([f0651bc](https://github.com/transferwise/neptune-web/commit/f0651bc52fecc94535573a13907904d1bd2f7450))
+
+
+
+
+
 # [35.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.7.0...@transferwise/components@35.8.0) (2021-04-26)
 
 

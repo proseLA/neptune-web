@@ -8,3 +8,8 @@ export const fakeKeyDownEventForKey = (keyCode) => ({
   ...fakeEvent(),
   keyCode,
 });
+
+export const fakeKeyDownEvent = (eventAttr = {}) => ({
+  ...fakeEvent(),
+  ...eventAttr,
+});

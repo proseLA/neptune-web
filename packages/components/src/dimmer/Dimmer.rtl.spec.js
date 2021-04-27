@@ -9,6 +9,7 @@ jest.mock('../common');
 describe('Dimmer', () => {
   const props = {
     open: true,
+    children: <div />,
   };
 
   afterEach(() => {

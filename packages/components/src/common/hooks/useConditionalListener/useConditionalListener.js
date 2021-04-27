@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { isUndefined } from '@transferwise/neptune-validation';
 
 /**
  * useConditionalListener attaches an event to the document when a condition is met.
@@ -17,13 +18,13 @@ import { useEffect } from 'react';
 export const useConditionalListener = ({ attachListener, callback, eventType, parent }) => {
   useEffect(() => {
     if (attachListener) {
-      if (typeof parent !== 'undefined') {
+      if (!isUndefined(parent)) {
         parent.addEventListener(eventType, callback, true);
       }
     }
 
     return () => {
-      if (typeof parent !== 'undefined') {
+      if (!isUndefined(parent)) {
         parent.removeEventListener(eventType, callback, true);
       }
     };
