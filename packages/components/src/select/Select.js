@@ -1,20 +1,20 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Transition from 'react-transition-group/Transition';
+import './Select.css';
 
 import Option from './option';
 import Chevron from '../chevron';
 import KeyCodes from '../common/keyCodes';
-import { Breakpoint } from '../common';
+
 import {
   addClickClassToDocumentOnIos,
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
-import { addClassAndTriggerReflow, removeClass } from './domHelpers';
-import Dimmer from '../dimmer';
-import SlidingPanel from '../slidingPanel';
+
 import SearchBox from './searchBox';
+
+import ResponsivePanel from '../common/responsivePanel';
 
 function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);
@@ -35,17 +35,6 @@ function stopPropagation(event) {
   }
   // document listener does not use SyntheticEvents
 }
-
-function getShouldRenderWithPortal() {
-  return (
-    typeof document !== 'undefined' &&
-    typeof window !== 'undefined' &&
-    window.matchMedia &&
-    window.matchMedia(`(max-width: ${Breakpoint.SMALL}px)`).matches
-  );
-}
-
-const BOOTSTRAP_DROPDOWN_ANIMATION_TIME = 200;
 
 const defer = (fn) => setTimeout(fn, 0);
 
@@ -92,23 +81,9 @@ export default class Select extends Component {
     this.dropdownMenuRef = createRef();
   }
 
-  componentDidMount() {
-    this.setState({
-      shouldRenderWithPortal: getShouldRenderWithPortal(),
-    });
-    window.addEventListener('resize', this.handleResize);
-  }
-
   componentWillUnmount() {
     this.close();
-    window.removeEventListener('resize', this.handleResize);
   }
-
-  handleResize = () => {
-    this.setState({
-      shouldRenderWithPortal: getShouldRenderWithPortal(),
-    });
-  };
 
   getIndexWithoutHeadersForIndexWithHeaders(index) {
     return this.getOptions().reduce((sum, option, currentIndex) => {
@@ -427,7 +402,7 @@ export default class Select extends Component {
 
   render() {
     const { disabled, size, block, id, dropdownUp, inverse } = this.props;
-    const { open, shouldRenderWithPortal } = this.state;
+    const { open } = this.state;
     const s = this.style;
 
     const groupClass = classNames(s('tw-select'), s('btn-group'), {
@@ -449,7 +424,6 @@ export default class Select extends Component {
       s('dropdown-toggle'),
     );
 
-    const openClass = s('open');
     return (
       // A transition is used here in order to mount and unmount the dropdown menu while retaining animations
       <>
@@ -477,30 +451,15 @@ export default class Select extends Component {
               )} ${s('bottom')} ${s('tw-select-chevron')}`}
             />
           </button>
-          {!shouldRenderWithPortal ? (
-            <Transition
-              in={open}
-              timeout={BOOTSTRAP_DROPDOWN_ANIMATION_TIME}
-              onEntering={() => {
-                if (this.dropdownMenuRef.current) {
-                  addClassAndTriggerReflow(this.dropdownMenuRef.current, openClass);
-                }
-              }}
-              onExit={() => {
-                if (this.dropdownMenuRef.current) {
-                  removeClass(this.dropdownMenuRef.current, openClass);
-                }
-              }}
-            >
-              {(animationState) => animationState !== 'exited' && this.renderOptionsList()}
-            </Transition>
-          ) : (
-            <Dimmer open={open}>
-              <SlidingPanel open={open} position="bottom">
-                {this.renderOptionsList()}
-              </SlidingPanel>
-            </Dimmer>
-          )}
+
+          <ResponsivePanel
+            open={open}
+            anchorRef={this.dropdownMenuRef}
+            position={ResponsivePanel.Position.BOTTOM}
+            onClose={() => this.close()}
+          >
+            <div className="open">{this.renderOptionsList()}</div>
+          </ResponsivePanel>
         </div>
       </>
     );
