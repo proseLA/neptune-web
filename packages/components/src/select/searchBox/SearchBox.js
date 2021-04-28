@@ -8,8 +8,10 @@ const SearchBox = forwardRef(
     const style = (className) => classNames[className] || className;
     return (
       <li className={style('tw-dropdown-item--divider')}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a className={classnames(style('tw-select-filter-link'), style('p-a-0'))}>
+        <button
+          type="button"
+          className={classnames(style('tw-select-filter-link'), style('p-a-0'), 'btn-link')}
+        >
           <div className={style('input-group')}>
             <span className={style('input-group-addon')}>
               <SearchIcon className={classnames(style('tw-icon'), style('tw-icon-search'))} />
@@ -25,7 +27,7 @@ const SearchBox = forwardRef(
               spellCheck="false"
             />
           </div>
-        </a>
+        </button>
       </li>
     );
   },

@@ -5,8 +5,9 @@ exports[`SearchBox renders 1`] = `
   <li
     class="tw-dropdown-item--divider"
   >
-    <a
-      class="tw-select-filter-link p-a-0"
+    <button
+      class="tw-select-filter-link p-a-0 btn-link"
+      type="button"
     >
       <div
         class="input-group"
@@ -41,7 +42,7 @@ exports[`SearchBox renders 1`] = `
           value="value"
         />
       </div>
-    </a>
+    </button>
   </li>
 </div>
 `;
