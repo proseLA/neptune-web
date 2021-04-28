@@ -37,13 +37,12 @@ SearchBox.propTypes = {
   classNames: PropTypes.objectOf(PropTypes.string),
   handleSearchChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  searchPlaceholder: PropTypes.string,
+  searchPlaceholder: PropTypes.string.isRequired,
   value: PropTypes.string,
 };
 
 SearchBox.defaultProps = {
   classNames: {},
-  searchPlaceholder: 'Search...',
   value: '',
 };
 
