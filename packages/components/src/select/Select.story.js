@@ -27,7 +27,6 @@ export const basic = () => {
   const required = boolean('required', false);
   const dropdownUp = boolean('dropdownUp', false);
   const disabled = boolean('disabled', false);
-  const search = boolean('search', false);
 
   return (
     <Select
@@ -39,7 +38,6 @@ export const basic = () => {
       block={block}
       selected={selected}
       disabled={disabled}
-      search={search}
       onChange={(v) => setSelected(v)}
       required={required}
       searchPlaceholder="Search placeholder"
@@ -85,7 +83,6 @@ export const customSearchFunction = () => {
   const required = boolean('required', false);
   const dropdownUp = boolean('dropdownUp', false);
   const disabled = boolean('disabled', false);
-  const search = boolean('search', true);
 
   return (
     <Select
@@ -97,12 +94,7 @@ export const customSearchFunction = () => {
       block={block}
       selected={selected}
       disabled={disabled}
-      search={
-        search
-          ? (option, keyword) =>
-              option.countries && option.countries.toLowerCase().includes(keyword.toLowerCase())
-          : false
-      }
+      search={(option, keyword) => option?.currency?.toLowerCase().includes(keyword.toLowerCase())}
       onChange={(v) => setSelected(v)}
       required={required}
       searchPlaceholder="Search placeholder"
