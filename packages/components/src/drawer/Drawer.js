@@ -16,7 +16,7 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
   );
 
   return (
-    <Dimmer open={open} onClick={onClose}>
+    <Dimmer open={open} onClose={onClose}>
       <SlidingPanel open={open} position={position}>
         <div className="np-drawer">
           <div

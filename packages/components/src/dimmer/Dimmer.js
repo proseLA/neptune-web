@@ -16,7 +16,7 @@ const Dimmer = ({
   className,
   fadeContentOnEnter,
   fadeContentOnExit,
-  onClick,
+  onClose,
   open,
   scrollable,
 }) => (
@@ -37,7 +37,7 @@ const Dimmer = ({
         role="presentation"
         className={classNames('dimmer', { 'dimmer--scrollable': scrollable }, className)}
       >
-        <FocusBoundary onClose={(event) => onClick && onClick(event)}>{children}</FocusBoundary>
+        <FocusBoundary onClose={(event) => onClose && onClose(event)}>{children}</FocusBoundary>
       </div>
     </DimmerContentWrapper>
   </CSSTransition>
@@ -60,7 +60,7 @@ Dimmer.propTypes = {
   className: PropTypes.string,
   fadeContentOnEnter: PropTypes.bool,
   fadeContentOnExit: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClose: PropTypes.func,
   open: PropTypes.bool,
   scrollable: PropTypes.bool,
 };
@@ -70,7 +70,7 @@ Dimmer.defaultProps = {
   className: undefined,
   fadeContentOnEnter: false,
   fadeContentOnExit: false,
-  onClick: undefined,
+  onClose: undefined,
   open: false,
   scrollable: false,
 };
