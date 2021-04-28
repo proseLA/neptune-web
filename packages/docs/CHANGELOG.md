@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.5.3...@transferwise/neptune-docs@11.5.4) (2021-04-28)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
 ## [11.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@11.5.2...@transferwise/neptune-docs@11.5.3) (2021-04-26)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
