@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [35.9.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.9.0...@transferwise/components@35.9.1) (2021-04-28)
+
+
+### Bug Fixes
+
+* renamed onClick prop ([#917](https://github.com/transferwise/neptune-web/issues/917)) ([8a95c68](https://github.com/transferwise/neptune-web/commit/8a95c687111d41468f8f634e12328a77f02d8ab4))
+
+
+
+
+
 # [35.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.8.0...@transferwise/components@35.9.0) (2021-04-26)
 
 

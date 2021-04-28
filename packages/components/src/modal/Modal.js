@@ -23,7 +23,7 @@ const Modal = ({
   position,
   ...otherProps
 }) => {
-  const handleOnClick = (event) => {
+  const handleOnClose = (event) => {
     if (event.type === 'click' && closeOnClick) {
       onClose(event);
     } else if (event.type !== 'click') {
@@ -41,7 +41,7 @@ const Modal = ({
     <Dimmer
       open={open}
       scrollable={scroll === Modal.Scroll.CONTENT}
-      onClick={handleOnClick}
+      onClose={handleOnClose}
       className={classNames('d-flex', 'justify-content-center', {
         'align-items-center': position === Position.CENTER,
         'align-items-start': position === Position.TOP,
