@@ -426,42 +426,40 @@ export default class Select extends Component {
 
     return (
       // A transition is used here in order to mount and unmount the dropdown menu while retaining animations
-      <>
-        <div // eslint-disable-line jsx-a11y/no-static-element-interactions
-          className={groupClass}
-          ref={this.dropdownMenuRef}
-          onKeyDown={this.handleKeyDown}
-          onTouchMove={this.handleTouchStart}
-          onFocus={this.handleOnFocus}
-          onBlur={this.handleOnBlur}
+      <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+        className={groupClass}
+        ref={this.dropdownMenuRef}
+        onKeyDown={this.handleKeyDown}
+        onTouchMove={this.handleTouchStart}
+        onFocus={this.handleOnFocus}
+        onBlur={this.handleOnBlur}
+      >
+        <button
+          disabled={disabled}
+          className={buttonClass}
+          type="button"
+          id={id}
+          aria-expanded={open}
+          onClick={this.handleButtonClick}
         >
-          <button
+          {this.renderButtonInternals()}
+          <Chevron
             disabled={disabled}
-            className={buttonClass}
-            type="button"
-            id={id}
-            aria-expanded={open}
-            onClick={this.handleButtonClick}
-          >
-            {this.renderButtonInternals()}
-            <Chevron
-              disabled={disabled}
-              className={`${s('tw-icon')} ${s('tw-chevron-up-icon')} ${s('tw-chevron')} ${s(
-                'chevron-color',
-              )} ${s('bottom')} ${s('tw-select-chevron')}`}
-            />
-          </button>
+            className={`${s('tw-icon')} ${s('tw-chevron-up-icon')} ${s('tw-chevron')} ${s(
+              'chevron-color',
+            )} ${s('bottom')} ${s('tw-select-chevron')}`}
+          />
+        </button>
 
-          <ResponsivePanel
-            open={open}
-            anchorRef={this.dropdownMenuRef}
-            position={ResponsivePanel.Position.BOTTOM}
-            onClose={() => this.close()}
-          >
-            <div className="open">{this.renderOptionsList()}</div>
-          </ResponsivePanel>
-        </div>
-      </>
+        <ResponsivePanel
+          open={open}
+          anchorRef={this.dropdownMenuRef}
+          position={ResponsivePanel.Position.BOTTOM}
+          onClose={() => this.close()}
+        >
+          <div className="open">{this.renderOptionsList()}</div>
+        </ResponsivePanel>
+      </div>
     );
   }
 }

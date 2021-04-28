@@ -1,20 +1,27 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import doTimes from 'lodash.times';
-import Transition from 'react-transition-group/Transition';
+
 import { Profile } from '@transferwise/icons';
 import Select from '.';
 import Option from './option';
 import KEY_CODES from '../common/keyCodes';
 import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
-import { addClassAndTriggerReflow, removeClass } from './domHelpers';
 
-jest.mock('react-dom');
-jest.mock('react-transition-group/Transition', () => jest.fn('placeholder'));
-jest.mock('./domHelpers');
-jest.mock('../dimmer', () => {
-  // eslint-disable-next-line
-  return ({ children }) => <div className="dimmer">{children}</div>;
+jest.mock('../common/responsivePanel/', () => {
+  const { forwardRef } = jest.requireActual('react');
+
+  return {
+    Position: { BOTTOM: 'bottom' },
+    // eslint-disable-next-line react/prop-types
+    ...forwardRef(({ open, children }, ref) =>
+      open ? (
+        <div ref={ref} className="np-responsive-panel">
+          {children}
+        </div>
+      ) : null,
+    ),
+  };
 });
 
 describe('Select', () => {
@@ -35,10 +42,7 @@ describe('Select', () => {
         { value: 2, label: 'boi' },
       ],
     };
-    Transition.mockImplementation((properties) => {
-      const ActualTransition = jest.requireActual('react-transition-group/Transition').default;
-      return <ActualTransition {...properties} timeout={0} />;
-    });
+
     component = mount(<Select {...props} />);
     jest.clearAllMocks();
   });
@@ -49,10 +53,7 @@ describe('Select', () => {
   };
 
   const element = (selector) => component.find(selector);
-  const clickOnDocument = async () => {
-    document.dispatchEvent(new Event('click'));
-    return bustStackAndUpdate();
-  };
+
   const findNthListElement = (n) => element('li').at(n);
   const findNthOption = (n) => element(Option).at(n);
   const container = () => element('.btn-group');
@@ -92,12 +93,6 @@ describe('Select', () => {
     return elementIndex;
   };
 
-  const expectOpenClassToHaveBeenAdded = () =>
-    expect(addClassAndTriggerReflow).toHaveBeenCalledWith(container().getDOMNode(), 'open');
-
-  const expectOpenClassToHaveBeenRemoved = () =>
-    expect(removeClass).toHaveBeenCalledWith(container().getDOMNode(), 'open');
-
   const expectDropdownToBe = () => ({
     open() {
       expect(dropdownMenu().exists()).toBe(true);
@@ -110,13 +105,13 @@ describe('Select', () => {
   });
 
   it('starts closed', () => {
+    component = mount(<Select {...props} />);
     expectDropdownToBe().closed();
   });
 
   it('can be opened', () => {
     openSelect();
     expectDropdownToBe().open();
-    expectOpenClassToHaveBeenAdded();
   });
 
   it('sets the open class on the menu', () => {
@@ -150,13 +145,6 @@ describe('Select', () => {
     expectDropdownToBe().open();
   });
 
-  it('can be closed by clicking somewhere else', async () => {
-    openSelect();
-    await clickOnDocument();
-    expectDropdownToBe().closed();
-    expectOpenClassToHaveBeenRemoved();
-  });
-
   it('can be closed by pressing escape', async () => {
     openSelect();
     component.simulate('keyDown', fakeKeyDownEventForKey(KEY_CODES.ESCAPE));
@@ -177,7 +165,6 @@ describe('Select', () => {
     it('renders basic options and placeholder when open and not required', () => {
       openSelect();
       component.setProps({ placeholder: 'ayy lmao' });
-
       expect(component.find('li').length).toBe(props.options.length + 1);
       expect(findNthListElement(0).text()).toEqual('ayy lmao');
       expect(findNthOption(0).prop('label')).toEqual('yo');
@@ -538,31 +525,5 @@ describe('Select', () => {
     component.setProps({ classNames: styles });
     expect(component.find('.dropdown-toggle').exists()).toBe(false);
     expect(component.find('.dropdown-toggle_TWISAWESOME125').exists()).toBe(true);
-  });
-
-  it('updates if we should create the list in a portal resize', () => {
-    expect(component.state('shouldRenderWithPortal')).toBe(false);
-
-    window.matchMedia = () => {
-      return { matches: true };
-    };
-    window.dispatchEvent(new Event('resize'));
-
-    expect(component.state('shouldRenderWithPortal')).toBe(true);
-  });
-
-  it('creates a portal for options list and overlay when rendering on mobile', () => {
-    window.matchMedia = () => {
-      return { matches: true };
-    };
-    window.dispatchEvent(new Event('resize'));
-
-    expect(component.find('.dimmer')).toHaveLength(0);
-
-    openSelect();
-
-    expect(component.find('.dimmer')).toHaveLength(1);
-
-    expect(element('.dropdown-menu--open').exists()).toBe(true);
   });
 });
