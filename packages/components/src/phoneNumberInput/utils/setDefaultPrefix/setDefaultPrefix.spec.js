@@ -1,6 +1,21 @@
 import { setDefaultPrefix } from '..';
 
 describe('setDefaultPrefix', () => {
+  test.each([
+    ['en-GB', '+44'],
+    ['en-US', '+1'],
+    ['en', '+44'],
+    ['fr', '+33'],
+    ['ua', '+380'],
+    ['ar-ae', '+971'],
+    ['ar', '+54'],
+    ['ar', '+54'],
+    ['it-IT', '+39'],
+    ['it', '+39'],
+  ])('should return right prefix when locale is passed ("%s" -> "%s")', (locale, expectedValue) => {
+    expect(setDefaultPrefix(locale)).toBe(expectedValue);
+  });
+
   it('should return right prefix when valid locale is passed', () => {
     expect(setDefaultPrefix('it-IT')).toBe('+39');
   });
