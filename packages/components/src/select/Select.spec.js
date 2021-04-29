@@ -44,7 +44,6 @@ describe('Select', () => {
     };
 
     component = mount(<Select {...props} />);
-    jest.clearAllMocks();
   });
 
   const bustStackAndUpdate = async () => {
