@@ -10,9 +10,9 @@ import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
 
 jest.mock('../common/responsivePanel/', () => {
   const { forwardRef } = jest.requireActual('react');
-
+  const Position = jest.requireActual('../common');
   return {
-    Position: { BOTTOM: 'bottom' },
+    Position,
     // eslint-disable-next-line react/prop-types
     ...forwardRef(({ open, children }, ref) =>
       open ? (
