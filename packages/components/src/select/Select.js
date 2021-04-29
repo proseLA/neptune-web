@@ -6,6 +6,7 @@ import { isBoolean } from '@transferwise/neptune-validation';
 import SearchBox from './searchBox';
 import ResponsivePanel from '../common/responsivePanel';
 import Option from './option';
+import Options from './options';
 import Chevron from '../chevron';
 import KeyCodes from '../common/keyCodes';
 import { stopPropagation, defaultFilterFunction } from './utils';
@@ -58,14 +59,14 @@ export default class Select extends Component {
     this.close();
   }
 
-  getIndexWithoutHeadersForIndexWithHeaders(index) {
+  getIndexWithoutHeadersForIndexWithHeaders = (index) => {
     return this.getOptions().reduce((sum, option, currentIndex) => {
       if (currentIndex < index && actionableOption(option)) {
         return sum + 1;
       }
       return sum;
     }, 0);
-  }
+  };
 
   handleOnFocus = (event) => this.props.onFocus && this.props.onFocus(event);
 
@@ -236,12 +237,10 @@ export default class Select extends Component {
     }
   };
 
-  createSelectHandlerForOption(option) {
-    return (event) => {
-      stopPropagation(event);
-      this.selectOption(option);
-    };
-  }
+  createSelectHandlerForOption = (option) => (event) => {
+    stopPropagation(event);
+    this.selectOption(option);
+  };
 
   selectOption(option) {
     if (option && !option.placeholder) {
@@ -289,15 +288,18 @@ export default class Select extends Component {
             searchPlaceholder={searchPlaceholder}
           />
         )}
-        {this.renderOptions()}
+        <Options
+          options={this.getOptions()}
+          stopPropagation={stopPropagation}
+          createSelectHandlerForOption={this.createSelectHandlerForOption}
+          keyboardFocusedOptionIndex={this.state.keyboardFocusedOptionIndex}
+          selected={this.props.selected}
+          classNames={this.props.classNames}
+        />
       </ul>
     );
 
     return list;
-  }
-
-  renderOptions() {
-    return this.getOptions().map(this.renderOption);
   }
 
   renderPlaceHolderOption() {
@@ -317,53 +319,6 @@ export default class Select extends Component {
       </li>
     );
   }
-
-  renderOption = (option, index) => {
-    if (option.separator) {
-      return <li key={index} className={this.style('divider')} />;
-    }
-
-    if (option.header) {
-      return (
-        <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
-          key={index}
-          onClick={stopPropagation}
-          onKeyPress={stopPropagation}
-          className={this.style('dropdown-header')}
-        >
-          {option.header}
-        </li>
-      );
-    }
-
-    const isActive = this.props.selected && this.props.selected.value === option.value;
-    const isFocusedWithKeyboard =
-      this.state.keyboardFocusedOptionIndex ===
-      this.getIndexWithoutHeadersForIndexWithHeaders(index);
-
-    const className = classNames(
-      this.style('tw-dropdown-item'),
-      this.style('tw-dropdown-item--clickable'),
-      {
-        [this.style('active')]: isActive,
-        [this.style('tw-dropdown-item--focused')]: isFocusedWithKeyboard && !option.disabled,
-        [this.style('disabled')]: option.disabled,
-      },
-    );
-    return (
-      <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
-        key={index}
-        onClick={option.disabled ? stopPropagation : this.createSelectHandlerForOption(option)}
-        onKeyPress={option.disabled ? stopPropagation : this.createSelectHandlerForOption(option)}
-        className={className}
-      >
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a disabled={option.disabled}>
-          <Option {...option} classNames={this.props.classNames} />
-        </a>
-      </li>
-    );
-  };
 
   renderButtonInternals() {
     const { selected, placeholder } = this.props;
