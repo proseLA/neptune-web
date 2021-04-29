@@ -1,6 +1,6 @@
-import React, { Component, createRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { isBoolean } from '@transferwise/neptune-validation';
 
 import SearchBox from './searchBox';
@@ -20,59 +20,45 @@ import './Select.css';
 
 const actionableOption = (option) => !option.header && !option.separator && !option.disabled;
 
-export default class Select extends Component {
-  static getDerivedStateFromProps(props, state) {
-    const hasActiveOptions = !!props.options.length;
+const Select = ({
+  block,
+  classNames,
+  disabled,
+  dropdownRight,
+  dropdownUp,
+  dropdownWidth,
+  id,
+  inverse,
+  onBlur,
+  onChange,
+  onFocus,
+  onSearchChange,
+  options,
+  placeholder,
+  required,
+  search,
+  searchPlaceholder,
+  searchValue: intialSearchValue,
+  selected,
+  size,
+}) => {
+  const searchBoxRef = useRef(null);
+  const dropdownMenuRef = useRef(null);
 
-    if (state.open && (props.searchValue !== '' || state.searchValue !== '')) {
-      if (hasActiveOptions && state.keyboardFocusedOptionIndex === null) {
-        return {
-          keyboardFocusedOptionIndex: 0,
-        };
-      }
-      if (!hasActiveOptions && state.keyboardFocusedOptionIndex !== null) {
-        return {
-          keyboardFocusedOptionIndex: null,
-        };
-      }
-    }
+  const [searchValue, setSearchValue] = useState(intialSearchValue);
+  const [open, setOpen] = useState(false);
+  const [keyboardFocusedOptionIndex, setKeyboardFocusedOptionIndex] = useState(null);
 
-    return null;
-  }
+  const handleOnFocus = (event) => onFocus && onFocus(event);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      searchValue: '',
-      keyboardFocusedOptionIndex: null,
-    };
-    this.searchBoxRef = createRef();
-    this.dropdownMenuRef = createRef();
-  }
-
-  componentWillUnmount() {
-    this.close();
-  }
-
-  getIndexWithoutHeadersForIndexWithHeaders = (index) => {
-    return this.getOptions().reduce((sum, option, currentIndex) => {
-      if (currentIndex < index && actionableOption(option)) {
-        return sum + 1;
-      }
-      return sum;
-    }, 0);
-  };
-
-  handleOnFocus = (event) => this.props.onFocus && this.props.onFocus(event);
-
-  handleOnBlur = (event) => {
-    const { onBlur } = this.props;
-    const { nativeEvent } = event;
+  const handleOnBlur = (event) => {
+    const { nativeEvent, currentTarget } = event;
     if (nativeEvent) {
-      const elementReceivingFocus = nativeEvent.relatedTarget;
-      const select = event.currentTarget;
-      if (select && elementReceivingFocus && select.contains(elementReceivingFocus)) {
+      if (
+        currentTarget &&
+        nativeEvent.relatedTarget &&
+        currentTarget.contains(nativeEvent.relatedTarget)
+      ) {
         return;
       }
     }
@@ -82,72 +68,59 @@ export default class Select extends Component {
     }
   };
 
-  getOptions = (options = this.props.options) => {
-    const { search } = this.props;
-
-    if (!search || !this.state.searchValue) {
-      return options;
+  const getOptions = (newOptions = options) => {
+    if (!search || !searchValue) {
+      return newOptions;
     }
 
     const filterFunction = isBoolean(search) ? defaultFilterFunction : search;
 
-    return options.filter((option) => filterFunction(option, this.state.searchValue));
+    return newOptions.filter((option) => filterFunction(option, searchValue));
   };
 
-  handleSearchChange = (event) => {
-    if (this.props.onSearchChange) {
-      this.props.onSearchChange(event.target.value);
-    } else {
-      this.setState({
-        searchValue: event.target.value,
-      });
-    }
-  };
+  const handleSearchChange = (event) =>
+    onSearchChange ? onSearchChange(event.target.value) : setSearchValue(event.target.value);
 
-  handleKeyDown = (event) => {
-    const { open } = this.state;
+  const handleKeyDown = (event) => {
     switch (event.keyCode) {
       case KeyCodes.UP:
         if (open) {
-          this.moveFocusWithDifference(-1);
+          moveFocusWithDifference(-1);
         } else {
-          this.open();
+          handleOpen();
         }
         event.preventDefault();
         break;
       case KeyCodes.DOWN:
         if (open) {
-          this.moveFocusWithDifference(1);
+          moveFocusWithDifference(1);
         } else {
-          this.open();
+          handleOpen();
         }
         event.preventDefault();
         break;
       case KeyCodes.SPACE:
-        if (event.target !== this.searchBoxRef.current) {
+        if (event.target !== searchBoxRef.current) {
           if (open) {
-            this.selectKeyboardFocusedOption();
+            selectKeyboardFocusedOption();
           } else {
-            this.open();
+            handleOpen();
           }
           event.preventDefault();
         }
         break;
       case KeyCodes.ENTER:
         if (open) {
-          this.selectKeyboardFocusedOption();
+          selectKeyboardFocusedOption();
         } else {
-          this.open();
+          handleOpen();
         }
         event.preventDefault();
         break;
-      case KeyCodes.ESCAPE:
-        this.close();
-        event.preventDefault();
-        break;
+
       case KeyCodes.TAB:
         if (open) {
-          this.selectKeyboardFocusedOption();
+          selectKeyboardFocusedOption();
         }
         break;
       default:
@@ -155,118 +128,94 @@ export default class Select extends Component {
     }
   };
 
-  selectKeyboardFocusedOption() {
-    if (this.state.keyboardFocusedOptionIndex !== null) {
-      const index = this.state.keyboardFocusedOptionIndex;
-      this.selectOption(this.getOptions().filter(actionableOption)[index]);
+  const selectKeyboardFocusedOption = () => {
+    if (keyboardFocusedOptionIndex !== null) {
+      const index = keyboardFocusedOptionIndex;
+      selectOption(getOptions().filter(actionableOption)[index]);
     }
-  }
+  };
 
-  moveFocusWithDifference(difference) {
-    this.setState((previousState, previousProps) => {
-      const optionsWithoutHeaders = this.getOptions(previousProps.options).filter(actionableOption);
-      const selectedOptionIndex = optionsWithoutHeaders.reduce((optionIndex, current, index) => {
-        if (optionIndex !== null) {
-          return optionIndex;
-        }
-        if (previousProps.selected && previousProps.selected.value === current.value) {
-          return index;
-        }
-        return null;
-      }, null);
-      const previousFocusedIndex = previousState.keyboardFocusedOptionIndex;
-      let indexToStartMovingFrom = previousFocusedIndex;
-      if (previousFocusedIndex === null && selectedOptionIndex === null) {
-        return { keyboardFocusedOptionIndex: 0 };
+  const moveFocusWithDifference = (difference) => {
+    const optionsWithoutHeaders = getOptions(options).filter(actionableOption);
+    const selectedOptionIndex = optionsWithoutHeaders.reduce((optionIndex, current, index) => {
+      if (optionIndex !== null) {
+        return optionIndex;
       }
-      if (previousFocusedIndex === null && selectedOptionIndex !== null) {
-        indexToStartMovingFrom = selectedOptionIndex;
+      if (selected && selected.value === current.value) {
+        return index;
       }
-      const unClampedNewIndex = indexToStartMovingFrom + difference;
+      return null;
+    }, null);
 
-      const newIndex = Math.max(Math.min(optionsWithoutHeaders.length - 1, unClampedNewIndex), 0);
-      return { keyboardFocusedOptionIndex: newIndex };
-    });
-  }
+    const previousFocusedIndex = keyboardFocusedOptionIndex;
+    let indexToStartMovingFrom = previousFocusedIndex;
+    if (previousFocusedIndex === null && selectedOptionIndex === null) {
+      setKeyboardFocusedOptionIndex(0);
+    }
 
-  open() {
+    if (previousFocusedIndex === null && selectedOptionIndex !== null) {
+      indexToStartMovingFrom = selectedOptionIndex;
+    }
+    const unClampedNewIndex = indexToStartMovingFrom + difference;
+
+    const newIndex = Math.max(Math.min(optionsWithoutHeaders.length - 1, unClampedNewIndex), 0);
+    setKeyboardFocusedOptionIndex(newIndex);
+  };
+
+  useEffect(() => {
+    const isTouchDevice =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      !!window.matchMedia('(pointer: coarse)').matches;
+    const searchable = !!onSearchChange || !!search;
+
+    setTimeout(() => {
+      if (!isTouchDevice && searchable && searchBoxRef.current) {
+        searchBoxRef.current.focus();
+      }
+    }, 0);
+  }, [open]);
+
+  const handleOpen = () => {
     // TODO: should also add breakpoint-specific overflow:hidden class to body
-    this.setState({ open: true }, () => {
-      const isTouchDevice =
-        typeof window !== 'undefined' &&
-        window.matchMedia &&
-        !!window.matchMedia('(pointer: coarse)').matches;
-      const searchable = !!this.props.onSearchChange || !!this.props.search;
-
-      setTimeout(() => {
-        if (!isTouchDevice && searchable && this.searchBoxRef.current) {
-          this.searchBoxRef.current.focus();
-        }
-      }, 0);
-    });
+    setOpen(true);
 
     addClickClassToDocumentOnIos();
-    document.addEventListener('click', this.handleDocumentClick, false);
-  }
+  };
 
-  close() {
-    this.setState({ open: false, keyboardFocusedOptionIndex: null });
+  const close = () => {
+    setOpen(false);
+    setKeyboardFocusedOptionIndex(null);
 
     removeClickClassFromDocumentOnIos();
-    document.removeEventListener('click', this.handleDocumentClick, false);
-  }
-
-  handleButtonClick = () => {
-    if (!this.props.disabled) {
-      this.open();
-    }
   };
 
-  handleDocumentClick = () => {
-    if (this.state.open) {
-      this.close();
-    }
-  };
+  const handleButtonClick = () => !disabled && handleOpen();
 
-  handleTouchStart = (event) => {
-    if (event.currentTarget === event.target && this.state.open) {
-      this.close();
-    }
-  };
+  const handleTouchStart = (event) => event.currentTarget === event.target && open && close();
 
-  createSelectHandlerForOption = (option) => (event) => {
+  const createSelectHandlerForOption = (option) => (event) => {
     stopPropagation(event);
-    this.selectOption(option);
+    selectOption(option);
   };
 
-  selectOption(option) {
+  const selectOption = (option) => {
     if (option && !option.placeholder) {
-      this.props.onChange(option);
+      onChange(option);
     } else {
-      this.props.onChange(null);
+      onChange(null);
     }
-    this.close();
-  }
+    close();
+  };
 
-  style = (className) => this.props.classNames[className] || className;
+  const style = (className) => classNames[className] || className;
 
-  renderOptionsList() {
-    const {
-      dropdownRight,
-      dropdownWidth,
-      onSearchChange,
-      placeholder,
-      required,
-      search,
-      searchValue,
-      searchPlaceholder,
-    } = this.props;
-    const { open } = this.state;
-    const s = this.style;
+  const renderOptionsList = () => {
+    const s = style;
 
     const canSearch = !!onSearchChange || !!search;
 
-    const dropdownClass = classNames(s('tw-select'), s('dropdown-menu'), {
+    const dropdownClass = classnames(s('tw-select'), s('dropdown-menu'), {
       [s(`dropdown-menu-${dropdownRight}-right`)]: dropdownRight,
       [s(`dropdown-menu-${dropdownWidth}`)]: dropdownWidth,
       [s(`dropdown-menu--open`)]: open,
@@ -274,120 +223,113 @@ export default class Select extends Component {
 
     const list = (
       <ul className={dropdownClass} role="menu">
-        {!required && !canSearch && placeholder ? this.renderPlaceHolderOption() : ''}
+        {!required && !canSearch && placeholder ? renderPlaceHolderOption() : ''}
         {canSearch && (
           <SearchBox
-            classNames={this.props.classNames}
-            handleSearchChange={this.handleSearchChange}
+            classNames={classNames}
+            handleSearchChange={handleSearchChange}
             onClick={stopPropagation}
-            value={searchValue || this.state.searchValue}
-            ref={this.searchBoxRef}
+            value={searchValue || searchValue}
+            ref={searchBoxRef}
             searchPlaceholder={searchPlaceholder}
           />
         )}
         <Options
-          options={this.getOptions()}
+          options={getOptions()}
           stopPropagation={stopPropagation}
-          createSelectHandlerForOption={this.createSelectHandlerForOption}
-          keyboardFocusedOptionIndex={this.state.keyboardFocusedOptionIndex}
-          selected={this.props.selected}
-          classNames={this.props.classNames}
+          createSelectHandlerForOption={createSelectHandlerForOption}
+          keyboardFocusedOptionIndex={keyboardFocusedOptionIndex}
+          selected={selected}
+          classNames={classNames}
         />
       </ul>
     );
 
     return list;
-  }
+  };
 
-  renderPlaceHolderOption() {
-    const { placeholder } = this.props;
+  const renderPlaceHolderOption = () => {
     return (
       /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
       <li
-        onClick={this.createSelectHandlerForOption({ placeholder })}
-        onKeyPress={this.createSelectHandlerForOption({ placeholder })}
-        className={classNames(
-          this.style('tw-dropdown-item--clickable'),
-          this.style('tw-dropdown-item--divider'),
+        onClick={createSelectHandlerForOption({ placeholder })}
+        onKeyPress={createSelectHandlerForOption({ placeholder })}
+        className={classnames(
+          style('tw-dropdown-item--clickable'),
+          style('tw-dropdown-item--divider'),
         )}
       >
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>{placeholder}</a>
       </li>
     );
-  }
+  };
 
-  renderButtonInternals() {
-    const { selected, placeholder } = this.props;
-    if (selected) {
-      return <Option {...selected} classNames={this.props.classNames} selected />;
-    }
-    return <span className={this.style('form-control-placeholder')}>{placeholder}</span>;
-  }
-
-  render() {
-    const { disabled, size, block, id, dropdownUp, inverse } = this.props;
-    const { open } = this.state;
-    const s = this.style;
-
-    const groupClass = classNames(s('tw-select'), s('btn-group'), {
-      [s('btn-block')]: block,
-      [s('dropup')]: dropdownUp,
-      [s('dropdown')]: !dropdownUp,
-    });
-
-    const buttonClass = classNames(
-      s('btn'),
-      s('btn-input'),
-      {
-        [`${s('btn-input-inverse')} ${s('btn-addon')}`]: inverse,
-        [s('btn-xs')]: size === 'xs',
-        [s('btn-sm')]: size === 'sm',
-        [s('btn-md')]: size === 'md',
-        [s('btn-lg')]: size === 'lg',
-      },
-      s('dropdown-toggle'),
+  const renderButtonInternals = () =>
+    selected ? (
+      <Option {...selected} classNames={classNames} selected />
+    ) : (
+      <span className={style('form-control-placeholder')}>{placeholder}</span>
     );
 
-    return (
-      // A transition is used here in order to mount and unmount the dropdown menu while retaining animations
-      <div // eslint-disable-line jsx-a11y/no-static-element-interactions
-        className={groupClass}
-        ref={this.dropdownMenuRef}
-        onKeyDown={this.handleKeyDown}
-        onTouchMove={this.handleTouchStart}
-        onFocus={this.handleOnFocus}
-        onBlur={this.handleOnBlur}
+  const s = style;
+
+  const groupClass = classnames(s('tw-select'), s('btn-group'), {
+    [s('btn-block')]: block,
+    [s('dropup')]: dropdownUp,
+    [s('dropdown')]: !dropdownUp,
+  });
+
+  const buttonClass = classnames(
+    s('btn'),
+    s('btn-input'),
+    {
+      [`${s('btn-input-inverse')} ${s('btn-addon')}`]: inverse,
+      [s('btn-xs')]: size === 'xs',
+      [s('btn-sm')]: size === 'sm',
+      [s('btn-md')]: size === 'md',
+      [s('btn-lg')]: size === 'lg',
+    },
+    s('dropdown-toggle'),
+  );
+
+  return (
+    <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+      className={groupClass}
+      ref={dropdownMenuRef}
+      onKeyDown={handleKeyDown}
+      onTouchMove={handleTouchStart}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+    >
+      <button
+        disabled={disabled}
+        className={buttonClass}
+        type="button"
+        id={id}
+        aria-expanded={open}
+        onClick={handleButtonClick}
       >
-        <button
+        {renderButtonInternals()}
+        <Chevron
           disabled={disabled}
-          className={buttonClass}
-          type="button"
-          id={id}
-          aria-expanded={open}
-          onClick={this.handleButtonClick}
-        >
-          {this.renderButtonInternals()}
-          <Chevron
-            disabled={disabled}
-            className={`${s('tw-icon')} ${s('tw-chevron-up-icon')} ${s('tw-chevron')} ${s(
-              'chevron-color',
-            )} ${s('bottom')} ${s('tw-select-chevron')}`}
-          />
-        </button>
+          className={`${s('tw-icon')} ${s('tw-chevron-up-icon')} ${s('tw-chevron')} ${s(
+            'chevron-color',
+          )} ${s('bottom')} ${s('tw-select-chevron')}`}
+        />
+      </button>
 
-        <ResponsivePanel
-          open={open}
-          anchorRef={this.dropdownMenuRef}
-          position={ResponsivePanel.Position.BOTTOM}
-          onClose={() => this.close()}
-        >
-          <div className="open">{this.renderOptionsList()}</div>
-        </ResponsivePanel>
-      </div>
-    );
-  }
-}
+      <ResponsivePanel
+        open={open}
+        anchorRef={dropdownMenuRef}
+        position={ResponsivePanel.Position.BOTTOM}
+        onClose={() => close()}
+      >
+        <div className="open">{renderOptionsList()}</div>
+      </ResponsivePanel>
+    </div>
+  );
+};
 
 Select.propTypes = {
   placeholder: PropTypes.string,
@@ -463,3 +405,5 @@ Select.defaultProps = {
   classNames: {},
   dropdownUp: false,
 };
+
+export default Select;

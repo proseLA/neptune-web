@@ -443,9 +443,9 @@ describe('Select', () => {
     expect(focusedOptionIndex()).toBe(0);
   });
 
-  it('allows you to select the item currently focused with your keyboard by pressing ENTER', () => {
-    component.setProps({ required: true });
-    const { onChange } = component.instance().props;
+  it.only('allows you to select the item currently focused with your keyboard by pressing ENTER', () => {
+    const onChange = jest.fn();
+    component.setProps({ required: true, onChange });
 
     // Hitting it once will only make the selector appear, so we hit it twice to go down once
     doTimes(2, () => component.simulate('keyDown', fakeKeyDownEventForKey(KEY_CODES.DOWN)));
