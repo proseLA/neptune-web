@@ -1,13 +1,26 @@
 import React from 'react';
-import Transition from 'react-transition-group/Transition';
+
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
 import { render } from '../test-utils';
 
 import Select from '.';
 
-jest.mock('react-transition-group/Transition', () => jest.fn('placeholder'));
-
+jest.mock('../common/responsivePanel/', () => {
+  const { forwardRef } = jest.requireActual('react');
+  const Position = jest.requireActual('../common');
+  return {
+    Position,
+    // eslint-disable-next-line react/prop-types
+    ...forwardRef(({ open, children }, ref) =>
+      open ? (
+        <div ref={ref} className="np-responsive-panel">
+          {children}
+        </div>
+      ) : null,
+    ),
+  };
+});
 describe('Select', () => {
   const props = {
     onChange: jest.fn(),
@@ -24,12 +37,6 @@ describe('Select', () => {
     window.matchMedia = () => {
       return { matches: false };
     };
-
-    Transition.mockImplementation((properties) => {
-      const ActualTransition = jest.requireActual('react-transition-group/Transition').default;
-      return <ActualTransition {...properties} timeout={0} />;
-    });
-    jest.clearAllMocks();
   });
 
   const bustStackAndUpdate = async () => {
