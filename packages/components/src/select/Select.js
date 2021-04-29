@@ -1,54 +1,27 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './Select.css';
+import { isBoolean } from '@transferwise/neptune-validation';
 
+import SearchBox from './searchBox';
+import ResponsivePanel from '../common/responsivePanel';
 import Option from './option';
 import Chevron from '../chevron';
 import KeyCodes from '../common/keyCodes';
+import { stopPropagation, defaultFilterFunction } from './utils';
 
 import {
   addClickClassToDocumentOnIos,
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
 
-import SearchBox from './searchBox';
+import './Select.css';
 
-import ResponsivePanel from '../common/responsivePanel';
+const clamp = (from, to, value) => Math.max(Math.min(to, value), from);
 
-function clamp(from, to, value) {
-  return Math.max(Math.min(to, value), from);
-}
-
-function actionableOption(option) {
-  return !option.header && !option.separator && !option.disabled;
-}
-
-const isFunction = (functionToCheck) =>
-  functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
-
-function stopPropagation(event) {
-  event.stopPropagation();
-  event.preventDefault();
-  if (event.nativeEvent && event.nativeEvent.stopImmediatePropagation) {
-    event.nativeEvent.stopImmediatePropagation();
-  }
-  // document listener does not use SyntheticEvents
-}
+const actionableOption = (option) => !option.header && !option.separator && !option.disabled;
 
 const defer = (fn) => setTimeout(fn, 0);
-
-const includesString = (str1, str2) => str1.toLowerCase().indexOf(str2.toLowerCase()) > -1;
-
-const arrayIncludesString = (arrayToSearch, keyword) =>
-  arrayToSearch.some((str) => includesString(str, keyword));
-
-const defaultFilterFunction = (option, keyword) =>
-  (option.label && includesString(option.label, keyword)) ||
-  (option.note && includesString(option.note, keyword)) ||
-  (option.secondary && includesString(option.secondary, keyword)) ||
-  (option.currency && includesString(option.currency, keyword)) ||
-  (option.searchStrings && arrayIncludesString(option.searchStrings, keyword));
 
 export default class Select extends Component {
   static getDerivedStateFromProps(props, state) {
@@ -119,7 +92,7 @@ export default class Select extends Component {
       return options;
     }
 
-    const filterFunction = isFunction(search) ? search : defaultFilterFunction;
+    const filterFunction = isBoolean(search) ? defaultFilterFunction : search;
 
     return options.filter((option) => filterFunction(option, this.state.searchValue));
   };
