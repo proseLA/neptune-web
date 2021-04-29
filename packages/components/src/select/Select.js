@@ -18,11 +18,7 @@ import {
 
 import './Select.css';
 
-const clamp = (from, to, value) => Math.max(Math.min(to, value), from);
-
 const actionableOption = (option) => !option.header && !option.separator && !option.disabled;
-
-const defer = (fn) => setTimeout(fn, 0);
 
 export default class Select extends Component {
   static getDerivedStateFromProps(props, state) {
@@ -187,7 +183,8 @@ export default class Select extends Component {
         indexToStartMovingFrom = selectedOptionIndex;
       }
       const unClampedNewIndex = indexToStartMovingFrom + difference;
-      const newIndex = clamp(0, optionsWithoutHeaders.length - 1, unClampedNewIndex);
+
+      const newIndex = Math.max(Math.min(optionsWithoutHeaders.length - 1, unClampedNewIndex), 0);
       return { keyboardFocusedOptionIndex: newIndex };
     });
   }
@@ -201,11 +198,11 @@ export default class Select extends Component {
         !!window.matchMedia('(pointer: coarse)').matches;
       const searchable = !!this.props.onSearchChange || !!this.props.search;
 
-      defer(() => {
+      setTimeout(() => {
         if (!isTouchDevice && searchable && this.searchBoxRef.current) {
           this.searchBoxRef.current.focus();
         }
-      });
+      }, 0);
     });
 
     addClickClassToDocumentOnIos();
