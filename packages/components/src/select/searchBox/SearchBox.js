@@ -43,8 +43,8 @@ SearchBox.propTypes = {
 
 SearchBox.defaultProps = {
   classNames: {},
-  searchPlaceholder: 'Search...',
   value: '',
+  searchPlaceholder: '',
 };
 
 export default SearchBox;
