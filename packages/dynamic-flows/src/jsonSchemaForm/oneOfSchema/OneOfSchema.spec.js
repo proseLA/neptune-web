@@ -118,6 +118,77 @@ describe('Given a oneOfSchema component', () => {
       expect(genericSchema.prop('translations')).toEqual(translations);
     });
 
+    describe('when some of the child schemas contain const properties', () => {
+      const localSchema = {
+        title: 'Choose schema',
+        oneOf: [
+          {
+            type: 'object',
+            title: 'Option Zero (0)',
+            properties: {
+              a: { type: 'string', const: 'AAAA' },
+              b: { type: 'string' },
+            },
+            required: ['a', 'b'],
+          },
+          {
+            type: 'object',
+            title: 'Option One (1)',
+            properties: {
+              b: { type: 'string' },
+              c: { type: 'string' },
+              z: { type: 'string' },
+            },
+            required: ['b', 'c', 'z'],
+          },
+          {
+            type: 'object',
+            title: 'Option Two (2)',
+            properties: {
+              a: { type: 'string', const: 'BBBB' },
+              c: { type: 'string' },
+            },
+            required: ['a', 'c'],
+          },
+          {
+            type: 'object',
+            title: 'Option Two (3)',
+            properties: {
+              d: { type: 'string', const: 'DDDD' },
+              e: { type: 'string' },
+            },
+            required: ['d', 'e'],
+          },
+        ],
+      };
+      describe('when the model partially matches one of the child schemas with a const property', () => {
+        it('should select the schema that is best matched by the model', () => {
+          const localModel = { a: 'BBBB' };
+          component = shallow(<OneOfSchema {...props} schema={localSchema} model={localModel} />);
+          const control = component.find(SchemaFormControl);
+          expect(control.prop('value')).toBe(2);
+        });
+      });
+
+      describe('when the model partially matches a child schema without a const property', () => {
+        it('should select the schema that is best matched by the model', () => {
+          const localModel = { b: 'whatever', c: 'whatever' };
+          component = shallow(<OneOfSchema {...props} schema={localSchema} model={localModel} />);
+          const control = component.find(SchemaFormControl);
+          expect(control.prop('value')).toBe(1);
+        });
+      });
+
+      describe('when the model does not partially match any of the child schemas', () => {
+        it('should not select a schema', () => {
+          const localModel = { d: 'XXXX' };
+          component = shallow(<OneOfSchema {...props} schema={localSchema} model={localModel} />);
+          const control = component.find(SchemaFormControl);
+          expect(control.prop('value')).toBe(null);
+        });
+      });
+    });
+
     describe('when no model is present', () => {
       describe('and children schemas are non-const', () => {
         it('should not render a generic schema', () => {
