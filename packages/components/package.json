@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/components",
-  "version": "35.9.2",
+  "version": "36.0.0",
   "description": "Neptune React components",
   "license": "Apache-2.0",
   "main": "./build/umd/polyfill/main.js",
@@ -75,7 +75,11 @@
     "@transferwise/neptune-css": "^9.1.0",
     "@transferwise/neptune-tokens": "^1.0.0",
     "@transferwise/test-config": "^3.0.5",
-    "typescript": "^4.2.3",
+    "@types/jest": "^26.0.20",
+    "@types/jscodeshift": "^0.11.0",
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-react-intl": "^8.2.16",
     "babel-preset-minify": "^0.5.1",
@@ -83,15 +87,11 @@
     "lodash.times": "^4.3.2",
     "npm-watch": "^0.7.0",
     "react-intl": "^5.10.0",
+    "react-to-typescript-definitions": "~3.0.1",
     "rollup": "^2.34.0",
     "rollup-plugin-postcss": "^2.8.2",
     "rollup-plugin-uglify": "^6.0.4",
-    "react-to-typescript-definitions": "~3.0.1",
-    "@types/node": "^14.14.31",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
-    "@types/jest": "^26.0.20",
-    "@types/jscodeshift": "^0.11.0"
+    "typescript": "^4.2.3"
   },
   "peerDependencies": {
     "@transferwise/icons": "^2.6.0",

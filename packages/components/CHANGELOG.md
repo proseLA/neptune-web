@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.9.2...@transferwise/components@36.0.0) (2021-04-30)
+
+
+* feat!: Types & TypeScript support (#846) ([193299f](https://github.com/transferwise/neptune-web/commit/193299f21d0c06d11f784b3ebd07c5684bf4f245)), closes [#846](https://github.com/transferwise/neptune-web/issues/846)
+
+
+### BREAKING CHANGES
+
+* Release notes - https://transferwise.github.io/neptune-web/blog/2021-04-30-components-v36-release-guide---typescript-support
+
+
+
+
+
 ## [35.9.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.9.1...@transferwise/components@35.9.2) (2021-04-28)
 
 
