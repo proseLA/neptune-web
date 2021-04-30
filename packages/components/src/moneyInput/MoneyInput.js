@@ -85,11 +85,10 @@ class MoneyInput extends Component {
       ? null
       : parseAmount(paste, this.props.selectedCurrency.currency, this.locale);
 
-    this.setState({
-      formattedAmount: parsed,
-    });
-
     if (!Number.isNaN(parsed)) {
+      this.setState({
+        formattedAmount: parsed,
+      });
       this.props.onAmountChange(parsed);
     }
 
