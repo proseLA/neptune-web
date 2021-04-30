@@ -6,7 +6,7 @@
         onClick={() => setDimmerState(true)}
         disabled={false}
         block={false}
-        size={Button.Size.Medium}
+        size={Size.Medium}
       >
         Click here to Open dimmer!
       </Button>

@@ -1,7 +1,7 @@
 project_identifier: neptune-web-components
 files:
-  - source: /packages/components/i18n/en.json
-    translation: /packages/components/i18n/%two_letters_code%.%file_extension%
+  - source: /packages/components/src/i18n/en.json
+    translation: /packages/components/src/i18n/%two_letters_code%.%file_extension%
     languages_mapping:
       two_letters_code:
         zh-HK: zh

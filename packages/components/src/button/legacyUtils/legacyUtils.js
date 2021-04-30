@@ -16,11 +16,11 @@ const oldTypePriorityMap = {
 };
 
 const deprecatedTypeMapMessage = {
-  [Type.DANGER]: 'Button.Type.NEGATIVE',
-  [Type.LINK]: 'Button.Type.ACCENT with priority Button.Priority.TERTIARY',
-  [Type.PAY]: 'Button.Type.POSITIVE',
-  [Type.PRIMARY]: 'Button.Type.ACCENT',
-  [Type.SECONDARY]: 'Button.Type.ACCENT with priority Button.Priority.SECONDARY',
+  [Type.DANGER]: 'Type.NEGATIVE',
+  [Type.LINK]: 'ControlType.ACCENT with priority Priority.TERTIARY',
+  [Type.PAY]: 'ControlType.POSITIVE',
+  [Type.PRIMARY]: 'ControlType.ACCENT',
+  [Type.SECONDARY]: 'ControlType.ACCENT with priority Priority.SECONDARY',
 };
 
 const deprecatedTypes = Object.keys(deprecatedTypeMap);
@@ -44,7 +44,7 @@ export const establishNewPriority = (originalPriority, originalType) => {
 
 export const logDeprecationNotices = ({ size, type }) => {
   logActionRequiredIf(
-    'Button has deprecated the `Button.Size.EXTRA_SMALL` value for the `size` prop. Please use Button.Size.SMALL instead.',
+    'Button has deprecated the `Size.EXTRA_SMALL` value for the `size` prop. Please use Size.SMALL instead.',
     size === Size.EXTRA_SMALL,
   );
   logActionRequiredIf(

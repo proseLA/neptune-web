@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
-import Avatar from '../avatar';
+import Avatar, { AvatarType } from '../avatar';
 import Badge from '../badge';
-
-const ProfileType = {
-  BUSINESS: 'BUSINESS',
-  PERSONAL: 'PERSONAL',
-};
+import { ProfileType, Size } from '../common';
 
 const OptionalBadge = ({ url, children, ...rest }) =>
   url ? (
@@ -37,27 +33,27 @@ const AvatarWrapper = ({ url, profileType, badgeUrl, name, avatarProps, badgePro
   const getAvatarProps = () => {
     if (url && !hasImageLoadError) {
       return {
-        type: Avatar.Type.THUMBNAIL,
+        type: AvatarType.THUMBNAIL,
         children: <img src={url} alt="avatar" onError={() => setImageLoadError(true)} />,
         ...avatarProps,
       };
     }
     if (profileType) {
       return {
-        type: Avatar.Type.ICON,
+        type: AvatarType.ICON,
         children: isBusinessProfile ? <BriefcaseIcon /> : <ProfileIcon />,
         ...avatarProps,
       };
     }
     if (name) {
       return {
-        type: Avatar.Type.INITIALS,
+        type: AvatarType.INITIALS,
         children: <small>{getInitials(name)}</small>,
         ...avatarProps,
       };
     }
     return {
-      type: Avatar.Type.ICON,
+      type: AvatarType.ICON,
       children: <ProfileIcon />,
       ...avatarProps,
     };
@@ -65,7 +61,7 @@ const AvatarWrapper = ({ url, profileType, badgeUrl, name, avatarProps, badgePro
 
   return (
     <OptionalBadge url={badgeUrl} {...badgeProps}>
-      <Avatar size={Avatar.Size.MEDIUM} {...getAvatarProps()} />
+      <Avatar size={Size.MEDIUM} {...getAvatarProps()} />
     </OptionalBadge>
   );
 };
@@ -84,8 +80,6 @@ function getInitials(name) {
   return allInitials[0] + allInitials.slice(-1);
 }
 
-AvatarWrapper.ProfileType = ProfileType;
-
 AvatarWrapper.defaultProps = {
   url: undefined,
   profileType: undefined,
@@ -97,10 +91,7 @@ AvatarWrapper.defaultProps = {
 
 AvatarWrapper.propTypes = {
   url: PropTypes.string,
-  profileType: PropTypes.oneOf([
-    AvatarWrapper.ProfileType.PERSONAL,
-    AvatarWrapper.ProfileType.BUSINESS,
-  ]),
+  profileType: PropTypes.oneOf(['PERSONAL', 'BUSINESS']),
   badgeUrl: PropTypes.string,
   name: PropTypes.string,
   avatarProps: PropTypes.shape({}),

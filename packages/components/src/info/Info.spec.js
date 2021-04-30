@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '../test-utils';
-import Info from './Info';
+import Info, { InfoPresentation } from '.';
+import { Size } from '../common';
 
 jest.mock('../dimmer', () => {
   // eslint-disable-next-line
@@ -29,13 +30,13 @@ describe('Info', () => {
 
   it('renders large icon', async () => {
     await waitFor(() => {
-      render(<Info {...props} size={Info.Size.LARGE} />);
+      render(<Info {...props} size={Size.LARGE} />);
     });
 
     expect(getSvgIcon().getAttribute('height')).toBe('24');
   });
 
-  describe(`when in ${Info.Presentation.POPOVER} mode`, () => {
+  describe(`when in ${InfoPresentation.POPOVER} mode`, () => {
     it('renders help button trigger', async () => {
       await waitFor(() => {
         render(<Info {...props} open />);
@@ -57,7 +58,7 @@ describe('Info', () => {
     });
   });
 
-  describe(`when in ${Info.Presentation.MODAL} mode`, () => {
+  describe(`when in ${InfoPresentation.MODAL} mode`, () => {
     it('renders help button trigger', async () => {
       await waitFor(() => {
         render(<Info {...props} open />);
@@ -66,7 +67,7 @@ describe('Info', () => {
       expect(getTriggerButton()).toBeInTheDocument();
     });
     it('opens modal onClick', () => {
-      render(<Info {...props} presentation={Info.Presentation.MODAL} />);
+      render(<Info {...props} presentation={InfoPresentation.MODAL} />);
 
       expect(getModal()).not.toBeInTheDocument();
 

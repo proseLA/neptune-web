@@ -1,4 +1,15 @@
+/**
+ * Default language
+ *
+ * @type {string}
+ */
 export const DEFAULT_LANG = 'en';
+
+/**
+ * Default locale
+ *
+ * @type {string}
+ */
 export const DEFAULT_LOCALE = 'en-GB';
 
 export const SUPPORTED_RTL = ['he-IL'];
@@ -24,8 +35,8 @@ export const SUPPORTED_LANGUAGES = [
  * Verifies and adjusts locale (replace `_` with `-`)
  * Returns null if locale is unrecognized by {Intl.Locale}
  *
- * @param locale (`es`, `es_ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
- * @returns {Intl.Locale.baseName|null}
+ * @param {string} locale (`es`, `es_ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
+ * @returns {string|null}
  */
 export function adjustLocale(locale) {
   if (!locale || locale.trim().length === 0) {
@@ -45,8 +56,8 @@ export function adjustLocale(locale) {
  * Provides corresponding lang (iso2) for provided locale
  * if locale is invalid or language is unsupported returns null
  *
- * @param locale (`es`, `es-ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
- * @returns {Intl.Locale.language|null}
+ * @param {string} locale (`es`, `es-ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
+ * @returns {string|null}
  */
 export function getLangFromLocale(locale) {
   const adjustedLocale = adjustLocale(locale);
@@ -70,7 +81,7 @@ export function getLangFromLocale(locale) {
  * Provides corresponding country code (iso2) for locales code with explicit region value (`es-ES`, `en-GB`, `ja-JP` etc.)
  * if the value is invalid or missing region it returns null
  *
- * @param locale
+ * @param {string} locale
  * @returns {string|null}
  */
 export const getCountryFromLocale = (locale) => {

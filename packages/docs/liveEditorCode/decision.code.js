@@ -65,7 +65,7 @@
         title: 'Hank Miller',
       },
     ]}
-    presentation={Decision.Presentation.LIST_BLOCK}
-    type={Decision.Type.NAVIGATION}
+    presentation={DecisionPresentation.LIST_BLOCK}
+    type={DecisionType.NAVIGATION}
   />
 );

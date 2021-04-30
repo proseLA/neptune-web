@@ -1,9 +1,9 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
 import { Freeze, Plus, Bin } from '@transferwise/icons';
-import { CircularButton } from '@transferwise/components';
+import { CircularButton, ControlType, Priority } from '@transferwise/components';
 import code from '../../../liveEditorCode/circularButton.code';
 
-<LiveEditorBlock code={code} scope={{ CircularButton, Freeze }} />
+<LiveEditorBlock code={code} scope={{ CircularButton, ControlType, Freeze }} />
 <GeneratePropsTable componentName="CircularButton" />
 
 ## Variants
@@ -24,7 +24,7 @@ import code from '../../../liveEditorCode/circularButton.code';
         <td>
           <CircularButton
             icon={<Freeze />}
-            type={CircularButton.Type.ACCENT}
+            type={ControlType.ACCENT}
             onClick={() => console.log('Button clicked')}
           >
             Freeze
@@ -37,8 +37,8 @@ import code from '../../../liveEditorCode/circularButton.code';
         <td>
           <CircularButton
             icon={<Freeze />}
-            type={CircularButton.Type.ACCENT}
-            priority={CircularButton.Priority.SECONDARY}
+            type={ControlType.ACCENT}
+            priority={Priority.SECONDARY}
             onClick={() => console.log('Button clicked')}
           >
             Freeze
@@ -51,7 +51,7 @@ import code from '../../../liveEditorCode/circularButton.code';
         <td>
           <CircularButton
             icon={<Plus />}
-            type={CircularButton.Type.POSITIVE}
+            type={ControlType.POSITIVE}
             onClick={() => console.log('Button clicked')}
           >
             Add money
@@ -64,8 +64,8 @@ import code from '../../../liveEditorCode/circularButton.code';
         <td>
           <CircularButton
             icon={<Plus />}
-            type={CircularButton.Type.POSITIVE}
-            priority={CircularButton.Priority.SECONDARY}
+            type={ControlType.POSITIVE}
+            priority={Priority.SECONDARY}
             onClick={() => console.log('Button clicked')}
           >
             Add money
@@ -78,7 +78,7 @@ import code from '../../../liveEditorCode/circularButton.code';
         <td>
           <CircularButton
             icon={<Bin />}
-            type={CircularButton.Type.NEGATIVE}
+            type={ControlType.NEGATIVE}
             onClick={() => console.log('Button clicked')}
           >
             Delete
@@ -91,8 +91,8 @@ import code from '../../../liveEditorCode/circularButton.code';
         <td>
           <CircularButton
             icon={<Bin />}
-            type={CircularButton.Type.NEGATIVE}
-            priority={CircularButton.Priority.SECONDARY}
+            type={ControlType.NEGATIVE}
+            priority={Priority.SECONDARY}
             onClick={() => console.log('Button clicked')}
           >
             Delete

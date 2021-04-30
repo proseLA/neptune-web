@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from '../../markdown';
-import { MarkdownNodeTypes } from '../../common/markdownNodeTypes';
+import { MarkdownNodeType } from '../../common';
 
-const allowList = [MarkdownNodeTypes.STRONG];
+const allowList = [MarkdownNodeType.STRONG];
 
 const InlineMarkdown = (props) => {
   return <Markdown {...props} as="span" allowList={allowList} blockList={undefined} />;

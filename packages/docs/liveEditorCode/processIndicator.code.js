@@ -1,5 +1,5 @@
 <ProcessIndicator
-  status={ProcessIndicator.Status.PROCESSING}
-  size={ProcessIndicator.Size.EXTRA_SMALL}
-  onAnimationCompleted={s => console.log(s)}
+  status={Status.PROCESSING}
+  size={Size.EXTRA_SMALL}
+  onAnimationCompleted={(s) => console.log(s)}
 />;

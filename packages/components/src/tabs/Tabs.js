@@ -16,7 +16,7 @@ import {
   swipeShouldChangeTab,
   getVelocity,
 } from './utils';
-import { Size } from '../common';
+import { Size, Width } from '../common';
 
 import './Tabs.css';
 
@@ -39,7 +39,7 @@ class Tabs extends React.Component {
       isSwiping: false,
       isScrolling: false,
       lastSwipeVelocity: 0,
-      fullWidthTabs: props.headerWidth === Tabs.HeaderWidth.BLOCK,
+      fullWidthTabs: props.headerWidth === Width.BLOCK,
     };
   }
 
@@ -156,17 +156,10 @@ class Tabs extends React.Component {
 
     const allTabsWidth = this.getAllTabsWidth();
 
-    if (
-      !fullWidthTabs &&
-      (headerWidth === Tabs.HeaderWidth.BLOCK || this.containerWidth < allTabsWidth)
-    ) {
+    if (!fullWidthTabs && (headerWidth === Width.BLOCK || this.containerWidth < allTabsWidth)) {
       this.setState({ fullWidthTabs: true, translateLineX: `${selected * 100}%` });
     }
-    if (
-      fullWidthTabs &&
-      headerWidth === Tabs.HeaderWidth.AUTO &&
-      this.containerWidth >= allTabsWidth
-    ) {
+    if (fullWidthTabs && headerWidth === Width.AUTO && this.containerWidth >= allTabsWidth) {
       this.setState({
         fullWidthTabs: false,
         translateLineX: `${this.getDistanceToSelectedTab(selected)}px`,
@@ -548,9 +541,7 @@ class Tabs extends React.Component {
   }
 }
 
-Tabs.SpacerSizes = { ...Size, NONE: 'default' };
-
-Tabs.HeaderWidth = { BLOCK: 'block', AUTO: 'auto' };
+const SpacerSizes = { ...Size, NONE: 'default' };
 
 Tabs.propTypes = {
   tabs: PropTypes.arrayOf(
@@ -566,22 +557,16 @@ Tabs.propTypes = {
   animatePanelsOnClick: PropTypes.bool,
   changeTabOnSwipe: PropTypes.bool,
   className: PropTypes.string,
-  transitionSpacing: PropTypes.oneOf([
-    Tabs.SpacerSizes.NONE,
-    Tabs.SpacerSizes.EXTRA_SMALL,
-    Tabs.SpacerSizes.SMALL,
-    Tabs.SpacerSizes.MEDIUM,
-    Tabs.SpacerSizes.LARGE,
-  ]),
-  headerWidth: PropTypes.oneOf([Tabs.HeaderWidth.AUTO, Tabs.HeaderWidth.BLOCK]),
+  transitionSpacing: PropTypes.oneOf(['default', 'xs', 'sm', 'md', 'lg']),
+  headerWidth: PropTypes.oneOf(['auto', 'block']),
 };
 
 Tabs.defaultProps = {
   animatePanelsOnClick: false,
   changeTabOnSwipe: true,
   className: '',
-  transitionSpacing: Tabs.SpacerSizes.NONE,
-  headerWidth: Tabs.HeaderWidth.BLOCK,
+  transitionSpacing: SpacerSizes.NONE,
+  headerWidth: Width.BLOCK,
 };
 
 export default Tabs;

@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '../../test-utils';
 
 import ResponsivePanel from './ResponsivePanel';
-import { Breakpoint } from '..';
+import { Breakpoint, Position } from '..';
 
 jest.mock('../bottomSheet', () => {
   // eslint-disable-next-line
@@ -35,7 +35,7 @@ describe('ResponsivePanel', () => {
     arrow: true,
     children: 'content',
     open: true,
-    position: ResponsivePanel.Position.TOP,
+    position: Position.TOP,
     title: 'title',
     anchorRef: jest.fn(),
     onClose: jest.fn(),

@@ -1,7 +1,7 @@
 import React from 'react';
 import Types from 'prop-types';
 
-import { DefinitionList } from '@transferwise/components';
+import { DefinitionList, Layout } from '@transferwise/components';
 import { marginModel, actionModel, orientationModel } from '../models';
 import { getMarginBottom } from '../utils';
 
@@ -14,9 +14,9 @@ const DynamicReview = (props) => {
 
   const getReviewLayout = (orientation) => {
     if (orientation === 'horizontal') {
-      return DefinitionList.Layout.HORIZONTAL_RIGHT_ALIGNED;
+      return Layout.HORIZONTAL_RIGHT_ALIGNED;
     }
-    return DefinitionList.Layout.VERTICAL_ONE_COLUMN;
+    return Layout.VERTICAL_ONE_COLUMN;
   };
 
   const margin = getMarginBottom(review.margin || 'lg');

@@ -1,4 +1,3 @@
-<Button
-  size={Button.Size.MEDIUM}
-  type={Button.Type.ACCENT}
-  onClick={() => alert('clicked')}>Continue</Button>;
+<Button size={Size.MEDIUM} type={ControlType.ACCENT} onClick={() => alert('clicked')}>
+  Continue
+</Button>;

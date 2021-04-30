@@ -5,6 +5,8 @@ import Popover from './Popover';
 
 import Button from '../button';
 
+import { Position, Type } from '../common';
+
 export default {
   component: Popover,
   title: 'Popover',
@@ -13,8 +15,17 @@ export default {
 export const basic = () => {
   const preferredPlacement = select(
     'preferredPlacement',
-    Object.values(Popover.Placement),
-    Popover.Placement.TOP,
+    [
+      Position.TOP,
+      Position.RIGHT,
+      Position.BOTTOM,
+      Position.LEFT,
+      Position.LEFT_TOP,
+      Position.RIGHT_TOP,
+      Position.BOTTOM_RIGHT,
+      Position.BOTTOM_LEFT,
+    ],
+    Position.TOP,
   );
 
   return (
@@ -23,7 +34,7 @@ export const basic = () => {
       preferredPlacement={preferredPlacement}
       title="Guaranteed rate"
     >
-      <Button type={Button.Type.PRIMARY} onClick={() => console.log(`I'm also triggered`)}>
+      <Button type={Type.PRIMARY} onClick={() => console.log(`I'm also triggered`)}>
         Click here to Open Popover!
       </Button>
     </Popover>

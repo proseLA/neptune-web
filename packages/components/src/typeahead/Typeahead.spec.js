@@ -5,6 +5,7 @@ import doTimes from 'lodash.times';
 import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
 import Typeahead from './Typeahead';
 import KeyCodes from '../common/keyCodes';
+import { Sentiment } from '../common';
 import { InlineAlert } from '..';
 
 describe('Typeahead', () => {
@@ -265,7 +266,7 @@ describe('Typeahead', () => {
       allowNew: true,
       alert: {
         message: 'test',
-        type: Typeahead.Type.ERROR,
+        type: Sentiment.ERROR,
       },
     });
 
@@ -280,7 +281,7 @@ describe('Typeahead', () => {
     component.setProps({
       alert: {
         message: 'test',
-        type: Typeahead.Type.WARNING,
+        type: Sentiment.WARNING,
       },
     });
 

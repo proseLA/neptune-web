@@ -2,16 +2,15 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { DefinitionList } from '..';
+import { Layout } from '../common';
 
 const {
-  Layout: {
-    VERTICAL_TWO_COLUMN,
-    VERTICAL_ONE_COLUMN,
-    HORIZONTAL_LEFT_ALIGNED,
-    HORIZONTAL_RIGHT_ALIGNED,
-    HORIZONTAL_JUSTIFIED,
-  },
-} = DefinitionList;
+  VERTICAL_TWO_COLUMN,
+  VERTICAL_ONE_COLUMN,
+  HORIZONTAL_LEFT_ALIGNED,
+  HORIZONTAL_RIGHT_ALIGNED,
+  HORIZONTAL_JUSTIFIED,
+} = Layout;
 
 describe('DefinitionList', () => {
   const someDefinitions = () => [{ title: 'First', value: 'first value', key: 'first' }];

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { Position } from '..';
+import { Position, Breakpoint } from '..';
 import { useConditionalListener } from '../hooks';
 import BottomSheet from '../bottomSheet';
 import Panel from '../panel';
@@ -54,24 +54,17 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
           {children}
         </Panel>,
       ],
-      breakpoint: SizeSwapper.Breakpoint.SMALL,
+      breakpoint: Breakpoint.SMALL,
     },
   ];
   return <SizeSwapper items={items} ref={windowRef} />;
-};
-
-ResponsivePanel.Position = {
-  BOTTOM: Position.BOTTOM,
-  LEFT: Position.LEFT,
-  RIGHT: Position.RIGHT,
-  TOP: Position.TOP,
 };
 
 ResponsivePanel.defaultProps = {
   arrow: false,
   className: undefined,
   open: false,
-  position: ResponsivePanel.Position.TOP,
+  position: Position.TOP,
 };
 
 ResponsivePanel.propTypes = {
@@ -82,12 +75,7 @@ ResponsivePanel.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
   anchorRef: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
-  position: PropTypes.oneOf([
-    ResponsivePanel.Position.TOP,
-    ResponsivePanel.Position.RIGHT,
-    ResponsivePanel.Position.LEFT,
-    ResponsivePanel.Position.BOTTOM,
-  ]),
+  position: PropTypes.oneOf(['top', 'right', 'left', 'bottom']),
 };
 
 export default ResponsivePanel;

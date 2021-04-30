@@ -2,7 +2,7 @@ import React from 'react';
 
 import { select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import Upload from './Upload';
+import Upload from '.';
 
 const IMAGES = [
   {

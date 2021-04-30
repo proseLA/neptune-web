@@ -1,8 +1,8 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { Loader } from '@transferwise/components';
+import { Loader, Size } from '@transferwise/components';
 import code from '../../../liveEditorCode/loader.code';
 
-<LiveEditorBlock code={code} scope={{ Loader }} />
+<LiveEditorBlock code={code} scope={{ Loader, Size }} />
 <GeneratePropsTable componentName="Loader" />
 
 export const meta = {

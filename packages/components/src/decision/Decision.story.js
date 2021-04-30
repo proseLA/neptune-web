@@ -2,8 +2,9 @@ import React from 'react';
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import Decision from './Decision';
+import Decision, { DecisionPresentation, DecisionType } from '.';
 import Avatar from '../avatar';
+import { Size } from '../common';
 
 export default {
   component: Decision,
@@ -13,11 +14,11 @@ export default {
 export const basic = () => {
   const presentation = select(
     'presentation',
-    Decision.Presentation,
-    Decision.Presentation.LIST_BLOCK,
+    DecisionPresentation,
+    DecisionPresentation.LIST_BLOCK,
   );
   const disabled = boolean('disabled', false);
-  const size = select('size', [Decision.Size.MEDIUM, Decision.Size.SMALL]);
+  const size = select('size', [Size.MEDIUM, Size.SMALL]);
 
   return (
     <>
@@ -88,7 +89,7 @@ export const basic = () => {
           },
         ]}
         presentation={presentation}
-        type={Decision.Type.NAVIGATION}
+        type={DecisionType.NAVIGATION}
         size={size}
       />
     </>
@@ -98,11 +99,11 @@ export const basic = () => {
 export const grid = () => {
   const presentation = select(
     'presentation',
-    Decision.Presentation,
-    Decision.Presentation.LIST_BLOCK_GRID,
+    DecisionPresentation,
+    DecisionPresentation.LIST_BLOCK_GRID,
   );
   const disabled = boolean('disabled', false);
-  const size = select('size', [Decision.Size.MEDIUM, Decision.Size.SMALL]);
+  const size = select('size', [Size.MEDIUM, Size.SMALL]);
 
   return (
     <>
@@ -257,7 +258,7 @@ export const grid = () => {
           },
         ]}
         presentation={presentation}
-        type={Decision.Type.NAVIGATION}
+        type={DecisionType.NAVIGATION}
         size={size}
       />
     </>

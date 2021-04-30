@@ -4,6 +4,8 @@ import { FastFlag as FastFlagIcon, Check } from '@transferwise/icons';
 import Accordion from './Accordion';
 import Modal from '../modal';
 
+import { Size, Scroll } from '../common';
+
 export default {
   component: Accordion,
   title: 'Accordion',
@@ -97,8 +99,8 @@ export const inModal = () => {
         </div>
       }
       closeOnClick
-      scroll={Modal.Scroll.CONTENT}
-      size={Modal.Size.LARGE}
+      scroll={Scroll.CONTENT}
+      size={Size.LARGE}
       open
       footer={
         <div className="p-a-3 text-xs-center">

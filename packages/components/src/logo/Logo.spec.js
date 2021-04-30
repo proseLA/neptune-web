@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../test-utils';
-import Logo, { LogoType } from './Logo';
+import Logo, { LogoType } from '.';
 
 describe('Logo', () => {
   it('renders wise logo', () => {

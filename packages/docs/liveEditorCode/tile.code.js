@@ -9,7 +9,7 @@
       />
     }
     onClick={() => alert('onClick')}
-    size={Tile.Size.MEDIUM}
+    size={Size.MEDIUM}
     title="Send money"
     disabled={false}
   />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '../test-utils';
 
-import { Key } from '../common/key';
+import { Key, Size } from '../common';
 
 import Tile from '.';
 
@@ -25,7 +25,7 @@ describe(Tile, () => {
   });
 
   it('matches snapshot when small size', () => {
-    const { asFragment } = render(<Tile size={Tile.Size.SMALL} {...defaultProps} />);
+    const { asFragment } = render(<Tile size={Size.SMALL} {...defaultProps} />);
     expect(asFragment()).toMatchSnapshot();
   });
 

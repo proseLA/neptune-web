@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { isString } from '@transferwise/neptune-validation';
 
 import Chevron from '../../chevron';
+import { Position } from '../../common';
 
 const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
   const iconEl = icon ? cloneElement(icon, { size: 24 }) : null;
@@ -30,7 +31,7 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
             {isString(title) ? <span className="h5">{title}</span> : title}
           </div>
           <div className="media-right d-flex align-items-center">
-            <Chevron orientation={open ? Chevron.Orientation.TOP : Chevron.Orientation.BOTTOM} />
+            <Chevron orientation={open ? Position.TOP : Position.BOTTOM} />
           </div>
         </div>
       </button>

@@ -45,8 +45,6 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
   );
 };
 
-Drawer.Position = { LEFT: Position.LEFT, RIGHT: Position.RIGHT };
-
 Drawer.propTypes = {
   /** The content to appear in the drawer body. */
   children: PropTypes.node,
@@ -59,7 +57,7 @@ Drawer.propTypes = {
   /** The status of Drawer either open or not. */
   open: PropTypes.bool,
   /** The placement of Drawer on the screen either left or right. */
-  position: PropTypes.oneOf([Drawer.Position.LEFT, Drawer.Position.RIGHT]),
+  position: PropTypes.oneOf(['left', 'right']),
 };
 
 Drawer.defaultProps = {
@@ -68,7 +66,7 @@ Drawer.defaultProps = {
   headerTitle: null,
   onClose: null,
   open: false,
-  position: Drawer.Position.RIGHT,
+  position: Position.RIGHT,
 };
 
 export default Drawer;

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import SnackbarAppendingToBody, { Snackbar, CSS_TRANSITION_DURATION } from './Snackbar';
-import SnackbarProvider, { SnackbarConsumer } from './SnackbarProvider';
+import SnackbarProvider from './SnackbarProvider';
+import { SnackbarConsumer } from './SnackbarContext';
 
 describe('Snackbar', () => {
   const timeout = 1000;

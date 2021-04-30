@@ -39,6 +39,80 @@ As a reminder: to load the docs, run `docs` **from the root of the monorepo**, n
 
 Please familiarise yourself with our [accessibility guidelines](https://github.com/transferwise/neptune-web/blob/main/ACCESSIBILITY.md) and ensure your changes meet accessibility standards.
 
+# TypeScript Support
+
+We strongly encourage new components to be written in TypeScript, please also consider to rewrite components in TypeScript during major refactoring.
+
+While migrating a component to TypeScript please remove it, if necessary, from [list of component for custom type generation process](https://github.com/transferwise/neptune-web/blob/main/packages/components/scripts/generate-type-declarations.js#L10).
+
+### JS Component Rules
+
+For JS new features or bug fixes please always keep in mind how they would behave in a Typescript environment as this would help us to migrate them to TS.
+
+Please follow these rules to ensure that type declarations for JS components gets generated correctly by [`react-to-typescript-definitions`](https://www.npmjs.com/package/react-to-typescript-definitions).
+
+Note: Please try to follow these rules for both exposed and internal components to improve codebase consistency and to reduce the effort in case we decide expose an internal component.
+
+- Please avoid wrapping components in HoC functions and have a clear `export default` as otherwise this will lead to fully skipping generating `.d.ts` file or types with TS error `JSX element type 'SomeComponent' does not have any construct or call signatures.`
+
+```javascript
+// don't
+export default injectIntl(SomeComponent);
+export default withSomeHoC(SomeComponent);
+
+// do 
+export default SomeComponent;
+```
+- pass raw values into `PropTypes.oneOf` at `propTypes`
+```javascript
+// don't
+SomeComponent.propTypes = {
+  status: PropTypes.oneOf([Size.EXTRA_SMALL, Size.SMALL, Size.MEDIUM]),
+  position: PropTypes.oneOf(Object.values(Position)),
+}
+SomeComponent.defaultProps = {
+  size: Size.SMALL,
+}
+
+// do
+SomeComponent.propTypes = {
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
+  position: PropTypes.oneOf(['top', 'left', 'right', 'bottom']),
+}
+SomeComponent.defaultProps = {
+  size: Size.SMALL,
+}
+```
+- there is no need to create static properties as they won't work in TypeScript consumer apps
+```javascript
+// inside Component.js
+
+// don't
+Component.Size = Size;
+Component.Position = Position;
+```
+- define `prop-types` as `PropTypes`
+```javascript
+// don't
+import Types from 'prop-types';
+
+// do
+import PropTypes from 'prop-types';
+```
+- avoid using custom validator in prop-types, this will lead to type `any` for those props
+```javascript
+// don't
+onClick: requiredIf(PropTypes.func, ...),
+content: deprecated(PropTypes.node, ...),
+```
+- Ultimately, always check the generated types:
+   - run `yarn build` inside `packages/components` folder
+   - head to `/build/types/index.d.ts` file,
+   - from there, navigate to your component's `.d.ts` file
+   - if types aren't the expected ones please tweak the prop-types in the component and repeat these steps again.
+
+- Avoid using `PropTypes.elementType`, use `PropTypes.string` instead
+
 # Testing
 
 Please use [react-testing-library](https://github.com/testing-library/react-testing-library) for testing components.

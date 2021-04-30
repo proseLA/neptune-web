@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Plus as PlusIcon } from '@transferwise/icons';
 import { UploadImageStep, MediaUploadStep, ProcessingStep, CompleteStep } from './steps';
+import { UploadStep } from './uploadSteps';
 import {
   postData,
   asyncFileRead,
@@ -13,11 +14,10 @@ import {
   getFileType,
 } from './utils';
 import './Upload.css';
-import ProcessIndicator from '../processIndicator';
 import messages from './Upload.messages';
+import { Status } from '../common';
 
 const PROCESS_STATE = ['error', 'success'];
-const ACCEPTED_FORMAT = ['*', 'image/*', 'application/*', 'text/csv'];
 
 /*
  * This delay is required for the isError/isSuccess to be fired after isProcessing so the processIndicator, will be
@@ -25,13 +25,9 @@ const ACCEPTED_FORMAT = ['*', 'image/*', 'application/*', 'text/csv'];
  */
 const ANIMATION_FIX = 10;
 const MAX_SIZE_DEFAULT = 5000000;
-const UPLOAD_STEPS = {
-  UPLOAD_IMAGE_STEP: 'uploadImageStep',
-  MEDIA_UPLOAD_STEP: 'mediaUploadStep',
-};
 const UPLOAD_STEP_COMPONENTS = {
-  [UPLOAD_STEPS.UPLOAD_IMAGE_STEP]: UploadImageStep,
-  [UPLOAD_STEPS.MEDIA_UPLOAD_STEP]: MediaUploadStep,
+  [UploadStep.UPLOAD_IMAGE_STEP]: UploadImageStep,
+  [UploadStep.MEDIA_UPLOAD_STEP]: MediaUploadStep,
 };
 
 class Upload extends PureComponent {
@@ -88,7 +84,7 @@ class Upload extends PureComponent {
     const { response, isProcessing, fileName } = this.state;
     // Success.
     const { animationDelay } = this.props;
-    if (isProcessing && status === ProcessIndicator.Status.SUCCEEDED) {
+    if (isProcessing && status === Status.SUCCEEDED) {
       const { onSuccess } = this.props;
       this.timeouts = setTimeout(() => {
         this.setState(
@@ -101,7 +97,7 @@ class Upload extends PureComponent {
       }, animationDelay);
     }
     // Failure.
-    if (isProcessing && status === ProcessIndicator.Status.FAILED) {
+    if (isProcessing && status === Status.FAILED) {
       const { onFailure } = this.props;
       this.timeouts = setTimeout(() => {
         this.setState(
@@ -351,8 +347,6 @@ class Upload extends PureComponent {
   }
 }
 
-Upload.UploadStep = UPLOAD_STEPS;
-
 Upload.propTypes = {
   animationDelay: PropTypes.number,
   csButtonText: PropTypes.string,
@@ -377,17 +371,14 @@ Upload.propTypes = {
   psButtonText: PropTypes.string,
   psProcessingText: PropTypes.string,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  usAccept: PropTypes.oneOf(ACCEPTED_FORMAT),
+  usAccept: PropTypes.oneOf(['*', 'image/*', 'application/*', 'text/csv']),
   usButtonText: PropTypes.string,
   usDisabled: PropTypes.bool,
   usDropMessage: PropTypes.string,
   usHelpImage: PropTypes.node,
   usLabel: PropTypes.string,
   usPlaceholder: PropTypes.string,
-  uploadStep: PropTypes.oneOf([
-    Upload.UploadStep.UPLOAD_IMAGE_STEP,
-    Upload.UploadStep.MEDIA_UPLOAD_STEP,
-  ]),
+  uploadStep: PropTypes.oneOf(['uploadImageStep', 'mediaUploadStep']),
 };
 
 Upload.defaultProps = {
@@ -413,9 +404,11 @@ Upload.defaultProps = {
   usHelpImage: '',
   usLabel: '',
   usPlaceholder: undefined,
-  uploadStep: Upload.UploadStep.UPLOAD_IMAGE_STEP,
+  uploadStep: UploadStep.UPLOAD_IMAGE_STEP,
 };
 
-Upload.CompleteStep = CompleteStep;
+// this export is necessary for react-to-typescript-definitions
+// to be able to properly generate TS types, this is due to us wrapping this component in `injectIntl` before exporting
+export { Upload };
 
 export default injectIntl(Upload);

@@ -1,10 +1,10 @@
 <DateInput
   onChange={(value) => console.log(value)}
   disabled={false}
-  size={DateInput.Size.MEDIUM}
+  size={Size.MEDIUM}
   value="1995-12-01"
-  monthFormat={DateInput.MonthFormat.LONG}
-  mode={DateInput.DateMode.DAY_MONTH_YEAR}
+  monthFormat={MonthFormat.LONG}
+  mode={DateMode.DAY_MONTH_YEAR}
   placeholders={{
     day: 'DD',
     month: 'Month',

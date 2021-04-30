@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, waitFor, screen } from '../test-utils';
 import Popover from './Popover';
-import { Breakpoint } from '../common';
+import { Breakpoint, Position } from '../common';
 
 jest.mock('../common/bottomSheet', () => {
   // eslint-disable-next-line
@@ -20,7 +20,7 @@ describe('Popover', () => {
   const props = {
     arrow: true,
     content: 'content',
-    position: Popover.Placement.BOTTOM,
+    position: Position.BOTTOM,
     title: 'title',
   };
 

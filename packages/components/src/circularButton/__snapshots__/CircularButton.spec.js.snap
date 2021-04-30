@@ -3,7 +3,7 @@
 exports[`CircularButton defaults renders a button of type accent and priority primary 1`] = `
 <div>
   <label
-    class="np-circular-btn primary accent  "
+    class="np-circular-btn primary accent"
   >
     <input
       aria-label="Add money"
@@ -45,7 +45,7 @@ exports[`CircularButton defaults renders a button of type accent and priority pr
 exports[`CircularButton priorities renders primary buttons 1`] = `
 <div>
   <label
-    class="np-circular-btn primary accent  "
+    class="np-circular-btn primary accent"
   >
     <input
       aria-label="Add money"
@@ -87,7 +87,7 @@ exports[`CircularButton priorities renders primary buttons 1`] = `
 exports[`CircularButton priorities renders primary buttons 2`] = `
 <div>
   <label
-    class="np-circular-btn primary positive  "
+    class="np-circular-btn primary positive"
   >
     <input
       aria-label="Add money"
@@ -129,7 +129,7 @@ exports[`CircularButton priorities renders primary buttons 2`] = `
 exports[`CircularButton priorities renders primary buttons 3`] = `
 <div>
   <label
-    class="np-circular-btn primary negative  "
+    class="np-circular-btn primary negative"
   >
     <input
       aria-label="Add money"
@@ -171,7 +171,7 @@ exports[`CircularButton priorities renders primary buttons 3`] = `
 exports[`CircularButton priorities renders secondary buttons 1`] = `
 <div>
   <label
-    class="np-circular-btn secondary accent  "
+    class="np-circular-btn secondary accent"
   >
     <input
       aria-label="Add money"
@@ -213,7 +213,7 @@ exports[`CircularButton priorities renders secondary buttons 1`] = `
 exports[`CircularButton priorities renders secondary buttons 2`] = `
 <div>
   <label
-    class="np-circular-btn secondary positive  "
+    class="np-circular-btn secondary positive"
   >
     <input
       aria-label="Add money"
@@ -255,7 +255,7 @@ exports[`CircularButton priorities renders secondary buttons 2`] = `
 exports[`CircularButton priorities renders secondary buttons 3`] = `
 <div>
   <label
-    class="np-circular-btn secondary negative  "
+    class="np-circular-btn secondary negative"
   >
     <input
       aria-label="Add money"
@@ -297,7 +297,7 @@ exports[`CircularButton priorities renders secondary buttons 3`] = `
 exports[`CircularButton types renders accent buttons 1`] = `
 <div>
   <label
-    class="np-circular-btn primary accent  "
+    class="np-circular-btn primary accent"
   >
     <input
       aria-label="Add money"
@@ -339,7 +339,7 @@ exports[`CircularButton types renders accent buttons 1`] = `
 exports[`CircularButton types renders negative buttons 1`] = `
 <div>
   <label
-    class="np-circular-btn primary negative  "
+    class="np-circular-btn primary negative"
   >
     <input
       aria-label="Add money"
@@ -381,7 +381,7 @@ exports[`CircularButton types renders negative buttons 1`] = `
 exports[`CircularButton types renders positive buttons 1`] = `
 <div>
   <label
-    class="np-circular-btn primary positive  "
+    class="np-circular-btn primary positive"
   >
     <input
       aria-label="Add money"

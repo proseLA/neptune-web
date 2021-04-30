@@ -1,9 +1,9 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { Avatar } from '@transferwise/components';
+import { Avatar, AvatarType, Size, Theme } from '@transferwise/components';
 import { Profile } from '@transferwise/icons';
 import code from '../../../liveEditorCode/avatar.code';
 
-<LiveEditorBlock code={code} scope={{ Avatar }} />
+<LiveEditorBlock code={code} scope={{ Avatar, AvatarType, Size, Theme }} />
 <GeneratePropsTable componentName="Avatar" />
 
 <table className="table table-condensed docs-table m-t-5">
@@ -17,70 +17,52 @@ import code from '../../../liveEditorCode/avatar.code';
   </thead>
   <tbody>
     <tr>
-      <td>Avatar.Type.THUMBNAIL</td>
-      <td>Avatar.Type.LARGE</td>
+      <td>AvatarType.THUMBNAIL</td>
+      <td>AvatarType.LARGE</td>
       <td>
-        <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.LARGE}>
-          <img
-            src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-            alt="UK Flag"
-          />
+        <Avatar type={AvatarType.THUMBNAIL} size={Size.LARGE}>
+          <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="UK Flag" />
         </Avatar>
       </td>
       <td>
-        <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.LARGE} outlined>
-          <img
-            src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-            alt="UK Flag"
-          />
+        <Avatar type={AvatarType.THUMBNAIL} size={Size.LARGE} outlined>
+          <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="UK Flag" />
         </Avatar>
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.THUMBNAIL</td>
-      <td>Avatar.Type.MEDIUM</td>
+      <td>AvatarType.THUMBNAIL</td>
+      <td>AvatarType.MEDIUM</td>
       <td>
-        <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.MEDIUM}>
-          <img
-            src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-            alt="UK Flag"
-          />
+        <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM}>
+          <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="UK Flag" />
         </Avatar>
       </td>
       <td>
-        <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.MEDIUM} outlined>
-          <img
-            src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-            alt="UK Flag"
-          />
+        <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM} outlined>
+          <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="UK Flag" />
         </Avatar>
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.THUMBNAIL</td>
-      <td>Avatar.Type.SMALL</td>
+      <td>AvatarType.THUMBNAIL</td>
+      <td>AvatarType.SMALL</td>
       <td>
-        <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.SMALL}>
-          <img
-            src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-            alt="UK Flag"
-          />
+        <Avatar type={AvatarType.THUMBNAIL} size={Size.SMALL}>
+          <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="UK Flag" />
         </Avatar>
       </td>
       <td>
-        <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.SMALL} outlined>
-          <img
-            src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-            alt="UK Flag"
-          />
+        <Avatar type={AvatarType.THUMBNAIL} size={Size.SMALL} outlined>
+          <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="UK Flag" />
         </Avatar>
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.EMOJI</td>
-      <td>Avatar.Type.LARGE</td>
+      <td>AvatarType.EMOJI</td>
+      <td>AvatarType.LARGE</td>
       <td>
-        <Avatar size={Avatar.Size.LARGE} type={Avatar.Type.EMOJI} backgroundColor="#D6F5E3">
+        <Avatar size={Size.LARGE} type={AvatarType.EMOJI} backgroundColor="#D6F5E3">
           <img
             style={{ width: 44, height: 44 }}
             src="https://wise.com/public-resources/assets/balances/savings-emoji/google/🌱.png"
@@ -89,12 +71,7 @@ import code from '../../../liveEditorCode/avatar.code';
         </Avatar>
       </td>
       <td>
-        <Avatar
-          size={Avatar.Size.LARGE}
-          type={Avatar.Type.EMOJI}
-          backgroundColor="#D6F5E3"
-          outlined
-        >
+        <Avatar size={Size.LARGE} type={AvatarType.EMOJI} backgroundColor="#D6F5E3" outlined>
           <img
             style={{ width: 44, height: 44 }}
             src="https://wise.com/public-resources/assets/balances/savings-emoji/google/🌱.png"
@@ -104,10 +81,10 @@ import code from '../../../liveEditorCode/avatar.code';
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.EMOJI</td>
-      <td>Avatar.Type.MEDIUM</td>
+      <td>AvatarType.EMOJI</td>
+      <td>AvatarType.MEDIUM</td>
       <td>
-        <Avatar size={Avatar.Size.MEDIUM} type={Avatar.Type.EMOJI} backgroundColor="#D6F5E3">
+        <Avatar size={Size.MEDIUM} type={AvatarType.EMOJI} backgroundColor="#D6F5E3">
           <img
             style={{ width: 30, height: 30 }}
             src="https://wise.com/public-resources/assets/balances/savings-emoji/google/🌱.png"
@@ -116,12 +93,7 @@ import code from '../../../liveEditorCode/avatar.code';
         </Avatar>
       </td>
       <td>
-        <Avatar
-          size={Avatar.Size.MEDIUM}
-          type={Avatar.Type.EMOJI}
-          backgroundColor="#D6F5E3"
-          outlined
-        >
+        <Avatar size={Size.MEDIUM} type={AvatarType.EMOJI} backgroundColor="#D6F5E3" outlined>
           <img
             style={{ width: 30, height: 30 }}
             src="https://wise.com/public-resources/assets/balances/savings-emoji/google/🌱.png"
@@ -131,10 +103,10 @@ import code from '../../../liveEditorCode/avatar.code';
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.EMOJI</td>
-      <td>Avatar.Type.SMALL</td>
+      <td>AvatarType.EMOJI</td>
+      <td>AvatarType.SMALL</td>
       <td>
-        <Avatar size={Avatar.Size.SMALL} type={Avatar.Type.EMOJI} backgroundColor="#D6F5E3">
+        <Avatar size={Size.SMALL} type={AvatarType.EMOJI} backgroundColor="#D6F5E3">
           <img
             style={{ width: 30, height: 30 }}
             src="https://wise.com/public-resources/assets/balances/savings-emoji/google/🌱.png"
@@ -143,12 +115,7 @@ import code from '../../../liveEditorCode/avatar.code';
         </Avatar>
       </td>
       <td>
-        <Avatar
-          size={Avatar.Size.SMALL}
-          type={Avatar.Type.EMOJI}
-          backgroundColor="#D6F5E3"
-          outlined
-        >
+        <Avatar size={Size.SMALL} type={AvatarType.EMOJI} backgroundColor="#D6F5E3" outlined>
           <img
             style={{ width: 16, height: 16 }}
             src="https://wise.com/public-resources/assets/balances/savings-emoji/google/🌱.png"
@@ -158,66 +125,66 @@ import code from '../../../liveEditorCode/avatar.code';
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.INITIALS</td>
-      <td>Avatar.Type.LARGE</td>
+      <td>AvatarType.INITIALS</td>
+      <td>AvatarType.LARGE</td>
       <td>
-        <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.LARGE}>
+        <Avatar type={AvatarType.INITIALS} size={Size.LARGE}>
           AA
         </Avatar>
       </td>
       <td>
-        <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.LARGE} outlined>
-          AA
-        </Avatar>
-      </td>
-    </tr>
-    <tr>
-      <td>Avatar.Type.INITIALS</td>
-      <td>Avatar.Type.MEDIUM</td>
-      <td>
-        <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
-          AA
-        </Avatar>
-      </td>
-      <td>
-        <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM} outlined>
+        <Avatar type={AvatarType.INITIALS} size={Size.LARGE} outlined>
           AA
         </Avatar>
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.INITIALS</td>
-      <td>Avatar.Type.SMALL</td>
+      <td>AvatarType.INITIALS</td>
+      <td>AvatarType.MEDIUM</td>
       <td>
-        <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.SMALL}>
+        <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM}>
           AA
         </Avatar>
       </td>
       <td>
-        <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.SMALL} outlined>
+        <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM} outlined>
           AA
         </Avatar>
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.INITIALS</td>
-      <td>Avatar.Type.MEDIUM</td>
+      <td>AvatarType.INITIALS</td>
+      <td>AvatarType.SMALL</td>
       <td>
-        <Avatar theme={Avatar.Theme.DARK} type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
+        <Avatar type={AvatarType.INITIALS} size={Size.SMALL}>
           AA
         </Avatar>
       </td>
       <td>
-        <Avatar theme={Avatar.Theme.DARK} type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM} outlined>
+        <Avatar type={AvatarType.INITIALS} size={Size.SMALL} outlined>
+          AA
+        </Avatar>
+      </td>
+    </tr>
+    <tr>
+      <td>AvatarType.INITIALS</td>
+      <td>AvatarType.MEDIUM</td>
+      <td>
+        <Avatar theme={Theme.DARK} type={AvatarType.INITIALS} size={Size.MEDIUM}>
+          AA
+        </Avatar>
+      </td>
+      <td>
+        <Avatar theme={Theme.DARK} type={AvatarType.INITIALS} size={Size.MEDIUM} outlined>
           <Profile />
         </Avatar>
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.ICON</td>
-      <td>Avatar.Type.LARGE</td>
+      <td>AvatarType.ICON</td>
+      <td>AvatarType.LARGE</td>
       <td>
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.LARGE}>
+        <Avatar type={AvatarType.ICON} size={Size.LARGE}>
           <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
             <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
             <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>
@@ -225,27 +192,7 @@ import code from '../../../liveEditorCode/avatar.code';
         </Avatar>
       </td>
       <td>
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.LARGE} outlined>
-          <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
-            <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
-            <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>
-          </svg>
-        </Avatar>
-      </td>
-    </tr>
-    <tr>
-      <td>Avatar.Type.ICON</td>
-      <td>Avatar.Type.MEDIUM</td>
-      <td>
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM}>
-          <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
-            <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
-            <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>
-          </svg>
-        </Avatar>
-      </td>
-      <td>
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM} outlined>
+        <Avatar type={AvatarType.ICON} size={Size.LARGE} outlined>
           <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
             <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
             <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>
@@ -254,10 +201,10 @@ import code from '../../../liveEditorCode/avatar.code';
       </td>
     </tr>
     <tr>
-      <td>Avatar.Type.ICON</td>
-      <td>Avatar.Type.SMALL</td>
+      <td>AvatarType.ICON</td>
+      <td>AvatarType.MEDIUM</td>
       <td>
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.SMALL}>
+        <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
           <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
             <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
             <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>
@@ -265,7 +212,27 @@ import code from '../../../liveEditorCode/avatar.code';
         </Avatar>
       </td>
       <td>
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.SMALL} outlined>
+        <Avatar type={AvatarType.ICON} size={Size.MEDIUM} outlined>
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
+            <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
+            <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>
+          </svg>
+        </Avatar>
+      </td>
+    </tr>
+    <tr>
+      <td>AvatarType.ICON</td>
+      <td>AvatarType.SMALL</td>
+      <td>
+        <Avatar type={AvatarType.ICON} size={Size.SMALL}>
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
+            <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
+            <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>
+          </svg>
+        </Avatar>
+      </td>
+      <td>
+        <Avatar type={AvatarType.ICON} size={Size.SMALL} outlined>
           <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor">
             <path d="M22.003 9.408l-10-7.405-10 7.405 1.195 1.595 8.805-6.52 8.805 6.52 1.195-1.595z"></path>
             <path d="M13 10v10h4v-7h2v7h2v2H3v-2h2v-7h2v7h4V10h2z"></path>

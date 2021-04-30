@@ -3,6 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { Freeze, Plus, Whatsapp } from '@transferwise/icons';
 import CircularButton from './CircularButton';
+import { Priority, ControlType } from '../common';
 
 export default {
   component: CircularButton,
@@ -17,8 +18,8 @@ const icons = {
 
 export const basic = () => {
   const icon = select('icon', ['freeze', 'plus', 'whatsapp'], 'freeze');
-  const priority = select('priority', Object.values(CircularButton.Priority));
-  const type = select('type', Object.values(CircularButton.Type), CircularButton.Type.PRIMARY);
+  const priority = select('priority', Object.values(Priority));
+  const type = select('type', Object.values(ControlType), ControlType.PRIMARY);
   const disabled = boolean('disabled', false);
   const label = text('label', 'Button text');
   const background = select('theme', ['light', 'blue'], 'light');
@@ -55,53 +56,29 @@ export const variants = () => {
     <div className={background === 'blue' ? 'bg--dark p-a-3' : ''}>
       <div className="m-b-2">
         <div className="h4 m-b-1">Accent</div>
-        <CircularButton
-          priority={CircularButton.Priority.PRIMARY}
-          type={CircularButton.Type.ACCENT}
-          {...commonProps}
-        >
+        <CircularButton priority={Priority.PRIMARY} type={ControlType.ACCENT} {...commonProps}>
           {label}
         </CircularButton>
-        <CircularButton
-          priority={CircularButton.Priority.SECONDARY}
-          type={CircularButton.Type.ACCENT}
-          {...commonProps}
-        >
+        <CircularButton priority={Priority.SECONDARY} type={ControlType.ACCENT} {...commonProps}>
           {label}
         </CircularButton>
       </div>
       <div className="m-b-2">
         <div className="h4 m-b-1">Positive</div>
-        <CircularButton
-          priority={CircularButton.Priority.PRIMARY}
-          type={CircularButton.Type.POSITIVE}
-          {...commonProps}
-        >
+        <CircularButton priority={Priority.PRIMARY} type={ControlType.POSITIVE} {...commonProps}>
           {label}
         </CircularButton>
 
-        <CircularButton
-          priority={CircularButton.Priority.SECONDARY}
-          type={CircularButton.Type.POSITIVE}
-          {...commonProps}
-        >
+        <CircularButton priority={Priority.SECONDARY} type={ControlType.POSITIVE} {...commonProps}>
           {label}
         </CircularButton>
       </div>
       <div className="m-b-2">
         <div className="h4 m-b-1">Negative</div>
-        <CircularButton
-          priority={CircularButton.Priority.PRIMARY}
-          type={CircularButton.Type.NEGATIVE}
-          {...commonProps}
-        >
+        <CircularButton priority={Priority.PRIMARY} type={ControlType.NEGATIVE} {...commonProps}>
           {label}
         </CircularButton>
-        <CircularButton
-          priority={CircularButton.Priority.SECONDARY}
-          type={CircularButton.Type.NEGATIVE}
-          {...commonProps}
-        >
+        <CircularButton priority={Priority.SECONDARY} type={ControlType.NEGATIVE} {...commonProps}>
           {label}
         </CircularButton>
       </div>
@@ -110,7 +87,7 @@ export const variants = () => {
         <CircularButton {...commonProps} disabled>
           {label}
         </CircularButton>
-        <CircularButton {...commonProps} priority={CircularButton.Priority.SECONDARY} disabled>
+        <CircularButton {...commonProps} priority={Priority.SECONDARY} disabled>
           {label}
         </CircularButton>
       </div>

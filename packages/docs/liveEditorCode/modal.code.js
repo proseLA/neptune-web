@@ -17,10 +17,10 @@
           </>
         }
         open={open}
-        scroll={Modal.Scroll.CONTENT}
-        position={Modal.Position.TOP}
+        scroll={Scroll.CONTENT}
+        position={Position.TOP}
         onClose={() => setOpen(false)}
-        size={Modal.Size.MEDIUM}
+        size={Size.MEDIUM}
         title="I'm a hipster!"
         className=""
         footer={

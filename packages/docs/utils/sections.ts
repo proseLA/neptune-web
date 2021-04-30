@@ -27,6 +27,9 @@ interface Author {
 
 export type Meta = {
   name: string;
+  /**
+   * date format: yyyy-mm-dd
+   */
   date?: string;
   authors?: Author[];
   badge?: Badge;
