@@ -16,7 +16,6 @@ export const basic = () => {
   return (
     <PhoneNumberInput
       onChange={(v) => action(v)}
-      initialValue="+447573135343"
       countryCode=""
       disabled={disabled}
       required={required}

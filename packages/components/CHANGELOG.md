@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [35.9.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.9.1...@transferwise/components@35.9.2) (2021-04-28)
+
+
+### Bug Fixes
+
+* **PhoneNumberInput:** phone prefix detection based on locale ([#920](https://github.com/transferwise/neptune-web/issues/920)) ([139d40d](https://github.com/transferwise/neptune-web/commit/139d40dcbf8a2ce032dfe5080eb5b99e27ddd812))
+
+
+
+
+
 ## [35.9.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@35.9.0...@transferwise/components@35.9.1) (2021-04-28)
 
 
