@@ -81,24 +81,32 @@ class MoneyInput extends Component {
 
   handlePaste = (event) => {
     const paste = (event.clipboardData || window.clipboardData).getData('text');
-    if (!Number.isNaN(parseFloat(paste))) {
-      this.setState({
-        formattedAmount: formatAmount(paste, this.props.selectedCurrency.currency, this.locale),
-      });
-      this.onAmountChange(paste);
+    const parsed = isEmpty(paste)
+      ? null
+      : parseAmount(paste, this.props.selectedCurrency.currency, this.locale);
+
+    this.setState({
+      formattedAmount: parsed,
+    });
+
+    if (!Number.isNaN(parsed)) {
+      this.props.onAmountChange(parsed);
     }
 
     event.preventDefault();
   };
 
-  onAmountChange = (value) => {
+  onAmountChange = (event) => {
+    const { value } = event.target;
     this.setState({
       formattedAmount: value,
     });
     const parsed = isEmpty(value)
       ? null
       : parseAmount(value, this.props.selectedCurrency.currency, this.locale);
-    this.props.onAmountChange(parsed);
+    if (!Number.isNaN(parsed)) {
+      this.props.onAmountChange(parsed);
+    }
   };
 
   onAmountBlur = () => {
@@ -188,7 +196,7 @@ class MoneyInput extends Component {
           inputMode="decimal"
           className={classNames(this.style('form-control'))}
           onKeyDown={this.handleKeyDown}
-          onChange={(event) => this.onAmountChange(event.target.value)}
+          onChange={this.onAmountChange}
           onFocus={this.onAmountFocus}
           onBlur={this.onAmountBlur}
           onPaste={this.handlePaste}

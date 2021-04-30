@@ -321,13 +321,13 @@ describe('Money Input', () => {
   });
 
   test.each(['cannot parse this yo', '  '])(
-    "does call onAmountChange with even if parsed number unable to parse value '%s'",
+    "does not call onAmountChange with a parsed number if unable to parse value '%s'",
     (testValue) => {
       const onAmountChange = jest.fn();
       component.setProps({ onAmountChange });
       numberFormatting.parseAmount = jest.fn(() => NaN);
       enterAmount(testValue);
-      expect(onAmountChange).toHaveBeenCalled();
+      expect(onAmountChange).not.toHaveBeenCalled();
       expect(numberFormatting.parseAmount).toHaveBeenCalledTimes(1);
       expect(numberFormatting.parseAmount).toHaveBeenLastCalledWith(
         testValue,

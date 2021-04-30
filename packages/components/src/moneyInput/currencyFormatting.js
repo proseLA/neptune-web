@@ -72,7 +72,8 @@ export function parseAmount(number, currency, locale) {
   const decimalSeparator = getDecimalSeparator(validLocale);
   const numberWithStandardDecimalSeparator = (number ? `${number}` : '')
     .replace(new RegExp(`\\${groupSeparator}`, 'g'), '')
-    .replace(new RegExp(`\\${decimalSeparator}`, 'g'), '.');
+    .replace(new RegExp(`\\${decimalSeparator}`, 'g'), '.')
+    .replace(/[^0-9.]/g, '');
   const parsedAmount = parseFloat(
     parseFloat(numberWithStandardDecimalSeparator).toFixed(precision),
   );
