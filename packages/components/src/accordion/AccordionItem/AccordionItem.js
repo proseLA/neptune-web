@@ -5,8 +5,11 @@ import { isString } from '@transferwise/neptune-validation';
 
 import Chevron from '../../chevron';
 
+import { useDirection } from '../../common/hooks';
+
 const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
   const iconEl = icon ? cloneElement(icon, { size: 24 }) : null;
+  const { isRTL } = useDirection();
 
   return (
     <div
@@ -25,8 +28,24 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
         })}
       >
         <div className="media">
-          {icon && <div className="media-left hidden-xs hidden-sm p-r-2">{iconEl}</div>}
-          <div className="media-body text-xs-left title">
+          {icon && (
+            <div
+              className={classNames('hidden-xs hidden-sm', {
+                'media-left': !isRTL,
+                'media-right': isRTL,
+                'p-r-2': !isRTL,
+                'p-l-2': isRTL,
+              })}
+            >
+              {iconEl}
+            </div>
+          )}
+          <div
+            className={classNames('media-body title', {
+              'text-xs-left': !isRTL,
+              'text-xs-right': isRTL,
+            })}
+          >
             {isString(title) ? <span className="h5">{title}</span> : title}
           </div>
           <div className="media-right d-flex align-items-center">
@@ -34,9 +53,12 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
           </div>
         </div>
       </button>
-      <div className="accordion-content media ">
+      <div className="accordion-content media">
         <div
-          className={classNames('media-body m-r-5 p-b-3', { 'm-l-5': icon })}
+          className={classNames('media-body p-b-3', {
+            'm-l-5': icon || isRTL,
+            'm-r-5': icon,
+          })}
           aria-hidden={!open}
         >
           {content}
