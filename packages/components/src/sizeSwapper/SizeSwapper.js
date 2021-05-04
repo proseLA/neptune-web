@@ -7,7 +7,7 @@ import { useClientWidth } from '../common/hooks';
 
 const Layout = { COLUMN: 'COLUMN' };
 
-const SizeSwapper = forwardRef(({ items }, ref) => {
+const SizeSwapper = forwardRef(({ items, inline }, ref) => {
   if (!items || !items.length) {
     return null;
   }
@@ -36,7 +36,9 @@ const SizeSwapper = forwardRef(({ items }, ref) => {
   // keep the ref on DOM and let clientWidth be calculated properly.
   return (
     <div
-      className={classNames('np-size-swapper d-flex', {
+      className={classNames('np-size-swapper', {
+        'd-flex': !inline,
+        'd-inline-flex': inline,
         'flex-column': itemsToRender && itemsToRender.layout === Layout.COLUMN,
         'flex-wrap': itemsToRender && itemsToRender.wrap,
       })}
@@ -52,6 +54,7 @@ SizeSwapper.Breakpoint = Breakpoint;
 SizeSwapper.Layout = Layout;
 
 SizeSwapper.propTypes = {
+  inline: PropTypes.bool,
   /** List of items that will appear at the specified breakpoint and presented in row or columns depending on layout  */
   items: PropTypes.arrayOf(
     PropTypes.shape({
@@ -61,6 +64,10 @@ SizeSwapper.propTypes = {
       wrap: PropTypes.bool,
     }),
   ).isRequired,
+};
+
+SizeSwapper.defaultProps = {
+  inline: false,
 };
 
 export default SizeSwapper;

@@ -1,11 +1,12 @@
 import React from 'react';
 import { select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import Popover from './Popover';
 
 import Button from '../button';
 
-import { Position, Type } from '../common';
+import { Position } from '../common';
 
 export default {
   component: Popover,
@@ -30,13 +31,18 @@ export const basic = () => {
 
   return (
     <Popover
-      content="You’ll get this rate as long as we receive your 10 EUR within the next 51 hours."
+      content={
+        <>
+          You’ll get this rate as long as we receive your 10 EUR within the next 51 hours.
+          <a href="test1">Test 1</a>
+          <a href="test1">Test 2</a>
+          <a href="test1">Test 3</a>
+        </>
+      }
       preferredPlacement={preferredPlacement}
       title="Guaranteed rate"
     >
-      <Button type={Type.PRIMARY} onClick={() => console.log(`I'm also triggered`)}>
-        Click here to Open Popover!
-      </Button>
+      <Button onClick={action(`I'm also triggered`)}>Click here to Open Popover!</Button>
     </Popover>
   );
 };

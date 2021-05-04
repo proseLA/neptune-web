@@ -3,19 +3,6 @@ import { fireEvent, render, waitFor, screen } from '../test-utils';
 import Popover from './Popover';
 import { Breakpoint, Position } from '../common';
 
-jest.mock('../common/bottomSheet', () => {
-  // eslint-disable-next-line
-  const { forwardRef } = require('react');
-  // eslint-disable-next-line react/prop-types
-  return forwardRef(({ open, children }, ref) =>
-    open ? (
-      <div ref={ref} className="np-bottom-sheet">
-        {children}
-      </div>
-    ) : null,
-  );
-});
-
 describe('Popover', () => {
   const props = {
     arrow: true,
@@ -28,27 +15,7 @@ describe('Popover', () => {
   let rerender;
 
   describe('on desktop', () => {
-    beforeEach(() => {
-      jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
-    });
-    afterAll(() => {
-      window.requestAnimationFrame.mockRestore();
-    });
-    it('renders correctly when open is true', async () => {
-      await waitFor(() => {
-        ({ container } = render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        ));
-      });
-
-      fireEvent.click(getTrigger());
-
-      expect(container).toMatchSnapshot();
-    });
-
-    it('renders title correctly', async () => {
+    it('renders when is open', async () => {
       await waitFor(() => {
         ({ container, rerender } = render(
           <Popover {...props}>
@@ -57,7 +24,23 @@ describe('Popover', () => {
         ));
       });
 
-      expect(screen.queryByText('title')).toBeInTheDocument();
+      await openPopover();
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('renders title', async () => {
+      await waitFor(() => {
+        ({ container, rerender } = render(
+          <Popover {...props}>
+            <button type="button">Open</button>
+          </Popover>,
+        ));
+      });
+
+      await openPopover();
+
+      expect(getTitle()).toBeInTheDocument();
 
       await waitFor(() => {
         rerender(
@@ -67,7 +50,9 @@ describe('Popover', () => {
         );
       });
 
-      expect(screen.queryByText('title')).not.toBeInTheDocument();
+      await openPopover();
+
+      expect(getTitle()).not.toBeInTheDocument();
     });
 
     it('renders Panel onClick', async () => {
@@ -81,7 +66,7 @@ describe('Popover', () => {
 
       expect(getPanel()).not.toBeInTheDocument();
 
-      fireEvent.click(getTrigger());
+      await openPopover();
 
       expect(getPanel()).toBeInTheDocument();
     });
@@ -97,31 +82,13 @@ describe('Popover', () => {
 
       expect(getPanel()).not.toBeInTheDocument();
 
-      fireEvent.click(getTrigger());
+      await openPopover();
 
       expect(getPanel()).toBeInTheDocument();
 
       fireEvent.click(document);
 
       expect(getPanel()).not.toBeInTheDocument();
-    });
-
-    it('renders role status for assistive technologies readers', async () => {
-      await waitFor(() => {
-        render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        );
-      });
-
-      expect(screen.queryByRole('status')).toBeNull();
-
-      fireEvent.click(getTrigger());
-
-      expect(screen.getByRole('status')).toBeInTheDocument();
-      expect(screen.getByRole('status').innerHTML).toBe(`${props.title}${props.content}`);
-      expect(screen.getByRole('status')).toHaveClass('sr-only');
     });
   });
 
@@ -130,7 +97,7 @@ describe('Popover', () => {
       global.innerWidth = Breakpoint.SMALL - 1;
     });
 
-    it('renders', async () => {
+    it('renders when is open', async () => {
       await waitFor(() => {
         ({ container } = render(
           <Popover {...props}>
@@ -139,7 +106,7 @@ describe('Popover', () => {
         ));
       });
 
-      fireEvent.click(getTrigger());
+      await openPopover();
 
       expect(container).toMatchSnapshot();
     });
@@ -155,7 +122,7 @@ describe('Popover', () => {
 
       expect(getBottomSheet()).not.toBeInTheDocument();
 
-      fireEvent.click(getTrigger());
+      await openPopover();
 
       expect(getBottomSheet()).toBeInTheDocument();
     });
@@ -171,7 +138,7 @@ describe('Popover', () => {
 
       expect(getBottomSheet()).not.toBeInTheDocument();
 
-      fireEvent.click(getTrigger());
+      await openPopover();
 
       expect(getBottomSheet()).toBeInTheDocument();
 
@@ -184,4 +151,9 @@ describe('Popover', () => {
   const getPanel = () => document.querySelector('.np-panel--open');
   const getBottomSheet = () => document.querySelector('.np-bottom-sheet');
   const getTrigger = () => screen.queryByText('Open');
+  const getTitle = () => screen.queryByText('title');
+
+  const openPopover = async () => {
+    await waitFor(() => fireEvent.click(getTrigger()));
+  };
 });

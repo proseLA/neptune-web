@@ -26,12 +26,6 @@ const Popover = ({ children, className, content, preferredPlacement, title }) =>
             setOpen(!open);
           },
         })}
-        {open && (
-          <span role="status" className="sr-only">
-            {title}
-            {content}
-          </span>
-        )}
       </span>
       <ResponsivePanel
         open={open}
@@ -42,7 +36,11 @@ const Popover = ({ children, className, content, preferredPlacement, title }) =>
         className="np-popover__container"
       >
         <div className="np-popover__content" aria-hidden={!open} role="tooltip">
-          {title && <div className="np-popover__title m-b-1">{title}</div>}
+          {title && (
+            <div role="heading" aria-level={1} className="np-popover__title m-b-1">
+              {title}
+            </div>
+          )}
           {content}
         </div>
       </ResponsivePanel>
