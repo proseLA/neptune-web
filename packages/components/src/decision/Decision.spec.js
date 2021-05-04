@@ -2,9 +2,9 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '../test-utils';
 
-import Decision from '.';
+import Decision, { DecisionPresentation, DecisionType } from '.';
 import Avatar from '../avatar';
-import { Breakpoint } from '../common';
+import { Breakpoint, Size } from '../common';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
 
@@ -22,8 +22,8 @@ describe('Decision', () => {
         onClick: jest.fn(),
       },
     ],
-    presentation: Decision.Presentation.LIST_BLOCK,
-    type: Decision.Type.NAVIGATION,
+    presentation: DecisionPresentation.LIST_BLOCK,
+    type: DecisionType.NAVIGATION,
   };
 
   const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
@@ -45,7 +45,7 @@ describe('Decision', () => {
     jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
   });
 
-  describe(`when presentation is ${Decision.Presentation.LIST_BLOCK}`, () => {
+  describe(`when presentation is ${DecisionPresentation.LIST_BLOCK}`, () => {
     beforeEach(() => {
       ({ container } = render(<Decision {...props} />));
     });
@@ -65,10 +65,10 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${Decision.Presentation.LIST_BLOCK_GRID}`, () => {
+  describe(`when presentation is ${DecisionPresentation.LIST_BLOCK_GRID}`, () => {
     beforeEach(() => {
       ({ container } = render(
-        <Decision {...props} presentation={Decision.Presentation.LIST_BLOCK_GRID} />,
+        <Decision {...props} presentation={DecisionPresentation.LIST_BLOCK_GRID} />,
       ));
     });
 
@@ -95,14 +95,10 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${Decision.Presentation.LIST_BLOCK} and size is Small`, () => {
+  describe(`when presentation is ${DecisionPresentation.LIST_BLOCK} and size is Small`, () => {
     beforeEach(() => {
       ({ container } = render(
-        <Decision
-          {...props}
-          presentation={Decision.Presentation.LIST_BLOCK}
-          size={Decision.Size.SMALL}
-        />,
+        <Decision {...props} presentation={DecisionPresentation.LIST_BLOCK} size={Size.SMALL} />,
       ));
     });
 
@@ -121,9 +117,9 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${Decision.Presentation.LIST}`, () => {
+  describe(`when presentation is ${DecisionPresentation.LIST}`, () => {
     beforeEach(() => {
-      ({ container } = render(<Decision {...props} presentation={Decision.Presentation.LIST} />));
+      ({ container } = render(<Decision {...props} presentation={DecisionPresentation.LIST} />));
     });
 
     it('renders Navigation Option before breakpoint', () => {

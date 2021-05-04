@@ -6,9 +6,10 @@ describe('Panel', () => {
   const props = {
     arrow: true,
     children: <div>children</div>,
-    open: false,
+    open: true,
     position: Panel.Position.TOP,
     anchorRef: {},
+    onClose: jest.fn(),
   };
 
   it('renders', () => {

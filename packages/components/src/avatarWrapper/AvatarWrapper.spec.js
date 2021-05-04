@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '../test-utils';
 
 import Avatar from '.';
-import Badge from '../badge';
+import { Size } from '../common';
 
 const name = 'Elizabeth Alexandra Mary Windsor';
 
@@ -61,7 +61,7 @@ describe('FlowNavigationAvatar', () => {
   describe('with a badge url passed', () => {
     it('renders the badge', () => {
       const { container } = render(
-        <Avatar badgeUrl="https://badge.com" badgeProps={{ size: Badge.Size.LARGE }} />,
+        <Avatar badgeUrl="https://badge.com" badgeProps={{ size: Size.LARGE }} />,
       );
 
       expect(container.firstChild).toMatchSnapshot();

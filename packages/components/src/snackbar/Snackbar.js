@@ -109,7 +109,7 @@ Snackbar.propTypes = {
     onClick: PropTypes.func.isRequired,
   }),
   text: PropTypes.node.isRequired,
-  theme: PropTypes.oneOf([Theme.LIGHT, Theme.DARK]),
+  theme: PropTypes.oneOf(['light', 'dark']),
   timeout: PropTypes.number.isRequired,
   timestamp: PropTypes.number.isRequired,
 };

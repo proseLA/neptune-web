@@ -125,14 +125,8 @@ const Pagination = ({
   );
 };
 
-Pagination.Type = Type;
-
 Pagination.propTypes = {
-  type: PropTypes.oneOf([
-    Pagination.Type.NUMBERS_ONLY,
-    Pagination.Type.ARROWS_ONLY,
-    Pagination.Type.FULL,
-  ]),
+  type: PropTypes.oneOf(['numbersOnly', 'arrowsOnly', 'full']),
   numberOfPages: PropTypes.number.isRequired,
   currentPageIndex: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
@@ -141,9 +135,10 @@ Pagination.propTypes = {
 };
 
 Pagination.defaultProps = {
-  type: Pagination.Type.FULL,
+  type: Type.FULL,
   canFetchMorePages: false,
   className: undefined,
 };
 
+export { Type as PaginationType };
 export default Pagination;

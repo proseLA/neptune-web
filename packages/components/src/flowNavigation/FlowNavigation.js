@@ -7,7 +7,7 @@ import AnimatedLabel from './animatedLabel';
 import BackButton from './backButton';
 import CloseButton from '../common/closeButton';
 
-import { Theme, Breakpoint } from '../common';
+import { Breakpoint, Layout } from '../common';
 import { useClientWidth } from '../common/hooks';
 
 import './FlowNavigation.css';
@@ -90,13 +90,11 @@ const FlowNavigation = ({ activeStep, avatar, logo, onClose, onGoBack, done, ste
             />
           )
         }
-        layout={clientWidth < Breakpoint.LARGE ? Header.Layout.VERTICAL : Header.Layout.HORIZONTAL}
+        layout={clientWidth < Breakpoint.LARGE ? Layout.VERTICAL : Layout.HORIZONTAL}
       />
     </div>
   );
 };
-
-FlowNavigation.Theme = Theme;
 
 FlowNavigation.defaultProps = {
   activeStep: 0,

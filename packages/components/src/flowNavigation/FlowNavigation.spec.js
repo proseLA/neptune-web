@@ -4,9 +4,9 @@ import '@testing-library/jest-dom';
 import { render, screen } from '../test-utils';
 
 import FlowNavigation from '.';
-import { Breakpoint } from '../common';
+import { Breakpoint, Size } from '../common';
 
-import Avatar from '../avatar';
+import Avatar, { AvatarType } from '../avatar';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
 
@@ -43,7 +43,7 @@ describe('FlowNavigation', () => {
 
   const props = {
     avatar: (
-      <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
+      <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM}>
         TM
       </Avatar>
     ),

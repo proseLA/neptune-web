@@ -43,6 +43,31 @@ const OneOfSchema = (props) => {
   const getValidIndexFromDefault = (schema) =>
     schema.oneOf.findIndex((childSchema) => isValidSchema(schema.default, childSchema));
 
+  const getSchemaProperties = (schema) =>
+    schema.properties !== null && typeof schema.properties === 'object'
+      ? Object.entries(schema.properties)
+      : [];
+
+  const getBestMatchingSchemaIndexForModel = (schema, model) => {
+    const schemaPoints = schema.oneOf.map((childSchema) => {
+      let points = 0;
+      getSchemaProperties(childSchema).forEach(([key, propertySchema]) => {
+        if (isConstSchema(propertySchema) && propertySchema.const === model[key]) {
+          points += 2;
+        } else if (isNoNConstSchema(propertySchema) && typeof model[key] !== 'undefined') {
+          points += 1;
+        }
+      });
+      return points;
+    });
+
+    if (schemaPoints.every((p) => p === schemaPoints[0])) {
+      return null;
+    }
+    const bestMatchingSchemaIndex = schemaPoints.indexOf(Math.max(...schemaPoints));
+    return bestMatchingSchemaIndex;
+  };
+
   const getActiveSchemaIndex = (schema, model) => {
     const indexFromModel = getValidIndexFromModel(schema, model);
     // If our model satisfies one of the schemas, use that schema.
@@ -61,6 +86,11 @@ const OneOfSchema = (props) => {
       if (indexFromDefault >= 0) {
         return indexFromDefault;
       }
+    }
+
+    if (model !== null && typeof model === 'object' && Object.keys(model).length >= 1) {
+      // Even if the model does not satisfy any of the schemas, it may be closer to one of them.
+      return getBestMatchingSchemaIndexForModel(schema, model);
     }
 
     // Otherwise do not default

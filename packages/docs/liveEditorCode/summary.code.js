@@ -25,7 +25,7 @@
     }}
     icon={<HomeIcon size={24} />}
     title="You verified your address"
-    status={Summary.Status.DONE}
+    status={Status.DONE}
   />
   <Summary
     action={{
@@ -44,6 +44,6 @@
     }}
     icon={<HomeIcon size={24} />}
     title="We’re verifying your address"
-    status={Summary.Status.PENDING}
+    status={Status.PENDING}
   />
 </ul>;

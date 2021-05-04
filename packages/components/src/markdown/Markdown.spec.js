@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '../test-utils';
 import Markdown from './Markdown';
-import { MarkdownNodeTypes } from '../common/markdownNodeTypes';
+import { MarkdownNodeType } from '../common';
 
 const list = `* list
 * list`;
@@ -61,7 +61,7 @@ describe('Markdown', () => {
   describe('allowList', () => {
     let container;
 
-    const allowList = [MarkdownNodeTypes.HEADING, MarkdownNodeTypes.STRONG];
+    const allowList = [MarkdownNodeType.HEADING, MarkdownNodeType.STRONG];
 
     it('marks up all types in the allowList', () => {
       ({ container } = render(<Markdown allowList={allowList}># Heading</Markdown>));
@@ -85,7 +85,7 @@ describe('Markdown', () => {
   describe('blockList', () => {
     let container;
 
-    const blockList = [MarkdownNodeTypes.HEADING, MarkdownNodeTypes.STRONG];
+    const blockList = [MarkdownNodeType.HEADING, MarkdownNodeType.STRONG];
 
     it('strips all markdown from types in the blockList', () => {
       ({ container } = render(<Markdown blockList={blockList}># Heading</Markdown>));

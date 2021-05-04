@@ -10,9 +10,9 @@ jest.mock('react-transition-group/Transition', () => jest.fn('placeholder'));
 describe('SearchBox', () => {
   const props = {
     classNames: {},
-    handleSearchChange: jest.fn(),
+    onChange: jest.fn(),
     onClick: jest.fn(),
-    searchPlaceholder: 'searchPlaceholder',
+    placeholder: 'placeholder',
     value: 'value',
     ref: jest.fn(),
   };

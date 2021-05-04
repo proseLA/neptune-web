@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import './Stepper.css';
 import Tooltip from '../tooltip';
 import { isTouchDevice } from './deviceDetection';
+import { Position } from '../common';
 
 function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);
@@ -47,7 +48,7 @@ const Stepper = ({ steps, activeStep, className }) => {
         `}
       >
         {step.hoverLabel && !isTouchDevice() ? (
-          <Tooltip position={Tooltip.Position.BOTTOM} label={step.hoverLabel}>
+          <Tooltip position={Position.BOTTOM} label={step.hoverLabel}>
             {labelButton}
           </Tooltip>
         ) : (

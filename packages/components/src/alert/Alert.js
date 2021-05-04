@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import requiredIf from 'react-required-if';
 import { InfoCircle, CheckCircle, Alert as AlertIcon, AlertCircle } from '@transferwise/icons';
-import { Sentiment, Size } from '../common';
+import { Sentiment } from '../common';
 import CloseButton from '../common/closeButton';
-import withArrow, { ArrowPosition } from './withArrow';
+import withArrow from './withArrow';
 import InlineMarkdown from './inlineMarkdown';
 import { logActionRequiredIf, deprecated } from '../utilities';
 
@@ -80,12 +80,7 @@ const Alert = (props) => {
         )}
       </div>
       {onDismiss && (
-        <CloseButton
-          onClick={onDismiss}
-          size={CloseButton.Size.SMALL}
-          className="m-l-2"
-          ref={closeButtonRef}
-        />
+        <CloseButton onClick={onDismiss} size={16} className="m-l-2" ref={closeButtonRef} />
       )}
     </div>
   );
@@ -94,9 +89,9 @@ const Alert = (props) => {
 };
 
 const deprecatedTypeMapMessage = {
-  [Sentiment.SUCCESS]: 'Alert.Type.POSITIVE',
-  [Sentiment.INFO]: 'Alert.Type.NEUTRAL',
-  [Sentiment.ERROR]: 'Alert.Type.NEGATIVE',
+  [Sentiment.SUCCESS]: 'Sentiment.POSITIVE',
+  [Sentiment.INFO]: 'Sentiment.NEUTRAL',
+  [Sentiment.ERROR]: 'Sentiment.NEGATIVE',
 };
 
 const deprecatedTypes = Object.keys(deprecatedTypeMap);
@@ -111,10 +106,6 @@ function logActionRequired({ size, type }) {
     deprecatedTypes.includes(type),
   );
 }
-
-Alert.ArrowPosition = ArrowPosition;
-Alert.Size = { SMALL: Size.SMALL, LARGE: Size.LARGE };
-Alert.Type = Sentiment;
 
 Alert.propTypes = {
   /** An optional call to action to sit under the main body of the alert. If your label is short, use aria-label to provide more context */
@@ -132,21 +123,14 @@ Alert.propTypes = {
   /** The presence of the onDismiss handler will trigger the visibility of the close button */
   onDismiss: PropTypes.func,
   /** The type dictates which icon and colour will be used */
-  type: PropTypes.oneOf(Object.values(Alert.Type)),
+  type: PropTypes.oneOf(['negative', 'neutral', 'positive', 'warning', 'info', 'error', 'success']),
 
-  /** @DEPRECATED */
+  /** @deprecated no arrow for `Alert` component anymore, consider to use [`InlineAlert`](https://transferwise.github.io/neptune-web/components/alerts/InlineAlert) component */
   arrow: deprecated(
-    PropTypes.oneOf([
-      ArrowPosition.TOP_LEFT,
-      ArrowPosition.TOP,
-      ArrowPosition.TOP_RIGHT,
-      ArrowPosition.BOTTOM_LEFT,
-      ArrowPosition.BOTTOM,
-      ArrowPosition.BOTTOM_RIGHT,
-    ]),
+    PropTypes.oneOf(['up-left', 'up-center', 'up-right', 'down-left', 'down-center', 'down-right']),
     { component: 'Alert', expiryDate: new Date('03-01-2021') },
   ),
-  /** @DEPRECATED */
+  /** @deprecated use `message` property instead */
   children: deprecated(
     requiredIf(PropTypes.node, ({ message }) => !message),
     {
@@ -156,7 +140,7 @@ Alert.propTypes = {
       expiryDate: new Date('03-01-2021'),
     },
   ),
-  /** @DEPRECATED */
+  /** @deprecated use `onDismiss` instead */
   dismissible: deprecated(PropTypes.bool, {
     component: 'Alert',
     message: 'The Alert will now be considered dismissible if an `onDismiss` hander is present.',
@@ -170,7 +154,7 @@ Alert.defaultProps = {
   className: undefined,
   dismissible: undefined,
   icon: undefined,
-  type: Alert.Type.NEUTRAL,
+  type: Sentiment.NEUTRAL,
 };
 
 export default Alert;

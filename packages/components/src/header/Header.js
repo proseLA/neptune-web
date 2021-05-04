@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Layout } from '../common';
 
 const Header = React.forwardRef((props, ref) => {
   const { bottomContent, className, layout, leftContent, rightContent } = props;
-  const isVertical = layout === Header.Layout.VERTICAL;
+  const isVertical = layout === Layout.VERTICAL;
 
   return (
     <div className={classNames('np-header', 'd-flex', 'flex-wrap', className)} ref={ref}>
@@ -42,12 +43,10 @@ const Header = React.forwardRef((props, ref) => {
   );
 });
 
-Header.Layout = { VERTICAL: 'VERTICAL', HORIZONTAL: 'HORIZONTAL' };
-
 Header.defaultProps = {
   bottomContent: undefined,
   className: undefined,
-  layout: Header.Layout.HORIZONTAL,
+  layout: Layout.HORIZONTAL,
   leftContent: undefined,
   rightContent: undefined,
 };
@@ -55,7 +54,7 @@ Header.defaultProps = {
 Header.propTypes = {
   bottomContent: PropTypes.node,
   className: PropTypes.string,
-  layout: PropTypes.oneOf([Header.Layout.HORIZONTAL, Header.Layout.VERTICAL]),
+  layout: PropTypes.oneOf(['HORIZONTAL', 'VERTICAL']),
   leftContent: PropTypes.node,
   rightContent: PropTypes.node,
 };

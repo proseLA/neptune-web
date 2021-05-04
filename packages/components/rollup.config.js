@@ -8,9 +8,10 @@ import json from '@rollup/plugin-json';
 import pkg from './package.json';
 
 // Rollup
-const input = 'src/index.js';
+const input = 'src/index.ts';
 const file =
   process.env.NODE_ENV === 'umd-nopolyfill' ? './build/umd/no-polyfill/main.js' : pkg.main;
+const extensions = ['.js', '.ts', '.tsx'];
 
 // Rollup can resolve only explicit exports.
 // https://github.com/rollup/rollup/issues/2671
@@ -34,9 +35,10 @@ const globals = {
 // Plugins
 const plugins = [
   // Resolves modules from node_modules
-  resolve(),
+  resolve({ extensions }),
   babel({
     babelHelpers: 'runtime',
+    extensions,
     exclude: [/node_modules/],
   }),
   // Convert CJ into ES6

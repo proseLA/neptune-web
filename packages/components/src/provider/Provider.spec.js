@@ -21,7 +21,7 @@ describe('Provider', () => {
 
   it('does not add any elements in the DOM', async () => {
     const locale = 'en';
-    const messages = await import(`../../i18n/${locale}.json`);
+    const messages = await import(`../i18n/${locale}.json`);
     const { container } = render(<Provider i18n={{ locale, messages }} />);
 
     expect(container).toBeEmptyDOMElement();
@@ -61,7 +61,7 @@ describe('Provider', () => {
   ])('switching locale (%s)', async (locale, expectedMessage) => {
     expect(document.body).toBeEmptyDOMElement();
 
-    const messages = await import(`../../i18n/${locale}.json`);
+    const messages = await import(`../i18n/${locale}.json`);
 
     render(
       <Provider i18n={{ locale, messages }}>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { fireEvent, render, waitFor } from '../../test-utils';
+import { render, waitFor } from '../../test-utils';
 
 import ResponsivePanel from './ResponsivePanel';
-import { Breakpoint } from '..';
+import { Breakpoint, Position } from '..';
 
 jest.mock('../bottomSheet', () => {
   // eslint-disable-next-line
@@ -35,7 +35,7 @@ describe('ResponsivePanel', () => {
     arrow: true,
     children: 'content',
     open: true,
-    position: ResponsivePanel.Position.TOP,
+    position: Position.TOP,
     title: 'title',
     anchorRef: jest.fn(),
     onClose: jest.fn(),
@@ -63,22 +63,6 @@ describe('ResponsivePanel', () => {
 
       expect(container).toMatchSnapshot();
     });
-
-    it('calls onClose with correct value', async () => {
-      await waitFor(() => {
-        render(<ResponsivePanel {...props}>children</ResponsivePanel>);
-      });
-
-      expect(props.onClose).not.toHaveBeenCalled();
-
-      fireEvent.click(getPanel());
-
-      expect(props.onClose).not.toHaveBeenCalled();
-
-      fireEvent.click(document);
-
-      expect(props.onClose).toHaveBeenCalled();
-    });
   });
 
   describe('on mobile', () => {
@@ -97,24 +81,5 @@ describe('ResponsivePanel', () => {
 
       expect(container).toMatchSnapshot();
     });
-
-    it('calls onClose with correct value', async () => {
-      await waitFor(() => {
-        render(<ResponsivePanel {...props}>children</ResponsivePanel>);
-      });
-
-      expect(props.onClose).not.toHaveBeenCalled();
-
-      fireEvent.click(getBottomSheet());
-
-      expect(props.onClose).not.toHaveBeenCalledWith();
-
-      fireEvent.click(document);
-
-      expect(props.onClose).toHaveBeenCalled();
-    });
   });
-
-  const getBottomSheet = () => document.querySelector('.np-bottom-sheet');
-  const getPanel = () => document.querySelector('.np-panel');
 });

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Chevron from '../chevron';
 
 import Option from '../common/Option';
+import { Position } from '../common';
 import './NavigationOption.css';
 
 const NavigationOption = ({
@@ -46,15 +47,13 @@ const NavigationOption = ({
           onClick(event);
         }
       }}
-      button={
-        <Chevron orientation={Chevron.Orientation.RIGHT} disabled={disabled} className="d-block" />
-      }
+      button={<Chevron orientation={Position.RIGHT} disabled={disabled} className="d-block" />}
     />
   );
 };
 
 NavigationOption.propTypes = {
-  as: PropTypes.elementType,
+  as: PropTypes.string,
   media: PropTypes.node,
   title: PropTypes.node.isRequired,
   content: PropTypes.node,

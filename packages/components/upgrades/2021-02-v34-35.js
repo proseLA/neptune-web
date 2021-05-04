@@ -1,3 +1,5 @@
+import { log } from './utils';
+
 const TYPE_REPLACEMENTS = {
   primary: 'Button.Type.ACCENT',
   secondary: 'Button.Type.ACCENT',
@@ -18,21 +20,15 @@ const transform = (file, api, options) => {
     trailingComma: true,
   };
 
-  const log = (message, level = 0) => {
-    if (options.verbose >= level) {
-      api.report(message);
-    }
-  };
-
   const j = api.jscodeshift;
   const root = j(file.source);
 
-  log('✨ All aboard the transformation train 🚂', 2);
+  log('All aboard the transformation train 🚂', 2);
   log(
-    '✨ Upgrading instances of Button from @transferwise/components. Please refer to components/upgrades/2021-02-v34-35.js for details.',
+    'Upgrading instances of Button from @transferwise/components. Please refer to components/upgrades/2021-02-v34-35.js for details.',
     1,
   );
-  log(`✨ Using the ${options.parser} parser.`, 2);
+  log(`Using the ${options.parser} parser.`, 2);
 
   const literalType = options.parser === 'tsx' ? 'StringLiteral' : 'Literal';
 
@@ -52,11 +48,11 @@ const transform = (file, api, options) => {
     return null;
   }
 
-  log('✨ Found import of Button from @transferwise/components, continuing 🛤', 1);
+  log('Found import of Button from @transferwise/components, continuing 🛤', 1);
 
   const buttons = root.findJSXElements('Button');
 
-  log('✨ Adding priorities for literal types', 2);
+  log('Adding priorities for literal types', 2);
 
   // Add in priorities for literal types such as <Button type="secondary"/> => <Button type="secondary" priority={Button.Priority.SECONDARY} />
   buttons
@@ -85,7 +81,7 @@ const transform = (file, api, options) => {
       ];
     });
 
-  log('✨ Adding priorities for expressive types', 2);
+  log('Adding priorities for expressive types', 2);
 
   // Add in priorities for expressive types such as <Button type={Button.Type.SECONDARY}/> => <Button type={Button.Type.SECONDARY} priority={Button.Priority.SECONDARY} />
   buttons
@@ -130,7 +126,7 @@ const transform = (file, api, options) => {
       ];
     });
 
-  log('✨ Replacing deprecated literal types', 2);
+  log('Replacing deprecated literal types', 2);
 
   // Replace literal types such as <Button type="primary"/> => <Button type={Button.Type.ACCENT} />
   buttons
@@ -154,7 +150,7 @@ const transform = (file, api, options) => {
       return j.jsxExpressionContainer(j.identifier(type));
     });
 
-  log('✨ Replacing deprecated expressive types', 2);
+  log('Replacing deprecated expressive types', 2);
 
   // Replace expressive types such as <Button type={Button.Type.PRIMARY}/> => <Button type={Button.Type.ACCENT} />
   buttons
@@ -189,7 +185,7 @@ const transform = (file, api, options) => {
       return j.jsxIdentifier(TYPE_REPLACEMENTS[type]);
     });
 
-  log('✨ Transformation complete, printing to source.', 1);
+  log('Transformation complete, printing to source.', 1);
 
   return root.toSource(printOptions);
 };

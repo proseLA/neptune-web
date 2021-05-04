@@ -1,5 +1,5 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { Badge, Avatar } from '@transferwise/components';
+import { Badge, Avatar, AvatarType, Theme, Size } from '@transferwise/components';
 import code from '../../../liveEditorCode/badge.code';
 const badge = (
   <div
@@ -18,7 +18,7 @@ const badge = (
   </div>
 );
 
-<LiveEditorBlock code={code} scope={{ Badge, Avatar }} />
+<LiveEditorBlock code={code} scope={{ Badge, Avatar, AvatarType, Theme, Size }} />
 <GeneratePropsTable componentName="Badge" />
 
 <table className="table table-condensed docs-table m-t-5">
@@ -26,7 +26,7 @@ const badge = (
     <tr>
       <th>Badge size</th>
       <th>Avatar size</th>
-      <th>Sizes</th>
+      <th>Size</th>
       <th>Preview</th>
     </tr>
   </thead>
@@ -39,22 +39,17 @@ const badge = (
         <br /> Mask: 2px
       </td>
       <td>
-        <Badge border={Badge.Border.LIGHT} size={Badge.Size.SMALL} badge={badge}>
-          <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
+        <Badge border={Theme.LIGHT} size={Size.SMALL} badge={badge}>
+          <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM}>
             AA
           </Avatar>
         </Badge>
         <Badge
-          border={Badge.Border.LIGHT}
-          size={Badge.Size.SMALL}
-          badge={
-            <img
-              src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-              alt=""
-            />
-          }
+          border={Theme.LIGHT}
+          size={Size.SMALL}
+          badge={<img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="" />}
         >
-          <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
+          <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM}>
             AA
           </Avatar>
         </Badge>
@@ -68,22 +63,17 @@ const badge = (
         <br /> Mask: 2px
       </td>
       <td>
-        <Badge border={Badge.Border.LIGHT} size={Badge.Size.MEDIUM} badge={badge}>
-          <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
+        <Badge border={Theme.LIGHT} size={Size.MEDIUM} badge={badge}>
+          <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM}>
             AA
           </Avatar>
         </Badge>
         <Badge
-          border={Badge.Border.LIGHT}
-          size={Badge.Size.MEDIUM}
-          badge={
-            <img
-              src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-              alt=""
-            />
-          }
+          border={Theme.LIGHT}
+          size={Size.MEDIUM}
+          badge={<img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="" />}
         >
-          <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
+          <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM}>
             AA
           </Avatar>
         </Badge>
@@ -97,22 +87,17 @@ const badge = (
         Mask: 3px
       </td>
       <td>
-        <Badge border={Badge.Border.LIGHT} size={Badge.Size.LARGE} badge={badge}>
-          <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.LARGE}>
+        <Badge border={Theme.LIGHT} size={Size.LARGE} badge={badge}>
+          <Avatar type={AvatarType.INITIALS} size={Size.LARGE}>
             AA
           </Avatar>
         </Badge>
         <Badge
-          border={Badge.Border.LIGHT}
-          size={Badge.Size.LARGE}
-          badge={
-            <img
-              src="https://wise.com/public-resources/assets/flags/square/gbp.svg"
-              alt=""
-            />
-          }
+          border={Theme.LIGHT}
+          size={Size.LARGE}
+          badge={<img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="" />}
         >
-          <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.LARGE}>
+          <Avatar type={AvatarType.INITIALS} size={Size.LARGE}>
             AA
           </Avatar>
         </Badge>

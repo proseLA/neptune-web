@@ -3,7 +3,7 @@
   return (
     <Pagination
       canFetchMorePages={false}
-      type={Pagination.Type.FULL}
+      type={PaginationType.FULL}
       numberOfPages={9}
       currentPageIndex={currentPageIndex}
       onClick={setCurrentPageIndex}

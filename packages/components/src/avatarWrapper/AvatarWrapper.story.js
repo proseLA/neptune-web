@@ -1,6 +1,7 @@
 import React from 'react';
 import { boolean, object, select, text } from '@storybook/addon-knobs';
 import AvatarWrapper from './AvatarWrapper';
+import { ProfileType } from '../common';
 
 export default {
   component: AvatarWrapper,
@@ -11,8 +12,8 @@ export const basic = () => {
   const showAvatar = boolean('Show avatar', false);
   const showBadge = boolean('Show badge', true);
   const profileType = select('Profile type', {
-    PERSONAL: AvatarWrapper.ProfileType.PERSONAL,
-    BUSINESS: AvatarWrapper.ProfileType.BUSINESS,
+    PERSONAL: ProfileType.PERSONAL,
+    BUSINESS: ProfileType.BUSINESS,
     undefined,
   });
   const name = text('Name', 'Chris P Bacon');

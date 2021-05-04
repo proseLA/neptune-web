@@ -1,5 +1,6 @@
-import '@transferwise/icons/lib/styles/main.min.css';
-
+/**
+ * Components
+ */
 export { default as Provider } from './provider';
 export { default as Badge } from './badge';
 export { default as Checkbox } from './checkbox';
@@ -42,12 +43,8 @@ export { default as Sticky } from './sticky';
 export { default as Chip } from './chip';
 export { default as Typeahead } from './typeahead';
 export { default as SnackbarPortal } from './snackbar/Snackbar';
-export {
-  default as SnackbarProvider,
-  SnackbarConsumer,
-  SnackbarContext,
-} from './snackbar/SnackbarProvider';
-export { default as useSnackbar } from './snackbar/useSnackbar';
+export { default as SnackbarProvider } from './snackbar/SnackbarProvider';
+export { SnackbarConsumer, SnackbarContext } from './snackbar/SnackbarContext';
 export { default as Tabs } from './tabs';
 export { default as OverlayHeader } from './overlayHeader';
 export { default as Image } from './image';
@@ -60,4 +57,54 @@ export { default as Nudge } from './nudge';
 export { default as InlineAlert } from './inlineAlert';
 export { default as AvatarWrapper } from './avatarWrapper';
 export { default as Info } from './info';
-export { default as Logo, LogoType } from './logo';
+export { default as Logo } from './logo';
+
+/**
+ * Hooks
+ */
+export { default as useSnackbar } from './snackbar/useSnackbar';
+
+/**
+ * Enums
+ */
+export {
+  Size,
+  Width,
+  Sentiment,
+  Priority,
+  ControlType,
+  Type,
+  Theme,
+  DateMode,
+  MonthFormat,
+  Position,
+  Scroll,
+  ProfileType,
+  Breakpoint,
+  Layout,
+  Status,
+  MarkdownNodeType,
+} from './common';
+export { AvatarType } from './avatar';
+export { InfoPresentation } from './info';
+export { UploadStep } from './upload';
+export { DecisionPresentation, DecisionType } from './decision';
+export { AlertArrowPosition } from './alert/withArrow';
+export { LogoType } from './logo';
+
+/**
+ * Utils
+ */
+export {
+  SUPPORTED_LANGUAGES,
+  DEFAULT_LANG,
+  DEFAULT_LOCALE,
+  adjustLocale,
+  getLangFromLocale,
+  getCountryFromLocale,
+} from './common';
+
+/**
+ * Translations
+ */
+export { default as translations } from './i18n';

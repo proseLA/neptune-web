@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { InlineAlert } from '@transferwise/components';
+import { InlineAlert, Sentiment } from '@transferwise/components';
 import Field, { FieldTypes, FieldFormats } from './Field';
 import FormControl from '../formControl/FormControl';
 import { FormControlType } from '../common';
@@ -293,7 +293,7 @@ describe('Field', () => {
 
       const alertProps = alert.first().props();
       expect(alertProps.children.props.children).toBe('Custom error');
-      expect(alertProps.type).toBe(InlineAlert.Type.ERROR);
+      expect(alertProps.type).toBe(Sentiment.ERROR);
     });
 
     describe('when the value changes', () => {
@@ -323,7 +323,7 @@ describe('Field', () => {
 
         const alertProps = alert.first().props();
         expect(alertProps.children.props.children).toBe('New custom error');
-        expect(alertProps.type).toBe(InlineAlert.Type.ERROR);
+        expect(alertProps.type).toBe(Sentiment.ERROR);
       });
     });
   });
@@ -365,7 +365,7 @@ describe('Field', () => {
 
         const alertProps = alert.first().props();
         expect(alertProps.children.props.children).toBe('Some useful hint');
-        expect(alertProps.type).toBe(InlineAlert.Type.INFO);
+        expect(alertProps.type).toBe(Sentiment.INFO);
       });
     });
 
@@ -425,7 +425,7 @@ describe('Field', () => {
 
       const alertProps = alert.first().props();
       expect(alertProps.children.props.children).toBe('Warning message');
-      expect(alertProps.type).toBe(InlineAlert.Type.WARNING);
+      expect(alertProps.type).toBe(Sentiment.WARNING);
     });
   });
 

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Decision, Avatar } from '@transferwise/components';
+import { Decision, Avatar, DecisionPresentation, DecisionType } from '@transferwise/components';
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
 
 // @ts-ignore
@@ -17,7 +17,11 @@ export default function PageContent(): ReactElement {
         When you need to present more than four blocks, you can use <code>LIST_BLOCK_GRID</code>{' '}
         presentation.
       </p>
-      <LiveEditorBlock code={code} scope={{ Decision, Avatar }} display="vertical" />
+      <LiveEditorBlock
+        code={code}
+        scope={{ Decision, Avatar, DecisionPresentation, DecisionType }}
+        display="vertical"
+      />
       <p>
         Decision can be used for illustrating major decisions for the user. Because blocks will not
         wrap onto multiple lines, we suggest keeping the number of options under four when using

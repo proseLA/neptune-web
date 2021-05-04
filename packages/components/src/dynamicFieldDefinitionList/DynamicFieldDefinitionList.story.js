@@ -1,6 +1,7 @@
 import React from 'react';
 import { select, text, number, date } from '@storybook/addon-knobs';
 import DynamicFieldDefinitionList from './DynamicFieldDefinitionList';
+import { Layout } from '../common';
 
 export default {
   component: DynamicFieldDefinitionList,
@@ -20,7 +21,7 @@ export const basic = () => {
   return (
     <DynamicFieldDefinitionList
       title="title"
-      layout={DynamicFieldDefinitionList.Layout.VERTICAL_TWO_COLUMN}
+      layout={Layout.VERTICAL_TWO_COLUMN}
       model={{
         text: textDF,
         number: numberDF,

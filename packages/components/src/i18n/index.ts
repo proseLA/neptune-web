@@ -13,7 +13,7 @@ import ru from './ru.json';
 import tr from './tr.json';
 import zh from './zh.json';
 
-export default {
+const translations: Record<string, Record<string, string>> = {
   en,
   de,
   es,
@@ -29,3 +29,5 @@ export default {
   tr,
   zh,
 };
+
+export default translations;

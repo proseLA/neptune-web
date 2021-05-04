@@ -7,7 +7,7 @@ import { Size, Key } from '../common';
 import './Tile.css';
 
 export const Tile = ({ className, description, disabled, href, media, onClick, size, title }) => {
-  const isSmall = size === Tile.Size.SMALL;
+  const isSmall = size === Size.SMALL;
 
   return (
     <a
@@ -44,8 +44,6 @@ export const Tile = ({ className, description, disabled, href, media, onClick, s
   );
 };
 
-Tile.Size = Size;
-
 Tile.propTypes = {
   /** Classes to apply to the Tile container */
   className: PropTypes.string,
@@ -57,7 +55,7 @@ Tile.propTypes = {
   /** Function called onClick or onKeyDown */
   onClick: PropTypes.func.isRequired,
   /** The size applied to Tile */
-  size: PropTypes.oneOf([Tile.Size.SMALL, Tile.Size.MEDIUM]),
+  size: PropTypes.oneOf(['sm', 'md']),
   title: PropTypes.node.isRequired,
 };
 
@@ -65,7 +63,7 @@ Tile.defaultProps = {
   className: '',
   description: null,
   disabled: false,
-  size: Tile.Size.MEDIUM,
+  size: Size.MEDIUM,
 };
 
 export default Tile;

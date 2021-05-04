@@ -2,11 +2,12 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { Plus } from '@transferwise/icons';
 import { render, screen, userEvent } from '../test-utils';
+import { ControlType, Priority } from '../common';
 
 import CircularButton from './CircularButton';
 
-const { ACCENT, POSITIVE, NEGATIVE } = CircularButton.Type;
-const { PRIMARY, SECONDARY } = CircularButton.Priority;
+const { ACCENT, POSITIVE, NEGATIVE } = ControlType;
+const { PRIMARY, SECONDARY } = Priority;
 
 describe('CircularButton', () => {
   const props = {

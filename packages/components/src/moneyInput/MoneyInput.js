@@ -288,8 +288,6 @@ function sortOptionsLabelsToFirst(options, query) {
   });
 }
 
-MoneyInput.Size = { SMALL: Size.SMALL, MEDIUM: Size.MEDIUM, LARGE: Size.LARGE };
-
 MoneyInput.propTypes = {
   id: PropTypes.string,
   currencies: PropTypes.arrayOf(Currency).isRequired,
@@ -297,7 +295,7 @@ MoneyInput.propTypes = {
   onCurrencyChange: PropTypes.func,
   placeholder: PropTypes.number,
   amount: PropTypes.number,
-  size: PropTypes.oneOf([MoneyInput.Size.SMALL, MoneyInput.Size.MEDIUM, MoneyInput.Size.LARGE]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   onAmountChange: PropTypes.func,
   addon: PropTypes.node,
   searchPlaceholder: PropTypes.string,
@@ -312,7 +310,7 @@ MoneyInput.propTypes = {
 
 MoneyInput.defaultProps = {
   id: null,
-  size: MoneyInput.Size.LARGE,
+  size: Size.LARGE,
   addon: null,
   searchPlaceholder: '',
   onSearchChange: undefined,
@@ -324,5 +322,9 @@ MoneyInput.defaultProps = {
   onCustomAction: null,
   classNames: {},
 };
+
+// this export is necessary for react-to-typescript-definitions
+// to be able to properly generate TS types, this is due to us wrapping this component in `injectIntl` before exporting
+export { MoneyInput };
 
 export default injectIntl(MoneyInput);

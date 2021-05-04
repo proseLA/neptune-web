@@ -309,11 +309,11 @@ export default class Select extends Component {
         {canSearch && (
           <SearchBox
             classNames={this.props.classNames}
-            handleSearchChange={this.handleSearchChange}
+            onChange={this.handleSearchChange}
             onClick={stopPropagation}
             value={searchValue || this.state.searchValue}
             ref={this.searchBoxRef}
-            searchPlaceholder={searchPlaceholder}
+            placeholder={searchPlaceholder}
           />
         )}
         {this.renderOptions()}

@@ -1,1 +1,2 @@
-export { default, LogoType } from './Logo';
+export { LogoType } from './logoTypes';
+export { default } from './Logo';

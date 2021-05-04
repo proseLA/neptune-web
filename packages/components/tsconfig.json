@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "lib": ["dom", "dom.iterable"],
+    "allowJs": true,
+    // enable this to start scan JS files (according to regex at `include` and `exclude` props)
+    // consider to delete this prop once we don't have JS
+    "checkJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "declaration": true,
+    "declarationDir": "build/types",
+    "emitDeclarationOnly": true,
+    // Ensure that Babel can safely transpile files in the TypeScript project
+    "isolatedModules": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "upgrades", "build", "scripts", "test", "public"]
+}

@@ -6,6 +6,7 @@ import { getElasticDragDifference } from './utils';
 import Tabs from './Tabs';
 import Tab from './Tab';
 import TabPanel from './TabPanel';
+import { Size, Width } from '../common';
 
 jest.useFakeTimers();
 
@@ -186,7 +187,7 @@ describe('Tabs', () => {
       expect(leftSpacer(component).children()).toHaveLength(0);
       expect(leftSpacer(component).children()).toHaveLength(0);
 
-      component.setProps({ transitionSpacing: Tabs.SpacerSizes.LARGE });
+      component.setProps({ transitionSpacing: Size.LARGE });
 
       expect(leftSpacer(component).children()).toHaveLength(1);
       expect(rightSpacer(component).children()).toHaveLength(1);
@@ -203,16 +204,16 @@ describe('Tabs', () => {
 
       component.setState({ isAnimating: true });
 
-      component.setProps({ transitionSpacing: Tabs.SpacerSizes.EXTRA_SMALL });
+      component.setProps({ transitionSpacing: Size.EXTRA_SMALL });
       expect(spacerWidth()).toBe('8px');
 
-      component.setProps({ transitionSpacing: Tabs.SpacerSizes.SMALL });
+      component.setProps({ transitionSpacing: Size.SMALL });
       expect(spacerWidth()).toBe('16px');
 
-      component.setProps({ transitionSpacing: Tabs.SpacerSizes.MEDIUM });
+      component.setProps({ transitionSpacing: Size.MEDIUM });
       expect(spacerWidth()).toBe('24px');
 
-      component.setProps({ transitionSpacing: Tabs.SpacerSizes.LARGE });
+      component.setProps({ transitionSpacing: Size.LARGE });
       expect(spacerWidth()).toBe('32px');
     });
   });
@@ -227,17 +228,17 @@ describe('Tabs', () => {
     });
 
     test.each`
-      selected | headerWidth               | lineTranslateX | sliderTranslateX
-      ${1}     | ${Tabs.HeaderWidth.BLOCK} | ${'100%'}      | ${'-300px'}
-      ${99}    | ${Tabs.HeaderWidth.BLOCK} | ${'400%'}      | ${'-900px'}
-      ${3}     | ${Tabs.HeaderWidth.BLOCK} | ${'300%'}      | ${'-600px'}
-      ${4}     | ${Tabs.HeaderWidth.BLOCK} | ${'400%'}      | ${'-900px'}
-      ${5}     | ${Tabs.HeaderWidth.BLOCK} | ${'400%'}      | ${'-900px'}
-      ${1}     | ${Tabs.HeaderWidth.AUTO}  | ${'60px'}      | ${'-300px'}
-      ${99}    | ${Tabs.HeaderWidth.AUTO}  | ${'240px'}     | ${'-900px'}
-      ${3}     | ${Tabs.HeaderWidth.AUTO}  | ${'180px'}     | ${'-600px'}
-      ${4}     | ${Tabs.HeaderWidth.AUTO}  | ${'240px'}     | ${'-900px'}
-      ${5}     | ${Tabs.HeaderWidth.AUTO}  | ${'240px'}     | ${'-900px'}
+      selected | headerWidth    | lineTranslateX | sliderTranslateX
+      ${1}     | ${Width.BLOCK} | ${'100%'}      | ${'-300px'}
+      ${99}    | ${Width.BLOCK} | ${'400%'}      | ${'-900px'}
+      ${3}     | ${Width.BLOCK} | ${'300%'}      | ${'-600px'}
+      ${4}     | ${Width.BLOCK} | ${'400%'}      | ${'-900px'}
+      ${5}     | ${Width.BLOCK} | ${'400%'}      | ${'-900px'}
+      ${1}     | ${Width.AUTO}  | ${'60px'}      | ${'-300px'}
+      ${99}    | ${Width.AUTO}  | ${'240px'}     | ${'-900px'}
+      ${3}     | ${Width.AUTO}  | ${'180px'}     | ${'-600px'}
+      ${4}     | ${Width.AUTO}  | ${'240px'}     | ${'-900px'}
+      ${5}     | ${Width.AUTO}  | ${'240px'}     | ${'-900px'}
     `(
       'when selecting tab number %selected when headerWidth is set to %headerWidth',
       ({ selected, headerWidth, lineTranslateX, sliderTranslateX }) => {
@@ -264,7 +265,7 @@ describe('Tabs', () => {
     );
 
     it('changes to full width tabs and updates translation value when width is larger than container', () => {
-      component.setProps({ headerWidth: Tabs.HeaderWidth.AUTO, selected: 1 });
+      component.setProps({ headerWidth: Width.AUTO, selected: 1 });
 
       const getLineStyles = () => getComputedStyle(component.find('.tabs__line').getDOMNode());
 
@@ -284,12 +285,12 @@ describe('Tabs', () => {
     it('starts the transition offset by the spacer when one is provided', () => {
       const getSliderStyles = () => getComputedStyle(component.find('.tabs__slider').getDOMNode());
 
-      component.setProps({ transitionSpacing: Tabs.SpacerSizes.NONE, selected: 3 });
+      component.setProps({ transitionSpacing: Size.NONE, selected: 3 });
       component.setState({ isAnimating: true });
 
       expect(getSliderStyles().getPropertyValue('transform')).toBe('translateX(-600px)');
 
-      component.setProps({ transitionSpacing: Tabs.SpacerSizes.LARGE });
+      component.setProps({ transitionSpacing: Size.LARGE });
 
       expect(getSliderStyles().getPropertyValue('transform')).toBe('translateX(-632px)');
     });

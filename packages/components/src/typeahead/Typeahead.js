@@ -27,10 +27,6 @@ const DEFAULT_MIN_QUERY_LENGTH = 3;
 const SEARCH_DELAY = 200;
 
 export default class Typeahead extends Component {
-  static Size = Size;
-
-  static Type = Sentiment;
-
   constructor(props) {
     super(props);
     const { searchDelay, initialValue, multiple } = props;
@@ -380,9 +376,9 @@ export default class Typeahead extends Component {
       dropdownOpen,
     });
 
-    const hasError = errorState || (alert && alert.type === InlineAlert.Type.ERROR);
-    const displayAlert = (!errorState && alert) || (alert && alert.type === InlineAlert.Type.ERROR);
-    const hasWarning = displayAlert && alert.type === InlineAlert.Type.WARNING;
+    const hasError = errorState || (alert && alert.type === Sentiment.ERROR);
+    const displayAlert = (!errorState && alert) || (alert && alert.type === Sentiment.ERROR);
+    const hasWarning = displayAlert && alert.type === Sentiment.WARNING;
     return (
       <div
         id={id}
@@ -467,7 +463,7 @@ Typeahead.propTypes = {
   placeholder: PropTypes.string,
   alert: PropTypes.shape({
     message: PropTypes.string.isRequired,
-    type: PropTypes.oneOf([Typeahead.Type.ERROR, Typeahead.Type.WARNING]).isRequired,
+    type: PropTypes.oneOf(['error', 'warning']).isRequired,
   }),
   footer: PropTypes.node,
   validateChip: PropTypes.func,
@@ -476,7 +472,7 @@ Typeahead.propTypes = {
   onInputChange: PropTypes.func,
   onFocus: PropTypes.func,
   chipSeparators: PropTypes.arrayOf(PropTypes.string),
-  size: PropTypes.oneOf([Typeahead.Size.MEDIUM, Typeahead.Size.LARGE]),
+  size: PropTypes.oneOf(['md', 'lg']),
   inputAutoComplete: PropTypes.string,
   autoFillOnBlur: PropTypes.bool,
 };
@@ -495,7 +491,7 @@ Typeahead.defaultProps = {
   placeholder: null,
   alert: null,
   footer: null,
-  size: Typeahead.Size.MEDIUM,
+  size: Size.MEDIUM,
   chipSeparators: [],
   initialValue: [],
   onSearch: null,
