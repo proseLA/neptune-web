@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
 
-import { Search as SearchIcon } from '@transferwise/icons';
 import Option from './option';
 import Chevron from '../chevron';
 import KeyCodes from '../common/keyCodes';
@@ -15,6 +14,7 @@ import {
 import { addClassAndTriggerReflow, removeClass } from './domHelpers';
 import Dimmer from '../dimmer';
 import SlidingPanel from '../slidingPanel';
+import SearchBox from './searchBox';
 
 function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);
@@ -314,6 +314,8 @@ export default class Select extends Component {
       placeholder,
       required,
       search,
+      searchValue,
+      searchPlaceholder,
     } = this.props;
     const { open } = this.state;
     const s = this.style;
@@ -329,7 +331,16 @@ export default class Select extends Component {
     const list = (
       <ul className={dropdownClass} role="menu">
         {!required && !canSearch && placeholder ? this.renderPlaceHolderOption() : ''}
-        {canSearch ? this.renderSearchBox() : ''}
+        {canSearch && (
+          <SearchBox
+            classNames={this.props.classNames}
+            onChange={this.handleSearchChange}
+            onClick={stopPropagation}
+            value={searchValue || this.state.searchValue}
+            ref={this.searchBoxRef}
+            placeholder={searchPlaceholder}
+          />
+        )}
         {this.renderOptions()}
       </ul>
     );
@@ -339,32 +350,6 @@ export default class Select extends Component {
 
   renderOptions() {
     return this.getOptions().map(this.renderOption);
-  }
-
-  renderSearchBox() {
-    const { searchValue, searchPlaceholder } = this.props;
-    return (
-      <li className={this.style('tw-dropdown-item--divider')}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a className={`${this.style('tw-select-filter-link')} ${this.style('p-a-0')}`}>
-          <div className={this.style('input-group')}>
-            <span className={this.style('input-group-addon')}>
-              <SearchIcon className={`${this.style('tw-icon')} ${this.style('tw-icon-search')}`} />
-            </span>
-            <input
-              type="text"
-              className={`${this.style('tw-select-filter')} ${this.style('form-control')}`}
-              placeholder={searchPlaceholder}
-              onChange={this.handleSearchChange}
-              onClick={stopPropagation}
-              value={searchValue || this.state.searchValue}
-              ref={this.searchBoxRef}
-              spellCheck="false"
-            />
-          </div>
-        </a>
-      </li>
-    );
   }
 
   renderPlaceHolderOption() {

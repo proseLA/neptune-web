@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBox renders 1`] = `
+<div>
+  <li
+    class="tw-dropdown-item--divider"
+  >
+    <a
+      class="tw-select-filter-link p-a-0"
+    >
+      <div
+        class="input-group"
+      >
+        <span
+          class="input-group-addon"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-search tw-icon tw-icon-search"
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="16"
+              width="16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M11.35 12.484a7 7 0 111.133-1.133l3.517 3.508L14.86 16l-3.51-3.515zM12.4 7A5.4 5.4 0 111.6 7a5.4 5.4 0 0110.8 0z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <input
+          class="tw-select-filter form-control"
+          placeholder="placeholder"
+          spellcheck="false"
+          type="text"
+          value="value"
+        />
+      </div>
+    </a>
+  </li>
+</div>
+`;
