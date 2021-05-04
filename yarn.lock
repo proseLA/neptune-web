@@ -4393,9 +4393,9 @@
   integrity sha512-iLa+iZIIGnweOta2co2RUwGHndp9PqJtpVcijM1n1tEd6zMJMA1zK+m5n6rum1o8GuV/Z4E7SxzFKvvTNn1Zsw==
 
 "@transferwise/icons@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@transferwise/icons/-/icons-2.6.0.tgz#f9dc80d03d351e5ec5f9d8ce8a24b6a261fd4e47"
-  integrity sha512-SLSn+1oSRMHElzVGWFfTrsB3b7sEPPIXnvkLaAXZUZfZ+HFXhY2GT1ZtjTJqJoXHQLFQUaPDElY2KsKxjneRyw==
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@transferwise/icons/-/icons-2.8.0.tgz#ae3f4a79d2876025d9dc5add257f314be517c444"
+  integrity sha512-lYrsdk3jXIfyOsZo6e9Ast+3LDSNlRGWr9tphvsdF8ar1c7IXdrKC4dl9VQdbkDLFsOUmiQ6lvWt5U/g9pBEaw==
 
 "@transferwise/neptune-tokens@^1.0.0":
   version "1.2.0"
