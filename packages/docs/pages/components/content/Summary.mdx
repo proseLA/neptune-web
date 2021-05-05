@@ -1,4 +1,4 @@
-import { Summary } from '@transferwise/components';
+import { Summary, Status } from '@transferwise/components';
 import { Home as HomeIcon } from '@transferwise/icons';
 
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
@@ -7,7 +7,7 @@ import code from '../../../liveEditorCode/summary.code';
 For displaying a list of requirements, some instructions, or perhaps some general information. Always has an icon and title, can also have a content block and a help icon with some popover text.
 
 <div>
-  <LiveEditorBlock code={code} scope={{ Summary, HomeIcon }} />
+  <LiveEditorBlock code={code} scope={{ Summary, Status, HomeIcon }} />
   <GeneratePropsTable componentName="Summary" />
 </div>
 

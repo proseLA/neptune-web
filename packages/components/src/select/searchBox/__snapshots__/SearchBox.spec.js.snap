@@ -5,9 +5,8 @@ exports[`SearchBox renders 1`] = `
   <li
     class="tw-dropdown-item--divider"
   >
-    <button
-      class="tw-select-filter-link p-a-0 btn-link"
-      type="button"
+    <a
+      class="tw-select-filter-link p-a-0"
     >
       <div
         class="input-group"
@@ -36,13 +35,13 @@ exports[`SearchBox renders 1`] = `
         </span>
         <input
           class="tw-select-filter form-control"
-          placeholder="searchPlaceholder"
+          placeholder="placeholder"
           spellcheck="false"
           type="text"
           value="value"
         />
       </div>
-    </button>
+    </a>
   </li>
 </div>
 `;

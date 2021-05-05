@@ -1,5 +1,5 @@
 import { getLangFromLocale, adjustLocale, getCountryFromLocale, SUPPORTED_LANGUAGES } from '.';
-import translationFiles from '../../../i18n';
+import translationFiles from '../../i18n';
 
 describe('locale utils', () => {
   beforeAll(() => {
@@ -87,7 +87,7 @@ describe('locale utils', () => {
       for (let i = 0; i < SUPPORTED_LANGUAGES.length; i += 1) {
         const locale = SUPPORTED_LANGUAGES[i];
         // eslint-disable-next-line no-await-in-loop
-        const file = await import(`../../../i18n/${locale}.json`);
+        const file = await import(`../../i18n/${locale}.json`);
         expect(file).not.toBe(null);
         expect(file.default).toBe(translationFiles[locale]);
       }

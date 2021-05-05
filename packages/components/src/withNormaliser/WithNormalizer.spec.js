@@ -6,7 +6,30 @@ import { render, screen } from '../test-utils';
 import { Select } from '..';
 import WithNormaliser from '.';
 
+jest.mock('../common/Panel/', () => {
+  const { forwardRef } = jest.requireActual('react');
+  const Position = jest.requireActual('../common');
+  return {
+    Position,
+    // eslint-disable-next-line react/prop-types
+    ...forwardRef(({ open, children }, ref) =>
+      open ? (
+        <div ref={ref} className="np-responsive-panel">
+          {children}
+        </div>
+      ) : null,
+    ),
+  };
+});
+
 describe('WithNormaliser', () => {
+  beforeAll(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
   it('when user types a string it returns string value', () => {
     const onChange = jest.fn();
     render(

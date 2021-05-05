@@ -31,9 +31,13 @@ import '@transferwise/icons/lib/styles/main.min.css';
 // This is only necessary if you are using the UMD build
 import '@transferwise/components/build/main.css';
 
-import { Provider, Button } from '@transferwise/components';
-import componentTranslations from '@transferwise/components/build/i18n';
-import { getLangFromLocale } from '@transferwise/components/build/es/polyfill/common/locale';
+import {
+  Provider,
+  Button,
+  Size,
+  getLangFromLocale,
+  translations as componentTranslations,
+} from '@transferwise/components';
 
 import appTranslations from '...';
 
@@ -46,7 +50,7 @@ export default function App() {
     // See `Translations and the Provider` below for more information
     <Provider i18n={{ locale, messages }}>
       ...
-      <Button size={Button.Size.SMALL} block>
+      <Button size={Size.SMALL} block>
         ...
       </Button>
     </Provider>
@@ -73,9 +77,11 @@ If your code already uses `react-intl` and its providers (`RawIntlProvider`, `In
 ```js
 import appTranslations from '...';
 
-import { Provider } from '@transferwise/components';
-import componentTranslations from '@transferwise/components/build/i18n';
-import { getLangFromLocale } from '@transferwise/components/build/es/polyfill/common/locale';
+import {
+  Provider,
+  getLangFromLocale,
+  translations as componentTranslations
+} from '@transferwise/components';
 
 export default function App() {
   // locale is your current locale, e.g. en-GB, en_GB or es
@@ -93,9 +99,11 @@ If you are not using `react-intl`, just pass the component translations to `Prov
 import { TranslationProvider } from 'retranslate';
 import appTranslations from '...';
 
-import { Provider } from '@transferwise/components';
-import componentTranslations from '@transferwise/components/build/i18n';
-import { getLangFromLocale } from '@transferwise/components/build/es/polyfill/common/locale';
+import {
+  Provider,
+  getLangFromLocale,
+  translations as componentTranslations
+} from '@transferwise/components';
 
 export default function App() {
   // locale is your current locale, e.g. en-GB, en_GB or es
@@ -120,7 +128,7 @@ You may need to add `Provider` to your development environment for our component
 You do not need to map your locales before passing them to `Provider`, but if you want to access the adjusted locale you can access the method we use:
 
 ```js
-import { adjustLocale } from '@transferwise/components/build/es/polyfill/common/locale';
+import { adjustLocale } from '@transferwise/components';
 
 // Will adjust, or return null if the locale is not recognised
 const adjustedLocale = adjustLocale(locale);
@@ -144,7 +152,7 @@ import {
   getCountryFromLocale,
   // Lang code (iso2) for the provided locale, or null if the locale is invalid
   getLangFromLocale,
-} from '@transferwise/components/build/es/polyfill/common/locale';
+} from '@transferwise/components';
 ```
 
 ### Loading translation files
@@ -158,9 +166,6 @@ import de from '@transferwise/components/build/i18n/de.json';
 // Dynamically
 const locale = 'zh-HK';
 import(`@transferwise/components/build/i18n/${locale}.json`);
-
-// Load them all at once
-import translations from '@transferwise/components/build/i18n';
 ```
 
 ## Advanced CSS Usage

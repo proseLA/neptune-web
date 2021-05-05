@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
+import { Position, Key } from '../common';
 
 import Chevron from '../chevron';
 import Option from '../common/Option';
 import './Card.css';
-import { Key } from '../common';
 
 const Card = React.forwardRef((props, ref) => {
   const {
@@ -54,11 +54,7 @@ const Card = React.forwardRef((props, ref) => {
           title={title}
           content={details}
           decision={false}
-          button={
-            children && (
-              <Chevron orientation={isOpen ? Chevron.Orientation.TOP : Chevron.Orientation.DOWN} />
-            )
-          }
+          button={children && <Chevron orientation={isOpen ? Position.TOP : Position.DOWN} />}
           inverseMediaCircle={isOpen}
         />
       </div>
@@ -82,7 +78,7 @@ const Card = React.forwardRef((props, ref) => {
 const hasChildren = ({ children }) => children;
 
 Card.propTypes = {
-  as: PropTypes.elementType,
+  as: PropTypes.string,
   // eslint-disable-next-line
   isExpanded: requiredIf(PropTypes.bool, hasChildren),
   title: PropTypes.node.isRequired,

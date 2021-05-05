@@ -3,6 +3,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, getByRole } from '../test-utils';
 import InlineAlert from './InlineAlert';
+import { Sentiment } from '../common';
 
 describe('InlineAlert', () => {
   let component;
@@ -38,22 +39,22 @@ describe('InlineAlert', () => {
     };
 
     it('renders info', () => {
-      component = getComponentWithType(InlineAlert.Type.INFO);
+      component = getComponentWithType(Sentiment.INFO);
       expect(component.className).toContain('alert-info');
     });
 
     it('renders success', () => {
-      component = getComponentWithType(InlineAlert.Type.SUCCESS);
+      component = getComponentWithType(Sentiment.SUCCESS);
       expect(component.className).toContain('alert-success');
     });
 
     it('renders error', () => {
-      component = getComponentWithType(InlineAlert.Type.ERROR);
+      component = getComponentWithType(Sentiment.ERROR);
       expect(component.className).toContain('alert-danger');
     });
 
     it('renders warning', () => {
-      component = getComponentWithType(InlineAlert.Type.WARNING);
+      component = getComponentWithType(Sentiment.WARNING);
       expect(component.className).toContain('alert-warning');
     });
   });

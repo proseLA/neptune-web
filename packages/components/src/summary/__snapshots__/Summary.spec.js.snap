@@ -80,34 +80,9 @@ exports[`Summary renders full component 1`] = `
               </button>
             </span>
             <div
-              class="np-size-swapper d-flex"
+              class="np-size-swapper d-inline-flex"
               style="visibility: hidden;"
-            >
-              <div
-                class="np-panel np-popover__container"
-                style="position: absolute; left: 0px; top: 0px;"
-              >
-                <div
-                  class="np-panel__content"
-                >
-                  <div
-                    aria-hidden="true"
-                    class="np-popover__content"
-                    role="tooltip"
-                  >
-                    <div
-                      class="np-popover__title m-b-1"
-                    >
-                      title
-                    </div>
-                    description
-                  </div>
-                  <div
-                    class="np-panel__arrow"
-                  />
-                </div>
-              </div>
-            </div>
+            />
           </span>
         </span>
       </div>
@@ -162,34 +137,9 @@ exports[`Summary renders full component 1`] = `
           </button>
         </span>
         <div
-          class="np-size-swapper d-flex"
+          class="np-size-swapper d-inline-flex"
           style="visibility: hidden;"
-        >
-          <div
-            class="np-panel np-popover__container"
-            style="position: absolute; left: 0px; top: 0px;"
-          >
-            <div
-              class="np-panel__content"
-            >
-              <div
-                aria-hidden="true"
-                class="np-popover__content"
-                role="tooltip"
-              >
-                <div
-                  class="np-popover__title m-b-1"
-                >
-                  title
-                </div>
-                description
-              </div>
-              <div
-                class="np-panel__arrow"
-              />
-            </div>
-          </div>
-        </div>
+        />
       </span>
     </span>
   </div>

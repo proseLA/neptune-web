@@ -8,7 +8,7 @@ import Option from './option';
 import KEY_CODES from '../common/keyCodes';
 import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
 
-jest.mock('../common/responsivePanel/', () => {
+jest.mock('../common/Panel/', () => {
   const { forwardRef } = jest.requireActual('react');
   const Position = jest.requireActual('../common');
   return {
@@ -28,12 +28,21 @@ describe('Select', () => {
   let component;
   let props;
 
+  beforeAll(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
+
   beforeEach(() => {
     // Need to reset innerWidth for portal tests
     window.innerWidth = 1024;
     window.matchMedia = () => {
       return { matches: false };
     };
+
     props = {
       onChange: jest.fn(),
       options: [

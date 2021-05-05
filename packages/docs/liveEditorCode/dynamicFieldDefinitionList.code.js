@@ -1,6 +1,6 @@
 <DynamicFieldDefinitionList
   title="This is an awesome component"
-  layout={DynamicFieldDefinitionList.Layout.VERTICAL_TWO_COLUMN}
+  layout={Layout.VERTICAL_TWO_COLUMN}
   model={{
     text: 'helloworld',
     number: 123456,

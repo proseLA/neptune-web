@@ -1,13 +1,12 @@
 import React, { StrictMode } from 'react';
 import { select } from '@storybook/addon-knobs';
-
-import { Provider } from '@transferwise/components';
 import {
+  Provider,
   getLangFromLocale,
   DEFAULT_LOCALE,
   DEFAULT_LANG,
-} from '@transferwise/components/build/es/polyfill/common/locale';
-import componentTranslations from '@transferwise/components/build/i18n';
+  translations as componentTranslations,
+} from '@transferwise/components';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';

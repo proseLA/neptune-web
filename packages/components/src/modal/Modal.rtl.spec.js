@@ -1,12 +1,13 @@
 import React from 'react';
 import { render, fireEvent, screen } from '../test-utils';
 import Modal from './Modal';
+import { Position, Scroll } from '../common';
 
 describe('Modal', () => {
   const props = {
     onClose: jest.fn(),
     body: 'Some body',
-    position: Modal.Position.TOP,
+    position: Position.TOP,
   };
 
   beforeEach(() => {
@@ -18,7 +19,7 @@ describe('Modal', () => {
     expect(getContainer()).toHaveClass('align-items-start');
     expect(getContainer()).not.toHaveClass('align-items-center');
 
-    rerender(<Modal {...props} open position={Modal.Position.CENTER} />);
+    rerender(<Modal {...props} open position={Position.CENTER} />);
     expect(getContainer()).toHaveClass('align-items-center');
     expect(getContainer()).not.toHaveClass('align-items-start');
   });
@@ -27,7 +28,7 @@ describe('Modal', () => {
     const { rerender } = render(<Modal {...props} open />);
     expect(getModal()).not.toHaveClass('tw-modal--content');
 
-    rerender(<Modal {...props} open scroll={Modal.Scroll.CONTENT} />);
+    rerender(<Modal {...props} open scroll={Scroll.CONTENT} />);
     expect(getModal()).toHaveClass('tw-modal--content');
   });
 

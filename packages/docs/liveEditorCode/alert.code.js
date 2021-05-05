@@ -9,7 +9,7 @@
       }}
       message="Payments sent to your bank details **today** might not arrive in time for the holidays."
       onDismiss={() => setDismissed(true)}
-      type={Alert.Type.POSITIVE}
+      type={Sentiment.POSITIVE}
     />
   );
 };

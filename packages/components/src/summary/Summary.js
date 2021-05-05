@@ -7,10 +7,10 @@ import {
   PendingCircle as PendingCircleIcon,
 } from '@transferwise/icons';
 import requiredIf from 'react-required-if';
+import { deprecated } from '../utilities';
 
 import Info from '../info';
-import { Status } from '../common';
-import { deprecated } from '../utilities';
+import { Status, Size } from '../common';
 
 import messages from './Summary.messages';
 import './Summary.css';
@@ -92,18 +92,12 @@ const Summary = ({
           className="m-l-2 hidden-sm hidden-md hidden-lg hidden-xl"
           content={info.content}
           presentation={info.presentation}
-          size={Info.Size.LARGE}
+          size={Size.LARGE}
           title={info.title}
         />
       )}
     </Element>
   );
-};
-
-Summary.Status = {
-  NOT_DONE: Status.NOT_DONE,
-  DONE: Status.DONE,
-  PENDING: Status.PENDING,
 };
 
 Summary.propTypes = {
@@ -116,10 +110,10 @@ Summary.propTypes = {
     onClick: PropTypes.func,
   }),
   /** Decides which html element should wrap the Summary */
-  as: PropTypes.elementType,
+  as: PropTypes.string,
   /** Extra classes applied to Summary */
   className: PropTypes.string,
-  /** @DEPRECATED please use description instead */
+  /** @deprecated please use description instead */
   content: deprecated(PropTypes.node, {
     component: 'Summary',
     newProp: 'description',
@@ -128,7 +122,7 @@ Summary.propTypes = {
   /** Summary description */
   // eslint-disable-next-line
   description: PropTypes.node,
-  /** @DEPRECATED please use info instead */
+  /** @deprecated please use info instead */
   help: deprecated(
     PropTypes.shape({
       content: PropTypes.node.isRequired,
@@ -145,10 +139,10 @@ Summary.propTypes = {
   info: PropTypes.shape({
     'aria-label': PropTypes.string.isRequired,
     content: PropTypes.node.isRequired,
-    presentation: PropTypes.oneOf([Info.Presentation.POPOVER, Info.Presentation.MODAL]),
+    presentation: PropTypes.oneOf(['POPOVER', 'MODAL']),
     title: PropTypes.node,
   }),
-  /** @DEPRECATED please use icon instead */
+  /** @deprecated please use icon instead */
   illustration: deprecated(PropTypes.node, {
     component: 'Summary',
     newProp: 'icon',
@@ -158,7 +152,7 @@ Summary.propTypes = {
   // eslint-disable-next-line
   icon: requiredIf(PropTypes.node, ({ illustration }) => !illustration),
   /** Decides the badge applied to Icon */
-  status: PropTypes.oneOf([Summary.Status.NOT_DONE, Summary.Status.DONE, Summary.Status.PENDING]),
+  status: PropTypes.oneOf(['notDone', 'done', 'pending']),
   /** Summary title */
   title: PropTypes.node.isRequired,
 };

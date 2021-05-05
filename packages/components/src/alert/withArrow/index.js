@@ -1,4 +1,2 @@
-import withArrow, { ArrowPosition } from './withArrow';
-
-export { ArrowPosition };
-export default withArrow;
+export { ArrowPosition as AlertArrowPosition } from './alertArrowPositions';
+export { default } from './withArrow';

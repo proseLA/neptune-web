@@ -1,7 +1,7 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
-import { Button } from '@transferwise/components';
+import { Button, Size, ControlType, Priority } from '@transferwise/components';
 import { actionModel, sizeModel, alignModel, marginModel, contextModel } from '../models';
 import { getMarginBottom } from '../utils';
 
@@ -16,27 +16,27 @@ const DynamicButton = (props) => {
     switch (size) {
       case 'xs':
       case 'sm':
-        return Button.Size.SMALL;
+        return Size.SMALL;
       case 'lg':
       case 'xl':
-        return Button.Size.LARGE;
+        return Size.LARGE;
       case 'md':
       default:
-        return Button.Size.MEDIUM;
+        return Size.MEDIUM;
     }
   };
 
   const getButtonType = (context) => {
     switch (context) {
       case 'primary':
-        return Button.Type.ACCENT;
+        return ControlType.ACCENT;
       case 'success':
-        return Button.Type.POSITIVE;
+        return ControlType.POSITIVE;
       case 'failure':
       case 'warning':
-        return Button.Type.NEGATIVE;
+        return ControlType.NEGATIVE;
       default:
-        return Button.Type.ACCENT;
+        return ControlType.ACCENT;
     }
   };
 
@@ -44,9 +44,9 @@ const DynamicButton = (props) => {
     switch (context) {
       case 'primary':
       case 'success':
-        return Button.Priority.PRIMARY;
+        return Priority.PRIMARY;
       default:
-        return Button.Priority.SECONDARY;
+        return Priority.SECONDARY;
     }
   };
 
@@ -66,8 +66,8 @@ const DynamicButton = (props) => {
 };
 
 DynamicButton.propTypes = {
-  onAction: Types.func.isRequired,
-  component: Types.shape({
+  onAction: PropTypes.func.isRequired,
+  component: PropTypes.shape({
     action: actionModel.isRequired,
     size: sizeModel,
     align: alignModel,

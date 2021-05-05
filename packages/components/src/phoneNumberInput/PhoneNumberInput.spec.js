@@ -7,6 +7,22 @@ import { fakeEvent } from '../common/fakeEvents';
 
 jest.mock('react-intl');
 
+jest.mock('../common/Panel/', () => {
+  const { forwardRef } = jest.requireActual('react');
+  const Position = jest.requireActual('../common');
+  return {
+    Position,
+    // eslint-disable-next-line react/prop-types
+    ...forwardRef(({ open, children }, ref) =>
+      open ? (
+        <div ref={ref} className="np-responsive-panel">
+          {children}
+        </div>
+      ) : null,
+    ),
+  };
+});
+
 const simulatePaste = (el, value) =>
   el.simulate('paste', { nativeEvent: { clipboardData: { getData: () => value } } });
 
@@ -17,6 +33,14 @@ describe('Given a telephone number component', () => {
   const props = { onChange: jest.fn() };
   const PREFIX_SELECT_SELECTOR = 'Select';
   const NUMBER_SELECTOR = 'input[name="phoneNumber"]';
+
+  beforeAll(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
 
   beforeEach(() => {
     useIntl.mockReturnValue({ locale: 'en-GB' });

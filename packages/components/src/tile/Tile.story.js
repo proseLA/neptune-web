@@ -1,6 +1,7 @@
 import React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { Size } from '../common';
 
 import Tile from '.';
 import Avatar from '../avatar';
@@ -30,7 +31,7 @@ export const basic = () => {
           />
         }
         onClick={action('onClick')}
-        size={medium ? Tile.Size.MEDIUM : Tile.Size.SMALL}
+        size={medium ? Size.MEDIUM : Size.SMALL}
         title={title}
       />
       <Tile
@@ -43,7 +44,7 @@ export const basic = () => {
           </Avatar>
         }
         onClick={action('onClick')}
-        size={medium ? Tile.Size.MEDIUM : Tile.Size.SMALL}
+        size={medium ? Size.MEDIUM : Size.SMALL}
         title={title}
       />
     </div>

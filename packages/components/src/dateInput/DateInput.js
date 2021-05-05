@@ -277,22 +277,18 @@ function shouldPropagateOnBlur({ target, relatedTarget }) {
   return blurElementParent !== focusElementParent;
 }
 
-DateInput.Size = Size;
-DateInput.DateMode = DateMode;
-DateInput.MonthFormat = MonthFormat;
-
 DateInput.propTypes = {
   disabled: PropTypes.bool,
-  size: PropTypes.oneOf([DateInput.Size.SMALL, DateInput.Size.MEDIUM, DateInput.Size.LARGE]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-  onChange: PropTypes.func.isRequired, // eslint-disable-line
+  onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   dayLabel: PropTypes.string,
   monthLabel: PropTypes.string,
   yearLabel: PropTypes.string,
-  monthFormat: PropTypes.oneOf([DateInput.MonthFormat.LONG, DateInput.MonthFormat.SHORT]),
-  mode: PropTypes.oneOf([DateInput.DateMode.DAY_MONTH_YEAR, DateInput.DateMode.MONTH_YEAR]),
+  monthFormat: PropTypes.oneOf(['long', 'short']),
+  mode: PropTypes.oneOf(['day-month-year', 'month-year']),
   placeholders: PropTypes.shape({
     day: PropTypes.node,
     month: PropTypes.node,
@@ -303,15 +299,15 @@ DateInput.propTypes = {
 
 DateInput.defaultProps = {
   disabled: false,
-  size: DateInput.Size.MEDIUM,
+  size: Size.MEDIUM,
   value: null,
   onFocus: null,
   onBlur: null,
   dayLabel: 'Day',
   monthLabel: 'Month',
   yearLabel: 'Year',
-  monthFormat: DateInput.MonthFormat.LONG,
-  mode: DateInput.DateMode.DAY_MONTH_YEAR,
+  monthFormat: MonthFormat.LONG,
+  mode: DateMode.DAY_MONTH_YEAR,
   placeholders: {
     day: 'DD',
     month: 'Month',

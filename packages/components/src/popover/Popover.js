@@ -26,12 +26,6 @@ const Popover = ({ children, className, content, preferredPlacement, title }) =>
             setOpen(!open);
           },
         })}
-        {open && (
-          <span role="status" className="sr-only">
-            {title}
-            {content}
-          </span>
-        )}
       </span>
       <ResponsivePanel
         open={open}
@@ -42,7 +36,11 @@ const Popover = ({ children, className, content, preferredPlacement, title }) =>
         className="np-popover__container"
       >
         <div className="np-popover__content" aria-hidden={!open} role="tooltip">
-          {title && <div className="np-popover__title m-b-1">{title}</div>}
+          {title && (
+            <div role="heading" aria-level={1} className="np-popover__title m-b-1">
+              {title}
+            </div>
+          )}
           {content}
         </div>
       </ResponsivePanel>
@@ -57,20 +55,9 @@ const logActionRequired = ({ preferredPlacement }) => {
   );
 };
 
-Popover.Placement = {
-  BOTTOM: Position.BOTTOM,
-  BOTTOM_LEFT: Position.BOTTOM_LEFT,
-  BOTTOM_RIGHT: Position.BOTTOM_RIGHT,
-  LEFT: Position.LEFT,
-  LEFT_TOP: Position.LEFT_TOP,
-  RIGHT: Position.RIGHT,
-  RIGHT_TOP: Position.RIGHT_TOP,
-  TOP: Position.TOP,
-};
-
 Popover.defaultProps = {
   className: undefined,
-  preferredPlacement: Popover.Placement.RIGHT,
+  preferredPlacement: Position.RIGHT,
   title: undefined,
 };
 
@@ -78,25 +65,28 @@ Popover.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   content: PropTypes.node.isRequired,
-  /** @DEPRECATED LEFT_TOP/RIGHT_TOP use TOP instead, @DEPRECATED BOTTOM_RIGHT/BOTTOM_LEFT use BOTTOM instead */
+  /**
+   * `'left-top'` / `'right-top'` are deprecated use `Position.TOP` / `'top'` instead,
+   * `'bottom-right'` / `'bottom-left'` are deprecated use `Position.BOTTOM` / `'bottom'` instead
+   */
   preferredPlacement: PropTypes.oneOf([
-    Popover.Placement.TOP,
-    Popover.Placement.RIGHT,
-    Popover.Placement.BOTTOM,
-    Popover.Placement.LEFT,
-    Popover.Placement.LEFT_TOP,
-    Popover.Placement.RIGHT_TOP,
-    Popover.Placement.BOTTOM_RIGHT,
-    Popover.Placement.BOTTOM_LEFT,
+    'top',
+    'right',
+    'bottom',
+    'left',
+    'left-top',
+    'right-top',
+    'bottom-right',
+    'bottom-left',
   ]),
   title: PropTypes.node,
 };
 
 const deprecatedPlacements = {
-  [Position.BOTTOM_LEFT]: Popover.Placement.BOTTOM,
-  [Position.BOTTOM_RIGHT]: Popover.Placement.BOTTOM,
-  [Position.LEFT_TOP]: Popover.Placement.TOP,
-  [Position.RIGHT_TOP]: Popover.Placement.TOP,
+  [Position.BOTTOM_LEFT]: Position.BOTTOM,
+  [Position.BOTTOM_RIGHT]: Position.BOTTOM,
+  [Position.LEFT_TOP]: Position.TOP,
+  [Position.RIGHT_TOP]: Position.TOP,
 };
 
 export default Popover;

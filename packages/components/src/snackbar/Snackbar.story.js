@@ -1,7 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
-import SnackbarProvider, { SnackbarConsumer } from './SnackbarProvider';
+import SnackbarProvider from './SnackbarProvider';
+import { SnackbarConsumer } from './SnackbarContext';
 import { Snackbar } from './Snackbar';
 import { Theme } from '../common/theme';
 import Button from '../button';

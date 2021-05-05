@@ -4,6 +4,8 @@ import { select, text, boolean } from '@storybook/addon-knobs';
 import { Emoji } from '@transferwise/icons';
 
 import Alert from './Alert';
+import { Sentiment } from '../common';
+import { AlertArrowPosition } from './withArrow';
 
 export default {
   component: Alert,
@@ -16,8 +18,8 @@ export const basic = () => {
   const icon = boolean('custom icon', false);
   const type = select(
     'type',
-    [Alert.Type.POSITIVE, Alert.Type.NEGATIVE, Alert.Type.NEUTRAL, Alert.Type.WARNING],
-    Alert.Type.POSITIVE,
+    [Sentiment.POSITIVE, Sentiment.NEGATIVE, Sentiment.NEUTRAL, Sentiment.WARNING],
+    Sentiment.POSITIVE,
   );
 
   const message = text(
@@ -36,14 +38,14 @@ export const basic = () => {
 };
 
 export const withArrow = () => {
-  const arrow = select('Arrow', Object.values(Alert.ArrowPosition), Alert.ArrowPosition.TOP_LEFT);
+  const arrow = select('Arrow', Object.values(AlertArrowPosition), AlertArrowPosition.TOP_LEFT);
   const action = text('action', 'Read more');
   const onDismiss = boolean('onDismiss', true);
   const icon = boolean('custom icon', false);
   const type = select(
     'type',
-    [Alert.Type.POSITIVE, Alert.Type.NEGATIVE, Alert.Type.NEUTRAL, Alert.Type.WARNING],
-    Alert.Type.POSITIVE,
+    [Sentiment.POSITIVE, Sentiment.NEGATIVE, Sentiment.NEUTRAL, Sentiment.WARNING],
+    Sentiment.POSITIVE,
   );
 
   const message = text(
@@ -66,8 +68,8 @@ export const deprecatedOptions = () => {
   const onDismiss = boolean('onDismiss', true);
   const type = select(
     'type',
-    [Alert.Type.SUCCESS, Alert.Type.ERROR, Alert.Type.INFO, Alert.Type.WARNING],
-    Alert.Type.SUCCESS,
+    [Sentiment.SUCCESS, Sentiment.ERROR, Sentiment.INFO, Sentiment.WARNING],
+    Sentiment.SUCCESS,
   );
 
   return (

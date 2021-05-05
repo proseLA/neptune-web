@@ -6,10 +6,7 @@
     <FlowNavigation
       done={false}
       avatar={
-        <AvatarWrapper
-          url="http://placekitten.com/100/100"
-          profileType={AvatarWrapper.ProfileType.PERSONAL}
-        />
+        <AvatarWrapper url="http://placekitten.com/100/100" profileType={ProfileType.PERSONAL} />
       }
       logo={<Logo />}
       onClose={() => setClosed(true)}

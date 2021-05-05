@@ -6,7 +6,7 @@ import { render } from '../test-utils';
 
 import Select from '.';
 
-jest.mock('../common/responsivePanel/', () => {
+jest.mock('../common/Panel/', () => {
   const { forwardRef } = jest.requireActual('react');
   const Position = jest.requireActual('../common');
   return {
@@ -30,6 +30,14 @@ describe('Select', () => {
       { value: 2, label: 'boi' },
     ],
   };
+
+  beforeAll(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
 
   beforeEach(() => {
     // Need to reset innerWidth for portal tests

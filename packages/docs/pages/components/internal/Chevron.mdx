@@ -1,10 +1,10 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { Chevron, Checkbox } from '@transferwise/components';
+import { Chevron, Checkbox, Position, Size } from '@transferwise/components';
 import code from '../../../liveEditorCode/chevron.code';
 
 This component is used inside other components, such as Select, Navigation Options, Accordion and others. Please do not use it directly.
 
-<LiveEditorBlock code={code} scope={{ Chevron, Checkbox }} />
+<LiveEditorBlock code={code} scope={{ Chevron, Checkbox, Position, Size }} />
 <GeneratePropsTable componentName="Chevron" />
 
 export const meta = {

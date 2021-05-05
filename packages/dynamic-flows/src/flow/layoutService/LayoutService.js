@@ -134,9 +134,9 @@ function convertStepImageToDynamicImage(url) {
 }
 
 function convertStepActionToDynamicAction(action) {
-  const newAction = { ...action, label: action.title }
-  delete newAction.type
-  delete newAction.title
+  const newAction = { ...action, label: action.title };
+  delete newAction.type;
+  delete newAction.title;
   return {
     type: 'button',
     context: action.type,
@@ -195,7 +195,7 @@ function inlineReferences(layout, schemas, actions, model) {
     }
 
     if (component.type === 'action') {
-      return inlineAction(component, actions)
+      return inlineAction(component, actions);
     }
 
     if (component.type === 'box') {

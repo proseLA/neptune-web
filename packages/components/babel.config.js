@@ -1,3 +1,6 @@
+const minifyPreset = ['minify', { builtIns: false, mangle: { exclude: { separators: true } } }];
+const tsPreset = ['@babel/preset-typescript', { isTSX: true, allExtensions: true }];
+
 const umdConfig = {
   presets: [
     [
@@ -18,6 +21,7 @@ const umdConfig = {
         modules: false,
       },
     ],
+    tsPreset,
   ],
 };
 
@@ -31,6 +35,7 @@ const umdConfigNoPolyfill = {
         modules: false,
       },
     ],
+    tsPreset,
   ],
 };
 
@@ -47,15 +52,13 @@ const esConfig = {
         modules: false,
       },
     ],
-    ['minify', { builtIns: false, mangle: { exclude: { separators: true } } }],
+    tsPreset,
+    minifyPreset,
   ],
 };
 
 const esConfigNoPolyfill = {
-  presets: [
-    ['@babel/preset-env', { useBuiltIns: false, modules: false }],
-    ['minify', { builtIns: false, mangle: { exclude: { separators: true } } }],
-  ],
+  presets: [['@babel/preset-env', { useBuiltIns: false, modules: false }], tsPreset, minifyPreset],
 };
 
 const testConfig = {
@@ -69,6 +72,7 @@ const testConfig = {
         },
       },
     ],
+    tsPreset,
   ],
 };
 

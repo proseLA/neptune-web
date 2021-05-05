@@ -20,13 +20,13 @@ const tabularFriendlyData = (metadata) => {
   return structuredData.sort((a, b) => (a.propName > b.propName ? 1 : -1));
 };
 
-const files = glob.sync(`../components/src/**/*.js`, {
+const files = glob.sync(`../components/src/**/*.{js,tsx}`, {
   ignore: [
-    '../components/src/**/*.{spec,docs,story}.js',
-    '../components/src/**/index.js',
+    '../components/src/**/*.{spec,docs,story}.{js,ts,tsx}',
+    '../components/src/**/index.{js,ts}',
     '../**/common/**',
     '../**/utils/**',
-    '../components/src/flowNavigation/avatar/*.js',
+    '../components/src/flowNavigation/avatar/*.{js,tsx,ts}',
   ],
 });
 
@@ -36,17 +36,33 @@ files.sort().map((path) => {
   const handlers = docgen.defaultHandlers.concat(externalProptypesHandler(path));
 
   /* read file to get source code */
-  const code = fs.readFileSync(path, 'utf8');
+  const fileSourceCode = fs.readFileSync(path, 'utf8');
 
   /* parse the component code to get metadata */
   try {
-    const gen = docgen.parse(code, null, handlers);
-    metadata[gen.displayName] = gen;
+    const component = docgen.parse(fileSourceCode, null, handlers);
+    if (isTypeScriptComponent(path)) {
+      Object.keys(component.props).forEach((prop) => {
+        const valueObj = component.props[prop];
+        Object.defineProperty(
+          valueObj,
+          'type',
+          Object.getOwnPropertyDescriptor(valueObj, 'flowType'),
+        );
+        // eslint-disable-next-line no-param-reassign
+        delete valueObj.flowType;
+      });
+    }
+    metadata[component.displayName] = component;
   } catch {
     return false;
   }
   return data;
 });
+
+function isTypeScriptComponent(filePath) {
+  return filePath.endsWith('.tsx');
+}
 
 const tableFriendlyProps = JSON.stringify(tabularFriendlyData(metadata), null, 2);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, number, select } from '@storybook/addon-knobs';
-import Pagination from './Pagination';
+import Pagination, { PaginationType } from './Pagination';
 
 export default {
   component: Pagination,
@@ -14,11 +14,11 @@ export const basic = () => {
   const type = select(
     'Type',
     {
-      Full: Pagination.Type.FULL,
-      'Arrows Only': Pagination.Type.ARROWS_ONLY,
-      'Numbers Only': Pagination.Type.NUMBERS_ONLY,
+      Full: PaginationType.FULL,
+      'Arrows Only': PaginationType.ARROWS_ONLY,
+      'Numbers Only': PaginationType.NUMBERS_ONLY,
     },
-    Pagination.Type.FULL,
+    PaginationType.FULL,
   );
   const numberOfPages = number('Number of pages', 10, { min: 1 });
   const currentPageIndex = number('Current page index', 0, { min: 0, max: numberOfPages - 1 });

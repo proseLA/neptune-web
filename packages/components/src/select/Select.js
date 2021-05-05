@@ -17,6 +17,10 @@ import {
 
 import './Select.css';
 
+import { isTouchDevice } from '../common/deviceDetection';
+
+import { Position } from '../common';
+
 const clamp = (from, to, value) => Math.max(Math.min(to, value), from);
 
 const actionableOption = (option) => !option.header && !option.separator && !option.disabled;
@@ -194,14 +198,10 @@ export default class Select extends Component {
   open() {
     // TODO: should also add breakpoint-specific overflow:hidden class to body
     this.setState({ open: true }, () => {
-      const isTouchDevice =
-        typeof window !== 'undefined' &&
-        window.matchMedia &&
-        !!window.matchMedia('(pointer: coarse)').matches;
       const searchable = !!this.props.onSearchChange || !!this.props.search;
 
       defer(() => {
-        if (!isTouchDevice && searchable && this.searchBoxRef.current) {
+        if (!isTouchDevice() && searchable && this.searchBoxRef.current) {
           this.searchBoxRef.current.focus();
         }
       });
@@ -282,11 +282,11 @@ export default class Select extends Component {
         {canSearch && (
           <SearchBox
             classNames={this.props.classNames}
-            handleSearchChange={this.handleSearchChange}
+            onChange={this.handleSearchChange}
             onClick={stopPropagation}
             value={searchValue || this.state.searchValue}
             ref={this.searchBoxRef}
-            searchPlaceholder={searchPlaceholder}
+            placeholder={searchPlaceholder}
           />
         )}
         {this.renderOptions()}
@@ -427,10 +427,10 @@ export default class Select extends Component {
         <ResponsivePanel
           open={open}
           anchorRef={this.dropdownMenuRef}
-          position={ResponsivePanel.Position.BOTTOM}
+          position={Position.BOTTOM}
           onClose={() => this.close()}
         >
-          <div className="open">{this.renderOptionsList()}</div>
+          <span className={s('open')}>{this.renderOptionsList()}</span>
         </ResponsivePanel>
       </div>
     );

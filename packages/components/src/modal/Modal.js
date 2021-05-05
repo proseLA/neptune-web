@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
 import './Modal.css';
-import { Size, Position } from '../common';
+import { Size, Position, Scroll } from '../common';
 import Dimmer from '../dimmer';
 import CloseButton from '../common/closeButton';
 
@@ -40,7 +40,7 @@ const Modal = ({
   return (
     <Dimmer
       open={open}
-      scrollable={scroll === Modal.Scroll.CONTENT}
+      scrollable={scroll === Scroll.CONTENT}
       onClose={handleOnClose}
       className={classNames('d-flex', 'justify-content-center', {
         'align-items-center': position === Position.CENTER,
@@ -58,7 +58,7 @@ const Modal = ({
           className={classNames(
             'tw-modal',
             {
-              'tw-modal--content': scroll === Modal.Scroll.CONTENT,
+              'tw-modal--content': scroll === Scroll.CONTENT,
             },
             'fade',
             'outline-none',
@@ -124,44 +124,27 @@ const Modal = ({
   );
 };
 
-Modal.Size = Size;
-
-Modal.Scroll = {
-  CONTENT: 'content',
-  VIEWPORT: 'viewport',
-};
-
-Modal.Position = {
-  [Position.TOP.toUpperCase()]: Position.TOP,
-  [Position.CENTER.toUpperCase()]: Position.CENTER,
-};
-
 Modal.propTypes = {
   title: PropTypes.node,
   body: PropTypes.node.isRequired,
   footer: PropTypes.node,
-  size: PropTypes.oneOf([
-    Modal.Size.SMALL,
-    Modal.Size.MEDIUM,
-    Modal.Size.LARGE,
-    Modal.Size.EXTRA_LARGE,
-  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
   onClose: PropTypes.func.isRequired,
   className: PropTypes.string,
   open: PropTypes.bool.isRequired,
   closeOnClick: PropTypes.bool,
-  scroll: PropTypes.oneOf([Modal.Scroll.CONTENT, Modal.Scroll.VIEWPORT]),
-  position: PropTypes.oneOf([Modal.Position.TOP, Modal.Position.CENTER]),
+  scroll: PropTypes.oneOf(['content', 'viewport']),
+  position: PropTypes.oneOf(['top', 'center']),
 };
 
 Modal.defaultProps = {
   title: null,
   footer: null,
-  size: Modal.Size.MEDIUM,
+  size: Size.MEDIUM,
   className: '',
   closeOnClick: true,
-  scroll: Modal.Scroll.VIEWPORT,
-  position: Modal.Position.CENTER,
+  scroll: Scroll.VIEWPORT,
+  position: Position.CENTER,
 };
 
 export default Modal;

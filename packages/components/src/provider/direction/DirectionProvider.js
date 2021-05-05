@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { DEFAULT_LOCALE, SUPPORTED_RTL } from '../../common/locale';
 
@@ -12,8 +12,8 @@ export const DirectionProvider = ({ locale, children }) => (
 );
 
 DirectionProvider.propTypes = {
-  children: Types.node,
-  locale: Types.string,
+  children: PropTypes.node,
+  locale: PropTypes.string,
 };
 
 DirectionProvider.defaultProps = {

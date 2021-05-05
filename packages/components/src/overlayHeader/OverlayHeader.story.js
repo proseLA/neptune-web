@@ -3,8 +3,9 @@ import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
 import OverlayHeader from './OverlayHeader';
-import Avatar from '../avatar';
+import Avatar, { AvatarType } from '../avatar';
 import AvatarWrapper from '../avatarWrapper';
+import { ProfileType, Size } from '../common';
 import Logo from '../logo';
 
 export default {
@@ -25,7 +26,7 @@ export const basic = () => {
       logo={<Logo />}
       onClose={action('Close clicked')}
       avatar={
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM}>
+        <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
           {avatarProfiles[showAvatar]}
         </Avatar>
       }
@@ -35,7 +36,7 @@ export const basic = () => {
 
 export const withAvatarWrapper = () => {
   const avatarURL = text('avatarURL', 'https://github.com/transferwise.png');
-  const profileType = select('profileType', Object.keys(AvatarWrapper.ProfileType));
+  const profileType = select('profileType', Object.keys(ProfileType));
   return (
     <OverlayHeader
       logo={<Logo />}
