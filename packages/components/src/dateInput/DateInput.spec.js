@@ -6,6 +6,22 @@ import DateInput from '.';
 
 import { fakeEvent } from '../common/fakeEvents';
 
+jest.mock('../common/responsivePanel/', () => {
+  const { forwardRef } = jest.requireActual('react');
+  const Position = jest.requireActual('../common');
+  return {
+    Position,
+    // eslint-disable-next-line react/prop-types
+    ...forwardRef(({ open, children }, ref) =>
+      open ? (
+        <div ref={ref} className="np-responsive-panel">
+          {children}
+        </div>
+      ) : null,
+    ),
+  };
+});
+
 const MONTHS_FR = [
   'janvier',
   'février',

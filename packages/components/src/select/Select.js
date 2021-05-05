@@ -12,6 +12,8 @@ import {
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
 
+import { Position } from '../common';
+
 import SearchBox from './searchBox';
 
 import ResponsivePanel from '../common/responsivePanel';
@@ -454,7 +456,7 @@ export default class Select extends Component {
         <ResponsivePanel
           open={open}
           anchorRef={this.dropdownMenuRef}
-          position={ResponsivePanel.Position.BOTTOM}
+          position={Position.BOTTOM}
           onClose={() => this.close()}
         >
           <div className="open">{this.renderOptionsList()}</div>
