@@ -2,13 +2,14 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import ProcessIndicator from '.';
+import { Status, Size } from '../common';
 
 describe('processIndicator', () => {
   let wrapper;
   const ANIMATION_DURATION = 1500;
   const props = {
-    status: ProcessIndicator.Status.PROCESSING,
-    size: ProcessIndicator.Size.Small,
+    status: Status.PROCESSING,
+    size: Size.Small,
     onAnimationCompleted: jest.fn(),
   };
 
@@ -89,12 +90,12 @@ describe('processIndicator', () => {
 
   it('calls onAnimationCompleted with Delay', () => {
     expect(props.onAnimationCompleted).not.toHaveBeenCalled();
-    wrapper.setProps({ status: ProcessIndicator.Status.FAILED });
+    wrapper.setProps({ status: Status.FAILED });
     expect(props.onAnimationCompleted).not.toHaveBeenCalled();
     jest.runTimersToTime(ANIMATION_DURATION * 2);
-    expect(props.onAnimationCompleted).toHaveBeenCalledWith(ProcessIndicator.Status.FAILED);
-    wrapper.setProps({ status: ProcessIndicator.Status.SUCCEEDED });
+    expect(props.onAnimationCompleted).toHaveBeenCalledWith(Status.FAILED);
+    wrapper.setProps({ status: Status.SUCCEEDED });
     jest.runTimersToTime(ANIMATION_DURATION * 2);
-    expect(props.onAnimationCompleted).toHaveBeenCalledWith(ProcessIndicator.Status.SUCCEEDED);
+    expect(props.onAnimationCompleted).toHaveBeenCalledWith(Status.SUCCEEDED);
   });
 });

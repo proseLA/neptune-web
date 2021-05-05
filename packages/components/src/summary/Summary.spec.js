@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, waitFor, fireEvent } from '../test-utils';
 import Summary from './Summary';
+import { Status } from '../common';
 
 describe('Summary', () => {
   it('renders minimal component', () => {
@@ -25,7 +26,7 @@ describe('Summary', () => {
             'aria-label': 'aria-label',
           }}
           icon={<strong>icon</strong>}
-          status={Summary.Status.DONE}
+          status={Status.DONE}
           title="title"
         />,
       ));
@@ -75,9 +76,7 @@ describe('Summary', () => {
     });
 
     it('renders an aria-label and no badge for a not done status', () => {
-      const { container, getByLabelText } = render(
-        <Summary {...props} status={Summary.Status.NOT_DONE} />,
-      );
+      const { container, getByLabelText } = render(<Summary {...props} status={Status.NOT_DONE} />);
 
       getByLabelText('Item to do');
       expect(container.querySelector('.np-summary-icon__pending')).not.toBeInTheDocument();
@@ -85,18 +84,14 @@ describe('Summary', () => {
     });
 
     it('renders badge and aria-label for a pending status', () => {
-      const { container, getByLabelText } = render(
-        <Summary {...props} status={Summary.Status.PENDING} />,
-      );
+      const { container, getByLabelText } = render(<Summary {...props} status={Status.PENDING} />);
 
       getByLabelText('Item pending');
       expect(container.querySelector('.np-summary-icon__pending')).toBeInTheDocument();
     });
 
     it('renders badge and aria-label for a done status', () => {
-      const { container, getByLabelText } = render(
-        <Summary {...props} status={Summary.Status.DONE} />,
-      );
+      const { container, getByLabelText } = render(<Summary {...props} status={Status.DONE} />);
 
       getByLabelText('Item done');
       expect(container.querySelector('.np-summary-icon__done')).toBeInTheDocument();

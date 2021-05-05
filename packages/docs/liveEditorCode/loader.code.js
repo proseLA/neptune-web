@@ -1,1 +1,1 @@
-<Loader small={false} size={Loader.Size.EXTRA_SMALL} />;
+<Loader size={Size.EXTRA_SMALL} />;

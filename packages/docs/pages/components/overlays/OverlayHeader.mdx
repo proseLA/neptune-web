@@ -1,5 +1,5 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { OverlayHeader, Avatar, AvatarWrapper, Logo } from '@transferwise/components';
+import { OverlayHeader, Avatar, AvatarWrapper, Logo, ProfileType } from '@transferwise/components';
 import { Briefcase as BriefcaseIcon, Profile as ProfileIcon } from '@transferwise/icons';
 import code from '../../../liveEditorCode/overlayHeader.code';
 
@@ -8,7 +8,7 @@ The current and recommended size for logo is width = 138px height=24px.
 
 <LiveEditorBlock
   code={code}
-  scope={{ OverlayHeader, Avatar, BriefcaseIcon, ProfileIcon, AvatarWrapper, Logo }}
+  scope={{ OverlayHeader, Avatar, BriefcaseIcon, ProfileIcon, AvatarWrapper, Logo, ProfileType }}
   display="vertical"
 />
 <GeneratePropsTable componentName="OverlayHeader" />

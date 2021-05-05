@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { select } from '@storybook/addon-knobs';
 import Drawer from './Drawer';
 import Button from '../button';
+import { Position } from '../common';
 
 export default {
   component: Drawer,
@@ -10,7 +11,7 @@ export default {
 
 export const basic = () => {
   const [open, setOpen] = useState(false);
-  const position = select('position', Object.values(Drawer.Position), Drawer.Position.RIGHT);
+  const position = select('position', Object.values(Position), Position.RIGHT);
 
   return (
     <>

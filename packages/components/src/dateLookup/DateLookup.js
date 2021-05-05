@@ -23,10 +23,6 @@ const MODE = {
 };
 
 class DateLookup extends PureComponent {
-  static Size = Size;
-
-  static MonthFormat = MonthFormat;
-
   element = React.createRef();
 
   dropdown = React.createRef();
@@ -310,10 +306,10 @@ DateLookup.propTypes = {
   value: PropTypes.instanceOf(Date),
   min: PropTypes.instanceOf(Date),
   max: PropTypes.instanceOf(Date),
-  size: PropTypes.oneOf([DateLookup.Size.SMALL, DateLookup.Size.MEDIUM, DateLookup.Size.LARGE]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   placeholder: PropTypes.string,
   label: PropTypes.string,
-  monthFormat: PropTypes.oneOf([DateLookup.MonthFormat.LONG, DateLookup.MonthFormat.SHORT]),
+  monthFormat: PropTypes.oneOf(['long', 'short']),
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
@@ -325,10 +321,10 @@ DateLookup.defaultProps = {
   value: null,
   min: null,
   max: null,
-  size: DateLookup.Size.MEDIUM,
+  size: Size.MEDIUM,
   placeholder: '',
   label: '',
-  monthFormat: DateLookup.MonthFormat.LONG,
+  monthFormat: MonthFormat.LONG,
   disabled: false,
   onFocus: null,
   onBlur: null,

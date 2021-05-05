@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { Dimmer } from './Dimmer';
-import { Button } from '..';
+import { Button, Dimmer } from '..';
 
 export default {
   component: Dimmer,

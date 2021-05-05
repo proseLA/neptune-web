@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { boolean, select, date, text } from '@storybook/addon-knobs';
 import DateLookup from './DateLookup';
+import { Size } from '../common';
 
 export default {
   component: DateLookup,
@@ -13,7 +14,7 @@ export const basic = () => {
   const label = text('label', 'label');
   const monthFormat = select('monthFormat', ['long', 'short']);
   const placeholder = text('placeholder', 'placeholder');
-  const size = select('size', Object.values(DateLookup.Size), DateLookup.Size.MEDIUM);
+  const size = select('size', Object.values(Size), Size.MEDIUM);
 
   const minvalue = date('minvalue', new Date('04-13-2021'));
   const maxvalue = date('maxvalue', new Date('04-17-2021'));
@@ -41,7 +42,7 @@ export const rightAligned = () => {
   const label = text('label', 'label');
   const monthFormat = select('monthFormat', ['long', 'short']);
   const placeholder = text('placeholder', 'placeholder');
-  const size = select('size', Object.values(DateLookup.Size), DateLookup.Size.MEDIUM);
+  const size = select('size', Object.values(Size), Size.MEDIUM);
 
   const minvalue = date('minvalue', new Date('04-13-2021'));
   const maxvalue = date('maxvalue', new Date('04-17-2021'));

@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.0.2...@transferwise/dynamic-flows@13.0.3) (2021-05-04)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [13.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.0.1...@transferwise/dynamic-flows@13.0.2) (2021-05-04)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [13.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.0.0...@transferwise/dynamic-flows@13.0.1) (2021-04-30)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [13.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.7.6...@transferwise/dynamic-flows@13.0.0) (2021-04-30)
+
+
+* feat!: Types & TypeScript support (#846) ([193299f](https://github.com/transferwise/neptune-web/commit/193299f21d0c06d11f784b3ebd07c5684bf4f245)), closes [#846](https://github.com/transferwise/neptune-web/issues/846)
+
+
+### BREAKING CHANGES
+
+* Release notes - https://transferwise.github.io/neptune-web/blog/2021-04-30-components-v36-release-guide---typescript-support
+
+
+
+
+
 ## [12.7.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@12.7.5...@transferwise/dynamic-flows@12.7.6) (2021-04-28)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

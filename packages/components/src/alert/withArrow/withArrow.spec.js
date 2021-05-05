@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, getByRole } from '../../test-utils';
-import withArrow, { ArrowPosition } from './withArrow';
+import withArrow from './withArrow';
+import { ArrowPosition } from './alertArrowPositions';
 import Alert from '../Alert';
 
 describe('withArrow', () => {

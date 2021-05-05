@@ -5,6 +5,7 @@ import { usePopper } from 'react-popper';
 
 import { Position } from '..';
 import './Panel.css';
+import FocusBoundary from '../focusBoundary';
 
 const POPOVER_OFFSET = [0, 16];
 
@@ -19,9 +20,11 @@ const fallbackPlacements = {
 };
 
 const Panel = forwardRef(
-  ({ arrow, children, className, open, position: placement, anchorRef }, ref) => {
+  ({ arrow, children, className, open, onClose, position: placement, anchorRef }, ref) => {
     const [arrowElement, setArrowElement] = useState(null);
     const [popperElement, setPopperElement] = useState(null);
+    // Do not trigger external onCLose if click is from Panel trigger
+    const handleOnClose = (event) => !anchorRef?.current?.contains(event.target) && onClose(event);
 
     const modifiers = [];
 
@@ -59,27 +62,31 @@ const Panel = forwardRef(
         forceUpdate();
       }
     }, [open]);
+    // Popper recommends to use the popper element as a wrapper around an inner element that can have any CSS property transitioned for animations.
 
     return (
-      // Popper recommends to use the popper element as a wrapper around an inner element that can have any CSS property transitioned for animations.
-      <div
-        ref={setPopperElement}
-        style={{ ...styles.popper }}
-        {...attributes.popper}
-        className={classnames('np-panel', { 'np-panel--open': open }, className)}
-      >
-        <div ref={ref} className={classnames('np-panel__content')}>
-          {children}
-          {/* Arrow has to stay inside content to get the same animations as the "dialog" and to get hidden when panel is closed. */}
-          {arrow && (
-            <div
-              className={classnames('np-panel__arrow')}
-              ref={setArrowElement}
-              style={styles.arrow}
-            />
-          )}
-        </div>
-      </div>
+      open && (
+        <FocusBoundary onClose={handleOnClose}>
+          <div
+            ref={setPopperElement}
+            style={{ ...styles.popper }}
+            {...attributes.popper}
+            className={classnames('np-panel', { 'np-panel--open': open }, className)}
+          >
+            <div ref={ref} className={classnames('np-panel__content')}>
+              {children}
+              {/* Arrow has to stay inside content to get the same animations as the "dialog" and to get hidden when panel is closed. */}
+              {arrow && (
+                <div
+                  className={classnames('np-panel__arrow')}
+                  ref={setArrowElement}
+                  style={styles.arrow}
+                />
+              )}
+            </div>
+          </div>
+        </FocusBoundary>
+      )
     );
   },
 );
@@ -103,13 +110,17 @@ Panel.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   open: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
   position: PropTypes.oneOf([
     Panel.Position.BOTTOM,
     Panel.Position.LEFT,
     Panel.Position.RIGHT,
     Panel.Position.TOP,
   ]),
-  anchorRef: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
+  // Ref currently doesn't have a clear defined propType
+  // https://github.com/facebook/prop-types/issues/240
+  // eslint-disable-next-line
+  anchorRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
 };
 
 export default Panel;

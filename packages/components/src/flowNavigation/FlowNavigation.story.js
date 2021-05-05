@@ -3,10 +3,10 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
 import FlowNavigation from './FlowNavigation';
 import OverlayHeader from '../overlayHeader';
-import Avatar from '../avatar';
-
+import Avatar, { AvatarType } from '../avatar';
 import AvatarWrapper from '../avatarWrapper';
 import Logo, { LogoType } from '../logo';
+import { ProfileType, Size } from '../common';
 
 export default {
   component: FlowNavigation,
@@ -31,7 +31,7 @@ export const withAvatarIcon = () => {
       <FlowNavigation
         avatar={
           !showAvatar ? null : (
-            <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM}>
+            <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
               {avatarProfiles[showAvatar]}
             </Avatar>
           )
@@ -81,7 +81,7 @@ export const withAvatarIcon = () => {
       <FlowNavigation
         avatar={
           !showAvatar ? null : (
-            <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM}>
+            <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
               {avatarProfiles[showAvatar]}
             </Avatar>
           )
@@ -244,7 +244,7 @@ export const withCustomAvatarImage = () => {
       done={done}
       avatar={
         !showAvatar ? null : (
-          <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.MEDIUM}>
+          <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM}>
             <img src="http://placekitten.com/100/100" alt="avatar" />
           </Avatar>
         )
@@ -304,7 +304,7 @@ export const withAvatar = () => {
       done={done}
       avatar={
         !showAvatar ? null : (
-          <Avatar type={Avatar.Type.THUMBNAIL} size={Avatar.Size.MEDIUM}>
+          <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM}>
             <img src="http://placekitten.com/100/100" alt="avatar" />
           </Avatar>
         )
@@ -354,7 +354,7 @@ export const withAvatar = () => {
 export const withAvatarWrapper = () => {
   const [activeStep, setActiveStep] = useState(4);
   const [closed, setClosed] = useState(false);
-  const profileType = select('profileType', Object.keys(AvatarWrapper.ProfileType));
+  const profileType = select('profileType', Object.keys(ProfileType));
   const showCloseButton = boolean('show closeButton', true);
   const showMobileBackButton = boolean('show mobile backButton', true);
   const avatarURL = text('avatarURL', 'https://github.com/transferwise.png');
@@ -420,7 +420,7 @@ export const withOverlayHeaderComparison = () => {
         <FlowNavigation
           avatar={
             showAvatar ? (
-              <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM}>
+              <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
                 {avatarProfiles[showAvatar]}
               </Avatar>
             ) : null
@@ -439,7 +439,7 @@ export const withOverlayHeaderComparison = () => {
           onClose={showCloseButton && (() => setClosed(true))}
           avatar={
             showAvatar ? (
-              <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM}>
+              <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
                 {avatarProfiles[showAvatar]}
               </Avatar>
             ) : null

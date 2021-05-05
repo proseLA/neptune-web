@@ -1,8 +1,8 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { DynamicFieldDefinitionList } from '@transferwise/components';
+import { DynamicFieldDefinitionList, Layout } from '@transferwise/components';
 import code from '../../../liveEditorCode/dynamicFieldDefinitionList.code';
 
-<LiveEditorBlock code={code} scope={{ DynamicFieldDefinitionList }} />
+<LiveEditorBlock code={code} scope={{ DynamicFieldDefinitionList, Layout }} />
 <GeneratePropsTable componentName="DynamicFieldDefinitionList" />
 
 export const meta = {

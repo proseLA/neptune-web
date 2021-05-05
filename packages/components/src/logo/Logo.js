@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import { LogoType } from './logoTypes';
 import './Logo.css';
-
-const Type = {
-  WISE: 'WISE',
-  WISE_BUSINESS: 'WISE_BUSINESS',
-};
 
 const baseUrl = 'https://wise.com/public-resources/assets/logos/wise/';
 
@@ -23,7 +18,7 @@ const Logo = ({ className, inverse, type }) => {
   return (
     <img
       className={classNames('np-logo', className)}
-      alt={type === Type.WISE ? 'Wise' : 'Wise business'}
+      alt={type === LogoType.WISE ? 'Wise' : 'Wise business'}
       src={`${baseUrl}${path}`}
     />
   );
@@ -41,9 +36,7 @@ Logo.propTypes = {
 Logo.defaultProps = {
   className: undefined,
   inverse: false,
-  type: Type.WISE,
+  type: LogoType.WISE,
 };
 
 export default Logo;
-
-export { Type as LogoType };

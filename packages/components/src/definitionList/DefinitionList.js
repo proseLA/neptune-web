@@ -36,8 +36,6 @@ const DefinitionList = ({ definitions, layout, muted }) => (
   </dl>
 );
 
-DefinitionList.Layout = Layout;
-
 DefinitionList.propTypes = {
   definitions: PropTypes.arrayOf(
     PropTypes.shape({
@@ -47,21 +45,19 @@ DefinitionList.propTypes = {
     }),
   ),
   layout: PropTypes.oneOf([
-    DefinitionList.Layout.VERTICAL_TWO_COLUMN,
-    DefinitionList.Layout.VERTICAL_ONE_COLUMN,
-    DefinitionList.Layout.HORIZONTAL_JUSTIFIED,
-    DefinitionList.Layout.HORIZONTAL_LEFT_ALIGNED,
-    DefinitionList.Layout.HORIZONTAL_RIGHT_ALIGNED,
+    'VERTICAL_TWO_COLUMN',
+    'VERTICAL_ONE_COLUMN',
+    'HORIZONTAL_JUSTIFIED',
+    'HORIZONTAL_LEFT_ALIGNED',
+    'HORIZONTAL_RIGHT_ALIGNED',
   ]),
   muted: PropTypes.bool,
 };
 
 DefinitionList.defaultProps = {
   definitions: [],
-  layout: DefinitionList.Layout.VERTICAL_TWO_COLUMN,
+  layout: Layout.VERTICAL_TWO_COLUMN,
   muted: false,
 };
-
-DefinitionList.Layout = Layout;
 
 export default DefinitionList;

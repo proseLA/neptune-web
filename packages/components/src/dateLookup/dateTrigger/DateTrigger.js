@@ -9,7 +9,7 @@ import messages from './DateTrigger.messages';
 
 import Chevron from '../../chevron';
 
-import { Size, MonthFormat } from '../../common';
+import { Size, Position } from '../../common';
 import './DateTrigger.css';
 
 const DateTrigger = ({
@@ -57,7 +57,7 @@ const DateTrigger = ({
         </span>
       )}
       {!onClear ? (
-        <Chevron orientation={Chevron.Orientation.BOTTOM} disabled={disabled} />
+        <Chevron orientation={Position.BOTTOM} disabled={disabled} />
       ) : (
         <span
           onClick={(e) => {
@@ -80,10 +80,10 @@ const DateTrigger = ({
 
 DateTrigger.propTypes = {
   selectedDate: PropTypes.instanceOf(Date),
-  size: PropTypes.oneOf([Size.SMALL, Size.MEDIUM, Size.LARGE]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   placeholder: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  monthFormat: PropTypes.oneOf(Object.values(MonthFormat)).isRequired,
+  monthFormat: PropTypes.oneOf(['short', 'long']).isRequired,
   disabled: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   onClear: PropTypes.func,

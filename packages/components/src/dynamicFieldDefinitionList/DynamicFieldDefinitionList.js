@@ -19,23 +19,21 @@ const DynamicFieldDefinitionList = ({ model, title, layout, fields }) => (
   </>
 );
 
-DynamicFieldDefinitionList.Layout = Layout;
-
 DynamicFieldDefinitionList.propTypes = {
   model: PropTypes.shape({}).isRequired,
   fields: PropTypes.shape({}).isRequired,
   title: PropTypes.string,
   layout: PropTypes.oneOf([
-    DynamicFieldDefinitionList.Layout.VERTICAL_TWO_COLUMN,
-    DynamicFieldDefinitionList.Layout.VERTICAL_ONE_COLUMN,
-    DynamicFieldDefinitionList.Layout.HORIZONTAL_JUSTIFIED,
-    DynamicFieldDefinitionList.Layout.HORIZONTAL_LEFT_ALIGNED,
+    'VERTICAL_TWO_COLUMN',
+    'VERTICAL_ONE_COLUMN',
+    'HORIZONTAL_JUSTIFIED',
+    'HORIZONTAL_LEFT_ALIGNED',
   ]),
 };
 
 DynamicFieldDefinitionList.defaultProps = {
   title: null,
-  layout: DynamicFieldDefinitionList.Layout.VERTICAL_TWO_COLUMN,
+  layout: Layout.VERTICAL_TWO_COLUMN,
 };
 
 export default DynamicFieldDefinitionList;

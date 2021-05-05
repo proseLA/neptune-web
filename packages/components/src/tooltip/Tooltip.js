@@ -101,26 +101,19 @@ class Tooltip extends Component {
   }
 }
 
-Tooltip.Position = Position;
-
 Tooltip.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.string,
   ]).isRequired,
-  position: PropTypes.oneOf([
-    Tooltip.Position.TOP,
-    Tooltip.Position.BOTTOM,
-    Tooltip.Position.LEFT,
-    Tooltip.Position.RIGHT,
-  ]),
+  position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
   label: PropTypes.node.isRequired,
   offset: PropTypes.number,
 };
 
 Tooltip.defaultProps = {
-  position: Tooltip.Position.TOP,
+  position: Position.TOP,
   offset: 0,
 };
 

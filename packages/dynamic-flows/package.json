@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/dynamic-flows",
-  "version": "12.7.6",
+  "version": "13.0.3",
   "description": "Wise Dynamic Flows and Forms",
   "license": "Apache-2.0",
   "main": "./build/es/polyfill/index.js",
@@ -33,7 +33,7 @@
     "build:copy-lang": "cpx 'i18n/*.json' build/i18n && cpx 'i18n/index.js' build/i18n",
     "test": "jest --env=jsdom --maxWorkers=4 --config=../../node_modules/@transferwise/test-config/jest.config.js",
     "test:watch": "jest --watch --env=jsdom --config=../../node_modules/@transferwise/test-config/jest.config.js",
-    "lint": "jest --maxWorkers=4 --config ../../node_modules/@transferwise/test-config/test/jest.lint.js & yarn lintless",
+    "lint": "jest --maxWorkers=4 --config ../../node_modules/@transferwise/test-config/test/jest.lint.js && yarn lintless",
     "lint:fix": "eslint 'src/**/*.js' --fix",
     "lintless": "stylelint --allow-empty-input './src/**/*.less'",
     "lintless:fix": "yarn lintless --fix"
@@ -51,7 +51,7 @@
     "@storybook/addon-docs": "^6.1.9",
     "@storybook/addon-knobs": "^6.1.9",
     "@storybook/react": "^6.1.9",
-    "@transferwise/components": "^35.9.2",
+    "@transferwise/components": "^36.0.2",
     "@transferwise/icons": "^2.6.0",
     "@transferwise/less-config": "^3.0.1",
     "@transferwise/neptune-css": "^9.1.0",

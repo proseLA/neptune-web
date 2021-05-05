@@ -1,6 +1,7 @@
 import React from 'react';
 import { select, object, boolean } from '@storybook/addon-knobs';
 import DefinitionList from './DefinitionList';
+import { Layout } from '../common';
 
 export default {
   component: DefinitionList,
@@ -28,11 +29,7 @@ export const basic = () => {
 
   const definitions = object('items', items);
   const muted = boolean('muted', false);
-  const layout = select(
-    'layout',
-    Object.values(DefinitionList.Layout),
-    DefinitionList.Layout.HORIZONTAL_LEFT_ALIGNED,
-  );
+  const layout = select('layout', Object.values(Layout), Layout.HORIZONTAL_LEFT_ALIGNED);
 
   return <DefinitionList layout={layout} muted={muted} definitions={definitions} />;
 };

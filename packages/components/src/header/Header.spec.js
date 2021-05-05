@@ -3,6 +3,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
 import Header from './Header';
+import { Layout } from '../common';
 
 describe('Header', () => {
   const props = {
@@ -16,8 +17,6 @@ describe('Header', () => {
   });
 
   it('renders as expected with vertical layout', () => {
-    expect(
-      render(<Header {...props} layout={Header.Layout.VERTICAL} />).container,
-    ).toMatchSnapshot();
+    expect(render(<Header {...props} layout={Layout.VERTICAL} />).container).toMatchSnapshot();
   });
 });

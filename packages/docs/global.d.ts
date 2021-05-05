@@ -1,1 +1,0 @@
-declare module '@transferwise/components*';

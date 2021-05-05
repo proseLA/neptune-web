@@ -2,26 +2,24 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render } from '../test-utils';
 import Chevron from '.';
-import { Size } from '../common';
-
-const { Orientation } = Chevron;
+import { Size, Position } from '../common';
 
 describe('Chevron', () => {
   describe('test rotation', () => {
     it('top', () => {
-      const { container } = render(<Chevron orientation={Orientation.TOP} />);
+      const { container } = render(<Chevron orientation={Position.TOP} />);
 
       expect(container.querySelector('.tw-icon-chevron-up.top')).not.toBe(null);
     });
 
     it('right', () => {
-      const { container } = render(<Chevron orientation={Orientation.RIGHT} />);
+      const { container } = render(<Chevron orientation={Position.RIGHT} />);
 
       expect(container.querySelector('.tw-icon-chevron-up.right')).not.toBe(null);
     });
 
     it('left', () => {
-      const { container } = render(<Chevron orientation={Orientation.LEFT} />);
+      const { container } = render(<Chevron orientation={Position.LEFT} />);
 
       expect(container.querySelector('.tw-icon-chevron-up.left')).not.toBe(null);
     });

@@ -7,7 +7,7 @@
           Some text
         </label>
         <input type="text" className="form-control" id="id" />
-        <InlineAlert type={InlineAlert.Type.WARNING}>
+        <InlineAlert type={Sentiment.WARNING}>
           Payments sent to your bank details today might not arrive in time for the holidays.
         </InlineAlert>
       </div>

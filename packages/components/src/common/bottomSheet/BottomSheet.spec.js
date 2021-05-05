@@ -14,13 +14,17 @@ jest.mock('../../slidingPanel', () => ({ open, children }) =>
 
 describe('BottomSheet', () => {
   it('renders content when open', async () => {
-    const { container } = render(<BottomSheet open>content</BottomSheet>);
+    const { container } = render(
+      <BottomSheet open onClose={jest.fn()}>
+        content
+      </BottomSheet>,
+    );
 
     expect(container).toMatchSnapshot();
   });
 
   it("doesn't renders content when closed", async () => {
-    const { container } = render(<BottomSheet>content</BottomSheet>);
+    const { container } = render(<BottomSheet onClose={jest.fn()}>content</BottomSheet>);
 
     expect(container).toMatchSnapshot();
   });

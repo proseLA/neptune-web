@@ -2,7 +2,7 @@ import React from 'react';
 import { Search as SearchIcon } from '@transferwise/icons';
 import { select, boolean } from '@storybook/addon-knobs';
 import Typeahead from './Typeahead';
-import InlineAlert from '../inlineAlert';
+import { Sentiment } from '../common';
 
 export default {
   component: Typeahead,
@@ -78,11 +78,7 @@ export const basic = () => {
   const showSuggestions = boolean('showSuggestions', true);
   const showNewEntry = boolean('showNewEntry', true);
   const showAlert = boolean('alert', false);
-  const alertType = select(
-    'alert type',
-    [InlineAlert.Type.ERROR, InlineAlert.Type.WARNING],
-    InlineAlert.Type.ERROR,
-  );
+  const alertType = select('alert type', [Sentiment.ERROR, Sentiment.WARNING], Sentiment.ERROR);
 
   return (
     <Typeahead

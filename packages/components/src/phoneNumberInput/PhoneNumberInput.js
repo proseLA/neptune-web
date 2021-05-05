@@ -159,7 +159,6 @@ const PhoneNumberInput = (props) => {
     </div>
   );
 };
-PhoneNumberInput.Size = Size;
 
 PhoneNumberInput.propTypes = {
   required: PropTypes.bool,
@@ -170,11 +169,7 @@ PhoneNumberInput.propTypes = {
   onBlur: PropTypes.func,
   countryCode: PropTypes.string,
   searchPlaceholder: PropTypes.string,
-  size: PropTypes.oneOf([
-    PhoneNumberInput.Size.SMALL,
-    PhoneNumberInput.Size.MEDIUM,
-    PhoneNumberInput.Size.LARGE,
-  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   placeholder: PropTypes.string,
 };
 
@@ -186,7 +181,7 @@ PhoneNumberInput.defaultProps = {
   onBlur() {},
   countryCode: null,
   searchPlaceholder: 'Prefix',
-  size: PhoneNumberInput.Size.MEDIUM,
+  size: Size.MEDIUM,
   placeholder: '',
 };
 

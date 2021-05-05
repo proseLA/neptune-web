@@ -214,12 +214,22 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'button',
               context: submitAction.type,
-              action: { ...submitAction, label: submitAction.title, title: undefined, type: undefined },
+              action: {
+                ...submitAction,
+                label: submitAction.title,
+                title: undefined,
+                type: undefined,
+              },
             },
             {
               type: 'button',
               context: cancelAction.type,
-              action: { ...cancelAction, label: cancelAction.title, title: undefined, type: undefined },
+              action: {
+                ...cancelAction,
+                label: cancelAction.title,
+                title: undefined,
+                type: undefined,
+              },
             },
           ],
         },
@@ -248,23 +258,23 @@ describe('Given a utility service for handling dynamic layouts', () => {
     ];
 
     const actions = [
-        {
-          $id: "#submitMyDetails",
-          title: "Continue",
-          url: "/v3",
-          type: "primary",
-          method: "POST",
-          disabled: false
-        },
-        {
-          $id: "#submitMyAddress",
-          title: "Continue",
-          url: "/v3",
-          type: "primary",
-          method: "POST",
-          disabled: false
-        }
-    ]
+      {
+        $id: '#submitMyDetails',
+        title: 'Continue',
+        url: '/v3',
+        type: 'primary',
+        method: 'POST',
+        disabled: false,
+      },
+      {
+        $id: '#submitMyAddress',
+        title: 'Continue',
+        url: '/v3',
+        type: 'primary',
+        method: 'POST',
+        disabled: false,
+      },
+    ];
 
     it('should inline schema of top level form components', () => {
       const simpleLayout = [
@@ -312,27 +322,27 @@ describe('Given a utility service for handling dynamic layouts', () => {
           },
         },
         {
-          type: "button",
-          context: "primary",
+          type: 'button',
+          context: 'primary',
           action: {
-            $id: "#submitMyDetails",
-            label: "Continue",
-            url: "/v3",
-            method: "POST",
-            disabled: false
-          }
+            $id: '#submitMyDetails',
+            label: 'Continue',
+            url: '/v3',
+            method: 'POST',
+            disabled: false,
+          },
         },
         {
-          type: "button",
-          context: "primary",
+          type: 'button',
+          context: 'primary',
           action: {
-            $id: "#submitMyAddress",
-            label: "Continue",
-            url: "/v3",
-            method: "POST",
-            disabled: false
-          }
-        }
+            $id: '#submitMyAddress',
+            label: 'Continue',
+            url: '/v3',
+            method: 'POST',
+            disabled: false,
+          },
+        },
       ];
 
       expect(inlineReferences(simpleLayout, schemas, actions)).toEqual(expected);
@@ -352,7 +362,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'action',
               $ref: '#submitMyAddress',
-            }
+            },
           ],
         },
       ];
@@ -372,15 +382,15 @@ describe('Given a utility service for handling dynamic layouts', () => {
               },
             },
             {
-              type: "button",
-              context: "primary",
+              type: 'button',
+              context: 'primary',
               action: {
-                $id: "#submitMyAddress",
-                label: "Continue",
-                url: "/v3",
-                method: "POST",
-                disabled: false
-              }
+                $id: '#submitMyAddress',
+                label: 'Continue',
+                url: '/v3',
+                method: 'POST',
+                disabled: false,
+              },
             },
           ],
         },
@@ -403,7 +413,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'action',
               $ref: '#submitMyDetails',
-            }
+            },
           ],
           right: [
             {
@@ -415,7 +425,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               type: 'action',
               $ref: '#submitMyAddress',
-            }
+            },
           ],
         },
       ];
@@ -435,15 +445,15 @@ describe('Given a utility service for handling dynamic layouts', () => {
               },
             },
             {
-              type: "button",
-              context: "primary",
+              type: 'button',
+              context: 'primary',
               action: {
-                $id: "#submitMyDetails",
-                label: "Continue",
-                url: "/v3",
-                method: "POST",
-                disabled: false
-              }
+                $id: '#submitMyDetails',
+                label: 'Continue',
+                url: '/v3',
+                method: 'POST',
+                disabled: false,
+              },
             },
           ],
           right: [
@@ -458,15 +468,15 @@ describe('Given a utility service for handling dynamic layouts', () => {
               },
             },
             {
-              type: "button",
-              context: "primary",
+              type: 'button',
+              context: 'primary',
               action: {
-                $id: "#submitMyAddress",
-                label: "Continue",
-                url: "/v3",
-                method: "POST",
-                disabled: false
-              }
+                $id: '#submitMyAddress',
+                label: 'Continue',
+                url: '/v3',
+                method: 'POST',
+                disabled: false,
+              },
             },
           ],
         },

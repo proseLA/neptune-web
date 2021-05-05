@@ -9,7 +9,7 @@ import 'currency-flags/dist/currency-flags.min.css';
 
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { DEFAULT_LOCALE, getLangFromLocale } from '../src/common/locale';
-import supportedLangs from '../i18n';
+import supportedLangs from '../src/i18n';
 
 import './storybook.css';
 

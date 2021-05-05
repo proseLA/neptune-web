@@ -64,7 +64,7 @@ Option.propTypes = {
   content: PropTypes.node,
   onClick: PropTypes.func,
   href: requiredIf(PropTypes.string, (props) => props.as === 'a'),
-  as: PropTypes.elementType,
+  as: PropTypes.string,
   disabled: PropTypes.bool,
   button: PropTypes.node,
   decision: PropTypes.bool,

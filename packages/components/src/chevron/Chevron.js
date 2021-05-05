@@ -51,24 +51,16 @@ const Chevron = ({ orientation, size, disabled, className }) => {
   return <ChevronUp className={classNameValue} size={sizeValue} />;
 };
 
-Chevron.Orientation = Position;
-Chevron.Size = Size;
-
 Chevron.propTypes = {
-  orientation: PropTypes.oneOf([
-    Chevron.Orientation.TOP,
-    Chevron.Orientation.BOTTOM,
-    Chevron.Orientation.LEFT,
-    Chevron.Orientation.RIGHT,
-  ]),
-  size: PropTypes.oneOf([Chevron.Size.EXTRA_SMALL, Chevron.Size.SMALL, Chevron.Size.MEDIUM]),
+  orientation: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  size: PropTypes.oneOf(['xs', 'sm', 'md']),
   disabled: PropTypes.bool,
   className: PropTypes.string,
 };
 
 Chevron.defaultProps = {
-  orientation: Chevron.Orientation.BOTTOM,
-  size: Chevron.Size.SMALL,
+  orientation: Position.BOTTOM,
+  size: Size.SMALL,
   disabled: false,
   className: null,
 };

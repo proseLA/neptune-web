@@ -2,6 +2,7 @@ import React from 'react';
 import { select, text } from '@storybook/addon-knobs';
 
 import InlineAlert from './InlineAlert';
+import { Sentiment } from '../common';
 
 export default {
   component: InlineAlert,
@@ -11,13 +12,8 @@ export default {
 export const basic = () => {
   const type = select(
     'type',
-    [
-      InlineAlert.Type.SUCCESS,
-      InlineAlert.Type.ERROR,
-      InlineAlert.Type.INFO,
-      InlineAlert.Type.WARNING,
-    ],
-    InlineAlert.Type.ERROR,
+    [Sentiment.SUCCESS, Sentiment.ERROR, Sentiment.INFO, Sentiment.WARNING],
+    Sentiment.ERROR,
   );
 
   const message = text('message', 'Please enter a password over 5 characters');
@@ -28,13 +24,8 @@ export const basic = () => {
 export const input = () => {
   const type = select(
     'type',
-    [
-      InlineAlert.Type.SUCCESS,
-      InlineAlert.Type.ERROR,
-      InlineAlert.Type.INFO,
-      InlineAlert.Type.WARNING,
-    ],
-    InlineAlert.Type.ERROR,
+    [Sentiment.SUCCESS, Sentiment.ERROR, Sentiment.INFO, Sentiment.WARNING],
+    Sentiment.ERROR,
   );
 
   const message = text('message', 'Please enter a password over 5 characters');

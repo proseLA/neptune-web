@@ -5,7 +5,7 @@
       value={date}
       min={null}
       max={null}
-      size={DateLookup.Size.MEDIUM}
+      size={Size.MEDIUM}
       placeholder="I'm a placeholder"
       label="label"
       monthFormat="long"
