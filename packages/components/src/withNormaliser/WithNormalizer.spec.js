@@ -6,7 +6,7 @@ import { render, screen } from '../test-utils';
 import { Select } from '..';
 import WithNormaliser from '.';
 
-jest.mock('../common/responsivePanel/', () => {
+jest.mock('../common/Panel/', () => {
   const { forwardRef } = jest.requireActual('react');
   const Position = jest.requireActual('../common');
   return {
@@ -23,6 +23,13 @@ jest.mock('../common/responsivePanel/', () => {
 });
 
 describe('WithNormaliser', () => {
+  beforeAll(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
   it('when user types a string it returns string value', () => {
     const onChange = jest.fn();
     render(
