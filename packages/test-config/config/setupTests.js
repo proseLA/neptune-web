@@ -5,6 +5,8 @@ const Adapter = require('enzyme-adapter-react-16');
 global.fetch = require('jest-fetch-mock');
 enzyme.configure({ adapter: new Adapter() });
 
+jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+
 // https://github.com/esphen/jest-prop-type-error/blob/master/index.js
 // This mock will make tests fail when props error occurs.
 const { error } = console;
