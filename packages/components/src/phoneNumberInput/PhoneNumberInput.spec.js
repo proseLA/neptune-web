@@ -7,7 +7,7 @@ import { fakeEvent } from '../common/fakeEvents';
 
 jest.mock('react-intl');
 
-jest.mock('../common/Panel/', () => {
+jest.mock('../common/panel', () => {
   const { forwardRef } = jest.requireActual('react');
   const Position = jest.requireActual('../common');
   return {

@@ -6,7 +6,7 @@ import { render } from '../test-utils';
 
 import Select from '.';
 
-jest.mock('../common/Panel/', () => {
+jest.mock('../common/panel', () => {
   const { forwardRef } = jest.requireActual('react');
   const Position = jest.requireActual('../common');
   return {
