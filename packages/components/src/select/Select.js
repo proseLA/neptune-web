@@ -450,7 +450,6 @@ export default class Select extends Component {
             )} ${s('bottom')} ${s('tw-select-chevron')}`}
           />
         </button>
-
         <ResponsivePanel
           open={open}
           anchorRef={this.dropdownMenuRef}
