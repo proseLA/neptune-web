@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Stepper from '.';
 import Tooltip from '../tooltip';
 
-jest.mock('./deviceDetection', () => ({
+jest.mock('../common/deviceDetection/isTouchDevice', () => ({
   isTouchDevice: jest.fn(() => false),
 }));
 
@@ -15,7 +15,7 @@ describe('Stepper', () => {
 
   beforeEach(() => {
     // eslint-disable-next-line global-require
-    fakeDeviceDetection = require('./deviceDetection');
+    fakeDeviceDetection = require('../common/deviceDetection/isTouchDevice');
     props = {
       activeStep: 0,
       steps: ['one', 'two', 'three'].map((label) => ({ label })),
