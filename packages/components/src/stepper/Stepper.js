@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Stepper.css';
 import Tooltip from '../tooltip';
-import { isTouchDevice } from '../common/deviceDetection';
+import { isTouchDevice } from './deviceDetection';
 import { Position } from '../common';
 
 function clamp(from, to, value) {

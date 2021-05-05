@@ -1,4 +1,4 @@
-import { isTouchDevice } from './isTouchDevice';
+import { isTouchDevice } from './deviceDetection';
 
 describe('Device detection', () => {
   function fakeUserAgent(userAgent) {
