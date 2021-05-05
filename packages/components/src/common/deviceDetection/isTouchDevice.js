@@ -6,7 +6,17 @@ function supportsTouchEvents() {
     window.DocumentTouch &&
     document instanceof window.DocumentTouch;
 
-  return !!(onTouchStartIsDefined || maxTouchPointsIsDefined || documentTouchIsDefined);
+  const windowMatchMedia =
+    typeof window !== 'undefined' &&
+    window.matchMedia &&
+    !!window.matchMedia('(pointer: coarse)').matches;
+
+  return !!(
+    onTouchStartIsDefined ||
+    maxTouchPointsIsDefined ||
+    documentTouchIsDefined ||
+    windowMatchMedia
+  );
 }
 
 function userAgentSuggestsTouchDevice() {
