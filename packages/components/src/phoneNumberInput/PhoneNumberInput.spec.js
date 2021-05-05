@@ -7,7 +7,7 @@ import { fakeEvent } from '../common/fakeEvents';
 
 jest.mock('react-intl');
 
-jest.mock('../common/responsivePanel/', () => {
+jest.mock('../common/Panel/', () => {
   const { forwardRef } = jest.requireActual('react');
   const Position = jest.requireActual('../common');
   return {
@@ -33,6 +33,14 @@ describe('Given a telephone number component', () => {
   const props = { onChange: jest.fn() };
   const PREFIX_SELECT_SELECTOR = 'Select';
   const NUMBER_SELECTOR = 'input[name="phoneNumber"]';
+
+  beforeAll(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+  });
+
+  afterAll(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
 
   beforeEach(() => {
     useIntl.mockReturnValue({ locale: 'en-GB' });

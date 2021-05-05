@@ -6,7 +6,7 @@ import DateInput from '.';
 
 import { fakeEvent } from '../common/fakeEvents';
 
-jest.mock('../common/responsivePanel/', () => {
+jest.mock('../common/Panel/', () => {
   const { forwardRef } = jest.requireActual('react');
   const Position = jest.requireActual('../common');
   return {
