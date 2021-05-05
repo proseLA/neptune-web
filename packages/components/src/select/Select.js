@@ -457,7 +457,7 @@ export default class Select extends Component {
           position={Position.BOTTOM}
           onClose={() => this.close()}
         >
-          <div className="open">{this.renderOptionsList()}</div>
+          <span className={s('open')}>{this.renderOptionsList()}</span>
         </ResponsivePanel>
       </div>
     );
