@@ -1,6 +1,6 @@
 import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { usePopper } from 'react-popper';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
@@ -81,14 +81,14 @@ const Panel = forwardRef(
             ref={setPopperElement}
             style={{ ...styles.popper }}
             {...attributes.popper}
-            className={classNames('np-panel', className)}
+            className={classnames('np-panel', className)}
           >
-            <div ref={ref} className={classNames('np-panel__content')}>
+            <div ref={ref} className={classnames('np-panel__content')}>
               {children}
               {/* Arrow has to stay inside content to get the same animations as the "dialog" and to get hidden when panel is closed. */}
               {arrow && (
                 <div
-                  className={classNames('np-panel__arrow')}
+                  className={classnames('np-panel__arrow')}
                   ref={setArrowElement}
                   style={styles.arrow}
                 />
