@@ -19,14 +19,6 @@ describe('FormControl', () => {
   let defaultProps;
   let currentValue;
 
-  beforeAll(() => {
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
-  });
-
-  afterAll(() => {
-    window.requestAnimationFrame.mockRestore();
-  });
-
   beforeEach(() => {
     defaultProps = {
       id: 'control',

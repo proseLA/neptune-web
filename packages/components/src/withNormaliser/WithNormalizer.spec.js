@@ -23,13 +23,6 @@ jest.mock('../common/panel', () => {
 });
 
 describe('WithNormaliser', () => {
-  beforeAll(() => {
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
-  });
-
-  afterAll(() => {
-    window.requestAnimationFrame.mockRestore();
-  });
   it('when user types a string it returns string value', () => {
     const onChange = jest.fn();
     render(

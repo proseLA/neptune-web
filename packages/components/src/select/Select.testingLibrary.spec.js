@@ -31,14 +31,6 @@ describe('Select', () => {
     ],
   };
 
-  beforeAll(() => {
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
-  });
-
-  afterAll(() => {
-    window.requestAnimationFrame.mockRestore();
-  });
-
   beforeEach(() => {
     // Need to reset innerWidth for portal tests
     window.innerWidth = 1024;

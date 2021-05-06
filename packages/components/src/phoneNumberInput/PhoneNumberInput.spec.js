@@ -34,14 +34,6 @@ describe('Given a telephone number component', () => {
   const PREFIX_SELECT_SELECTOR = 'Select';
   const NUMBER_SELECTOR = 'input[name="phoneNumber"]';
 
-  beforeAll(() => {
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
-  });
-
-  afterAll(() => {
-    window.requestAnimationFrame.mockRestore();
-  });
-
   beforeEach(() => {
     useIntl.mockReturnValue({ locale: 'en-GB' });
   });
