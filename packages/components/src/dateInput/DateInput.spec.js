@@ -14,7 +14,7 @@ jest.mock('../common/panel', () => {
     // eslint-disable-next-line react/prop-types
     ...forwardRef(({ open, children }, ref) =>
       open ? (
-        <div ref={ref} className="np-responsive-panel">
+        <div ref={ref} className="np-panel">
           {children}
         </div>
       ) : null,
