@@ -8,8 +8,6 @@ import { Position } from '..';
 import './Panel.css';
 import FocusBoundary from '../focusBoundary';
 
-const POPOVER_OFFSET = [0, 16];
-
 // By default the flip positioning explores only the opposite alternative. So if left is passed and there's no enough space
 // the right one gets chosen. If there's no space on both sides popover goes back to the initially chosen one left.
 // This mapping forces popover to try the four available positions before going back to the initial chosen one.
@@ -21,7 +19,7 @@ const fallbackPlacements = {
 };
 
 const Panel = forwardRef(
-  ({ arrow, children, className, open, onClose, position: placement, anchorRef }, ref) => {
+  ({ arrow, children, className, offset, open, onClose, position: placement, anchorRef }, ref) => {
     const [arrowElement, setArrowElement] = useState(null);
     const [popperElement, setPopperElement] = useState(null);
     // Do not trigger external onCLose if click is from Panel trigger
@@ -29,6 +27,14 @@ const Panel = forwardRef(
 
     const modifiers = [];
 
+    if (offset) {
+      modifiers.push({
+        name: 'offset',
+        options: {
+          offset,
+        },
+      });
+    }
     if (arrow) {
       modifiers.push({
         name: 'arrow',
@@ -39,8 +45,6 @@ const Panel = forwardRef(
           },
         },
       });
-      // This lets you displace a popper element from its reference element.
-      modifiers.push({ name: 'offset', options: { offset: POPOVER_OFFSET } });
     }
     if (fallbackPlacements[placement]) {
       modifiers.push({
@@ -111,6 +115,7 @@ Panel.Position = {
 Panel.defaultProps = {
   arrow: false,
   className: undefined,
+  offset: undefined,
   open: false,
   position: Panel.Position.TOP,
 };
@@ -120,6 +125,7 @@ Panel.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   open: PropTypes.bool,
+  offset: PropTypes.arrayOf(PropTypes.number),
   onClose: PropTypes.func.isRequired,
   position: PropTypes.oneOf([
     Panel.Position.BOTTOM,

@@ -15,6 +15,7 @@ describe('Panel', () => {
     position: Panel.Position.TOP,
     anchorRef: {},
     onClose: jest.fn(),
+    offset: [10, 10],
   };
 
   it('renders', () => {

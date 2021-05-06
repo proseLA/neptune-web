@@ -83,6 +83,7 @@ export default class Select extends Component {
     };
     this.searchBoxRef = createRef();
     this.dropdownMenuRef = createRef();
+    this.triggerRef = createRef();
   }
 
   componentWillUnmount() {
@@ -423,6 +424,10 @@ export default class Select extends Component {
       },
       s('dropdown-toggle'),
     );
+    const PANEL_OFFSET = [
+      0,
+      this?.triggerRef?.current ? -this?.triggerRef?.current?.getBoundingClientRect().height : 0,
+    ];
 
     return (
       // A transition is used here in order to mount and unmount the dropdown menu while retaining animations
@@ -441,6 +446,7 @@ export default class Select extends Component {
           id={id}
           aria-expanded={open}
           onClick={this.handleButtonClick}
+          ref={this.triggerRef}
         >
           {this.renderButtonInternals()}
           <Chevron
@@ -455,6 +461,7 @@ export default class Select extends Component {
           anchorRef={this.dropdownMenuRef}
           position={Position.BOTTOM}
           onClose={() => this.close()}
+          offset={PANEL_OFFSET}
         >
           <span className={s('open')}>{this.renderOptionsList()}</span>
         </ResponsivePanel>

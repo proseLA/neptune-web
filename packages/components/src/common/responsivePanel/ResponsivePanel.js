@@ -6,7 +6,16 @@ import BottomSheet from '../bottomSheet';
 import Panel from '../panel';
 import SizeSwapper from '../../sizeSwapper';
 
-const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open, position }) => {
+const ResponsivePanel = ({
+  anchorRef,
+  arrow,
+  children,
+  className,
+  offset,
+  onClose,
+  open,
+  position,
+}) => {
   const windowRef = typeof window === 'undefined' ? undefined : window;
   const ref = useRef(null);
 
@@ -35,6 +44,7 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
           key="panel"
           className={className}
           onClose={onClose}
+          offset={offset}
         >
           {children}
         </Panel>,
@@ -48,6 +58,7 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
 ResponsivePanel.defaultProps = {
   arrow: false,
   className: undefined,
+  offset: undefined,
   open: false,
   position: Position.TOP,
 };
@@ -56,6 +67,7 @@ ResponsivePanel.propTypes = {
   arrow: PropTypes.bool,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  offset: PropTypes.arrayOf(PropTypes.number),
   /** Function attached to document click and keydown. It gets called when a close condition provided is met. */
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool,
