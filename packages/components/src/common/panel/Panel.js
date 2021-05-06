@@ -1,7 +1,8 @@
 import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { usePopper } from 'react-popper';
+import CSSTransition from 'react-transition-group/CSSTransition';
 
 import { Position } from '..';
 import './Panel.css';
@@ -65,20 +66,29 @@ const Panel = forwardRef(
     // Popper recommends to use the popper element as a wrapper around an inner element that can have any CSS property transitioned for animations.
 
     return (
-      open && (
+      <CSSTransition
+        in={open}
+        appear
+        // Wait for animation to finish before unmount.
+        timeout={{ enter: 0, exit: 350 }}
+        classNames={{
+          enterDone: classNames({ 'np-panel--open': open }),
+        }}
+        unmountOnExit
+      >
         <FocusBoundary onClose={handleOnClose}>
           <div
             ref={setPopperElement}
             style={{ ...styles.popper }}
             {...attributes.popper}
-            className={classnames('np-panel', { 'np-panel--open': open }, className)}
+            className={classNames('np-panel', className)}
           >
-            <div ref={ref} className={classnames('np-panel__content')}>
+            <div ref={ref} className={classNames('np-panel__content')}>
               {children}
               {/* Arrow has to stay inside content to get the same animations as the "dialog" and to get hidden when panel is closed. */}
               {arrow && (
                 <div
-                  className={classnames('np-panel__arrow')}
+                  className={classNames('np-panel__arrow')}
                   ref={setArrowElement}
                   style={styles.arrow}
                 />
@@ -86,7 +96,7 @@ const Panel = forwardRef(
             </div>
           </div>
         </FocusBoundary>
-      )
+      </CSSTransition>
     );
   },
 );
