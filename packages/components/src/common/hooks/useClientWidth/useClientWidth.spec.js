@@ -6,12 +6,6 @@ import { useClientWidth } from './useClientWidth';
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
 
 describe('useClientWidth', () => {
-  beforeEach(() => {
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
-  });
-  afterAll(() => {
-    window.requestAnimationFrame.mockRestore();
-  });
   describe('when invalid ref is provided', () => {
     it('returns 0', () => {
       const ref = { invalid: true };

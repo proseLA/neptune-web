@@ -36,13 +36,11 @@ describe('Decision', () => {
 
   afterAll(() => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
-    window.requestAnimationFrame.mockRestore();
   });
 
   let container;
   beforeEach(() => {
     resetClientWidth(Breakpoint.EXTRA_SMALL - 1);
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
   });
 
   describe(`when presentation is ${DecisionPresentation.LIST_BLOCK}`, () => {
