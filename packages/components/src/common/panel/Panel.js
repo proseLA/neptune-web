@@ -70,7 +70,7 @@ const Panel = forwardRef(
         in={open}
         appear
         // Wait for animation to finish before unmount.
-        timeout={{ enter: 0, exit: 350 }}
+        timeout={{ enter: 0, exit: 150 }}
         classNames={{
           enterDone: 'np-panel--open',
         }}
