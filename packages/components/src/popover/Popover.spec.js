@@ -3,6 +3,11 @@ import { fireEvent, render, waitFor, screen } from '../test-utils';
 import Popover from './Popover';
 import { Breakpoint, Position } from '../common';
 
+jest.mock(
+  'react-transition-group/CSSTransition',
+  () => (props) => (props.in ? <div className="np-panel--open">{props.children}</div> : null), // eslint-disable-line
+);
+
 describe('Popover', () => {
   const props = {
     arrow: true,
