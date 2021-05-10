@@ -18,41 +18,45 @@ exports[`Popover on desktop renders when is open 1`] = `
       class="np-size-swapper d-inline-flex"
       style="visibility: visible;"
     >
-      <span
-        class="np-focus-boundary d-inline-block outline-none"
-        tabindex="-1"
+      <div
+        class="np-panel--open"
       >
-        <div
-          class="np-panel np-panel--open np-popover__container"
-          data-popper-escaped="true"
-          data-popper-placement="right"
-          data-popper-reference-hidden="true"
-          style="position: absolute; left: 0px; top: 0px; transform: translate(16px, 0px);"
+        <span
+          class="np-focus-boundary d-inline-block outline-none"
+          tabindex="-1"
         >
           <div
-            class="np-panel__content"
+            class="np-panel np-popover__container"
+            data-popper-escaped="true"
+            data-popper-placement="right"
+            data-popper-reference-hidden="true"
+            style="position: absolute; left: 0px; top: 0px; transform: translate(16px, 0px);"
           >
             <div
-              aria-hidden="false"
-              class="np-popover__content"
-              role="tooltip"
+              class="np-panel__content"
             >
               <div
-                aria-level="1"
-                class="np-popover__title m-b-1"
-                role="heading"
+                aria-hidden="false"
+                class="np-popover__content"
+                role="tooltip"
               >
-                title
+                <div
+                  aria-level="1"
+                  class="np-popover__title m-b-1"
+                  role="heading"
+                >
+                  title
+                </div>
+                content
               </div>
-              content
+              <div
+                class="np-panel__arrow"
+                style="position: absolute; top: 0px; transform: translate(0px, 0px);"
+              />
             </div>
-            <div
-              class="np-panel__arrow"
-              style="position: absolute; top: 0px; transform: translate(0px, 0px);"
-            />
           </div>
-        </div>
-      </span>
+        </span>
+      </div>
     </div>
   </span>
 </div>

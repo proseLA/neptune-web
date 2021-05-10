@@ -11,14 +11,6 @@ describe('Info', () => {
     'aria-label': 'aria-label',
   };
 
-  beforeAll(() => {
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
-  });
-
-  afterAll(() => {
-    window.requestAnimationFrame.mockRestore();
-  });
-
   it('renders small icon', async () => {
     await waitFor(() => {
       render(<Info {...props} />);
