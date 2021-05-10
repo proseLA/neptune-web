@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isEmpty } from '@transferwise/neptune-validation';
+import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
 import Select from '../select';
 import './MoneyInput.css';
 import { Size } from '../common/propsValues/size';
@@ -20,6 +20,7 @@ const Currency = PropTypes.shape({
   searchable: PropTypes.string,
 });
 const CUSTOM_ACTION = 'CUSTOM_ACTION';
+const isNumberOrNull = (v) => isNumber(v) || isNull(v);
 
 const formatAmountIfSet = (amount, currency, locale) => {
   return typeof amount === 'number' ? formatAmount(amount, currency, locale) : '';
@@ -55,7 +56,7 @@ class MoneyInput extends Component {
 
   isInputAllowedForKeyEvent = (event) => {
     const { keyCode, metaKey, key } = event;
-    const isNumberKey = !Number.isNaN(parseInt(key, 10));
+    const isNumberKey = isNumber(parseInt(key, 10));
 
     return (
       isNumberKey ||
@@ -85,7 +86,7 @@ class MoneyInput extends Component {
       ? null
       : parseAmount(paste, this.props.selectedCurrency.currency, this.locale);
 
-    if (!Number.isNaN(parsed)) {
+    if (isNumberOrNull(parsed)) {
       this.setState({
         formattedAmount: parsed,
       });
@@ -103,7 +104,7 @@ class MoneyInput extends Component {
     const parsed = isEmpty(value)
       ? null
       : parseAmount(value, this.props.selectedCurrency.currency, this.locale);
-    if (!Number.isNaN(parsed)) {
+    if (isNumberOrNull(parsed)) {
       this.props.onAmountChange(parsed);
     }
   };
@@ -134,7 +135,7 @@ class MoneyInput extends Component {
         this.props.selectedCurrency.currency,
         this.locale,
       );
-      if (Number.isNaN(parsed)) {
+      if (!isNumberOrNull(parsed)) {
         return {
           formattedAmount: previousState.formattedAmount,
         };
