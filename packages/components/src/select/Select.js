@@ -410,6 +410,7 @@ export default class Select extends Component {
       [s('btn-block')]: block,
       [s('dropup')]: dropdownUp,
       [s('dropdown')]: !dropdownUp,
+      open,
     });
 
     const buttonClass = classNames(
@@ -472,56 +473,67 @@ export default class Select extends Component {
 
 Select.propTypes = {
   placeholder: PropTypes.string,
-  id: PropTypes.string,
-  required: PropTypes.bool,
   disabled: PropTypes.bool,
-  inverse: PropTypes.bool,
-  dropdownRight: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  required: PropTypes.bool,
+  size: same as button
+  theme:
+  ...htmlAttr(id)
+  dropdownRight: to be replaced with Popper fucntionalities
+  selected:PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  classNames
+  search:{
+    placeholder
+    value
+    onChange
+    customSearch
+  }
+
+  
+  
+  
+
+<option>
+<label><currrency|flag</label>
+<option>
+
+<Dropdown>
+ <OptGroup label separator></OptGroup>
+  <Option value='unique' media label secondary disabled searchStrings></Option>
+</Dropdown>
+
+
+<OptionList></OptionList>
+  
+  
+ 
+  
+  
+  
+  dropdownRight: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']), // Popper Top_start top_end
   dropdownWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  block: PropTypes.bool,
-  selected: PropTypes.shape({
-    // eslint-disable-next-line react/forbid-prop-types
-    value: PropTypes.any.isRequired,
-    label: PropTypes.node,
-    icon: PropTypes.node,
-    currency: PropTypes.string,
-    note: PropTypes.node,
-    secondary: PropTypes.node,
-  }),
+
+  
+  
+  
   /**
    * Search toggle
    * if `true` default search functionality being enabled (not case sensitive search in option labels & currency props)
    * if `function` you can define your own search function to implement custom search experience. This search function used while filtering the options array. The custom search function takes two parameters. First is the option the second is the keyword.
    */
   search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-  onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      // eslint-disable-next-line react/forbid-prop-types
-      value: PropTypes.any,
-      label: PropTypes.node,
-      header: PropTypes.node,
-      icon: PropTypes.node,
-      currency: PropTypes.string,
-      note: PropTypes.node,
-      secondary: PropTypes.node,
-      separator: PropTypes.bool,
-      disabled: PropTypes.bool,
-      searchStrings: PropTypes.arrayOf(PropTypes.string),
-    }),
-  ).isRequired,
-  /**
+  
+  
    * To have full control of your search value and response use `onSearchChange` function combined with `searchValue` and custom filtering on the options array.
    * DO NOT USE TOGETHER WITH `search` PROPERTY
    */
   onSearchChange: PropTypes.func,
   searchValue: PropTypes.string,
   searchPlaceholder: PropTypes.string,
-  classNames: PropTypes.objectOf(PropTypes.string),
-  dropdownUp: PropTypes.bool,
+ 
+  dropdownUp: PropTypes.bool, // Popper managed</option>
 };
 
 Select.defaultProps = {
