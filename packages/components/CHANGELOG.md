@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.2...@transferwise/components@36.0.3) (2021-05-10)
+
+
+### Bug Fixes
+
+* reintroduced Panel animation ([#935](https://github.com/transferwise/neptune-web/issues/935)) ([495e230](https://github.com/transferwise/neptune-web/commit/495e230f4daec1f6593534259577cf8c9289a578))
+
+
+
+
+
 ## [36.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.1...@transferwise/components@36.0.2) (2021-05-04)
 
 **Note:** Version bump only for package @transferwise/components
