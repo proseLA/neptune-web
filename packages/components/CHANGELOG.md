@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.3...@transferwise/components@36.0.4) (2021-05-11)
+
+
+### Bug Fixes
+
+* update FocusBoundary to be inline-flex and modal to self center ([#938](https://github.com/transferwise/neptune-web/issues/938)) ([e705aeb](https://github.com/transferwise/neptune-web/commit/e705aeb5c15673fe6050ed450103512214d95011))
+
+
+
+
+
 ## [36.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.2...@transferwise/components@36.0.3) (2021-05-10)
 
 
