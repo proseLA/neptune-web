@@ -6,7 +6,7 @@ exports[`Panel renders 1`] = `
     class="np-panel--open"
   >
     <span
-      class="np-focus-boundary d-inline-block outline-none"
+      class="np-focus-boundary d-inline-flex outline-none"
       tabindex="-1"
     >
       <div
