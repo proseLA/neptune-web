@@ -28,6 +28,21 @@
       left: 40px;
     }
   }
+
+  &.checkbox--rtl {
+    > label {
+      padding-right: 48px;
+    }
+
+    .np-checkbox-button {
+      right: 14px;
+
+      input[type='checkbox'],
+      .tw-checkbox-button {
+        right: 0;
+      }
+    }
+  }
 }
 
 .tw-checkbox-button {
@@ -218,6 +233,28 @@
   position: absolute;
   left: 13px;
   top: 11px;
+}
+
+.radio {
+  &.radio--rtl {
+    .tw-radio-button {
+      right: 13px;
+
+      .tw-radio-check {
+        margin: 0 11px 0 0;
+      }
+
+      &.checked {
+        .tw-radio-check {
+          margin: 5px;
+        }
+      }
+    }
+
+    > label {
+      padding-right: 48px;
+    }
+  }
 }
 
 .checkbox .tw-checkbox-button {

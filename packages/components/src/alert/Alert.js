@@ -8,6 +8,7 @@ import CloseButton from '../common/closeButton';
 import withArrow from './withArrow';
 import InlineMarkdown from './inlineMarkdown';
 import { logActionRequiredIf, deprecated } from '../utilities';
+import { useDirection } from '../common/hooks';
 
 const deprecatedTypeMap = {
   [Sentiment.SUCCESS]: Sentiment.POSITIVE,
@@ -26,6 +27,7 @@ const Alert = (props) => {
   const [shouldFire, setShouldFire] = useState(false);
   const { arrow, action, children, className, icon, onDismiss, message, type } = props;
   const closeButtonRef = useRef(null);
+  const { isRTL } = useDirection();
 
   if (arrow) {
     const AlertWithArrow = withArrow(Alert, arrow);
@@ -66,7 +68,9 @@ const Alert = (props) => {
       onTouchMove={handleTouchMove}
     >
       {iconEl}
-      <div className="alert__message p-l-2 flex-grow-1">
+      <div
+        className={classNames('alert__message flex-grow-1', { 'p-l-2': !isRTL, 'p-r-2': isRTL })}
+      >
         <div>{children || <InlineMarkdown>{message}</InlineMarkdown>}</div>
         {action && (
           <a

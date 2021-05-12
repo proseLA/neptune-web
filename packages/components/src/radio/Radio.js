@@ -1,18 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import RadioButton from '../common/RadioButton';
 
-const Radio = ({ label, id, disabled, secondary, ...otherProps }) => (
-  <div className={`radio ${secondary ? 'radio-lg' : ''}`} disabled={disabled}>
-    <label htmlFor={id}>
-      {/* eslint-enable jsx-a11y/label-has-for */}
-      <RadioButton id={id} disabled={disabled} {...otherProps} />
-      {label}
-      {secondary && <small>{secondary}</small>}
-    </label>
-  </div>
-);
+import { useDirection } from '../common/hooks';
+
+const Radio = ({ label, id, disabled, secondary, ...otherProps }) => {
+  const { isRTL } = useDirection();
+  return (
+    <div
+      className={classNames('radio', {
+        'radio-lg': secondary,
+        'radio--rtl': isRTL,
+      })}
+      disabled={disabled}
+    >
+      <label htmlFor={id}>
+        {/* eslint-enable jsx-a11y/label-has-for */}
+        <RadioButton id={id} disabled={disabled} {...otherProps} />
+        {label}
+        {secondary && <small>{secondary}</small>}
+      </label>
+    </div>
+  );
+};
 
 Radio.propTypes = {
   checked: PropTypes.bool,

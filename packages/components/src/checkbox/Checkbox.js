@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CheckboxButton from '../checkboxButton';
 
+import { useDirection } from '../common/hooks';
+
 const Checkbox = ({
   id,
   checked,
@@ -17,12 +19,14 @@ const Checkbox = ({
   onBlur,
 }) => {
   const hasError = required && !disabled && !readOnly && !checked;
+  const { isRTL } = useDirection();
 
   const classList = classNames({
     checkbox: true,
     'checkbox-lg': secondary,
     'has-error': hasError,
     disabled,
+    'checkbox--rtl': isRTL,
   });
 
   return (
