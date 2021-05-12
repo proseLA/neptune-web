@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.1.2...@transferwise/dynamic-flows@13.1.3) (2021-05-12)
+
+
+### Bug Fixes
+
+* provider language setup ([#939](https://github.com/transferwise/neptune-web/issues/939)) ([f0c4661](https://github.com/transferwise/neptune-web/commit/f0c466150a72ab4ba6bc2f0676d0d7063f374d7e))
+
+
+
+
+
 ## [13.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.1.1...@transferwise/dynamic-flows@13.1.2) (2021-05-11)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

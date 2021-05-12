@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/components",
-  "version": "36.0.4",
+  "version": "36.0.5",
   "description": "Neptune React components",
   "license": "Apache-2.0",
   "main": "./build/umd/polyfill/main.js",
@@ -72,7 +72,7 @@
     "@storybook/react": "^6.1.9",
     "@transferwise/icons": "^2.6.0",
     "@transferwise/less-config": "^3.0.1",
-    "@transferwise/neptune-css": "^9.1.0",
+    "@transferwise/neptune-css": "^9.1.1",
     "@transferwise/neptune-tokens": "^1.0.0",
     "@transferwise/test-config": "^3.0.6",
     "@types/jest": "^26.0.20",
