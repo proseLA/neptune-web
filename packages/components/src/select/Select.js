@@ -329,7 +329,7 @@ export default class Select extends Component {
     });
 
     const list = (
-      <ul className={dropdownClass} role="menu">
+      <ul className={dropdownClass} role="listbox">
         {!required && !canSearch && placeholder ? this.renderPlaceHolderOption() : ''}
         {canSearch && (
           <SearchBox
@@ -460,11 +460,16 @@ export default class Select extends Component {
           onTouchMove={this.handleTouchStart}
           onFocus={this.handleOnFocus}
           onBlur={this.handleOnBlur}
+          role="combobox"
+          aria-controls={id}
+          aria-expanded={open}
+          tabIndex={0}
         >
           <button
             disabled={disabled}
             className={buttonClass}
             type="button"
+            role="listbox"
             id={id}
             aria-expanded={open}
             onClick={this.handleButtonClick}
