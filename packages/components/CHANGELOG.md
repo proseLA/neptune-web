@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.5...@transferwise/components@36.0.6) (2021-05-13)
+
+
+### Bug Fixes
+
+* allow overflow in cards ([#940](https://github.com/transferwise/neptune-web/issues/940)) ([3437c2f](https://github.com/transferwise/neptune-web/commit/3437c2f07755c6a1f9ffbddb69498f00608618ca))
+
+
+
+
+
 ## [36.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.4...@transferwise/components@36.0.5) (2021-05-12)
 
 **Note:** Version bump only for package @transferwise/components
