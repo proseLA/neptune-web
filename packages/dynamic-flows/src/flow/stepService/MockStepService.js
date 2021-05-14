@@ -18,7 +18,7 @@ async function request(action, data) {
   switch (action.url) {
     case '/decision':
       return Promise.resolve(decisionStep);
-    case '/recipient':
+    case '/v3/123':
       return Promise.resolve(formStep);
     case '/layout':
       return Promise.resolve(layoutStep);

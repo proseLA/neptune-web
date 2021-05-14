@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
-
-import DynamicLayout from '../layout/index';
+import { isEmpty } from '@transferwise/neptune-validation';
+import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 
 import { request } from './stepService';
+import { isValidSchema } from '../common/validation/schema-validators';
 
 /**
  * ## DynamicFlow
@@ -15,88 +16,138 @@ import { request } from './stepService';
  * and reformats it to use a DynamicLayout for presentation.
  */
 const DynamicFlow = (props) => {
-  const onAction = (action) => {
-    if (action.exit) {
-      props.onClose(action.data);
+  const { baseUrl, flowUrl, onClose, onStepChange, locale } = props;
+
+  const [stepSpecification, setStepSpecification] = useState({});
+  const [model, setModel] = useState({});
+  const [modelIsValid, setModelIsValid] = useState(true); // Is this ok for init???
+  const [loading, setLoading] = useState(true);
+  const [submitted, setSubmitted] = useState(false);
+  const [validations, setValidations] = useState();
+
+  useEffect(() => {
+    const action = { url: flowUrl, method: 'GET' };
+    fetchStep(action);
+  }, [baseUrl, flowUrl]);
+
+  useEffect(() => {
+    if ((stepSpecification || {}).model) {
+      updateModel(stepSpecification.model);
+    }
+  }, [stepSpecification]);
+
+  const fetchStep = async (action, data) => {
+    setLoading(true);
+
+    return request(action, data, baseUrl)
+      .then(validateResponse)
+      .then((response) => {
+        setStepSpecification(response);
+
+        onStepChange(response);
+      })
+      .catch(handleFetchError)
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const fetchRefresh = (action, data) => {
+    return request(action, data, baseUrl)
+      .then(validateResponse)
+      .then((response) => {
+        setStepSpecification(response);
+      })
+      .catch(handleFetchError);
+  };
+
+  const validateResponse = (response) => new Promise((resolve) => resolve(response));
+
+  const handleFetchError = ({ validation }) => setValidations(validation);
+
+  const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
+    const correctedNewModel = correctNewModelIfNeeded(
+      newModel,
+      formSchema,
+      triggerModel,
+      triggerSchema,
+    );
+
+    const updatedModel = updateModel(correctedNewModel);
+
+    if ((triggerSchema || {}).refreshRequirementsOnChange) {
+      const action = { url: stepSpecification.refreshFormUrl, method: 'POST' };
+
+      fetchRefresh(action, updatedModel);
+    }
+  };
+
+  const onAction = async (action) => {
+    const { exit, data, method } = action;
+
+    if (exit) {
+      onClose(data);
       return;
     }
 
-    const method = action.method.toUpperCase();
-    const submissionMethods = ['POST', 'PUT', 'PATCH'];
+    const updatedModel = updateModel(data);
 
-    const isSubmit = submissionMethods.includes(method);
-
-    if (isSubmit) {
+    if (isSubmissionMethod(method)) {
+      // a property in the JSON would be better to check if validation is required
       setSubmitted(true);
-    }
 
-    if (modelIsValid || !isSubmit) {
-      const data = mergeModels(model, action.data);
-      fetchNewStep(action, method === 'GET' ? undefined : data);
-    }
-  };
-
-  const mergeModels = (formModel, actionModel) => {
-    // TODO handle different data types
-    return { ...(actionModel || {}), ...(formModel || {}) };
-  };
-
-  const fetchNewStep = async (action, model) => {
-    let response;
-    try {
-      console.log('fetch'); // eslint-disable-line
-      response = await request(action, model);
-
-      console.log('then'); // eslint-disable-line
-      // If we don't receive a valid step, exit the flow
-      if (!response.type) {
-        props.onClose();
-      } else {
-        onStepChange(response);
+      if (modelIsValid) {
+        fetchStep(action, updatedModel).finally(() => {
+          setSubmitted(false);
+        });
       }
-    } catch (error) {
-      console.log('catch', error); // eslint-disable-line
-      setValidations(error.validation); // TODO this not thrown
+      return;
     }
-  };
 
-  const onModelChange = async (newModel, isValid, triggerSchema) => {
-    setModel(newModel);
-    setModelIsValid(isValid);
-
-    if (triggerSchema.refreshRequirementsOnChange) {
-      const action = { method: 'POST', url: stepSpecification.refreshFormUrl };
-
-      const response = await request(action, newModel);
-
-      response
-        .then((step) => {
-          updateStepSpecification(step);
-        })
-        .catch(() => {});
-    }
-  };
-
-  const onStepChange = (step) => {
-    setModel(step.model);
-    updateStepSpecification(step);
-    setSubmitted(false);
-    props.onStepChange(step);
+    fetchStep(action);
   };
 
   const onPersistAsync = () => {};
 
-  const updateStepSpecification = (step) => {
-    setStepSpecification(step);
-    setLayout(getLayout(step));
-    if (step.model) {
-      setModel(step.model); // Replace model if we receive a new one
-    }
-    // TODO set modelIsValid ?
+  const updateModel = (newModel) => {
+    const mergedModel = mergeModels(model, newModel);
+
+    setModel(mergedModel);
+    setModelIsValid(isValidModel(mergedModel, stepSpecification.schemas));
+
+    return mergedModel;
   };
 
-  const getLayout = (step) => {
-    if (!step) {
+  const mergeModels = (prevModel, newModel) => {
+    // TODO handle different data types
+    return { ...(prevModel || {}), ...(newModel || {}) };
+  };
+
+  const isValidModel = (formModel, schemas) =>
+    schemas.reduce((validSoFar, schema) => isValidSchema(formModel, schema) && validSoFar, true);
+
+  const isSubmissionMethod = (method) => {
+    const submissionMethods = ['POST', 'PUT', 'PATCH'];
+    return submissionMethods.includes(method.toUpperCase());
+  };
+
+  const correctNewModelIfNeeded = (newModel, formSchema, triggerModel, triggerSchema) => {
+    const propertyName = getPropertyNameByTriggerSchema(formSchema, triggerSchema);
+
+    return {
+      ...(propertyName ? { [propertyName]: undefined } : {}),
+      ...newModel,
+    };
+  };
+
+  const getPropertyNameByTriggerSchema = (schema, triggerSchema) => {
+    const [key] =
+      Object.entries(schema.properties).find(([key, value]) => value === triggerSchema) || [];
+    return key;
+  };
+
+  const getComponents = (step) => {
+    if (!step || isEmpty(step) || (!step.layout && !step.type)) {
       return [];
     }
 
@@ -105,40 +156,20 @@ const DynamicFlow = (props) => {
     return inlineReferences(layout, step.schemas, step.actions);
   };
 
-  // When we get a new specification from outside, reinitialise.
-  // useEffect(() => {
-  //   onStepChange(props.specification);
-  // }, [props.specification]);
-
-  // TODO Test
-  // Load the first step using the initial flow URL
-  useEffect(() => {
-    console.log('flowUrl', props.flowUrl); // eslint-disable-line
-    const action = {
-      url: props.flowUrl,
-      method: 'GET',
-    };
-    fetchNewStep(action);
-  }, [props.flowUrl]);
-
-  const [model, setModel] = useState(); // useState(props.specification.model);
-  const [modelIsValid, setModelIsValid] = useState(false); // Is this ok for init???
-  const [submitted, setSubmitted] = useState(false);
-  const [stepSpecification, setStepSpecification] = useState({});
-  const [layout, setLayout] = useState(); // useState(getLayout(props.specification));
-  const [validations, setValidations] = useState();
+  const components = getComponents(stepSpecification);
 
   return (
     <>
-      {!layout && <p>No layout</p>}
-      {layout && (
+      {!components && <p>No layout</p>}
+      {components && (
         <DynamicLayout
-          components={layout}
+          components={components}
           submitted={submitted}
-          locale={props.locale}
+          loading={loading}
+          locale={locale}
           model={model}
           errors={validations}
-          baseUrl={props.baseUrl}
+          baseUrl={baseUrl}
           onAction={onAction}
           onModelChange={onModelChange}
           onPersistAsync={onPersistAsync}
@@ -150,17 +181,17 @@ const DynamicFlow = (props) => {
 
 // eslint-disable-next-line
 DynamicFlow.propTypes = {
+  baseUrl: Types.string,
   flowUrl: Types.string.isRequired,
   onClose: Types.func.isRequired,
   onStepChange: Types.func,
   locale: Types.string,
-  baseUrl: Types.string,
 };
 
 DynamicFlow.defaultProps = {
+  baseUrl: '',
   locale: 'en-GB',
   onStepChange: () => {},
-  baseUrl: '',
 };
 
 export default DynamicFlow;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
-// import { shallow, mount } from 'enzyme';
 
 import DynamicFlow from '.';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 import { request } from './stepService';
+import { wait } from '../test-utils';
 
 jest.mock('./layoutService');
 jest.mock('./stepService');
-jest.mock('../layout', () => 'layout');
+jest.mock('../layout', () => () => <div />);
 
 // We want to use the original implementation so everything continues to function
 const layoutService = jest.requireActual('./layoutService');
@@ -53,10 +53,10 @@ describe('Given a component for rendering a dynamic flow', () => {
   // };
 
   const numberSchema = { type: 'number' };
-  const stringSchema = { type: 'string', refreshRequirements: true };
+  const stringSchema = { type: 'string', refreshRequirementsOnChange: true };
 
   const thingSchema = {
-    id: '#thing',
+    $id: '#thing',
     type: 'object',
     properties: {
       a: numberSchema,
@@ -77,7 +77,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     layout: [
       {
         type: 'form',
-        $schema: '#thing',
+        schema: { $ref: '#thing' },
       },
     ],
     schemas: [thingSchema],
@@ -123,6 +123,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     },
   };
 
+  const baseUrl = '';
   const formUrl = '/form'; // eslint-disable-line
   const formNoLayoutUrl = '/formNoLayout'; // eslint-disable-line
   const decisionUrl = '/decision';
@@ -171,7 +172,7 @@ describe('Given a component for rendering a dynamic flow', () => {
         if (model.failure) {
           return reject(errorResponse);
         }
-        return resolve(errorResponse);
+        return resolve(newStep);
       case '/failure':
         return reject(errorResponse);
       default:
@@ -184,13 +185,19 @@ describe('Given a component for rendering a dynamic flow', () => {
     return component.find(DynamicLayout);
   }
 
-  beforeEach(() => {
+  function waitBeforeEach() {
+    beforeEach(async () => {
+      await wait(0);
+      component.update();
+    });
+  }
+
+  beforeEach(async () => {
     request.mockImplementation(mockApi);
     onClose = jest.fn();
     onStepChange = jest.fn();
     convertStepToLayout.mockClear();
     inlineReferences.mockClear();
-    // request.mockClear();
   });
 
   describe('when instantiated', () => {
@@ -203,7 +210,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       );
     });
     it('should load the step specification using the supplied URL', () => {
-      expect(request).toHaveBeenCalledWith({ url: decisionUrl, method: 'GET' }, undefined);
+      expect(request).toHaveBeenCalledWith({ url: decisionUrl, method: 'GET' }, undefined, baseUrl);
     });
   });
 
@@ -220,7 +227,9 @@ describe('Given a component for rendering a dynamic flow', () => {
       );
     });
 
-    fit('should first generate a layout using the layout service', async () => {
+    waitBeforeEach();
+
+    it('should first generate a layout using the layout service', async () => {
       expect(convertStepToLayout).toHaveBeenCalledWith(decisionStep);
     });
   });
@@ -231,6 +240,8 @@ describe('Given a component for rendering a dynamic flow', () => {
         <DynamicFlow flowUrl={formNoLayoutUrl} onClose={onClose} onStepChange={onStepChange} />,
       );
     });
+
+    waitBeforeEach();
 
     it('should first generate a layout using the layout service', () => {
       expect(convertStepToLayout).toHaveBeenCalledWith(formStepNoLayout);
@@ -248,6 +259,8 @@ describe('Given a component for rendering a dynamic flow', () => {
       );
     });
 
+    waitBeforeEach();
+
     it('should first generate a layout using the layout service', () => {
       expect(convertStepToLayout).toHaveBeenCalledWith(finalStep);
     });
@@ -262,11 +275,13 @@ describe('Given a component for rendering a dynamic flow', () => {
       );
     });
 
+    waitBeforeEach();
+
     it('should use the DynamicLayout to render it', () => {
       expect(getLayout()).toBeTruthy();
     });
 
-    it('should inline the form schema(s) and pass as the soecification as a layout', () => {
+    it('should inline the form schema(s) and pass as the specification as a layout', () => {
       expect(getLayout().prop('components')).toEqual(inlineFormLayout);
     });
 
@@ -276,18 +291,20 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     describe('when a model update is triggered by a schema with refreshRequirements', () => {
       const newModel = { a: 1, b: 'c' };
-      const newStepWithModel = { ...newStep, model: { a: 2 } };
+      const newStepWithModel = { ...newStep, model: { a: 1, b: 'c' } };
 
       beforeEach(() => {
-        getLayout().simulate('modelChange', newModel, true, stringSchema, thingSchema);
+        getLayout().invoke('onModelChange')(newModel, thingSchema, newModel.b, stringSchema);
       });
+
+      waitBeforeEach();
 
       it('should use the model to request a new schema', () => {
         const fakeAction = {
           method: 'POST',
           url: '/refresh',
         };
-        expect(request).toHaveBeenCalledWith(fakeAction, newModel);
+        expect(request).toHaveBeenCalledWith(fakeAction, newModel, baseUrl);
       });
 
       it('should pass the new schema to the layout', () => {
@@ -301,7 +318,7 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     describe('when a refresh requirements call fails', () => {
       beforeEach(() => {
-        getLayout().simulate('modelChange', { a: 1, b: 'c' }, true, stringSchema, thingSchema);
+        getLayout().invoke('onModelChange')({ a: 1, b: 'c' }, thingSchema, 'c', thingSchema);
       });
 
       it('should continue to render the original step', () => {
@@ -311,8 +328,8 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     describe('when the layout broadcasts a POST action and the model is valid', () => {
       beforeEach(() => {
-        getLayout().simulate('modelChange', { a: 1 }, true, numberSchema, thingSchema);
-        getLayout().simulate('action', successAction);
+        getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
+        getLayout().invoke('onAction')(successAction);
       });
 
       it('should tell the layout the form is submitted', () => {
@@ -320,15 +337,16 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should make the corresponding request', () => {
-        expect(request).toHaveBeenCalledWith(successAction, { a: 1 });
+        expect(request).toHaveBeenCalledWith(successAction, { a: 1 }, baseUrl);
       });
     });
 
     describe('when the layout broadcasts a POST action and the model is invalid', () => {
       beforeEach(() => {
-        // request.mockImplementation(() => Promise.resolve(newStep));
-        getLayout().simulate('modelChange', { invalid: true }, false, numberSchema, thingSchema);
-        getLayout().simulate('action', successAction);
+        request.mockClear();
+
+        getLayout().invoke('onModelChange')({}, thingSchema, undefined, numberSchema);
+        getLayout().invoke('onAction')(successAction);
       });
 
       it('should tell the layout the form is submitted', () => {
@@ -342,20 +360,24 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     describe('when the layout broadcasts a GET action and the model is invalid', () => {
       beforeEach(() => {
-        getLayout().simulate('modelChange', { invalid: true }, false, numberSchema, thingSchema);
-        getLayout().simulate('action', navigateAction);
+        getLayout().invoke('onModelChange')({}, thingSchema, undefined, numberSchema);
+        getLayout().invoke('onAction')(navigateAction);
       });
 
       it('should ignore the invalid model and make the corresponding request', () => {
-        expect(request).toHaveBeenCalledWith(navigateAction, undefined);
+        expect(request).toHaveBeenCalledWith(navigateAction, undefined, baseUrl);
       });
     });
 
     describe('when we submit an action but we receive a server error', () => {
       beforeEach(() => {
-        getLayout().simulate('modelChange', { a: 1 }, true, numberSchema, thingSchema);
-        getLayout().simulate('action', failureAction);
+        onStepChange.mockClear();
+
+        getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
+        getLayout().invoke('onAction')(failureAction);
       });
+
+      waitBeforeEach();
 
       it('should pass those errors to the layout', () => {
         expect(getLayout().prop('errors')).toBe(errorResponse.validation);
@@ -369,10 +391,11 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     describe('when we submit an action and we receive a new step', () => {
       beforeEach(() => {
-        request.mockImplementation(() => Promise.resolve(newStep));
-        getLayout().simulate('modelChange', { a: 1 }, true, numberSchema, thingSchema);
-        getLayout().simulate('action', successAction);
+        getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
+        getLayout().invoke('onAction')(successAction);
       });
+
+      waitBeforeEach();
 
       it('should update the flow to use that step', () => {
         expect(getLayout().prop('components')).toBe(newStep.layout);
@@ -383,16 +406,18 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
     });
 
-    // TODO define an exit format?
     describe('when we submit an action and do not receive an error or valid step ', () => {
       const exitAction = {
         url: '/exit',
         method: 'POST',
+        exit: true,
       };
 
       beforeEach(() => {
-        getLayout().simulate('modelChange', { a: 1 }, true, numberSchema, thingSchema);
-        getLayout().simulate('action', exitAction);
+        onStepChange.mockClear();
+
+        getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
+        getLayout().invoke('onAction')(exitAction);
       });
 
       it('should exit the flow', () => {
@@ -408,13 +433,14 @@ describe('Given a component for rendering a dynamic flow', () => {
       const dataAction = { ...successAction, data: { a: 2, c: true } };
 
       beforeEach(() => {
-        // request.mockImplementation(() => Promise.resolve(newStep));
-        getLayout().simulate('modelChange', { a: 1 }, true, numberSchema, thingSchema);
-        getLayout().simulate('action', dataAction);
+        request.mockClear();
+
+        getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
+        getLayout().invoke('onAction')(dataAction);
       });
 
       it('should submit the latest model combined with the action data', () => {
-        expect(request).toHaveBeenCalledWith(dataAction, { a: 1, c: true });
+        expect(request).toHaveBeenCalledWith(dataAction, { a: 2, c: true }, baseUrl);
       });
     });
 
@@ -444,7 +470,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       };
 
       beforeEach(() => {
-        getLayout().simulate('action', exitAction);
+        getLayout().invoke('onAction')(exitAction);
       });
 
       it('should trigger the onClose callback with exit data', () => {
