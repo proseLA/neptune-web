@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
+import { isEmpty, isNumber, isNull, isKey } from '@transferwise/neptune-validation';
 import Select from '../select';
 import './MoneyInput.css';
 import { Size } from '../common/propsValues/size';
@@ -61,16 +61,14 @@ class MoneyInput extends Component {
     return (
       isNumberKey ||
       metaKey ||
+      isKey({ keyType: key, event }) ||
       keyCode === keyCodes.BACKSPACE ||
       keyCode === keyCodes.COMMA ||
       keyCode === keyCodes.PERIOD ||
       keyCode === keyCodes.DOWN ||
       keyCode === keyCodes.UP ||
       keyCode === keyCodes.LEFT ||
-      keyCode === keyCodes.RIGHT ||
-      keyCode === keyCodes.ENTER ||
-      keyCode === keyCodes.ESCAPE ||
-      keyCode === keyCodes.TAB
+      keyCode === keyCodes.RIGHT
     );
   };
 
