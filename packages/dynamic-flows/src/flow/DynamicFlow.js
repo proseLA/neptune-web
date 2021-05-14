@@ -142,7 +142,7 @@ const DynamicFlow = (props) => {
 
   const getPropertyNameByTriggerSchema = (schema, triggerSchema) => {
     const [key] =
-      Object.entries(schema.properties).find(([key, value]) => value === triggerSchema) || [];
+      Object.entries(schema.properties).find(([, value]) => value === triggerSchema) || [];
     return key;
   };
 

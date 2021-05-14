@@ -1,8 +1,8 @@
 import React from 'react';
 
-import DynamicFlow from './DynamicFlow';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
+import DynamicFlow from './DynamicFlow';
 
 import decisionStep from './examples/decision.json';
 import formStep from './examples/form.json';
