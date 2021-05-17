@@ -14,22 +14,20 @@ describe('Modal', () => {
     jest.clearAllMocks();
   });
 
-  it('renders with correct positioning class', () => {
-    const { rerender } = render(<Modal {...props} open />);
-    expect(getContainer()).toHaveClass('align-items-start');
-    expect(getContainer()).not.toHaveClass('align-items-center');
-
-    rerender(<Modal {...props} open position={Position.CENTER} />);
-    expect(getContainer()).toHaveClass('align-items-center');
-    expect(getContainer()).not.toHaveClass('align-items-start');
-  });
-
   it('with correct scroll class', () => {
     const { rerender } = render(<Modal {...props} open />);
     expect(getModal()).not.toHaveClass('tw-modal--content');
 
     rerender(<Modal {...props} open scroll={Scroll.CONTENT} />);
     expect(getModal()).toHaveClass('tw-modal--content');
+  });
+
+  it('renders with correct positioning class', () => {
+    const { rerender } = render(<Modal {...props} open />);
+    expect(getModal()).not.toHaveClass('align-self-center');
+
+    rerender(<Modal {...props} open position={Position.CENTER} />);
+    expect(getModal()).toHaveClass('align-self-center');
   });
 
   it(`doesn't calls onClose when click is inside modal`, () => {
@@ -73,5 +71,4 @@ describe('Modal', () => {
 
   const getDialog = () => screen.getByRole('dialog');
   const getModal = () => document.querySelector('.tw-modal');
-  const getContainer = () => screen.getByRole('presentation');
 });

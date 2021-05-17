@@ -11,7 +11,7 @@ import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
 
-import translations from '../build/i18n';
+import translations from '../i18n';
 
 import './storybook.css';
 
@@ -69,12 +69,13 @@ const severalExamplesOfSupportedLocales = [
 
 const ProviderDecorator = (storyFn) => {
   const locale = select('locale (global)', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
-  const lang = getLangFromLocale(locale);
+  const lang = getLangFromLocale(locale) || DEFAULT_LANG;
   // eslint-disable-next-line fp/no-mutating-assign
   const supportedLangs = {
-    ...(translations[lang] || translations[DEFAULT_LANG]),
-    ...(componentTranslations[lang] || componentTranslations[DEFAULT_LANG]),
+    ...translations,
+    ...componentTranslations,
   };
+
   const messages = supportedLangs[lang];
   const props = {
     i18n: { locale, messages },

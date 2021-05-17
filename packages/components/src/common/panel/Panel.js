@@ -2,6 +2,7 @@ import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { usePopper } from 'react-popper';
+import CSSTransition from 'react-transition-group/CSSTransition';
 
 import { Position } from '..';
 import './Panel.css';
@@ -65,13 +66,22 @@ const Panel = forwardRef(
     // Popper recommends to use the popper element as a wrapper around an inner element that can have any CSS property transitioned for animations.
 
     return (
-      open && (
+      <CSSTransition
+        in={open}
+        appear
+        // Wait for animation to finish before unmount.
+        timeout={{ enter: 0, exit: 150 }}
+        classNames={{
+          enterDone: 'np-panel--open',
+        }}
+        unmountOnExit
+      >
         <FocusBoundary onClose={handleOnClose}>
           <div
             ref={setPopperElement}
             style={{ ...styles.popper }}
             {...attributes.popper}
-            className={classnames('np-panel', { 'np-panel--open': open }, className)}
+            className={classnames('np-panel', className)}
           >
             <div ref={ref} className={classnames('np-panel__content')}>
               {children}
@@ -86,7 +96,7 @@ const Panel = forwardRef(
             </div>
           </div>
         </FocusBoundary>
-      )
+      </CSSTransition>
     );
   },
 );

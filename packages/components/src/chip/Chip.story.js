@@ -9,8 +9,17 @@ export default {
 };
 
 export const basic = () => {
-  const label = text('orientation', `A beautiful chip`);
+  const label = text('label', `A beautiful chip`);
   const hasError = boolean('hasError', false);
 
-  return <Chip label={label} hasError={hasError} onRemove={action('I have been removed!!!')} />;
+  return (
+    <div
+      style={{ border: '1px solid gray', maxWidth: '400px' }}
+      className="d-inline-flex flex-wrap"
+    >
+      <Chip label={label} hasError={hasError} onRemove={action('I have been removed!!!')} />
+      <Chip label={label} hasError={hasError} onRemove={action('I have been removed!!!')} />
+      <Chip label={label} hasError={hasError} onRemove={action('I have been removed!!!')} />
+    </div>
+  );
 };

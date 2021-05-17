@@ -42,10 +42,7 @@ const Modal = ({
       open={open}
       scrollable={scroll === Scroll.CONTENT}
       onClose={handleOnClose}
-      className={classNames('d-flex', 'justify-content-center', {
-        'align-items-center': position === Position.CENTER,
-        'align-items-start': position === Position.TOP,
-      })}
+      className={classNames('d-flex', 'justify-content-center')}
     >
       <CSSTransition
         appear
@@ -59,6 +56,7 @@ const Modal = ({
             'tw-modal',
             {
               'tw-modal--content': scroll === Scroll.CONTENT,
+              'align-self-center': position === Position.CENTER,
             },
             'fade',
             'outline-none',

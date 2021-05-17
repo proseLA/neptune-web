@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.5...@transferwise/components@36.0.6) (2021-05-13)
+
+
+### Bug Fixes
+
+* allow overflow in cards ([#940](https://github.com/transferwise/neptune-web/issues/940)) ([3437c2f](https://github.com/transferwise/neptune-web/commit/3437c2f07755c6a1f9ffbddb69498f00608618ca))
+
+
+
+
+
+## [36.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.4...@transferwise/components@36.0.5) (2021-05-12)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.3...@transferwise/components@36.0.4) (2021-05-11)
+
+
+### Bug Fixes
+
+* update FocusBoundary to be inline-flex and modal to self center ([#938](https://github.com/transferwise/neptune-web/issues/938)) ([e705aeb](https://github.com/transferwise/neptune-web/commit/e705aeb5c15673fe6050ed450103512214d95011))
+
+
+
+
+
+## [36.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.2...@transferwise/components@36.0.3) (2021-05-10)
+
+
+### Bug Fixes
+
+* reintroduced Panel animation ([#935](https://github.com/transferwise/neptune-web/issues/935)) ([495e230](https://github.com/transferwise/neptune-web/commit/495e230f4daec1f6593534259577cf8c9289a578))
+
+
+
+
+
 ## [36.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.1...@transferwise/components@36.0.2) (2021-05-04)
 
 **Note:** Version bump only for package @transferwise/components

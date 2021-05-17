@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.7...@transferwise/neptune-docs@12.0.8) (2021-05-13)
+
+
+### Bug Fixes
+
+* allow overflow in cards ([#940](https://github.com/transferwise/neptune-web/issues/940)) ([3437c2f](https://github.com/transferwise/neptune-web/commit/3437c2f07755c6a1f9ffbddb69498f00608618ca))
+
+
+
+
+
+## [12.0.7](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.6...@transferwise/neptune-docs@12.0.7) (2021-05-12)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.5...@transferwise/neptune-docs@12.0.6) (2021-05-11)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.4...@transferwise/neptune-docs@12.0.5) (2021-05-10)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.3...@transferwise/neptune-docs@12.0.4) (2021-05-10)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
 ## [12.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.2...@transferwise/neptune-docs@12.0.3) (2021-05-04)
 
 **Note:** Version bump only for package @transferwise/neptune-docs

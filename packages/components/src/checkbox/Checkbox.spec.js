@@ -1,8 +1,11 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
+import { useDirection } from '../common/hooks';
 
 import Checkbox from '.';
+
+jest.mock('../common/hooks/useDirection');
 
 describe('Checkbox', () => {
   let props;
@@ -12,6 +15,14 @@ describe('Checkbox', () => {
       label: <b>hello</b>,
       onChange: jest.fn(),
     };
+  });
+
+  beforeAll(() => {
+    useDirection.mockReturnValue({ direction: 'ltr', isRTL: false });
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
   });
 
   it('renders the given label', () => {
@@ -74,6 +85,12 @@ describe('Checkbox', () => {
     rerender(<Checkbox {...props} required />);
 
     expect(getCheckboxContainer()).toHaveClass('has-error');
+  });
+
+  it('has rtl class when isRTL is true', () => {
+    useDirection.mockReturnValue({ direction: 'rtl', isRTL: true });
+    render(<Checkbox {...props} disabled />);
+    expect(getCheckboxContainer()).toHaveClass('checkbox--rtl');
   });
 
   it('ignores required if disabled or readOnly', () => {

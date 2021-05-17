@@ -4,6 +4,10 @@ import { shallow } from 'enzyme';
 import Radio from '.';
 import RadioButton from '../common/RadioButton';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks');
+
 describe('Radio', () => {
   let props;
   let component;
@@ -17,6 +21,7 @@ describe('Radio', () => {
       disabled: false,
       secondary: '',
     };
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
     component = shallow(<Radio {...props} />);
   });
 
@@ -65,6 +70,10 @@ describe('Radio', () => {
     component.setProps({ secondary: 'additional info' });
     expect(component.find('small').text()).toContain('additional info');
     expect(component.find('.radio').hasClass('radio-lg')).toBe(true);
+  });
+
+  it('applies correct css class when isRTL is true', () => {
+    expect(component.hasClass('radio--rtl')).toEqual(true);
   });
 
   function radioButton() {

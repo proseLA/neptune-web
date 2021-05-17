@@ -2,6 +2,11 @@ import React from 'react';
 import { render } from '../../test-utils';
 import Panel from './Panel';
 
+jest.mock(
+  'react-transition-group/CSSTransition',
+  () => (props) => (props.in ? <div className="np-panel--open">{props.children}</div> : null), // eslint-disable-line
+);
+
 describe('Panel', () => {
   const props = {
     arrow: true,

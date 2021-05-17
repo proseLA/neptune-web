@@ -245,7 +245,10 @@ export const withCustomAvatarImage = () => {
       avatar={
         !showAvatar ? null : (
           <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM}>
-            <img src="http://placekitten.com/100/100" alt="avatar" />
+            <img
+              src="https://wise.com/public-resources/assets/illustrations/users.svg"
+              alt="avatar"
+            />
           </Avatar>
         )
       }
@@ -305,7 +308,10 @@ export const withAvatar = () => {
       avatar={
         !showAvatar ? null : (
           <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM}>
-            <img src="http://placekitten.com/100/100" alt="avatar" />
+            <img
+              src="https://wise.com/public-resources/assets/illustrations/users.svg"
+              alt="avatar"
+            />
           </Avatar>
         )
       }

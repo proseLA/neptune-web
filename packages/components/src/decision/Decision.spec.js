@@ -2,11 +2,14 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '../test-utils';
 
-import Decision, { DecisionPresentation, DecisionType } from '.';
+import Decision from '.';
+import { Presentation, Type } from './decisionEnums';
 import Avatar from '../avatar';
 import { Breakpoint, Size } from '../common';
+import { useDirection } from '../common/hooks';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
+jest.mock('../common/hooks/useDirection');
 
 describe('Decision', () => {
   const props = {
@@ -22,8 +25,8 @@ describe('Decision', () => {
         onClick: jest.fn(),
       },
     ],
-    presentation: DecisionPresentation.LIST_BLOCK,
-    type: DecisionType.NAVIGATION,
+    presentation: Presentation.LIST_BLOCK,
+    type: Type.NAVIGATION,
   };
 
   const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
@@ -36,16 +39,15 @@ describe('Decision', () => {
 
   afterAll(() => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
-    window.requestAnimationFrame.mockRestore();
   });
 
   let container;
   beforeEach(() => {
     resetClientWidth(Breakpoint.EXTRA_SMALL - 1);
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
   });
 
-  describe(`when presentation is ${DecisionPresentation.LIST_BLOCK}`, () => {
+  describe(`when presentation is ${Presentation.LIST_BLOCK}`, () => {
     beforeEach(() => {
       ({ container } = render(<Decision {...props} />));
     });
@@ -65,11 +67,9 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${DecisionPresentation.LIST_BLOCK_GRID}`, () => {
+  describe(`when presentation is ${Presentation.LIST_BLOCK_GRID}`, () => {
     beforeEach(() => {
-      ({ container } = render(
-        <Decision {...props} presentation={DecisionPresentation.LIST_BLOCK_GRID} />,
-      ));
+      ({ container } = render(<Decision {...props} presentation={Presentation.LIST_BLOCK_GRID} />));
     });
 
     it('renders only Navigation Option before first breakpoint', () => {
@@ -95,10 +95,10 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${DecisionPresentation.LIST_BLOCK} and size is Small`, () => {
+  describe(`when presentation is ${Presentation.LIST_BLOCK} and size is Small`, () => {
     beforeEach(() => {
       ({ container } = render(
-        <Decision {...props} presentation={DecisionPresentation.LIST_BLOCK} size={Size.SMALL} />,
+        <Decision {...props} presentation={Presentation.LIST_BLOCK} size={Size.SMALL} />,
       ));
     });
 
@@ -117,14 +117,24 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${DecisionPresentation.LIST}`, () => {
+  describe(`when presentation is ${Presentation.LIST}`, () => {
     beforeEach(() => {
-      ({ container } = render(<Decision {...props} presentation={DecisionPresentation.LIST} />));
+      ({ container } = render(<Decision {...props} presentation={Presentation.LIST} />));
     });
 
     it('renders Navigation Option before breakpoint', () => {
       expect(getNavigationOption()).toBeInTheDocument();
       expect(getTile()).not.toBeInTheDocument();
+    });
+  });
+
+  describe('rtl support', () => {
+    beforeEach(() => {
+      ({ container } = render(<Decision {...props} presentation={Presentation.LIST_BLOCK} />));
+    });
+
+    it('should apply correct css classes when isRTL is true', () => {
+      expect(container.querySelector('.np-decision')).toHaveClass('np-decision--rtl');
     });
   });
 
