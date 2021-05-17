@@ -469,7 +469,6 @@ export default class Select extends Component {
             disabled={disabled}
             className={buttonClass}
             type="button"
-            role="listbox"
             id={id}
             aria-expanded={open}
             onClick={this.handleButtonClick}
