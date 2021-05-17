@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.1.4...@transferwise/dynamic-flows@13.2.0) (2021-05-17)
+
+
+### Features
+
+* Align final step contract ([#944](https://github.com/transferwise/neptune-web/issues/944)) ([64ee201](https://github.com/transferwise/neptune-web/commit/64ee2010c761939513558bbd19bd230d9b3975f1))
+
+
+
+
+
 ## [13.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.1.3...@transferwise/dynamic-flows@13.1.4) (2021-05-13)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
