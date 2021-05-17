@@ -235,7 +235,7 @@ describe('Select', () => {
       const input = getByPlaceholderText('Search...');
       user.type(input, 'o');
 
-      expect(getByRole('menu').children).toHaveLength(3);
+      expect(getByRole('listbox').children).toHaveLength(3);
     });
   });
 
