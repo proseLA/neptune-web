@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.2.0...@transferwise/dynamic-flows@13.2.1) (2021-05-17)
+
+
+### Bug Fixes
+
+* add FJD in available currencies ([#945](https://github.com/transferwise/neptune-web/issues/945)) ([b2fd364](https://github.com/transferwise/neptune-web/commit/b2fd364312aae99898e9447c0d2e0e3b2bc323f1))
+
+
+
+
+
 # [13.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.1.4...@transferwise/dynamic-flows@13.2.0) (2021-05-17)
 
 
