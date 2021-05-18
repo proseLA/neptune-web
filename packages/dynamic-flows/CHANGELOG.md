@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.2.1...@transferwise/dynamic-flows@13.2.2) (2021-05-18)
+
+
+### Bug Fixes
+
+* Use `fields` instead of `definitions` to comply with interface ([#947](https://github.com/transferwise/neptune-web/issues/947)) ([fb97921](https://github.com/transferwise/neptune-web/commit/fb9792158de840dbc8c27d3fabeda2a592def74e))
+
+
+
+
+
 ## [13.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.2.0...@transferwise/dynamic-flows@13.2.1) (2021-05-17)
 
 
