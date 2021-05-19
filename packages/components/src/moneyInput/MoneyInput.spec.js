@@ -537,8 +537,9 @@ describe('Money Input', () => {
 
   describe('when typing', () => {
     let rtlComponent;
+    const { formatAmount } = jest.requireActual('./currencyFormatting');
     beforeAll(() => {
-      numberFormatting.formatAmount = jest.fn((num) => num);
+      numberFormatting.formatAmount = formatAmount;
     });
 
     beforeEach(() => {
@@ -549,7 +550,10 @@ describe('Money Input', () => {
     test.each([
       ['asd', ''],
       ['1a2s3d', '123'],
-      ['±!@#$^*_+?><,', ''],
+      ['±!@#$^*_+?><', ''],
+      ['1±!@#$^*,_+?><2', '1,2'],
+      ['12,3', '12,3'],
+      ['12.3', '12.3'],
     ])("ignores the letters when typed '%s' and shows '%s'", (testValue, expectedValue) => {
       const { container } = rtlComponent;
       const input = container.querySelector('input');

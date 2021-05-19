@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isEmpty, isNumber, isNull, isKey } from '@transferwise/neptune-validation';
+import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
 import Select from '../select';
 import './MoneyInput.css';
 import { Size } from '../common/propsValues/size';
 import keyCodes from '../common/keyCodes';
+import { Key as keyValues } from '../common/key';
 
 import messages from './MoneyInput.messages';
 import { formatAmount, parseAmount } from './currencyFormatting';
@@ -57,18 +58,38 @@ class MoneyInput extends Component {
   isInputAllowedForKeyEvent = (event) => {
     const { keyCode, metaKey, key } = event;
     const isNumberKey = isNumber(parseInt(key, 10));
-
+    console.log({
+      keyCode,
+      key,
+      allowed:
+        isNumberKey ||
+        metaKey ||
+        keyCode === keyCodes.BACKSPACE ||
+        keyCode === keyCodes.COMMA ||
+        keyCode === keyCodes.PERIOD ||
+        keyCode === keyCodes.DOWN ||
+        keyCode === keyCodes.UP ||
+        keyCode === keyCodes.LEFT ||
+        keyCode === keyCodes.RIGHT ||
+        keyCode === keyCodes.ENTER ||
+        keyCode === keyCodes.ESCAPE ||
+        keyCode === keyCodes.TAB,
+    });
     return (
       isNumberKey ||
       metaKey ||
-      isKey({ keyType: key, event }) ||
       keyCode === keyCodes.BACKSPACE ||
       keyCode === keyCodes.COMMA ||
       keyCode === keyCodes.PERIOD ||
       keyCode === keyCodes.DOWN ||
       keyCode === keyCodes.UP ||
       keyCode === keyCodes.LEFT ||
-      keyCode === keyCodes.RIGHT
+      keyCode === keyCodes.RIGHT ||
+      keyCode === keyCodes.ENTER ||
+      keyCode === keyCodes.ESCAPE ||
+      keyCode === keyCodes.TAB ||
+      key === keyValues.PERIOD ||
+      key === keyValues.COMMA
     );
   };
 
