@@ -66,14 +66,7 @@ const DynamicFlow = (props) => {
   const handleFetchError = ({ validation }) => setValidations(validation);
 
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
-    const correctedNewModel = correctNewModelIfNeeded(
-      newModel,
-      formSchema,
-      triggerModel,
-      triggerSchema,
-    );
-
-    const updatedModel = updateModel(correctedNewModel);
+    const updatedModel = updateModel(newModel);
 
     if ((triggerSchema || {}).refreshRequirementsOnChange) {
       const action = { url: stepSpecification.refreshFormUrl, method: 'POST' };
@@ -129,21 +122,6 @@ const DynamicFlow = (props) => {
   const isSubmissionMethod = (method) => {
     const submissionMethods = ['POST', 'PUT', 'PATCH'];
     return submissionMethods.includes(method.toUpperCase());
-  };
-
-  const correctNewModelIfNeeded = (newModel, formSchema, triggerModel, triggerSchema) => {
-    const propertyName = getPropertyNameByTriggerSchema(formSchema, triggerSchema);
-
-    return {
-      ...(propertyName ? { [propertyName]: undefined } : {}),
-      ...newModel,
-    };
-  };
-
-  const getPropertyNameByTriggerSchema = (schema, triggerSchema) => {
-    const [key] =
-      Object.entries(schema.properties).find(([, value]) => value === triggerSchema) || [];
-    return key;
   };
 
   const getComponents = (step) => {

@@ -10,11 +10,7 @@ const ObjectSchema = (props) => {
   const [model, setModel] = useState({ ...(props.model || {}) });
 
   const onChangeProperty = (propertyName, propertyModel, triggerSchema, triggerModel) => {
-    if (propertyModel !== null) {
-      model[propertyName] = propertyModel;
-    } else {
-      delete model[propertyName];
-    }
+    model[propertyName] = propertyModel;
     setModel(model);
     props.onChange(model, triggerSchema, triggerModel);
   };
