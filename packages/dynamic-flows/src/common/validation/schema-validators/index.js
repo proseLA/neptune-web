@@ -51,7 +51,7 @@ function isValidObjectSchema(value, schema) {
 }
 
 function isObjectPropertyValid(propertyValue, propertySchema, isRequired) {
-  if (typeof propertyValue === 'undefined') {
+  if (typeof propertyValue === 'undefined' || !propertyValue) {
     return !isRequired;
   }
   return isValidSchema(propertyValue, propertySchema);
