@@ -147,6 +147,13 @@ const OneOfSchema = (props) => {
     setId(generateId());
   }, [props.schema]);
 
+  useEffect(() => {
+    const modelIndex = getActiveSchemaIndex(props.schema, props.model);
+    if (modelIndex !== schemaIndex) {
+      onChooseNewSchema(getActiveSchemaIndex(props.schema, props.model));
+    }
+  }, [props.model]);
+
   // We want our model to be the index, so alter the oneOf schemas to be a const
   const mapOneOfToConst = (schema, index) => {
     return {
