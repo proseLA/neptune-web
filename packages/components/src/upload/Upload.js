@@ -371,7 +371,11 @@ Upload.propTypes = {
   psButtonText: PropTypes.string,
   psProcessingText: PropTypes.string,
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  usAccept: PropTypes.oneOf(['*', 'image/*', 'application/*', 'text/csv']),
+  /**
+   * You can provide multiple rules separated by comma, e.g.: "application/pdf,image/*".
+   * Using "*" will allow every file type to be uploaded.
+   * */
+  usAccept: PropTypes.string,
   usButtonText: PropTypes.string,
   usDisabled: PropTypes.bool,
   usDropMessage: PropTypes.string,

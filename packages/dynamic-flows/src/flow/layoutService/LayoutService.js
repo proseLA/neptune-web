@@ -52,10 +52,15 @@ function convertFormStepToDynamicLayout(step) {
 }
 
 function convertFinalStepToDynamicLayout(step) {
-  const layout = convertCommonComponents(step);
+  const { details } = step;
+  if (!details) {
+    return [];
+  }
 
-  if (step.action) {
-    const actions = [convertStepActionToDynamicAction(step.action)];
+  const layout = convertCommonComponents(details);
+
+  if (details.action) {
+    const actions = [convertStepActionToDynamicAction(details.action)];
     layout.push(dynamicBox(actions, 'md'));
   }
 
@@ -125,10 +130,10 @@ function convertStepDecisionOption(option) {
   };
 }
 
-function convertStepImageToDynamicImage(url) {
+function convertStepImageToDynamicImage(image) {
   return {
     type: 'image',
-    url,
+    url: image.url,
     margin: 'lg',
   };
 }

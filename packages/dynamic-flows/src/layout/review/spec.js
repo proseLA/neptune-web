@@ -13,7 +13,7 @@ describe('Given a component for dynamically rendering reviews', () => {
   beforeEach(() => {
     spec = {
       component: 'review',
-      definitions: [
+      fields: [
         {
           label: 'a',
           value: 'b',

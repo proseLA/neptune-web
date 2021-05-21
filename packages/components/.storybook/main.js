@@ -8,7 +8,7 @@ if (process.env.STORYBOOK_CIRCLECI) {
 
 // Export a function. Accept the base config as the only param.
 module.exports = {
-  stories: ['../src/**/*.story.js'],
+  stories,
   addons: [
     '@storybook/addon-knobs',
     '@storybook/addon-actions',

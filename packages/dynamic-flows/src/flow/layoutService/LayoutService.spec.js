@@ -77,17 +77,21 @@ describe('Given a utility service for handling dynamic layouts', () => {
       const finalStep = {
         type: 'final',
         key: 'thing-final',
-        title: 'We create the thing!',
-        description: 'You now do stuff with the thing',
-        image: '/images/1234.png',
+        details: {
+          action: exitAction,
+          title: 'We create the thing!',
+          description: 'You now do stuff with the thing',
+          image: {
+            url: '/images/1234.png',
+          },
+        },
         success: true,
-        action: exitAction,
       };
 
       const finalLayout = [
         {
           type: 'heading',
-          text: finalStep.title,
+          text: finalStep.details.title,
           size: 'lg',
           margin: 'lg',
           align: 'center',
@@ -98,14 +102,14 @@ describe('Given a utility service for handling dynamic layouts', () => {
           components: [
             {
               type: 'image',
-              url: finalStep.image,
+              url: finalStep.details.image.url,
               margin: 'lg',
             },
           ],
         },
         {
           type: 'paragraph',
-          text: finalStep.description,
+          text: finalStep.details.description,
           align: 'center',
         },
         {
