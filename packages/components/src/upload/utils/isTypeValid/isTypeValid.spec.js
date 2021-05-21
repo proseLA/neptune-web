@@ -4,7 +4,7 @@ const pdfFile = {
   type: 'application/pdf',
 };
 
-const imageFile = {
+const pngFile = {
   type: 'image/png',
 };
 
@@ -18,25 +18,40 @@ describe('isTypeValid', () => {
     });
   });
   describe('when type is provided', () => {
-    it('returns true for matching format', () => {
-      expect(isTypeValid(pdfFile, '*', null)).toBe(true);
-      expect(isTypeValid(imageFile, '*', null)).toBe(true);
+    it.each([pdfFile, pngFile])('returns true for wildcard rule %s', (file) => {
+      expect(isTypeValid(file, '*', null)).toBe(true);
     });
 
-    it('returns true for matching format', () => {
-      expect(isTypeValid(pdfFile, 'application/pdf', null)).toBe(true);
-    });
-
-    it('returns true for subset format', () => {
+    it('returns true for matching type', () => {
       expect(isTypeValid(pdfFile, 'application/*', null)).toBe(true);
     });
 
-    it('returns false for unsupported format', () => {
+    it('returns true for matching type when multiple rules provided', () => {
+      expect(isTypeValid(pdfFile, 'application/*, image/*', null)).toBe(true);
+    });
+
+    it('returns true for matching subtype', () => {
+      expect(isTypeValid(pdfFile, 'application/pdf', null)).toBe(true);
+    });
+
+    it('returns true for matching subtype when multiple rules provided', () => {
+      expect(isTypeValid(pngFile, 'application/xls, image/png', null)).toBe(true);
+    });
+
+    it('can parse multiple types with extra whitespace', () => {
+      expect(isTypeValid(pngFile, ' application/xls,  image/png ', null)).toBe(true);
+    });
+
+    it('returns false for unsupported type', () => {
+      expect(isTypeValid(pngFile, 'application/*', null)).toBe(false);
+    });
+
+    it('returns false for unsupported subtype', () => {
       expect(isTypeValid(pdfFile, 'application/xls', null)).toBe(false);
     });
 
-    it('returns false for unsupported format', () => {
-      expect(isTypeValid(imageFile, 'application/*', null)).toBe(false);
+    it('returns false for unsupported subtype when multiple rules provided', () => {
+      expect(isTypeValid(pngFile, 'application/xls, image/jpeg', null)).toBe(false);
     });
   });
   describe('when type is not provided', () => {
@@ -46,7 +61,7 @@ describe('isTypeValid', () => {
     });
 
     it('returns false for unsupported file', () => {
-      expect(isTypeValid({ type: '' }, 'image/jpg', data64Img)).toBe(false);
+      expect(isTypeValid({ type: '' }, 'image/jpeg', data64Img)).toBe(false);
       expect(isTypeValid({ type: '' }, 'application/*', data64Img)).toBe(false);
     });
   });

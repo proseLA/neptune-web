@@ -4,19 +4,23 @@ export const isTypeValid = (file, rule, file64) => {
   if (!file || !rule) {
     return false;
   }
+
+  const allowedTypes = rule.replace(/\s/g, '').split(',');
   const fileType = getFileType(file, file64);
 
-  if (rule === '*' || fileType === rule) {
+  if (rule === '*' || allowedTypes.includes(fileType)) {
     return true;
   }
 
-  const splittedRule = rule.split('/');
-  const typeAllowed = splittedRule[0];
-  const extensionAllowed = splittedRule[1];
+  return allowedTypes.some((type) => {
+    const splittedRule = type.split('/');
+    const typeAllowed = splittedRule[0];
+    const extensionAllowed = splittedRule[1];
 
-  if (extensionAllowed !== '*') {
-    return false;
-  }
+    if (extensionAllowed !== '*') {
+      return false;
+    }
 
-  return fileType.indexOf(typeAllowed) === 0;
+    return fileType.includes(typeAllowed);
+  });
 };
