@@ -27,6 +27,21 @@ const formatAmountIfSet = (amount, currency, locale) => {
   return typeof amount === 'number' ? formatAmount(amount, currency, locale) : '';
 };
 
+const inputKeyCodeAllowlist = [
+  keyCodes.BACKSPACE,
+  keyCodes.COMMA,
+  keyCodes.PERIOD,
+  keyCodes.DOWN,
+  keyCodes.UP,
+  keyCodes.LEFT,
+  keyCodes.RIGHT,
+  keyCodes.ENTER,
+  keyCodes.ESCAPE,
+  keyCodes.TAB,
+];
+
+const inputKeyAllowlist = [keyValues.PERIOD, keyValues.COMMA];
+
 class MoneyInput extends Component {
   constructor(props) {
     super(props);
@@ -58,38 +73,12 @@ class MoneyInput extends Component {
   isInputAllowedForKeyEvent = (event) => {
     const { keyCode, metaKey, key } = event;
     const isNumberKey = isNumber(parseInt(key, 10));
-    console.log({
-      keyCode,
-      key,
-      allowed:
-        isNumberKey ||
-        metaKey ||
-        keyCode === keyCodes.BACKSPACE ||
-        keyCode === keyCodes.COMMA ||
-        keyCode === keyCodes.PERIOD ||
-        keyCode === keyCodes.DOWN ||
-        keyCode === keyCodes.UP ||
-        keyCode === keyCodes.LEFT ||
-        keyCode === keyCodes.RIGHT ||
-        keyCode === keyCodes.ENTER ||
-        keyCode === keyCodes.ESCAPE ||
-        keyCode === keyCodes.TAB,
-    });
+
     return (
       isNumberKey ||
       metaKey ||
-      keyCode === keyCodes.BACKSPACE ||
-      keyCode === keyCodes.COMMA ||
-      keyCode === keyCodes.PERIOD ||
-      keyCode === keyCodes.DOWN ||
-      keyCode === keyCodes.UP ||
-      keyCode === keyCodes.LEFT ||
-      keyCode === keyCodes.RIGHT ||
-      keyCode === keyCodes.ENTER ||
-      keyCode === keyCodes.ESCAPE ||
-      keyCode === keyCodes.TAB ||
-      key === keyValues.PERIOD ||
-      key === keyValues.COMMA
+      inputKeyCodeAllowlist.includes(keyCode) ||
+      inputKeyAllowlist.includes(key)
     );
   };
 
