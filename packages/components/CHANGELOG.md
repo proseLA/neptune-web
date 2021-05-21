@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.6...@transferwise/components@36.1.0) (2021-05-21)
+
+
+### Features
+
+* allow multiple file types to be provided to Upload ([#950](https://github.com/transferwise/neptune-web/issues/950)) ([2fd35b5](https://github.com/transferwise/neptune-web/commit/2fd35b5f2cfd25876479a9c5fb44446790e504a2))
+
+
+
+
+
 ## [36.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.5...@transferwise/components@36.0.6) (2021-05-13)
 
 
