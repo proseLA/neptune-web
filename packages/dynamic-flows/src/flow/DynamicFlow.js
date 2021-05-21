@@ -19,11 +19,13 @@ const DynamicFlow = (props) => {
   const { baseUrl, flowUrl, onClose, onStepChange, locale } = props;
 
   const [stepSpecification, setStepSpecification] = useState({});
-  const [model, setModel] = useState({});
+  const [models, setModels] = useState({});
   const [modelIsValid, setModelIsValid] = useState(true); // Is this ok for init???
   const [loading, setLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
+
+  const INITIALIZATION_SCHEMA_PROPERTY = 'initial';
 
   useEffect(() => {
     const action = { url: flowUrl, method: 'GET' };
@@ -32,7 +34,7 @@ const DynamicFlow = (props) => {
 
   useEffect(() => {
     if ((stepSpecification || {}).model) {
-      updateModel(stepSpecification.model);
+      setModels({ [INITIALIZATION_SCHEMA_PROPERTY]: stepSpecification.model });
     }
   }, [stepSpecification]);
 
@@ -66,19 +68,14 @@ const DynamicFlow = (props) => {
   const handleFetchError = ({ validation }) => setValidations(validation);
 
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
-    const correctedNewModel = correctNewModelIfNeeded(
-      newModel,
-      formSchema,
-      triggerModel,
-      triggerSchema,
-    );
+    const { $id } = formSchema;
 
-    const updatedModel = updateModel(correctedNewModel);
+    const updatedModels = updateModels($id, newModel);
 
     if ((triggerSchema || {}).refreshRequirementsOnChange) {
       const action = { url: stepSpecification.refreshFormUrl, method: 'POST' };
 
-      fetchRefresh(action, updatedModel);
+      fetchRefresh(action, combineModels(updatedModels));
     }
   };
 
@@ -90,14 +87,16 @@ const DynamicFlow = (props) => {
       return;
     }
 
-    const updatedModel = updateModel(data);
+    const submissionData = {
+      ...combineModels(models),
+      ...data,
+    };
 
     if (isSubmissionMethod(method)) {
-      // a property in the JSON would be better to check if validation is required
       setSubmitted(true);
 
       if (modelIsValid) {
-        fetchStep(action, updatedModel).finally(() => {
+        fetchStep(action, submissionData).finally(() => {
           setSubmitted(false);
         });
       }
@@ -107,43 +106,34 @@ const DynamicFlow = (props) => {
     fetchStep(action);
   };
 
-  const onPersistAsync = () => {};
+  const onPersistAsync = () => { };
 
-  const updateModel = (newModel) => {
-    const mergedModel = mergeModels(model, newModel);
+  const updateModels = (schemaRef, model) => {
+    delete models[INITIALIZATION_SCHEMA_PROPERTY];
 
-    setModel(mergedModel);
-    setModelIsValid(isValidModel(mergedModel, stepSpecification.schemas));
+    const newModels = {
+      ...models,
+      [schemaRef]: model,
+    };
 
-    return mergedModel;
+    setModels(newModels);
+    setModelIsValid(areValidModels(newModels, stepSpecification.schemas));
+
+    return newModels;
   };
 
-  const mergeModels = (prevModel, newModel) => {
-    // TODO handle different data types
-    return { ...(prevModel || {}), ...(newModel || {}) };
-  };
+  const combineModels = (formModels) =>
+    Object.values(formModels).reduce((prev, model) => ({ ...prev, ...model }), {});
 
-  const isValidModel = (formModel, schemas) =>
-    schemas.reduce((validSoFar, schema) => isValidSchema(formModel, schema) && validSoFar, true);
+  const areValidModels = (formModels, schemas) =>
+    schemas.reduce(
+      (validSoFar, schema) => isValidSchema(formModels[schema.$id] || {}, schema) && validSoFar,
+      true,
+    );
 
   const isSubmissionMethod = (method) => {
     const submissionMethods = ['POST', 'PUT', 'PATCH'];
     return submissionMethods.includes(method.toUpperCase());
-  };
-
-  const correctNewModelIfNeeded = (newModel, formSchema, triggerModel, triggerSchema) => {
-    const propertyName = getPropertyNameByTriggerSchema(formSchema, triggerSchema);
-
-    return {
-      ...(propertyName ? { [propertyName]: undefined } : {}),
-      ...newModel,
-    };
-  };
-
-  const getPropertyNameByTriggerSchema = (schema, triggerSchema) => {
-    const [key] =
-      Object.entries(schema.properties).find(([, value]) => value === triggerSchema) || [];
-    return key;
   };
 
   const getComponents = (step) => {
@@ -167,7 +157,7 @@ const DynamicFlow = (props) => {
           submitted={submitted}
           loading={loading}
           locale={locale}
-          model={model}
+          model={combineModels(models)}
           errors={validations}
           baseUrl={baseUrl}
           onAction={onAction}
@@ -191,7 +181,7 @@ DynamicFlow.propTypes = {
 DynamicFlow.defaultProps = {
   baseUrl: '',
   locale: 'en-GB',
-  onStepChange: () => {},
+  onStepChange: () => { },
 };
 
 export default DynamicFlow;

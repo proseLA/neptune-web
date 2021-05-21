@@ -65,6 +65,16 @@ describe('Given a component for rendering a dynamic flow', () => {
     required: ['a'],
   };
 
+  const anotherThingSchema = {
+    $id: '#anotherThing',
+    type: 'object',
+    properties: {
+      c: numberSchema,
+      d: stringSchema,
+    },
+    required: [],
+  };
+
   const newSchema = {};
   const newLayout = [{ type: 'form', newSchema }];
   const newStep = { type: 'form', layout: newLayout };
@@ -79,8 +89,12 @@ describe('Given a component for rendering a dynamic flow', () => {
         type: 'form',
         schema: { $ref: '#thing' },
       },
+      {
+        type: 'form',
+        schema: { $ref: '#anotherThing' },
+      },
     ],
-    schemas: [thingSchema],
+    schemas: [thingSchema, anotherThingSchema],
     actions,
     model: { a: 99 },
     refreshFormUrl: '/refresh',
@@ -267,7 +281,10 @@ describe('Given a component for rendering a dynamic flow', () => {
   });
 
   describe('when there is a step layout', () => {
-    const inlineFormLayout = [{ type: 'form', schema: thingSchema }];
+    const inlineFormLayout = [
+      { type: 'form', schema: thingSchema },
+      { type: 'form', schema: anotherThingSchema },
+    ];
 
     beforeEach(() => {
       component = mount(
@@ -289,9 +306,30 @@ describe('Given a component for rendering a dynamic flow', () => {
       expect(getLayout().prop('model')).toEqual(formStep.model);
     });
 
+    describe('when a model update is triggered by mulitple schemas', () => {
+      const newModel1 = { b: 'c' };
+      const newModel2 = { c: true };
+      const expetectModel = { b: 'c', c: true };
+
+      beforeEach(() => {
+        getLayout().invoke('onModelChange')(newModel1, thingSchema, newModel1.b, stringSchema);
+        getLayout().invoke('onModelChange')(
+          newModel2,
+          anotherThingSchema,
+          newModel2.c,
+          stringSchema,
+        );
+      });
+
+      waitBeforeEach();
+
+      fit('should pass the expected model to the layout', () => {
+        expect(getLayout().prop('model')).toEqual(expetectModel);
+      });
+    });
+
     describe('when a model update is triggered by a schema with refreshRequirements', () => {
       const newModel = { a: 1, b: 'c' };
-      const newStepWithModel = { ...newStep, model: { a: 1, b: 'c' } };
 
       beforeEach(() => {
         getLayout().invoke('onModelChange')(newModel, thingSchema, newModel.b, stringSchema);
@@ -312,7 +350,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should pass the new model to the layout', () => {
-        expect(getLayout().prop('model')).toEqual(newStepWithModel.model);
+        expect(getLayout().prop('model')).toEqual(newModel);
       });
     });
 
