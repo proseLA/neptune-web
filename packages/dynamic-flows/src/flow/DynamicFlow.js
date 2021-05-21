@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import { isEmpty } from '@transferwise/neptune-validation';
+import { Loader } from '@transferwise/components';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 
 import { request } from './stepService';
 import { isValidSchema } from '../common/validation/schema-validators';
+import { Size } from '../common';
 
 /**
  * ## DynamicFlow
@@ -151,20 +153,22 @@ const DynamicFlow = (props) => {
   return (
     <>
       {!components && <p>No layout</p>}
-      {components && (
-        <DynamicLayout
-          components={components}
-          submitted={submitted}
-          loading={loading}
-          locale={locale}
-          model={combineModels(models)}
-          errors={validations}
-          baseUrl={baseUrl}
-          onAction={onAction}
-          onModelChange={onModelChange}
-          onPersistAsync={onPersistAsync}
-        />
-      )}
+      {components &&
+        (loading ? (
+          <Loader size={Size.SMALL} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+        ) : (
+          <DynamicLayout
+            components={components}
+            submitted={submitted}
+            locale={locale}
+            model={combineModels(models)}
+            errors={validations}
+            baseUrl={baseUrl}
+            onAction={onAction}
+            onModelChange={onModelChange}
+            onPersistAsync={onPersistAsync}
+          />
+        ))}
     </>
   );
 };
