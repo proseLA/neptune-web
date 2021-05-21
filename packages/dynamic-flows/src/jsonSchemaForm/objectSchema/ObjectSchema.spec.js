@@ -124,7 +124,7 @@ describe('Given a component for rendering object schemas', () => {
     });
 
     it('should trigger the components onChange with the key remove', () => {
-      expect(props.onChange).toHaveBeenCalledWith({ number: null, string: 'a' }, schema.properties.number, null);
+      expect(props.onChange).toHaveBeenCalledWith({ string: 'a' }, schema.properties.number, null);
     });
   });
 

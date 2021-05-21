@@ -345,7 +345,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       beforeEach(() => {
         request.mockClear();
 
-        getLayout().invoke('onModelChange')({ a: null }, thingSchema, undefined, numberSchema);
+        getLayout().invoke('onModelChange')({}, thingSchema, undefined, numberSchema);
         getLayout().invoke('onAction')(successAction);
       });
 
