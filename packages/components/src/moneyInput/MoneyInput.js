@@ -45,26 +45,25 @@ const inputKeyAllowlist = [keyValues.PERIOD, keyValues.COMMA];
 class MoneyInput extends Component {
   constructor(props) {
     super(props);
-    this.locale = this.props.intl.locale;
+    const { locale } = this.props.intl;
     this.formatMessage = this.props.intl.formatMessage;
     this.state = {
       searchQuery: '',
-      formattedAmount: formatAmountIfSet(
-        props.amount,
-        props.selectedCurrency.currency,
-        this.locale,
-      ),
+      formattedAmount: formatAmountIfSet(props.amount, props.selectedCurrency.currency, locale),
+      locale,
     };
   }
 
   // eslint-disable-next-line
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps, prevState) {
+    this.setState({ locale: nextProps?.intl?.locale });
+
     if (!this.amountFocused) {
       this.setState({
         formattedAmount: formatAmountIfSet(
           nextProps.amount,
           nextProps.selectedCurrency.currency,
-          this.locale,
+          nextProps?.intl?.locale,
         ),
       });
     }
@@ -92,7 +91,7 @@ class MoneyInput extends Component {
     const paste = (event.clipboardData || window.clipboardData).getData('text');
     const parsed = isEmpty(paste)
       ? null
-      : parseAmount(paste, this.props.selectedCurrency.currency, this.locale);
+      : parseAmount(paste, this.props.selectedCurrency.currency, this.state.locale);
 
     if (isNumberOrNull(parsed)) {
       this.setState({
@@ -111,7 +110,7 @@ class MoneyInput extends Component {
     });
     const parsed = isEmpty(value)
       ? null
-      : parseAmount(value, this.props.selectedCurrency.currency, this.locale);
+      : parseAmount(value, this.props.selectedCurrency.currency, this.state.locale);
     if (isNumberOrNull(parsed)) {
       this.props.onAmountChange(parsed);
     }
@@ -141,7 +140,7 @@ class MoneyInput extends Component {
       const parsed = parseAmount(
         previousState.formattedAmount,
         this.props.selectedCurrency.currency,
-        this.locale,
+        this.state.locale,
       );
       if (!isNumberOrNull(parsed)) {
         return {
@@ -152,7 +151,7 @@ class MoneyInput extends Component {
         formattedAmount: formatAmountIfSet(
           parsed,
           this.props.selectedCurrency.currency,
-          this.locale,
+          previousState.locale,
         ),
       };
     });
@@ -212,7 +211,7 @@ class MoneyInput extends Component {
           placeholder={formatAmountIfSet(
             this.props.placeholder,
             this.props.selectedCurrency.currency,
-            this.locale,
+            this.state.locale,
           )}
           autoComplete="off"
         />
