@@ -70,12 +70,13 @@ class MoneyInput extends Component {
   }
 
   isInputAllowedForKeyEvent = (event) => {
-    const { keyCode, metaKey, key } = event;
+    const { keyCode, metaKey, key, ctrlKey } = event;
     const isNumberKey = isNumber(parseInt(key, 10));
 
     return (
       isNumberKey ||
       metaKey ||
+      ctrlKey ||
       inputKeyCodeAllowlist.includes(keyCode) ||
       inputKeyAllowlist.includes(key)
     );
