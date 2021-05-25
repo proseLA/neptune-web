@@ -12,7 +12,7 @@ export const basic = () => {
   const required = boolean('required', false);
   const disabled = boolean('disabled', false);
   const readOnly = boolean('readOnly', false);
-  const label = text('label', 'Checkbox');
+  const label = text('label', 'This is the label');
   const secondary = text('secondary', '');
 
   return (
