@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.1...@transferwise/components@36.1.2) (2021-05-25)
+
+
+### Bug Fixes
+
+* update getFocusableElements.js query ([#955](https://github.com/transferwise/neptune-web/issues/955)) ([82d2571](https://github.com/transferwise/neptune-web/commit/82d257194d0dda21707b1ad057c9843c598a2840))
+
+
+
+
+
+## [36.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.0...@transferwise/components@36.1.1) (2021-05-25)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
 # [36.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.6...@transferwise/components@36.1.0) (2021-05-21)
 
 
