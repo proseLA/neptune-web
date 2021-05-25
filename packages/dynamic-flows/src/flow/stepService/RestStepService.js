@@ -9,7 +9,14 @@ async function request(action, data, baseUrl) {
     ...{
       body: method === 'GET' ? undefined : JSON.stringify(data),
     },
-  }).then((res) => res.json());
+  }).then((response) => {
+    if (response.status >= 400 && response.status < 600) {
+      return response.json().then((error) => {
+        throw error;
+      });
+    }
+    return response.json();
+  });
 }
 
 export { request };

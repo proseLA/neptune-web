@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import { isEmpty } from '@transferwise/neptune-validation';
 import { Loader } from '@transferwise/components';
+import { withErrorBoundary } from './errorBoundary';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 
@@ -18,11 +19,11 @@ import { Size } from '../common';
  * and reformats it to use a DynamicLayout for presentation.
  */
 const DynamicFlow = (props) => {
-  const { baseUrl, flowUrl, onClose, onStepChange, locale } = props;
+  const { baseUrl, flowUrl, onClose, onStepChange, locale, onError } = props;
 
   const [stepSpecification, setStepSpecification] = useState({});
   const [models, setModels] = useState({});
-  const [modelIsValid, setModelIsValid] = useState(true); // Is this ok for init???
+  const [modelIsValid, setModelIsValid] = useState(true);
   const [loading, setLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
@@ -67,7 +68,15 @@ const DynamicFlow = (props) => {
 
   const validateResponse = (response) => new Promise((resolve) => resolve(response));
 
-  const handleFetchError = ({ validation }) => setValidations(validation);
+  const handleFetchError = (error) => {
+    const { validation } = error;
+
+    if (validation) {
+      setValidations(validation);
+    } else {
+      onError(error);
+    }
+  };
 
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
     const { $id } = formSchema;
@@ -119,7 +128,7 @@ const DynamicFlow = (props) => {
     };
 
     setModels(newModels);
-    setModelIsValid(areValidModels(newModels, stepSpecification.schemas));
+    setModelIsValid(areModelsValid(newModels, stepSpecification.schemas));
 
     return newModels;
   };
@@ -127,7 +136,7 @@ const DynamicFlow = (props) => {
   const combineModels = (formModels) =>
     Object.values(formModels).reduce((prev, model) => ({ ...prev, ...model }), {});
 
-  const areValidModels = (formModels, schemas) =>
+  const areModelsValid = (formModels, schemas) =>
     schemas.reduce(
       (validSoFar, schema) => isValidSchema(formModels[schema.$id] || {}, schema) && validSoFar,
       true,
@@ -151,7 +160,7 @@ const DynamicFlow = (props) => {
   const components = getComponents(stepSpecification);
 
   return (
-    <>
+    <div className="m-a-3 m-t-5">
       {!components && <p>No layout</p>}
       {components &&
         (loading ? (
@@ -169,7 +178,7 @@ const DynamicFlow = (props) => {
             onPersistAsync={onPersistAsync}
           />
         ))}
-    </>
+    </div>
   );
 };
 
@@ -180,12 +189,14 @@ DynamicFlow.propTypes = {
   onClose: Types.func.isRequired,
   onStepChange: Types.func,
   locale: Types.string,
+  onError: Types.func,
 };
 
 DynamicFlow.defaultProps = {
   baseUrl: '',
   locale: 'en-GB',
   onStepChange: () => { },
+  onError: () => { },
 };
 
-export default DynamicFlow;
+export default withErrorBoundary(DynamicFlow);
