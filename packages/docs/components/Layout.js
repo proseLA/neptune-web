@@ -69,7 +69,12 @@ const Layout = ({ children, router: { pathname } }) => {
         <>
           <h1 className="colored-dot">{page.component.meta.name}</h1>
           {page.component.meta.date ? (
-            <Meta {...{ date: page.component.meta.date, authors: page.component.meta.authors }} />
+            <Meta
+              {...{
+                date: page.component.meta.date,
+                authors: page.component.meta.authors,
+              }}
+            />
           ) : null}
         </>
       ) : null}

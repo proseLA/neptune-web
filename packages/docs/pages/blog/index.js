@@ -9,10 +9,12 @@ export default function Home() {
   const posts = getPagesInSection({ dir: 'blog' })
     .map(({ component: { meta } }) => meta)
     .filter(isBlogPost)
+    .filter((sec) => !sec.hidden)
     .sort((post1, post2) => parseISO(post2.date) - parseISO(post1.date));
+
   return (
     <>
-      {posts.map(({ name, date, authors }, index) => {
+      {posts.map(({ name, date, authors, version, tags }, index) => {
         const fileName = `${date}-${name.toLowerCase().replace(/ /g, '-')}`;
         return (
           // eslint-disable-next-line react/no-array-index-key
@@ -20,10 +22,16 @@ export default function Home() {
             <h2>
               <DocLink href={`/blog/${fileName}`}>{name}</DocLink>
             </h2>
-            <Meta {...{ date, authors }} />
+
+            <Meta {...{ date, authors, version, tags }} />
           </div>
         );
       })}
     </>
   );
 }
+
+export const meta = {
+  name: 'The latest news about Neptune Web',
+  linkText: 'Home',
+};
