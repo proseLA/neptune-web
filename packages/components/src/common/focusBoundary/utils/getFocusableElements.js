@@ -11,7 +11,7 @@ export const getFocusableElements = (focusBoundaryContainer) => {
   if (focusBoundaryContainer?.querySelectorAll) {
     const allEls = [
       ...focusBoundaryContainer.querySelectorAll(
-        'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"]',
+        'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])',
       ),
     ].filter((el) => !el.hasAttribute('disabled'));
 
