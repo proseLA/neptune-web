@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.2...@transferwise/components@36.2.0) (2021-05-25)
+
+
+### Features
+
+* adding avatar to radio ([#952](https://github.com/transferwise/neptune-web/issues/952)) ([bd0b87a](https://github.com/transferwise/neptune-web/commit/bd0b87a19756e7d356abbc89d8b26df32379ad89))
+
+
+
+
+
 ## [36.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.1...@transferwise/components@36.1.2) (2021-05-25)
 
 
