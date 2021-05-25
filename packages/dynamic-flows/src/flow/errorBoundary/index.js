@@ -65,7 +65,7 @@ const withErrorBoundary = (WrappedComponent) => {
   };
 
   ErrorBoundary.defaultProps = {
-    onError: () => { },
+    onError: () => {},
   };
 
   return ErrorBoundary;

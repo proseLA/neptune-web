@@ -117,7 +117,7 @@ const DynamicFlow = (props) => {
     fetchStep(action);
   };
 
-  const onPersistAsync = () => { };
+  const onPersistAsync = () => {};
 
   const updateModels = (schemaRef, model) => {
     delete models[INITIALIZATION_SCHEMA_PROPERTY];
@@ -195,8 +195,8 @@ DynamicFlow.propTypes = {
 DynamicFlow.defaultProps = {
   baseUrl: '',
   locale: 'en-GB',
-  onStepChange: () => { },
-  onError: () => { },
+  onStepChange: () => {},
+  onError: () => {},
 };
 
 export default withErrorBoundary(DynamicFlow);
