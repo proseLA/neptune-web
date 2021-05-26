@@ -47,7 +47,7 @@
               "url": "/edit",
               "method": "GET"
             },
-            "definitions": [
+            "fields": [
               {
                 "label": "First name",
                 "value": "John"
