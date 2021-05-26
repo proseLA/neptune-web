@@ -9,18 +9,18 @@ function isSyntheticEvent(value) {
   );
 }
 
-const normalizeEvent = (event, type) => {
-  let value = event;
-
+const normalizeEvent = (event) => {
   if (event) {
     if (isSyntheticEvent(event)) {
-      value = type === 'number' ? parseFloat(event.target.value) : event.target.value;
-    } else if (isNumber(event.value) || !isUndefined(event.value)) {
+      return event.target.value;
+    }
+    if (isNumber(event.value) || !isUndefined(event.value)) {
       // Checkbox,Select
-      value = event.value;
+      return event.value;
     }
   }
-  return value;
+
+  return event;
 };
 
 export { isSyntheticEvent, normalizeEvent };

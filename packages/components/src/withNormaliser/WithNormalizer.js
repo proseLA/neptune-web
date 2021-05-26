@@ -1,30 +1,25 @@
-import React from 'react';
-
 import { normalizeEvent } from './validation/event-utilities';
 
-const methodsToExtend = ['onChange', 'onBlur', 'onFocus', 'onSuccess', 'onFailure'];
 /**
- *
- * This function is a temporary function used to normalize the returned values from our form related components. Please DO NOT USE THIS COMPONENT.
+ * This function is a temporary function used to normalize the returned values from our input. Please DO NOT USE THIS COMPONENT.
  */
-const WithNormaliser = ({ children }) => {
-  const handleChildEvent = (childHandler) => (event) => {
-    const value = normalizeEvent(event, children.props.type);
-
-    childHandler(value);
+const WithNormaliser = ({ render, methodsToOvverride, ...props }) => {
+  const handleChildEvent = (method) => (event) => {
+    const value = normalizeEvent(event);
+    // Invokes handleOnChange when change
+    methodsToOvverride[method](value);
+    // Invokes original child onChange when change
+    if (props[method]) {
+      props[method](value);
+    }
   };
 
-  const eventHandlers = {};
-
-  methodsToExtend.forEach((method) => {
-    if (children.props[method]) {
-      eventHandlers[method] = handleChildEvent(children.props[method]);
-    }
-  });
-
-  return React.cloneElement(children, {
-    ...eventHandlers,
-  });
+  return render(
+    Object.keys(methodsToOvverride).reduce((acc, method) => {
+      acc[method] = handleChildEvent(method);
+      return acc;
+    }, {}),
+  );
 };
 
 export default WithNormaliser;

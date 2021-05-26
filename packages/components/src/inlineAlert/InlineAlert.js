@@ -11,6 +11,7 @@ const typeClassMap = {
 const InlineAlert = (props) => {
   const AlertWithArrow = withArrow(({ children, className, type }) => {
     const typeClass = `alert-${typeClassMap[type] || type}`;
+
     return (
       <div
         role="alert"
