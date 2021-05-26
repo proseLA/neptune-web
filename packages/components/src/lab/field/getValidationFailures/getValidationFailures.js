@@ -9,8 +9,25 @@ import {
   isValidMaximum,
   isValidPattern,
 } from '@transferwise/neptune-validation';
+import { isDateValid } from '../../../common/dateUtils';
 
-export const getStringValidationFailures = ({ value, validations, isRequired }) => {
+const getValidationFailures = ({ value, validations, isRequired, type }) => {
+  if (type === 'string') {
+    return getStringFailures({ value, validations, isRequired });
+  }
+  if (type === 'number') {
+    return getNumberFailures({ value, validations, isRequired });
+  }
+  if (type === 'checkbox') {
+    return getCheckboxFailures({ value, validations, isRequired });
+  }
+  if (type === 'date') {
+    return getDateFailures({ value, validations, isRequired });
+  }
+  return [];
+};
+
+const getStringFailures = ({ value, validations, isRequired }) => {
   if (!isString(value) && !isNull(value)) {
     return ['type'];
   }
@@ -41,7 +58,15 @@ export const getStringValidationFailures = ({ value, validations, isRequired }) 
   return failures;
 };
 
-export const getNumberValidationFailures = ({ value: eventValue, validations, isRequired }) => {
+const getCheckboxFailures = ({ value, isRequired }) => {
+  const failures = [];
+  if (!value && isRequired) {
+    return ['required'];
+  }
+  return failures;
+};
+
+const getNumberFailures = ({ value: eventValue, validations, isRequired }) => {
   const value = Number(eventValue);
 
   if (!isNumber(value) && !isNull(value)) {
@@ -60,3 +85,24 @@ export const getNumberValidationFailures = ({ value: eventValue, validations, is
   }
   return failures;
 };
+
+const getDateFailures = ({ value: eventValue, validations, isRequired }) => {
+  if (!isDateValid(value) && !isNull(value)) {
+    return ['type'];
+  }
+  const value = +new Date(eventValue);
+
+  const failures = [];
+  if (!isValidRequired(value, isRequired)) {
+    failures.push('required');
+  }
+  if (!isValidMinimum(value, +validations?.minimum?.value)) {
+    failures.push(validations.minimum.message);
+  }
+  if (!isValidMaximum(value, +validations?.maximum?.value)) {
+    failures.push(validations.maximum.message);
+  }
+  return failures;
+};
+
+export default getValidationFailures;

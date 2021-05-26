@@ -18,7 +18,7 @@ const getAlertMessage = ({
   blurred,
   changed,
   focused,
-  messages: { error, help, validation },
+  messages: { error, help, validation = [] },
   submitted,
 }: Args): Return => {
   let type = '';

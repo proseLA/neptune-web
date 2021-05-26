@@ -1,1 +1,1 @@
-export { getNumberValidationFailures, getStringValidationFailures } from './getValidationFailures';
+export { default as getValidationFailures } from './getValidationFailures';

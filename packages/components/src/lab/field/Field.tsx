@@ -8,7 +8,7 @@ import { Sentiment } from '../../common';
 
 type FieldProps = {
   children: React.ReactNode;
-  label: string;
+  label?: string;
   messages: { error: string; help: string; validation: string[] };
   submitted?: boolean;
   validationFailures: string[];
