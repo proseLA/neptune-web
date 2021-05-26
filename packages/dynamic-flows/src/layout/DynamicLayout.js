@@ -103,12 +103,13 @@ DynamicLayout.propTypes = {
   baseUrl: Types.string.isRequired,
   onAction: Types.func.isRequired,
   onModelChange: Types.func.isRequired,
-  onPersistAsync: Types.func.isRequired,
+  onPersistAsync: Types.func,
 };
 
 DynamicLayout.defaultProps = {
   model: null,
   errors: null,
+  onPersistAsync: () => {},
 };
 
 export default DynamicLayout;

@@ -45,13 +45,15 @@ const DynamicFlow = (props) => {
     setLoading(true);
 
     return request(action, data, baseUrl)
-      .then(validateResponse)
       .then((response) => {
         setStepSpecification(response);
 
         onStepChange(response);
       })
       .catch(handleFetchError)
+      .then(() => {
+        setSubmitted(false);
+      })
       .finally(() => {
         setLoading(false);
       });
@@ -59,14 +61,11 @@ const DynamicFlow = (props) => {
 
   const fetchRefresh = (action, data) => {
     return request(action, data, baseUrl)
-      .then(validateResponse)
       .then((response) => {
         setStepSpecification(response);
       })
       .catch(handleFetchError);
   };
-
-  const validateResponse = (response) => new Promise((resolve) => resolve(response));
 
   const handleFetchError = (error) => {
     const { validation } = error;
@@ -76,6 +75,8 @@ const DynamicFlow = (props) => {
     } else {
       onError(error);
     }
+
+    throw error;
   };
 
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
@@ -107,17 +108,13 @@ const DynamicFlow = (props) => {
       setSubmitted(true);
 
       if (modelIsValid) {
-        fetchStep(action, submissionData).finally(() => {
-          setSubmitted(false);
-        });
+        fetchStep(action, submissionData);
       }
       return;
     }
 
     fetchStep(action);
   };
-
-  const onPersistAsync = () => {};
 
   const updateModels = (schemaRef, model) => {
     delete models[INITIALIZATION_SCHEMA_PROPERTY];
@@ -175,7 +172,6 @@ const DynamicFlow = (props) => {
             baseUrl={baseUrl}
             onAction={onAction}
             onModelChange={onModelChange}
-            onPersistAsync={onPersistAsync}
           />
         ))}
     </div>
