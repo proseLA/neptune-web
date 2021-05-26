@@ -52,7 +52,7 @@ const PromotedOneOfSchema = (props) => {
     <>
       {promotedAlert && <DynamicAlert component={promotedAlert} />}
       <PromotedOneOfControl
-        promotedOneOf={{ title: promotedOneOf.title, description: promotedOneOf.description }}
+        promotedOneOf={promotedOneOf}
         promotion={props.schema.promotion}
         selection={selection}
         setSelection={setSelection}
