@@ -1,6 +1,8 @@
 import React from 'react';
+import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import RadioGroup from './RadioGroup';
+import Avatar, { AvatarType } from '../avatar';
 
 export default {
   component: RadioGroup,
@@ -8,6 +10,14 @@ export default {
 };
 
 export const basic = () => {
+  const showAvatars = boolean('avatar', false);
+
+  const avatar = showAvatars ? (
+    <Avatar type={AvatarType.THUMBNAIL}>
+      <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="" />
+    </Avatar>
+  ) : undefined;
+
   return (
     <RadioGroup
       selectedValue="radio-2"
@@ -20,6 +30,7 @@ export const basic = () => {
           secondary: 'Secondary line 1',
           name: 'name',
           disabled: false,
+          avatar,
         },
         {
           value: 'radio-2',
@@ -27,6 +38,7 @@ export const basic = () => {
           secondary: 'Secondary line 2',
           name: 'name',
           disabled: false,
+          avatar,
         },
         {
           value: 'radio-3',
@@ -34,6 +46,7 @@ export const basic = () => {
           secondary: 'Secondary line 3',
           name: 'name',
           disabled: true,
+          avatar,
         },
       ]}
     />

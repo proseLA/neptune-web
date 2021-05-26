@@ -72,10 +72,6 @@ describe('Radio', () => {
     expect(component.find('.radio').hasClass('radio-lg')).toBe(true);
   });
 
-  it('applies correct css class when isRTL is true', () => {
-    expect(component.hasClass('radio--rtl')).toEqual(true);
-  });
-
   function radioButton() {
     return component.find(RadioButton);
   }
