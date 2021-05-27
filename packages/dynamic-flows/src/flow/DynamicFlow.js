@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import { isEmpty, isObject } from '@transferwise/neptune-validation';
 import { Loader } from '@transferwise/components';
-import { IntlProvider } from 'react-intl';
 import { withErrorBoundary } from './errorBoundary';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
@@ -54,13 +53,9 @@ const DynamicFlow = (props) => {
 
         onStepChange(json);
       })
-      .then(() => {
-        setSubmitted(false);
-      })
+      .then(() => setSubmitted(false))
       .catch(handleFetchError)
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   };
 
   const fetchRefresh = (action, data) => {
@@ -237,6 +232,4 @@ DynamicFlow.defaultProps = {
   onError: () => {},
 };
 
-const Test = withErrorBoundary(DynamicFlow);
-
-export default (props) => <Test {...props} />;
+export default withErrorBoundary(DynamicFlow);

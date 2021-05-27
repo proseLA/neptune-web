@@ -612,7 +612,7 @@ describe('Given a component for rendering a dynamic flow', () => {
 
       waitBeforeEach();
 
-      fit('should exit the flow', () => {
+      it('should exit the flow', () => {
         expect(onClose).toHaveBeenCalled();
       });
 
