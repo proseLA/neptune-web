@@ -44,7 +44,7 @@ const DynamicFlow = (props) => {
   const fetchStep = async (action, data) => {
     setLoading(true);
 
-    return request(action, data, baseUrl)
+    return request({ action, data, baseUrl })
       .then((response) => {
         setStepSpecification(response);
 
@@ -60,7 +60,7 @@ const DynamicFlow = (props) => {
   };
 
   const fetchRefresh = (action, data) => {
-    return request(action, data, baseUrl)
+    return request({ action, data, baseUrl })
       .then((response) => {
         setStepSpecification(response);
       })

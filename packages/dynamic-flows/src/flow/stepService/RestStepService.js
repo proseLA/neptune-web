@@ -1,10 +1,11 @@
-async function request(action, data, baseUrl) {
+async function request({ action, data, baseUrl, headers = {} }) {
   const { url, method } = action;
 
   return fetch(baseUrl + url, {
     method,
     headers: {
       'Content-Type': 'application/json',
+      ...headers,
     },
     ...{
       body: method === 'GET' ? undefined : JSON.stringify(data),
