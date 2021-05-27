@@ -1,4 +1,8 @@
+import React from 'react';
+
 import { isNull, isUndefined } from '@transferwise/neptune-validation';
+import { Avatar, AvatarType } from '@transferwise/components';
+import { Bank } from '@transferwise/icons';
 import { getCurrencyFlag } from './availableCurrencyFlags';
 
 export const mapConstSchemaToOption = (schema) => {
@@ -7,11 +11,44 @@ export const mapConstSchemaToOption = (schema) => {
     value: !isUndefined(schema.const) ? schema.const : schema.enum[0],
     ...getOptionDescription(schema.title, schema.description),
     ...mapIcon(schema.icon),
+    ...mapCurrency(schema.icon),
+    ...mapAvatar(schema.image),
     ...getDisabled(schema.disabled),
   };
 };
 
-const mapIcon = (icon) => (icon ? getCurrencyFlag(icon.name) : null);
+const mapCurrency = (icon) => (icon ? getCurrencyFlag(icon.name) : null);
+
+export const mapIcon = (icon) => {
+  if (icon) {
+    switch (icon.name) {
+      case 'bank':
+        return {
+          avatar: (
+            <Avatar type={AvatarType.ICON} outlined>
+              <Bank />
+            </Avatar>
+          ),
+        };
+      default:
+        return null;
+    }
+  }
+
+  return null;
+};
+
+export const mapAvatar = (image) => {
+  return image && image.url
+    ? {
+        avatar: (
+          <Avatar type={AvatarType.THUMBNAIL} outlined>
+            <img src={image.url} alt="User avatar" />
+          </Avatar>
+        ),
+      }
+    : null;
+};
 
 const getOptionDescription = (title, description) => {
   if (title && description) {

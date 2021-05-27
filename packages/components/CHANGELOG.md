@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.2.0...@transferwise/components@36.3.0) (2021-05-26)
+
+
+### Features
+
+* add Ukrainian to SUPPORTED_LANGUAGES ([#958](https://github.com/transferwise/neptune-web/issues/958)) ([60c592d](https://github.com/transferwise/neptune-web/commit/60c592ddbab726bca5e881cca3f409513f382df8))
+
+
+
+
+
 # [36.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.2...@transferwise/components@36.2.0) (2021-05-25)
 
 

@@ -28,6 +28,7 @@ export const SUPPORTED_LANGUAGES = [
   'ro',
   'ru',
   'tr',
+  'uk',
   'zh',
 ];
 

@@ -11,11 +11,12 @@ import pt from './pt.json';
 import ro from './ro.json';
 import ru from './ru.json';
 import tr from './tr.json';
+import uk from './uk.json';
 import zh from './zh.json';
 
 const translations: Record<string, Record<string, string>> = {
-  en,
   de,
+  en,
   es,
   fr,
   hu,
@@ -27,6 +28,7 @@ const translations: Record<string, Record<string, string>> = {
   ro,
   ru,
   tr,
+  uk,
   zh,
 };
 
