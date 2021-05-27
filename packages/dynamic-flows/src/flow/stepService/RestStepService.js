@@ -16,7 +16,7 @@ async function request({ action, data, baseUrl, headers = {} }) {
         throw error;
       });
     }
-    return response.json();
+    return response;
   });
 }
 

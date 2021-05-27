@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
-import { isEmpty } from '@transferwise/neptune-validation';
+import { isEmpty, isObject } from '@transferwise/neptune-validation';
 import { Loader } from '@transferwise/components';
+import { IntlProvider } from 'react-intl';
 import { withErrorBoundary } from './errorBoundary';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
@@ -9,6 +10,7 @@ import { convertStepToLayout, inlineReferences } from './layoutService';
 import { request } from './stepService';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { Size } from '../common';
+import { getJson } from '../common/api/utils';
 
 /**
  * ## DynamicFlow
@@ -45,10 +47,12 @@ const DynamicFlow = (props) => {
     setLoading(true);
 
     return request({ action, data, baseUrl })
-      .then((response) => {
-        setStepSpecification(response);
+      .then(checkForExitCondition)
+      .then(getJson)
+      .then((json) => {
+        setStepSpecification(json);
 
-        onStepChange(response);
+        onStepChange(json);
       })
       .then(() => {
         setSubmitted(false);
@@ -61,9 +65,17 @@ const DynamicFlow = (props) => {
 
   const fetchRefresh = (action, data) => {
     return request({ action, data, baseUrl })
-      .then((response) => {
-        setStepSpecification(response);
+      .then(getJson)
+      .then((json) => {
+        setStepSpecification(json);
       })
+      .catch(handleFetchError);
+  };
+
+  const fetchExitResult = (action, data) => {
+    return request({ action, data, baseUrl })
+      .then(getJson)
+      .then(validateExitResult)
       .catch(handleFetchError);
   };
 
@@ -78,6 +90,26 @@ const DynamicFlow = (props) => {
     }
   };
 
+  const checkForExitCondition = (response) =>
+    new Promise((resolve) => {
+      const exitHeader = 'X-DF-Exit';
+
+      if (response.headers.get(exitHeader)) {
+        onClose(getJson(response));
+        return;
+      }
+
+      resolve(response);
+    });
+
+  const validateExitResult = (json) =>
+    new Promise((resolve, reject) => {
+      if (!isObject(json)) {
+        reject('Incorrect response when submitting an exit action. Expected an object');
+      }
+      resolve(json);
+    });
+
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
     const { $id } = formSchema;
 
@@ -91,17 +123,28 @@ const DynamicFlow = (props) => {
   };
 
   const onAction = async (action) => {
-    const { exit, data, method } = action;
-
-    if (exit) {
-      onClose(data);
-      return;
-    }
+    const { data, method, exit, url, result } = action;
 
     const submissionData = {
       ...combineModels(models),
       ...data,
     };
+
+    if (exit) {
+      if (url) {
+        const exitResult = await fetchExitResult(action, submissionData);
+
+        const mergedResult = {
+          ...exitResult,
+          ...(result || {}),
+        };
+
+        onClose(mergedResult);
+        return;
+      }
+      onClose(result);
+      return;
+    }
 
     if (isSubmissionMethod(method)) {
       setSubmitted(true);
@@ -194,4 +237,6 @@ DynamicFlow.defaultProps = {
   onError: () => {},
 };
 
-export default withErrorBoundary(DynamicFlow);
+const Test = withErrorBoundary(DynamicFlow);
+
+export default (props) => <Test {...props} />;

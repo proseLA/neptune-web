@@ -149,10 +149,15 @@ describe('Given a component for rendering a dynamic flow', () => {
     },
   };
 
-  const resolve = (response) => {
+  const exitResult = {
+    testKey: 'value',
+    anotherTestKey: 'anotherValue',
+  };
+
+  const resolve = (response, init = {}) => {
     return new Promise((promiseResolve) => {
-      setTimeout(() => {
-        promiseResolve(response);
+      setTimeout(async () => {
+        promiseResolve(new Response(JSON.stringify(response), init));
       }, 0);
     });
   };
@@ -163,6 +168,10 @@ describe('Given a component for rendering a dynamic flow', () => {
         promiseReject(response);
       }, 0);
     });
+  };
+
+  const resolveWithExitHeader = (response) => {
+    return resolve(response, { headers: new Headers({ 'X-DF-Exit': true }) });
   };
 
   const mockApi = ({ action, data }) => {
@@ -177,6 +186,10 @@ describe('Given a component for rendering a dynamic flow', () => {
         return resolve(finalStep);
       case '/exit':
         return resolve({});
+      case '/exitWithResult':
+        return resolve(exitResult);
+      case '/exitWithHeader':
+        return resolveWithExitHeader(exitResult);
       case '/navigate':
         return resolve(newStep);
       case '/success':
@@ -440,7 +453,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should update the flow to use that step', () => {
-        expect(getLayout().prop('components')).toBe(newStep.layout);
+        expect(getLayout().prop('components')).toStrictEqual(newStep.layout);
       });
 
       it('should trigger the onStepChange callback with the new step', () => {
@@ -448,7 +461,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
     });
 
-    describe('when we submit an action and do not receive an error or valid step ', () => {
+    describe('when we submit an action and do not receive an error or valid step', () => {
       const exitAction = {
         url: '/exit',
         method: 'POST',
@@ -461,6 +474,8 @@ describe('Given a component for rendering a dynamic flow', () => {
         getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getLayout().invoke('onAction')(exitAction);
       });
+
+      waitBeforeEach();
 
       it('should exit the flow', () => {
         expect(onClose).toHaveBeenCalled();
@@ -510,7 +525,7 @@ describe('Given a component for rendering a dynamic flow', () => {
         title: 'Exit',
         type: 'delete',
         exit: true,
-        data: {
+        result: {
           exitValue: 'value',
         },
       };
@@ -520,7 +535,89 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should trigger the onClose callback with exit data', () => {
-        expect(onClose).toHaveBeenCalledWith(exitAction.data);
+        expect(onClose).toHaveBeenCalledWith(exitAction.result);
+      });
+    });
+
+    describe("when we submit an exit action which doesn't return a result", () => {
+      const exitAction = {
+        url: '/exit',
+        method: 'POST',
+        exit: true,
+        result: {
+          test: 123,
+        },
+      };
+
+      beforeEach(() => {
+        onStepChange.mockClear();
+
+        getLayout().invoke('onAction')(exitAction);
+      });
+
+      waitBeforeEach();
+
+      it("should exit the flow with the action's result", () => {
+        expect(onClose).toHaveBeenCalledWith(exitAction.result);
+      });
+
+      it('should not trigger onStepChange', () => {
+        expect(onStepChange).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when we submit an exit action which does return a result', () => {
+      const exitAction = {
+        url: '/exitWithResult',
+        method: 'POST',
+        exit: true,
+        result: {
+          test: 123,
+          testKey: 'overridenValue',
+        },
+      };
+
+      beforeEach(() => {
+        onStepChange.mockClear();
+
+        getLayout().invoke('onAction')(exitAction);
+      });
+
+      waitBeforeEach();
+
+      it('should exit the flow with the merged result', () => {
+        const mergedResult = {
+          ...exitResult,
+          ...exitAction.result,
+        };
+        expect(onClose).toHaveBeenCalledWith(mergedResult);
+      });
+
+      it('should not trigger onStepChange', () => {
+        expect(onStepChange).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when we submit an action return with exit headers', () => {
+      const exitAction = {
+        url: '/exitWithHeader',
+        method: 'POST',
+      };
+
+      beforeEach(() => {
+        onStepChange.mockClear();
+
+        getLayout().invoke('onAction')(exitAction);
+      });
+
+      waitBeforeEach();
+
+      fit('should exit the flow', () => {
+        expect(onClose).toHaveBeenCalled();
+      });
+
+      it('should not trigger onStepChange', () => {
+        expect(onStepChange).not.toHaveBeenCalled();
       });
     });
   });
