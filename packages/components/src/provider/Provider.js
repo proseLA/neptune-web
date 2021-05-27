@@ -4,7 +4,8 @@ import { IntlProvider } from 'react-intl';
 import { DirectionProvider } from './direction';
 import en from '../i18n/en.json';
 import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
-import '../common/polyfills/intl';
+import '@formatjs/intl-getcanonicallocales/polyfill';
+import '@formatjs/intl-locale/polyfill';
 
 function Provider({ i18n, children }) {
   const { locale, messages, defaultRichTextElements } = i18n;
