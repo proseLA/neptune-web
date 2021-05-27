@@ -1,11 +1,10 @@
 import React from 'react';
-import { mount } from 'enzyme';
 
 import DynamicFlow from '.';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 import { request } from './stepService';
-import { wait } from '../test-utils';
+import { mount, wait } from '../test-utils';
 
 jest.mock('./layoutService');
 jest.mock('./stepService');
@@ -323,7 +322,7 @@ describe('Given a component for rendering a dynamic flow', () => {
 
       waitBeforeEach();
 
-      fit('should pass the expected model to the layout', () => {
+      it('should pass the expected model to the layout', () => {
         expect(getLayout().prop('model')).toEqual(expetectModel);
       });
     });
@@ -370,8 +369,10 @@ describe('Given a component for rendering a dynamic flow', () => {
         getLayout().invoke('onAction')(successAction);
       });
 
-      it('should tell the layout the form is submitted', () => {
-        expect(getLayout().prop('submitted')).toBe(true);
+      waitBeforeEach();
+
+      it('should tell the layout the form is submitted then reset to false on step reload', () => {
+        expect(getLayout().prop('submitted')).toBe(false);
       });
 
       it('should make the corresponding request', () => {

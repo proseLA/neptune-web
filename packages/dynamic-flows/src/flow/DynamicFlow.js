@@ -50,10 +50,10 @@ const DynamicFlow = (props) => {
 
         onStepChange(response);
       })
-      .catch(handleFetchError)
       .then(() => {
         setSubmitted(false);
       })
+      .catch(handleFetchError)
       .finally(() => {
         setLoading(false);
       });
@@ -74,9 +74,8 @@ const DynamicFlow = (props) => {
       setValidations(validation);
     } else {
       onError(error);
+      throw error;
     }
-
-    throw error;
   };
 
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
