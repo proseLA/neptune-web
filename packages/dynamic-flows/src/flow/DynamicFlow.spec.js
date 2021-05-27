@@ -165,7 +165,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
   };
 
-  const mockApi = (action, model) => {
+  const mockApi = ({ action, data }) => {
     switch (action.url) {
       case '/form':
         return resolve(formStep);
@@ -182,7 +182,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       case '/success':
         return resolve(newStep);
       case '/refresh':
-        if (model.failure) {
+        if (data.failure) {
           return reject(errorResponse);
         }
         return resolve(newStep);
@@ -223,7 +223,10 @@ describe('Given a component for rendering a dynamic flow', () => {
       );
     });
     it('should load the step specification using the supplied URL', () => {
-      expect(request).toHaveBeenCalledWith({ url: decisionUrl, method: 'GET' }, undefined, baseUrl);
+      expect(request).toHaveBeenCalledWith({
+        action: { url: decisionUrl, method: 'GET' },
+        baseUrl,
+      });
     });
   });
 
@@ -341,7 +344,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           method: 'POST',
           url: '/refresh',
         };
-        expect(request).toHaveBeenCalledWith(fakeAction, newModel, baseUrl);
+        expect(request).toHaveBeenCalledWith({ action: fakeAction, data: newModel, baseUrl });
       });
 
       it('should pass the new schema to the layout', () => {
@@ -376,7 +379,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should make the corresponding request', () => {
-        expect(request).toHaveBeenCalledWith(successAction, { a: 1 }, baseUrl);
+        expect(request).toHaveBeenCalledWith({ action: successAction, data: { a: 1 }, baseUrl });
       });
     });
 
@@ -404,7 +407,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should ignore the invalid model and make the corresponding request', () => {
-        expect(request).toHaveBeenCalledWith(navigateAction, undefined, baseUrl);
+        expect(request).toHaveBeenCalledWith({ action: navigateAction, baseUrl });
       });
     });
 
@@ -479,7 +482,11 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should submit the latest model combined with the action data', () => {
-        expect(request).toHaveBeenCalledWith(dataAction, { a: 2, c: true }, baseUrl);
+        expect(request).toHaveBeenCalledWith({
+          action: dataAction,
+          data: { a: 2, c: true },
+          baseUrl,
+        });
       });
     });
 
