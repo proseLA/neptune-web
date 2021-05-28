@@ -74,7 +74,7 @@ jsFiles.forEach(({ filename, folder }) => {
   let fileTypeDeclrationContent = null;
   try {
     fileTypeDeclrationContent = generateFromFile(null, `src/${filePath}.js`, {
-      babylonPlugins: ['optionalChaining', 'nullishCoalescingOperator'],
+      babylonPlugins: ['optionalChaining', 'nullishCoalescingOperator', 'dynamicImport'],
     });
   } catch (e) {
     /* eslint-disable no-console */

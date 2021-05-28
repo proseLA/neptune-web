@@ -8,6 +8,7 @@ import Meta from './Meta';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
+import ThemeToggle from './ThemeToggle';
 
 import Sidebar from './Sidebar';
 import ThreeColumnLayout from './layout/threeColumnLayout';
@@ -52,6 +53,9 @@ const Layout = ({ children, router: { pathname } }) => {
             </li>
           ))}
       </ul>
+      <div className="Nav__Theme">
+        <ThemeToggle />
+      </div>
     </div>
   );
 

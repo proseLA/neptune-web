@@ -59,6 +59,7 @@ export { default as AvatarWrapper } from './avatarWrapper';
 export { default as Info } from './info';
 export { default as Logo } from './logo';
 
+
 /**
  * Hooks
  */
@@ -103,6 +104,8 @@ export {
   getLangFromLocale,
   getCountryFromLocale,
 } from './common';
+
+export { default as themes } from './themes';
 
 /**
  * Translations

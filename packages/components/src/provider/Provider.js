@@ -8,7 +8,7 @@ import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
 import '../common/polyfills/intl';
 
 async function loadTheme(theme) {
-  const json = await import(`../themes/${theme}.json`);
+  const json = await import(`@transferwise/components/build/themes/${theme}.json`);
   return json;
 }
 
