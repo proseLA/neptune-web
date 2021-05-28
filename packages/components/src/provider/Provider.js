@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 import { DirectionProvider } from './direction';
+import { ThemeProvider } from './theme';
 import en from '../i18n/en.json';
 import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
 import '../common/polyfills/intl';
 
-function Provider({ i18n, children }) {
+async function loadTheme(theme) {
+  const json = await import(`../themes/${theme}.json`);
+  return json;
+}
+
+function Provider({ i18n, children, theme }) {
   const { locale, messages, defaultRichTextElements } = i18n;
   const adjustedLocale = adjustLocale(locale);
   let intlConfig;
@@ -20,17 +26,27 @@ function Provider({ i18n, children }) {
     intlConfig = { locale: adjustedLocale, messages };
   }
 
+  useEffect(() => {
+    loadTheme(theme).then((themeDef) => {
+      Object.entries(themeDef).forEach(([cssProp, value]) => {
+        document.documentElement.style.setProperty(`--${cssProp}`, value);
+      });
+    });
+  }, [theme]);
+
   return (
-    <DirectionProvider locale={intlConfig.locale}>
-      <IntlProvider
-        defaultLocale={DEFAULT_LOCALE}
-        locale={intlConfig.locale}
-        messages={intlConfig.messages}
-        defaultRichTextElements={defaultRichTextElements}
-      >
-        {children}
-      </IntlProvider>
-    </DirectionProvider>
+    <ThemeProvider theme={theme}>
+      <DirectionProvider locale={intlConfig.locale}>
+        <IntlProvider
+          defaultLocale={DEFAULT_LOCALE}
+          locale={intlConfig.locale}
+          messages={intlConfig.messages}
+          defaultRichTextElements={defaultRichTextElements}
+        >
+          {children}
+        </IntlProvider>
+      </DirectionProvider>
+    </ThemeProvider>
   );
 }
 
@@ -41,10 +57,12 @@ Provider.propTypes = {
     defaultRichTextElements: PropTypes.shape({}),
   }).isRequired,
   children: PropTypes.node,
+  theme: PropTypes.string,
 };
 
 Provider.defaultProps = {
   children: undefined,
+  theme: 'light',
 };
 
 export default Provider;

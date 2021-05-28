@@ -72,11 +72,13 @@ const severalExamplesOfSupportedLocales = [
 
 const ProviderDecorator = (storyFn) => {
   const locale = select('locale (global)', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
+  const globalTheme = select('global theme', ['light', 'dark'], 'light');
   const lang = getLangFromLocale(locale);
   const messages = supportedLangs[lang];
   const props = {
     i18n: { locale, messages },
     children: storyFn(),
+    theme: globalTheme,
   };
   return <Provider {...props} />;
 };
