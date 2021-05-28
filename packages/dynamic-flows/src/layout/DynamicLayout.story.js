@@ -41,6 +41,7 @@ export const basic = () => {
       onModelChange={onModelChange}
       submitted={submitted}
       errors={{ lastname: 'Last name is required' }}
+      baseUrl=""
     />
   );
 };
