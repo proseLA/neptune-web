@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import { parseISO } from 'date-fns';
 import Link from './Link';
 import Badge from './Badge';
 import Meta from './Meta';
+import { ThemeContext } from './ThemeContext';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
@@ -15,21 +16,29 @@ import ThreeColumnLayout from './layout/threeColumnLayout';
 
 const githubURL = `https://github.com/transferwise/neptune-web/edit/main/packages/docs/pages`;
 
+const logos = {
+  dark: 'https://wise.com/public-resources/assets/logos/wise/brand_logo_inverse.svg',
+  light: 'https://wise.com/public-resources/assets/logos/wise/brand_logo.svg',
+};
+
 const Layout = ({ children, router: { pathname } }) => {
   const pathParts = pathname.split('/');
   const rootDir = pathParts[1];
   const page = getPageFromPath(pathname);
   const editPath = `${githubURL}${pathname}.mdx`;
 
+  const { theme } = useContext(ThemeContext);
+
+  const [logo, setLogo] = useState(logos.light);
+
+  useEffect(() => setLogo(logos[theme]), [theme]);
+
   const firstContent = (
     <div className="Header__Fixed" role="navigation" aria-label="Primary navigation">
       <div className="Header__Brand">
         <Link href="/">
           <a className="Logo">
-            <img
-              src="https://wise.com/public-resources/assets/logos/wise/brand_logo_inverse.svg"
-              alt="Wise Logo"
-            />
+            <img src={logo} alt="Wise Logo" />
             <span className="sr-only">Wise</span>
           </a>
         </Link>
