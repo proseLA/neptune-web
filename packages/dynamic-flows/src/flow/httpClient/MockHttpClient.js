@@ -12,22 +12,24 @@ const reviewStep = {
   layout: reviewLayout,
 };
 
+function init() {}
+
 async function request({ action, data }) {
   console.log('request', action.url, data); // eslint-disable-line
 
   switch (action.url) {
     case '/decision':
-      return Promise.resolve(decisionStep);
-    case '/v3/123':
-      return Promise.resolve(formStep);
+      return Promise.resolve({ data: decisionStep });
+    case '/recipient':
+      return Promise.resolve({ data: formStep });
     case '/layout':
-      return Promise.resolve(layoutStep);
+      return Promise.resolve({ data: layoutStep });
     case '/review':
-      return Promise.resolve(review);
+      return Promise.resolve({ data: review });
     case '/confirm':
-      return Promise.resolve(reviewStep);
+      return Promise.resolve({ data: reviewStep });
     case '/final':
-      return Promise.resolve(finalStep);
+      return Promise.resolve({ data: finalStep });
     case '/error':
       return Promise.reject({
         error: 'Something went wrong',
@@ -38,4 +40,4 @@ async function request({ action, data }) {
   }
 }
 
-export { request };
+export const httpClient = { init, request };

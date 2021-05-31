@@ -3,11 +3,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import DynamicFlow from './DynamicFlow';
-
-import decisionStep from './examples/decision.json';
-import formStep from './examples/form.json';
-import finalStep from './examples/final.json';
-import layoutStep from './examples/layout.json';
+import { mockHttpClient } from './httpClient';
 
 export default {
   component: DynamicFlow,
@@ -16,13 +12,16 @@ export default {
 
 export const basic = () => {
   const steps = {
-    decision: decisionStep,
-    form: formStep,
-    final: finalStep,
-    layout: layoutStep,
+    decision: '/decision',
+    recipient: '/recipient',
+    layout: '/layout',
+    review: '/review',
+    confirm: '/confirm',
+    final: '/final',
+    error: '/error',
   };
 
-  const specification = select('step', steps, decisionStep);
+  const flowUrl = select('step', steps, '/decision');
 
   const onClose = () => {
     console.log('onClose'); // eslint-disable-line
@@ -34,12 +33,10 @@ export const basic = () => {
     action('onStepChange');
   };
 
-  const flowUrl = '/decision';
-
   return (
     <DynamicFlow
       flowUrl={flowUrl}
-      specification={specification}
+      httpClient={mockHttpClient}
       onClose={onClose}
       onStepChange={onStepChange}
     />

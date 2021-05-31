@@ -6,10 +6,9 @@ import { withErrorBoundary } from './errorBoundary';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 
-import { request } from './stepService';
+import { restHttpClient as defaultHttpClient } from './httpClient';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { Size } from '../common';
-import { getJson } from '../common/api/utils';
 
 /**
  * ## DynamicFlow
@@ -20,7 +19,7 @@ import { getJson } from '../common/api/utils';
  * and reformats it to use a DynamicLayout for presentation.
  */
 const DynamicFlow = (props) => {
-  const { baseUrl, flowUrl, onClose, onStepChange, locale, onError } = props;
+  const { baseUrl, flowUrl, httpClient, onClose, onStepChange, locale, onError } = props;
 
   const [stepSpecification, setStepSpecification] = useState({});
   const [models, setModels] = useState({});
@@ -45,10 +44,10 @@ const DynamicFlow = (props) => {
   const fetchStep = async (action, data) => {
     setLoading(true);
 
-    return request({ action, data, baseUrl })
+    return getHttpClient()
+      .request({ action, data })
       .then(checkForExitCondition)
-      .then(getJson)
-      .then((json) => {
+      .then(({ data: json }) => {
         setStepSpecification(json);
 
         onStepChange(json);
@@ -59,17 +58,17 @@ const DynamicFlow = (props) => {
   };
 
   const fetchRefresh = (action, data) => {
-    return request({ action, data, baseUrl })
-      .then(getJson)
-      .then((json) => {
+    return getHttpClient()
+      .request({ action, data })
+      .then(({ data: json }) => {
         setStepSpecification(json);
       })
       .catch(handleFetchError);
   };
 
   const fetchExitResult = (action, data) => {
-    return request({ action, data, baseUrl })
-      .then(getJson)
+    return getHttpClient()
+      .request({ action, data })
       .then(validateExitResult)
       .catch(handleFetchError);
   };
@@ -85,19 +84,23 @@ const DynamicFlow = (props) => {
     }
   };
 
+  const getHttpClient = () => httpClient || defaultHttpClient.init({ baseUrl });
+
   const checkForExitCondition = (response) =>
     new Promise((resolve) => {
+      const { data, headers } = response;
+
       const exitHeader = 'X-DF-Exit';
 
-      if (response.headers.get(exitHeader)) {
-        onClose(getJson(response));
+      if (headers && headers.get(exitHeader)) {
+        onClose(data);
         return;
       }
 
       resolve(response);
     });
 
-  const validateExitResult = (json) =>
+  const validateExitResult = ({ data: json }) =>
     new Promise((resolve, reject) => {
       if (!isObject(json)) {
         reject('Incorrect response when submitting an exit action. Expected an object');
@@ -218,7 +221,10 @@ const DynamicFlow = (props) => {
 // eslint-disable-next-line
 DynamicFlow.propTypes = {
   baseUrl: Types.string,
-  flowUrl: Types.string.isRequired,
+  flowUrl: Types.string,
+  httpClient: Types.shape({
+    request: Types.func,
+  }),
   onClose: Types.func.isRequired,
   onStepChange: Types.func,
   locale: Types.string,
@@ -227,6 +233,8 @@ DynamicFlow.propTypes = {
 
 DynamicFlow.defaultProps = {
   baseUrl: '',
+  flowUrl: '',
+  httpClient: undefined,
   locale: 'en-GB',
   onStepChange: () => {},
   onError: () => {},

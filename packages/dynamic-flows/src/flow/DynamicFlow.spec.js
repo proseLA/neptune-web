@@ -3,11 +3,9 @@ import React from 'react';
 import DynamicFlow from '.';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
-import { request } from './stepService';
 import { mount, wait } from '../test-utils';
 
 jest.mock('./layoutService');
-jest.mock('./stepService');
 jest.mock('../layout', () => () => <div />);
 
 // We want to use the original implementation so everything continues to function
@@ -18,6 +16,7 @@ inlineReferences.mockImplementation(layoutService.inlineReferences);
 
 describe('Given a component for rendering a dynamic flow', () => {
   let component;
+  let mockClient;
   let onClose;
   let onStepChange;
 
@@ -136,7 +135,6 @@ describe('Given a component for rendering a dynamic flow', () => {
     },
   };
 
-  const baseUrl = '';
   const formUrl = '/form'; // eslint-disable-line
   const formNoLayoutUrl = '/formNoLayout'; // eslint-disable-line
   const decisionUrl = '/decision';
@@ -157,7 +155,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   const resolve = (response, init = {}) => {
     return new Promise((promiseResolve) => {
       setTimeout(async () => {
-        promiseResolve(new Response(JSON.stringify(response), init));
+        promiseResolve({ data: response, ...init });
       }, 0);
     });
   };
@@ -174,7 +172,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     return resolve(response, { headers: new Headers({ 'X-DF-Exit': true }) });
   };
 
-  const mockApi = ({ action, data }) => {
+  const mockRequest = ({ action, data }) => {
     switch (action.url) {
       case '/form':
         return resolve(formStep);
@@ -219,7 +217,10 @@ describe('Given a component for rendering a dynamic flow', () => {
   }
 
   beforeEach(async () => {
-    request.mockImplementation(mockApi);
+    mockClient = {
+      init: jest.fn(),
+      request: jest.fn().mockImplementation(mockRequest),
+    };
     onClose = jest.fn();
     onStepChange = jest.fn();
     convertStepToLayout.mockClear();
@@ -232,13 +233,17 @@ describe('Given a component for rendering a dynamic flow', () => {
       // https://github.com/airbnb/enzyme/issues/2086
       // Use mount an manually mock, information above
       component = mount(
-        <DynamicFlow flowUrl={decisionUrl} onClose={onClose} onStepChange={onStepChange} />,
+        <DynamicFlow
+          flowUrl={decisionUrl}
+          httpClient={mockClient}
+          onClose={onClose}
+          onStepChange={onStepChange}
+        />,
       );
     });
     it('should load the step specification using the supplied URL', () => {
-      expect(request).toHaveBeenCalledWith({
+      expect(mockClient.request).toHaveBeenCalledWith({
         action: { url: decisionUrl, method: 'GET' },
-        baseUrl,
       });
     });
   });
@@ -252,7 +257,12 @@ describe('Given a component for rendering a dynamic flow', () => {
   describe('when there is a decision step with no step layout', () => {
     beforeEach(() => {
       component = mount(
-        <DynamicFlow flowUrl={decisionUrl} onClose={onClose} onStepChange={onStepChange} />,
+        <DynamicFlow
+          flowUrl={decisionUrl}
+          httpClient={mockClient}
+          onClose={onClose}
+          onStepChange={onStepChange}
+        />,
       );
     });
 
@@ -266,7 +276,12 @@ describe('Given a component for rendering a dynamic flow', () => {
   describe('when there is a form step with no step layout', () => {
     beforeEach(() => {
       component = mount(
-        <DynamicFlow flowUrl={formNoLayoutUrl} onClose={onClose} onStepChange={onStepChange} />,
+        <DynamicFlow
+          flowUrl={formNoLayoutUrl}
+          httpClient={mockClient}
+          onClose={onClose}
+          onStepChange={onStepChange}
+        />,
       );
     });
 
@@ -284,7 +299,12 @@ describe('Given a component for rendering a dynamic flow', () => {
   describe('when there is a final step with no step layout', () => {
     beforeEach(() => {
       component = mount(
-        <DynamicFlow flowUrl={finalUrl} onClose={onClose} onStepChange={onStepChange} />,
+        <DynamicFlow
+          flowUrl={finalUrl}
+          httpClient={mockClient}
+          onClose={onClose}
+          onStepChange={onStepChange}
+        />,
       );
     });
 
@@ -303,7 +323,12 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     beforeEach(() => {
       component = mount(
-        <DynamicFlow flowUrl={formUrl} onClose={onClose} onStepChange={onStepChange} />,
+        <DynamicFlow
+          flowUrl={formUrl}
+          httpClient={mockClient}
+          onClose={onClose}
+          onStepChange={onStepChange}
+        />,
       );
     });
 
@@ -357,7 +382,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           method: 'POST',
           url: '/refresh',
         };
-        expect(request).toHaveBeenCalledWith({ action: fakeAction, data: newModel, baseUrl });
+        expect(mockClient.request).toHaveBeenCalledWith({ action: fakeAction, data: newModel });
       });
 
       it('should pass the new schema to the layout', () => {
@@ -392,13 +417,16 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should make the corresponding request', () => {
-        expect(request).toHaveBeenCalledWith({ action: successAction, data: { a: 1 }, baseUrl });
+        expect(mockClient.request).toHaveBeenCalledWith({
+          action: successAction,
+          data: { a: 1 },
+        });
       });
     });
 
     describe('when the layout broadcasts a POST action and the model is invalid', () => {
       beforeEach(() => {
-        request.mockClear();
+        mockClient.request.mockClear();
 
         getLayout().invoke('onModelChange')({}, thingSchema, undefined, numberSchema);
         getLayout().invoke('onAction')(successAction);
@@ -409,7 +437,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should not make the corresponding request', () => {
-        expect(request).not.toHaveBeenCalled();
+        expect(mockClient.request).not.toHaveBeenCalled();
       });
     });
 
@@ -420,7 +448,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should ignore the invalid model and make the corresponding request', () => {
-        expect(request).toHaveBeenCalledWith({ action: navigateAction, baseUrl });
+        expect(mockClient.request).toHaveBeenCalledWith({ action: navigateAction });
       });
     });
 
@@ -490,17 +518,16 @@ describe('Given a component for rendering a dynamic flow', () => {
       const dataAction = { ...successAction, data: { a: 2, c: true } };
 
       beforeEach(() => {
-        request.mockClear();
+        mockClient.request.mockClear();
 
         getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getLayout().invoke('onAction')(dataAction);
       });
 
       it('should submit the latest model combined with the action data', () => {
-        expect(request).toHaveBeenCalledWith({
+        expect(mockClient.request).toHaveBeenCalledWith({
           action: dataAction,
           data: { a: 2, c: true },
-          baseUrl,
         });
       });
     });
