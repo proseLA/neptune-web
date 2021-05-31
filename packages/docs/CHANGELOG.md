@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.1.4...@transferwise/neptune-docs@12.1.5) (2021-05-28)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.1.3...@transferwise/neptune-docs@12.1.4) (2021-05-26)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.1.2...@transferwise/neptune-docs@12.1.3) (2021-05-26)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.1.1...@transferwise/neptune-docs@12.1.2) (2021-05-26)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.1.0...@transferwise/neptune-docs@12.1.1) (2021-05-26)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+# [12.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.16...@transferwise/neptune-docs@12.1.0) (2021-05-25)
+
+
+### Features
+
+* adding avatar to radio ([#952](https://github.com/transferwise/neptune-web/issues/952)) ([bd0b87a](https://github.com/transferwise/neptune-web/commit/bd0b87a19756e7d356abbc89d8b26df32379ad89))
+
+
+
+
+
+## [12.0.16](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.15...@transferwise/neptune-docs@12.0.16) (2021-05-25)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.0.15](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.14...@transferwise/neptune-docs@12.0.15) (2021-05-25)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
 ## [12.0.14](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.0.13...@transferwise/neptune-docs@12.0.14) (2021-05-25)
 
 **Note:** Version bump only for package @transferwise/neptune-docs

@@ -22,7 +22,7 @@
               "url": "/edit-transfer",
               "method": "GET"
             },
-            "definitions": [
+            "fields": [
               {
                 "label": "You send approximately",
                 "value": "88.86 GBP"
@@ -65,7 +65,7 @@
               "url": "/recipient",
               "method": "GET"
             },
-            "definitions": [
+            "fields": [
               {
                 "label": "Name",
                 "value": "Test Name"

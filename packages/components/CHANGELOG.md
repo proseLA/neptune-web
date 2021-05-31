@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.2.0...@transferwise/components@36.3.0) (2021-05-26)
+
+
+### Features
+
+* add Ukrainian to SUPPORTED_LANGUAGES ([#958](https://github.com/transferwise/neptune-web/issues/958)) ([60c592d](https://github.com/transferwise/neptune-web/commit/60c592ddbab726bca5e881cca3f409513f382df8))
+
+
+
+
+
+# [36.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.2...@transferwise/components@36.2.0) (2021-05-25)
+
+
+### Features
+
+* adding avatar to radio ([#952](https://github.com/transferwise/neptune-web/issues/952)) ([bd0b87a](https://github.com/transferwise/neptune-web/commit/bd0b87a19756e7d356abbc89d8b26df32379ad89))
+
+
+
+
+
+## [36.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.1...@transferwise/components@36.1.2) (2021-05-25)
+
+
+### Bug Fixes
+
+* update getFocusableElements.js query ([#955](https://github.com/transferwise/neptune-web/issues/955)) ([82d2571](https://github.com/transferwise/neptune-web/commit/82d257194d0dda21707b1ad057c9843c598a2840))
+
+
+
+
+
+## [36.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.1.0...@transferwise/components@36.1.1) (2021-05-25)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
 # [36.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.0.6...@transferwise/components@36.1.0) (2021-05-21)
 
 

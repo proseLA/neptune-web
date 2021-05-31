@@ -2,8 +2,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Radio, RadioGroup } from '..';
+import Avatar, { AvatarType } from '../avatar';
 
 const props = { onChange: jest.fn(), name: 'radio-group' };
+const avatar = <Avatar type={AvatarType.INITIALS}>HD</Avatar>;
 
 const RADIOS = [
   {
@@ -12,6 +14,7 @@ const RADIOS = [
     label: 'Radio1',
     secondary: 'secondary',
     disabled: true,
+    avatar,
   },
   {
     id: 'id-test-1',
@@ -47,6 +50,7 @@ describe('RadioGroup', () => {
         checked: false,
         secondary: 'secondary',
         onChange: () => props.onChange,
+        avatar,
       }),
     );
   });

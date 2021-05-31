@@ -162,6 +162,7 @@ const OneOfSchema = (props) => {
       const: index,
       disabled: schema.disabled,
       icon: schema.icon,
+      image: schema.image,
     };
   };
 
