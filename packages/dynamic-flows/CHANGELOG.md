@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.3.1...@transferwise/dynamic-flows@13.3.2) (2021-06-01)
+
+
+### Bug Fixes
+
+* Remove avatar outline ([#974](https://github.com/transferwise/neptune-web/issues/974)) ([1367c8d](https://github.com/transferwise/neptune-web/commit/1367c8da42c520e994a11cbe6196fd447760764c))
+
+
+
+
+
 ## [13.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.3.0...@transferwise/dynamic-flows@13.3.1) (2021-05-28)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
