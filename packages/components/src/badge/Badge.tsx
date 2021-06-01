@@ -4,6 +4,8 @@ import { Size, Theme, SizeSmall, SizeMedium, SizeLarge, ThemeDark, ThemeLight, C
 
 import './Badge.css';
 
+import { useDirection } from '../common/hooks';
+
 type Props = {
   badge: ReactNode;
   children: ReactNode;
@@ -18,11 +20,15 @@ function Badge({
   border = Theme.LIGHT,
   children,
 }: Props): ReactElement {
+
+  const { isRTL }: { isRTL: boolean } = useDirection();
+
   const classes: string = classNames(
     'tw-badge',
     {
       [`tw-badge-border-${border}`]: border,
       [`tw-badge-${size}`]: size,
+      ['tw-badge--rtl']: isRTL
     },
     className,
   );

@@ -75,4 +75,21 @@
       border-color: var(--badge-border-color);
     }
   }
+
+  &.tw-badge--rtl {
+    > .tw-badge__children {
+      mask-image:
+        radial-gradient(
+          circle at top calc(100% - var(--badge-mask-offset)) right calc(100% - var(--badge-mask-offset)),
+          transparent 0,
+          transparent calc(var(--badge-size) / 2 + var(--badge-mask)),
+          #000 calc(var(--badge-size) / 2 + var(--badge-mask) + 0.5px)
+        );
+    }
+
+    > .tw-badge__content {
+      left: 0;
+      right: auto;
+    }
+  }
 }

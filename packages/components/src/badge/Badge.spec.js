@@ -3,7 +3,14 @@ import { render, cleanup } from '../test-utils';
 
 import Badge from '.';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
+
 describe('Badge', () => {
+  beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
+  });
   const defaultProps = {
     badge: <div />,
   };
@@ -33,5 +40,11 @@ describe('Badge', () => {
     const { getByText } = renderBadge();
 
     expect(getByText(childText).parentElement).toHaveClass('tw-badge__children');
+  });
+
+  it('applies correct css class when isRTL is true', () => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+    const { container } = render(<Badge />);
+    expect(container.querySelector('.tw-badge')).toHaveClass('tw-badge--rtl');
   });
 });
