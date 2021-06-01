@@ -25,7 +25,7 @@ export const mapIcon = (icon) => {
       case 'bank':
         return {
           avatar: (
-            <Avatar type={AvatarType.ICON} outlined>
+            <Avatar type={AvatarType.ICON}>
               <Bank />
             </Avatar>
           ),
@@ -42,7 +42,7 @@ export const mapAvatar = (image) => {
   return image && image.url
     ? {
         avatar: (
-          <Avatar type={AvatarType.THUMBNAIL} outlined>
+          <Avatar type={AvatarType.THUMBNAIL}>
             <img src={image.url} alt="User avatar" />
           </Avatar>
         ),
