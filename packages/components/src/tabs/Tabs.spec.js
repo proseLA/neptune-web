@@ -8,6 +8,8 @@ import Tab from './Tab';
 import TabPanel from './TabPanel';
 import { Size, Width } from '../common';
 
+import { DirectionProvider } from '../provider/direction';
+
 jest.useFakeTimers();
 
 jest.mock('react-spring/renderprops.cjs', () => ({
@@ -355,6 +357,17 @@ describe('Tabs', () => {
     it(`when updating tabs prop to an empty array`, () => {
       const newProps = { ...props, tabs: [] };
       component.setProps({ ...newProps });
+    });
+  });
+
+  describe('RTL support', () => {
+    it('transforms correctly in RTL', () => {
+      const wrapper = mount(
+        <DirectionProvider locale="he-IL">
+          <Tabs {...props} />
+        </DirectionProvider>,
+      );
+      expect(wrapper.find('.tabs__line').getDOMNode()).toHaveStyle('transform: translateX(-0%)'); // negative transform due to RTL
     });
   });
 });

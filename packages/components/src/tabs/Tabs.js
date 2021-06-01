@@ -20,6 +20,8 @@ import { Size, Width } from '../common';
 
 import './Tabs.css';
 
+import { DirectionContext } from '../provider/direction';
+
 const MIN_INDEX = 0;
 
 const enabledTabsFilter = (tab) => !tab.disabled;
@@ -396,6 +398,7 @@ class Tabs extends React.Component {
   };
 
   render() {
+    const isRTL = this.context === 'rtl';
     const { tabs, changeTabOnSwipe, name, selected, className, transitionSpacing } = this.props;
     const {
       isSwiping,
@@ -472,7 +475,9 @@ class Tabs extends React.Component {
               className={classNames('tabs__line')}
               style={{
                 width: this.getTabLineWidth(),
-                transform: `translateX(${translateLineX})`,
+                transform: isRTL
+                  ? `translateX(-${translateLineX})`
+                  : `translateX(${translateLineX})`,
               }}
             />
           ) : null}
@@ -542,6 +547,8 @@ class Tabs extends React.Component {
 }
 
 const SpacerSizes = { ...Size, NONE: 'default' };
+
+Tabs.contextType = DirectionContext;
 
 Tabs.propTypes = {
   tabs: PropTypes.arrayOf(
