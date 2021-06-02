@@ -1,5 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { Select, MoneyInput } from '..';
 
@@ -529,6 +532,33 @@ describe('Money Input', () => {
         searchQuery: '',
         filteredOptions: [...currencies],
       });
+    });
+  });
+
+  describe('when typing', () => {
+    let rtlComponent;
+    const { formatAmount } = jest.requireActual('./currencyFormatting');
+    beforeAll(() => {
+      numberFormatting.formatAmount = formatAmount;
+    });
+
+    beforeEach(() => {
+      rtlComponent = render(<MoneyInput {...props} amount={null} />);
+      jest.clearAllMocks();
+    });
+
+    test.each([
+      ['asd', ''],
+      ['1a2s3d', '123'],
+      ['±!@#$^*_+?><', ''],
+      ['1±!@#$^*,_+?><2', '1,2'],
+      ['12,3', '12,3'],
+      ['12.3', '12.3'],
+    ])("ignores the letters when typed '%s' and shows '%s'", (testValue, expectedValue) => {
+      const { container } = rtlComponent;
+      const input = container.querySelector('input');
+      userEvent.type(input, testValue);
+      expect(input).toHaveValue(expectedValue);
     });
   });
 });
