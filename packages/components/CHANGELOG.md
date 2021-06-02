@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.3.0...@transferwise/components@36.4.0) (2021-06-02)
+
+
+### Features
+
+* prevent MoneyInput from accepting invalid input ([#914](https://github.com/transferwise/neptune-web/issues/914)) ([123c786](https://github.com/transferwise/neptune-web/commit/123c786e90d56c580876b83d6ddd6421c4d34d70))
+
+
+
+
+
 # [36.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.2.0...@transferwise/components@36.3.0) (2021-05-26)
 
 
