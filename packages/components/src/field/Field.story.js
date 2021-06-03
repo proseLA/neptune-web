@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { text } from '@storybook/addon-knobs';
 
-import { getValidationFailures } from '@transferwise/neptune-validation';
+import { formValidators } from '@transferwise/neptune-validation';
 import Checkbox from '../checkbox';
 import DateInput from '../dateInput';
 
@@ -24,7 +24,7 @@ export const TextField = () => {
       maxLength: { value: 6, message: 'Insert a value shorter than 6' },
     };
 
-    const failures = getValidationFailures({
+    const failures = formValidators({
       value: val,
       validations,
       isRequired: true,
@@ -67,7 +67,7 @@ export const NumberField = () => {
       maximum: { value: 6, message: 'Insert a value smaller than 6' },
     };
 
-    const failures = getValidationFailures({
+    const failures = formValidators({
       value: val,
       validations,
       isRequired: true,
@@ -103,7 +103,7 @@ export const CheckboxField = () => {
   const [validation, setValidation] = useState([]);
 
   const handleOnChange = (val) => {
-    const failures = getValidationFailures({
+    const failures = formValidators({
       value: val,
       validations: {},
       isRequired: true,
@@ -141,7 +141,7 @@ export const DateInputField = () => {
       minimum: { value: new Date('2000-01-02'), message: 'Insert a value after 01-01-2000' },
       maximum: { value: new Date('2000-01-04'), message: 'Insert a value before 03-01-2000' },
     };
-    const failures = getValidationFailures({
+    const failures = formValidators({
       value: val,
       validations,
       isRequired: true,

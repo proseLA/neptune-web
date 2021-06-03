@@ -1,1 +1,1 @@
-export { default as getValidationFailures } from './form-validators';
+export { default as formValidators } from './form-validators';

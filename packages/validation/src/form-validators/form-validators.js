@@ -1,4 +1,4 @@
-import { isNull, isString, isNumber } from '../type-validators';
+import { isNull, isString, isNumber, isDate } from '../type-validators';
 
 import {
   isValidMaxLength,
@@ -9,25 +9,23 @@ import {
   isValidPattern,
 } from '../rule-validators';
 
-import { isDateValid } from '../isDateValid';
-
-const getValidationFailures = ({ value, validations, isRequired, type }) => {
+const formValidators = ({ value, validations, isRequired, type }) => {
   if (type === 'string') {
-    return getStringFailures({ value, validations, isRequired });
+    return stringValidators({ value, validations, isRequired });
   }
   if (type === 'number') {
-    return getNumberFailures({ value, validations, isRequired });
+    return numberValidators({ value, validations, isRequired });
   }
   if (type === 'checkbox') {
-    return getRequiredFailures({ value, validations, isRequired });
+    return requiredValidators({ value, validations, isRequired });
   }
   if (type === 'date') {
-    return getDateFailures({ value, validations, isRequired });
+    return dateValidators({ value, validations, isRequired });
   }
   return [];
 };
 
-const getStringFailures = ({ value, validations, isRequired }) => {
+const stringValidators = ({ value, validations, isRequired }) => {
   if (!isString(value) && !isNull(value)) {
     return ['type'];
   }
@@ -58,7 +56,7 @@ const getStringFailures = ({ value, validations, isRequired }) => {
   return failures;
 };
 
-const getRequiredFailures = ({ value, isRequired }) => {
+const requiredValidators = ({ value, isRequired }) => {
   const failures = [];
   if (!value && isRequired) {
     return ['required'];
@@ -66,7 +64,7 @@ const getRequiredFailures = ({ value, isRequired }) => {
   return failures;
 };
 
-const getNumberFailures = ({ value: eventValue, validations, isRequired }) => {
+const numberValidators = ({ value: eventValue, validations, isRequired }) => {
   const value = Number(eventValue);
 
   if (!isNumber(value) && !isNull(value)) {
@@ -86,7 +84,7 @@ const getNumberFailures = ({ value: eventValue, validations, isRequired }) => {
   return failures;
 };
 
-const getDateFailures = ({ value: eventValue, validations, isRequired }) => {
+const dateValidators = ({ value: eventValue, validations, isRequired }) => {
   if (!isDateValid(value) && !isNull(value)) {
     return ['type'];
   }
@@ -105,4 +103,4 @@ const getDateFailures = ({ value: eventValue, validations, isRequired }) => {
   return failures;
 };
 
-export default getValidationFailures;
+export default formValidators;
