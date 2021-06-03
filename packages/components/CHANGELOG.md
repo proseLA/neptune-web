@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.4.0...@transferwise/components@36.4.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* remove old pointers ([#977](https://github.com/transferwise/neptune-web/issues/977)) ([159f120](https://github.com/transferwise/neptune-web/commit/159f120cab09dfc2a4187d353f6a7fee71c50246))
+
+
+
+
+
 # [36.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.3.0...@transferwise/components@36.4.0) (2021-06-02)
 
 
