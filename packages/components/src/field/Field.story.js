@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { text } from '@storybook/addon-knobs';
 
-import Checkbox from '../../checkbox';
-import DateInput from '../../dateInput';
+import { getValidationFailures } from '@transferwise/neptune-validation';
+import Checkbox from '../checkbox';
+import DateInput from '../dateInput';
 
 import Field from './Field';
-import { getValidationFailures } from './getValidationFailures';
 
 export default {
   component: Field,
-  title: 'Lab/Field',
+  title: 'Field',
 };
 
 export const TextField = () => {

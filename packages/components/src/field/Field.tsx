@@ -2,9 +2,9 @@ import React, { useState, cloneElement } from 'react';
 import classNames from 'classnames';
 
 import getAlertMessage from './getAlertMessage';
-import InlineAlert from '../../inlineAlert';
-import WithNormaliser from '../../withNormaliser';
-import { Sentiment } from '../../common';
+import InlineAlert from '../inlineAlert';
+import WithNormaliser from '../withNormaliser';
+import { Sentiment } from '../common';
 
 type FieldProps = {
   children: React.ReactNode;

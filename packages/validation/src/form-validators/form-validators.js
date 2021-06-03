@@ -1,15 +1,15 @@
+import { isNull, isString, isNumber } from '../type-validators';
+
 import {
-  isNull,
-  isString,
-  isNumber,
   isValidMaxLength,
   isValidMinLength,
   isValidRequired,
   isValidMinimum,
   isValidMaximum,
   isValidPattern,
-} from '@transferwise/neptune-validation';
-import { isDateValid } from '../../../common/dateUtils';
+} from '../rule-validators';
+
+import { isDateValid } from '../isDateValid';
 
 const getValidationFailures = ({ value, validations, isRequired, type }) => {
   if (type === 'string') {

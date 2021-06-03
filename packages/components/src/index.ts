@@ -58,6 +58,7 @@ export { default as InlineAlert } from './inlineAlert';
 export { default as AvatarWrapper } from './avatarWrapper';
 export { default as Info } from './info';
 export { default as Logo } from './logo';
+export { default as Field } from './field';
 
 /**
  * Hooks

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sentiment } from '../../../common/propsValues/sentiment';
+import { Sentiment } from '../../common/propsValues/sentiment';
 
 interface Args {
   blurred: boolean;
