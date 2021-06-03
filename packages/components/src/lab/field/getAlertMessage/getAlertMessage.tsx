@@ -26,14 +26,14 @@ const getAlertMessage = ({
 
   const isErrorVisible = !changed && error;
   const isValidationVisible = (submitted || (changed && blurred)) && !!validation.length;
-  const isHelpVisible = focused && help && !isValidationVisible;
+  const isHelpVisible = focused && help;
 
   if (isErrorVisible) {
     type = Sentiment.NEGATIVE;
     message = error;
   } else if (isValidationVisible) {
     type = Sentiment.NEGATIVE;
-    message = validation.map((val) => <div key={val}>{val}</div>);
+    message = validation.join(' ');
   } else if (isHelpVisible) {
     type = Sentiment.NEUTRAL;
     message = help;

@@ -11,7 +11,6 @@ type FieldProps = {
   label?: string;
   messages: { error: string; help: string; validation: string[] };
   submitted?: boolean;
-  validationFailures: string[];
 };
 
 type OverriddenMethods = {
@@ -80,8 +79,8 @@ const Field: React.FunctionComponent<FieldProps> = ({
           methodsToOvverride={methodsToOvverride}
           {...children.props}
         />
-        {message && <InlineAlert type={type}>{message}</InlineAlert>}
       </label>
+      {message && <InlineAlert type={type}>{message}</InlineAlert>}
     </div>
   );
 };

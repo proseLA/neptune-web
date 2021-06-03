@@ -19,7 +19,7 @@ const getValidationFailures = ({ value, validations, isRequired, type }) => {
     return getNumberFailures({ value, validations, isRequired });
   }
   if (type === 'checkbox') {
-    return getCheckboxFailures({ value, validations, isRequired });
+    return getRequiredFailures({ value, validations, isRequired });
   }
   if (type === 'date') {
     return getDateFailures({ value, validations, isRequired });
@@ -58,7 +58,7 @@ const getStringFailures = ({ value, validations, isRequired }) => {
   return failures;
 };
 
-const getCheckboxFailures = ({ value, isRequired }) => {
+const getRequiredFailures = ({ value, isRequired }) => {
   const failures = [];
   if (!value && isRequired) {
     return ['required'];
