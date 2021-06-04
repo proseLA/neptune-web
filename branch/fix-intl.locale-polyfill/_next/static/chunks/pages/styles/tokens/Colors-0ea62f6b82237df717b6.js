@@ -1,0 +1,1 @@
+_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[114],{ohyC:function(o,n,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/styles/tokens/Colors",function(){return _("ZNMs")}])}},[["ohyC",0,1,2,5,3,4,6,7]]]);

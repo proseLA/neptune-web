@@ -1,0 +1,2 @@
+.np-close-button{transition:color .15s ease-in-out;color:#00b9ff;color:var(--color-control-accent,#00b9ff);border:none;background:none;padding:0;height:16px;height:var(--size-16,16px)}.np-close-button--large{height:24px;height:var(--size-24,24px)}.np-close-button:hover{color:#00a4df;color:var(--color-control-accent-hover,#00a4df)}
+.tw-image{max-width:none;width:auto;min-width:-webkit-min-content;min-width:min-content}.tw-image__shrink{max-width:100%;min-width:auto}.tw-image__stretch{width:100%}
