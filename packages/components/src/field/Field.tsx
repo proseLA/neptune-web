@@ -62,7 +62,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
   return (
     <div
       className={classNames('form-group', {
-        'has-error': type === Sentiment.NEGATIVE,
+        'has-error': type === Sentiment.NEGATIVE && message,
         'has-info': type === Sentiment.NEUTRAL,
       })}
     >

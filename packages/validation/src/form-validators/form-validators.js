@@ -35,7 +35,7 @@ const stringValidators = ({ value, validations, isRequired }) => {
   }
 
   const failures = [];
-  if (!isValidRequired(value, isRequired)) {
+  if (!isValidRequired({ value, isRequired })) {
     failures.push('required');
   }
   if (!isValidMinLength(value, validations?.minLength.value)) {
@@ -85,7 +85,7 @@ const numberValidators = ({ value: eventValue, validations, isRequired }) => {
 };
 
 const dateValidators = ({ value: eventValue, validations, isRequired }) => {
-  if (!isDateValid(value) && !isNull(value)) {
+  if (!isDate(value) && !isNull(value)) {
     return ['type'];
   }
   const value = +new Date(eventValue);

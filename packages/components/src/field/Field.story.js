@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { text } from '@storybook/addon-knobs';
+import { text, select, boolean } from '@storybook/addon-knobs';
 
 import { formValidators } from '@transferwise/neptune-validation';
 import Checkbox from '../checkbox';
 import DateInput from '../dateInput';
+import Select from '../select';
 
 import Field from './Field';
 
@@ -44,7 +45,6 @@ export const TextField = () => {
           error,
           validation,
         }}
-        submitted={false}
       >
         <input type="text" value={value} onChange={(val) => handleOnChange(val)} />
       </Field>
@@ -87,7 +87,6 @@ export const NumberField = () => {
           error,
           validation,
         }}
-        submitted={false}
       >
         <input type="number" value={value} onChange={(val) => handleOnChange(val)} />
       </Field>
@@ -120,7 +119,6 @@ export const CheckboxField = () => {
         messages={{
           validation,
         }}
-        submitted={false}
       >
         <Checkbox label="label" onChange={(val) => handleOnChange(val)} checked={value} />
       </Field>
@@ -159,7 +157,6 @@ export const DateInputField = () => {
           validation,
           help,
         }}
-        submitted={false}
       >
         <DateInput
           onChange={(val) => handleOnChange(val)}
