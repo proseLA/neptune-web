@@ -1,0 +1,17 @@
+{
+  "type": "final",
+  "key": "final-step",
+  "details": {
+    "title": "You did it!",
+    "description": "Congratulations, enjoy the rest of your day!",
+    "image": {
+      "url": "https://dev-wi.se/public-resources/assets/transfer-success/images/verification.svg"
+    },
+    "action": {
+      "title": "Next",
+      "type": "success",
+      "method": "GET",
+      "url": "/exit"
+    }
+  }
+}
