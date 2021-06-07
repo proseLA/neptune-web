@@ -1,46 +1,34 @@
 () => {
-  const [value, setValue] = React.useState('a value');
+  const [value, setValue] = React.useState('');
+  const [validation, setValidation] = React.useState([]);
+
+  const handleOnChange = (val) => {
+    const validations = {
+      minLength: { value: 3, message: 'Insert a value longer than 3' },
+      maxLength: { value: 6, message: 'Insert a value shorter than 6' },
+    };
+
+    const failures = formValidators({
+      value: val,
+      validations,
+      isRequired: true,
+      type: 'string',
+    });
+
+    setValidation(failures);
+    setValue(val);
+  };
+
   return (
     <Field
-      value={value}
-      errorMessage=""
-      warningMessage=""
-      label="label"
-      name="text"
-      field={{
-        control: 'text',
-        type: 'string',
-        displayPattern: '',
-        help: {
-          message: '',
-          image: '',
-          list: [],
-          do: ['good', 'much better'],
-          dont: ['not so good', 'erm no!'],
-        },
-        options: [
-          { label: 'Mars', value: 'mars' },
-          { label: 'Earth', value: 'earth' },
-        ],
-        label: 'a label',
-        required: false,
-        disabled: false,
-        hidden: false,
-        readOnly: false,
-        autoComplete: false,
-        placeholder: 'a placeholder',
-        searchPlaceholder: 'search',
-        minLength: null,
-        maxLength: null,
-        minimum: 10,
-        maximum: 99,
-        validationMessages: {
-          required: 'Number is required',
-          minimum: 'Must be 10 or greater',
-          maximum: 'Must be 99 or less',
-        },
+      label="Text Field"
+      messages={{
+        help: 'help message',
+        error: 'manual error',
+        validation,
       }}
-      onChange={(value) => setValue(value)}
-    />
+    >
+      <input type="text" value={value} onChange={(val) => handleOnChange(val)} />
+    </Field>
   );
 };

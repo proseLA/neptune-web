@@ -1,0 +1,16 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils/';
+import { DocLink } from '../../../utils/pageUtils';
+import { Field } from '@transferwise/components';
+import { Checkbox, Alert, DateInput, Sentiment, Size } from '@transferwise/components';
+import code from '../../../liveEditorCode//field.code';
+import { formValidators } from '@transferwise/neptune-validation';
+
+Field is a new component that provides validation to its children. Validation messages are automatically
+attached to the validated component with styling. Currently the supported children types are:
+
+<LiveEditorBlock code={code} scope={{ Field, formValidators }} />
+<GeneratePropsTable componentName="Field" />
+
+export const meta = {
+  name: `Field`,
+};

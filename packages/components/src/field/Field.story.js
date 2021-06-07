@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { text, select, boolean } from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs';
 
 import { formValidators } from '@transferwise/neptune-validation';
 import Checkbox from '../checkbox';
 import DateInput from '../dateInput';
-import Select from '../select';
 
 import Field from './Field';
 

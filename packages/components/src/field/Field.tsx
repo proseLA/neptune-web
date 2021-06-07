@@ -7,18 +7,18 @@ import WithNormaliser from '../withNormaliser';
 import { Sentiment } from '../common';
 
 type FieldProps = {
-  children: React.ReactNode;
+  children: React.ReactElement;
   label?: string;
   messages: { error: string; help: string; validation: string[] };
   submitted?: boolean;
 };
 
 type OverriddenMethods = {
-  onChange: (arg: any) => any;
-  onBlur: (arg: any) => any;
-  onFocus: (arg: any) => any;
-  onSuccess: (arg: any) => any;
-  onFailure: (arg: any) => any;
+  onChange: (arg: any) => string;
+  onBlur: (arg: any) => string;
+  onFocus: (arg: any) => string;
+  onSuccess: (arg: any) => string;
+  onFailure: (arg: any) => string;
 };
 
 const Field: React.FunctionComponent<FieldProps> = ({
