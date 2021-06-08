@@ -13,13 +13,7 @@ export const basic = () => {
     'Invite at least 3 friends',
     'Convince them to use this amazing product',
   ]);
-  const donts = array('donts', [
-    <>
-      Paying extra <a href="https://wise.com/gb/blog/why-we-care-about-hidden-fees">hidden fees</a>{' '}
-      for transfers
-    </>,
-    'Use bad exchange rate',
-  ]);
+  const donts = array('donts', ['Paying extra hidden fees for transfers', 'Use bad exchange rate']);
 
   return <InstructionsList dos={dos} donts={donts} />;
 };
