@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Types from 'prop-types';
 import { isNull } from '@transferwise/neptune-validation';
 import isEqual from 'lodash.isequal';
 import BasicTypeSchema from '../basicTypeSchema';
 import { isValidSchema } from '../../common/validation/schema-validators';
-import usePrev from '../../common/hooks/usePrev';
 import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
 import { getAsyncUrl } from '../../common/async/url';
 
 const ValidationAsyncSchema = (props) => {
   const [validationAsyncModel, setValidationAsyncModel] = useState(props.model);
-  const prevValidationAsyncModel = usePrev(validationAsyncModel);
+  const prevRequestedModelRef = useRef(null);
   const [validationAsyncSuccessMessage, setValidationAsyncSuccessMessage] = useState(null);
   const [validationAsyncErrors, setValidationAsyncErrors] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
@@ -21,6 +20,7 @@ const ValidationAsyncSchema = (props) => {
     const signal = abortCurrentRequestAndGetNewAbortSignal();
 
     const requestBody = { [validationAsyncSpec.param]: currentValidationAsyncModel };
+    prevRequestedModelRef.current = currentValidationAsyncModel;
     setFieldSubmitted(true);
 
     const validationAsyncFetch = fetch(getAsyncUrl(validationAsyncSpec.url, baseUrl), {
@@ -59,7 +59,10 @@ const ValidationAsyncSchema = (props) => {
   };
 
   const onBlur = () => {
-    if (!isNull(validationAsyncModel) && !isEqual(validationAsyncModel, prevValidationAsyncModel)) {
+    if (
+      !isNull(validationAsyncModel) &&
+      !isEqual(validationAsyncModel, prevRequestedModelRef.current)
+    ) {
       getValidationAsyncResponse(validationAsyncModel, props.schema.validationAsync);
     }
   };
