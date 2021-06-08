@@ -3,9 +3,10 @@ import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
 import OverlayHeader from './OverlayHeader';
-import Avatar from '../avatar';
-import demoLogo from '../../public/assets/logo_full.svg';
-import AvatarWrapper from '../common/avatarWrapper';
+import Avatar, { AvatarType } from '../avatar';
+import AvatarWrapper from '../avatarWrapper';
+import { ProfileType, Size } from '../common';
+import Logo from '../logo';
 
 export default {
   component: OverlayHeader,
@@ -22,10 +23,10 @@ export const basic = () => {
   const showAvatar = select('avatar', Object.keys(avatarProfiles), 'Profile');
   return (
     <OverlayHeader
-      logo={<img alt="logo" src={demoLogo} width="138" />}
+      logo={<Logo />}
       onClose={action('Close clicked')}
       avatar={
-        <Avatar type={Avatar.Type.ICON} size={Avatar.Size.MEDIUM}>
+        <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
           {avatarProfiles[showAvatar]}
         </Avatar>
       }
@@ -35,10 +36,10 @@ export const basic = () => {
 
 export const withAvatarWrapper = () => {
   const avatarURL = text('avatarURL', 'https://github.com/transferwise.png');
-  const profileType = select('profileType', Object.keys(AvatarWrapper.ProfileType));
+  const profileType = select('profileType', Object.keys(ProfileType));
   return (
     <OverlayHeader
-      logo={<img alt="logo" src={demoLogo} width="138" />}
+      logo={<Logo />}
       onClose={action('Close clicked')}
       avatar={<AvatarWrapper url={avatarURL} profileType={profileType} />}
     />

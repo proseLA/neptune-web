@@ -14,7 +14,7 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
         class="media"
       >
         <div
-          class="media-body text-xs-left title"
+          class="media-body title text-xs-left"
         >
           <span
             class="h5"
@@ -47,11 +47,11 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
       </div>
     </button>
     <div
-      class="accordion-content media "
+      class="accordion-content media"
     >
       <div
         aria-hidden="true"
-        class="media-body m-r-5 p-b-3"
+        class="media-body p-b-3"
       >
         Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
       </div>
@@ -74,7 +74,7 @@ exports[`AccordionItem open / close renders an item open 1`] = `
         class="media"
       >
         <div
-          class="media-body text-xs-left title"
+          class="media-body title text-xs-left"
         >
           <span
             class="h5"
@@ -107,11 +107,11 @@ exports[`AccordionItem open / close renders an item open 1`] = `
       </div>
     </button>
     <div
-      class="accordion-content media "
+      class="accordion-content media"
     >
       <div
         aria-hidden="false"
-        class="media-body m-r-5 p-b-3"
+        class="media-body p-b-3"
       >
         Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
       </div>

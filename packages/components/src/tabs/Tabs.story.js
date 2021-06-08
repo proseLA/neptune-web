@@ -1,5 +1,6 @@
 import React from 'react';
 import Tabs from './Tabs';
+import { Size, Width } from '../common';
 
 export default {
   component: Tabs,
@@ -12,7 +13,7 @@ export const basic = () => {
     <Tabs
       className="tabs-custom-class"
       name="tabs-docs"
-      transitionSpacing={Tabs.SpacerSizes.MEDIUM}
+      transitionSpacing={Size.MEDIUM}
       tabs={[
         {
           title: 'Title 1',
@@ -52,8 +53,8 @@ export const blockTabHeaderWidth = () => {
     <Tabs
       className="tabs-custom-class"
       name="tabs-docs"
-      transitionSpacing={Tabs.SpacerSizes.MEDIUM}
-      headerWidth={Tabs.HeaderWidth.AUTO}
+      transitionSpacing={Size.MEDIUM}
+      headerWidth={Width.AUTO}
       tabs={[
         {
           title: 'Title 1',
@@ -96,7 +97,7 @@ export const noPanelAnimation = () => {
       animatePanels={false}
       className="tabs-custom-class"
       name="tabs-docs"
-      transitionSpacing={Tabs.SpacerSizes.MEDIUM}
+      transitionSpacing={Size.MEDIUM}
       tabs={[
         {
           title: 'Title 1',

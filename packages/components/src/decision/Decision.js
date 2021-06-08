@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
 
@@ -7,13 +7,17 @@ import SizeSwapper from '../sizeSwapper';
 import NavigationOption from '../navigationOption';
 import Tile from '../tile';
 import './Decision.css';
-import { Size } from '../common';
+import { Presentation, Type } from './decisionEnums';
+import { Size, Breakpoint } from '../common';
+import { useDirection } from '../common/hooks';
 
 const Decision = ({ options, presentation, type, size }) => {
-  if (type === Decision.Type.NAVIGATION) {
-    const { LIST_BLOCK } = Decision.Presentation;
-    if (presentation === LIST_BLOCK) {
-      const isSmall = size === Decision.Size.SMALL;
+  const { isRTL } = useDirection();
+  if (type === Type.NAVIGATION) {
+    const { LIST_BLOCK, LIST_BLOCK_GRID } = Presentation;
+    if (presentation === LIST_BLOCK || presentation === LIST_BLOCK_GRID) {
+      const isSmall = size === Size.SMALL;
+      const isGrid = presentation === LIST_BLOCK_GRID;
       const items = [
         {
           items: [],
@@ -21,7 +25,8 @@ const Decision = ({ options, presentation, type, size }) => {
         },
         {
           items: [],
-          breakpoint: isSmall ? SizeSwapper.Breakpoint.EXTRA_SMALL : SizeSwapper.Breakpoint.SMALL,
+          breakpoint: isSmall ? Breakpoint.EXTRA_SMALL : Breakpoint.SMALL,
+          wrap: isGrid,
         },
       ];
 
@@ -42,14 +47,16 @@ const Decision = ({ options, presentation, type, size }) => {
           );
           items[1].items.push(
             <Tile
-              className={`np-decision__tile${isSmall ? '--small' : ''}`}
+              className={classNames(`np-decision__tile${isSmall ? '--small' : ''}`, {
+                'np-decision__tile--fixed-width': isGrid,
+              })}
               description={description}
               disabled={disabled}
               href={href}
               key={`tile-${key}`} // eslint-disable-line react/no-array-index-key
               media={block}
               onClick={onClick}
-              size={isSmall ? Tile.Size.SMALL : Tile.Size.MEDIUM}
+              size={isSmall ? Size.SMALL : Size.MEDIUM}
               title={title}
             />,
           );
@@ -57,7 +64,13 @@ const Decision = ({ options, presentation, type, size }) => {
       );
 
       return (
-        <div className={classNames('np-decision', { 'np-decision--small': isSmall })}>
+        <div
+          className={classNames('np-decision', {
+            'np-decision--small': isSmall,
+            'np-decision--grid': isGrid,
+            'np-decision--rtl': isRTL,
+          })}
+        >
           <SizeSwapper items={items} />
         </div>
       );
@@ -79,42 +92,34 @@ const Decision = ({ options, presentation, type, size }) => {
   }
   return <></>;
 };
-Decision.Size = { SMALL: Size.SMALL, MEDIUM: Size.MEDIUM };
-
-Decision.Presentation = {
-  LIST: 'LIST',
-  LIST_BLOCK: 'LIST_BLOCK',
-};
-
-Decision.Type = { NAVIGATION: 'NAVIGATION' };
 
 Decision.propTypes = {
   /**  A list of elements to be rendered */
-  options: Types.arrayOf(
-    Types.shape({
-      description: Types.node,
-      disabled: Types.bool,
-      href: requiredIf(Types.string, (props) => props.type === Decision.Type.NAVIGATION),
-      media: Types.shape({
-        block: Types.node.isRequired,
-        list: Types.node.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.node,
+      disabled: PropTypes.bool,
+      href: requiredIf(PropTypes.string, (props) => props.type === Type.NAVIGATION),
+      media: PropTypes.shape({
+        block: PropTypes.node.isRequired,
+        list: PropTypes.node.isRequired,
       }),
-      onClick: Types.func.isRequired,
-      title: Types.node.isRequired,
+      onClick: PropTypes.func.isRequired,
+      title: PropTypes.node.isRequired,
     }),
   ).isRequired,
   /**  Handles the display mode of the component */
-  presentation: Types.oneOf([Decision.Presentation.LIST, Decision.Presentation.LIST_BLOCK]),
+  presentation: PropTypes.oneOf(['LIST', 'LIST_BLOCK', 'LIST_BLOCK_GRID']),
   /** Size currently affects only Tile dimension */
-  size: Types.oneOf([Decision.Size.SMALL, Decision.Size.MEDIUM]),
+  size: PropTypes.oneOf(['sm', 'md']),
   /** Decide which kind of element type needs to be rendered ex: Navigation Options or in the future Radio or Checkbox Options */
-  type: Types.oneOf([Decision.Type.NAVIGATION]),
+  type: PropTypes.oneOf(['NAVIGATION']),
 };
 
 Decision.defaultProps = {
-  presentation: Decision.Presentation.LIST,
-  size: Decision.Size.MEDIUM,
-  type: Decision.Type.NAVIGATION,
+  presentation: Presentation.LIST,
+  size: Size.MEDIUM,
+  type: Type.NAVIGATION,
 };
 
 export default Decision;

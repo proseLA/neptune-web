@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Layout } from '../common';
@@ -36,32 +36,28 @@ const DefinitionList = ({ definitions, layout, muted }) => (
   </dl>
 );
 
-DefinitionList.Layout = Layout;
-
 DefinitionList.propTypes = {
-  definitions: Types.arrayOf(
-    Types.shape({
-      title: Types.node.isRequired,
-      value: Types.node.isRequired,
-      key: Types.string.isRequired,
+  definitions: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.node.isRequired,
+      value: PropTypes.node.isRequired,
+      key: PropTypes.string.isRequired,
     }),
   ),
-  layout: Types.oneOf([
-    DefinitionList.Layout.VERTICAL_TWO_COLUMN,
-    DefinitionList.Layout.VERTICAL_ONE_COLUMN,
-    DefinitionList.Layout.HORIZONTAL_JUSTIFIED,
-    DefinitionList.Layout.HORIZONTAL_LEFT_ALIGNED,
-    DefinitionList.Layout.HORIZONTAL_RIGHT_ALIGNED,
+  layout: PropTypes.oneOf([
+    'VERTICAL_TWO_COLUMN',
+    'VERTICAL_ONE_COLUMN',
+    'HORIZONTAL_JUSTIFIED',
+    'HORIZONTAL_LEFT_ALIGNED',
+    'HORIZONTAL_RIGHT_ALIGNED',
   ]),
-  muted: Types.bool,
+  muted: PropTypes.bool,
 };
 
 DefinitionList.defaultProps = {
   definitions: [],
-  layout: DefinitionList.Layout.VERTICAL_TWO_COLUMN,
+  layout: Layout.VERTICAL_TWO_COLUMN,
   muted: false,
 };
-
-DefinitionList.Layout = Layout;
 
 export default DefinitionList;

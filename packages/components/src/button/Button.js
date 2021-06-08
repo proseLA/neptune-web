@@ -1,11 +1,11 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import requiredIf from 'react-required-if';
 
 import './Button.css';
 
-import { Size, ControlType, Priority, Type } from '../common';
+import { Size, ControlType, Priority } from '../common';
 import { establishNewPriority, establishNewType, logDeprecationNotices } from './legacyUtils';
 import { typeClassMap, priorityClassMap } from './classMap';
 
@@ -49,47 +49,29 @@ const Button = (props) => {
   );
 };
 
-Button.Priority = Priority;
-Button.Type = { ...Type, ...ControlType };
-Button.Size = {
-  EXTRA_SMALL: Size.EXTRA_SMALL,
-  SMALL: Size.SMALL,
-  MEDIUM: Size.MEDIUM,
-  LARGE: Size.LARGE,
-};
-
 Button.propTypes = {
-  block: Types.bool,
-  children: Types.node.isRequired,
-  className: Types.string,
-  disabled: Types.bool,
-  htmlType: Types.oneOf(['submit', 'reset', 'button']),
-  loading: Types.bool,
+  block: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  htmlType: PropTypes.oneOf(['submit', 'reset', 'button']),
+  loading: PropTypes.bool,
   // eslint-disable-next-line
-  onClick: requiredIf(Types.func, (props) => props.htmlType !== 'submit'),
-  priority: Types.oneOf([
-    Button.Priority.PRIMARY,
-    Button.Priority.SECONDARY,
-    Button.Priority.TERTIARY,
+  onClick: requiredIf(PropTypes.func, (props) => props.htmlType !== 'submit'),
+  priority: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  /** @deprecated `primary`, `pay`, `secondary`, `danger`, `link` */
+  type: PropTypes.oneOf([
+    'accent',
+    'positive',
+    'negative',
+    'primary',
+    'pay',
+    'secondary',
+    'danger',
+    'link',
   ]),
-  /** @DEPRECATED Type.PRIMARY, Type.PAY, Type.SECONDARY, Type.DANGER, Type.LINK */
-  type: Types.oneOf([
-    Button.Type.ACCENT,
-    Button.Type.POSITIVE,
-    Button.Type.NEGATIVE,
-    Button.Type.PRIMARY,
-    Button.Type.PAY,
-    Button.Type.SECONDARY,
-    Button.Type.DANGER,
-    Button.Type.LINK,
-  ]),
-  /** @DEPRECATED Size.EXTRA_SMALL */
-  size: Types.oneOf([
-    Button.Size.EXTRA_SMALL,
-    Button.Size.SMALL,
-    Button.Size.MEDIUM,
-    Button.Size.LARGE,
-  ]),
+  /** @deprecated `xs` */
+  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
 };
 
 Button.defaultProps = {
@@ -98,9 +80,9 @@ Button.defaultProps = {
   disabled: false,
   htmlType: 'button',
   loading: false,
-  priority: Button.Priority.PRIMARY,
-  size: Button.Size.MEDIUM,
-  type: Button.Type.ACCENT,
+  priority: Priority.PRIMARY,
+  size: Size.MEDIUM,
+  type: ControlType.ACCENT,
 };
 
 export default Button;

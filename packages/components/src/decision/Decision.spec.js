@@ -3,10 +3,13 @@ import '@testing-library/jest-dom';
 import { render, fireEvent } from '../test-utils';
 
 import Decision from '.';
+import { Presentation, Type } from './decisionEnums';
 import Avatar from '../avatar';
-import { Breakpoint } from '../common';
+import { Breakpoint, Size } from '../common';
+import { useDirection } from '../common/hooks';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
+jest.mock('../common/hooks/useDirection');
 
 describe('Decision', () => {
   const props = {
@@ -22,8 +25,8 @@ describe('Decision', () => {
         onClick: jest.fn(),
       },
     ],
-    presentation: Decision.Presentation.LIST_BLOCK,
-    type: Decision.Type.NAVIGATION,
+    presentation: Presentation.LIST_BLOCK,
+    type: Type.NAVIGATION,
   };
 
   const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
@@ -41,9 +44,10 @@ describe('Decision', () => {
   let container;
   beforeEach(() => {
     resetClientWidth(Breakpoint.EXTRA_SMALL - 1);
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
   });
 
-  describe(`when presentation is ${Decision.Presentation.LIST_BLOCK}`, () => {
+  describe(`when presentation is ${Presentation.LIST_BLOCK}`, () => {
     beforeEach(() => {
       ({ container } = render(<Decision {...props} />));
     });
@@ -63,14 +67,38 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${Decision.Presentation.LIST_BLOCK} and size is Small`, () => {
+  describe(`when presentation is ${Presentation.LIST_BLOCK_GRID}`, () => {
+    beforeEach(() => {
+      ({ container } = render(<Decision {...props} presentation={Presentation.LIST_BLOCK_GRID} />));
+    });
+
+    it('renders only Navigation Option before first breakpoint', () => {
+      expect(getNavigationOption()).toBeInTheDocument();
+      expect(getTile()).not.toBeInTheDocument();
+    });
+
+    it('renders only Tile after first breakpoint', () => {
+      resetClientWidth(Breakpoint.SMALL);
+      fireEvent(window, new Event('resize'));
+
+      expect(getNavigationOption()).not.toBeInTheDocument();
+      expect(getTile()).toBeInTheDocument();
+      expect(getTile()).not.toHaveClass('np-tile--small');
+    });
+
+    it('renders container as a grid', () => {
+      resetClientWidth(Breakpoint.SMALL);
+      fireEvent(window, new Event('resize'));
+
+      expect(container.querySelector('.np-decision')).toHaveClass('np-decision--grid');
+      expect(container.querySelector('.np-size-swapper')).toHaveClass('flex-wrap');
+    });
+  });
+
+  describe(`when presentation is ${Presentation.LIST_BLOCK} and size is Small`, () => {
     beforeEach(() => {
       ({ container } = render(
-        <Decision
-          {...props}
-          presentation={Decision.Presentation.LIST_BLOCK}
-          size={Decision.Size.SMALL}
-        />,
+        <Decision {...props} presentation={Presentation.LIST_BLOCK} size={Size.SMALL} />,
       ));
     });
 
@@ -89,14 +117,24 @@ describe('Decision', () => {
     });
   });
 
-  describe(`when presentation is ${Decision.Presentation.LIST}`, () => {
+  describe(`when presentation is ${Presentation.LIST}`, () => {
     beforeEach(() => {
-      ({ container } = render(<Decision {...props} presentation={Decision.Presentation.LIST} />));
+      ({ container } = render(<Decision {...props} presentation={Presentation.LIST} />));
     });
 
     it('renders Navigation Option before breakpoint', () => {
       expect(getNavigationOption()).toBeInTheDocument();
       expect(getTile()).not.toBeInTheDocument();
+    });
+  });
+
+  describe('rtl support', () => {
+    beforeEach(() => {
+      ({ container } = render(<Decision {...props} presentation={Presentation.LIST_BLOCK} />));
+    });
+
+    it('should apply correct css classes when isRTL is true', () => {
+      expect(container.querySelector('.np-decision')).toHaveClass('np-decision--rtl');
     });
   });
 

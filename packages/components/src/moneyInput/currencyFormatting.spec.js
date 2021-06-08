@@ -25,4 +25,20 @@ describe('Number formatting', () => {
   it('parses negative numbers into positive ones', () => {
     expect(parseAmount('-123.45', 'gbp')).toBe(123.45);
   });
+
+  test.each([
+    ['0---9(s.t.r!@#$%^&*()_+^[]{};’,<>?', 9],
+    ['$12.341', 12.34],
+    ['$12.347', 12.35],
+    ['.asd121', 0.12],
+    ['.asd129', 0.13],
+    [',asd129', 129],
+    ['123.123.123', 123.12],
+    ['asda', NaN],
+  ])(
+    "parses strings by removing the non-numerical characters; case: '%s', expected: '%s'",
+    (testValue, expectedValue) => {
+      expect(parseAmount(testValue, 'gbp')).toBe(expectedValue);
+    },
+  );
 });

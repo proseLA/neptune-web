@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 class TableLink extends PureComponent {
   onClick = (event) => {
@@ -30,14 +30,14 @@ class TableLink extends PureComponent {
 }
 
 TableLink.propTypes = {
-  item: Types.number.isRequired, // day (1-31), month (0-11) or year (2018 etc)
-  type: Types.oneOf(['day', 'month', 'year']).isRequired,
-  title: Types.string,
-  longTitle: Types.string,
-  active: Types.bool.isRequired,
-  disabled: Types.bool.isRequired,
-  today: Types.bool.isRequired,
-  onClick: Types.func.isRequired,
+  item: PropTypes.number.isRequired, // day (1-31), month (0-11) or year (2018 etc)
+  type: PropTypes.oneOf(['day', 'month', 'year']).isRequired,
+  title: PropTypes.string,
+  longTitle: PropTypes.string,
+  active: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  today: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 TableLink.defaultProps = {

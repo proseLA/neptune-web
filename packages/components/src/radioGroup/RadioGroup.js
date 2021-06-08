@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import Radio from '../radio';
 
 class RadioGroup extends Component {
@@ -20,7 +20,7 @@ class RadioGroup extends Component {
     const { selectedValue } = this.state;
     return radios && radios.length > 1 ? (
       <>
-        {radios.map(({ id, value, label, disabled, secondary, readOnly }, index) => (
+        {radios.map(({ id, avatar, value, label, disabled, secondary, readOnly }, index) => (
           <Radio
             id={id}
             value={value}
@@ -33,6 +33,7 @@ class RadioGroup extends Component {
             secondary={secondary}
             onChange={(val) => this.handleOnChange(val)}
             readOnly={readOnly}
+            avatar={avatar}
           />
         ))}
       </>
@@ -41,19 +42,20 @@ class RadioGroup extends Component {
 }
 
 RadioGroup.propTypes = {
-  radios: Types.arrayOf(
-    Types.shape({
-      id: Types.string,
-      value: Types.oneOfType([Types.number, Types.string]),
-      secondary: Types.string,
-      label: Types.string.isRequired,
-      disabled: Types.bool,
-      readOnly: Types.bool,
+  radios: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      avatar: PropTypes.element,
+      value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      secondary: PropTypes.string,
+      label: PropTypes.string.isRequired,
+      disabled: PropTypes.bool,
+      readOnly: PropTypes.bool,
     }),
   ).isRequired,
-  onChange: Types.func.isRequired,
-  selectedValue: Types.oneOfType([Types.number, Types.string]),
-  name: Types.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  selectedValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  name: PropTypes.string.isRequired,
 };
 
 RadioGroup.defaultProps = {

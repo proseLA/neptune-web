@@ -1,5 +1,5 @@
 import React, { cloneElement } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { ControlType, Priority } from '../common';
@@ -14,9 +14,13 @@ const CircularButton = ({ className, children, disabled, icon, priority, type, .
 
   return (
     <label
-      className={`np-circular-btn ${priority} ${type} ${
-        (disabled && 'disabled') || ''
-      } ${className}`}
+      className={classNames(
+        'np-circular-btn',
+        priority,
+        type,
+        disabled ? 'disabled' : '',
+        className,
+      )}
     >
       <input
         type="button"
@@ -31,31 +35,21 @@ const CircularButton = ({ className, children, disabled, icon, priority, type, .
   );
 };
 
-CircularButton.Priority = {
-  PRIMARY: Priority.PRIMARY,
-  SECONDARY: Priority.SECONDARY,
-};
-CircularButton.Type = ControlType;
-
 CircularButton.propTypes = {
-  className: Types.string,
-  children: Types.string.isRequired,
-  disabled: Types.bool,
-  icon: Types.element.isRequired,
-  onClick: Types.func.isRequired,
-  priority: Types.oneOf([CircularButton.Priority.PRIMARY, CircularButton.Priority.SECONDARY]),
-  type: Types.oneOf([
-    CircularButton.Type.ACCENT,
-    CircularButton.Type.POSITIVE,
-    CircularButton.Type.NEGATIVE,
-  ]),
+  className: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  icon: PropTypes.element.isRequired,
+  onClick: PropTypes.func.isRequired,
+  priority: PropTypes.oneOf(['primary', 'secondary']),
+  type: PropTypes.oneOf(['accent', 'positive', 'negative']),
 };
 
 CircularButton.defaultProps = {
-  className: '',
+  className: undefined,
   disabled: false,
-  priority: CircularButton.Priority.PRIMARY,
-  type: CircularButton.Type.ACCENT,
+  priority: Priority.PRIMARY,
+  type: ControlType.ACCENT,
 };
 
 export default CircularButton;

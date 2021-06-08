@@ -1,12 +1,16 @@
 import React, { cloneElement } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isString } from '@transferwise/neptune-validation';
 
 import Chevron from '../../chevron';
+import { Position } from '../../common';
+
+import { useDirection } from '../../common/hooks';
 
 const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
   const iconEl = icon ? cloneElement(icon, { size: 24 }) : null;
+  const { isRTL } = useDirection();
 
   return (
     <div
@@ -25,18 +29,37 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
         })}
       >
         <div className="media">
-          {icon && <div className="media-left hidden-xs hidden-sm p-r-2">{iconEl}</div>}
-          <div className="media-body text-xs-left title">
+          {icon && (
+            <div
+              className={classNames('hidden-xs hidden-sm', {
+                'media-left': !isRTL,
+                'media-right': isRTL,
+                'p-r-2': !isRTL,
+                'p-l-2': isRTL,
+              })}
+            >
+              {iconEl}
+            </div>
+          )}
+          <div
+            className={classNames('media-body title', {
+              'text-xs-left': !isRTL,
+              'text-xs-right': isRTL,
+            })}
+          >
             {isString(title) ? <span className="h5">{title}</span> : title}
           </div>
           <div className="media-right d-flex align-items-center">
-            <Chevron orientation={open ? Chevron.Orientation.TOP : Chevron.Orientation.BOTTOM} />
+            <Chevron orientation={open ? Position.TOP : Position.BOTTOM} />
           </div>
         </div>
       </button>
-      <div className="accordion-content media ">
+      <div className="accordion-content media">
         <div
-          className={classNames('media-body m-r-5 p-b-3', { 'm-l-5': icon })}
+          className={classNames('media-body p-b-3', {
+            'm-l-5': icon || isRTL,
+            'm-r-5': icon,
+          })}
           aria-hidden={!open}
         >
           {content}
@@ -47,12 +70,12 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
 };
 
 AccordionItem.propTypes = {
-  content: Types.node.isRequired,
-  icon: Types.node,
-  id: Types.string,
-  open: Types.bool.isRequired,
-  onClick: Types.func.isRequired,
-  title: Types.node.isRequired,
+  content: PropTypes.node.isRequired,
+  icon: PropTypes.node,
+  id: PropTypes.string,
+  open: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  title: PropTypes.node.isRequired,
 };
 
 AccordionItem.defaultProps = {

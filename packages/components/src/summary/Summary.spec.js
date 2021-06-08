@@ -1,8 +1,16 @@
 import React from 'react';
 import { render, waitFor, fireEvent } from '../test-utils';
 import Summary from './Summary';
+import { Status } from '../common';
+
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
 
 describe('Summary', () => {
+  beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
+  });
   it('renders minimal component', () => {
     const { asFragment } = render(<Summary icon={<strong>icon</strong>} title="Hello world" />);
     expect(asFragment()).toMatchSnapshot();
@@ -25,13 +33,19 @@ describe('Summary', () => {
             'aria-label': 'aria-label',
           }}
           icon={<strong>icon</strong>}
-          status={Summary.Status.DONE}
+          status={Status.DONE}
           title="title"
         />,
       ));
 
       expect(container).toMatchSnapshot();
     });
+  });
+
+  it('does not apply rtl classes when isRTL is false', () => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+    const { container } = render(<Summary icon={<strong>icon</strong>} title="Hello world" />);
+    expect(container.querySelector('.np-summary__body')).toHaveClass('m-r-2');
   });
 
   describe('action', () => {
@@ -75,9 +89,7 @@ describe('Summary', () => {
     });
 
     it('renders an aria-label and no badge for a not done status', () => {
-      const { container, getByLabelText } = render(
-        <Summary {...props} status={Summary.Status.NOT_DONE} />,
-      );
+      const { container, getByLabelText } = render(<Summary {...props} status={Status.NOT_DONE} />);
 
       getByLabelText('Item to do');
       expect(container.querySelector('.np-summary-icon__pending')).not.toBeInTheDocument();
@@ -85,18 +97,14 @@ describe('Summary', () => {
     });
 
     it('renders badge and aria-label for a pending status', () => {
-      const { container, getByLabelText } = render(
-        <Summary {...props} status={Summary.Status.PENDING} />,
-      );
+      const { container, getByLabelText } = render(<Summary {...props} status={Status.PENDING} />);
 
       getByLabelText('Item pending');
       expect(container.querySelector('.np-summary-icon__pending')).toBeInTheDocument();
     });
 
     it('renders badge and aria-label for a done status', () => {
-      const { container, getByLabelText } = render(
-        <Summary {...props} status={Summary.Status.DONE} />,
-      );
+      const { container, getByLabelText } = render(<Summary {...props} status={Status.DONE} />);
 
       getByLabelText('Item done');
       expect(container.querySelector('.np-summary-icon__done')).toBeInTheDocument();

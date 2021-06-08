@@ -7,10 +7,8 @@ import { render, screen, fireEvent } from '../test-utils';
 import DateLookup from '.';
 import { Breakpoint } from '../common';
 
-jest.mock('../dimmer', () => {
-  // eslint-disable-next-line
-  return ({ children }) => <div className="dimmer">{children}</div>;
-});
+// eslint-disable-next-line
+jest.mock('../dimmer', () => ({ children }) => <div className="dimmer">{children}</div>);
 
 describe('DateLookup (events)', () => {
   const date = new Date(2018, 11, 27);
@@ -19,34 +17,11 @@ describe('DateLookup (events)', () => {
 
   let props;
   let container;
+  let rerender;
 
   const winWidth = (width) => {
     window.innerWidth = width;
   };
-
-  const openDateLookup = () => {
-    const button = container.querySelector('button.dropdown-toggle');
-    user.click(button);
-  };
-
-  const clickDateButton = () => {
-    const button = container.querySelector('button.tw-date-lookup-header-current');
-    user.click(button);
-  };
-
-  // Close dateLookup and removes events attached to documents.
-  const closeDateLookup = () => {
-    user.click(container);
-  };
-
-  const getActiveYearButton = () =>
-    container.querySelector('button.tw-date-lookup-year-option.active');
-
-  const getActiveMonthButton = () =>
-    container.querySelector('button.tw-date-lookup-month-option.active');
-
-  const getActiveDayButton = () =>
-    container.querySelector('button.tw-date-lookup-day-option.active');
 
   beforeEach(() => {
     props = {
@@ -59,6 +34,7 @@ describe('DateLookup (events)', () => {
       onChange: jest.fn(),
       onClick: jest.fn(),
       disabled: false,
+      clearable: false,
     };
     ({ container } = render(<DateLookup {...props} />));
   });
@@ -70,7 +46,7 @@ describe('DateLookup (events)', () => {
   it('sets focus to header label', () => {
     openDateLookup();
 
-    expect(container.querySelector('.tw-date-lookup-header-current')).toHaveFocus();
+    expect(getDateButton()).toHaveFocus();
   });
 
   it('switches to years', () => {
@@ -104,7 +80,7 @@ describe('DateLookup (events)', () => {
     user.click(newDay);
 
     expect(props.onChange).toHaveBeenCalledWith(d);
-    expect(container.querySelector('button.dropdown-toggle')).toHaveFocus();
+    expect(getOpenButton()).toHaveFocus();
   });
 
   describe('adjust if offscreen', () => {
@@ -126,9 +102,7 @@ describe('DateLookup (events)', () => {
       calPosition(0);
       openDateLookup();
 
-      expect(container.querySelector('.tw-date-lookup-menu')).not.toHaveClass(
-        'dropdown-menu-xs-right',
-      );
+      expect(getLookupMenu()).not.toHaveClass('dropdown-menu-xs-right');
     });
 
     it('will adjust if the calendar is offscreen to the right', () => {
@@ -136,7 +110,7 @@ describe('DateLookup (events)', () => {
       calPosition(500);
       openDateLookup();
 
-      expect(container.querySelector('.tw-date-lookup-menu')).toHaveClass('dropdown-menu-xs-right');
+      expect(getLookupMenu()).toHaveClass('dropdown-menu-xs-right');
     });
 
     it('will add the class on resize if necessary', () => {
@@ -144,14 +118,12 @@ describe('DateLookup (events)', () => {
       calPosition(500);
       openDateLookup();
 
-      expect(container.querySelector('.tw-date-lookup-menu')).not.toHaveClass(
-        'dropdown-menu-xs-right',
-      );
+      expect(getLookupMenu()).not.toHaveClass('dropdown-menu-xs-right');
 
       winWidth(600);
       fireEvent(window, new Event('resize'));
 
-      expect(container.querySelector('.tw-date-lookup-menu')).toHaveClass('dropdown-menu-xs-right');
+      expect(getLookupMenu()).toHaveClass('dropdown-menu-xs-right');
     });
   });
 
@@ -159,16 +131,81 @@ describe('DateLookup (events)', () => {
     it('it opens dateLookup using slider', () => {
       winWidth(Breakpoint.SMALL);
       openDateLookup();
-      expect(container.querySelector('.dimmer')).toBeInTheDocument();
+      expect(getDimmer()).toBeInTheDocument();
     });
 
     it('it opens dateLookup using slider', () => {
       winWidth(Breakpoint.SMALL + 1);
       openDateLookup();
-      expect(container.querySelector('.dimmer')).not.toBeInTheDocument();
+      expect(getDimmer()).not.toBeInTheDocument();
       winWidth(Breakpoint.SMALL);
       fireEvent(window, new Event('resize'));
-      expect(container.querySelector('.dimmer')).toBeInTheDocument();
+      expect(getDimmer()).toBeInTheDocument();
     });
   });
+
+  describe('when is clearable', () => {
+    beforeEach(() => {
+      props = { value: date, onChange: jest.fn(), clearable: true };
+      ({ container, rerender } = render(<DateLookup {...props} />));
+    });
+
+    it(`doesn't show clear button if disable is true`, () => {
+      expect(getClearButton()).toBeInTheDocument();
+
+      rerender(<DateLookup {...props} disabled />);
+
+      expect(getClearButton()).not.toBeInTheDocument();
+    });
+
+    it(`doesn't show clear button if value is null`, () => {
+      expect(getClearButton()).toBeInTheDocument();
+
+      rerender(<DateLookup {...props} value={null} />);
+
+      expect(getClearButton()).not.toBeInTheDocument();
+    });
+
+    it('when user clicks on clear the focus returns to btn', () => {
+      clickClearButton();
+      expect(getOpenButton()).toHaveFocus();
+    });
+
+    it('onChange gets called with null when reset button is clicked', () => {
+      clickClearButton();
+      expect(props.onChange).toHaveBeenCalledWith(null);
+    });
+  });
+
+  const openDateLookup = () => {
+    user.click(getOpenButton());
+  };
+
+  const clickDateButton = () => {
+    user.click(getDateButton());
+  };
+
+  // Close dateLookup and removes events attached to documents.
+  const closeDateLookup = () => {
+    user.click(container);
+  };
+
+  const clickClearButton = () => {
+    user.click(getClearButton());
+  };
+
+  const getActiveYearButton = () =>
+    container.querySelector('button.tw-date-lookup-year-option.active');
+
+  const getActiveMonthButton = () =>
+    container.querySelector('button.tw-date-lookup-month-option.active');
+
+  const getActiveDayButton = () =>
+    container.querySelector('button.tw-date-lookup-day-option.active');
+
+  const getClearButton = () => container.querySelector('.clear-btn');
+  const getOpenButton = () => container.querySelector('button.np-date-trigger');
+  const getLookupMenu = () => container.querySelector('.tw-date-lookup-menu');
+  const getDateButton = () => container.querySelector('button.tw-date-lookup-header-current');
+  const getDimmer = () => container.querySelector('.dimmer');
 });

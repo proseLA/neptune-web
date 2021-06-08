@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from '..';
 import { DEFAULT_LOCALE } from '../common/locale';
-import en from '../../i18n/en.json';
+import en from '../i18n/en.json';
 
 /**
  * Custom `render` function which wraps passed elements in Provider component

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 
 import { Checkbox } from '../..';
@@ -130,17 +130,17 @@ function boolProp(name, value) {
 }
 
 OptionDocs.propTypes = {
-  type: Types.string.isRequired,
-  Option: Types.func.isRequired,
-  name: Types.string.isRequired,
-  callbackName: Types.string.isRequired,
-  callback: Types.func.isRequired,
-  callbackString: Types.string.isRequired,
-  propName: Types.string,
-  propValue: Types.bool,
-  title: Types.string.isRequired,
-  content: Types.string.isRequired,
-  extra: Types.string,
+  type: PropTypes.string.isRequired,
+  Option: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  callbackName: PropTypes.string.isRequired,
+  callback: PropTypes.func.isRequired,
+  callbackString: PropTypes.string.isRequired,
+  propName: PropTypes.string,
+  propValue: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  extra: PropTypes.string,
 };
 
 OptionDocs.defaultProps = {

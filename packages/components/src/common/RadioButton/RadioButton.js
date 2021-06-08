@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './RadioButton.css';
@@ -23,13 +23,13 @@ const RadioButton = ({ id, value, name, checked, onChange, disabled, readOnly })
 );
 
 RadioButton.propTypes = {
-  id: Types.string,
-  name: Types.string.isRequired,
-  checked: Types.bool,
-  onChange: Types.func,
-  disabled: Types.bool,
-  value: Types.oneOfType([Types.number, Types.string]),
-  readOnly: Types.bool,
+  id: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  readOnly: PropTypes.bool,
 };
 
 RadioButton.defaultProps = {

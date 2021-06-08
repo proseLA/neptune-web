@@ -26,7 +26,7 @@ const Layout = ({ children, router: { pathname } }) => {
         <Link href="/">
           <a className="Logo">
             <img
-              src={`${process.env.ASSET_PREFIX}/static/assets/img/wise_logo.svg`}
+              src="https://wise.com/public-resources/assets/logos/wise/brand_logo_inverse.svg"
               alt="Wise Logo"
             />
             <span className="sr-only">Wise</span>
@@ -69,7 +69,12 @@ const Layout = ({ children, router: { pathname } }) => {
         <>
           <h1 className="colored-dot">{page.component.meta.name}</h1>
           {page.component.meta.date ? (
-            <Meta {...{ date: page.component.meta.date, authors: page.component.meta.authors }} />
+            <Meta
+              {...{
+                date: page.component.meta.date,
+                authors: page.component.meta.authors,
+              }}
+            />
           ) : null}
         </>
       ) : null}

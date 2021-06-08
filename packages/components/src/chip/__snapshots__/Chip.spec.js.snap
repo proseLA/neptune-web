@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`option renders 1`] = `"<div class=\\"chip d-inline-flex align-items-center m-t-1 p-r-1 p-l-2\\">Test<button type=\\"button\\" class=\\"btn-unstyled chip-remove m-l-2\\"><span class=\\"tw-icon tw-icon-cross \\" aria-hidden=\\"true\\" role=\\"presentation\\"><svg width=\\"16\\" height=\\"16\\" fill=\\"currentColor\\" focusable=\\"false\\"><path d=\\"M9.131 8l5.435-5.434-1.132-1.132L8 6.87 2.566 1.434 1.434 2.566 6.87 8l-5.435 5.434 1.132 1.132L8 9.13l5.434 5.435 1.132-1.132L9.13 8z\\"></path></svg></span></button></div>"`;
+
+exports[`option renders with RTL support 1`] = `"<div class=\\"chip d-inline-flex align-items-center m-t-1 p-l-1 p-r-2\\">Test<button type=\\"button\\" class=\\"btn-unstyled chip-remove m-r-2\\"><span class=\\"tw-icon tw-icon-cross \\" aria-hidden=\\"true\\" role=\\"presentation\\"><svg width=\\"16\\" height=\\"16\\" fill=\\"currentColor\\" focusable=\\"false\\"><path d=\\"M9.131 8l5.435-5.434-1.132-1.132L8 6.87 2.566 1.434 1.434 2.566 6.87 8l-5.435 5.434 1.132 1.132L8 9.13l5.434 5.435 1.132-1.132L9.13 8z\\"></path></svg></span></button></div>"`;

@@ -8,10 +8,11 @@ const path = require('path');
 
 inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection);
 
+const IGNORE_PATTERN = '**/node_modules/*';
 const EXTENSIONS = {
-  JS: 'js',
+  JS: 'js & jsx',
   TSX: 'tsx',
-  BOTH: 'js & tsx',
+  BOTH: 'js,jsx & tsx',
 };
 
 const fetchSettings = () => {
@@ -94,11 +95,15 @@ const run = async () => {
   const coreCommand = `${codeshiftPath} ${files} -t=${transform} ${options}`;
 
   if (confirm) {
+    console.log('🚀 Running codemod, please wait a few seconds...');
     if (extension === EXTENSIONS.BOTH || extension === EXTENSIONS.JS) {
-      exec(`${coreCommand} --extensions=js`, handleOutput);
+      exec(`${coreCommand} --extensions=js,jsx --ignore-pattern='${IGNORE_PATTERN}'`, handleOutput);
     }
     if (extension === EXTENSIONS.BOTH || extension === EXTENSIONS.TSX) {
-      exec(`${coreCommand} --parser=tsx --extensions=tsx`, handleOutput);
+      exec(
+        `${coreCommand} --parser=tsx --extensions=tsx --ignore-pattern='${IGNORE_PATTERN}'`,
+        handleOutput,
+      );
     }
   } else {
     console.log('👋 Exiting');

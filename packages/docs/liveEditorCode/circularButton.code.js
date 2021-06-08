@@ -1,6 +1,6 @@
 <CircularButton
   icon={<Freeze />}
-  type={CircularButton.Type.ACCENT}
+  type={ControlType.ACCENT}
   onClick={() => console.log('Button clicked')}
 >
   Freeze

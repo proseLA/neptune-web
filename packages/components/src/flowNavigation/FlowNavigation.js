@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Header from '../header';
 import Stepper from '../stepper';
@@ -7,10 +7,11 @@ import AnimatedLabel from './animatedLabel';
 import BackButton from './backButton';
 import CloseButton from '../common/closeButton';
 
-import { Theme, Breakpoint } from '../common';
+import { Breakpoint, Layout } from '../common';
 import { useClientWidth } from '../common/hooks';
 
 import './FlowNavigation.css';
+import Logo from '../logo';
 
 // Size switches on parent container which may or may not have the same size as the window.
 const containerBreakpoints = {
@@ -89,38 +90,37 @@ const FlowNavigation = ({ activeStep, avatar, logo, onClose, onGoBack, done, ste
             />
           )
         }
-        layout={clientWidth < Breakpoint.LARGE ? Header.Layout.VERTICAL : Header.Layout.HORIZONTAL}
+        layout={clientWidth < Breakpoint.LARGE ? Layout.VERTICAL : Layout.HORIZONTAL}
       />
     </div>
   );
 };
 
-FlowNavigation.Theme = Theme;
-
 FlowNavigation.defaultProps = {
   activeStep: 0,
   avatar: undefined,
+  logo: <Logo />,
   onGoBack: undefined,
   onClose: undefined,
   done: false,
 };
 
 FlowNavigation.propTypes = {
-  activeStep: Types.number,
+  activeStep: PropTypes.number,
   /** An Avatar */
-  avatar: Types.element,
-  logo: Types.node.isRequired,
+  avatar: PropTypes.element,
+  logo: PropTypes.node,
   /** Called when the close button is clicked. If not provided the close button won't show */
-  onClose: Types.func,
+  onClose: PropTypes.func,
   /** Called when the back button is clicked. If not provided the back button won't show. The back button only shows on small screens */
-  onGoBack: Types.func,
-  done: Types.bool,
+  onGoBack: PropTypes.func,
+  done: PropTypes.bool,
   /** Steps to be displayed in stepper. If you don't need the stepper, please use OverlayHeader instead */
-  steps: Types.arrayOf(
-    Types.shape({
-      label: Types.node.isRequired,
-      onClick: Types.func,
-      hoverLabel: Types.node,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node.isRequired,
+      onClick: PropTypes.func,
+      hoverLabel: PropTypes.node,
     }),
   ).isRequired,
 };

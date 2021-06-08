@@ -7,6 +7,8 @@ import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
 import GenericSchema from '../genericSchema';
 import DynamicAlert from '../../layout/alert';
+import PromotedOneOfControl from './control/PromotedOneOfControl';
+import PromotedOneOfRadioControl from './control/PromotedOneOfRadioControl';
 
 describe('Given a PromotedOneOfSchema component', () => {
   let component;
@@ -14,8 +16,8 @@ describe('Given a PromotedOneOfSchema component', () => {
   let onPersistAsync;
   let props;
   let schema;
+  let model;
 
-  const model = {};
   const errors = {};
   const locale = 'en-GB';
   const submitted = false;
@@ -90,6 +92,7 @@ describe('Given a PromotedOneOfSchema component', () => {
 
   describe('when initialised with a schema', () => {
     beforeEach(() => {
+      model = {};
       schema = {
         title: 'Choose schema',
         oneOf: [promotedSchema, ...twoOtherOptions],
@@ -116,13 +119,56 @@ describe('Given a PromotedOneOfSchema component', () => {
       component = shallow(<PromotedOneOfSchema {...props} />);
     });
 
-    it('should display a radio selection with the promoted option and other options', () => {
-      expect(component.find(RadioGroup)).toHaveLength(1);
+    it('should render PromotedOneOfControl', () => {
+      expect(component.find(PromotedOneOfControl)).toHaveLength(1);
     });
 
     it('should default to the promoted option', () => {
-      const radio = component.find(RadioGroup);
-      expect(radio.props().selectedValue).toBe('promoted');
+      const control = component.find(PromotedOneOfControl);
+      expect(control.props().selection).toBe('promoted');
+    });
+
+    describe('when a specific default has been specified', () => {
+      it('should default to the specified option', () => {
+        const promotionWithDefault = { ...promotion, default: 'other' };
+        schema = { ...schema, promotion: promotionWithDefault };
+        props = { ...props, schema };
+        component = shallow(<PromotedOneOfSchema {...props} />);
+
+        const control = component.find(PromotedOneOfControl);
+
+        expect(control.props().selection).toBe('other');
+      });
+    });
+
+    describe('when the model matches a particular schema', () => {
+      describe('when the matched schema is promoted', () => {
+        it('should select the matched schema ignoring default specification', () => {
+          const promotionWithDefault = { ...promotion, default: 'other' };
+          schema = { ...schema, promotion: promotionWithDefault };
+          model = { a: 123 };
+          props = { ...props, model, schema };
+          component = shallow(<PromotedOneOfSchema {...props} />);
+
+          const control = component.find(PromotedOneOfControl);
+
+          expect(control.props().selection).toBe('promoted');
+        });
+      });
+
+      describe('when the matched schema is other', () => {
+        it('should select the matched schema ignoring default specification', () => {
+          const promotionWithDefault = { ...promotion, default: 'promoted' };
+          schema = { ...schema, promotion: promotionWithDefault };
+          model = { b: 123 };
+          props = { ...props, model, schema };
+          component = shallow(<PromotedOneOfSchema {...props} />);
+
+          const control = component.find(PromotedOneOfControl);
+
+          expect(control.props().selection).toBe('other');
+        });
+      });
     });
 
     it('should display the promoted option', () => {
@@ -166,7 +212,7 @@ describe('Given a PromotedOneOfSchema component', () => {
 
           component = shallow(<PromotedOneOfSchema {...props} />);
 
-          component.find(RadioGroup).simulate('change', 'other');
+          getRadioGroup(component).simulate('change', 'other');
           objectSchema = component.find(GenericSchema).dive().find(ObjectSchema);
         });
 
@@ -190,7 +236,7 @@ describe('Given a PromotedOneOfSchema component', () => {
         let oneOfSchema;
 
         beforeEach(() => {
-          component.find(RadioGroup).simulate('change', 'other');
+          getRadioGroup(component).simulate('change', 'other');
           oneOfSchema = component.find(GenericSchema).dive().find(OneOfSchema);
         });
 
@@ -222,4 +268,13 @@ const expectPropsToBeEqual = (wrapper, props) => {
   expect(wrapper.props().errors).toBe(props.errors);
   expect(wrapper.props().translations).toBe(props.translations);
   expect(wrapper.props().onPersistAsync).toBe(props.onPersistAsync);
+};
+
+const getRadioGroup = (component) => {
+  return component
+    .find(PromotedOneOfControl)
+    .dive()
+    .find(PromotedOneOfRadioControl)
+    .dive()
+    .find(RadioGroup);
 };

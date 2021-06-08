@@ -4,7 +4,8 @@ import { text } from '@storybook/addon-knobs';
 import { Home as HomeIcon } from '@transferwise/icons';
 
 import Summary from './Summary';
-import Info from '../info';
+import { InfoPresentation } from '../info';
+import { Status } from '../common';
 
 export default {
   component: Summary,
@@ -29,7 +30,7 @@ export const basic = () => {
         description={description}
         icon={<HomeIcon size={24} />}
         title={title}
-        status={Summary.Status.NOT_DONE}
+        status={Status.NOT_DONE}
       />
       <Summary
         action={{
@@ -46,7 +47,7 @@ export const basic = () => {
         }}
         icon={<HomeIcon size={24} />}
         title="You verified your address"
-        status={Summary.Status.DONE}
+        status={Status.DONE}
       />
       <Summary
         action={{
@@ -60,12 +61,12 @@ export const basic = () => {
           title: 'Address verification pending',
           content:
             'Your address change is currently being processed. Please allow 48 hours for verification.',
-          presentation: Info.Presentation.MODAL,
+          presentation: InfoPresentation.MODAL,
           'aria-label': 'Please click here to know more about your address update status',
         }}
         icon={<HomeIcon size={24} />}
         title="We’re verifying your address"
-        status={Summary.Status.PENDING}
+        status={Status.PENDING}
       />
       <Summary
         action={{
@@ -78,7 +79,7 @@ export const basic = () => {
         description="10 Downing Street, Westminster, London SW1A 2AA."
         icon={<HomeIcon size={24} />}
         title="We’re verifying your address"
-        status={Summary.Status.PENDING}
+        status={Status.PENDING}
       />
     </ul>
   );

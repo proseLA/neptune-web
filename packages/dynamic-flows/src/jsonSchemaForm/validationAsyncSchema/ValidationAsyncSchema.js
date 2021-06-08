@@ -9,7 +9,7 @@ import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext'
 import { getAsyncUrl } from '../../common/async/url';
 
 const ValidationAsyncSchema = (props) => {
-  const [validationAsyncModel, setValidationAsyncModel] = useState(null);
+  const [validationAsyncModel, setValidationAsyncModel] = useState(props.model);
   const prevValidationAsyncModel = usePrev(validationAsyncModel);
   const [validationAsyncSuccessMessage, setValidationAsyncSuccessMessage] = useState(null);
   const [validationAsyncErrors, setValidationAsyncErrors] = useState(null);
@@ -80,6 +80,7 @@ const ValidationAsyncSchema = (props) => {
       onChange={validationAsyncOnChange}
       submitted={props.submitted || fieldSubmitted}
       schema={props.schema}
+      model={validationAsyncModel}
       errors={validationAsyncErrors || props.errors}
       onBlur={onBlur}
       validationAsyncSuccessMessage={validationAsyncSuccessMessage}
@@ -100,6 +101,7 @@ ValidationAsyncSchema.propTypes = {
       param: Types.string,
     }),
   }).isRequired,
+  model: Types.oneOfType([Types.string, Types.number, Types.bool]),
   onChange: Types.func.isRequired,
   submitted: Types.bool.isRequired,
   required: Types.bool,
@@ -107,6 +109,7 @@ ValidationAsyncSchema.propTypes = {
 };
 
 ValidationAsyncSchema.defaultProps = {
+  model: null,
   errors: null,
   required: false,
 };

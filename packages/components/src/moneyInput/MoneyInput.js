@@ -1,56 +1,109 @@
 import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isEmpty } from '@transferwise/neptune-validation';
+import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
 import Select from '../select';
 import './MoneyInput.css';
 import { Size } from '../common/propsValues/size';
+import keyCodes from '../common/keyCodes';
+import { Key as keyValues } from '../common/key';
 
 import messages from './MoneyInput.messages';
 import { formatAmount, parseAmount } from './currencyFormatting';
 
-const Currency = Types.shape({
-  header: Types.string,
-  value: Types.string,
-  label: Types.string,
-  currency: Types.string,
-  note: Types.string,
-  searchable: Types.string,
+const Currency = PropTypes.shape({
+  header: PropTypes.string,
+  value: PropTypes.string,
+  label: PropTypes.string,
+  currency: PropTypes.string,
+  note: PropTypes.string,
+  searchable: PropTypes.string,
 });
 const CUSTOM_ACTION = 'CUSTOM_ACTION';
+const isNumberOrNull = (v) => isNumber(v) || isNull(v);
 
 const formatAmountIfSet = (amount, currency, locale) => {
   return typeof amount === 'number' ? formatAmount(amount, currency, locale) : '';
 };
 
+const inputKeyCodeAllowlist = [
+  keyCodes.BACKSPACE,
+  keyCodes.COMMA,
+  keyCodes.PERIOD,
+  keyCodes.DOWN,
+  keyCodes.UP,
+  keyCodes.LEFT,
+  keyCodes.RIGHT,
+  keyCodes.ENTER,
+  keyCodes.ESCAPE,
+  keyCodes.TAB,
+];
+
+const inputKeyAllowlist = [keyValues.PERIOD, keyValues.COMMA];
+
 class MoneyInput extends Component {
   constructor(props) {
     super(props);
-    this.locale = this.props.intl.locale;
+    const { locale } = this.props.intl;
     this.formatMessage = this.props.intl.formatMessage;
     this.state = {
       searchQuery: '',
-      formattedAmount: formatAmountIfSet(
-        props.amount,
-        props.selectedCurrency.currency,
-        this.locale,
-      ),
+      formattedAmount: formatAmountIfSet(props.amount, props.selectedCurrency.currency, locale),
+      locale,
     };
   }
 
   // eslint-disable-next-line
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps, prevState) {
+    this.setState({ locale: nextProps?.intl?.locale });
+
     if (!this.amountFocused) {
       this.setState({
         formattedAmount: formatAmountIfSet(
           nextProps.amount,
           nextProps.selectedCurrency.currency,
-          this.locale,
+          nextProps?.intl?.locale,
         ),
       });
     }
   }
+
+  isInputAllowedForKeyEvent = (event) => {
+    const { keyCode, metaKey, key, ctrlKey } = event;
+    const isNumberKey = isNumber(parseInt(key, 10));
+
+    return (
+      isNumberKey ||
+      metaKey ||
+      ctrlKey ||
+      inputKeyCodeAllowlist.includes(keyCode) ||
+      inputKeyAllowlist.includes(key)
+    );
+  };
+
+  handleKeyDown = (event) => {
+    if (!this.isInputAllowedForKeyEvent(event)) {
+      event.preventDefault();
+    }
+  };
+
+  handlePaste = (event) => {
+    const paste = (event.clipboardData || window.clipboardData).getData('text');
+    const { locale } = this.state;
+    const parsed = isEmpty(paste)
+      ? null
+      : parseAmount(paste, this.props.selectedCurrency.currency, locale);
+
+    if (isNumberOrNull(parsed)) {
+      this.setState({
+        formattedAmount: formatAmountIfSet(parsed, this.props.selectedCurrency.currency, locale),
+      });
+      this.props.onAmountChange(parsed);
+    }
+
+    event.preventDefault();
+  };
 
   onAmountChange = (event) => {
     const { value } = event.target;
@@ -59,8 +112,8 @@ class MoneyInput extends Component {
     });
     const parsed = isEmpty(value)
       ? null
-      : parseAmount(value, this.props.selectedCurrency.currency, this.locale);
-    if (!Number.isNaN(parsed)) {
+      : parseAmount(value, this.props.selectedCurrency.currency, this.state.locale);
+    if (isNumberOrNull(parsed)) {
       this.props.onAmountChange(parsed);
     }
   };
@@ -89,9 +142,9 @@ class MoneyInput extends Component {
       const parsed = parseAmount(
         previousState.formattedAmount,
         this.props.selectedCurrency.currency,
-        this.locale,
+        this.state.locale,
       );
-      if (Number.isNaN(parsed)) {
+      if (!isNumberOrNull(parsed)) {
         return {
           formattedAmount: previousState.formattedAmount,
         };
@@ -100,7 +153,7 @@ class MoneyInput extends Component {
         formattedAmount: formatAmountIfSet(
           parsed,
           this.props.selectedCurrency.currency,
-          this.locale,
+          previousState.locale,
         ),
       };
     });
@@ -151,14 +204,16 @@ class MoneyInput extends Component {
           type="text"
           inputMode="decimal"
           className={classNames(this.style('form-control'))}
+          onKeyDown={this.handleKeyDown}
           onChange={this.onAmountChange}
           onFocus={this.onAmountFocus}
           onBlur={this.onAmountBlur}
+          onPaste={this.handlePaste}
           disabled={disabled}
           placeholder={formatAmountIfSet(
             this.props.placeholder,
             this.props.selectedCurrency.currency,
-            this.locale,
+            this.state.locale,
           )}
           autoComplete="off"
         />
@@ -288,31 +343,29 @@ function sortOptionsLabelsToFirst(options, query) {
   });
 }
 
-MoneyInput.Size = { SMALL: Size.SMALL, MEDIUM: Size.MEDIUM, LARGE: Size.LARGE };
-
 MoneyInput.propTypes = {
-  id: Types.string,
-  currencies: Types.arrayOf(Currency).isRequired,
+  id: PropTypes.string,
+  currencies: PropTypes.arrayOf(Currency).isRequired,
   selectedCurrency: Currency.isRequired,
-  onCurrencyChange: Types.func,
-  placeholder: Types.number,
-  amount: Types.number,
-  size: Types.oneOf([MoneyInput.Size.SMALL, MoneyInput.Size.MEDIUM, MoneyInput.Size.LARGE]),
-  onAmountChange: Types.func,
-  addon: Types.node,
-  searchPlaceholder: Types.string,
+  onCurrencyChange: PropTypes.func,
+  placeholder: PropTypes.number,
+  amount: PropTypes.number,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  onAmountChange: PropTypes.func,
+  addon: PropTypes.node,
+  searchPlaceholder: PropTypes.string,
   /**
    * Allows the consumer to react to searching, while the search itself is handled internally. Called with `{ searchQuery: string, filteredOptions: Currency[]  }`
    */
-  onSearchChange: Types.func,
-  customActionLabel: Types.node,
-  onCustomAction: Types.func,
-  classNames: Types.objectOf(Types.string),
+  onSearchChange: PropTypes.func,
+  customActionLabel: PropTypes.node,
+  onCustomAction: PropTypes.func,
+  classNames: PropTypes.objectOf(PropTypes.string),
 };
 
 MoneyInput.defaultProps = {
   id: null,
-  size: MoneyInput.Size.LARGE,
+  size: Size.LARGE,
   addon: null,
   searchPlaceholder: '',
   onSearchChange: undefined,
@@ -324,5 +377,9 @@ MoneyInput.defaultProps = {
   onCustomAction: null,
   classNames: {},
 };
+
+// this export is necessary for react-to-typescript-definitions
+// to be able to properly generate TS types, this is due to us wrapping this component in `injectIntl` before exporting
+export { MoneyInput };
 
 export default injectIntl(MoneyInput);

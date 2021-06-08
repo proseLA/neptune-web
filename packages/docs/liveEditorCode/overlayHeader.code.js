@@ -1,10 +1,7 @@
 <OverlayHeader
   avatar={
-    <AvatarWrapper
-      url="https://github.com/transferwise.png"
-      profileType={AvatarWrapper.ProfileType.BUSINESS}
-    />
+    <AvatarWrapper url="https://github.com/transferwise.png" profileType={ProfileType.BUSINESS} />
   }
-  logo={<img alt="logo" src="./../../static/assets/img/wise_logo.svg" width="138" />}
+  logo={<Logo />}
   onClose={() => console.log('Close clicked')}
 />;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { text, select } from '@storybook/addon-knobs';
-import Avatar from '../avatar';
+import Avatar, { AvatarType } from '../avatar';
 import Badge from './Badge';
+import { Size, Theme } from '../common';
 
 export default {
   component: Badge,
@@ -23,8 +24,8 @@ export const ExampleBadgeCss = {
 export const basic = () => {
   const BadgeInnerText = text('Badge Inner Text', 'Content');
   const BadgeText = text('BadgeText', 'B');
-  const border = select('Border', [null, Badge.Border.LIGHT, Badge.Border.DARK]);
-  const size = select('Size', [null, Badge.Size.SMALL, Badge.Size.MEDIUM, Badge.Size.LARGE]);
+  const border = select('Border', [null, Theme.LIGHT, Theme.DARK]);
+  const size = select('Size', [null, Size.SMALL, Size.MEDIUM, Size.LARGE]);
 
   return (
     <Badge badge={<div style={ExampleBadgeCss}>{BadgeText}</div>} border={border} size={size}>
@@ -37,12 +38,12 @@ export const basic = () => {
 
 export const avatar = () => {
   const BadgeText = text('BadgeText', 'B');
-  const border = select('Border', [null, Badge.Border.LIGHT, Badge.Border.DARK]);
-  const size = select('Size', [null, Badge.Size.SMALL, Badge.Size.MEDIUM, Badge.Size.LARGE]);
+  const border = select('Border', [null, Theme.LIGHT, Theme.DARK]);
+  const size = select('Size', [null, Size.SMALL, Size.MEDIUM, Size.LARGE]);
 
   return (
     <Badge badge={<div style={ExampleBadgeCss}>{BadgeText}</div>} border={border} size={size}>
-      <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.LARGE}>
+      <Avatar type={AvatarType.INITIALS} size={Size.LARGE}>
         AA
       </Avatar>
     </Badge>

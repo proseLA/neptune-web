@@ -28,7 +28,9 @@ export const useClientWidth = ({ ref, throttleMs = THROTTLE_MS }) => {
 
     window.addEventListener('resize', attachedFunction, true);
 
-    updateClientWidth();
+    // using requestAnimationFrame to perform the calculation before the next repaint
+    // getting width earlier causes issues in animations when used with react-transition-group
+    window.requestAnimationFrame(updateClientWidth);
 
     return () => window.removeEventListener('resize', attachedFunction, true);
   }, []);

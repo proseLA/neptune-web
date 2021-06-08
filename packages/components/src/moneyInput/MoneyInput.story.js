@@ -1,7 +1,8 @@
 import React from 'react';
 import { select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import MoneyInput from './MoneyInput';
+import MoneyInput from '.';
+import { Size } from '../common';
 
 export default {
   component: MoneyInput,
@@ -9,7 +10,7 @@ export default {
 };
 
 export const basic = () => {
-  const size = select('size', Object.values(MoneyInput.Size), MoneyInput.Size.LARGE);
+  const size = select('size', Object.values(Size), Size.LARGE);
   const amount = number('amount', 1000);
   const placeholder = number('placeholder', null);
 

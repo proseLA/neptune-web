@@ -1,13 +1,15 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { CheckCircle, CrossCircle } from '@transferwise/icons';
 import './Switch.css';
 import { logActionRequiredIf } from '../utilities';
 
 import KeyCodes from '../common/keyCodes';
+import { useDirection } from '../common/hooks';
 
 const Switch = (props) => {
+  const { isRTL } = useDirection();
   const { checked, className, id, onClick } = props;
   const handleKeyDown = (event) => {
     if (event.code === 32 || event.keyCode === KeyCodes.SPACE) {
@@ -28,7 +30,9 @@ const Switch = (props) => {
     <span
       className={classnames(
         'np-switch',
+
         {
+          'np-switch--rtl': isRTL,
           'np-switch--unchecked': !checked,
           'np-switch--checked': checked,
         },
@@ -53,17 +57,17 @@ const Switch = (props) => {
 
 Switch.propTypes = {
   /** Used to describe the purpose of the switch. To be used if there is no external label (i.e. aria-labelledby is null) */
-  'aria-label': Types.string,
+  'aria-label': PropTypes.string,
   /** A reference to a label that describes the purpose of the switch. Ignored if aria-label is provided */
-  'aria-labelledby': Types.string,
+  'aria-labelledby': PropTypes.string,
   /** Whether the switch is checked or not */
-  checked: Types.bool,
+  checked: PropTypes.bool,
   /** Classes to apply to the switch container */
-  className: Types.string,
+  className: PropTypes.string,
   /** ID to apply to the switch container */
-  id: Types.string,
+  id: PropTypes.string,
   /** Function called when the switch is toggled */
-  onClick: Types.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 Switch.defaultProps = {

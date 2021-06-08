@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { Position } from '../common';
 
 import './Tooltip.css';
@@ -101,22 +101,19 @@ class Tooltip extends Component {
   }
 }
 
-Tooltip.Position = Position;
-
 Tooltip.propTypes = {
-  children: Types.oneOfType([Types.element, Types.arrayOf(Types.element), Types.string]).isRequired,
-  position: Types.oneOf([
-    Tooltip.Position.TOP,
-    Tooltip.Position.BOTTOM,
-    Tooltip.Position.LEFT,
-    Tooltip.Position.RIGHT,
-  ]),
-  label: Types.node.isRequired,
-  offset: Types.number,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.string,
+  ]).isRequired,
+  position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  label: PropTypes.node.isRequired,
+  offset: PropTypes.number,
 };
 
 Tooltip.defaultProps = {
-  position: Tooltip.Position.TOP,
+  position: Position.TOP,
   offset: 0,
 };
 

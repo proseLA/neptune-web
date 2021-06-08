@@ -1,8 +1,8 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Sentiment } from '../common';
-import withArrow, { ArrowPosition } from '../alert/withArrow';
+import withArrow, { AlertArrowPosition } from '../alert/withArrow';
 
 const typeClassMap = {
   [Sentiment.ERROR]: 'danger',
@@ -19,29 +19,20 @@ const InlineAlert = (props) => {
         {children}
       </div>
     );
-  }, ArrowPosition.TOP_LEFT);
+  }, AlertArrowPosition.TOP_LEFT);
 
   return <AlertWithArrow {...props} />;
 };
 
-InlineAlert.ArrowPosition = ArrowPosition;
-
-InlineAlert.Type = {
-  SUCCESS: Sentiment.SUCCESS,
-  ERROR: Sentiment.ERROR,
-  WARNING: Sentiment.WARNING,
-  INFO: Sentiment.INFO,
-};
-
 InlineAlert.propTypes = {
-  children: Types.node.isRequired,
-  className: Types.string,
-  type: Types.oneOf(Object.values(InlineAlert.Type)),
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
 };
 
 InlineAlert.defaultProps = {
   className: undefined,
-  type: InlineAlert.Type.INFO,
+  type: Sentiment.INFO,
 };
 
 export default InlineAlert;

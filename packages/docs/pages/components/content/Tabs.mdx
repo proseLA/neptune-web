@@ -1,6 +1,14 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { Tabs, Alert } from '@transferwise/components';
+import { Tabs, Alert, Sentiment } from '@transferwise/components';
 import code from '../../../liveEditorCode/tabs.code';
+
+<Alert
+  type={Sentiment.WARNING}
+  message={
+    'Please set animatePanelsOnClick to false to disable animation when Tabs are nested in the Card component'
+  }
+  className="m-y-5"
+/>
 
 <LiveEditorBlock code={code} scope={{ Tabs, Alert }} display="vertical" />
 <GeneratePropsTable componentName="Tabs" />

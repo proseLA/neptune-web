@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 import SnackbarAppendingToBody, { Snackbar, CSS_TRANSITION_DURATION } from './Snackbar';
-import SnackbarProvider, { SnackbarConsumer } from './SnackbarProvider';
+import SnackbarProvider from './SnackbarProvider';
+import { SnackbarConsumer } from './SnackbarContext';
+
+import { DirectionProvider } from '../provider/direction';
 
 describe('Snackbar', () => {
   const timeout = 1000;
@@ -107,5 +110,27 @@ describe('Snackbar', () => {
     const snackbarWithNode = () => componentWithNode.find(Snackbar);
     componentWithNode.find('.button-trigger').simulate('click');
     expect(snackbarWithNode().html()).toMatchSnapshot();
+  });
+
+  it('applies correct css class when provider uses RTL locale', () => {
+    component = mount(
+      <DirectionProvider locale="he-IL">
+        <SnackbarProvider timeout={timeout}>
+          <SnackbarConsumer>
+            {({ createSnackbar }) => (
+              <button
+                type="button"
+                className="button-trigger"
+                onClick={() => createSnackbar({ text: <span>test</span>, theme: 'dark' })}
+              >
+                Trigger
+              </button>
+            )}
+          </SnackbarConsumer>
+        </SnackbarProvider>
+      </DirectionProvider>,
+    );
+    buttonTrigger().simulate('click');
+    expect(snackbar().find('.snackbar').hasClass('snackbar--rtl')).toBe(true);
   });
 });

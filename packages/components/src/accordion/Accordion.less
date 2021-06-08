@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/less/addons/_spacing-utilities.less';
+@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
 
 @media (--screen-sm-max) {
   .tw-accordion-item {
@@ -13,15 +14,17 @@
 .tw-accordion-item {
   display: block;
   width: 100%;
+  padding: 10px 24px;
 
   .btn {
     border: none;
   }
 
   &:hover {
-    background-color: var(
-      --color-background-screen
-    ) !important; // overrides bootstrap rule for .decision
+    background-color:
+      var(
+        --color-background-screen
+      ) !important; // overrides bootstrap rule for .decision
   }
 
   .chevron {
@@ -33,8 +36,9 @@
     flex-wrap: wrap;
   }
 
-  .media-body {
+  &.decision .media-body {
     white-space: normal;
+    font-size: @font-size-base;
   }
 
   .accordion-content {

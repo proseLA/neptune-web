@@ -3,6 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import { Checkbox, DateInput } from '../..';
+import { Size } from '../../common';
 import Field from './Field';
 
 export default {
@@ -75,7 +76,7 @@ export const basic = () => {
       >
         <DateInput
           onChange={(val) => action(val)}
-          size={DateInput.Size.MEDIUM}
+          size={Size.MEDIUM}
           value={new Date()}
           placeholders={{
             day: 'dd',

@@ -8,15 +8,15 @@ import { getMarginBottom } from '../utils';
 const DynamicReview = (props) => {
   const review = props.component;
 
-  const mapDefinition = ({ label, value }, index) => {
+  const mapFieldsToDefinitions = ({ label, value }, index) => {
     return { key: String(index), title: label, value };
   };
 
   const getReviewLayout = (orientation) => {
     if (orientation === 'horizontal') {
-      return DefinitionList.Layout.HORIZONTAL_JUSTIFIED;
+      return 'HORIZONTAL_RIGHT_ALIGNED';
     }
-    return DefinitionList.Layout.VERTICAL_ONE_COLUMN;
+    return 'VERTICAL_ONE_COLUMN';
   };
 
   const margin = getMarginBottom(review.margin || 'lg');
@@ -43,7 +43,7 @@ const DynamicReview = (props) => {
       <div className={margin}>
         <DefinitionList
           layout={getReviewLayout(review.orientation)}
-          definitions={review.definitions.map(mapDefinition)}
+          definitions={review.fields.map(mapFieldsToDefinitions)}
         />
       </div>
     </>
@@ -54,7 +54,7 @@ DynamicReview.propTypes = {
   onAction: Types.func.isRequired,
   component: Types.shape({
     text: Types.string,
-    definitions: Types.arrayOf(
+    fields: Types.arrayOf(
       Types.shape({
         label: Types.string,
         value: Types.string,

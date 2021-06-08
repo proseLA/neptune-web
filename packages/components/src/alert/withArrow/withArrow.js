@@ -1,15 +1,7 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-const ArrowPosition = {
-  TOP_LEFT: 'up-left',
-  TOP: 'up-center',
-  TOP_RIGHT: 'up-right',
-  BOTTOM_LEFT: 'down-left',
-  BOTTOM: 'down-center',
-  BOTTOM_RIGHT: 'down-right',
-};
+import { ArrowPosition } from './alertArrowPositions';
 
 function withArrow(Alert, arrow) {
   const AlertWithArrow = (props) => (
@@ -21,7 +13,7 @@ function withArrow(Alert, arrow) {
   );
 
   AlertWithArrow.propTypes = {
-    className: Types.string,
+    className: PropTypes.string,
   };
 
   AlertWithArrow.defaultProps = {
@@ -55,5 +47,4 @@ function arrowClasses(arrow) {
   return '';
 }
 
-export { ArrowPosition };
 export default withArrow;

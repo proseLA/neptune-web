@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo renders wise business logo 1`] = `
+<div>
+  <img
+    alt="Wise business"
+    class="np-logo class"
+    src="https://wise.com/public-resources/assets/logos/wise/brand_logo_business.svg"
+  />
+</div>
+`;
+
+exports[`Logo renders wise business logo inversed 1`] = `
+<div>
+  <img
+    alt="Wise business"
+    class="np-logo class"
+    src="https://wise.com/public-resources/assets/logos/wise/brand_logo_business_inverse.svg"
+  />
+</div>
+`;
+
+exports[`Logo renders wise logo 1`] = `
+<div>
+  <img
+    alt="Wise"
+    class="np-logo class"
+    src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
+  />
+</div>
+`;
+
+exports[`Logo renders wise logo by default 1`] = `
+<div>
+  <img
+    alt="Wise"
+    class="np-logo class"
+    src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
+  />
+</div>
+`;
+
+exports[`Logo renders wise logo inversed 1`] = `
+<div>
+  <img
+    alt="Wise"
+    class="np-logo class"
+    src="https://wise.com/public-resources/assets/logos/wise/brand_logo_inverse.svg"
+  />
+</div>
+`;

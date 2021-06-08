@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import '../common/polyfills/closest';
 import Select from '../select';
@@ -9,6 +10,7 @@ import { Size, DateMode, MonthFormat } from '../common';
 
 import { explodeDate, convertToLocalMidnight } from './utils';
 import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/dateUtils';
+import { useDirection } from '../common/hooks';
 import './DateInput.css';
 
 const MonthBeforeDay = ['en-US', 'ja-JP'];
@@ -29,6 +31,7 @@ const DateInput = ({
   placeholders,
   id,
 }) => {
+  const { isRTL } = useDirection();
   const { locale } = useIntl();
   const getDateObject = () => {
     if (value && isDateValid(value)) {
@@ -201,7 +204,13 @@ const DateInput = ({
   };
 
   const monthYearOnly = mode === DateMode.MONTH_YEAR;
-  const monthWidth = monthYearOnly ? 'col-sm-8' : 'col-sm-5';
+
+  const monthWidth = classNames({
+    'col-sm-8': monthYearOnly,
+    'col-sm-5': !monthYearOnly,
+    'pull-right': isRTL,
+  });
+
   const monthBeforeDay = MonthBeforeDay.indexOf(locale) > -1;
 
   return (
@@ -214,7 +223,7 @@ const DateInput = ({
       <div className="row">
         {monthBeforeDay && <div className={monthWidth}>{getSelectElement()}</div>}
         {!monthYearOnly && (
-          <div className="col-sm-3">
+          <div className={classNames('col-sm-3', { 'pull-right': isRTL })}>
             <div className={`input-group-${size}`}>
               <label>
                 <span className="sr-only">{dayLabel}</span>
@@ -277,41 +286,37 @@ function shouldPropagateOnBlur({ target, relatedTarget }) {
   return blurElementParent !== focusElementParent;
 }
 
-DateInput.Size = Size;
-DateInput.DateMode = DateMode;
-DateInput.MonthFormat = MonthFormat;
-
 DateInput.propTypes = {
-  disabled: Types.bool,
-  size: Types.oneOf([DateInput.Size.SMALL, DateInput.Size.MEDIUM, DateInput.Size.LARGE]),
-  value: Types.oneOfType([Types.string, Types.instanceOf(Date)]),
-  onChange: Types.func.isRequired, // eslint-disable-line
-  onFocus: Types.func,
-  onBlur: Types.func,
-  dayLabel: Types.string,
-  monthLabel: Types.string,
-  yearLabel: Types.string,
-  monthFormat: Types.oneOf([DateInput.MonthFormat.LONG, DateInput.MonthFormat.SHORT]),
-  mode: Types.oneOf([DateInput.DateMode.DAY_MONTH_YEAR, DateInput.DateMode.MONTH_YEAR]),
-  placeholders: Types.shape({
-    day: Types.node,
-    month: Types.node,
-    year: Types.node,
+  disabled: PropTypes.bool,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  dayLabel: PropTypes.string,
+  monthLabel: PropTypes.string,
+  yearLabel: PropTypes.string,
+  monthFormat: PropTypes.oneOf(['long', 'short']),
+  mode: PropTypes.oneOf(['day-month-year', 'month-year']),
+  placeholders: PropTypes.shape({
+    day: PropTypes.node,
+    month: PropTypes.node,
+    year: PropTypes.node,
   }),
-  id: Types.string,
+  id: PropTypes.string,
 };
 
 DateInput.defaultProps = {
   disabled: false,
-  size: DateInput.Size.MEDIUM,
+  size: Size.MEDIUM,
   value: null,
   onFocus: null,
   onBlur: null,
   dayLabel: 'Day',
   monthLabel: 'Month',
   yearLabel: 'Year',
-  monthFormat: DateInput.MonthFormat.LONG,
-  mode: DateInput.DateMode.DAY_MONTH_YEAR,
+  monthFormat: MonthFormat.LONG,
+  mode: DateMode.DAY_MONTH_YEAR,
   placeholders: {
     day: 'DD',
     month: 'Month',

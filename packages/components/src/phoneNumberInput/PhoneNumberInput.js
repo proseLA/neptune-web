@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { isArray } from '@transferwise/neptune-validation';
+import classNames from 'classnames';
 import { Size } from '../common';
+
+import { useDirection } from '../common/hooks';
 
 import Select from '../select';
 import {
@@ -35,6 +38,7 @@ const PhoneNumberInput = (props) => {
     countryCode,
   } = props;
   const { locale } = useIntl();
+  const { isRTL } = useDirection();
 
   const getInitialValue = () => {
     const { initialValue } = props;
@@ -122,7 +126,7 @@ const PhoneNumberInput = (props) => {
   const { prefix, suffix } = getSuffixPrefix(internalValue);
 
   return (
-    <div className="tw-telephone">
+    <div className={classNames('tw-telephone', { 'tw-telephone--rtl': isRTL })}>
       <div className="tw-telephone__country-select">
         <Select
           options={options}
@@ -159,23 +163,18 @@ const PhoneNumberInput = (props) => {
     </div>
   );
 };
-PhoneNumberInput.Size = Size;
 
 PhoneNumberInput.propTypes = {
-  required: Types.bool,
-  disabled: Types.bool,
-  initialValue: Types.string,
-  onChange: Types.func.isRequired,
-  onFocus: Types.func,
-  onBlur: Types.func,
-  countryCode: Types.string,
-  searchPlaceholder: Types.string,
-  size: Types.oneOf([
-    PhoneNumberInput.Size.SMALL,
-    PhoneNumberInput.Size.MEDIUM,
-    PhoneNumberInput.Size.LARGE,
-  ]),
-  placeholder: Types.string,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  initialValue: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  countryCode: PropTypes.string,
+  searchPlaceholder: PropTypes.string,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  placeholder: PropTypes.string,
 };
 
 PhoneNumberInput.defaultProps = {
@@ -186,7 +185,7 @@ PhoneNumberInput.defaultProps = {
   onBlur() {},
   countryCode: null,
   searchPlaceholder: 'Prefix',
-  size: PhoneNumberInput.Size.MEDIUM,
+  size: Size.MEDIUM,
   placeholder: '',
 };
 

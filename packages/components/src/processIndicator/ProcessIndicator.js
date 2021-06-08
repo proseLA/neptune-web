@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Status, Size } from '../common';
@@ -8,10 +8,6 @@ const radius = { xs: 11, sm: 22, xl: 61 };
 export const ANIMATION_DURATION_IN_MS = 1500;
 
 class ProcessIndicator extends Component {
-  static Status = Status;
-
-  static Size = Size;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -74,9 +70,9 @@ class ProcessIndicator extends Component {
   render() {
     const { size, status } = this.state;
     const classes = classNames(`process process-${size}`, {
-      [`process-danger`]: status === ProcessIndicator.Status.FAILED,
-      [`process-stopped`]: status === ProcessIndicator.Status.HIDDEN,
-      [`process-success`]: status === ProcessIndicator.Status.SUCCEEDED,
+      [`process-danger`]: status === Status.FAILED,
+      [`process-stopped`]: status === Status.HIDDEN,
+      [`process-success`]: status === Status.SUCCEEDED,
     });
 
     return (
@@ -99,23 +95,14 @@ class ProcessIndicator extends Component {
   }
 }
 ProcessIndicator.propTypes = {
-  status: Types.oneOf([
-    ProcessIndicator.Status.PROCESSING,
-    ProcessIndicator.Status.FAILED,
-    ProcessIndicator.Status.SUCCEEDED,
-    ProcessIndicator.Status.HIDDEN,
-  ]),
-  size: Types.oneOf([
-    ProcessIndicator.Size.EXTRA_SMALL,
-    ProcessIndicator.Size.SMALL,
-    ProcessIndicator.Size.EXTRA_LARGE,
-  ]),
-  onAnimationCompleted: Types.func,
+  status: PropTypes.oneOf(['processing', 'failed', 'succeeded', 'hidden']),
+  size: PropTypes.oneOf(['xs', 'sm', 'xl']),
+  onAnimationCompleted: PropTypes.func,
 };
 
 ProcessIndicator.defaultProps = {
-  status: ProcessIndicator.Status.PROCESSING,
-  size: ProcessIndicator.Size.SMALL,
+  status: Status.PROCESSING,
+  size: Size.SMALL,
   onAnimationCompleted: null,
 };
 

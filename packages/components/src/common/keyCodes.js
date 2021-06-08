@@ -1,4 +1,7 @@
-// @DEPRECATED
+/**
+ * TODO: mention what to use instead or consider to delete this object
+ * @deprecated
+ */
 export default {
   DOWN: 40,
   UP: 38,
@@ -9,4 +12,6 @@ export default {
   TAB: 9,
   SPACE: 32,
   BACKSPACE: 8,
+  COMMA: 188,
+  PERIOD: 190,
 };

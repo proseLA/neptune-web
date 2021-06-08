@@ -10,6 +10,10 @@ import {
 
 import { render, cleanup, screen, userEvent, fireEvent } from '../test-utils';
 import Alert from './Alert';
+import { useDirection } from '../common/hooks';
+
+import { Sentiment, Size } from '../common';
+import { AlertArrowPosition } from './withArrow';
 
 jest.mock('react', () => {
   const originReact = jest.requireActual('react');
@@ -19,6 +23,8 @@ jest.mock('react', () => {
     useRef: mUseRef,
   };
 });
+
+jest.mock('../common/hooks/useDirection');
 
 describe('Alert', () => {
   let component;
@@ -30,10 +36,10 @@ describe('Alert', () => {
   const renderIcon = (Icon) => render(<Icon size={24} />).container.innerHTML;
 
   const iconTypeMap = {
-    [Alert.Type.POSITIVE]: renderIcon(CheckCircle),
-    [Alert.Type.NEUTRAL]: renderIcon(InfoCircle),
-    [Alert.Type.WARNING]: renderIcon(AlertIcon),
-    [Alert.Type.NEGATIVE]: renderIcon(AlertCircle),
+    [Sentiment.POSITIVE]: renderIcon(CheckCircle),
+    [Sentiment.NEUTRAL]: renderIcon(InfoCircle),
+    [Sentiment.WARNING]: renderIcon(AlertIcon),
+    [Sentiment.NEGATIVE]: renderIcon(AlertCircle),
   };
 
   const classForType = (type) => `alert-${type}`;
@@ -46,6 +52,7 @@ describe('Alert', () => {
   beforeAll(() => {
     mockedWarn = jest.fn();
     console.warn = mockedWarn;
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
   });
 
   afterEach(() => {
@@ -68,8 +75,8 @@ describe('Alert', () => {
     });
 
     it('will be of type neutral', () => {
-      expect(component).toHaveClass(classForType(Alert.Type.NEUTRAL));
-      expect(component).toContainHTML(iconTypeMap[Alert.Type.NEUTRAL]);
+      expect(component).toHaveClass(classForType(Sentiment.NEUTRAL));
+      expect(component).toContainHTML(iconTypeMap[Sentiment.NEUTRAL]);
     });
 
     it('is not dismissible', () => {
@@ -83,7 +90,7 @@ describe('Alert', () => {
 
   describe('deprecated props', () => {
     it('renders arrows but logs a warning', () => {
-      render(<Alert arrow={Alert.ArrowPosition.BOTTOM} message={message} />);
+      render(<Alert arrow={AlertArrowPosition.BOTTOM} message={message} />);
       component = screen.getByRole('alert');
 
       expect(component).toHaveClass('arrow');
@@ -106,40 +113,40 @@ describe('Alert', () => {
     });
 
     it('size is ignored and a warning is logged', () => {
-      const { container: small } = render(<Alert size={Alert.Size.SMALL} message={message} />);
-      const { container: large } = render(<Alert size={Alert.Size.LARGE} message={message} />);
+      const { container: small } = render(<Alert size={Size.SMALL} message={message} />);
+      const { container: large } = render(<Alert size={Size.LARGE} message={message} />);
 
       expect(small.innerHTML).toEqual(large.innerHTML);
       expect(mockedWarn).toHaveBeenCalledTimes(2);
     });
 
     it('maps type SUCCESS to type POSITIVE and logs a warning', () => {
-      render(<Alert type={Alert.Type.SUCCESS} message={message} />);
+      render(<Alert type={Sentiment.SUCCESS} message={message} />);
 
       const success = screen.getByRole('alert');
 
-      expect(success).toHaveClass(classForType(Alert.Type.POSITIVE));
-      expect(success).toContainHTML(iconTypeMap[Alert.Type.POSITIVE]);
+      expect(success).toHaveClass(classForType(Sentiment.POSITIVE));
+      expect(success).toContainHTML(iconTypeMap[Sentiment.POSITIVE]);
       expect(mockedWarn).toHaveBeenCalledTimes(1);
     });
 
     it('maps type INFO to type NEUTRAL and logs a warning', () => {
-      render(<Alert type={Alert.Type.INFO} message={message} />);
+      render(<Alert type={Sentiment.INFO} message={message} />);
 
       const info = screen.getByRole('alert');
 
-      expect(info).toHaveClass(classForType(Alert.Type.NEUTRAL));
-      expect(info).toContainHTML(iconTypeMap[Alert.Type.NEUTRAL]);
+      expect(info).toHaveClass(classForType(Sentiment.NEUTRAL));
+      expect(info).toContainHTML(iconTypeMap[Sentiment.NEUTRAL]);
       expect(mockedWarn).toHaveBeenCalledTimes(1);
     });
 
     it('maps type ERROR to type NEGATIVE and logs a warning', () => {
-      render(<Alert type={Alert.Type.ERROR} message={message} />);
+      render(<Alert type={Sentiment.ERROR} message={message} />);
 
       const error = screen.getByRole('alert');
 
-      expect(error).toHaveClass(classForType(Alert.Type.NEGATIVE));
-      expect(error).toContainHTML(iconTypeMap[Alert.Type.NEGATIVE]);
+      expect(error).toHaveClass(classForType(Sentiment.NEGATIVE));
+      expect(error).toContainHTML(iconTypeMap[Sentiment.NEGATIVE]);
       expect(mockedWarn).toHaveBeenCalledTimes(1);
     });
   });
@@ -210,7 +217,7 @@ describe('Alert', () => {
       component = screen.getByRole('alert');
 
       expect(component).toContainHTML(iconHTML);
-      expect(component).not.toContainHTML(iconTypeMap[Alert.Type.NEGATIVE]);
+      expect(component).not.toContainHTML(iconTypeMap[Sentiment.NEGATIVE]);
     });
   });
 
@@ -239,31 +246,31 @@ describe('Alert', () => {
     };
 
     it('renders neutral', () => {
-      component = getComponentWithType(Alert.Type.NEUTRAL);
+      component = getComponentWithType(Sentiment.NEUTRAL);
 
-      expect(component).toHaveClass(classForType(Alert.Type.NEUTRAL));
-      expect(component).toContainHTML(iconTypeMap[Alert.Type.NEUTRAL]);
+      expect(component).toHaveClass(classForType(Sentiment.NEUTRAL));
+      expect(component).toContainHTML(iconTypeMap[Sentiment.NEUTRAL]);
     });
 
     it('renders positive', () => {
-      component = getComponentWithType(Alert.Type.POSITIVE);
+      component = getComponentWithType(Sentiment.POSITIVE);
 
-      expect(component).toHaveClass(classForType(Alert.Type.POSITIVE));
-      expect(component).toContainHTML(iconTypeMap[Alert.Type.POSITIVE]);
+      expect(component).toHaveClass(classForType(Sentiment.POSITIVE));
+      expect(component).toContainHTML(iconTypeMap[Sentiment.POSITIVE]);
     });
 
     it('renders negative', () => {
-      component = getComponentWithType(Alert.Type.NEGATIVE);
+      component = getComponentWithType(Sentiment.NEGATIVE);
 
-      expect(component).toHaveClass(classForType(Alert.Type.NEGATIVE));
-      expect(component).toContainHTML(iconTypeMap[Alert.Type.NEGATIVE]);
+      expect(component).toHaveClass(classForType(Sentiment.NEGATIVE));
+      expect(component).toContainHTML(iconTypeMap[Sentiment.NEGATIVE]);
     });
 
     it('renders warning', () => {
-      component = getComponentWithType(Alert.Type.WARNING);
+      component = getComponentWithType(Sentiment.WARNING);
 
-      expect(component).toHaveClass(classForType(Alert.Type.WARNING));
-      expect(component).toContainHTML(iconTypeMap[Alert.Type.WARNING]);
+      expect(component).toHaveClass(classForType(Sentiment.WARNING));
+      expect(component).toContainHTML(iconTypeMap[Sentiment.WARNING]);
     });
   });
 
@@ -385,6 +392,21 @@ describe('Alert', () => {
       expect(window.open).not.toHaveBeenCalled();
       fireEvent.touchEnd(closeButton);
       expect(window.open).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('RTL support', () => {
+    it('applies correct classes when isRTL is false', () => {
+      ({ container } = render(<Alert message="rtl" />));
+      expect(container.querySelector('.alert__message')).toHaveClass('p-l-2');
+      expect(container.querySelector('.alert__message')).not.toHaveClass('p-r-2');
+    });
+
+    it('applies correct classes when isRTL is true', () => {
+      useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+      ({ container } = render(<Alert message="rtl" />));
+      expect(container.querySelector('.alert__message')).not.toHaveClass('p-l-2');
+      expect(container.querySelector('.alert__message')).toHaveClass('p-r-2');
     });
   });
 });

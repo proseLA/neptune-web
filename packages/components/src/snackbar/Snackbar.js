@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import withNextPortal from '../withNextPortal/withNextPortal';
 
 import { Theme } from '../common';
+
+import { DirectionContext } from '../provider/direction';
 
 import './Snackbar.css';
 
@@ -74,11 +77,12 @@ export class Snackbar extends Component {
   }
 
   render() {
+    const isRTL = this.context === 'rtl';
     const { action, text, theme, visible } = this.state;
     const { timeout } = this.props;
 
     return (
-      <div className="snackbar">
+      <div className={classNames('snackbar', { 'snackbar--rtl': isRTL })}>
         <CSSTransition
           in={visible}
           classNames="snackbar__text-container"
@@ -103,15 +107,17 @@ export class Snackbar extends Component {
   }
 }
 
+Snackbar.contextType = DirectionContext;
+
 Snackbar.propTypes = {
-  action: Types.shape({
-    label: Types.string.isRequired,
-    onClick: Types.func.isRequired,
+  action: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
   }),
-  text: Types.node.isRequired,
-  theme: Types.oneOf([Theme.LIGHT, Theme.DARK]),
-  timeout: Types.number.isRequired,
-  timestamp: Types.number.isRequired,
+  text: PropTypes.node.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']),
+  timeout: PropTypes.number.isRequired,
+  timestamp: PropTypes.number.isRequired,
 };
 
 Snackbar.defaultProps = {

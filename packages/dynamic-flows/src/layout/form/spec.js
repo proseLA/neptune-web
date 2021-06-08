@@ -12,6 +12,7 @@ describe('Given a component for dynamically rendering forms', () => {
   let onPersistAsync;
 
   const schema = {
+    id: '#example',
     type: 'object',
     properties: {
       an: { type: 'string' },
@@ -24,20 +25,20 @@ describe('Given a component for dynamically rendering forms', () => {
 
   beforeEach(() => {
     spec = {
-      component: 'form',
+      type: 'form',
       schema,
-      model,
     };
     onModelChange = jest.fn();
     onPersistAsync = jest.fn();
     component = shallow(
       <DynamicForm
         component={spec}
-        onModelChange={onModelChange}
+        model={model}
         submitted={submitted}
         errors={errors}
-        onPersistAsync={onPersistAsync}
         baseUrl="dynamic-form-spec-base-url"
+        onModelChange={onModelChange}
+        onPersistAsync={onPersistAsync}
       />,
     );
   });

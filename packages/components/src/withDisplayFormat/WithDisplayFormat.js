@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   formatWithPattern,
   getCountOfSymbolsInSelection,
@@ -267,24 +267,24 @@ WithDisplayFormat.propTypes = {
    * is present. Chrome ignores autocomplete=off, the only way to disable it is
    * to provide an 'invalid' value, for which 'disabled' serves.
    */
-  autoComplete: Types.oneOf(['on', 'off', 'disabled']),
-  className: Types.string,
-  disabled: Types.bool,
-  id: Types.string,
-  maxLength: Types.number,
-  minLength: Types.number,
-  name: Types.string,
-  onFocus: Types.func,
-  onBlur: Types.func,
-  onChange: Types.func.isRequired,
-  placeholder: Types.string,
-  readOnly: Types.bool,
-  render: Types.func.isRequired,
-  required: Types.bool,
-  displayPattern: Types.string,
-  type: Types.string,
-  inputMode: Types.string,
-  value: Types.string,
+  autoComplete: PropTypes.oneOf(['on', 'off', 'disabled']),
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  maxLength: PropTypes.number,
+  minLength: PropTypes.number,
+  name: PropTypes.string,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
+  render: PropTypes.func.isRequired,
+  required: PropTypes.bool,
+  displayPattern: PropTypes.string,
+  type: PropTypes.string,
+  inputMode: PropTypes.string,
+  value: PropTypes.string,
 };
 
 WithDisplayFormat.defaultProps = {

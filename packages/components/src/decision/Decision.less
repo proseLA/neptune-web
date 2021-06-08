@@ -2,7 +2,37 @@
   &__tile--small + &__tile--small {
     margin-left: var(--size-16);
   }
+
+  &.np-decision--grid &__tile--small {
+    margin: 0 var(--size-16) var(--size-16) 0;
+    margin-bottom: var(--size-16) !important;
+  }
+
   &__tile + &__tile {
     margin-left: var(--size-24);
+  }
+
+  &.np-decision--grid &__tile {
+    margin: 0 var(--size-24) var(--size-24) 0;
+    margin-bottom: var(--size-24) !important;
+  }
+
+  &.np-decision--grid {
+    .np-size-swapper {
+      margin-right: calc(0px - var(--size-24));
+    }
+
+    &.np-decision--small {
+      .np-size-swapper {
+        margin-right: calc(0px - var(--size-16));
+      }
+    }
+  }
+
+  &--rtl {
+    .np-decision__tile + .np-decision__tile {
+      margin-left: 0;
+      margin-right: var(--size-24);
+    }
   }
 }

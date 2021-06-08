@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 const DEFAULT_INPUT_MIN_WIDTH = 10;
@@ -119,22 +119,22 @@ export default class TypeaheadInput extends Component {
 }
 
 TypeaheadInput.propTypes = {
-  typeaheadId: Types.string.isRequired,
-  name: Types.string.isRequired,
-  autoFocus: Types.bool,
-  multiple: Types.bool.isRequired,
-  value: Types.string.isRequired,
-  selected: Types.arrayOf(Types.object),
-  placeholder: Types.string,
-  optionsShown: Types.bool,
-  maxHeight: Types.number,
-  autoComplete: Types.string.isRequired,
+  typeaheadId: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  autoFocus: PropTypes.bool,
+  multiple: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  selected: PropTypes.arrayOf(PropTypes.object),
+  placeholder: PropTypes.string,
+  optionsShown: PropTypes.bool,
+  maxHeight: PropTypes.number,
+  autoComplete: PropTypes.string.isRequired,
 
-  onChange: Types.func.isRequired,
-  renderChip: Types.func.isRequired,
-  onKeyDown: Types.func.isRequired,
-  onFocus: Types.func.isRequired,
-  onPaste: Types.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  renderChip: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  onPaste: PropTypes.func.isRequired,
 };
 
 TypeaheadInput.defaultProps = {

@@ -3,6 +3,7 @@
 import React from 'react';
 import { select, text } from '@storybook/addon-knobs';
 import { Button, Modal, DateInput } from '..';
+import { Size, Scroll, Position } from '../common';
 
 export default {
   component: Modal,
@@ -10,11 +11,11 @@ export default {
 };
 
 export const basic = () => {
-  const size = select('size', Object.values(Modal.Size), Modal.Size.MEDIUM);
+  const size = select('size', Object.values(Size), Size.MEDIUM);
   const [open, setOpen] = React.useState(false);
   const title = text('title', 'title');
-  const scroll = select('scroll', Object.values(Modal.Scroll), Modal.Scroll.CONTENT);
-  const position = select('position', Object.values(Modal.Position), Modal.Position.CENTER);
+  const scroll = select('scroll', Object.values(Scroll), Scroll.CONTENT);
+  const position = select('position', Object.values(Position), Position.CENTER);
 
   return (
     <>
@@ -28,7 +29,10 @@ export const basic = () => {
               charcoal ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft
               marfa ethical waistcoat poke jean shorts. Scenester readymade selvage disrupt pok pok.
               La croix stumptown try-hard chartreuse. I am baby actually poke kickstarter, street
-              art jean shorts bespoke chambray activated charcoal ramps marfa shoreditch tumeric
+              art jean shorts bespoke chambray activated charcoal ramps marfa shoreditch tumeric, I
+              am baby actually poke kickstarter, street art jean shorts bespoke chambray activated
+              charcoal ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft
+              marfa ethical waistcoat poke jean shorts. Scenester readymade selvage disrupt pok pok.
             </p>
           </>
         }

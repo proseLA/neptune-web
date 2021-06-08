@@ -16,6 +16,7 @@
  */
 interface Badge {
   type: string;
+  // yyyy-mm-dd
   expiryDate?: string;
 }
 
@@ -24,11 +25,25 @@ interface Author {
   githubUsername: string;
 }
 
+interface Version {
+  components?: string;
+  css?: string;
+  'dynamic-flows'?: string;
+  validation?: string;
+  'less-config'?: string;
+  'test-config'?: string;
+}
+
 export type Meta = {
   name: string;
+  /**
+   * date format: yyyy-mm-dd
+   */
   date?: string;
   authors?: Author[];
   badge?: Badge;
+  version?: Version;
+  tags?: string[];
 };
 
 interface SubSection {
@@ -136,10 +151,6 @@ const sections: MainSection[] = [
     title: 'Blog',
     dir: 'blog',
     fileOrder: ['Home'],
-    badge: {
-      type: 'new',
-      expiryDate: '15-03-2021',
-    },
     sidebar: false,
   },
 ];

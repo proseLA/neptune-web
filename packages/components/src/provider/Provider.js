@@ -1,7 +1,8 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import en from '../../i18n/en.json';
+import { DirectionProvider } from './direction';
+import en from '../i18n/en.json';
 import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
 import '../common/polyfills/intl';
 
@@ -18,25 +19,28 @@ function Provider({ i18n, children }) {
   } else {
     intlConfig = { locale: adjustedLocale, messages };
   }
+
   return (
-    <IntlProvider
-      defaultLocale={DEFAULT_LOCALE}
-      locale={intlConfig.locale}
-      messages={intlConfig.messages}
-      defaultRichTextElements={defaultRichTextElements}
-    >
-      {children}
-    </IntlProvider>
+    <DirectionProvider locale={intlConfig.locale}>
+      <IntlProvider
+        defaultLocale={DEFAULT_LOCALE}
+        locale={intlConfig.locale}
+        messages={intlConfig.messages}
+        defaultRichTextElements={defaultRichTextElements}
+      >
+        {children}
+      </IntlProvider>
+    </DirectionProvider>
   );
 }
 
 Provider.propTypes = {
-  i18n: Types.shape({
-    locale: Types.string.isRequired,
-    messages: Types.shape.isRequired,
-    defaultRichTextElements: Types.shape({}),
+  i18n: PropTypes.shape({
+    locale: PropTypes.string.isRequired,
+    messages: PropTypes.shape({}).isRequired,
+    defaultRichTextElements: PropTypes.shape({}),
   }).isRequired,
-  children: Types.node,
+  children: PropTypes.node,
 };
 
 Provider.defaultProps = {

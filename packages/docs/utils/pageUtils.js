@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format, formatDistance } from 'date-fns';
+import { formatDistance } from 'date-fns';
 
 /**
  * Check if date is past date
@@ -14,9 +14,9 @@ export function isExpired(endDate) {
 }
 
 export function printDate(date) {
-  return `${format(date, 'MMMM dd, yyyy')} (${formatDistance(date, Date.now(), {
+  return formatDistance(date, Date.now(), {
     addSuffix: true,
-  })})`;
+  });
 }
 
 const getPages = () => {

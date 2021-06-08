@@ -3,12 +3,13 @@ import { render } from '../test-utils';
 
 import OverlayHeader from '.';
 
-import Avatar from '../avatar';
+import Avatar, { AvatarType } from '../avatar';
+import { Size } from '../common';
 
 describe('OverlayHeader', () => {
   const props = {
     avatar: (
-      <Avatar type={Avatar.Type.INITIALS} size={Avatar.Size.MEDIUM}>
+      <Avatar type={AvatarType.INITIALS} size={Size.MEDIUM}>
         TM
       </Avatar>
     ),

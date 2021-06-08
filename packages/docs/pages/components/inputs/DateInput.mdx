@@ -1,8 +1,8 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { DateInput } from '@transferwise/components';
+import { DateInput, Size, MonthFormat, DateMode } from '@transferwise/components';
 import code from '../../../liveEditorCode/dateInput.code';
 
-<LiveEditorBlock code={code} scope={{ DateInput }} />
+<LiveEditorBlock code={code} scope={{ DateInput, Size, MonthFormat, DateMode }} />
 <GeneratePropsTable componentName="DateInput" />
 
 export const meta = {

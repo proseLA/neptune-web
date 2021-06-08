@@ -2,19 +2,19 @@
   "files": [
     {
       "path": "./packages/components/build/umd/polyfill/main.js",
-      "maxSize": "135kB"
+      "maxSize": "141kB"
     },
     {
       "path": "./packages/components/build/umd/no-polyfill/main.js",
-      "maxSize": "120kB"
+      "maxSize": "125kB"
     },
     {
       "path": "./packages/components/build/main.css",
-      "maxSize": "10kB"
+      "maxSize": "9kB"
     },
     {
       "path": "./packages/css/dist/css/neptune.css",
-      "maxSize": "43kB"
+      "maxSize": "40kB"
     }
   ]
 }

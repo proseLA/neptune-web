@@ -1,7 +1,8 @@
 import React from 'react';
 import { text, select } from '@storybook/addon-knobs';
 
-import Info from '.';
+import Info, { InfoPresentation } from '.';
+import { Size } from '../common';
 
 export default {
   component: Info,
@@ -14,8 +15,8 @@ export const basic = () => {
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
   );
   const title = text('Title', 'title');
-  const presentation = select('Presentation', [Info.Presentation.POPOVER, Info.Presentation.MODAL]);
-  const size = select('Size', [Info.Size.SMALL, Info.Size.LARGE]);
+  const presentation = select('Presentation', [InfoPresentation.POPOVER, InfoPresentation.MODAL]);
+  const size = select('Size', [Size.SMALL, Size.LARGE]);
 
   return (
     <Info

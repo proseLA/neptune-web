@@ -30,6 +30,12 @@
           "icon": { "name": "flag-aud" },
           "description": "Australian dollar",
           "const": "AUD"
+        },
+        {
+          "title": "AED",
+          "icon": { "name": "flag-aed" },
+          "description": "United Arab Emirates dirham",
+          "const": "AED"
         }
       ],
       "validationMessages": { "required": "Please enter currency." },

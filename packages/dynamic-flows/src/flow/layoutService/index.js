@@ -1,1 +1,1 @@
-export { convertStepToLayout } from './LayoutService';
+export { convertStepToLayout, inlineReferences } from './LayoutService';

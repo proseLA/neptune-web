@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { AlertCircle as AlertCircleIcon, Document as DocumentIcon } from '@transferwise/icons';
 
 const CompleteStep = (props) => {
@@ -59,15 +59,15 @@ const CompleteStep = (props) => {
 };
 
 CompleteStep.propTypes = {
-  csButtonText: Types.string.isRequired,
-  csSuccessText: Types.string.isRequired,
-  csFailureText: Types.string.isRequired,
-  fileName: Types.string.isRequired,
-  isComplete: Types.bool.isRequired,
-  isError: Types.bool.isRequired,
-  isImage: Types.bool.isRequired,
-  onClear: Types.func.isRequired,
-  uploadedImage: Types.string,
+  csButtonText: PropTypes.string.isRequired,
+  csSuccessText: PropTypes.string.isRequired,
+  csFailureText: PropTypes.string.isRequired,
+  fileName: PropTypes.string.isRequired,
+  isComplete: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  isImage: PropTypes.bool.isRequired,
+  onClear: PropTypes.func.isRequired,
+  uploadedImage: PropTypes.string,
 };
 CompleteStep.defaultProps = {
   uploadedImage: null,

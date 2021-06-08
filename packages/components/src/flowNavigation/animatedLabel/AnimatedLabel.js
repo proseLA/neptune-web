@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './AnimatedLabel.css';
@@ -29,9 +29,9 @@ const AnimatedLabel = ({ activeLabel, className, labels }) => {
 };
 
 AnimatedLabel.propTypes = {
-  activeLabel: Types.number.isRequired,
-  className: Types.string,
-  labels: Types.arrayOf(Types.node).isRequired,
+  activeLabel: PropTypes.number.isRequired,
+  className: PropTypes.string,
+  labels: PropTypes.arrayOf(PropTypes.node).isRequired,
 };
 AnimatedLabel.defaultProps = {
   className: undefined,

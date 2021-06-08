@@ -1,5 +1,5 @@
 {
-  "extends": "@transferwise",
+  "extends": ["@transferwise", "../../.eslintrc"],
   "rules": {
     "jsx-a11y/anchor-is-valid": [
       "error",
@@ -8,28 +8,6 @@
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["invalidHref", "preferButton"]
       }
-    ],
-    "fp/no-mutation": 0,
-    // https://github.com/benmosher/eslint-plugin-import/issues/1615#issuecomment-577500405
-    "import/extensions": ["error", "ignorePackages", {
-      "js": "never",
-      "ts": "never",
-      "tsx": "never"
-    }]
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".ts", ".tsx", ".json"]
-      }
-    }
-  },
-  "overrides": [
-    {
-      "files": ["**/*.tsx"],
-      "rules": {
-        "react/require-default-props": "off"
-      }
-    }
-  ]
+    ]
+  }
 }

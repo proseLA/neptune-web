@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
 import Chevron from '../chevron';
 
 import Option from '../common/Option';
+import { Position } from '../common';
 import './NavigationOption.css';
 
 const NavigationOption = ({
@@ -46,25 +47,23 @@ const NavigationOption = ({
           onClick(event);
         }
       }}
-      button={
-        <Chevron orientation={Chevron.Orientation.RIGHT} disabled={disabled} className="d-block" />
-      }
+      button={<Chevron orientation={Position.RIGHT} disabled={disabled} className="d-block" />}
     />
   );
 };
 
 NavigationOption.propTypes = {
-  as: Types.elementType,
-  media: Types.node,
-  title: Types.node.isRequired,
-  content: Types.node,
-  onClick: Types.func,
-  href: requiredIf(Types.string, (props) => props.as === 'a'),
-  complex: Types.bool,
-  disabled: Types.bool,
-  showMediaAtAllSizes: Types.bool,
-  showMediaCircle: Types.bool,
-  className: Types.string,
+  as: PropTypes.string,
+  media: PropTypes.node,
+  title: PropTypes.node.isRequired,
+  content: PropTypes.node,
+  onClick: PropTypes.func,
+  href: requiredIf(PropTypes.string, (props) => props.as === 'a'),
+  complex: PropTypes.bool,
+  disabled: PropTypes.bool,
+  showMediaAtAllSizes: PropTypes.bool,
+  showMediaCircle: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 NavigationOption.defaultProps = {

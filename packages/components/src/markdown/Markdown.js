@@ -1,14 +1,14 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import commonmark from 'commonmark';
 import difference from 'lodash.difference';
-import { MarkdownNodeTypes } from '../common/markdownNodeTypes';
 import { logActionRequired } from '../utilities';
+import { MarkdownNodeType } from '../common';
 
 const reader = new commonmark.Parser();
 const writer = new commonmark.HtmlRenderer({ safe: true });
 
-const NODE_TYPE_LIST = Object.values(MarkdownNodeTypes);
+const NODE_TYPE_LIST = Object.values(MarkdownNodeType);
 
 const Markdown = ({ as: Element, children, className, allowList, blockList }) => {
   if (!children) {
@@ -64,11 +64,49 @@ function stripNodes({ blockList, parsed }) {
 }
 
 Markdown.propTypes = {
-  children: Types.string.isRequired,
-  as: Types.elementType,
-  className: Types.string,
-  allowList: Types.arrayOf(Types.oneOf(NODE_TYPE_LIST)),
-  blockList: Types.arrayOf(Types.oneOf(NODE_TYPE_LIST)),
+  children: PropTypes.string.isRequired,
+  as: PropTypes.string,
+  className: PropTypes.string,
+  allowList: PropTypes.arrayOf(
+    PropTypes.oneOf([
+      'block_quote',
+      'code_block',
+      'code',
+      'emph',
+      'heading',
+      'html_block',
+      'html_inline',
+      'image',
+      'item',
+      'linebreak',
+      'link',
+      'list',
+      'paragraph',
+      'softbreak',
+      'strong',
+      'thematic_break',
+    ]),
+  ),
+  blockList: PropTypes.arrayOf(
+    PropTypes.oneOf([
+      'block_quote',
+      'code_block',
+      'code',
+      'emph',
+      'heading',
+      'html_block',
+      'html_inline',
+      'image',
+      'item',
+      'linebreak',
+      'link',
+      'list',
+      'paragraph',
+      'softbreak',
+      'strong',
+      'thematic_break',
+    ]),
+  ),
 };
 
 Markdown.defaultProps = {

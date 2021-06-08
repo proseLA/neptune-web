@@ -1,6 +1,5 @@
 # Confirm that the config file si valid:
 # https://circleci.com/docs/2.0/local-cli/
-
 version: 2
 
 aliases:
@@ -9,7 +8,7 @@ aliases:
   - &container
     working_directory: *workspace-root
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:lts-browsers
 
   - &attach-workspace
     attach-workspace:
@@ -110,6 +109,13 @@ jobs:
       - run: *bundlesize
 
   visual-test:
+    <<: *container
+    steps:
+      - *attach-workspace
+      - run: *visual-test
+      - *persist-workspace
+
+  visual-test-main:
     <<: *container
     steps:
       - *attach-workspace
@@ -217,6 +223,14 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+                - main
+
+      - visual-test-main:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
                 - main
 
       - deploy-docs-for-branch:

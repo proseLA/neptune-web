@@ -1,7 +1,8 @@
 import React from 'react';
 import { boolean, radios, text, select } from '@storybook/addon-knobs';
 
-import Avatar from './Avatar';
+import Avatar, { AvatarType } from '.';
+import { Size, Theme } from '../common';
 
 export default {
   component: Avatar,
@@ -12,24 +13,24 @@ export const basic = () => {
   const type = radios(
     'type',
     {
-      Thumbnail: Avatar.Type.THUMBNAIL,
-      Initials: Avatar.Type.INITIALS,
-      Icon: Avatar.Type.ICON,
-      Emoji: Avatar.Type.EMOJI,
+      Thumbnail: AvatarType.THUMBNAIL,
+      Initials: AvatarType.INITIALS,
+      Icon: AvatarType.ICON,
+      Emoji: AvatarType.EMOJI,
     },
-    Avatar.Type.EMOJI,
+    AvatarType.EMOJI,
   );
   const size = radios(
     'size',
     {
-      Small: Avatar.Size.SMALL,
-      Medium: Avatar.Size.MEDIUM,
-      Large: Avatar.Size.LARGE,
+      Small: Size.SMALL,
+      Medium: Size.MEDIUM,
+      Large: Size.LARGE,
     },
-    Avatar.Size.MEDIUM,
+    Size.MEDIUM,
   );
   const outlined = boolean('outlined', true);
-  const theme = select('Theme', [Avatar.Theme.LIGHT, Avatar.Theme.DARK], Avatar.Theme.LIGHT);
+  const theme = select('Theme', [Theme.LIGHT, Theme.DARK], Theme.LIGHT);
   const backgroundColor = text('Background colour', '');
   const avatarContent = text('avatarContent', '✈️');
   const sampleImage = boolean('Use image as content?', false);
@@ -52,7 +53,7 @@ export const basic = () => {
 };
 
 export const table = () => {
-  const theme = select('Theme', [Avatar.Theme.LIGHT, Avatar.Theme.DARK], Avatar.Theme.LIGHT);
+  const theme = select('Theme', [Theme.LIGHT, Theme.DARK], Theme.LIGHT);
   const flag = select('Flag', ['gbp', 'jpy', 'eur'], 'gbp');
 
   const flagResource = `https://wise.com/public-resources/assets/flags/square/${flag}.svg`;
@@ -60,47 +61,47 @@ export const table = () => {
     <div
       style={{
         padding: '50px',
-        backgroundColor: theme === Avatar.Theme.DARK ? '#37517e' : 'white',
+        backgroundColor: theme === Theme.DARK ? '#37517e' : 'white',
       }}
     >
       <table style={{ background: 'transparent' }}>
         <tr>
           <td>
-            <Avatar size={Avatar.Size.LARGE} type={Avatar.Type.THUMBNAIL} outlined theme={theme}>
+            <Avatar size={Size.LARGE} type={AvatarType.THUMBNAIL} outlined theme={theme}>
               <img src={flagResource} alt="" />
             </Avatar>
           </td>
           <td>
-            <Avatar size={Avatar.Size.MEDIUM} type={Avatar.Type.THUMBNAIL} outlined theme={theme}>
+            <Avatar size={Size.MEDIUM} type={AvatarType.THUMBNAIL} outlined theme={theme}>
               <img src={flagResource} alt="" />
             </Avatar>
           </td>
           <td>
-            <Avatar size={Avatar.Size.SMALL} type={Avatar.Type.THUMBNAIL} outlined theme={theme}>
-              <img src={flagResource} alt="" />
-            </Avatar>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <Avatar size={Avatar.Size.LARGE} type={Avatar.Type.THUMBNAIL} theme={theme}>
-              <img src={flagResource} alt="" />
-            </Avatar>
-          </td>
-          <td>
-            <Avatar size={Avatar.Size.MEDIUM} type={Avatar.Type.THUMBNAIL} theme={theme}>
-              <img src={flagResource} alt="" />
-            </Avatar>
-          </td>
-          <td>
-            <Avatar size={Avatar.Size.SMALL} type={Avatar.Type.THUMBNAIL} theme={theme}>
+            <Avatar size={Size.SMALL} type={AvatarType.THUMBNAIL} outlined theme={theme}>
               <img src={flagResource} alt="" />
             </Avatar>
           </td>
         </tr>
         <tr>
           <td>
-            <Avatar size={Avatar.Size.LARGE} type={Avatar.Type.EMOJI} theme={theme}>
+            <Avatar size={Size.LARGE} type={AvatarType.THUMBNAIL} theme={theme}>
+              <img src={flagResource} alt="" />
+            </Avatar>
+          </td>
+          <td>
+            <Avatar size={Size.MEDIUM} type={AvatarType.THUMBNAIL} theme={theme}>
+              <img src={flagResource} alt="" />
+            </Avatar>
+          </td>
+          <td>
+            <Avatar size={Size.SMALL} type={AvatarType.THUMBNAIL} theme={theme}>
+              <img src={flagResource} alt="" />
+            </Avatar>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Avatar size={Size.LARGE} type={AvatarType.EMOJI} theme={theme}>
               <img
                 style={{ width: 44, height: 44 }}
                 src="https://wise.com/public-resources/assets/balances/savings-emoji/google/✈️.png"
@@ -109,7 +110,7 @@ export const table = () => {
             </Avatar>
           </td>
           <td>
-            <Avatar size={Avatar.Size.MEDIUM} type={Avatar.Type.EMOJI} theme={theme}>
+            <Avatar size={Size.MEDIUM} type={AvatarType.EMOJI} theme={theme}>
               <img
                 style={{ width: 30, height: 30 }}
                 src="https://wise.com/public-resources/assets/balances/savings-emoji/google/✈️.png"
@@ -118,7 +119,7 @@ export const table = () => {
             </Avatar>
           </td>
           <td>
-            <Avatar size={Avatar.Size.SMALL} type={Avatar.Type.EMOJI} theme={theme}>
+            <Avatar size={Size.SMALL} type={AvatarType.EMOJI} theme={theme}>
               <img
                 style={{ width: 16, height: 16 }}
                 src="https://wise.com/public-resources/assets/balances/savings-emoji/google/✈️.png"
@@ -130,8 +131,8 @@ export const table = () => {
         <tr>
           <td>
             <Avatar
-              size={Avatar.Size.LARGE}
-              type={Avatar.Type.EMOJI}
+              size={Size.LARGE}
+              type={AvatarType.EMOJI}
               theme={theme}
               backgroundColor="#D6F5E3"
             >
@@ -144,8 +145,8 @@ export const table = () => {
           </td>
           <td>
             <Avatar
-              size={Avatar.Size.MEDIUM}
-              type={Avatar.Type.EMOJI}
+              size={Size.MEDIUM}
+              type={AvatarType.EMOJI}
               theme={theme}
               backgroundColor="#D6F5E3"
             >
@@ -158,8 +159,8 @@ export const table = () => {
           </td>
           <td>
             <Avatar
-              size={Avatar.Size.SMALL}
-              type={Avatar.Type.EMOJI}
+              size={Size.SMALL}
+              type={AvatarType.EMOJI}
               theme={theme}
               backgroundColor="#D6F5E3"
             >

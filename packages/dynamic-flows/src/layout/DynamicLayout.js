@@ -15,9 +15,10 @@ import DynamicParagraph from './paragraph';
 import DynamicReview from './review';
 
 import { componentModel } from './models';
+import { convertStepToLayout } from '../flow/layoutService';
 
 const DynamicLayout = (props) => {
-  const { components, onModelChange, onAction, submitted, errors, onPersistAsync } = props;
+  const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync } = props;
 
   const getKey = (component) => JSON.stringify(component);
 
@@ -42,12 +43,13 @@ const DynamicLayout = (props) => {
           <DynamicColumns
             key={getKey(component)}
             component={component}
-            onModelChange={onModelChange}
-            onAction={onAction}
+            model={model}
             submitted={submitted}
             errors={errors}
-            onPersistAsync={onPersistAsync}
             baseUrl={props.baseUrl}
+            onModelChange={onModelChange}
+            onAction={onAction}
+            onPersistAsync={onPersistAsync}
           />
         );
       case 'form':
@@ -55,11 +57,12 @@ const DynamicLayout = (props) => {
           <DynamicForm
             key={getKey(component)}
             component={component}
-            onModelChange={onModelChange}
+            model={model}
             submitted={submitted}
             errors={errors}
-            onPersistAsync={onPersistAsync}
             baseUrl={props.baseUrl}
+            onModelChange={onModelChange}
+            onPersistAsync={onPersistAsync}
           />
         );
       case 'button':
@@ -69,18 +72,21 @@ const DynamicLayout = (props) => {
           <DynamicBox
             key={getKey(component)}
             component={component}
-            onModelChange={onModelChange}
-            onAction={onAction}
+            model={model}
             submitted={submitted}
             errors={errors}
-            onPersistAsync={onPersistAsync}
             baseUrl={props.baseUrl}
+            onModelChange={onModelChange}
+            onAction={onAction}
+            onPersistAsync={onPersistAsync}
           />
         );
       case 'decision':
         return (
           <DynamicDecision key={getKey(component)} component={component} onAction={onAction} />
         );
+      case 'final':
+        return <>{convertStepToLayout(component).map(renderComponent)}</>;
       default:
         return <div key={getKey(component)} />;
     }
@@ -90,17 +96,20 @@ const DynamicLayout = (props) => {
 };
 
 DynamicLayout.propTypes = {
-  onAction: Types.func.isRequired,
-  onModelChange: Types.func.isRequired,
   components: Types.arrayOf(componentModel).isRequired,
+  model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  onPersistAsync: Types.func.isRequired,
   baseUrl: Types.string.isRequired,
+  onAction: Types.func.isRequired,
+  onModelChange: Types.func.isRequired,
+  onPersistAsync: Types.func,
 };
 
 DynamicLayout.defaultProps = {
+  model: null,
   errors: null,
+  onPersistAsync: () => {},
 };
 
 export default DynamicLayout;

@@ -247,7 +247,7 @@ describe('Given a component for rendering a dynamic layout', () => {
 
   describe('when there is a review component', () => {
     beforeEach(() => {
-      components = [{ type: 'review', definitions: [] }];
+      components = [{ type: 'review', fields: [] }];
       props = { ...props, components };
       component = shallow(<DynamicLayout {...props} />);
       component.find(DynamicReview).simulate('action', action);

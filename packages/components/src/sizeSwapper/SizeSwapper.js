@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Breakpoint } from '../common';
@@ -7,7 +7,7 @@ import { useClientWidth } from '../common/hooks';
 
 const Layout = { COLUMN: 'COLUMN' };
 
-const SizeSwapper = forwardRef(({ items }, ref) => {
+const SizeSwapper = forwardRef(({ items, inline }, ref) => {
   if (!items || !items.length) {
     return null;
   }
@@ -36,8 +36,11 @@ const SizeSwapper = forwardRef(({ items }, ref) => {
   // keep the ref on DOM and let clientWidth be calculated properly.
   return (
     <div
-      className={classNames('np-size-swapper d-flex', {
+      className={classNames('np-size-swapper', {
+        'd-flex': !inline,
+        'd-inline-flex': inline,
         'flex-column': itemsToRender && itemsToRender.layout === Layout.COLUMN,
+        'flex-wrap': itemsToRender && itemsToRender.wrap,
       })}
       style={{ visibility: clientWidth ? 'visible' : 'hidden' }}
       ref={parentRef}
@@ -51,14 +54,20 @@ SizeSwapper.Breakpoint = Breakpoint;
 SizeSwapper.Layout = Layout;
 
 SizeSwapper.propTypes = {
+  inline: PropTypes.bool,
   /** List of items that will appear at the specified breakpoint and presented in row or columns depending on layout  */
-  items: Types.arrayOf(
-    Types.shape({
-      items: Types.arrayOf(Types.element),
-      breakpoint: Types.number,
-      layout: Types.oneOf([SizeSwapper.Layout.COLUMN]),
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      items: PropTypes.arrayOf(PropTypes.element),
+      breakpoint: PropTypes.number,
+      layout: PropTypes.oneOf([SizeSwapper.Layout.COLUMN]),
+      wrap: PropTypes.bool,
     }),
   ).isRequired,
+};
+
+SizeSwapper.defaultProps = {
+  inline: false,
 };
 
 export default SizeSwapper;

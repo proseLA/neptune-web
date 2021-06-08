@@ -1,8 +1,8 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
-import { ProcessIndicator } from '@transferwise/components';
+import { ProcessIndicator, Status, Size } from '@transferwise/components';
 import code from '../../../liveEditorCode/processIndicator.code';
 
-<LiveEditorBlock code={code} scope={{ ProcessIndicator }} />
+<LiveEditorBlock code={code} scope={{ ProcessIndicator, Status, Size }} />
 <GeneratePropsTable componentName="ProcessIndicator" />
 
 export const meta = {

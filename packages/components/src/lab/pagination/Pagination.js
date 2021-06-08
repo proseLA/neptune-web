@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 
@@ -125,25 +125,20 @@ const Pagination = ({
   );
 };
 
-Pagination.Type = Type;
-
 Pagination.propTypes = {
-  type: Types.oneOf([
-    Pagination.Type.NUMBERS_ONLY,
-    Pagination.Type.ARROWS_ONLY,
-    Pagination.Type.FULL,
-  ]),
-  numberOfPages: Types.number.isRequired,
-  currentPageIndex: Types.number.isRequired,
-  onClick: Types.func.isRequired,
-  canFetchMorePages: Types.bool,
-  className: Types.string,
+  type: PropTypes.oneOf(['numbersOnly', 'arrowsOnly', 'full']),
+  numberOfPages: PropTypes.number.isRequired,
+  currentPageIndex: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+  canFetchMorePages: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 Pagination.defaultProps = {
-  type: Pagination.Type.FULL,
+  type: Type.FULL,
   canFetchMorePages: false,
   className: undefined,
 };
 
+export { Type as PaginationType };
 export default Pagination;

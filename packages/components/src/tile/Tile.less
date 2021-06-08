@@ -9,6 +9,11 @@
     margin-top: 0;
     border: 1px solid var(--color-border-neutral);
   }
+
+  &.np-decision__tile--fixed-width {
+    width: 300px;
+  }
+
   &__media {
     width: 100%;
   }
@@ -28,6 +33,10 @@
   }
 
   &--small {
+    &.np-decision__tile--fixed-width {
+      width: 260px;
+    }
+
     .np-tile__title {
       margin-top: var(--size-12);
       font-size: @font-size-base; //16px
@@ -38,9 +47,11 @@
       margin-top: var(--size-4);
     }
   }
+
   &:hover {
     .tw-avatar {
       pointer-events: none;
+
       .tw-avatar__content {
         background-color: var(--color-background-screen);
       }

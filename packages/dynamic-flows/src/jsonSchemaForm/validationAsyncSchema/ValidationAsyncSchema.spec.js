@@ -127,6 +127,15 @@ describe('Given a component for rendering validation async schemas', () => {
       expect(basic.prop('required')).toBe(true);
     });
 
+    describe('when the initial model is not null', () => {
+      it('should should pass initial model to the basic type schema', () => {
+        component = mount(<ValidationAsyncSchema {...props} model="some initial value" />);
+        const basic = component.find(ValidationAsyncSchema).find(BasicTypeSchema);
+        expect(basic).toHaveLength(1);
+        expect(basic.prop('model')).toBe('some initial value');
+      });
+    });
+
     describe('when the field value is null', () => {
       it('should not trigger validation async', () => {
         enterValueAndBlur(null);

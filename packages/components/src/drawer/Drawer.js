@@ -1,31 +1,19 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Cross as CrossIcon } from '@transferwise/icons';
+
 import SlidingPanel from '../slidingPanel';
 import Dimmer from '../dimmer';
 import './Drawer.css';
 import { Position } from '../common/propsValues/position';
 import { logActionRequiredIf } from '../utilities';
-
-import KEY_CODES from '../common/keyCodes';
+import CloseButton from '../common/closeButton';
 
 const Drawer = ({ children, footerContent, headerTitle, onClose, open, position }) => {
   logActionRequiredIf(
     'Drawer now expects `onClose`, and will soon make this prop required. Please update your usage to provide it.',
     !onClose,
   );
-
-  const handleOnKeyDown = (event) => {
-    if (
-      event.keyCode === KEY_CODES.ESCAPE ||
-      event.key === 'Escape' ||
-      event.keyCode === KEY_CODES.ENTER ||
-      event.key === KEY_CODES.ENTER
-    ) {
-      onClose(event);
-    }
-  };
 
   return (
     <Dimmer open={open} onClose={onClose}>
@@ -36,16 +24,7 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
               'np-drawer-header--withborder': headerTitle,
             })}
           >
-            <div
-              role="button"
-              className="np-drawer-header close"
-              tabIndex={0}
-              onClick={onClose}
-              onKeyDown={onClose && handleOnKeyDown}
-              aria-label="Close"
-            >
-              <CrossIcon size={24} />
-            </div>
+            <CloseButton className="np-drawer-header" onClick={onClose} />
             {headerTitle && (
               <div className="align-heading m-l-2">
                 <div className="np-drawer-header--title h3">{headerTitle}</div>
@@ -66,21 +45,19 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
   );
 };
 
-Drawer.Position = { LEFT: Position.LEFT, RIGHT: Position.RIGHT };
-
 Drawer.propTypes = {
   /** The content to appear in the drawer body. */
-  children: Types.node,
+  children: PropTypes.node,
   /** The content to appear in the drawer footer. */
-  footerContent: Types.node,
+  footerContent: PropTypes.node,
   /** The content to appear in the drawer header. */
-  headerTitle: Types.string,
+  headerTitle: PropTypes.string,
   /** The action to perform on close click. */
-  onClose: Types.func,
+  onClose: PropTypes.func,
   /** The status of Drawer either open or not. */
-  open: Types.bool,
+  open: PropTypes.bool,
   /** The placement of Drawer on the screen either left or right. */
-  position: Types.oneOf([Drawer.Position.LEFT, Drawer.Position.RIGHT]),
+  position: PropTypes.oneOf(['left', 'right']),
 };
 
 Drawer.defaultProps = {
@@ -89,7 +66,7 @@ Drawer.defaultProps = {
   headerTitle: null,
   onClose: null,
   open: false,
-  position: Drawer.Position.RIGHT,
+  position: Position.RIGHT,
 };
 
 export default Drawer;

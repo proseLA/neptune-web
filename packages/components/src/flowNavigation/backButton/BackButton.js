@@ -1,5 +1,5 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ArrowLeft as ArrowLeftIcon } from '@transferwise/icons';
 
@@ -17,9 +17,9 @@ const BackButton = ({ label, className, onClick }) => (
 );
 
 BackButton.propTypes = {
-  className: Types.string,
-  label: Types.element,
-  onClick: Types.func.isRequired,
+  className: PropTypes.string,
+  label: PropTypes.element,
+  onClick: PropTypes.func.isRequired,
 };
 
 BackButton.defaultProps = {

@@ -1,39 +1,52 @@
 import React from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
+import { Position, Key } from '../common';
 
 import Chevron from '../chevron';
 import Option from '../common/Option';
 import './Card.css';
 
-const Card = ({
-  as: Element,
-  isExpanded,
-  title,
-  details,
-  children,
-  onClick,
-  icon,
-  id,
-  className,
-  ...rest
-}) => {
+const Card = React.forwardRef((props, ref) => {
+  const {
+    as: Element,
+    isExpanded,
+    title,
+    details,
+    children,
+    onClick,
+    icon,
+    id,
+    className,
+    ...rest
+  } = props;
   const isOpen = !!(isExpanded && children);
+  const TOGGLE_KEYS = [Key.ENTER, ...Key.SPACE];
 
   return (
     <Element
       className={classNames('tw-card list-group-item p-a-0', className, { active: isOpen })}
       id={id}
       data-testid={rest['data-testid']}
+      ref={ref}
     >
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/interactive-supports-focus, jsx-a11y/no-static-element-interactions */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
+        aria-expanded={isExpanded}
         className={classNames('p-a-panel tw-card__panel', {
           'tw-card__panel--inactive': !children,
         })}
         role={children ? 'button' : null}
-        onClick={() => children && onClick(!isExpanded)}
+        onClick={() => children && onClick(!isExpanded)} // TODO: Consider renaming to onExpand as Card can be expanded with keyboard
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+        tabIndex={children ? 0 : undefined}
+        onKeyDown={(event) => {
+          if (TOGGLE_KEYS.includes(event.key) && children) {
+            event.preventDefault();
+            onClick(!isExpanded);
+          }
+        }}
       >
         <Option
           as="div"
@@ -41,11 +54,7 @@ const Card = ({
           title={title}
           content={details}
           decision={false}
-          button={
-            children && (
-              <Chevron orientation={isOpen ? Chevron.Orientation.TOP : Chevron.Orientation.DOWN} />
-            )
-          }
+          button={children && <Chevron orientation={isOpen ? Position.TOP : Position.DOWN} />}
           inverseMediaCircle={isOpen}
         />
       </div>
@@ -64,23 +73,23 @@ const Card = ({
       )}
     </Element>
   );
-};
+});
 
 const hasChildren = ({ children }) => children;
 
 Card.propTypes = {
-  as: Types.elementType,
+  as: PropTypes.string,
   // eslint-disable-next-line
-  isExpanded: requiredIf(Types.bool, hasChildren),
-  title: Types.node.isRequired,
-  details: Types.node.isRequired,
+  isExpanded: requiredIf(PropTypes.bool, hasChildren),
+  title: PropTypes.node.isRequired,
+  details: PropTypes.node.isRequired,
   // eslint-disable-next-line
-  onClick: requiredIf(Types.func, hasChildren),
-  icon: Types.node.isRequired,
-  children: Types.node,
-  id: Types.string,
-  className: Types.string,
-  'data-testid': Types.string,
+  onClick: requiredIf(PropTypes.func, hasChildren),
+  icon: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  id: PropTypes.string,
+  className: PropTypes.string,
+  'data-testid': PropTypes.string,
 };
 
 Card.defaultProps = {

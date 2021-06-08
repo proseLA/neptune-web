@@ -1,7 +1,18 @@
+/**
+ * Default language
+ *
+ * @type {string}
+ */
 export const DEFAULT_LANG = 'en';
+
+/**
+ * Default locale
+ *
+ * @type {string}
+ */
 export const DEFAULT_LOCALE = 'en-GB';
 
-const COUNTRY_ISO2_CODE_LENGTH = 2;
+export const SUPPORTED_RTL = ['he-IL'];
 
 export const SUPPORTED_LANGUAGES = [
   DEFAULT_LANG,
@@ -17,6 +28,7 @@ export const SUPPORTED_LANGUAGES = [
   'ro',
   'ru',
   'tr',
+  'uk',
   'zh',
 ];
 
@@ -24,15 +36,15 @@ export const SUPPORTED_LANGUAGES = [
  * Verifies and adjusts locale (replace `_` with `-`)
  * Returns null if locale is unrecognized by {Intl.Locale}
  *
- * @param locale (`es`, `es_ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
- * @returns {Intl.Locale.baseName|null}
+ * @param {string} locale (`es`, `es_ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
+ * @returns {string|null}
  */
 export function adjustLocale(locale) {
   if (!locale || locale.trim().length === 0) {
     return null;
   }
   try {
-    const { baseName } = new Intl.Locale(locale.replace('_', '-'));
+    const { baseName } = new Intl.Locale(locale.trim().replace('_', '-'));
     return baseName;
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -45,8 +57,8 @@ export function adjustLocale(locale) {
  * Provides corresponding lang (iso2) for provided locale
  * if locale is invalid or language is unsupported returns null
  *
- * @param locale (`es`, `es-ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
- * @returns {Intl.Locale.language|null}
+ * @param {string} locale (`es`, `es-ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
+ * @returns {string|null}
  */
 export function getLangFromLocale(locale) {
   const adjustedLocale = adjustLocale(locale);
@@ -67,10 +79,10 @@ export function getLangFromLocale(locale) {
 }
 
 /**
- * Provides corresponding country code (iso2) for provided locale
- * if the value is invalid returns null
+ * Provides corresponding country code (iso2) for locales code with explicit region value (`es-ES`, `en-GB`, `ja-JP` etc.)
+ * if the value is invalid or missing region it returns null
  *
- * @param locale (`es`, `es-ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
+ * @param {string} locale
  * @returns {string|null}
  */
 export const getCountryFromLocale = (locale) => {
@@ -78,5 +90,12 @@ export const getCountryFromLocale = (locale) => {
   if (adjustedLocale === null) {
     return null;
   }
-  return adjustedLocale.slice(0, COUNTRY_ISO2_CODE_LENGTH);
+  try {
+    const { region } = new Intl.Locale(adjustedLocale);
+    return region ?? null;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return null;
+  }
 };

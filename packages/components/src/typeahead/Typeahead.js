@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React, { Component } from 'react';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import clamp from 'lodash.clamp';
 import classNames from 'classnames';
@@ -27,10 +27,6 @@ const DEFAULT_MIN_QUERY_LENGTH = 3;
 const SEARCH_DELAY = 200;
 
 export default class Typeahead extends Component {
-  static Size = Size;
-
-  static Type = Sentiment;
-
   constructor(props) {
     super(props);
     const { searchDelay, initialValue, multiple } = props;
@@ -380,9 +376,9 @@ export default class Typeahead extends Component {
       dropdownOpen,
     });
 
-    const hasError = errorState || (alert && alert.type === InlineAlert.Type.ERROR);
-    const displayAlert = (!errorState && alert) || (alert && alert.type === InlineAlert.Type.ERROR);
-    const hasWarning = displayAlert && alert.type === InlineAlert.Type.WARNING;
+    const hasError = errorState || (alert && alert.type === Sentiment.ERROR);
+    const displayAlert = (!errorState && alert) || (alert && alert.type === Sentiment.ERROR);
+    const hasWarning = displayAlert && alert.type === Sentiment.WARNING;
     return (
       <div
         id={id}
@@ -437,48 +433,48 @@ export default class Typeahead extends Component {
 }
 
 Typeahead.propTypes = {
-  id: Types.string.isRequired,
-  name: Types.string.isRequired,
-  options: Types.arrayOf(
-    Types.shape({
-      label: Types.string.isRequired,
-      note: Types.string,
-      secondary: Types.string,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      note: PropTypes.string,
+      secondary: PropTypes.string,
     }),
   ).isRequired,
-  initialValue: Types.arrayOf(
-    Types.shape({
-      label: Types.string.isRequired,
-      note: Types.string,
-      secondary: Types.string,
+  initialValue: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      note: PropTypes.string,
+      secondary: PropTypes.string,
     }),
   ),
-  onChange: Types.func.isRequired,
-  allowNew: Types.bool,
-  autoFocus: Types.bool,
-  clearable: Types.bool,
-  multiple: Types.bool,
-  showSuggestions: Types.bool,
-  showNewEntry: Types.bool,
-  searchDelay: Types.number,
-  maxHeight: Types.number,
-  minQueryLength: Types.number,
-  addon: Types.node,
-  placeholder: Types.string,
-  alert: Types.shape({
-    message: Types.string.isRequired,
-    type: Types.oneOf([Typeahead.Type.ERROR, Typeahead.Type.WARNING]).isRequired,
+  onChange: PropTypes.func.isRequired,
+  allowNew: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  clearable: PropTypes.bool,
+  multiple: PropTypes.bool,
+  showSuggestions: PropTypes.bool,
+  showNewEntry: PropTypes.bool,
+  searchDelay: PropTypes.number,
+  maxHeight: PropTypes.number,
+  minQueryLength: PropTypes.number,
+  addon: PropTypes.node,
+  placeholder: PropTypes.string,
+  alert: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['error', 'warning']).isRequired,
   }),
-  footer: Types.node,
-  validateChip: Types.func,
-  onSearch: Types.func,
-  onBlur: Types.func,
-  onInputChange: Types.func,
-  onFocus: Types.func,
-  chipSeparators: Types.arrayOf(Types.string),
-  size: Types.oneOf([Typeahead.Size.MEDIUM, Typeahead.Size.LARGE]),
-  inputAutoComplete: Types.string,
-  autoFillOnBlur: Types.bool,
+  footer: PropTypes.node,
+  validateChip: PropTypes.func,
+  onSearch: PropTypes.func,
+  onBlur: PropTypes.func,
+  onInputChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  chipSeparators: PropTypes.arrayOf(PropTypes.string),
+  size: PropTypes.oneOf(['md', 'lg']),
+  inputAutoComplete: PropTypes.string,
+  autoFillOnBlur: PropTypes.bool,
 };
 
 Typeahead.defaultProps = {
@@ -495,7 +491,7 @@ Typeahead.defaultProps = {
   placeholder: null,
   alert: null,
   footer: null,
-  size: Typeahead.Size.MEDIUM,
+  size: Size.MEDIUM,
   chipSeparators: [],
   initialValue: [],
   onSearch: null,

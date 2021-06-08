@@ -1,7 +1,7 @@
-import React from 'react';
-import { action } from '@storybook/addon-actions';
+import React, { useState } from 'react';
 import { boolean, select, date, text } from '@storybook/addon-knobs';
 import DateLookup from './DateLookup';
+import { Size } from '../common';
 
 export default {
   component: DateLookup,
@@ -9,15 +9,16 @@ export default {
 };
 
 export const basic = () => {
+  const [value, setValue] = useState(new Date('04-15-2021'));
   const disabled = boolean('disabled', false);
   const label = text('label', 'label');
   const monthFormat = select('monthFormat', ['long', 'short']);
   const placeholder = text('placeholder', 'placeholder');
-  const size = select('size', Object.values(DateLookup.Size), DateLookup.Size.MEDIUM);
+  const size = select('size', Object.values(Size), Size.MEDIUM);
 
-  const value = date('value', new Date('02-02-2000'));
-  const minvalue = date('minvalue', new Date('2000-01-01'));
-  const maxvalue = date('maxvalue', new Date('2040-03-01'));
+  const minvalue = date('minvalue', new Date('04-13-2021'));
+  const maxvalue = date('maxvalue', new Date('04-17-2021'));
+  const clearable = boolean('clearable', false);
 
   return (
     <DateLookup
@@ -26,24 +27,26 @@ export const basic = () => {
       max={new Date(maxvalue)}
       min={new Date(minvalue)}
       monthFormat={monthFormat}
-      onChange={(v) => action(v)}
+      onChange={(v) => setValue(v)}
       placeholder={placeholder}
       size={size}
-      value={new Date(value)}
+      value={value}
+      clearable={clearable}
     />
   );
 };
 
 export const rightAligned = () => {
+  const [value, setValue] = useState(new Date('04-15-2021'));
   const disabled = boolean('disabled', false);
   const label = text('label', 'label');
   const monthFormat = select('monthFormat', ['long', 'short']);
   const placeholder = text('placeholder', 'placeholder');
-  const size = select('size', Object.values(DateLookup.Size), DateLookup.Size.MEDIUM);
+  const size = select('size', Object.values(Size), Size.MEDIUM);
 
-  const value = date('value', new Date('02-02-2000'));
-  const minvalue = date('minvalue', new Date('2000-01-01'));
-  const maxvalue = date('maxvalue', new Date('2040-03-01'));
+  const minvalue = date('minvalue', new Date('04-13-2021'));
+  const maxvalue = date('maxvalue', new Date('04-17-2021'));
+  const clearable = boolean('clearable', false);
 
   return (
     <div className="row">
@@ -61,10 +64,11 @@ export const rightAligned = () => {
           max={new Date(maxvalue)}
           min={new Date(minvalue)}
           monthFormat={monthFormat}
-          onChange={(v) => action(v)}
+          onChange={(v) => setValue(v)}
           placeholder={placeholder}
           size={size}
-          value={new Date(value)}
+          value={value}
+          clearable={clearable}
         />
       </div>
     </div>

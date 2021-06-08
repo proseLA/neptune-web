@@ -1,20 +1,61 @@
 /**
  * @jest-environment node
  */
-
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import * as components from '.';
-import en from '../i18n/en.json';
+import * as exposedLibraryItems from '.';
+import en from './i18n/en.json';
 
-const excluded = ['useSnackbar', 'Provider'];
+const excluded = [
+  // hooks
+  'useSnackbar',
 
-function isNotExcluded(componentName) {
-  return !excluded.includes(componentName);
+  // specific components
+  'Provider',
+
+  // enums
+  'Size',
+  'Width',
+  'Sentiment',
+  'Priority',
+  'ControlType',
+  'Type',
+  'Theme',
+  'DateMode',
+  'MonthFormat',
+  'Position',
+  'Scroll',
+  'ProfileType',
+  'Breakpoint',
+  'Layout',
+  'Status',
+  'MarkdownNodeType',
+  'AvatarType',
+  'InfoPresentation',
+  'UploadStep',
+  'DecisionPresentation',
+  'DecisionType',
+  'AlertArrowPosition',
+  'LogoType',
+
+  // utils
+  'SUPPORTED_LANGUAGES',
+  'DEFAULT_LANG',
+  'DEFAULT_LOCALE',
+  'adjustLocale',
+  'getLangFromLocale',
+  'getCountryFromLocale',
+
+  // other
+  'translations',
+];
+
+function isNotExcluded(item) {
+  return !excluded.includes(item);
 }
 
 describe('Server side rendering', () => {
-  const componentNames = Object.keys(components).filter(isNotExcluded);
+  const componentNames = Object.keys(exposedLibraryItems).filter(isNotExcluded);
   expect(componentNames.length).toBeGreaterThan(0);
 
   // stick all possible properties we might need to render all components in here
@@ -27,6 +68,9 @@ describe('Server side rendering', () => {
     items: [],
     children: 'yo',
     id: '1',
+    text: 'test',
+    timeout: 0,
+    timestamp: 1,
     title: 'trolo',
     name: 'lolo',
     label: 'hello',
@@ -113,10 +157,10 @@ describe('Server side rendering', () => {
     Modal: { position: 'top' },
   };
 
-  const { Provider } = components;
+  const { Provider } = exposedLibraryItems;
   componentNames.forEach((componentName) => {
     it(`works for ${componentName} components`, () => {
-      const Component = components[componentName];
+      const Component = exposedLibraryItems[componentName];
 
       const newProps = { ...allProps };
       if (overrideProps[componentName]) {

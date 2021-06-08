@@ -6,7 +6,7 @@ exports[`OverlayHeader renders as expected 1`] = `
     class="np-header d-flex flex-wrap np-overlay-header p-a-3"
   >
     <div
-      class="align-items-center d-flex"
+      class="align-items-center np-header__left d-flex"
     >
       <img
         alt="logo_desktop"
@@ -16,7 +16,7 @@ exports[`OverlayHeader renders as expected 1`] = `
       />
     </div>
     <div
-      class="align-items-center d-flex justify-content-end order-2"
+      class="align-items-center d-flex np-header__right justify-content-end order-2"
     >
       <div
         class="tw-avatar tw-avatar--md tw-avatar--initials tw-avatar--light"

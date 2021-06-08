@@ -1,0 +1,60 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { AvatarWrapper } from '@transferwise/components';
+import { Profile } from '@transferwise/icons';
+import code from '../../../liveEditorCode/avatarWrapper.code';
+
+<LiveEditorBlock code={code} scope={{ AvatarWrapper }} />
+<GeneratePropsTable componentName="AvatarWrapper" />
+
+<table className="table table-condensed docs-table m-t-5">
+  <thead>
+    <tr>
+      <th>With avatar url</th>
+      <th>With badge url</th>
+      <th>With name</th>
+      <th>profileType</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>BUSINESS</td>
+      <td><AvatarWrapper url="https://wise.com/public-resources/assets/flags/square/gbp.svg" badgeUrl="https://wise.com/public-resources/assets/brand/fast_flag_badge.svg" name="John Smith" profileType="BUSINESS" /></td>
+    </tr>
+    <tr>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>BUSINESS</td>
+      <td><AvatarWrapper badgeUrl="https://wise.com/public-resources/assets/brand/fast_flag_badge.svg" name="John Smith" profileType="BUSINESS" /></td>
+    </tr>
+    <tr>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>PERSONAL</td>
+      <td><AvatarWrapper name="John Smith" profileType="PERSONAL" /></td>
+    </tr>
+    <tr>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td><AvatarWrapper name="John Smith" /></td>
+    </tr>
+    <tr>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td><AvatarWrapper/></td>
+    </tr>
+  </tbody>
+</table>
+
+export const meta = {
+  name: 'AvatarWrapper',
+};
