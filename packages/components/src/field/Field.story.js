@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { text } from '@storybook/addon-knobs';
 
-import { formValidators } from '@transferwise/neptune-validation';
+import { getFieldValidationFailures } from '@transferwise/neptune-validation';
 import Checkbox from '../checkbox';
 import DateInput from '../dateInput';
 
@@ -16,23 +16,23 @@ export const TextField = () => {
   const error = text('manual error', 'A manual');
   const help = text('help text', 'Please insert a value between 3 and 6 character');
   const [value, setValue] = useState('');
-  const [validation, setValidation] = useState([]);
+  const [validations, setValidations] = useState([]);
+
+  const rules = {
+    minLength: { value: 6 },
+    maxLength: { value: 4, message: 'Custom maxLength error message' },
+  };
 
   const handleOnChange = (val) => {
-    const validations = {
-      minLength: { value: 3, message: 'Insert a value longer than 3' },
-      maxLength: { value: 6, message: 'Insert a value shorter than 6' },
-    };
-
-    const failures = formValidators({
+    const failures = getFieldValidationFailures({
       value: val,
-      validations,
+      rules,
       isRequired: true,
       type: 'string',
     });
 
-    setValidation(failures);
     setValue(val);
+    setValidations(failures);
   };
 
   return (
@@ -42,7 +42,7 @@ export const TextField = () => {
         messages={{
           help,
           error,
-          validation,
+          validations,
         }}
       >
         <input type="text" value={value} onChange={(val) => handleOnChange(val)} />
@@ -58,33 +58,33 @@ export const NumberField = () => {
   const error = text('manual error', 'A manual');
   const help = text('help text', 'Please insert a value between 3 and 6');
   const [value, setValue] = useState('');
-  const [validation, setValidation] = useState([]);
+  const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
-    const validations = {
+    const rules = {
       minimum: { value: 3, message: 'Insert a value bigger than 3' },
       maximum: { value: 6, message: 'Insert a value smaller than 6' },
     };
 
-    const failures = formValidators({
+    const failures = getFieldValidationFailures({
       value: val,
-      validations,
+      rules,
       isRequired: true,
       type: 'number',
     });
 
-    setValidation(failures);
+    setValidations(failures);
     setValue(val);
   };
 
   return (
     <>
       <Field
-        label="Text Field"
+        label="Number Field"
         messages={{
           help,
           error,
-          validation,
+          validations,
         }}
       >
         <input type="number" value={value} onChange={(val) => handleOnChange(val)} />
@@ -98,17 +98,17 @@ export const NumberField = () => {
 
 export const CheckboxField = () => {
   const [value, setValue] = useState('');
-  const [validation, setValidation] = useState([]);
+  const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
-    const failures = formValidators({
+    const failures = getFieldValidationFailures({
       value: val,
-      validations: {},
+      rules: {},
       isRequired: true,
       type: 'checkbox',
     });
 
-    setValidation(failures);
+    setValidations(failures);
     setValue(val);
   };
 
@@ -116,7 +116,7 @@ export const CheckboxField = () => {
     <>
       <Field
         messages={{
-          validation,
+          validations,
         }}
       >
         <Checkbox label="label" onChange={(val) => handleOnChange(val)} checked={value} />
@@ -131,40 +131,34 @@ export const CheckboxField = () => {
 export const DateInputField = () => {
   const help = text('help text', 'Please insert a date 01-01-2000 and 03-01-2000');
   const [value, setValue] = useState('');
-  const [validation, setValidation] = useState([]);
+  const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
-    const validations = {
+    const rules = {
       minimum: { value: new Date('2000-01-02'), message: 'Insert a value after 01-01-2000' },
       maximum: { value: new Date('2000-01-04'), message: 'Insert a value before 03-01-2000' },
     };
-    const failures = formValidators({
+    const failures = getFieldValidationFailures({
       value: val,
-      validations,
+      rules,
       isRequired: true,
       type: 'date',
     });
 
-    setValidation(failures);
+    setValidations(failures);
     setValue(val);
   };
 
   return (
     <>
       <Field
+        label="Date Field"
         messages={{
-          validation,
+          validations,
           help,
         }}
       >
-        <DateInput
-          onChange={(val) => handleOnChange(val)}
-          dayLabel="Day input"
-          monthLabel="Month Select"
-          yearLabel="Year input"
-          value={value}
-          id="date-input-1"
-        />
+        <DateInput onChange={(val) => handleOnChange(val)} value={value} id="date-input-1" />
       </Field>
 
       <div>{`value: ${value}`}</div>

@@ -1,15 +1,93 @@
-import { LiveEditorBlock, GeneratePropsTable } from '../../../utils/';
+import { LiveEditorBlock, GeneratePropsTable, CodeBlock } from '../../../utils/';
 import { DocLink } from '../../../utils/pageUtils';
 import { Field } from '@transferwise/components';
 import { Checkbox, Alert, DateInput, Sentiment, Size } from '@transferwise/components';
 import code from '../../../liveEditorCode//field.code';
-import { formValidators } from '@transferwise/neptune-validation';
+import { getFieldValidationFailures } from '@transferwise/neptune-validation';
 
 Field is a new component that provides validation to its children. Validation messages are automatically
 attached to the validated component with styling. Currently the supported children types are:
 
-<LiveEditorBlock code={code} scope={{ Field, formValidators }} />
+<LiveEditorBlock code={code} scope={{ Field, getFieldValidationFailures }} />
 <GeneratePropsTable componentName="Field" />
+
+## Validation examples
+
+<div className="scroll-table">
+  <table className="docs-table table ">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Priority</th>
+        <th>Preview</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Accent</th>
+        <th>Primary</th>
+        <td>
+        
+       
+        </td>
+      </tr>
+      <tr>
+        <th>Accent</th>
+        <th>Secondary</th>
+        <td>
+          <Button priority="secondary" block={true} onClick={() => {}}>
+            Convert money
+          </Button>
+        </td>
+      </tr>
+      <tr>
+        <th>Accent</th>
+        <th>Tertiary</th>
+        <td>
+          <Button priority="tertiary" block={true} onClick={() => {}}>
+            Convert money
+          </Button>
+        </td>
+      </tr>
+      <tr>
+        <th>Positive</th>
+        <th>Primary</th>
+        <td>
+          <Button type="positive" block={true} onClick={() => {}}>
+            Send money
+          </Button>
+        </td>
+      </tr>
+      <tr>
+        <th>Positive</th>
+        <th>Secondary</th>
+        <td>
+          <Button type="positive" priority="secondary" block={true} onClick={() => {}}>
+            Confirm
+          </Button>
+        </td>
+      </tr>
+      <tr>
+        <th>Negative</th>
+        <th>Primary</th>
+        <td>
+          <Button type="negative" block={true} onClick={() => {}}>
+            Delete
+          </Button>
+        </td>
+      </tr> <tr>
+        <th>Negative</th>
+        <th>Secondary</th>
+        <td>
+          <Button type="negative" priority="secondary" block={true} onClick={() => {}}>
+            Cancel
+          </Button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
 
 export const meta = {
   name: `Field`,

@@ -9,7 +9,7 @@ import { Sentiment } from '../common';
 type FieldProps = {
   children: React.ReactElement;
   label?: string;
-  messages: { error: string; help: string; validation: string[] };
+  messages: { error: string; help: string; validations: string[] };
   submitted?: boolean;
 };
 

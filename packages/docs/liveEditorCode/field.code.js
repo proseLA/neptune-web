@@ -8,7 +8,7 @@
       maxLength: { value: 6, message: 'Insert a value shorter than 6' },
     };
 
-    const failures = formValidators({
+    const failures = getFieldValidationFailures({
       value: val,
       validations,
       isRequired: true,
