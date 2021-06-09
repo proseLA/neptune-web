@@ -19,6 +19,7 @@ export const basic = () => {
     confirm: '/confirm',
     final: '/final',
     error: '/error',
+    recipient_details: '/recipient_details',
   };
 
   const flowUrl = select('step', steps, '/decision');

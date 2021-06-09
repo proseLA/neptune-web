@@ -10,6 +10,7 @@ import { convertStepToLayout, inlineReferences } from './layoutService';
 import { restHttpClient as defaultHttpClient } from './httpClient';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { Size } from '../common';
+import { getValidModelParts } from '../common/validation/valid-model';
 
 /**
  * ## DynamicFlow
@@ -31,8 +32,6 @@ const DynamicFlow = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
 
-  const INITIALIZATION_SCHEMA_PROPERTY = 'initial';
-
   useEffect(() => {
     const action = { url: flowUrl, method: 'GET' };
     fetchStep(action);
@@ -40,7 +39,7 @@ const DynamicFlow = (props) => {
 
   useEffect(() => {
     if (stepSpecification?.model) {
-      setModels({ [INITIALIZATION_SCHEMA_PROPERTY]: stepSpecification.model });
+      setModels(buildInitialModels(stepSpecification.model, stepSpecification.schemas));
     }
   }, [stepSpecification]);
 
@@ -160,8 +159,6 @@ const DynamicFlow = (props) => {
   };
 
   const updateModels = (schemaRef, model) => {
-    delete models[INITIALIZATION_SCHEMA_PROPERTY];
-
     const newModels = {
       ...models,
       [schemaRef]: model,
@@ -171,6 +168,16 @@ const DynamicFlow = (props) => {
     setModelIsValid(areModelsValid(newModels, stepSpecification.schemas));
 
     return newModels;
+  };
+
+  const buildInitialModels = (model, schemas) => {
+    return schemas?.reduce(
+      (accumulator, schema) => ({
+        ...accumulator,
+        [schema.$id]: getValidModelParts(stepSpecification.model, schema),
+      }),
+      {},
+    );
   };
 
   const combineModels = (formModels) =>
