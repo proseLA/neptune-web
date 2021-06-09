@@ -295,12 +295,16 @@ describe('Given a utility service for handling dynamic layouts', () => {
           },
         },
         {
-          type: 'action',
-          $ref: '#submitMyDetails',
+          type: 'button',
+          action: {
+            $ref: '#submitMyDetails',
+          },
         },
         {
-          type: 'action',
-          $ref: '#submitMyAddress',
+          type: 'button',
+          action: {
+            $ref: '#submitMyAddress',
+          },
         },
       ];
 
@@ -364,8 +368,10 @@ describe('Given a utility service for handling dynamic layouts', () => {
               },
             },
             {
-              type: 'action',
-              $ref: '#submitMyAddress',
+              type: 'button',
+              action: {
+                $ref: '#submitMyAddress',
+              },
             },
           ],
         },
@@ -415,8 +421,10 @@ describe('Given a utility service for handling dynamic layouts', () => {
               },
             },
             {
-              type: 'action',
-              $ref: '#submitMyDetails',
+              type: 'button',
+              action: {
+                $ref: '#submitMyDetails',
+              },
             },
           ],
           right: [
@@ -427,8 +435,10 @@ describe('Given a utility service for handling dynamic layouts', () => {
               },
             },
             {
-              type: 'action',
-              $ref: '#submitMyAddress',
+              type: 'button',
+              action: {
+                $ref: '#submitMyAddress',
+              },
             },
           ],
         },
