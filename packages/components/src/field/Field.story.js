@@ -122,20 +122,19 @@ export const CheckboxField = () => {
 };
 
 export const DateInputField = () => {
-  const help = text('help text', 'Please insert a date 01-01-2000 and 03-01-2000');
-  const [value, setValue] = useState('');
+  const help = text('help text', 'Please insert a date between 01-01-2000 and 03-01-2000');
+  const [value, setValue] = useState('2000-01-01T00:00:00Z');
   const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
     const rules = {
-      minimum: { value: new Date('2000-01-02'), message: 'Insert a value after 01-01-2000' },
-      maximum: { value: new Date('2000-01-04'), message: 'Insert a value before 03-01-2000' },
+      type: 'string',
+      minimum: { value: '2000-01-02T00:00:00Z', message: 'Insert a value after 02-01-2000' },
+      maximum: { value: '2000-01-04T00:00:00Z', message: 'Insert a value before 04-01-2000' },
     };
     const failures = getFieldValidationFailures({
       value: val,
       rules,
-      isRequired: true,
-      type: 'date',
     });
 
     setValidations(failures);
