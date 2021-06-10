@@ -26,7 +26,7 @@ describe('Given a component for rendering a dynamic layout', () => {
   const action = {
     url: '/exampe',
     method: 'GET',
-    label: 'example',
+    title: 'example',
   };
 
   const model = 'example';

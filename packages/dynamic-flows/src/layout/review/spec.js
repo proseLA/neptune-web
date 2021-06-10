@@ -20,7 +20,7 @@ describe('Given a component for dynamically rendering reviews', () => {
         },
       ],
       action: {
-        label: 'Edit',
+        title: 'Edit',
         url: '/example',
         method: 'GET',
       },
@@ -41,8 +41,8 @@ describe('Given a component for dynamically rendering reviews', () => {
     ]);
   });
 
-  it('should use the action label for the action link', () => {
-    expect(component.find('a').contains(spec.action.label)).toBe(true);
+  it('should use the action title for the action link', () => {
+    expect(component.find('a').contains(spec.action.title)).toBe(true);
   });
 
   describe('when the action link is clicked', () => {

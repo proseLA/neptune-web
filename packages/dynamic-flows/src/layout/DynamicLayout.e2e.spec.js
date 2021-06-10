@@ -13,7 +13,7 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
   const action = {
     url: '/exampe',
     method: 'GET',
-    label: 'example',
+    title: 'example',
   };
 
   const model = { an: 'example' };

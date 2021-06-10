@@ -29,7 +29,7 @@ const DynamicReview = (props) => {
   const getReviewAction = (action) => {
     return (
       <a href={action.url} className="pull-right" onClick={onActionClick} role="button">
-        {action.label}
+        {action.title}
       </a>
     );
   };

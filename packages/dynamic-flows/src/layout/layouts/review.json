@@ -18,7 +18,7 @@
             "text": "Transfer details",
             "orientation": "horizontal",
             "action": {
-              "label": "Edit",
+              "title": "Edit",
               "url": "/edit-transfer",
               "method": "GET"
             },
@@ -61,7 +61,7 @@
             "text": "Recipient details",
             "orientation": "horizontal",
             "action": {
-              "label": "Edit",
+              "title": "Edit",
               "url": "/recipient",
               "method": "GET"
             },
@@ -150,7 +150,7 @@
         "type": "button",
         "context": "success",
         "action": {
-          "label": "Create transfer",
+          "title": "Create transfer",
           "method": "POST",
           "url": "/final"
         }
