@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.4.1...@transferwise/components@36.5.0) (2021-06-10)
+
+
+### Features
+
+* target support in Decision ([#986](https://github.com/transferwise/neptune-web/issues/986)) ([8954ee9](https://github.com/transferwise/neptune-web/commit/8954ee9f3f055ba3843376f447a2461fe8ef5cd6))
+
+
+
+
+
 ## [36.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.4.0...@transferwise/components@36.4.1) (2021-06-03)
 
 
