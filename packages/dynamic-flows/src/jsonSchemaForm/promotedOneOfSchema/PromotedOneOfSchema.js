@@ -29,7 +29,7 @@ const PromotedOneOfSchema = (props) => {
 
   const getOtherOneOf = (schema) => {
     const other = schema.oneOf.filter((one) => !isPromoted(one));
-    const title = schema.promotion.other.heading.text;
+    const title = schema.promotion.other.heading?.text;
     if (other.length === 1) {
       return { ...other[0], title };
     }
