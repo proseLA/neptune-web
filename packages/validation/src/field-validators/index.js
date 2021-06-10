@@ -1,90 +1,71 @@
-import { isNull, isString, isNumber, isDate } from '../type-validators';
-
 import {
-  isValidMaxLength,
-  isValidMinLength,
   isValidRequired,
-  isValidMinimum,
-  isValidMaximum,
+  isValidMinLength,
+  isValidMaxLength,
   isValidPattern,
+  isValidMaximum,
+  isValidMinimum,
+  isValidMinItems,
+  isValidMaxItems,
 } from '../rule-validators';
 
-export const getFieldValidationFailures = ({ value, rules, isRequired, type }) => {
-  if (type === 'string') {
-    return stringValidators({ value, rules, isRequired });
-  }
-  if (type === 'number') {
-    return numberValidators({ value, rules, isRequired });
-  }
-  if (type === 'checkbox') {
-    return requiredValidators({ value, rules, isRequired });
-  }
-  if (type === 'date') {
-    return dateValidators({ value, rules, isRequired });
-  }
-  return [];
-};
+import {
+  isObject,
+  isArray,
+  isString,
+  isNumber,
+  isInteger,
+  isBoolean,
+  isNull,
+} from '../type-validators';
 
-const stringValidators = ({ value, rules, isRequired }) => {
+const TYPE_ERROR = { message: 'type' };
+
+function getFieldValidationFailures(value, rules) {
+  const isRequired = rules.required;
+
+  if (rules.enum) {
+    return getEnumValidationFailures(value, rules, isRequired);
+  }
+
+  if (rules.const) {
+    return getConstValidationFailures(value, rules, isRequired);
+  }
+
+  if (isNull(value)) {
+    return isRequired ? ['required'] : [];
+  }
+
+  switch (rules.type) {
+    case 'string':
+      return getStringValidationFailures(value, rules, isRequired);
+    case 'number':
+      return getNumberValidationFailures(value, rules, isRequired);
+    case 'integer':
+      return getIntegerValidationFailures(value, rules, isRequired);
+    case 'boolean':
+      return getBooleanValidationFailures(value, rules, isRequired);
+    case 'array':
+      return getArrayValidationFailures(value, rules);
+    case 'object':
+      return getObjectValidationFailures(value, rules);
+    default:
+      return [];
+  }
+}
+
+function getStringValidationFailures(value, rules, isRequired) {
   if (!isString(value) && !isNull(value)) {
-    return ['type'];
+    return [TYPE_ERROR];
   }
 
   if (value === '' && isRequired) {
-    return ['required'];
-  }
-
-  const failures = [];
-  if (!isValidRequired({ value, isRequired })) {
-    failures.push('required');
-  }
-
-  if (rules?.minLength?.value && !isValidMinLength(value, rules.minLength.value)) {
-    failures.push({
-      message: 'minLength',
-      ...rules?.minLength,
-    });
-  }
-  if (rules?.maxLength?.value && !isValidMaxLength(value, rules.maxLength.value)) {
-    failures.push({
-      message: 'maxLength',
-      ...rules?.maxLength,
-    });
-  }
-  if (rules?.pattern?.value && !isValidPattern(value, rules.pattern.value)) {
-    failures.push({
-      message: 'pattern',
-      ...rules?.pattern,
-    });
-  }
-  if (rules?.minimum?.value && !isValidMinimum(value, rules.minimum.value)) {
-    failures.push({
-      message: 'minimum',
-      ...rules?.minimum,
-    });
-  }
-  if (rules?.maximum?.value && !isValidMaximum(value, rules.maximum.value)) {
-    failures.push({
-      message: 'maximum',
-      ...rules?.maximum,
-    });
-  }
-  return failures;
-};
-
-const requiredValidators = ({ value, isRequired }) => {
-  const failures = [];
-  if (!value && isRequired) {
-    return ['required'];
-  }
-  return failures;
-};
-
-const numberValidators = ({ value: eventValue, rules, isRequired }) => {
-  const value = Number(eventValue);
-
-  if (!isNumber(value) && !isNull(value)) {
-    return ['type'];
+    return [
+      {
+        message: 'required',
+        ...rules?.required,
+      },
+    ];
   }
 
   const failures = [];
@@ -94,42 +75,159 @@ const numberValidators = ({ value: eventValue, rules, isRequired }) => {
       ...rules?.required,
     });
   }
-  if (rules?.minimum?.value && !isValidMinimum(value, rules.minimum.value)) {
+  if (rules?.minLength && !isValidMinLength(value, rules.minLength.value)) {
+    failures.push({
+      message: 'minLength',
+      ...rules?.minLength,
+    });
+  }
+  if (rules?.maxLength && !isValidMaxLength(value, rules.maxLength.value)) {
+    failures.push({
+      message: 'maxLength',
+      ...rules?.maxLength,
+    });
+  }
+  if (rules?.pattern && !isValidPattern(value, rules.pattern.value)) {
+    failures.push({
+      message: 'pattern',
+      ...rules?.pattern,
+    });
+  }
+  if (rules?.minimum && !isValidMinimum(value, rules.minimum.value)) {
     failures.push({
       message: 'minimum',
       ...rules?.minimum,
     });
   }
-  if (rules?.maximum?.value && !isValidMaximum(value, rules.maximum.value)) {
+  if (rules?.maximum && !isValidMaximum(value, rules.maximum.value)) {
     failures.push({
       message: 'maximum',
       ...rules?.maximum,
     });
   }
   return failures;
-};
+}
 
-const dateValidators = ({ value: eventValue, rules, isRequired }) => {
-  if (!isDate(value) && !isNull(value)) {
-    return ['type'];
+function getNumberValidationFailures(value, rules, isRequired) {
+  if (!isNumber(value) && !isNull(value)) {
+    return [TYPE_ERROR];
   }
-  const value = +new Date(eventValue);
 
   const failures = [];
   if (!isValidRequired(value, isRequired)) {
-    failures.push('required');
-  }
-  if (rules?.minimum?.value && !isValidMinimum(value, +rules.minimum.value)) {
     failures.push({
-      message: 'date.minimum',
+      message: 'required',
+      ...rules?.required,
+    });
+  }
+  if (rules?.minimum && !isValidMinimum(value, rules.minimum.value)) {
+    failures.push({
+      message: 'minimum',
       ...rules?.minimum,
     });
   }
-  if (rules?.maximum?.value && !isValidMaximum(value, +rules.maximum.value)) {
+  if (rules?.maximum && !isValidMaximum(value, rules.maximum.value)) {
     failures.push({
-      message: 'date.maximum',
+      message: 'maximum',
       ...rules?.maximum,
     });
   }
   return failures;
-};
+}
+
+function getIntegerValidationFailures(value, rules, isRequired) {
+  if (!isInteger(value)) {
+    return [TYPE_ERROR];
+  }
+  return getNumberValidationFailures(value, rules, isRequired);
+}
+
+function getBooleanValidationFailures(value, rules, isRequired) {
+  if (!isBoolean(value) && !isNull(value)) {
+    return [TYPE_ERROR];
+  }
+
+  const failures = [];
+  if (!isValidRequired(value, isRequired)) {
+    failures.push({
+      message: 'required',
+      ...rules?.required,
+    });
+  }
+  return failures;
+}
+
+function getEnumValidationFailures(value, rules, isRequired) {
+  if (!isValidRequired(value, isRequired)) {
+    return [
+      {
+        message: 'required',
+        ...rules?.required,
+      },
+    ];
+  }
+
+  if (isNull(value) || rules.enum.indexOf(value) === -1) {
+    return ['enum'];
+  }
+  return [];
+}
+
+function getConstValidationFailures(value, rules, isRequired) {
+  if (!isValidRequired(value, isRequired)) {
+    return [
+      {
+        message: 'required',
+        ...rules?.required,
+      },
+    ];
+  }
+
+  if (value !== rules.const) {
+    return ['enum'];
+  }
+  return [];
+}
+
+function getArrayValidationFailures(value, rules) {
+  if (!isArray(value) && !isNull(value)) {
+    return [TYPE_ERROR];
+  }
+
+  const failures = [];
+  if (rules?.minItems && !isValidMinItems(value, rules.minItems.value)) {
+    failures.push({
+      message: 'minItems',
+      ...rules?.minItems,
+    });
+  }
+  if (rules?.maxItems && !isValidMaxItems(value, rules.maxItems.value)) {
+    failures.push({
+      message: 'maxItems',
+      ...rules?.maxItems,
+    });
+  }
+  return failures;
+}
+
+/**
+ * When validating an object we only checking that it is an object and that it
+ * has the required properties, we do not check if the properties are valid.
+ */
+function getObjectValidationFailures(value, rules) {
+  if (!isObject(value) && !isNull(value)) {
+    return [TYPE_ERROR];
+  }
+
+  if (!isArray(rules.required)) {
+    return [];
+  }
+
+  const allPresent = rules.required
+    .map((prop) => typeof value[prop] !== 'undefined')
+    .reduce((propInModel, validSoFar) => propInModel && validSoFar, true);
+
+  return allPresent ? [] : ['required'];
+}
+
+export { getFieldValidationFailures, TYPE_ERROR };

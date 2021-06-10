@@ -19,17 +19,14 @@ export const TextField = () => {
   const [validations, setValidations] = useState([]);
 
   const rules = {
+    type: 'string',
+    required: true,
     minLength: { value: 6 },
     maxLength: { value: 4, message: 'Custom maxLength error message' },
   };
 
   const handleOnChange = (val) => {
-    const failures = getFieldValidationFailures({
-      value: val,
-      rules,
-      isRequired: true,
-      type: 'string',
-    });
+    const failures = getFieldValidationFailures(val, rules);
 
     setValue(val);
     setValidations(failures);
@@ -62,16 +59,13 @@ export const NumberField = () => {
 
   const handleOnChange = (val) => {
     const rules = {
+      type: 'number',
+      required: true,
       minimum: { value: 3, message: 'Insert a value bigger than 3' },
       maximum: { value: 6, message: 'Insert a value smaller than 6' },
     };
 
-    const failures = getFieldValidationFailures({
-      value: val,
-      rules,
-      isRequired: true,
-      type: 'number',
-    });
+    const failures = getFieldValidationFailures(val, rules);
 
     setValidations(failures);
     setValue(val);
@@ -101,12 +95,11 @@ export const CheckboxField = () => {
   const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
-    const failures = getFieldValidationFailures({
-      value: val,
-      rules: {},
-      isRequired: true,
-      type: 'checkbox',
-    });
+    const rules = {
+      type: 'boolean',
+      required: true,
+    };
+    const failures = getFieldValidationFailures(val, rules);
 
     setValidations(failures);
     setValue(val);
