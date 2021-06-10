@@ -6,7 +6,17 @@ import { Size, Key } from '../common';
 
 import './Tile.css';
 
-export const Tile = ({ className, description, disabled, href, media, onClick, size, title }) => {
+export const Tile = ({
+  className,
+  description,
+  disabled,
+  href,
+  target,
+  media,
+  onClick,
+  size,
+  title,
+}) => {
   const isSmall = size === Size.SMALL;
 
   return (
@@ -25,6 +35,7 @@ export const Tile = ({ className, description, disabled, href, media, onClick, s
         },
       )}
       href={href}
+      target={target}
       onClick={disabled ? null : onClick}
       onKeyDown={
         disabled
@@ -50,6 +61,7 @@ Tile.propTypes = {
   description: PropTypes.node,
   disabled: PropTypes.bool,
   href: PropTypes.string.isRequired,
+  target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
   /** Accepts only Avatar and images */
   media: PropTypes.node.isRequired,
   /** Function called onClick or onKeyDown */
@@ -64,6 +76,7 @@ Tile.defaultProps = {
   description: null,
   disabled: false,
   size: Size.MEDIUM,
+  target: undefined,
 };
 
 export default Tile;

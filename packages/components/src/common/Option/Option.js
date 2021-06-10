@@ -8,6 +8,7 @@ import './Option.css';
 const Option = ({
   as: Element,
   href,
+  target,
   media,
   title,
   content,
@@ -32,6 +33,7 @@ const Option = ({
     href={href}
     onClick={onClick}
     htmlFor={htmlFor}
+    target={target}
     disabled={disabled && Element === 'button'}
   >
     {media && (
@@ -64,6 +66,7 @@ Option.propTypes = {
   content: PropTypes.node,
   onClick: PropTypes.func,
   href: requiredIf(PropTypes.string, (props) => props.as === 'a'),
+  target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
   as: PropTypes.string,
   disabled: PropTypes.bool,
   button: PropTypes.node,
@@ -84,6 +87,7 @@ Option.defaultProps = {
   button: null,
   onClick: null,
   href: null,
+  target: undefined,
   decision: true,
   complex: false,
   inverseMediaCircle: true,
