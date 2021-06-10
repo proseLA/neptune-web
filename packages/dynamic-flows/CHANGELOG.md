@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.4.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.4.1...@transferwise/dynamic-flows@13.4.2) (2021-06-10)
+
+
+### Bug Fixes
+
+* PromotedOneOfSchema does not require heading ([#988](https://github.com/transferwise/neptune-web/issues/988)) ([4b8c429](https://github.com/transferwise/neptune-web/commit/4b8c42905b03ed38c6b6fe26da4fa237607e4328))
+
+
+
+
+
 ## [13.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.4.0...@transferwise/dynamic-flows@13.4.1) (2021-06-08)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
