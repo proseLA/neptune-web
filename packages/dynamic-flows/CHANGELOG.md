@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.4.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.4.2...@transferwise/dynamic-flows@13.4.3) (2021-06-10)
+
+
+### Bug Fixes
+
+* fDynamicButton to use action.title instead of label ([#987](https://github.com/transferwise/neptune-web/issues/987)) ([e5261dc](https://github.com/transferwise/neptune-web/commit/e5261dc43a78495e385550d0d9bfaf16e191bcbc))
+
+
+
+
+
 ## [13.4.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.4.1...@transferwise/dynamic-flows@13.4.2) (2021-06-10)
 
 
