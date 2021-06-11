@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/transferwise/neptune-web/compare/@transferwise/test-config@3.0.6...@transferwise/test-config@3.0.7) (2021-06-11)
+
+**Note:** Version bump only for package @transferwise/test-config
+
+
+
+
+
 ## [3.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/test-config@3.0.5...@transferwise/test-config@3.0.6) (2021-05-10)
 
 
