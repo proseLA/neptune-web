@@ -62,9 +62,9 @@
     "react-intl": "^5.10.0"
   },
   "peerDependencies": {
-    "@transferwise/components": "^36.2.0",
+    "@transferwise/components": "^36.4.1",
     "@transferwise/icons": "^2.6.0",
-    "@transferwise/neptune-css": "^8.1.0",
+    "@transferwise/neptune-css": "^9.2.0",
     "prop-types": "^15.7.2",
     "react": "^16",
     "react-dom": "^16",
