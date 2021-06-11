@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.5.1...@transferwise/dynamic-flows@13.5.2) (2021-06-11)
+
+
+### Bug Fixes
+
+* dynamic review component should use `title` instead of `text` ([73f71b1](https://github.com/transferwise/neptune-web/commit/73f71b109e7723418ce7f36ddf2f9a1308035005))
+
+
+
+
+
 ## [13.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.5.0...@transferwise/dynamic-flows@13.5.1) (2021-06-11)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
