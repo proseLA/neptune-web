@@ -13,6 +13,7 @@ describe('Given a component for dynamically rendering reviews', () => {
   beforeEach(() => {
     spec = {
       component: 'review',
+      title: 'title',
       fields: [
         {
           label: 'a',
@@ -39,6 +40,10 @@ describe('Given a component for dynamically rendering reviews', () => {
         value: 'b',
       },
     ]);
+  });
+
+  it('should use the title for the header', () => {
+    expect(component.find('h6').contains(spec.title)).toBe(true);
   });
 
   it('should use the action title for the action link', () => {

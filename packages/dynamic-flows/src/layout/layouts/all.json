@@ -38,7 +38,7 @@
           },
           {
             "type": "review",
-            "text": "Review title",
+            "title": "Review title",
             "margin": "lg",
             "orientation": "horizontal",
             "action": {

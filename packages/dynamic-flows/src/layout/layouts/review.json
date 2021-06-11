@@ -15,7 +15,7 @@
         "components": [
           {
             "type": "review",
-            "text": "Transfer details",
+            "title": "Transfer details",
             "orientation": "horizontal",
             "action": {
               "title": "Edit",
@@ -58,7 +58,7 @@
           },
           {
             "type": "review",
-            "text": "Recipient details",
+            "title": "Recipient details",
             "orientation": "horizontal",
             "action": {
               "title": "Edit",
