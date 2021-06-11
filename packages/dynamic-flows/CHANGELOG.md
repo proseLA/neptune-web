@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.4.4...@transferwise/dynamic-flows@13.5.0) (2021-06-11)
+
+
+### Features
+
+* render help popover in OneOfSchema ([8af1f05](https://github.com/transferwise/neptune-web/commit/8af1f058b304febf56e82035694a940e2c350301))
+
+
+
+
+
 ## [13.4.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.4.3...@transferwise/dynamic-flows@13.4.4) (2021-06-10)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
