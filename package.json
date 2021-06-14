@@ -27,6 +27,7 @@
     ]
   },
   "devDependencies": {
+    "yarn-deduplicate": "^3.1.0",
     "@axe-core/react": "^4.1.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "11.0.0",
@@ -60,6 +61,7 @@
     "**/adjust-sourcemap-loader/object-path": "^0.11.5"
   },
   "scripts": {
+    "postinstall": "yarn yarn-lock-cleanup --fail",
     "setup": "yarn install --frozen-lockfile && yarn build",
     "start": "echo 'Run yarn setup to install dependencies and build all packages.'",
     "build": "lerna run build --stream",
@@ -74,7 +76,8 @@
     "preinstall": "node enforce-yarn.js",
     "create-component": "files-scaffold",
     "test:visual": "lerna run test:visual --stream",
-    "gh-pages-cleanup": " node ./bin/gh-page-cleanup.js"
+    "gh-pages-cleanup": " node ./bin/gh-page-cleanup.js",
+    "yarn-lock-cleanup": "yarn-deduplicate"
   },
   "husky": {
     "hooks": {
