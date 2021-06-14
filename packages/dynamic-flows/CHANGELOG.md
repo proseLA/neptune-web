@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.5.3...@transferwise/dynamic-flows@13.6.0) (2021-06-14)
+
+
+### Features
+
+* Render title in PromotedOneOf ([6bb06d4](https://github.com/transferwise/neptune-web/commit/6bb06d466dc2dc3db6b1ae4744f1ea3913ac206b))
+
+
+
+
+
 ## [13.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.5.2...@transferwise/dynamic-flows@13.5.3) (2021-06-14)
 
 
