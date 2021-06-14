@@ -10,6 +10,7 @@ describe('Given a PromotedOneOfRadioControl component', () => {
   let props;
   let setSelection;
   const selection = 'promoted';
+  const title = 'Group title';
 
   const promotedOneOf = {
     title: 'a promoted oneOf title',
@@ -37,6 +38,7 @@ describe('Given a PromotedOneOfRadioControl component', () => {
   beforeEach(() => {
     setSelection = jest.fn();
     props = {
+      title,
       promotedOneOf,
       promotion,
       selection,
@@ -49,6 +51,10 @@ describe('Given a PromotedOneOfRadioControl component', () => {
       component = shallow(<PromotedOneOfRadioControl {...props} />);
 
       expect(component.find(RadioGroup)).toHaveLength(1);
+    });
+
+    it('should render the schema title in a label', () => {
+      expect(component.find('.control-label').text()).toContain(title);
     });
 
     describe('when promoted labels are available', () => {

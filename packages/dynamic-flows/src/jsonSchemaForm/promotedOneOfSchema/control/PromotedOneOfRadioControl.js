@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Types from 'prop-types';
 import { RadioGroup } from '@transferwise/components';
 import { mapAvatar, mapIcon } from '../../schemaFormControl/optionMapper';
 
 const PromotedOneOfRadioControl = (props) => {
-  const { selection, setSelection, promotion, promotedOneOf } = props;
+  const { selection, setSelection, promotion, promotedOneOf, title } = props;
+
+  const [id, setId] = useState('');
+
+  const generateId = () => String(Math.floor(100000000 * Math.random()));
+
+  useEffect(() => {
+    setId(generateId());
+  }, [props.title]);
 
   const radios = [
     {
@@ -25,17 +33,24 @@ const PromotedOneOfRadioControl = (props) => {
 
   return (
     <div className="form-group">
+      {title && (
+        <label className="control-label" htmlFor={id}>
+          {title}
+        </label>
+      )}
       <RadioGroup
         name="promoted-selection"
         onChange={setSelection}
         selectedValue={selection}
         radios={radios}
+        id={id}
       />
     </div>
   );
 };
 
 PromotedOneOfRadioControl.propTypes = {
+  title: Types.string,
   promotedOneOf: Types.shape({
     title: Types.string,
     description: Types.string,
@@ -72,6 +87,8 @@ PromotedOneOfRadioControl.propTypes = {
   setSelection: Types.func.isRequired,
 };
 
-PromotedOneOfRadioControl.defaultProps = {};
+PromotedOneOfRadioControl.defaultProps = {
+  title: undefined,
+};
 
 export default PromotedOneOfRadioControl;
