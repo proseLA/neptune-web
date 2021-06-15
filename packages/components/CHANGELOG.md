@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.1...@transferwise/components@36.5.2) (2021-06-15)
+
+
+### Bug Fixes
+
+* add media class conditions ([#1006](https://github.com/transferwise/neptune-web/issues/1006)) ([d1e25ae](https://github.com/transferwise/neptune-web/commit/d1e25ae5fd17af8b01510e2d8939db8e98f63a1f))
+
+
+
+
+
 ## [36.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.0...@transferwise/components@36.5.1) (2021-06-11)
 
 **Note:** Version bump only for package @transferwise/components
