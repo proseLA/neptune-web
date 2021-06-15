@@ -1,7 +1,7 @@
 {
   "name": "@transferwise/neptune-css",
   "description": "Neptune CSS library",
-  "version": "9.2.0",
+  "version": "9.2.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -48,7 +48,7 @@
   "devDependencies": {
     "@mdx-js/loader": "^1.5.8",
     "@next/mdx": "^9.0.5",
-    "@transferwise/less-config": "^3.0.1",
+    "@transferwise/less-config": "^3.0.2",
     "@zeit/next-css": "^1.0.1",
     "next": "^9.5.5",
     "prop-types": "^15.7.2",
