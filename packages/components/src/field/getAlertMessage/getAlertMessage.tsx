@@ -45,7 +45,7 @@ const getAlertMessage = ({
 
     message = validations.map(({ message, value }) => {
       return (
-        <li>
+        <li key={message}>
           {defaultMessages[message]
             ? intl.formatMessage(defaultMessages[message], {
                 [message]: value,

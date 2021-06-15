@@ -10,7 +10,7 @@ const props = {
   messages: {
     error: null,
     help: null,
-    validation: [],
+    validations: [],
   },
   label: 'label',
 };
@@ -56,7 +56,7 @@ describe('Field', () => {
   });
 
   describe('when error is provided and value has changed', () => {
-    it(`doesn't shows the error`, () => {
+    it(`doesn't show the error`, () => {
       const error = 'an error message';
 
       render(
@@ -75,15 +75,16 @@ describe('Field', () => {
     describe('when validations are provided', () => {
       it('shows validations when submitted', () => {
         const error = 'an error message';
-        const validation = ['a validation message'];
+        const validations = [{ message: 'minLenght', value: 3 }];
         render(
-          <Field {...props} submitted messages={{ ...props.messages, error, validation }}>
+          <Field {...props} submitted messages={{ ...props.messages, error, validations }}>
             <input type="text" />
           </Field>,
         );
+
         triggerChange();
 
-        const alert = screen.queryByText(validation[0]);
+        const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
 
         expect(alert).toBeInTheDocument();
         expect(alert).toHaveClass('alert-negative');
@@ -92,48 +93,48 @@ describe('Field', () => {
       describe('when not submitted', () => {
         it('shows validations when changed and blurred', () => {
           const error = 'an error message';
-          const validation = ['a validation message'];
+          const validations = [{ message: 'minLenght', value: 3 }];
           render(
-            <Field {...props} messages={{ ...props.messages, error, validation }}>
+            <Field {...props} messages={{ ...props.messages, error, validations }}>
               <input type="text" />
             </Field>,
           );
           triggerChange();
           triggerBlur();
 
-          const alert = screen.queryByText(validation[0]);
+          const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
 
           expect(alert).toBeInTheDocument();
           expect(alert).toHaveClass('alert-negative');
           expect(formGroup()).toHaveClass('has-error');
         });
-        it(`doesn't shows validations when not changed and blurred`, () => {
+        it(`doesn't show validations when not changed and blurred`, () => {
           const error = 'an error message';
-          const validation = ['a validation message'];
+          const validations = [{ message: 'minLenght', value: 3 }];
           render(
-            <Field {...props} messages={{ ...props.messages, error, validation }}>
+            <Field {...props} messages={{ ...props.messages, error, validations }}>
               <input type="text" />
             </Field>,
           );
           triggerFocus();
           triggerBlur();
 
-          const alert = screen.queryByText(validation[0]);
+          const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
 
           expect(alert).not.toBeInTheDocument();
           expect(formGroup()).toHaveClass('has-error');
         });
-        it(`doesn't shows validations when changed and not blurred`, () => {
+        it.only(`doesn't show validations when changed and not blurred`, () => {
           const error = 'an error message';
-          const validation = ['a validation message'];
+          const validations = [{ message: 'minLenght', value: 3 }];
           render(
-            <Field {...props} messages={{ ...props.messages, error, validation }}>
+            <Field {...props} messages={{ ...props.messages, error, validations }}>
               <input type="text" />
             </Field>,
           );
           triggerChange();
 
-          const alert = screen.queryByText(validation[0]);
+          const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
 
           expect(alert).not.toBeInTheDocument();
           expect(formGroup()).not.toHaveClass('has-error');
@@ -159,7 +160,7 @@ describe('Field', () => {
         expect(alert).toBeInTheDocument();
         expect(formGroup()).toHaveClass('has-info');
       });
-      it(`doesn't shows help when focused and help is not provided`, () => {
+      it(`doesn't show help when focused and help is not provided`, () => {
         const error = 'an error message';
         const help = 'an help message';
         render(
@@ -175,7 +176,7 @@ describe('Field', () => {
         expect(alert).not.toBeInTheDocument();
         expect(formGroup()).not.toHaveClass('has-info');
       });
-      it(`doesn't shows help when not focused and help is provided`, () => {
+      it(`doesn't show help when not focused and help is provided`, () => {
         const error = 'an error message';
         const help = 'an help message';
         render(

@@ -6,7 +6,7 @@ let messages: {
   minLength: {
     id: 'minLength',
     defaultMessage: 'Please type a value longer than {minLength}',
-    description: 'Field validation message for short messages',
+    description: 'Validation message for short messages',
   },
 });
 

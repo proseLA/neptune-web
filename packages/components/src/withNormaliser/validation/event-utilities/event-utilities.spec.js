@@ -23,18 +23,6 @@ describe('when normalizing an event', () => {
     expect(normalizeEvent(event)).toEqual(event);
   });
 
-  it('returns a number when the type is number', () => {
-    let event = { nativeEvent: new Event(''), target: { value: '123' } };
-    expect(normalizeEvent(event, 'number')).toEqual(123);
-    event = { nativeEvent: new Event(''), target: { value: 123 } };
-    expect(normalizeEvent(event, 'number')).toEqual(123);
-  });
-
-  it('returns NaN when the type is number and value is not numeric', () => {
-    const event = { nativeEvent: new Event(''), target: { value: '' } };
-    expect(normalizeEvent(event, 'number')).toEqual(NaN);
-  });
-
   it('returns a string when the type is not number', () => {
     const event = { nativeEvent: new Event(''), target: { value: '123' } };
     expect(normalizeEvent(event)).toEqual('123');
