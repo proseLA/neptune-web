@@ -20,9 +20,9 @@ export const TextField = () => {
 
   const rules = {
     type: 'string',
-    required: true,
-    minLength: { value: 6 },
-    maxLength: { value: 4, message: 'Custom maxLength error message' },
+    required: { value: { value: true, message: 'Custom required' }, message: 'Custom required' },
+    minLength: { value: 3 },
+    maxLength: { value: 6, message: 'Custom maxLength error message' },
   };
 
   const handleOnChange = (val) => {
@@ -60,12 +60,12 @@ export const NumberField = () => {
   const handleOnChange = (val) => {
     const rules = {
       type: 'number',
-      required: true,
+      required: { value: { value: true, message: 'Custom required' }, message: 'Custom required' },
       minimum: { value: 3, message: 'Insert a value bigger than 3' },
       maximum: { value: 6, message: 'Insert a value smaller than 6' },
     };
-
-    const failures = getFieldValidationFailures(val, rules);
+    // Val needs to be cast to Number
+    const failures = getFieldValidationFailures(Number(val), rules);
 
     setValidations(failures);
     setValue(val);
@@ -91,14 +91,15 @@ export const NumberField = () => {
 };
 
 export const CheckboxField = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(false);
   const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
     const rules = {
       type: 'boolean',
-      required: true,
+      required: { value: true, message: 'Custom required' },
     };
+
     const failures = getFieldValidationFailures(val, rules);
 
     setValidations(failures);
@@ -122,7 +123,7 @@ export const CheckboxField = () => {
 };
 
 export const DateInputField = () => {
-  const help = text('help text', 'Please insert a date between 01-01-2000 and 03-01-2000');
+  const help = text('help text', 'Please insert a date between 02-01-2000 and 04-01-2000');
   const [value, setValue] = useState('2000-01-01T00:00:00Z');
   const [validations, setValidations] = useState([]);
 
@@ -132,10 +133,7 @@ export const DateInputField = () => {
       minimum: { value: '2000-01-02T00:00:00Z', message: 'Insert a value after 02-01-2000' },
       maximum: { value: '2000-01-04T00:00:00Z', message: 'Insert a value before 04-01-2000' },
     };
-    const failures = getFieldValidationFailures({
-      value: val,
-      rules,
-    });
+    const failures = getFieldValidationFailures(val, rules);
 
     setValidations(failures);
     setValue(val);

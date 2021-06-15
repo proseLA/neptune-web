@@ -22,7 +22,7 @@ import {
 const TYPE_ERROR = { message: 'type' };
 
 function getFieldValidationFailures(value, rules) {
-  const isRequired = rules.required;
+  const isRequired = rules?.required?.value;
 
   if (rules.enum) {
     return getEnumValidationFailures(value, rules, isRequired);
@@ -145,6 +145,15 @@ function getIntegerValidationFailures(value, rules, isRequired) {
 function getBooleanValidationFailures(value, rules, isRequired) {
   if (!isBoolean(value) && !isNull(value)) {
     return [TYPE_ERROR];
+  }
+
+  if (!value && isRequired) {
+    return [
+      {
+        message: 'required',
+        ...rules?.required,
+      },
+    ];
   }
 
   const failures = [];
