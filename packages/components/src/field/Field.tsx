@@ -6,10 +6,15 @@ import InlineAlert from '../inlineAlert';
 import WithNormaliser from '../withNormaliser';
 import { Sentiment } from '../common';
 
+interface Validations {
+  message: string;
+  value: number;
+}
+
 type FieldProps = {
   children: React.ReactElement;
   label?: string;
-  messages: { error: string; help: string; validations: string[] };
+  messages: { error: string; help: string; validations: Validations[] };
   submitted?: boolean;
 };
 
