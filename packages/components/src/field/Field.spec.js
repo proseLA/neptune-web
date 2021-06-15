@@ -84,7 +84,7 @@ describe('Field', () => {
 
         triggerChange();
 
-        const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
+        const alert = screen.getByRole('alert');
 
         expect(alert).toBeInTheDocument();
         expect(alert).toHaveClass('alert-negative');
@@ -102,7 +102,7 @@ describe('Field', () => {
           triggerChange();
           triggerBlur();
 
-          const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
+          const alert = screen.getByRole('alert');
 
           expect(alert).toBeInTheDocument();
           expect(alert).toHaveClass('alert-negative');
@@ -119,12 +119,12 @@ describe('Field', () => {
           triggerFocus();
           triggerBlur();
 
-          const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
+          const alert = screen.queryByText('minLenght');
 
           expect(alert).not.toBeInTheDocument();
           expect(formGroup()).toHaveClass('has-error');
         });
-        it.only(`doesn't show validations when changed and not blurred`, () => {
+        it(`doesn't show validations when changed and not blurred`, () => {
           const error = 'an error message';
           const validations = [{ message: 'minLenght', value: 3 }];
           render(
@@ -134,7 +134,7 @@ describe('Field', () => {
           );
           triggerChange();
 
-          const alert = screen.queryByText(validations[0].message).parentElement.parentElement;
+          const alert = screen.queryByText('minLenght');
 
           expect(alert).not.toBeInTheDocument();
           expect(formGroup()).not.toHaveClass('has-error');
