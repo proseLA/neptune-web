@@ -15,6 +15,9 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
   ],
+  typescript: {
+    reactDocgen: 'react-docgen',
+  },
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.html$/i,
