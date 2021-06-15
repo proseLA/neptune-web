@@ -25,6 +25,15 @@ interface Author {
   githubUsername: string;
 }
 
+interface Version {
+  components?: string;
+  css?: string;
+  'dynamic-flows'?: string;
+  validation?: string;
+  'less-config'?: string;
+  'test-config'?: string;
+}
+
 export type Meta = {
   name: string;
   /**
@@ -33,6 +42,8 @@ export type Meta = {
   date?: string;
   authors?: Author[];
   badge?: Badge;
+  version?: Version;
+  tags?: string[];
 };
 
 interface SubSection {

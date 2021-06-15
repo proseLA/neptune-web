@@ -29,7 +29,7 @@ const DynamicReview = (props) => {
   const getReviewAction = (action) => {
     return (
       <a href={action.url} className="pull-right" onClick={onActionClick} role="button">
-        {action.label}
+        {action.title}
       </a>
     );
   };
@@ -37,7 +37,7 @@ const DynamicReview = (props) => {
   return (
     <>
       <h6 className="m-b-2">
-        {review.text}
+        {review.title}
         {review.action && getReviewAction(review.action)}
       </h6>
       <div className={margin}>
@@ -53,7 +53,7 @@ const DynamicReview = (props) => {
 DynamicReview.propTypes = {
   onAction: Types.func.isRequired,
   component: Types.shape({
-    text: Types.string,
+    title: Types.string,
     fields: Types.arrayOf(
       Types.shape({
         label: Types.string,

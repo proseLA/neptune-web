@@ -38,16 +38,16 @@
           },
           {
             "type": "review",
-            "text": "Review title",
+            "title": "Review title",
             "margin": "lg",
             "orientation": "horizontal",
             "action": {
               "id": "edit-profile",
-              "label": "Edit",
+              "title": "Edit",
               "url": "/edit",
               "method": "GET"
             },
-            "definitions": [
+            "fields": [
               {
                 "label": "First name",
                 "value": "John"
@@ -124,7 +124,7 @@
         "type": "button",
         "context": "primary",
         "action": {
-          "label": "Submit",
+          "title": "Submit",
           "url": "",
           "method": "GET",
           "data": {}
@@ -133,7 +133,7 @@
       {
         "type": "button",
         "action": {
-          "label": "Cancel",
+          "title": "Cancel",
           "url": "",
           "method": "GET",
           "data": {},
@@ -150,7 +150,7 @@
         "text": "More information about this option",
         "icon": "profile",
         "action": {
-          "label": "Option 1",
+          "title": "Option 1",
           "url": "/option1",
           "method": "POST",
           "data": {
@@ -162,7 +162,7 @@
         "text": "More information about this option",
         "icon": "bank",
         "action": {
-          "label": "Option 2",
+          "title": "Option 2",
           "url": "/option2",
           "method": "GET",
           "data": {},

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio shows the avatar when supplied 1`] = `
+<div>
+  <div
+    class="radio np-radio"
+  >
+    <label>
+      <span
+        class="np-radio-button p-r-2"
+      >
+        <input
+          class="sr-only"
+          name="name"
+          type="radio"
+          value=""
+        />
+        <span
+          class="tw-radio-button"
+        >
+          <span
+            class="tw-radio-check"
+          />
+        </span>
+      </span>
+      <span
+        class="np-radio__text"
+      >
+        This is a label
+        
+      </span>
+      <span
+        class="np-radio__avatar m-l-auto"
+      >
+        <div
+          class="tw-avatar tw-avatar--md tw-avatar--initials tw-avatar--light"
+        >
+          <div
+            class="tw-avatar__content"
+          >
+            HD
+          </div>
+        </div>
+      </span>
+    </label>
+  </div>
+</div>
+`;

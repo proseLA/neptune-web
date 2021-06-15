@@ -6,6 +6,10 @@ export function isStatus422(status) {
   return status === 422;
 }
 
+export function getJson(response) {
+  return response.json();
+}
+
 export function QueryablePromise(promise) {
   if (promise.isResolved) {
     return promise;

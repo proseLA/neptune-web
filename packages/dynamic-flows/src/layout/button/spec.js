@@ -14,7 +14,7 @@ describe('Given a component for dynamically rendering buttons', () => {
     spec = {
       component: 'button',
       action: {
-        label: 'Submit',
+        title: 'Submit',
         url: '/example',
         method: 'GET',
       },
@@ -27,8 +27,8 @@ describe('Given a component for dynamically rendering buttons', () => {
     component = shallow(<DynamicButton component={spec} onAction={onAction} />);
   });
 
-  it('should use the action label for the button', () => {
-    expect(component.find(Button).contains(spec.action.label)).toBe(true);
+  it('should use the action title for the button', () => {
+    expect(component.find(Button).contains(spec.action.title)).toBe(true);
   });
 
   describe('when the button is clicked', () => {

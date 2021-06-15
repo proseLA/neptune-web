@@ -14,7 +14,7 @@ const DynamicDecision = (props) => {
     return (
       <NavigationOption
         key={JSON.stringify(option)}
-        title={option.action.label}
+        title={option.action.title}
         content={option.text}
         onClick={() => onAction(option.action)}
         disabled={option.action.disabled}

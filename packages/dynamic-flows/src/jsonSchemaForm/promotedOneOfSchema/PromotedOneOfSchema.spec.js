@@ -201,11 +201,11 @@ describe('Given a PromotedOneOfSchema component', () => {
       describe('when there is one other option', () => {
         let objectSchema;
 
-        beforeEach(() => {
+        const initialize = (promotionObj) => {
           schema = {
             title: 'Choose schema',
             oneOf: [promotedSchema, ...oneOtherOption],
-            promotion,
+            promotion: promotionObj,
           };
 
           props = { ...props, schema };
@@ -214,7 +214,9 @@ describe('Given a PromotedOneOfSchema component', () => {
 
           getRadioGroup(component).simulate('change', 'other');
           objectSchema = component.find(GenericSchema).dive().find(ObjectSchema);
-        });
+        };
+
+        beforeEach(() => initialize(promotion));
 
         it('should render an object schema', () => {
           expect(objectSchema).toHaveLength(1);
@@ -224,6 +226,20 @@ describe('Given a PromotedOneOfSchema component', () => {
           expect(objectSchema.props().schema).toMatchObject({
             ...schema.oneOf[1],
             title: 'Other group heading',
+          });
+        });
+
+        it('should accept empty heading', () => {
+          const headinglessPromotion = {
+            ...promotion,
+            default: 'promoted',
+            other: { ...promotion.other, heading: null },
+          };
+          initialize(headinglessPromotion);
+
+          expect(objectSchema.props().schema).toMatchObject({
+            ...schema.oneOf[1],
+            title: undefined,
           });
         });
 

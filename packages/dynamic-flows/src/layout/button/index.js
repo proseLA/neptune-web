@@ -60,7 +60,7 @@ const DynamicButton = (props) => {
       onClick={() => onAction(component.action)}
       disabled={component.action.disabled}
     >
-      {component.action.label}
+      {component.action.title}
     </Button>
   );
 };

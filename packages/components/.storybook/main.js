@@ -17,6 +17,9 @@ module.exports = {
     '@storybook/addon-viewport',
     '@pxblue/storybook-rtl-addon/register',
   ],
+  typescript: {
+    reactDocgen: 'react-docgen',
+  },
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.html$/i,

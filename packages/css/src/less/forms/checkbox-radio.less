@@ -28,21 +28,6 @@
       left: 40px;
     }
   }
-
-  &.checkbox--rtl {
-    > label {
-      padding-right: 48px;
-    }
-
-    .np-checkbox-button {
-      right: 14px;
-
-      input[type='checkbox'],
-      .tw-checkbox-button {
-        right: 0;
-      }
-    }
-  }
 }
 
 .tw-checkbox-button {
@@ -196,7 +181,8 @@
     }
   }
 
-  &[disabled] {
+  &[disabled],
+  &.disabled {
     background-color: @input-bg-disabled;
     border-color: @input-border-disabled !important;
     cursor: @cursor-disabled;
@@ -225,7 +211,7 @@
   &.disabled label,
   &.disabled label:hover {
     border-color: @input-border-disabled;
-    color: @input-color-disabled !important;
+    color: @color-text-inactive !important;
   }
 }
 
@@ -233,28 +219,6 @@
   position: absolute;
   left: 13px;
   top: 11px;
-}
-
-.radio {
-  &.radio--rtl {
-    .tw-radio-button {
-      right: 13px;
-
-      .tw-radio-check {
-        margin: 0 11px 0 0;
-      }
-
-      &.checked {
-        .tw-radio-check {
-          margin: 5px;
-        }
-      }
-    }
-
-    > label {
-      padding-right: 48px;
-    }
-  }
 }
 
 .checkbox .tw-checkbox-button {
@@ -276,5 +240,45 @@
     > label {
       margin-bottom: 0;
     }
+  }
+}
+
+// Neptune Checkbox and Radio components use flex for vertical centre alignment
+.np-radio.radio,
+.np-checkbox.checkbox {
+  min-width: fit-content;
+
+  .np-radio-button,
+  .np-checkbox-button {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .tw-checkbox-button,
+  .tw-radio-button {
+    position: static;
+  }
+
+  > label {
+    display: flex;
+    align-items: center;
+    padding: var(--size-8) var(--size-16);
+  }
+
+  .np-checkbox__text,
+  .np-radio__text {
+    // Account for our funky font baseline
+    padding-top: 3px;
+    display: block;
+  }
+}
+
+.np-radio {
+  .np-radio__avatar {
+    pointer-events: none;
+  }
+
+  &[disabled] .np-radio__avatar {
+    opacity: 0.5;
   }
 }

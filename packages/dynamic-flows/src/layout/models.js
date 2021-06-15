@@ -1,7 +1,7 @@
 import Types from 'prop-types';
 
 const actionModel = Types.shape({
-  label: Types.string.isRequired,
+  title: Types.string.isRequired,
   url: Types.string.isRequired,
   method: Types.oneOf(['GET', 'POST', 'PUT', 'PATCH']).isRequired,
   disabled: Types.boolean,
@@ -44,6 +44,7 @@ const componentTypes = Types.oneOf([
   'image',
   'paragraph',
   'review',
+  'final',
 ]);
 
 const componentModel = Types.shape({

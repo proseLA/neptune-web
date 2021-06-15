@@ -3,4 +3,6 @@ export const Key = {
   ESCAPE: 'Escape',
   SPACE: [' ', 'Spacebar'],
   TAB: 'Tab',
+  PERIOD: '.',
+  COMMA: ',',
 };

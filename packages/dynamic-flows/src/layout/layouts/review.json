@@ -15,14 +15,14 @@
         "components": [
           {
             "type": "review",
-            "text": "Transfer details",
+            "title": "Transfer details",
             "orientation": "horizontal",
             "action": {
-              "label": "Edit",
+              "title": "Edit",
               "url": "/edit-transfer",
               "method": "GET"
             },
-            "definitions": [
+            "fields": [
               {
                 "label": "You send approximately",
                 "value": "88.86 GBP"
@@ -58,14 +58,14 @@
           },
           {
             "type": "review",
-            "text": "Recipient details",
+            "title": "Recipient details",
             "orientation": "horizontal",
             "action": {
-              "label": "Edit",
+              "title": "Edit",
               "url": "/recipient",
               "method": "GET"
             },
-            "definitions": [
+            "fields": [
               {
                 "label": "Name",
                 "value": "Test Name"
@@ -150,7 +150,7 @@
         "type": "button",
         "context": "success",
         "action": {
-          "label": "Create transfer",
+          "title": "Create transfer",
           "method": "POST",
           "url": "/final"
         }

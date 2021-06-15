@@ -23,7 +23,7 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
           </span>
         </div>
         <div
-          class="media-right d-flex align-items-center"
+          class="d-flex align-items-center media-right"
         >
           <span
             aria-hidden="true"
@@ -83,7 +83,7 @@ exports[`AccordionItem open / close renders an item open 1`] = `
           </span>
         </div>
         <div
-          class="media-right d-flex align-items-center"
+          class="d-flex align-items-center media-right"
         >
           <span
             aria-hidden="true"

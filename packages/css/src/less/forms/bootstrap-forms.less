@@ -1,3 +1,6 @@
+@import (reference) '../../variables/legacy-variables.less';
+@import (reference) '../../variables/neptune-tokens.less';
+
 @import (reference) '../mixins/_arrows.less';
 @import (reference) '../mixins/_grid.less';
 @import (reference) '../mixins/_forms.less';
@@ -935,7 +938,12 @@ input[type='checkbox'] {
   > label,
   > label:hover {
     border-color: @input-border-disabled;
-    color: @input-color-disabled;
+    color: @color-text-inactive;
+
+    small,
+    .small {
+      color: @color-text-inactive;
+    }
   }
 }
 
