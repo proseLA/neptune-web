@@ -61,7 +61,7 @@
     "**/adjust-sourcemap-loader/object-path": "^0.11.5"
   },
   "scripts": {
-    "postinstall": "yarn yarn-lock-cleanup --fail",
+    "postinstall": "yarn yarn-lock-cleanup",
     "setup": "yarn install --frozen-lockfile && yarn build",
     "start": "echo 'Run yarn setup to install dependencies and build all packages.'",
     "build": "lerna run build --stream",
