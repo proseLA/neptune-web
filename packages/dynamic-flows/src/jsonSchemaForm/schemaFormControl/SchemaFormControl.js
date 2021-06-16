@@ -1,9 +1,9 @@
 import React from 'react';
 import Types from 'prop-types';
 
-import { isNull, isUndefined, getValidModelParts } from '@transferwise/neptune-validation';
+import { isNull, isUndefined } from '@transferwise/neptune-validation';
 import FormControl from '../../formControl';
-
+import { getValidModelParts } from '../../common/validation/valid-model';
 import { isOneOfSchema } from '../../common/schemaTypes/schemaTypes';
 import { FormControlType } from '../../common';
 import { mapConstSchemaToOption } from './optionMapper';
