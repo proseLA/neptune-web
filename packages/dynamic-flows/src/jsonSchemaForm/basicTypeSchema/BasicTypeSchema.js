@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
 
-import { getValidationFailures, getValidModelParts } from '@transferwise/neptune-validation';
 import SchemaFormControl from '../schemaFormControl';
 import ControlFeedback from '../controlFeedback';
 
+import { getValidationFailures } from '../../common/validation/validation-failures';
+import { getValidModelParts } from '../../common/validation/valid-model';
 import DynamicAlert from '../../layout/alert';
 import Help from '../help';
 
