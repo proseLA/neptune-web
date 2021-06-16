@@ -148,11 +148,11 @@
       },
       {
         "type": "button",
-        "context": "success",
         "action": {
           "title": "Create transfer",
           "method": "POST",
-          "url": "/final"
+          "url": "/final",
+          "type": "primary"
         }
       }
     ]

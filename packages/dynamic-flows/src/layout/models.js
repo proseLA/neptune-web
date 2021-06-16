@@ -1,10 +1,13 @@
 import Types from 'prop-types';
 
+const contextModel = Types.oneOf(['success', 'failure', 'warning', 'info', 'primary']);
+
 const actionModel = Types.shape({
   title: Types.string.isRequired,
   url: Types.string.isRequired,
   method: Types.oneOf(['GET', 'POST', 'PUT', 'PATCH']).isRequired,
   disabled: Types.boolean,
+  type: contextModel,
   // eslint-disable-next-line react/forbid-prop-types
   data: Types.object,
 });
@@ -28,7 +31,6 @@ const itemModel = Types.shape({
 const sizeModel = Types.oneOf(['xs', 'sm', 'md', 'lg', 'xl']);
 const alignModel = Types.oneOf(['left', 'right', 'center']);
 const marginModel = Types.oneOf(['xs', 'sm', 'md', 'lg', 'xl']);
-const contextModel = Types.oneOf(['success', 'failure', 'warning', 'info', 'primary']);
 const orientationModel = Types.oneOf(['horizontal', 'vertical']);
 
 const componentTypes = Types.oneOf([
