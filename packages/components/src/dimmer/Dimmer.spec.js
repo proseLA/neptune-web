@@ -40,7 +40,12 @@ describe('Dimmer', () => {
   it('renders with right props', () => {
     component = mount(<Dimmer {...props} />);
     expect(component.find(Dimmer)).toHaveLength(1);
-    expect(component.find(Dimmer).props()).toEqual({ ...props, scrollable: false });
+    expect(component.find(Dimmer).props()).toEqual({
+      ...props,
+      disableClickToClose: false,
+      transparent: false,
+      scrollable: false,
+    });
   });
 
   it('do not make Dimmer auto scrollable if scrollable=false', () => {
