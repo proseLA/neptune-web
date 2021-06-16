@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.3...@transferwise/components@36.6.0) (2021-06-16)
+
+
+### Features
+
+* **CheckboxOption:** Add showMediaAtAllSizes prop ([#1009](https://github.com/transferwise/neptune-web/issues/1009)) ([c70e128](https://github.com/transferwise/neptune-web/commit/c70e1288ac5298582909ed8fb8b768928fb8cf81))
+
+
+
+
+
 ## [36.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.2...@transferwise/components@36.5.3) (2021-06-15)
 
 **Note:** Version bump only for package @transferwise/components
