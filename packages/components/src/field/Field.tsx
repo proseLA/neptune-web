@@ -6,7 +6,7 @@ import InlineAlert from '../inlineAlert';
 import WithNormaliser from '../withNormaliser';
 import { Sentiment } from '../common';
 
-interface Validations {
+export interface Validations {
   message: string;
   value: number;
 }

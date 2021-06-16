@@ -1,13 +1,9 @@
 import React from 'react';
 import { Sentiment } from '../../common/propsValues/sentiment';
 import { useIntl } from 'react-intl';
+import { Validations } from '../Field';
 
 import defaultMessages from '../Field.messages';
-
-interface Validations {
-  message: string;
-  value: number;
-}
 
 interface Args {
   blurred: boolean;
