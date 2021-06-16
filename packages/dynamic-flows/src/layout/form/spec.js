@@ -25,7 +25,7 @@ describe('Given a component for dynamically rendering forms', () => {
 
   beforeEach(() => {
     spec = {
-      component: 'form',
+      type: 'form',
       schema,
     };
     onModelChange = jest.fn();

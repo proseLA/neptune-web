@@ -7,7 +7,6 @@
     width: var(--size-24);
     height: var(--size-24);
     opacity: 0;
-    margin: 0;
 
     &:not(:disabled) {
       cursor: pointer;
@@ -20,13 +19,9 @@
 }
 
 .checkbox .np-checkbox-button {
-  position: absolute;
-  left: 14px;
-  top: 12px;
-
-  input[type='checkbox'],
-  .tw-checkbox-button {
-    left: 0;
+  input[type='checkbox'] {
     top: 0;
+    left: 0;
+    margin: 0;
   }
 }

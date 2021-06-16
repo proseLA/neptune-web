@@ -1,11 +1,8 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
-import { useDirection } from '../common/hooks';
 
 import Checkbox from '.';
-
-jest.mock('../common/hooks/useDirection');
 
 describe('Checkbox', () => {
   let props;
@@ -15,10 +12,6 @@ describe('Checkbox', () => {
       label: <b>hello</b>,
       onChange: jest.fn(),
     };
-  });
-
-  beforeAll(() => {
-    useDirection.mockReturnValue({ direction: 'ltr', isRTL: false });
   });
 
   afterAll(() => {
@@ -31,8 +24,8 @@ describe('Checkbox', () => {
   });
 
   it('is enabled by default', () => {
-    render(<Checkbox {...props} />);
-    expect(getCheckboxContainer()).not.toHaveClass('disabled');
+    const { container } = render(<Checkbox {...props} />);
+    expect(getCheckboxContainer(container)).not.toHaveClass('disabled');
   });
 
   it('does not render secondary text', () => {
@@ -74,38 +67,31 @@ describe('Checkbox', () => {
   });
 
   it('has disabled class when the disabled prop is true', () => {
-    render(<Checkbox {...props} disabled />);
-    expect(getCheckboxContainer()).toHaveClass('disabled');
+    const { container } = render(<Checkbox {...props} disabled />);
+    expect(getCheckboxContainer(container)).toHaveClass('disabled');
   });
 
   it('has error class and passes it to checkbox button when required and not checked', () => {
-    const { rerender } = render(<Checkbox {...props} required checked />);
-    expect(getCheckboxContainer()).not.toHaveClass('has-error');
+    const { container, rerender } = render(<Checkbox {...props} required checked />);
+    expect(getCheckboxContainer(container)).not.toHaveClass('has-error');
 
     rerender(<Checkbox {...props} required />);
 
-    expect(getCheckboxContainer()).toHaveClass('has-error');
-  });
-
-  it('has rtl class when isRTL is true', () => {
-    useDirection.mockReturnValue({ direction: 'rtl', isRTL: true });
-    render(<Checkbox {...props} disabled />);
-    expect(getCheckboxContainer()).toHaveClass('checkbox--rtl');
+    expect(getCheckboxContainer(container)).toHaveClass('has-error');
   });
 
   it('ignores required if disabled or readOnly', () => {
-    const { rerender } = render(<Checkbox {...props} required disabled />);
-    expect(getCheckboxContainer()).not.toHaveClass('has-error');
+    const { container, rerender } = render(<Checkbox {...props} required disabled />);
+    expect(getCheckboxContainer(container)).not.toHaveClass('has-error');
 
     rerender(<Checkbox {...props} required readOnly />);
-    expect(getCheckboxContainer()).not.toHaveClass('has-error');
+    expect(getCheckboxContainer(container)).not.toHaveClass('has-error');
   });
 
   it('has an asterisk after the label when required', () => {
     render(<Checkbox {...props} required />);
 
     expect(screen.getByText('*')).toBeInTheDocument();
-    expect(screen.getByText('*').tagName).toBe('LABEL');
   });
 
   it(`doesn't passes checked to checkbox button`, () => {
@@ -136,12 +122,12 @@ describe('Checkbox', () => {
   });
 
   it('displays secondary text when supplied', () => {
-    render(<Checkbox {...props} secondary="secondary text" />);
+    const { container } = render(<Checkbox {...props} secondary="secondary text" />);
     expect(screen.getByText('secondary text')).toBeInTheDocument();
-    expect(getCheckboxContainer()).toHaveClass('checkbox-lg');
+    expect(getCheckboxContainer(container)).toHaveClass('checkbox-lg');
   });
 
-  const getCheckboxContainer = () => screen.getByText('hello').parentElement.parentElement;
+  const getCheckboxContainer = (container) => container.querySelector('.np-checkbox');
   const getLabel = () => screen.getByText('hello').parentElement;
   const getCheckbox = () => screen.getByRole('checkbox');
 });

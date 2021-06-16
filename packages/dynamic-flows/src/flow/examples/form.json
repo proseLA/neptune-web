@@ -1,0 +1,55 @@
+{
+  "type": "form",
+  "key": "create-thing",
+  "title": "Create Recipient",
+  "description": "Please enter all the information",
+  "schemas": [
+    {
+      "$id": "#gbp-recipient",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Recipient Name",
+          "minLength": 2
+        },
+        "accountNumber": {
+          "title": "Account number",
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 10
+        },
+        "sortCode": {
+          "title": "Sort code",
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 7
+        }
+      },
+      "required": ["name", "accountNumber", "sortCode"]
+    }
+  ],
+  "model": {
+    "name": "Jo Smith"
+  },
+  "actions": [
+    {
+      "type": "primary",
+      "url": "/confirm",
+      "title": "Submit",
+      "method": "POST"
+    },
+    {
+      "type": "warning",
+      "url": "/final",
+      "title": "Skip",
+      "method": "GET"
+    },
+    {
+      "type": "failure",
+      "url": "/error",
+      "title": "Fail submission",
+      "method": "POST"
+    }
+  ]
+}

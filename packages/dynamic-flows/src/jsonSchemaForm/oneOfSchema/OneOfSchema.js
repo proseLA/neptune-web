@@ -12,6 +12,7 @@ import { getValidationFailures } from '../../common/validation/validation-failur
 import { isValidSchema } from '../../common/validation/schema-validators';
 
 import DynamicAlert from '../../layout/alert';
+import Help from '../help';
 
 function isConstSchema(schema) {
   return !!schema && (schema.const || (schema.enum && schema.enum.length === 1));
@@ -155,6 +156,7 @@ const OneOfSchema = (props) => {
       const: index,
       disabled: schema.disabled,
       icon: schema.icon,
+      image: schema.image,
     };
   };
 
@@ -182,6 +184,8 @@ const OneOfSchema = (props) => {
     return null;
   };
 
+  const hasHelp = !!props.schema.help;
+
   return (
     <>
       {(props.schema.oneOf.length > 1 || isConstSchema(props.schema.oneOf[0])) && (
@@ -192,6 +196,7 @@ const OneOfSchema = (props) => {
                 {props.schema.title}
               </label>
             )}
+            {hasHelp && <Help help={props.schema.help} />}
             <SchemaFormControl
               id={id}
               schema={schemaForSelect}
@@ -246,6 +251,7 @@ OneOfSchema.propTypes = {
     }),
     control: Types.string,
     placeholder: Types.string,
+    help: Types.shape({ markdown: Types.string }),
     oneOf: Types.arrayOf(Types.object).isRequired,
   }).isRequired,
   model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),

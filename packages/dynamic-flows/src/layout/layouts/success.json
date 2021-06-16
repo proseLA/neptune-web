@@ -42,7 +42,7 @@
           {
             "type": "button",
             "action": {
-              "label": "Check transfer details",
+              "title": "Check transfer details",
               "url": "/check",
               "method": "GET"
             }
@@ -51,11 +51,11 @@
         "right": [
           {
             "type": "button",
-            "context": "primary",
             "action": {
-              "label": "Invite & earn",
+              "title": "Invite & earn",
               "url": "/check",
-              "method": "GET"
+              "method": "GET",
+              "type": "primary"
             }
           }
         ]

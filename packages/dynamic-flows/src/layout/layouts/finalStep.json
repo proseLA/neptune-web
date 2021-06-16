@@ -1,0 +1,25 @@
+[
+  {
+    "key": "account",
+    "type": "final",
+    "success": true,
+    "details": {
+      "action": {
+        "title": "Continue",
+        "type": "success",
+        "exit": true,
+        "data": {
+          "exitValue": "value"
+        },
+        "url": "/success",
+        "method": "GET"
+      },
+      "image": {
+        "url": "https://wise.com/help/_next/static/images/help-banner-47a63032e31a1611470a42f871f654ee.svg",
+        "text": "alt text"
+      },
+      "title": "Details verified",
+      "description": "We do this extra check to make sure your money goes to the right place...."
+    }
+  }
+]

@@ -36,6 +36,7 @@ const availableCurrencyFlags = [
   'czk',
   'dkk',
   'egp',
+  'fjd',
   'gel',
   'ghs',
   'hkd',

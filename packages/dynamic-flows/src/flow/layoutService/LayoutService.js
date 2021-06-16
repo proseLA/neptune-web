@@ -52,10 +52,15 @@ function convertFormStepToDynamicLayout(step) {
 }
 
 function convertFinalStepToDynamicLayout(step) {
-  const layout = convertCommonComponents(step);
+  const { details } = step;
+  if (!details) {
+    return [];
+  }
 
-  if (step.action) {
-    const actions = [convertStepActionToDynamicAction(step.action)];
+  const layout = convertCommonComponents(details);
+
+  if (details.action) {
+    const actions = [convertStepActionToDynamicAction(details.action)];
     layout.push(dynamicBox(actions, 'md'));
   }
 
@@ -117,7 +122,7 @@ function convertStepDecisionOption(option) {
   return {
     text: option.description,
     action: {
-      label: option.title,
+      title: option.title,
       method: 'GET',
       url: option.url,
       disabled: option.disabled,
@@ -125,18 +130,17 @@ function convertStepDecisionOption(option) {
   };
 }
 
-function convertStepImageToDynamicImage(url) {
+function convertStepImageToDynamicImage(image) {
   return {
     type: 'image',
-    url,
+    url: image.url,
+    text: image.text,
     margin: 'lg',
   };
 }
 
 function convertStepActionToDynamicAction(action) {
-  const newAction = { ...action, label: action.title };
-  delete newAction.type;
-  delete newAction.title;
+  const newAction = { ...action, title: action.title };
   return {
     type: 'button',
     context: action.type,
@@ -148,7 +152,7 @@ function convertStepReviewToDynamicReview(reviewFields) {
   return {
     type: 'review',
     text: reviewFields.title,
-    definitions: reviewFields.fields.map(convertReviewFieldToDefinition),
+    fields: reviewFields.fields.map(convertReviewFieldToDefinition),
   };
 }
 
@@ -194,7 +198,7 @@ function inlineReferences(layout, schemas, actions, model) {
       return inlineFormSchema(component, schemas, model);
     }
 
-    if (component.type === 'action') {
+    if (component.type === 'button') {
       return inlineAction(component, actions);
     }
 
@@ -224,9 +228,8 @@ function inlineFormSchema(formComponent, schemas, model) {
 }
 
 function inlineAction(actionComponent, actions) {
-  if (actionComponent.$ref) {
-    const newAction = getActionById(actions, actionComponent.$ref);
-    delete newAction.$ref;
+  if (actionComponent.action?.$ref) {
+    const newAction = getActionById(actions, actionComponent.action.$ref);
     return convertStepActionToDynamicAction(newAction);
   }
 

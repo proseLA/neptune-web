@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@9.2.0...@transferwise/neptune-css@9.2.1) (2021-06-15)
+
+**Note:** Version bump only for package @transferwise/neptune-css
+
+
+
+
+
+# [9.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@9.1.1...@transferwise/neptune-css@9.2.0) (2021-05-25)
+
+
+### Features
+
+* adding avatar to radio ([#952](https://github.com/transferwise/neptune-web/issues/952)) ([bd0b87a](https://github.com/transferwise/neptune-web/commit/bd0b87a19756e7d356abbc89d8b26df32379ad89))
+
+
+
+
+
 ## [9.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@9.1.0...@transferwise/neptune-css@9.1.1) (2021-05-12)
 
 **Note:** Version bump only for package @transferwise/neptune-css

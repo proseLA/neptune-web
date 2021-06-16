@@ -6,6 +6,7 @@ import DynamicLayout from './DynamicLayout';
 import allComponents from './layouts/all.json';
 import reviewStep from './layouts/review.json';
 import successStep from './layouts/success.json';
+import finalStep from './layouts/finalStep.json';
 
 export default {
   component: DynamicLayout,
@@ -17,6 +18,7 @@ export const basic = () => {
     'All components': allComponents,
     'Review step': reviewStep,
     'Success step': successStep,
+    'Final step': finalStep,
   };
 
   const components = select('layout', layouts, allComponents);
@@ -39,6 +41,7 @@ export const basic = () => {
       onModelChange={onModelChange}
       submitted={submitted}
       errors={{ lastname: 'Last name is required' }}
+      baseUrl=""
     />
   );
 };

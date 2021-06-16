@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { boolean, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import Radio from './Radio';
+import Avatar, { AvatarType } from '../avatar';
 
 export default {
   component: Radio,
@@ -10,10 +10,12 @@ export default {
 };
 
 export const basic = () => {
-  const checked = boolean('checked', false);
+  const [checked, setChecked] = React.useState(true);
+
   const disabled = boolean('disabled', false);
-  const label = text('label', 'label');
+  const label = text('label', 'This is the label');
   const secondary = text('secondary', '');
+  const showAvatar = boolean('avatar', false);
 
   return (
     <Radio
@@ -23,7 +25,14 @@ export const basic = () => {
       checked={checked}
       disabled={disabled}
       secondary={secondary}
-      onChange={action('checked')}
+      onChange={() => setChecked(!checked)}
+      avatar={
+        showAvatar ? (
+          <Avatar type={AvatarType.THUMBNAIL}>
+            <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="" />
+          </Avatar>
+        ) : null
+      }
     />
   );
 };

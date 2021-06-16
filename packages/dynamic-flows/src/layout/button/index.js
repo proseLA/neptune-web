@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from '@transferwise/components';
-import { actionModel, sizeModel, alignModel, marginModel, contextModel } from '../models';
+import { actionModel, sizeModel, alignModel, marginModel } from '../models';
 import { getMarginBottom } from '../utils';
 
 const DynamicButton = (props) => {
@@ -26,8 +26,8 @@ const DynamicButton = (props) => {
     }
   };
 
-  const getButtonType = (context) => {
-    switch (context) {
+  const getButtonType = (action) => {
+    switch (action.type) {
       case 'primary':
         return 'accent';
       case 'success':
@@ -40,8 +40,8 @@ const DynamicButton = (props) => {
     }
   };
 
-  const getButtonPriority = (context) => {
-    switch (context) {
+  const getButtonPriority = (action) => {
+    switch (action.type) {
       case 'primary':
       case 'success':
         return 'primary';
@@ -53,14 +53,14 @@ const DynamicButton = (props) => {
   return (
     <Button
       size={getButtonSize(component.size)}
-      type={getButtonType(component.context)}
-      priority={getButtonPriority(component.context)}
+      type={getButtonType(component.action)}
+      priority={getButtonPriority(component.action)}
       block
       className={getActionClasses(component.action)}
       onClick={() => onAction(component.action)}
       disabled={component.action.disabled}
     >
-      {component.action.label}
+      {component.action.title}
     </Button>
   );
 };
@@ -71,7 +71,6 @@ DynamicButton.propTypes = {
     action: actionModel.isRequired,
     size: sizeModel,
     align: alignModel,
-    context: contextModel,
     margin: marginModel,
   }).isRequired,
 };

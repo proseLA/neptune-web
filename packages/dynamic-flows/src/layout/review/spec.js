@@ -13,14 +13,15 @@ describe('Given a component for dynamically rendering reviews', () => {
   beforeEach(() => {
     spec = {
       component: 'review',
-      definitions: [
+      title: 'title',
+      fields: [
         {
           label: 'a',
           value: 'b',
         },
       ],
       action: {
-        label: 'Edit',
+        title: 'Edit',
         url: '/example',
         method: 'GET',
       },
@@ -41,8 +42,12 @@ describe('Given a component for dynamically rendering reviews', () => {
     ]);
   });
 
-  it('should use the action label for the action link', () => {
-    expect(component.find('a').contains(spec.action.label)).toBe(true);
+  it('should use the title for the header', () => {
+    expect(component.find('h6').contains(spec.title)).toBe(true);
+  });
+
+  it('should use the action title for the action link', () => {
+    expect(component.find('a').contains(spec.action.title)).toBe(true);
   });
 
   describe('when the action link is clicked', () => {

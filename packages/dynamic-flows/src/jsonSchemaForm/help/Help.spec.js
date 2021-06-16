@@ -1,7 +1,7 @@
 import React from 'react';
 import { Info } from '@transferwise/components';
 import Help from './Help';
-import { mount, wait } from '../../../test-utils';
+import { mount, wait } from '../../test-utils';
 
 describe('Given a Help component renders from a help schema', () => {
   const help = {
