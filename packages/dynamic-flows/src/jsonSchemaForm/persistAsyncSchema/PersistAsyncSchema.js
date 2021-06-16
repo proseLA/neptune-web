@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Types from 'prop-types';
-import { isNull } from '@transferwise/neptune-validation';
+import { isNull, isValidSchema } from '@transferwise/neptune-validation';
 import { useIntl } from 'react-intl';
 import isEqual from 'lodash.isequal';
 import BasicTypeSchema from '../basicTypeSchema';
 import { isStatus2xx, isStatus422, QueryablePromise } from '../../common/api/utils';
 import messages from './PersistAsyncSchema.messages';
-import { isValidSchema } from '../../common/validation/schema-validators';
+
 import usePrev from '../../common/hooks/usePrev';
 import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
 import { getAsyncUrl } from '../../common/async/url';
