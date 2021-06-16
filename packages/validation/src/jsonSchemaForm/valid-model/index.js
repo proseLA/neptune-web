@@ -7,8 +7,9 @@ import {
   isArray,
   isUndefined,
   isNull,
-  isEmpty,
-} from '@transferwise/neptune-validation';
+} from '../../type-validators';
+
+import { isEmpty } from '../../value-validators';
 
 function getValidModelParts(model, schema) {
   if (schema.allOf) {

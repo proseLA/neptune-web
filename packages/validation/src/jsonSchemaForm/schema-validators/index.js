@@ -1,4 +1,4 @@
-import { isObject, isArray } from '@transferwise/neptune-validation';
+import { isObject, isArray } from '../../type-validators';
 
 import {
   getStringValidationFailures,
