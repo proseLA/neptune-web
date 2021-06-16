@@ -7,15 +7,12 @@ describe('Given a library for identifying validation failures', () => {
     beforeEach(() => {
       rules = {
         type: 'string',
-        minLength: { value: 3, message: 'minLength' },
-        maxLength: { value: 6, message: 'minLength' },
-        pattern: { value: '^[a-z]+$', message: 'pattern' },
-        required: true,
+        required: { value: true, message: 'custome required' },
       };
     });
 
     it('should return only required', () => {
-      expect(getFieldValidationFailures(null, rules)).toEqual(['required']);
+      expect(getFieldValidationFailures('', rules)).toEqual([rules.required]);
     });
   });
 
@@ -26,7 +23,7 @@ describe('Given a library for identifying validation failures', () => {
         minLength: { value: 3, message: 'minLength' },
         maxLength: { value: 6, message: 'minLength' },
         pattern: { value: '^[a-z]+$', message: 'pattern' },
-        required: false,
+        required: { value: false },
       };
     });
 
