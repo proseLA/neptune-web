@@ -49,7 +49,7 @@ describe('Modal', () => {
     render(<Modal {...props} open closeOnClick />);
     expect(props.onClose).not.toHaveBeenCalled();
 
-    fireEvent.click(document);
+    fireEvent.click(screen.getByRole('presentation'));
     expect(props.onClose).toHaveBeenCalled();
   });
 
