@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.6.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.6.2...@transferwise/dynamic-flows@13.6.3) (2021-06-16)
+
+
+### Bug Fixes
+
+* button should use `component.action.type` instead of `component.context` ([a0e4d12](https://github.com/transferwise/neptune-web/commit/a0e4d1211a41309395a7ecaeca7d0795d6550f6d))
+
+
+
+
+
 ## [13.6.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.6.1...@transferwise/dynamic-flows@13.6.2) (2021-06-15)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
