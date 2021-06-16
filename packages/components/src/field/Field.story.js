@@ -20,7 +20,7 @@ export const TextField = () => {
 
   const rules = {
     type: 'string',
-    required: { value: { value: true, message: 'Custom required' }, message: 'Custom required' },
+    required: { value: true, message: 'Custom required' },
     minLength: { value: 3 },
     maxLength: { value: 6, message: 'Custom maxLength error message' },
   };
