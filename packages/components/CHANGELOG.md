@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.6.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.0...@transferwise/components@36.6.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* modal close behaviour ([#1008](https://github.com/transferwise/neptune-web/issues/1008)) ([b84b507](https://github.com/transferwise/neptune-web/commit/b84b507a1300b3795561bfdfb199658d2a2aac1f))
+
+
+
+
+
 # [36.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.3...@transferwise/components@36.6.0) (2021-06-16)
 
 
