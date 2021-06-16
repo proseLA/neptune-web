@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/components",
-  "version": "36.6.1",
+  "version": "36.6.2",
   "description": "Neptune React components",
   "license": "Apache-2.0",
   "main": "./build/umd/polyfill/main.js",
@@ -107,7 +107,7 @@
     "@formatjs/intl-locale": "^2.4.14",
     "@popperjs/core": "^2.6.0",
     "@transferwise/formatting": "^2.1.0",
-    "@transferwise/neptune-validation": "^2.1.2",
+    "@transferwise/neptune-validation": "^2.1.3",
     "classnames": "^2.2.6",
     "commonmark": "0.29.1",
     "core-js": "^3.8.0",
