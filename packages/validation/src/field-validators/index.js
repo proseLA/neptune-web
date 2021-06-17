@@ -12,11 +12,12 @@ function getFieldValidationFailures(value, rules) {
     },
     { type: rules.type },
   );
+
   const jsonSchemaFailures = getValidationFailures(value, schema, rules?.required?.value);
 
   return jsonSchemaFailures.reduce((failures, failureKey) => {
     if (rules[failureKey]) {
-      failures.push({ ...rules[failureKey], message: rules[failureKey].message || failureKey });
+      failures.push({ ...rules[failureKey], message: rules[failureKey]?.message || failureKey });
     }
     return failures;
   }, []);
