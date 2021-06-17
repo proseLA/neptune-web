@@ -19,6 +19,7 @@ type FieldProps = {
   messages: {
     error: string;
     help: string;
+    info: { content: string; 'aria-label': string };
     validations: Validations[];
   };
   submitted?: boolean;
@@ -81,6 +82,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
     >
       <Element className="control-label d-block">
         {label}
+        {messages?.info && <Info {...messages.info} className="m-l-1" />}
 
         <WithNormaliser
           render={(overriddenMethods: OverriddenMethods) =>
