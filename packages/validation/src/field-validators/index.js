@@ -1,7 +1,5 @@
 import { getValidationFailures } from '../jsonSchemaForm/validation-failures';
 
-const TYPE_ERROR = { message: 'type' };
-
 function getFieldValidationFailures(value, rules) {
   const schema = Object.entries(rules).reduce(
     (acc, [key, entry]) => {
@@ -23,4 +21,4 @@ function getFieldValidationFailures(value, rules) {
   }, []);
 }
 
-export { getFieldValidationFailures, TYPE_ERROR };
+export { getFieldValidationFailures };
