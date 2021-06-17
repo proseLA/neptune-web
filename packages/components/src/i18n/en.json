@@ -1,8 +1,4 @@
 {
-  "maxLength": "Please provide message for {maxLength}",
-  "maximum": "Please provide message for {maximum}",
-  "minLength": "Please provide message for {minLength}",
-  "minimum": "Please provide message for {minimum}",
   "neptune.ClearButton.ariaLabel": "Clear",
   "neptune.CloseButton.ariaLabel": "Close",
   "neptune.MoneyInput.Select.placeholder": "Select an option...",
@@ -22,6 +18,10 @@
   "neptune.Upload.usButtonText": "Or select a file",
   "neptune.Upload.usDropMessage": "Drop file to start upload",
   "neptune.Upload.usPlaceholder": "Drag and drop a file less than 5MB",
-  "pattern": "Please provide message for {pattern}",
-  "required": "Please provide message for {required}"
+  "neptune.field.maxLength": "Please provide message for {maxLength}",
+  "neptune.field.maximum": "Please provide message for {maximum}",
+  "neptune.field.minLength": "Please provide message for {minLength}",
+  "neptune.field.minimum": "Please provide message for {minimum}",
+  "neptune.field.pattern": "Please provide message for {pattern}",
+  "neptune.field.required": "Please provide message for {required}"
 }
