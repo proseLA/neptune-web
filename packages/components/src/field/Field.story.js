@@ -15,7 +15,6 @@ export default {
 export const TextField = () => {
   const error = text('manual error', 'A manual');
   const help = text('help text', 'Please insert a value between 3 and 6 character');
-  const content = text('info text', 'Auxiliary help text for field');
   const [value, setValue] = useState('');
   const [validations, setValidations] = useState([]);
 
@@ -40,10 +39,6 @@ export const TextField = () => {
           help,
           error,
           validations,
-          info: {
-            content,
-            'aria-label': 'Click here for more details',
-          },
         }}
       >
         <input type="text" value={value} onChange={(val) => handleOnChange(val)} />
