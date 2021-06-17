@@ -21,13 +21,12 @@ export const TextField = () => {
   const rules = {
     type: 'string',
     required: { value: true, message: 'Custom required' },
-    minLength: { value: 3 },
+    minLength: { value: 8 },
     maxLength: { value: 6, message: 'Custom maxLength error message' },
   };
 
   const handleOnChange = (val) => {
     const failures = getFieldValidationFailures(val, rules);
-
     setValue(val);
     setValidations(failures);
   };

@@ -14,16 +14,12 @@ function getFieldValidationFailures(value, rules) {
   );
   const jsonSchemaFailures = getValidationFailures(value, schema, rules?.required?.value);
 
-  const failures = [];
-
-  if (rules[jsonSchemaFailures[0]]) {
-    if (rules[jsonSchemaFailures[0]].message) {
-      failures.push(rules[jsonSchemaFailures[0]]);
-    } else {
-      failures.push({ ...rules[jsonSchemaFailures[0]], message: jsonSchemaFailures[0] });
+  return jsonSchemaFailures.reduce((failures, failureKey) => {
+    if (rules[failureKey]) {
+      failures.push({ ...rules[failureKey], message: rules[failureKey].message || failureKey });
     }
-  }
-  return failures;
+    return failures;
+  }, []);
 }
 
 export { getFieldValidationFailures, TYPE_ERROR };
