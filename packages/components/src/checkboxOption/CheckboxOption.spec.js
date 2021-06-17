@@ -4,6 +4,10 @@ import { render, fireEvent } from '@testing-library/react';
 
 import CheckboxOption from '.';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
+
 describe('Checkbox option', () => {
   let container;
   let getByRole;
@@ -15,6 +19,10 @@ describe('Checkbox option', () => {
     title: 'Title',
     onChange: jest.fn(),
   };
+
+  beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+  });
 
   describe('by default', () => {
     beforeEach(() => {
@@ -64,6 +72,15 @@ describe('Checkbox option', () => {
       expect(onChange).not.toBeCalled();
       fireEvent.click(label);
       expect(onChange).not.toBeCalled();
+    });
+  });
+
+  describe('RTL support', () => {
+    beforeEach(() => {
+      ({ container, getByRole } = render(<CheckboxOption {...defaultProps} />));
+    });
+    it('applies correct css classes when isRTL is true', () => {
+      expect(container.querySelector('.media-body')).toHaveClass('text-xs-right');
     });
   });
 });

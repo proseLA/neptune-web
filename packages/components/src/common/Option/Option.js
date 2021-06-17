@@ -5,6 +5,8 @@ import requiredIf from 'react-required-if';
 
 import './Option.css';
 
+import { useDirection } from '../hooks';
+
 const Option = ({
   as: Element,
   href,
@@ -22,42 +24,45 @@ const Option = ({
   inverseMediaCircle,
   showMediaAtAllSizes,
   showMediaCircle,
-}) => (
-  <Element
-    className={classNames(className, 'media', {
-      'decision-complex': complex,
-      decision,
-      disabled,
-      'tw-option__sm-media': showMediaAtAllSizes,
-    })}
-    href={href}
-    onClick={onClick}
-    htmlFor={htmlFor}
-    target={target}
-    disabled={disabled && Element === 'button'}
-  >
-    {media && (
-      <div className="media-left">
-        {showMediaCircle ? (
-          <div
-            className={classNames('circle circle-sm text-primary', {
-              'circle-inverse': inverseMediaCircle,
-            })}
-          >
-            {media}
-          </div>
-        ) : (
-          <div className="tw-option__no-media-circle">{media}</div>
-        )}
+}) => {
+  const { isRTL } = useDirection();
+  return (
+    <Element
+      className={classNames(className, 'media', {
+        'decision-complex': complex,
+        decision,
+        disabled,
+        'tw-option__sm-media': showMediaAtAllSizes,
+      })}
+      href={href}
+      onClick={onClick}
+      htmlFor={htmlFor}
+      target={target}
+      disabled={disabled && Element === 'button'}
+    >
+      {media && (
+        <div className={classNames({ 'media-left': !isRTL, 'media-right': isRTL })}>
+          {showMediaCircle ? (
+            <div
+              className={classNames('circle circle-sm text-primary', {
+                'circle-inverse': inverseMediaCircle,
+              })}
+            >
+              {media}
+            </div>
+          ) : (
+            <div className="tw-option__no-media-circle">{media}</div>
+          )}
+        </div>
+      )}
+      <div className={classNames('media-body', { 'text-xs-right': isRTL })}>
+        <div className="h5">{title}</div>
+        {content && <div className="decision__content">{content}</div>}
       </div>
-    )}
-    <div className="media-body">
-      <div className="h5">{title}</div>
-      {content && <div className="decision__content">{content}</div>}
-    </div>
-    <div className="media-right">{button}</div>
-  </Element>
-);
+      <div className={classNames({ 'media-right': !isRTL, 'media-left': isRTL })}>{button}</div>
+    </Element>
+  );
+};
 
 Option.propTypes = {
   media: PropTypes.node,

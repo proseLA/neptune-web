@@ -1,12 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { render } from '../test-utils';
 
 import RadioOption from '.';
 import Option from '../common/Option';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
+
 describe('Radio option', () => {
   let component;
   beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
     component = shallow(
       <RadioOption media={<span />} id="" name="" title="" content="" onChange={jest.fn()} />,
     );
@@ -53,6 +59,14 @@ describe('Radio option', () => {
     expect(buttonProp('disabled')).toBe(false);
     component.setProps({ disabled: true });
     expect(buttonProp('disabled')).toBe(true);
+  });
+
+  it('applies correct css classes when isRTL is true', () => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+    const { container } = render(
+      <RadioOption media={<span />} id="" name="" title="" content="" onChange={jest.fn()} />,
+    );
+    expect(container.querySelector('.media-body')).toHaveClass('text-xs-right');
   });
 
   const option = () => component.find(Option);

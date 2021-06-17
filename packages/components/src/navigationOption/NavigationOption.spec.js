@@ -5,9 +5,14 @@ import { render } from '../test-utils';
 import NavigationOption from '.';
 import Option from '../common/Option';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
+
 describe('Navigation option', () => {
   let component;
   beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
     component = shallow(<NavigationOption title="" onClick={jest.fn()} />);
   });
 
@@ -71,6 +76,12 @@ describe('Navigation option', () => {
     component.setProps({ className: 'test-class-name' });
 
     expect(option().props().className).toBe('tw-navigation-option test-class-name');
+  });
+
+  it('applies correct css classes when isRTL is true', () => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+    const { container } = render(<NavigationOption title="" />);
+    expect(container.querySelector('.media-body')).toHaveClass('text-xs-right');
   });
 
   const option = () => component.find(Option);

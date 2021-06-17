@@ -9,6 +9,8 @@ import Option from '../common/Option';
 import { Position } from '../common';
 import './NavigationOption.css';
 
+import { useDirection } from '../common/hooks';
+
 const NavigationOption = ({
   as,
   media,
@@ -37,6 +39,8 @@ const NavigationOption = ({
     className: classNames('tw-navigation-option', className),
   };
 
+  const { isRTL } = useDirection();
+
   if (href) {
     sharedProps.as = 'a';
   }
@@ -49,7 +53,13 @@ const NavigationOption = ({
           onClick(event);
         }
       }}
-      button={<Chevron orientation={Position.RIGHT} disabled={disabled} className="d-block" />}
+      button={
+        <Chevron
+          orientation={isRTL ? Position.LEFT : Position.RIGHT}
+          disabled={disabled}
+          className="d-block"
+        />
+      }
     />
   );
 };
