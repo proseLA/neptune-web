@@ -5,89 +5,80 @@ import { Checkbox, Alert, DateInput, Sentiment, Size } from '@transferwise/compo
 import code from '../../../liveEditorCode/field.new.code';
 import { getFieldValidationFailures } from '@transferwise/neptune-validation';
 
-Field is a new component that provides validation to its children. Validation messages are automatically
-attached to the validated component with styling. Currently the supported children types are:
+Field is a component that wraps an input and returns the input with an alert message.
 
 <LiveEditorBlock code={code} scope={{ Field, getFieldValidationFailures }} />
 <GeneratePropsTable componentName="Field" />
 
-## Validation examples
+## Validations
 
-<div className="scroll-table">
-  <table className="docs-table table ">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Priority</th>
-        <th>Preview</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>Accent</th>
-        <th>Primary</th>
-        <td>
-        
-       
-        </td>
-      </tr>
-      <tr>
-        <th>Accent</th>
-        <th>Secondary</th>
-        <td>
-          <Button priority="secondary" block={true} onClick={() => {}}>
-            Convert money
-          </Button>
-        </td>
-      </tr>
-      <tr>
-        <th>Accent</th>
-        <th>Tertiary</th>
-        <td>
-          <Button priority="tertiary" block={true} onClick={() => {}}>
-            Convert money
-          </Button>
-        </td>
-      </tr>
-      <tr>
-        <th>Positive</th>
-        <th>Primary</th>
-        <td>
-          <Button type="positive" block={true} onClick={() => {}}>
-            Send money
-          </Button>
-        </td>
-      </tr>
-      <tr>
-        <th>Positive</th>
-        <th>Secondary</th>
-        <td>
-          <Button type="positive" priority="secondary" block={true} onClick={() => {}}>
-            Confirm
-          </Button>
-        </td>
-      </tr>
-      <tr>
-        <th>Negative</th>
-        <th>Primary</th>
-        <td>
-          <Button type="negative" block={true} onClick={() => {}}>
-            Delete
-          </Button>
-        </td>
-      </tr> <tr>
-        <th>Negative</th>
-        <th>Secondary</th>
-        <td>
-          <Button type="negative" priority="secondary" block={true} onClick={() => {}}>
-            Cancel
-          </Button>
-        </td>
-      </tr>
-    </tbody>
+Field component do not provide validation itself but it does accept an array of validation messages that will be displayed in an InlineAlert component.
 
-  </table>
-</div>
+Validation messages are automatically attached to the children with styling.
+
+The validation logic has been not integrated inside Field on purpose so consumers can provide their own custom validation logic.
+
+### Default validations
+
+A set of default validations is provided and they should cover common scenarios. These validations are povided with statndard translated error messages that can be overrided.
+
+The default supported validations are:
+
+**Any type **:
+
+- required
+- pattern
+
+** String type **
+
+- minLength
+- maxLength
+
+** Number type **
+
+- minimum
+- maximum
+
+Default validations can be access via the method
+
+`import { getFieldValidationFailures } from '@transferwise/neptune-validation';`
+
+getFieldValidationFailures accepts two parameters: value and rules, where value is the value to be validated and rules are the values to validate the value against
+
+An example of usage is :
+
+```
+const rules = {
+  type: 'string',
+  required: { value: true, message: 'Custom required' },
+  minLength: { value: 3 },
+  maxLength: { value: 6, message: 'Custom maxLength error message' },
+};
+
+const failures = getFieldValidationFailures(val, rules);
+```
+
+In the example above the failures can be in the format:
+
+```
+[{
+  message: "minLength"
+  value: 3
+}]
+```
+
+When requesting a validation always make sure type is provided.
+
+<Alert
+  message={
+    'When validating a numeric value, the value passed to getFieldValidationFailures should be cast to number because html number inputs returns string!'
+  }
+  type={Sentiment.WARNING}
+/>
+
+When a message is not provided for a specific rule Field will populate the InlineAlert with the default message (if defined) for that specific failure.
+
+If a custom message is provided for a specific rule it will be the one attached to the Field if that specific failures occurs.
 
 export const meta = {
   name: `Field`,
