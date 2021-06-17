@@ -27,7 +27,7 @@
     "dev:translations": "npx npm-watch",
     "build": "npm-run-all build:*",
     "build:clean": "rm -rf lib build",
-    "build:crowdin-source-file": "formatjs extract 'src/**/*.messages.js' --out-file src/i18n/en.json --format src/i18n/formatter.js && prettier --find-config-path --write src/i18n/*.json",
+    "build:crowdin-source-file": "formatjs extract 'src/**/*.messages.(js|ts)' --out-file src/i18n/en.json --format src/i18n/formatter.js && prettier --find-config-path --write src/i18n/*.json",
     "build:compile-css": "gulp compileLess --dest=src",
     "build:umd": "NODE_ENV=umd rollup -c",
     "build:umd-nopolyfill": "NODE_ENV=umd-nopolyfill rollup -c",

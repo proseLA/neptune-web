@@ -1,4 +1,5 @@
 {
+  "maxLength": "Please type a value shorter than than {maxLength}",
   "minLength": "Please type a value longer than {minLength}",
   "neptune.ClearButton.ariaLabel": "Clear",
   "neptune.CloseButton.ariaLabel": "Close",
