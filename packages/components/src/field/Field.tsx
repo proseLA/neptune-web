@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import getAlertMessage from './getAlertMessage';
 import InlineAlert from '../inlineAlert';
+import Info from '../info';
 import WithNormaliser from '../withNormaliser';
 import { Sentiment } from '../common';
 
@@ -13,8 +14,14 @@ export interface Validations {
 
 type FieldProps = {
   children: React.ReactElement;
+  /** If label is not provided the field will be wrapped in a span */
   label?: string;
-  messages: { error: string; help: string; validations: Validations[] };
+  messages: {
+    error: string;
+    help: string;
+    info: { content: string; 'aria-label': string };
+    validations: Validations[];
+  };
   submitted?: boolean;
 };
 
@@ -75,6 +82,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
     >
       <Element className="control-label d-block">
         {label}
+        {messages?.info && <Info {...messages.info} className="m-l-1" />}
 
         <WithNormaliser
           render={(overriddenMethods: OverriddenMethods) =>
