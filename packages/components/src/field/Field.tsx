@@ -64,6 +64,8 @@ const Field: React.FunctionComponent<FieldProps> = ({
     onFocus: handleOnFocus,
   };
 
+  const FieldWrapper = label ? 'label' : 'span';
+
   return (
     <div
       className={classNames('form-group', {
@@ -71,7 +73,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
         'has-info': type === Sentiment.NEUTRAL,
       })}
     >
-      <label className="control-label d-block">
+      <FieldWrapper className="control-label d-block">
         {label}
 
         <WithNormaliser
@@ -84,7 +86,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
           methodsToOvverride={methodsToOvverride}
           {...children.props}
         />
-      </label>
+      </FieldWrapper>
       {message && <InlineAlert type={type}>{message}</InlineAlert>}
     </div>
   );
