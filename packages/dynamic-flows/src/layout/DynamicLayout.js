@@ -86,13 +86,19 @@ const DynamicLayout = (props) => {
           <DynamicDecision key={getKey(component)} component={component} onAction={onAction} />
         );
       case 'final':
-        return <>{convertStepToLayout(component).map(renderComponent)}</>;
+        return (
+          <React.Fragment key={getKey(component)}>
+            {convertStepToLayout(component).map(renderComponent)}
+          </React.Fragment>
+        );
       default:
         return <div key={getKey(component)} />;
     }
   };
 
-  return <>{components.map(renderComponent)}</>;
+  return (
+    <React.Fragment key={getKey(components)}>{components.map(renderComponent)}</React.Fragment>
+  );
 };
 
 DynamicLayout.propTypes = {
