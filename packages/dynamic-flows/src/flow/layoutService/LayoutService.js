@@ -52,15 +52,10 @@ function convertFormStepToDynamicLayout(step) {
 }
 
 function convertFinalStepToDynamicLayout(step) {
-  const { details } = step;
-  if (!details) {
-    return [];
-  }
+  const layout = step.details ? convertCommonComponents(step.details) : [];
 
-  const layout = convertCommonComponents(details);
-
-  if (details.action) {
-    const actions = [convertStepActionToDynamicAction(details.action)];
+  if (step.actions) {
+    const actions = step.actions.map(convertStepActionToDynamicAction);
     layout.push(dynamicBox(actions, 'md'));
   }
 

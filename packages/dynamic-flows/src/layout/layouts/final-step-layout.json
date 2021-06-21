@@ -1,0 +1,44 @@
+[
+  {
+    "type": "heading",
+    "text": "Details verified",
+    "size": "lg",
+    "margin": "lg",
+    "align": "center"
+  },
+  {
+    "type": "box",
+    "width": "sm",
+    "components": [
+      {
+        "type": "image",
+        "url": "https://wise.com/help/_next/static/images/help-banner-47a63032e31a1611470a42f871f654ee.svg",
+        "text": "alt text",
+        "margin": "lg"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": "We do this extra check to make sure your money goes to the right place....",
+    "align": "center"
+  },
+  {
+    "type": "box",
+    "width": "md",
+    "components": [
+      {
+        "type": "button",
+        "context": "success",
+        "action": {
+          "title": "Continue",
+          "type": "success",
+          "exit": true,
+          "data": { "someKey": "some value" },
+          "url": "/success",
+          "method": "GET"
+        }
+      }
+    ]
+  }
+]

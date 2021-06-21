@@ -2,11 +2,12 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
 import DynamicLayout from './DynamicLayout';
-
-import allComponents from './layouts/all.json';
-import reviewStep from './layouts/review.json';
-import successStep from './layouts/success.json';
+import { convertStepToLayout } from '../flow/layoutService';
+import allComponentsLayout from './layouts/all.json';
+import reviewStepLayout from './layouts/review.json';
+import successStepLayout from './layouts/success.json';
 import finalStep from './layouts/finalStep.json';
+import finalStepLayout from './layouts/final-step-layout.json';
 
 export default {
   component: DynamicLayout,
@@ -15,13 +16,14 @@ export default {
 
 export const basic = () => {
   const layouts = {
-    'All components': allComponents,
-    'Review step': reviewStep,
-    'Success step': successStep,
-    'Final step': finalStep,
+    'All components layout': allComponentsLayout,
+    'Review step layout': reviewStepLayout,
+    'Success step layout': successStepLayout,
+    'Final step layout': finalStepLayout,
+    'Final step (converted)': convertStepToLayout(finalStep),
   };
 
-  const components = select('layout', layouts, allComponents);
+  const components = select('layout', layouts, allComponentsLayout);
   const submitted = boolean('submitted', true);
 
   const onModelChange = (model, isValid, schema) => {
