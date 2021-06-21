@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import getAlertMessage from './getAlertMessage';
 import InlineAlert from '../inlineAlert';
 import Info from '../info';
-import WithNormaliser from '../withNormaliser';
+import WithExtendedMethods from '../withExtendedMethods';
 import { Sentiment } from '../common';
 
 export interface Validations {
@@ -29,8 +29,6 @@ type OverriddenMethods = {
   onChange: (arg: any) => string;
   onBlur: (arg: any) => string;
   onFocus: (arg: any) => string;
-  onSuccess: (arg: any) => string;
-  onFailure: (arg: any) => string;
 };
 
 const Field: React.FunctionComponent<FieldProps> = ({
@@ -84,7 +82,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
         {label}
         {messages?.info && <Info {...messages.info} className="m-l-1" />}
 
-        <WithNormaliser
+        <WithExtendedMethods
           render={(overriddenMethods: OverriddenMethods) =>
             cloneElement(children, {
               className: 'form-control',

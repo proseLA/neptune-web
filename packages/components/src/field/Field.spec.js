@@ -27,7 +27,37 @@ describe('Field', () => {
     expect(screen.getByText(props.label)).toBeTruthy();
   });
 
+  it('renders info', () => {
+    const ariaLabel = 'Click here for more details';
+    render(
+      <Field
+        {...props}
+        messages={{
+          ...props.messages,
+          info: {
+            content: 'content',
+            'aria-label': ariaLabel,
+          },
+        }}
+      >
+        <input type="text" />
+      </Field>,
+    );
+
+    expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
+  });
+
   it('renders children', () => {
+    render(
+      <Field {...props}>
+        <input type="text" />
+      </Field>,
+    );
+
+    expect(screen.getByLabelText(props.label)).toBeInTheDocument();
+  });
+
+  it('renders info', () => {
     render(
       <Field {...props}>
         <input type="text" />

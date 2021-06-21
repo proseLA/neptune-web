@@ -86,6 +86,10 @@ function getNumberValidationFailures(value, schema, isRequired) {
     return ['type'];
   }
 
+  if (value === '' && isRequired) {
+    return ['required'];
+  }
+
   const failures = [];
   if (!isValidRequired(value, isRequired)) {
     failures.push('required');

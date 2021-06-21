@@ -46,7 +46,7 @@ export const TextField = () => {
           },
         }}
       >
-        <input type="text" value={value} onChange={(val) => handleOnChange(val)} />
+        <input type="text" value={value} onChange={(event) => handleOnChange(event.target.value)} />
       </Field>
 
       <div>{`value: ${value}`}</div>
@@ -64,12 +64,13 @@ export const NumberField = () => {
   const handleOnChange = (val) => {
     const rules = {
       type: 'number',
-      required: { value: { value: true, message: 'Custom required' }, message: 'Custom required' },
+      required: { value: true, message: 'Custom required' },
       minimum: { value: 3, message: 'Insert a value bigger than 3' },
       maximum: { value: 6, message: 'Insert a value smaller than 6' },
     };
+    console.log(val);
     // Val needs to be cast to Number
-    const failures = getFieldValidationFailures(Number(val), rules);
+    const failures = getFieldValidationFailures(val === '' ? 0 : Number(val), rules);
 
     setValidations(failures);
     setValue(val);
@@ -85,7 +86,11 @@ export const NumberField = () => {
           validations,
         }}
       >
-        <input type="number" value={value} onChange={(val) => handleOnChange(val)} />
+        <input
+          type="number"
+          value={value}
+          onChange={(event) => handleOnChange(event.target.value)}
+        />
       </Field>
 
       <div>{`value: ${value}`}</div>
@@ -104,7 +109,7 @@ export const CheckboxField = () => {
       required: { value: true, message: 'Custom required' },
     };
 
-    const failures = getFieldValidationFailures(val, rules);
+    const failures = getFieldValidationFailures(val || undefined, rules);
 
     setValidations(failures);
     setValue(val);

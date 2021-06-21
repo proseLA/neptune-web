@@ -5,32 +5,32 @@ const messages: {
 } = defineMessages({
   minLength: {
     id: 'neptune.field.minLength',
-    defaultMessage: 'Please provide message for {minLength}',
+    defaultMessage: 'Please enter at least {minLength} characters.',
     description: 'Validation message for short entries',
   },
   maxLength: {
     id: 'neptune.field.maxLength',
-    defaultMessage: 'Please provide message for {maxLength}',
+    defaultMessage: 'Please enter less than {maxLength} characters.',
     description: 'Validation message for long entries',
   },
   minimum: {
     id: 'neptune.field.minimum',
-    defaultMessage: 'Please provide message for {minimum}',
+    defaultMessage: 'Please enter a number that’s {minimum} or greater.',
     description: 'Validation message for small entries',
   },
   maximum: {
     id: 'neptune.field.maximum',
-    defaultMessage: 'Please provide message for {maximum}',
+    defaultMessage: 'Please enter a number that’s {maximum} or less.',
     description: 'Validation message for big entries',
   },
   pattern: {
     id: 'neptune.field.pattern',
-    defaultMessage: 'Please provide message for {pattern}',
+    defaultMessage: 'Please correct the format.',
     description: 'Validation message for incorrect format',
   },
   required: {
     id: 'neptune.field.required',
-    defaultMessage: 'Please provide message for {required}',
+    defaultMessage: 'This field is required.',
     description: 'Validation message for required entires',
   },
 });
