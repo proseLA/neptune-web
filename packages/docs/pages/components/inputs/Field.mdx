@@ -5,26 +5,26 @@ import { Checkbox, Alert, DateInput, Sentiment, Size } from '@transferwise/compo
 import code from '../../../liveEditorCode/field.new.code';
 import { getFieldValidationFailures } from '@transferwise/neptune-validation';
 
-Field is a component that wraps an input and returns the input with an alert message.
+Field is a component that wraps an input and returns it with an attached alert message.
 
 <LiveEditorBlock code={code} scope={{ Field, getFieldValidationFailures }} />
 <GeneratePropsTable componentName="Field" />
 
 ## Validations
 
-Field component do not provide validation itself but it does accept an array of validation messages that will be displayed in an InlineAlert component.
+Field doesn't provide validation itself but it does accept an array of validation messages that will be displayed in an InlineAlert component.
 
-Validation messages are automatically attached to the children with styling.
+Validation messages are automatically attached to the children based on user interaction and with styling.
 
-The validation logic has been not integrated inside Field on purpose so consumers can provide their own custom validation logic.
+The validation logic hasn't been integrated in Field on purpose so consumers can provide their own custom validation logic.
 
 ### Default validations
 
-A set of default validations is provided and they should cover common scenarios. These validations are povided with statndard translated error messages that can be overrided.
+A set of default validations is provided and it should cover common scenarios. These validations are provided with standard translated error messages that can be overridden.
 
 The default supported validations are:
 
-**Any type **:
+** Any type **
 
 - required
 - pattern
@@ -43,14 +43,13 @@ Default validations can be access via the method
 
 `import { getFieldValidationFailures } from '@transferwise/neptune-validation';`
 
-getFieldValidationFailures accepts two parameters: value and rules, where value is the value to be validated and rules are the values to validate the value against
+getFieldValidationFailures accepts two parameters: value and rules, where value is the value to be validated and rules are the rulese to validate the value against.
 
 An example of usage is :
 
 ```
 const rules = {
   type: 'string',
-  required: { value: true, message: 'Custom required' },
   minLength: { value: 3 },
   maxLength: { value: 6, message: 'Custom maxLength error message' },
 };
@@ -58,25 +57,48 @@ const rules = {
 const failures = getFieldValidationFailures(val, rules);
 ```
 
-In the example above the failures can be in the format:
+In the example above the returned failures will be in the format:
 
 ```
 [{
-  message: "minLength"
+  message: "minLength" // A default translated message will be displayed
   value: 3
+}]
+```
+
+or
+
+```
+[{
+  message: "Custom maxLength error message"
+  value: 5
 }]
 ```
 
 When requesting a validation always make sure type is provided.
 
+```
+const rules = {
+  type: 'number',
+  required: { value: true, message: 'Custom required' },
+  minimum: { value: 3 },
+  maximum: { value: 6, message: 'Custom maxLength error message' },
+};
+
+
+const numericValue= Number(val)
+
+const failures = getFieldValidationFailures(val, rules);
+```
+
 <Alert
   message={
-    'When validating a numeric value, the value passed to getFieldValidationFailures has to be casted to number because html number inputs returns string!'
+    'When validating a numeric value, the value passed to getFieldValidationFailures has to be cast to number because html number inputs returns string!'
   }
   type={Sentiment.WARNING}
 />
 
-When a message is not provided for a specific rule Field will populate the InlineAlert with the default message (if defined) for that specific failure.
+When a message is not provided for a specific rule, Field will populate the InlineAlert with the default message (if defined) for that specific failure.
 
 If a custom message is provided for a specific rule it will be the one attached to the Field if that specific failures occurs.
 
