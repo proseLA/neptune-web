@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Button } from '@transferwise/components';
+import { Button, Priority, ControlType } from '@transferwise/components';
 
 import DynamicButton from '.';
 
@@ -17,7 +17,8 @@ describe('Given a component for dynamically rendering buttons', () => {
         title: 'Submit',
         url: '/example',
         method: 'GET',
-        type: 'primary',
+        type: 'accent',
+        priority: 'primary',
       },
       size: 'md',
       align: 'center',
@@ -45,6 +46,39 @@ describe('Given a component for dynamically rendering buttons', () => {
     });
     it('should broadcast onAction', () => {
       expect(onAction).toHaveBeenCalledWith(spec.action);
+    });
+  });
+
+  describe('when priority is ommitted', () => {
+    const priorities = Object.values(Priority);
+    const controlTypes = Object.values(ControlType);
+
+    priorities.forEach((priority) => {
+      controlTypes.forEach((controlType) => {
+        it(`should set the correct priority and type for ${priority}/${controlType}`, () => {
+          const localComponent = shallow(
+            <DynamicButton
+              component={{
+                component: 'button',
+                action: {
+                  title: 'Submit',
+                  url: '/example',
+                  method: 'GET',
+                  priority,
+                  type: controlType,
+                },
+                size: 'md',
+                align: 'center',
+                margin: 'md',
+              }}
+              onAction={jest.fn()}
+            />,
+          );
+
+          expect(localComponent.find(Button).prop('priority')).toBe(priority);
+          expect(localComponent.find(Button).prop('type')).toBe(controlType);
+        });
+      });
     });
   });
 });

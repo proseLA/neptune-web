@@ -1,3 +1,4 @@
+import { ControlType, Priority } from '@transferwise/components';
 import Types from 'prop-types';
 
 const contextModel = Types.oneOf(['success', 'failure', 'warning', 'info', 'primary']);
@@ -7,7 +8,8 @@ const actionModel = Types.shape({
   url: Types.string.isRequired,
   method: Types.oneOf(['GET', 'POST', 'PUT', 'PATCH']).isRequired,
   disabled: Types.boolean,
-  type: contextModel,
+  type: Types.oneOf(Object.values(ControlType)),
+  priority: Types.oneOf(Object.values(Priority)),
   // eslint-disable-next-line react/forbid-prop-types
   data: Types.object,
 });

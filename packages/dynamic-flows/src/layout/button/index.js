@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from '@transferwise/components';
+import { Button, Priority, ControlType } from '@transferwise/components';
 import { actionModel, sizeModel, alignModel, marginModel } from '../models';
 import { getMarginBottom } from '../utils';
 
@@ -27,27 +27,11 @@ const DynamicButton = (props) => {
   };
 
   const getButtonType = (action) => {
-    switch (action.type) {
-      case 'primary':
-        return 'accent';
-      case 'success':
-        return 'positive';
-      case 'failure':
-      case 'warning':
-        return 'negative';
-      default:
-        return 'accent';
-    }
+    return Object.values(ControlType).includes(action.type) ? action.type : ControlType.ACCENT;
   };
 
   const getButtonPriority = (action) => {
-    switch (action.type) {
-      case 'primary':
-      case 'success':
-        return 'primary';
-      default:
-        return 'secondary';
-    }
+    return Object.values(Priority).includes(action.priority) ? action.priority : Priority.SECONDARY;
   };
 
   return (
