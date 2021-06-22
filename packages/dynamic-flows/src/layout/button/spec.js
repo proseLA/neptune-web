@@ -49,13 +49,13 @@ describe('Given a component for dynamically rendering buttons', () => {
     });
   });
 
-  describe('when priority is ommitted', () => {
+  describe('when priority and type are provided...', () => {
     const priorities = Object.values(Priority);
     const controlTypes = Object.values(ControlType);
 
     priorities.forEach((priority) => {
       controlTypes.forEach((controlType) => {
-        it(`should set the correct priority and type for ${priority}/${controlType}`, () => {
+        it(`...as ${priority}/${controlType}, it sets the correct priority and type`, () => {
           const localComponent = shallow(
             <DynamicButton
               component={{
@@ -79,6 +79,30 @@ describe('Given a component for dynamically rendering buttons', () => {
           expect(localComponent.find(Button).prop('type')).toBe(controlType);
         });
       });
+    });
+  });
+
+  describe('when priority or type are NOT provided', () => {
+    it(`defaults to secondary priority and accent type`, () => {
+      const localComponent = shallow(
+        <DynamicButton
+          component={{
+            component: 'button',
+            action: {
+              title: 'Submit',
+              url: '/example',
+              method: 'GET',
+            },
+            size: 'md',
+            align: 'center',
+            margin: 'md',
+          }}
+          onAction={jest.fn()}
+        />,
+      );
+
+      expect(localComponent.find(Button).prop('priority')).toBe('secondary');
+      expect(localComponent.find(Button).prop('type')).toBe('accent');
     });
   });
 });
