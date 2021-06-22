@@ -3,11 +3,11 @@ import Types from 'prop-types';
 import classNames from 'classnames';
 
 import { InlineAlert, InstructionsList } from '@transferwise/components';
-import { getValidationFailures } from '@transferwise/neptune-validation';
 import FormControl from '../formControl';
 import { FormControlType, Size } from '../common';
 
 import { getControlType } from '../common/requirements';
+import { getValidationFailures } from '../common/validation/validation-failures';
 
 export const FieldTypes = {
   STRING: 'string',

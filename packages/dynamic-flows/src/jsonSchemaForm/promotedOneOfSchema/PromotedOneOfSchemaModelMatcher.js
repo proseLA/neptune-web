@@ -1,4 +1,4 @@
-import { isValidSchema } from '@transferwise/neptune-validation';
+import { isValidSchema } from '../../common/validation/schema-validators';
 
 export const getSelectionFromModel = (schema, model) => {
   const matchingSchemas = schema.oneOf.filter((childSchema) => isValidSchema(model, childSchema));
