@@ -390,6 +390,18 @@ const countries = [
     phone: '+1809',
   },
   {
+    name: 'Dominican Republic',
+    iso2: 'DO',
+    iso3: 'DOM',
+    phone: '+1829',
+  },
+  {
+    name: 'Dominican Republic',
+    iso2: 'DO',
+    iso3: 'DOM',
+    phone: '+1849',
+  },
+  {
     name: 'East Timor',
     iso2: 'TL',
     iso3: 'TLS',

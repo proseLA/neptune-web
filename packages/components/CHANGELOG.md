@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.2...@transferwise/components@36.7.0) (2021-06-22)
+
+
+### Features
+
+* add multiple dominican republic country codes to PhoneNumberInput ([#1020](https://github.com/transferwise/neptune-web/issues/1020)) ([ab79ebb](https://github.com/transferwise/neptune-web/commit/ab79ebbdcf70a78681c6285ce68220e75f755853))
+
+
+
+
+
 ## [36.6.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.1...@transferwise/components@36.6.2) (2021-06-16)
 
 **Note:** Version bump only for package @transferwise/components

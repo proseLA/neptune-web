@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.6.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.6.8...@transferwise/dynamic-flows@13.6.9) (2021-06-22)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [13.6.8](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.6.7...@transferwise/dynamic-flows@13.6.8) (2021-06-21)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [13.6.7](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.6.6...@transferwise/dynamic-flows@13.6.7) (2021-06-21)
+
+
+### Bug Fixes
+
+* add neptune-validation peer dependency ([#1016](https://github.com/transferwise/neptune-web/issues/1016)) ([1802154](https://github.com/transferwise/neptune-web/commit/1802154d1933d0c8c708cd5684788e2a84fe84f7))
+
+
+
+
+
 ## [13.6.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.6.5...@transferwise/dynamic-flows@13.6.6) (2021-06-16)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

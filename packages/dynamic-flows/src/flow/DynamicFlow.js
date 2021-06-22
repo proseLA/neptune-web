@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import { useIntl } from 'react-intl';
-import { isEmpty, isObject, isValidSchema } from '@transferwise/neptune-validation';
+import { isEmpty, isObject } from '@transferwise/neptune-validation';
 import { Loader } from '@transferwise/components';
 import { withErrorBoundary } from './errorBoundary';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 
 import { restHttpClient as defaultHttpClient } from './httpClient';
-
+import { isValidSchema } from '../common/validation/schema-validators';
 import { Size } from '../common';
 
 /**

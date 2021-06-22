@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
 
-import { getValidModelParts } from '@transferwise/neptune-validation';
 import GenericSchema from '../genericSchema';
+import { getValidModelParts } from '../../common/validation/valid-model';
 
 const AllOfSchema = (props) => {
   const onChangeModelIndex = (index, model, triggerSchema, triggerModel) => {
