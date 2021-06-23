@@ -13,7 +13,6 @@ export interface Validations {
 
 type FieldProps = {
   children: React.ReactElement;
-  /** If label is not provided the field will be wrapped in a span */
   label?: string;
   messages: {
     error: string;
