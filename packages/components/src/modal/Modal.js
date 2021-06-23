@@ -35,7 +35,6 @@ const Modal = ({
       scrollable={scroll === Scroll.CONTENT}
       onClose={onClose}
       className={classNames('d-flex', 'justify-content-center')}
-      disableClickToClose={!closeOnClick}
     >
       <CSSTransition
         appear

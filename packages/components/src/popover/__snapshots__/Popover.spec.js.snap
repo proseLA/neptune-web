@@ -36,7 +36,7 @@ exports[`Popover on desktop renders when is open 1`] = `
 exports[`Popover on mobile renders when is open 1`] = `
 <div>
   <span
-    class="np-popover d-inline-block"
+    class="np-popover"
   >
     <span
       class="d-inline-block"

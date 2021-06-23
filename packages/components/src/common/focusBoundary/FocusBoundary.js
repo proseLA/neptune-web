@@ -28,7 +28,7 @@ const FocusBoundary = ({ children }) => {
   });
 
   return (
-    <span ref={boundaryRef} tabIndex={-1} className="np-focus-boundary d-inline-flex outline-none">
+    <span ref={boundaryRef} tabIndex={-1} className="np-focus-boundary outline-none">
       {children}
     </span>
   );
