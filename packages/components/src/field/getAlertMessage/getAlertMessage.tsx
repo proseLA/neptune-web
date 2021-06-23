@@ -36,8 +36,8 @@ const getAlertMessage = ({
     type = Sentiment.NEGATIVE;
     message = (
       <ul className="list-unstyled">
-        {validations.map((message) => (
-          <li>{message}</li>
+        {validations.map((message, key) => (
+          <li key={key}>{message}</li>
         ))}
       </ul>
     );

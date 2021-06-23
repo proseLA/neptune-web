@@ -105,7 +105,7 @@ describe('Field', () => {
     describe('when validations are provided', () => {
       it('shows validations when submitted', () => {
         const error = 'an error message';
-        const validations = [{ message: 'minLenght', value: 3 }];
+        const validations = ['minLenght'];
         render(
           <Field {...props} submitted messages={{ ...props.messages, error, validations }}>
             <input type="text" />
@@ -123,7 +123,7 @@ describe('Field', () => {
       describe('when not submitted', () => {
         it('shows validations when changed and blurred', () => {
           const error = 'an error message';
-          const validations = [{ message: 'minLenght', value: 3 }];
+          const validations = ['minLenght'];
           render(
             <Field {...props} messages={{ ...props.messages, error, validations }}>
               <input type="text" />
@@ -140,7 +140,7 @@ describe('Field', () => {
         });
         it(`doesn't show validations when not changed and blurred`, () => {
           const error = 'an error message';
-          const validations = [{ message: 'minLenght', value: 3 }];
+          const validations = ['minLenght'];
           render(
             <Field {...props} messages={{ ...props.messages, error, validations }}>
               <input type="text" />
@@ -156,7 +156,7 @@ describe('Field', () => {
         });
         it(`doesn't show validations when changed and not blurred`, () => {
           const error = 'an error message';
-          const validations = [{ message: 'minLenght', value: 3 }];
+          const validations = ['minLenght'];
           render(
             <Field {...props} messages={{ ...props.messages, error, validations }}>
               <input type="text" />
@@ -222,7 +222,7 @@ describe('Field', () => {
       });
     });
   });
-  describe('calls onChange with normalized value', () => {
+  describe('calls onChange value', () => {
     it('when input text is rendered', () => {
       const onChange = jest.fn();
       const error = 'an error message';
@@ -234,7 +234,13 @@ describe('Field', () => {
         </Field>,
       );
       triggerChange(changedValue);
-      expect(onChange).toHaveBeenCalledWith(changedValue);
+      expect(onChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          target: expect.objectContaining({
+            value: changedValue,
+          }),
+        }),
+      );
     });
     it('when number text is rendered', () => {
       const onChange = jest.fn();
@@ -247,7 +253,13 @@ describe('Field', () => {
         </Field>,
       );
       triggerChange(changedValue);
-      expect(onChange).toHaveBeenCalledWith(changedValue);
+      expect(onChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          target: expect.objectContaining({
+            value: changedValue,
+          }),
+        }),
+      );
     });
 
     it('when checkbox is rendered', () => {

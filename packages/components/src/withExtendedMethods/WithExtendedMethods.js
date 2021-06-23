@@ -3,6 +3,9 @@
  */
 const WithExtendedMethods = ({ render, methodsToOvverride, ...props }) => {
   const handleChildEvent = (method) => (event) => {
+    if (event?.persist) {
+      event.persist();
+    }
     methodsToOvverride[method](event);
     // Invokes original child onChange when change
     if (props[method]) {

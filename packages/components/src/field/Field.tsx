@@ -1,4 +1,4 @@
-import React, { useState, cloneElement } from 'react';
+import React, { useState, cloneElement, MouseEvent } from 'react';
 import classNames from 'classnames';
 
 import getAlertMessage from './getAlertMessage';
