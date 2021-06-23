@@ -9,7 +9,6 @@ import { Sentiment } from '../common';
 
 export interface Validations {
   message: string;
-  value: number;
 }
 
 type FieldProps = {

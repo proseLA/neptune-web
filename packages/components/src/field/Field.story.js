@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { text } from '@storybook/addon-knobs';
 
-import { getFieldValidationFailures } from '@transferwise/neptune-validation';
 import Checkbox from '../checkbox';
 import DateInput from '../dateInput';
 
@@ -19,39 +18,37 @@ export const TextField = () => {
   const [value, setValue] = useState('');
   const [validations, setValidations] = useState([]);
 
-  const rules = {
-    type: 'string',
-    required: { value: true, message: 'Custom required' },
-    minLength: { value: 3 },
-    maxLength: { value: 6, message: 'Custom maxLength error message' },
-  };
-
   const handleOnChange = (val) => {
-    const failures = getFieldValidationFailures(val, rules);
+    const failures = [];
+    const minLength = 3;
+    const maxLength = 6;
+    if (val.length < minLength) {
+      failures.push('minLength');
+    }
+
+    if (val.length > maxLength) {
+      failures.push('maxLength');
+    }
+
     setValue(val);
     setValidations(failures);
   };
 
   return (
-    <>
-      <Field
-        label="Text Field"
-        messages={{
-          help,
-          error,
-          validations,
-          info: {
-            content,
-            'aria-label': 'Click here for more details',
-          },
-        }}
-      >
-        <input type="text" value={value} onChange={(event) => handleOnChange(event.target.value)} />
-      </Field>
-
-      <div>{`value: ${value}`}</div>
-      <div>{`value type : ${typeof value}`}</div>
-    </>
+    <Field
+      label="Text Field"
+      messages={{
+        help,
+        error,
+        validations,
+        info: {
+          content,
+          'aria-label': 'Click here for more details',
+        },
+      }}
+    >
+      <input type="text" value={value} onChange={(event) => handleOnChange(event.target.value)} />
+    </Field>
   );
 };
 
@@ -62,40 +59,30 @@ export const NumberField = () => {
   const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
-    const rules = {
-      type: 'number',
-      required: { value: true, message: 'Custom required' },
-      minimum: { value: 3, message: 'Insert a value bigger than 3' },
-      maximum: { value: 6, message: 'Insert a value smaller than 6' },
-    };
-    console.log(val);
-    // Val needs to be cast to Number
-    const failures = getFieldValidationFailures(val === '' ? 0 : Number(val), rules);
-
+    const failures = [];
+    const minimum = 3;
+    const maximum = 6;
+    if (val > maximum) {
+      failures.push('maximum');
+    }
+    if (val < minimum) {
+      failures.push('minimum');
+    }
     setValidations(failures);
     setValue(val);
   };
 
   return (
-    <>
-      <Field
-        label="Number Field"
-        messages={{
-          help,
-          error,
-          validations,
-        }}
-      >
-        <input
-          type="number"
-          value={value}
-          onChange={(event) => handleOnChange(event.target.value)}
-        />
-      </Field>
-
-      <div>{`value: ${value}`}</div>
-      <div>{`value type : ${typeof value}`}</div>
-    </>
+    <Field
+      label="Number Field"
+      messages={{
+        help,
+        error,
+        validations,
+      }}
+    >
+      <input type="number" value={value} onChange={(event) => handleOnChange(event.target.value)} />
+    </Field>
   );
 };
 
@@ -104,30 +91,23 @@ export const CheckboxField = () => {
   const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
-    const rules = {
-      type: 'boolean',
-      required: { value: true, message: 'Custom required' },
-    };
-
-    const failures = getFieldValidationFailures(val || undefined, rules);
+    const failures = [];
+    if (val === false) {
+      failures.push('required');
+    }
 
     setValidations(failures);
     setValue(val);
   };
 
   return (
-    <>
-      <Field
-        messages={{
-          validations,
-        }}
-      >
-        <Checkbox label="label" onChange={(val) => handleOnChange(val)} checked={value} />
-      </Field>
-
-      <div>{`value: ${value}`}</div>
-      <div>{`value type : ${typeof value}`}</div>
-    </>
+    <Field
+      messages={{
+        validations,
+      }}
+    >
+      <Checkbox label="label" onChange={(val) => handleOnChange(val)} checked={value} />
+    </Field>
   );
 };
 
@@ -137,31 +117,30 @@ export const DateInputField = () => {
   const [validations, setValidations] = useState([]);
 
   const handleOnChange = (val) => {
-    const rules = {
-      type: 'string',
-      minimum: { value: '2000-01-02T00:00:00Z', message: 'Insert a value after 02-01-2000' },
-      maximum: { value: '2000-01-04T00:00:00Z', message: 'Insert a value before 04-01-2000' },
-    };
-    const failures = getFieldValidationFailures(val, rules);
+    const failures = [];
+    const maximum = +new Date('2000-01-04T00:00:00Z');
+    const minimum = +new Date('2000-01-02T00:00:00Z');
+    if (+new Date(val) > maximum) {
+      failures.push('Please insert a date before 04-01-2000');
+    }
+
+    if (+new Date(val) < minimum) {
+      failures.push('Please insert a date after 02-01-2000');
+    }
 
     setValidations(failures);
     setValue(val);
   };
 
   return (
-    <>
-      <Field
-        label="Date Field"
-        messages={{
-          validations,
-          help,
-        }}
-      >
-        <DateInput onChange={(val) => handleOnChange(val)} value={value} id="date-input-1" />
-      </Field>
-
-      <div>{`value: ${value}`}</div>
-      <div>{`value type : ${typeof value}`}</div>
-    </>
+    <Field
+      label="Date Field"
+      messages={{
+        validations,
+        help,
+      }}
+    >
+      <DateInput onChange={(val) => handleOnChange(val)} value={value} id="date-input-1" />
+    </Field>
   );
 };

@@ -1,9 +1,6 @@
 import React from 'react';
 import { Sentiment } from '../../common/propsValues/sentiment';
-import { useIntl } from 'react-intl';
 import { Validations } from '../Field';
-
-import defaultMessages from '../Field.messages';
 
 interface Args {
   blurred: boolean;
@@ -25,7 +22,6 @@ const getAlertMessage = ({
   messages: { error, help, validations },
   submitted,
 }: Args): Return => {
-  const intl = useIntl();
   let type = '';
   let message = null;
 
@@ -38,20 +34,13 @@ const getAlertMessage = ({
     message = error;
   } else if (isValidationVisible) {
     type = Sentiment.NEGATIVE;
-
-    message = validations.map(({ message, value }) => {
-      return (
-        <li key={message}>
-          {defaultMessages[message]
-            ? intl.formatMessage(defaultMessages[message], {
-                [message]: value,
-              })
-            : message}
-        </li>
-      );
-    });
-
-    message = <ul className="list-unstyled">{message}</ul>;
+    message = (
+      <ul className="list-unstyled">
+        {validations.map((message) => (
+          <li>{message}</li>
+        ))}
+      </ul>
+    );
   } else if (isHelpVisible) {
     type = Sentiment.NEUTRAL;
     message = help;
