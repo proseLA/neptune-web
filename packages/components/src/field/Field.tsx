@@ -68,20 +68,16 @@ const Field: React.FunctionComponent<FieldProps> = ({
   };
 
   const child = (
-    <>
-      {label}
-      {label && messages?.info && <Info {...messages.info} className="m-l-1" />}
-      <WithExtendedMethods
-        render={(overriddenMethods: OverriddenMethods) =>
-          cloneElement(children, {
-            className: 'form-control',
-            ...overriddenMethods,
-          })
-        }
-        methodsToOvverride={methodsToOvverride}
-        {...children.props}
-      />
-    </>
+    <WithExtendedMethods
+      render={(overriddenMethods: OverriddenMethods) =>
+        cloneElement(children, {
+          className: 'form-control',
+          ...overriddenMethods,
+        })
+      }
+      methodsToOvverride={methodsToOvverride}
+      {...children.props}
+    />
   );
 
   return (
@@ -91,7 +87,17 @@ const Field: React.FunctionComponent<FieldProps> = ({
         'has-info': type === Sentiment.NEUTRAL,
       })}
     >
-      {label ? <label className="control-label d-block">{child}</label> : child}
+      {label ? (
+        <label className="control-label d-block">
+          <>
+            {label}
+            {messages?.info && <Info {...messages.info} className="m-l-1" />}
+            {child}
+          </>
+        </label>
+      ) : (
+        child
+      )}
       {message && <InlineAlert type={type}>{message}</InlineAlert>}
     </div>
   );
