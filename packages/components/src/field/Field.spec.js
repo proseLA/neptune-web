@@ -24,9 +24,16 @@ describe('Field', () => {
         <input type="text" />
       </Field>,
     );
-    expect(screen.getByText(props.label)).toBeTruthy();
+    expect(screen.getByText(props.label)).toBeInTheDocument();
   });
-
+  it(`doesn't renders label`, () => {
+    render(
+      <Field {...props} label={null}>
+        <input type="text" />
+      </Field>,
+    );
+    expect(screen.queryByText(props.label)).not.toBeInTheDocument();
+  });
   it('renders info', () => {
     const ariaLabel = 'Click here for more details';
     render(
@@ -46,7 +53,26 @@ describe('Field', () => {
 
     expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
   });
+  it(`doesn't renders info if label is not provided`, () => {
+    const ariaLabel = 'Click here for more details';
+    render(
+      <Field
+        {...props}
+        messages={{
+          ...props.messages,
+          info: {
+            content: 'content',
+            'aria-label': ariaLabel,
+          },
+        }}
+        label={null}
+      >
+        <input type="text" />
+      </Field>,
+    );
 
+    expect(screen.queryByLabelText(ariaLabel)).not.toBeInTheDocument();
+  });
   it('renders children', () => {
     render(
       <Field {...props}>
@@ -56,7 +82,6 @@ describe('Field', () => {
 
     expect(screen.getByLabelText(props.label)).toBeInTheDocument();
   });
-
   it('renders info', () => {
     render(
       <Field {...props}>
@@ -120,6 +145,7 @@ describe('Field', () => {
         expect(alert).toHaveClass('alert-negative');
         expect(formGroup()).toHaveClass('has-error');
       });
+
       describe('when not submitted', () => {
         it('shows validations when changed and blurred', () => {
           const error = 'an error message';
@@ -222,6 +248,7 @@ describe('Field', () => {
       });
     });
   });
+
   describe('calls onChange value', () => {
     it('when input text is rendered', () => {
       const onChange = jest.fn();
@@ -242,7 +269,6 @@ describe('Field', () => {
         }),
       );
     });
-
     it('when number text is rendered', () => {
       const onChange = jest.fn();
       const error = 'an error message';
@@ -262,7 +288,6 @@ describe('Field', () => {
         }),
       );
     });
-
     it('when checkbox is rendered', () => {
       const onChange = jest.fn();
       const error = 'an error message';
@@ -286,7 +311,6 @@ describe('Field', () => {
       screen.getByRole('checkbox').click();
       expect(onChange).toHaveBeenCalledWith(false);
     });
-
     it('when dateInput is rendered', () => {
       const onChange = jest.fn();
       const error = 'an error message';
