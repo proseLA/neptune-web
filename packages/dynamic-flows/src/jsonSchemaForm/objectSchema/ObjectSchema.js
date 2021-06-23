@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import isEqual from 'lodash.isequal';
 import Types from 'prop-types';
 import classNames from 'classnames';
-import { getValidModelParts } from '@transferwise/neptune-validation';
 import GenericSchema from '../genericSchema';
+import { getValidModelParts } from '../../common/validation/valid-model';
 import DynamicAlert from '../../layout/alert';
 
 const ObjectSchema = (props) => {

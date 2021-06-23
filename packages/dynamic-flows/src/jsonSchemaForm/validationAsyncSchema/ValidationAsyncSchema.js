@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import Types from 'prop-types';
-import { isNull, isValidSchema } from '@transferwise/neptune-validation';
+import { isNull } from '@transferwise/neptune-validation';
 import isEqual from 'lodash.isequal';
 import BasicTypeSchema from '../basicTypeSchema';
-
+import { isValidSchema } from '../../common/validation/schema-validators';
 import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
 import { getAsyncUrl } from '../../common/async/url';
 
