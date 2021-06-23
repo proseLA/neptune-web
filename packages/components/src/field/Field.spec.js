@@ -242,6 +242,7 @@ describe('Field', () => {
         }),
       );
     });
+
     it('when number text is rendered', () => {
       const onChange = jest.fn();
       const error = 'an error message';

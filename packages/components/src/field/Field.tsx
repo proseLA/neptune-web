@@ -79,7 +79,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
     >
       <Element className="control-label d-block">
         {label}
-        {messages?.info && <Info {...messages.info} className="m-l-1" />}
+        {label && messages?.info && <Info {...messages.info} className="m-l-1" />}
 
         <WithExtendedMethods
           render={(overriddenMethods: OverriddenMethods) =>
