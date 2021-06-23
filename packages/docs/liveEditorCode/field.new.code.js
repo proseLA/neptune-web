@@ -1,34 +1,40 @@
 () => {
-  const [value, setValue] = React.useState('');
-  const [validation, setValidation] = React.useState([]);
+  const [value, setValue] = React.useState('a value');
+  const [validations, setValidations] = React.useState([]);
+  const intl = useIntl();
 
   const handleOnChange = (val) => {
-    const validations = {
-      minLength: { value: 3, message: 'Insert a value longer than 3' },
-      maxLength: { value: 6, message: 'Insert a value shorter than 6' },
-    };
+    const failures = [];
+    const minLength = 3;
+    const maxLength = 6;
+    if (val.length < minLength) {
+      const message = intl.formatMessage({ id: 'neptune.field.minLength' }, { minLength });
+      failures.push(message);
+    }
 
-    const failures = getFieldValidationFailures({
-      value: val,
-      validations,
-      isRequired: true,
-      type: 'string',
-    });
+    if (val.length > maxLength) {
+      const message = intl.formatMessage({ id: 'neptune.field.maxLength' }, { maxLength });
+      failures.push(message);
+    }
 
-    setValidation(failures);
     setValue(val);
+    setValidations(failures);
   };
 
   return (
     <Field
       label="Text Field"
       messages={{
-        help: 'help message',
+        help: 'Please insert a value between 3 and 6 character',
         error: 'manual error',
-        validation,
+        validations,
+        info: {
+          content: 'Auxiliary help text for field',
+          'aria-label': 'Click here for more details',
+        },
       }}
     >
-      <input type="text" value={value} onChange={(val) => handleOnChange(val)} />
+      <input type="text" value={value} onChange={(event) => handleOnChange(event.target.value)} />
     </Field>
   );
 };
