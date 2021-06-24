@@ -9,7 +9,7 @@ import { InfoPresentation } from './infoPresentations';
 import './Info.css';
 
 const Info = (props) => {
-  const { className, content, presentation, size, title } = props;
+  const { className, content, onClick, presentation, size, title } = props;
   const [open, setOpen] = useState(false);
 
   const isModal = presentation === InfoPresentation.MODAL;
@@ -30,12 +30,29 @@ const Info = (props) => {
     >
       {isModal ? (
         <>
-          <button type="button" onClick={() => setOpen(!open)} {...buttonProps} />
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(!open);
+              if (onClick) {
+                onClick();
+              }
+            }}
+            {...buttonProps}
+          />
           <Modal body={content} onClose={() => setOpen(false)} open={open} title={title} />
         </>
       ) : (
         <Popover content={content} preferredPlacement={Position.BOTTOM} title={title}>
-          <button type="button" {...buttonProps} />
+          <button
+            type="button"
+            {...buttonProps}
+            onClick={() => {
+              if (onClick) {
+                onClick();
+              }
+            }}
+          />
         </Popover>
       )}
     </span>
@@ -48,6 +65,7 @@ Info.propTypes = {
   className: PropTypes.string,
   /** Content displayed inside a Popover a Modal */
   content: PropTypes.node,
+  onClick: PropTypes.func,
   /** Decides whether to display content in a Popover or a Modal */
   presentation: PropTypes.oneOf(['MODAL', 'POPOVER']),
   /** Decides the size of help Icon */
@@ -59,6 +77,7 @@ Info.propTypes = {
 Info.defaultProps = {
   className: undefined,
   content: undefined,
+  onClick: undefined,
   presentation: InfoPresentation.POPOVER,
   size: Size.SMALL,
   title: undefined,
