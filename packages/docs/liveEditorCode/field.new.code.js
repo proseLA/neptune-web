@@ -13,7 +13,7 @@
     }
 
     if (val.length > maxLength) {
-      const message = intl.formatMessage({ id: 'neptune.field.maxLength' }, { maxLength });
+      const message = 'A custom message for maxLength errors';
       failures.push(message);
     }
 
