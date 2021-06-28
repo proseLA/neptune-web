@@ -118,7 +118,7 @@ describe('Server side rendering', () => {
     description: 'description',
     'aria-label': 'a label',
     logo: <svg />,
-    messages: { error: 'error', help: 'help', validations: [{ message: 'minLenght', value: 3 }] },
+    messages: { error: 'error', help: 'help', validations: ['minLenght'] },
   };
 
   // Override props in case of name collision.
