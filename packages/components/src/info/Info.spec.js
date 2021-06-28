@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen } from '../test-utils';
+import { act, render, fireEvent, waitFor, screen } from '../test-utils';
 import Info, { InfoPresentation } from '.';
 import { Size } from '../common';
 
@@ -25,6 +25,17 @@ describe('Info', () => {
     });
 
     expect(getSvgIcon()).toHaveAttribute('height', '24');
+  });
+
+  it('calls onClick on click event', async () => {
+    const fn = jest.fn();
+    await act(async () => {
+      render(<Info {...props} onClick={fn} />);
+    });
+    await act(async () => {
+      fireEvent.click(getTriggerButton());
+    });
+    expect(fn).toHaveBeenCalled();
   });
 
   describe(`when in ${InfoPresentation.POPOVER} mode`, () => {

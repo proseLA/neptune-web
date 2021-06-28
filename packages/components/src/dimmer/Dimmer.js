@@ -70,7 +70,7 @@ const Dimmer = ({
       onExited={onExited}
       unmountOnExit
     >
-      <DimmerContentWrapper>
+      <DimmerContentWrapper scrollBody={!transparent}>
         <div
           className={classNames(
             'dimmer',
@@ -88,12 +88,16 @@ const Dimmer = ({
   );
 };
 
-export const DimmerContentWrapper = ({ children }) => {
+export const DimmerContentWrapper = ({ children, scrollBody }) => {
   useEffect(() => {
-    addNoScrollBodyClass();
+    if (scrollBody) {
+      addNoScrollBodyClass();
+    }
 
     return () => {
-      removeNoScrollBodyClass();
+      if (scrollBody) {
+        removeNoScrollBodyClass();
+      }
     };
   }, []);
 
@@ -106,6 +110,7 @@ Dimmer.propTypes = {
   disableClickToClose: PropTypes.bool,
   fadeContentOnEnter: PropTypes.bool,
   fadeContentOnExit: PropTypes.bool,
+  /** Sets the background to transparent and prevents body scroll locking */
   transparent: PropTypes.bool,
   onClose: PropTypes.func,
   open: PropTypes.bool,

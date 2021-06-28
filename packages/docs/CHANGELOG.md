@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.23](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.2.22...@transferwise/neptune-docs@12.2.23) (2021-06-28)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.2.22](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.2.21...@transferwise/neptune-docs@12.2.22) (2021-06-24)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.2.21](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.2.20...@transferwise/neptune-docs@12.2.21) (2021-06-23)
+
+
+### Bug Fixes
+
+* remove scroll lock from panel and prevent focus boundary taking 100% height ([#1014](https://github.com/transferwise/neptune-web/issues/1014)) ([001d8c0](https://github.com/transferwise/neptune-web/commit/001d8c04c266d09ec4ec03fa622c47351bf415f5))
+
+
+
+
+
 ## [12.2.20](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.2.19...@transferwise/neptune-docs@12.2.20) (2021-06-23)
 
 **Note:** Version bump only for package @transferwise/neptune-docs

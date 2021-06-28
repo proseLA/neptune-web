@@ -10,6 +10,16 @@
     overflow-y: auto;
   }
 
+  // In order to account for a positioning bug in chrome this element needs to take up more vertical space
+  // than it should, and it interferes with events on the dimmer
+  .np-focus-boundary {
+    pointer-events: none;
+
+    & > * {
+      pointer-events: all;
+    }
+  }
+
   position: fixed;
   z-index: @zindex-modal;
   top: 0;

@@ -65,9 +65,15 @@ describe('Dimmer', () => {
       expect(screen.getByRole('presentation')).not.toHaveClass('dimmer--transparent');
     });
 
-    it('adds a class to hide the backdrop when transparent is true ', () => {
+    it('adds a class to hide the backdrop when transparent is true', () => {
       render(<Dimmer {...props} transparent />);
       expect(screen.getByRole('presentation')).toHaveClass('dimmer--transparent');
+    });
+
+    it('will not lock body scroll when transparent is true', () => {
+      render(<Dimmer {...props} transparent />);
+
+      expect(addNoScrollBodyClass).not.toHaveBeenCalled();
     });
   });
 
