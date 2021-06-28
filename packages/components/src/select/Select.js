@@ -12,17 +12,11 @@ import {
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
 
-
-
 import { Position } from '../common';
 
 import SearchBox from './searchBox';
 
 import ResponsivePanel from '../common/responsivePanel';
-
-const isTouchDevice = () => typeof window !== 'undefined' &&
-window.matchMedia &&
-!!window.matchMedia('(pointer: coarse)').matches;
 
 function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);
@@ -230,10 +224,14 @@ export default class Select extends Component {
   open() {
     // TODO: should also add breakpoint-specific overflow:hidden class to body
     this.setState({ open: true }, () => {
+      const isTouchDevice =
+        typeof window !== 'undefined' &&
+        window.matchMedia &&
+        !!window.matchMedia('(pointer: coarse)').matches;
       const searchable = !!this.props.onSearchChange || !!this.props.search;
 
       defer(() => {
-        if (!isTouchDevice() && searchable && this.searchBoxRef.current) {
+        if (!isTouchDevice && searchable && this.searchBoxRef.current) {
           this.searchBoxRef.current.focus();
         }
       });
@@ -414,7 +412,6 @@ export default class Select extends Component {
       [s('btn-block')]: block,
       [s('dropup')]: dropdownUp,
       [s('dropdown')]: !dropdownUp,
-      open,
     });
 
     const buttonClass = classNames(
@@ -468,7 +465,7 @@ export default class Select extends Component {
           onClose={() => this.close()}
           offset={PANEL_OFFSET}
         >
-          <span className={s('open')}>{this.renderOptionsList()}</span>
+          <span className={s('open')}> {this.renderOptionsList()}</span>
         </ResponsivePanel>
       </div>
     );
@@ -477,67 +474,56 @@ export default class Select extends Component {
 
 Select.propTypes = {
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
+  id: PropTypes.string,
   required: PropTypes.bool,
-  size: same as button
-  theme:
-  ...htmlAttr(id)
-  dropdownRight: to be replaced with Popper fucntionalities
-  selected:PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  classNames
-  search:{
-    placeholder
-    value
-    onChange
-    customSearch
-  }
-
-  
-  
-  
-
-<option>
-<label><currrency|flag</label>
-<option>
-
-<Dropdown>
- <OptGroup label separator></OptGroup>
-  <Option value='unique' media label secondary disabled searchStrings></Option>
-</Dropdown>
-
-
-<OptionList></OptionList>
-  
-  
- 
-  
-  
-  
-  dropdownRight: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']), // Popper Top_start top_end
+  disabled: PropTypes.bool,
+  inverse: PropTypes.bool,
+  dropdownRight: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   dropdownWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
-
-  
-  
-  
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  block: PropTypes.bool,
+  selected: PropTypes.shape({
+    // eslint-disable-next-line react/forbid-prop-types
+    value: PropTypes.any.isRequired,
+    label: PropTypes.node,
+    icon: PropTypes.node,
+    currency: PropTypes.string,
+    note: PropTypes.node,
+    secondary: PropTypes.node,
+  }),
   /**
    * Search toggle
    * if `true` default search functionality being enabled (not case sensitive search in option labels & currency props)
    * if `function` you can define your own search function to implement custom search experience. This search function used while filtering the options array. The custom search function takes two parameters. First is the option the second is the keyword.
    */
   search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
-  
-  
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      // eslint-disable-next-line react/forbid-prop-types
+      value: PropTypes.any,
+      label: PropTypes.node,
+      header: PropTypes.node,
+      icon: PropTypes.node,
+      currency: PropTypes.string,
+      note: PropTypes.node,
+      secondary: PropTypes.node,
+      separator: PropTypes.bool,
+      disabled: PropTypes.bool,
+      searchStrings: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+  /**
    * To have full control of your search value and response use `onSearchChange` function combined with `searchValue` and custom filtering on the options array.
    * DO NOT USE TOGETHER WITH `search` PROPERTY
    */
   onSearchChange: PropTypes.func,
   searchValue: PropTypes.string,
   searchPlaceholder: PropTypes.string,
- 
-  dropdownUp: PropTypes.bool, // Popper managed</option>
+  classNames: PropTypes.objectOf(PropTypes.string),
+  dropdownUp: PropTypes.bool,
 };
 
 Select.defaultProps = {
