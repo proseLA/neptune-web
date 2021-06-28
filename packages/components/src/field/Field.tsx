@@ -85,13 +85,11 @@ const Field: React.FunctionComponent<FieldProps> = ({
     >
       {label ? (
         <label className="control-label d-block">
-          <>
-            <span className="d-flex">
-              {label}
-              {messages?.info && <Info {...messages.info} className="m-l-1" />}
-            </span>
-            {child}
-          </>
+          <span className="d-flex">
+            {label}
+            {messages?.info && <Info {...messages.info} className="m-l-1" />}
+          </span>
+          {child}
         </label>
       ) : (
         child
