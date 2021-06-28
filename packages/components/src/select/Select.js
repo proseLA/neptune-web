@@ -12,13 +12,17 @@ import {
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
 
-import { isTouchDevice } from '../common/deviceDetection';
+
 
 import { Position } from '../common';
 
 import SearchBox from './searchBox';
 
 import ResponsivePanel from '../common/responsivePanel';
+
+const isTouchDevice = () => typeof window !== 'undefined' &&
+window.matchMedia &&
+!!window.matchMedia('(pointer: coarse)').matches;
 
 function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);
