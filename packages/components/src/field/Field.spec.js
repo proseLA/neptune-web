@@ -104,7 +104,7 @@ describe('Field', () => {
       const alert = screen.getByText(error);
 
       expect(alert).toBeInTheDocument();
-      expect(alert).toHaveClass('alert-negative');
+      expect(alert).toHaveClass('alert-danger');
 
       expect(formGroup()).toHaveClass('has-error');
     });
@@ -142,7 +142,7 @@ describe('Field', () => {
         const alert = screen.getByRole('alert');
 
         expect(alert).toBeInTheDocument();
-        expect(alert).toHaveClass('alert-negative');
+        expect(alert).toHaveClass('alert-danger');
         expect(formGroup()).toHaveClass('has-error');
       });
 
@@ -161,7 +161,7 @@ describe('Field', () => {
           const alert = screen.getByRole('alert');
 
           expect(alert).toBeInTheDocument();
-          expect(alert).toHaveClass('alert-negative');
+          expect(alert).toHaveClass('alert-danger');
           expect(formGroup()).toHaveClass('has-error');
         });
         it(`doesn't show validations when not changed and blurred`, () => {

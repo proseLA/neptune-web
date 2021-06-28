@@ -11,7 +11,7 @@ interface Args {
 
 interface Return {
   message: null | string | React.ReactElement;
-  type: string | Sentiment.NEUTRAL | Sentiment.NEGATIVE;
+  type: string | Sentiment.ERROR | Sentiment.INFO;
 }
 
 const getAlertMessage = ({
@@ -29,10 +29,10 @@ const getAlertMessage = ({
   const isHelpVisible = focused && help;
 
   if (isErrorVisible) {
-    type = Sentiment.NEGATIVE;
+    type = Sentiment.ERROR;
     message = error;
   } else if (isValidationVisible) {
-    type = Sentiment.NEGATIVE;
+    type = Sentiment.ERROR;
     message = (
       <ul className="list-unstyled">
         {validations.map((message, key) => (
@@ -41,7 +41,7 @@ const getAlertMessage = ({
       </ul>
     );
   } else if (isHelpVisible) {
-    type = Sentiment.NEUTRAL;
+    type = Sentiment.INFO;
     message = help;
   }
 
