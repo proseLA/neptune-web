@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import withNextPortal from '../withNextPortal/withNextPortal';
 
 import { Theme } from '../common';
+
+import { DirectionContext } from '../provider/direction';
 
 import './Snackbar.css';
 
@@ -74,11 +77,12 @@ export class Snackbar extends Component {
   }
 
   render() {
+    const isRTL = this.context === 'rtl';
     const { action, text, theme, visible } = this.state;
     const { timeout } = this.props;
 
     return (
-      <div className="snackbar">
+      <div className={classNames('snackbar', { 'snackbar--rtl': isRTL })}>
         <CSSTransition
           in={visible}
           classNames="snackbar__text-container"
@@ -102,6 +106,8 @@ export class Snackbar extends Component {
     );
   }
 }
+
+Snackbar.contextType = DirectionContext;
 
 Snackbar.propTypes = {
   action: PropTypes.shape({

@@ -20,7 +20,7 @@ class RadioGroup extends Component {
     const { selectedValue } = this.state;
     return radios && radios.length > 1 ? (
       <>
-        {radios.map(({ id, value, label, disabled, secondary, readOnly }, index) => (
+        {radios.map(({ id, avatar, value, label, disabled, secondary, readOnly }, index) => (
           <Radio
             id={id}
             value={value}
@@ -33,6 +33,7 @@ class RadioGroup extends Component {
             secondary={secondary}
             onChange={(val) => this.handleOnChange(val)}
             readOnly={readOnly}
+            avatar={avatar}
           />
         ))}
       </>
@@ -44,6 +45,7 @@ RadioGroup.propTypes = {
   radios: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
+      avatar: PropTypes.element,
       value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       secondary: PropTypes.string,
       label: PropTypes.string.isRequired,

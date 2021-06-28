@@ -2,11 +2,9 @@ import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { usePopper } from 'react-popper';
-import CSSTransition from 'react-transition-group/CSSTransition';
-
+import Dimmer from '../../dimmer';
 import { Position } from '..';
 import './Panel.css';
-import FocusBoundary from '../focusBoundary';
 
 // By default the flip positioning explores only the opposite alternative. So if left is passed and there's no enough space
 // the right one gets chosen. If there's no space on both sides popover goes back to the initially chosen one left.
@@ -22,8 +20,6 @@ const Panel = forwardRef(
   ({ arrow, children, className, offset, open, onClose, position: placement, anchorRef }, ref) => {
     const [arrowElement, setArrowElement] = useState(null);
     const [popperElement, setPopperElement] = useState(null);
-    // Do not trigger external onCLose if click is from Panel trigger
-    const handleOnClose = (event) => !anchorRef?.current?.contains(event.target) && onClose(event);
 
     const modifiers = [];
 
@@ -67,40 +63,28 @@ const Panel = forwardRef(
         forceUpdate();
       }
     }, [open]);
-    // Popper recommends to use the popper element as a wrapper around an inner element that can have any CSS property transitioned for animations.
 
     return (
-      <CSSTransition
-        in={open}
-        appear
-        // Wait for animation to finish before unmount.
-        timeout={{ enter: 0, exit: 150 }}
-        classNames={{
-          enterDone: 'np-panel--open',
-        }}
-        unmountOnExit
-      >
-        <FocusBoundary onClose={handleOnClose}>
-          <div
-            ref={setPopperElement}
-            style={{ ...styles.popper }}
-            {...attributes.popper}
-            className={classnames('np-panel', className)}
-          >
-            <div ref={ref} className={classnames('np-panel__content')}>
-              {children}
-              {/* Arrow has to stay inside content to get the same animations as the "dialog" and to get hidden when panel is closed. */}
-              {arrow && (
-                <div
-                  className={classnames('np-panel__arrow')}
-                  ref={setArrowElement}
-                  style={styles.arrow}
-                />
-              )}
-            </div>
+      <Dimmer open={open} onClose={onClose} transparent fadeContentOnEnter fadeContentOnExit>
+        <div
+          ref={setPopperElement}
+          style={{ ...styles.popper }}
+          {...attributes.popper}
+          className={classnames('np-panel', { 'np-panel--open': open }, className)}
+        >
+          <div ref={ref} className={classnames('np-panel__content')}>
+            {children}
+            {/* Arrow has to stay inside content to get the same animations as the "dialog" and to get hidden when panel is closed. */}
+            {arrow && (
+              <div
+                className={classnames('np-panel__arrow')}
+                ref={setArrowElement}
+                style={styles.arrow}
+              />
+            )}
           </div>
-        </FocusBoundary>
-      </CSSTransition>
+        </div>
+      </Dimmer>
     );
   },
 );

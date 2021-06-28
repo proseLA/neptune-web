@@ -9,8 +9,10 @@ import Tile from '../tile';
 import './Decision.css';
 import { Presentation, Type } from './decisionEnums';
 import { Size, Breakpoint } from '../common';
+import { useDirection } from '../common/hooks';
 
 const Decision = ({ options, presentation, type, size }) => {
+  const { isRTL } = useDirection();
   if (type === Type.NAVIGATION) {
     const { LIST_BLOCK, LIST_BLOCK_GRID } = Presentation;
     if (presentation === LIST_BLOCK || presentation === LIST_BLOCK_GRID) {
@@ -29,13 +31,14 @@ const Decision = ({ options, presentation, type, size }) => {
       ];
 
       options.forEach(
-        ({ description, disabled, href, media: { block, list }, onClick, title }, key) => {
+        ({ description, disabled, href, target, media: { block, list }, onClick, title }, key) => {
           items[0].items.push(
             <NavigationOption
               complex={false}
               content={description}
               disabled={disabled}
               href={href}
+              target={target}
               key={`nav-${key}`} // eslint-disable-line react/no-array-index-key
               media={list}
               onClick={onClick}
@@ -51,6 +54,7 @@ const Decision = ({ options, presentation, type, size }) => {
               description={description}
               disabled={disabled}
               href={href}
+              target={target}
               key={`tile-${key}`} // eslint-disable-line react/no-array-index-key
               media={block}
               onClick={onClick}
@@ -66,6 +70,7 @@ const Decision = ({ options, presentation, type, size }) => {
           className={classNames('np-decision', {
             'np-decision--small': isSmall,
             'np-decision--grid': isGrid,
+            'np-decision--rtl': isRTL,
           })}
         >
           <SizeSwapper items={items} />
@@ -73,19 +78,22 @@ const Decision = ({ options, presentation, type, size }) => {
       );
     }
     // LIST
-    return options.map(({ title, description, disabled, href, media: { list }, onClick }, key) => (
-      <NavigationOption
-        complex={false}
-        content={description}
-        disabled={disabled}
-        href={href}
-        key={`nav-${key}`} // eslint-disable-line react/no-array-index-key
-        media={list}
-        onClick={onClick}
-        showMediaAtAllSizes
-        title={title}
-      />
-    ));
+    return options.map(
+      ({ title, description, disabled, href, target, media: { list }, onClick }, key) => (
+        <NavigationOption
+          complex={false}
+          content={description}
+          disabled={disabled}
+          href={href}
+          target={target}
+          key={`nav-${key}`} // eslint-disable-line react/no-array-index-key
+          media={list}
+          onClick={onClick}
+          showMediaAtAllSizes
+          title={title}
+        />
+      ),
+    );
   }
   return <></>;
 };
@@ -97,6 +105,7 @@ Decision.propTypes = {
       description: PropTypes.node,
       disabled: PropTypes.bool,
       href: requiredIf(PropTypes.string, (props) => props.type === Type.NAVIGATION),
+      target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
       media: PropTypes.shape({
         block: PropTypes.node.isRequired,
         list: PropTypes.node.isRequired,

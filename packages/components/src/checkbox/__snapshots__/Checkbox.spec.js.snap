@@ -3,14 +3,11 @@
 exports[`Checkbox renders the given label 1`] = `
 <div>
   <div
-    class="checkbox"
+    class="np-checkbox checkbox"
   >
     <label>
-      <b>
-        hello
-      </b>
       <span
-        class="np-checkbox-button"
+        class="np-checkbox-button p-r-2"
       >
         <input
           type="checkbox"
@@ -22,6 +19,13 @@ exports[`Checkbox renders the given label 1`] = `
             class="tw-checkbox-check"
           />
         </span>
+      </span>
+      <span
+        class="np-checkbox__text"
+      >
+        <b>
+          hello
+        </b>
       </span>
     </label>
   </div>

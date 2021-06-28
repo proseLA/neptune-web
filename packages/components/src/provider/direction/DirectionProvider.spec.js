@@ -6,7 +6,6 @@ import { DirectionProvider } from '.';
 
 describe('DirectionProvider', () => {
   test.each([
-    ['zh-HK', 'ltr'],
     ['ru', 'ltr'],
     ['he-IL', 'rtl'],
   ])('returns correct direction for %s', (locale, expectedValue) => {

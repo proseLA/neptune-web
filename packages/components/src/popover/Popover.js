@@ -18,7 +18,7 @@ const Popover = ({ children, className, content, preferredPlacement, title }) =>
   const onClose = () => setOpen(false);
 
   return (
-    <span className={classnames('np-popover d-inline-block', className)}>
+    <span className={classnames('np-popover', className)}>
       <span className="d-inline-block" ref={anchorRef}>
         {cloneElement(children, {
           onClick: () => {

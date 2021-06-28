@@ -3,7 +3,14 @@ import { render, waitFor, fireEvent } from '../test-utils';
 import Summary from './Summary';
 import { Status } from '../common';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
+
 describe('Summary', () => {
+  beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
+  });
   it('renders minimal component', () => {
     const { asFragment } = render(<Summary icon={<strong>icon</strong>} title="Hello world" />);
     expect(asFragment()).toMatchSnapshot();
@@ -33,6 +40,12 @@ describe('Summary', () => {
 
       expect(container).toMatchSnapshot();
     });
+  });
+
+  it('does not apply rtl classes when isRTL is false', () => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+    const { container } = render(<Summary icon={<strong>icon</strong>} title="Hello world" />);
+    expect(container.querySelector('.np-summary__body')).toHaveClass('m-r-2');
   });
 
   describe('action', () => {

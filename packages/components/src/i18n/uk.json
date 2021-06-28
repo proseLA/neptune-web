@@ -1,4 +1,5 @@
 {
+  "neptune.ClearButton.ariaLabel": "Очистити",
   "neptune.CloseButton.ariaLabel": "Закрити",
   "neptune.MoneyInput.Select.placeholder": "Виберіть варіант…",
   "neptune.Pagination.ariaLabel": "Перехід за сторінками",

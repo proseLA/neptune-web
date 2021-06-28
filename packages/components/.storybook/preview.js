@@ -61,6 +61,7 @@ const severalExamplesOfSupportedLocales = [
   'en-US',
   'ja-JP',
   'zh-HK',
+  'uk',
   'es',
   'fr',
   'ru',

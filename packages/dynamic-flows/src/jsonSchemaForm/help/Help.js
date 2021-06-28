@@ -1,7 +1,7 @@
 import React from 'react';
 import Types from 'prop-types';
 
-import { Markdown, Info, InfoPresentation, Size } from '@transferwise/components';
+import { Markdown, Info } from '@transferwise/components';
 import { useIntl } from 'react-intl';
 import messages from './Help.messages';
 
@@ -12,8 +12,8 @@ const Help = (props) => {
     <Info
       className="m-l-1"
       content={<Markdown>{props.help.markdown}</Markdown>}
-      presentation={InfoPresentation.POPOVER}
-      size={Size.SMALL}
+      presentation="POPOVER"
+      size="sm"
       aria-label={intl.formatMessage(messages.helpAria)}
     />
   );

@@ -4,6 +4,10 @@ import { shallow } from 'enzyme';
 import Radio from '.';
 import RadioButton from '../common/RadioButton';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks');
+
 describe('Radio', () => {
   let props;
   let component;
@@ -17,6 +21,7 @@ describe('Radio', () => {
       disabled: false,
       secondary: '',
     };
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
     component = shallow(<Radio {...props} />);
   });
 

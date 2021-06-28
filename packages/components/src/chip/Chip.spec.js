@@ -4,6 +4,10 @@ import { shallow } from 'enzyme';
 import { fakeEvent } from '../common/fakeEvents';
 import Chip from './Chip';
 
+import { useDirection } from '../common/hooks';
+
+jest.mock('../common/hooks/useDirection');
+
 describe('option', () => {
   let component;
   let props;
@@ -16,7 +20,18 @@ describe('option', () => {
       label: 'Test',
       hasError: false,
     };
+    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
     component = shallow(<Chip {...props} />);
+  });
+
+  it('renders', () => {
+    expect(component.html()).toMatchSnapshot();
+  });
+
+  it('renders with RTL support', () => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
+    component = shallow(<Chip {...props} />);
+    expect(component.html()).toMatchSnapshot();
   });
 
   it('renders label', () => {

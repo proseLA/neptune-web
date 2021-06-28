@@ -7,9 +7,9 @@ import { useConditionalListener } from '../hooks';
 import { getFocusableElements, resetFocus } from './utils';
 import { Key } from '../key';
 
-const { TAB, ESCAPE } = Key;
+const { TAB } = Key;
 
-const FocusBoundary = ({ children, onClose }) => {
+const FocusBoundary = ({ children }) => {
   const boundaryRef = useRef();
   const parent = isUndefined(document) ? undefined : document;
   let focusableEls = {};
@@ -26,23 +26,9 @@ const FocusBoundary = ({ children, onClose }) => {
     attachListener: true,
     parent,
   });
-  // If the click is from outside the focused area calls onClose callBack.
-  useConditionalListener({
-    eventType: 'click',
-    callback: (event) => !boundaryRef?.current?.contains(event.target) && onClose(event),
-    attachListener: true,
-    parent,
-  });
-
-  useConditionalListener({
-    eventType: 'keydown',
-    callback: (event) => isKey({ keyType: ESCAPE, event }) && onClose(event),
-    attachListener: true,
-    parent,
-  });
 
   return (
-    <span ref={boundaryRef} tabIndex={-1} className="np-focus-boundary d-inline-block outline-none">
+    <span ref={boundaryRef} tabIndex={-1} className="np-focus-boundary outline-none">
       {children}
     </span>
   );
@@ -50,7 +36,6 @@ const FocusBoundary = ({ children, onClose }) => {
 
 FocusBoundary.propTypes = {
   children: Types.node.isRequired,
-  onClose: Types.func.isRequired,
 };
 
 export default FocusBoundary;

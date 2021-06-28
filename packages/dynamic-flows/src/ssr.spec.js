@@ -6,7 +6,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import * as components from '.';
 
-const excluded = ['useSnackbar'];
+const excluded = ['useSnackbar', 'convertStepToLayout', 'inlineReferences', 'DynamicFlow'];
 
 function isNotExcluded(componentName) {
   return !excluded.includes(componentName);
@@ -20,6 +20,9 @@ describe('Server side rendering', () => {
   // stick all possible properties we might need to render all components in here
   const allProps = {
     schema: {},
+    components: [],
+    onAction: jest.fn(),
+    onModelChange: jest.fn(),
     onChange: jest.fn(),
     submitted: false,
     name: 'name',

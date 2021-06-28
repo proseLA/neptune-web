@@ -7,6 +7,7 @@ import GenericSchema from '../genericSchema';
 import SchemaFormControl from '../schemaFormControl';
 import ControlFeedback from '../controlFeedback';
 import DynamicAlert from '../../layout/alert';
+import Help from '../help';
 
 describe('Given a oneOfSchema component', () => {
   let component;
@@ -531,6 +532,21 @@ describe('Given a oneOfSchema component', () => {
         const alertComponent = component.find(DynamicAlert);
 
         expect(alertComponent).toHaveLength(0);
+      });
+    });
+
+    describe('when help exists', () => {
+      it('should render help popover', () => {
+        const help = {
+          markdown: 'some help',
+        };
+        const schemaWithHelp = { ...schema, help };
+
+        component = shallow(<OneOfSchema {...props} schema={schemaWithHelp} />);
+
+        const helpPopover = component.find(Help);
+
+        expect(helpPopover).toHaveLength(1);
       });
     });
   });

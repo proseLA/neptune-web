@@ -14,6 +14,7 @@ export const basic = () => {
   const title = text('title', 'Navigation option');
   const content = text('content', 'Button and icon are vertically centered.');
   const complex = boolean('complex', false);
+  const disabled = boolean('disabled', false);
   const showMediaAtAllSizes = boolean('showMediaAtAllSizes', false);
   const showMediaCircle = boolean('showMediaCircle', true);
   const className = text('className');
@@ -21,6 +22,7 @@ export const basic = () => {
   return (
     <NavigationOption
       complex={complex}
+      disabled={disabled}
       id="navigation-option"
       name="navigation-option"
       href={href}

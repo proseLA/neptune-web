@@ -14,7 +14,7 @@ describe('Given a component for dynamically rendering a box of other components'
   const button = {
     type: 'button',
     action: {
-      label: 'Edit',
+      title: 'Edit',
       url: '/example',
       method: 'GET',
     },
