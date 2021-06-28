@@ -22,6 +22,7 @@ export const basic = () => {
     <Info
       aria-label="Click here for more details"
       content={content}
+      onClick={() => console.log('Info clicked')}
       presentation={presentation}
       size={size}
       title={title}

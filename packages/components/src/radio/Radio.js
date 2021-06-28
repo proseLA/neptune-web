@@ -1,20 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import RadioButton from '../common/RadioButton';
 
-const Radio = ({ label, id, disabled, secondary, ...otherProps }) => (
-  <div className={`radio ${secondary ? 'radio-lg' : ''}`} disabled={disabled}>
-    <label htmlFor={id}>
-      {/* eslint-enable jsx-a11y/label-has-for */}
-      <RadioButton id={id} disabled={disabled} {...otherProps} />
-      {label}
-      {secondary && <small>{secondary}</small>}
-    </label>
-  </div>
-);
+import { useDirection } from '../common/hooks';
+
+const Radio = ({ label, id, disabled, avatar, secondary, ...otherProps }) => {
+  const { isRTL } = useDirection();
+  return (
+    <div
+      className={classNames('radio np-radio', {
+        'radio-lg': secondary,
+        disabled,
+      })}
+      disabled={disabled}
+    >
+      <label htmlFor={id}>
+        <span className={classNames('np-radio-button', { 'p-r-2': !isRTL, 'p-l-2': isRTL })}>
+          <RadioButton id={id} disabled={disabled} {...otherProps} />
+        </span>
+        <span className="np-radio__text">
+          {label}
+          {secondary && <small>{secondary}</small>}
+        </span>
+        {avatar && (
+          <span
+            className={classNames('np-radio__avatar', { 'm-l-auto': !isRTL, 'm-r-auto': isRTL })}
+          >
+            {avatar}
+          </span>
+        )}
+      </label>
+    </div>
+  );
+};
 
 Radio.propTypes = {
+  avatar: PropTypes.element,
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
   id: PropTypes.string,
@@ -26,6 +49,7 @@ Radio.propTypes = {
 };
 
 Radio.defaultProps = {
+  avatar: undefined,
   checked: false,
   disabled: false,
   id: null,

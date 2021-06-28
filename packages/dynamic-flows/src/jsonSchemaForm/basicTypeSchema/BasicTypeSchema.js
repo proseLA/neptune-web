@@ -8,7 +8,7 @@ import ControlFeedback from '../controlFeedback';
 import { getValidationFailures } from '../../common/validation/validation-failures';
 import { getValidModelParts } from '../../common/validation/valid-model';
 import DynamicAlert from '../../layout/alert';
-import Help from './help';
+import Help from '../help';
 
 const BasicTypeSchema = (props) => {
   const onChange = (newModel) => {

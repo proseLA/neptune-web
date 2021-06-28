@@ -23,14 +23,6 @@ const Modal = ({
   position,
   ...otherProps
 }) => {
-  const handleOnClose = (event) => {
-    if (event.type === 'click' && closeOnClick) {
-      onClose(event);
-    } else if (event.type !== 'click') {
-      onClose(event);
-    }
-  };
-
   const checkSpecialClasses = (classToCheck) => className.split(' ').indexOf(classToCheck) !== -1;
 
   // These should be replaced with props in breaking change.
@@ -41,11 +33,8 @@ const Modal = ({
     <Dimmer
       open={open}
       scrollable={scroll === Scroll.CONTENT}
-      onClose={handleOnClose}
-      className={classNames('d-flex', 'justify-content-center', {
-        'align-items-center': position === Position.CENTER,
-        'align-items-start': position === Position.TOP,
-      })}
+      onClose={onClose}
+      className={classNames('d-flex', 'justify-content-center')}
     >
       <CSSTransition
         appear
@@ -59,6 +48,7 @@ const Modal = ({
             'tw-modal',
             {
               'tw-modal--content': scroll === Scroll.CONTENT,
+              'align-self-center': position === Position.CENTER,
             },
             'fade',
             'outline-none',

@@ -1,6 +1,6 @@
 <JsonSchemaForm
   errors={{ string: 'Manual error' }}
-  onChange={model => console.log('model', model)}
+  onChange={(model) => console.log('model', model)}
   submitted={false}
   locale="en-GB"
   model={{
@@ -18,15 +18,15 @@
           number: {
             type: 'number',
             title: 'Number input',
-            min: 2,
-            max: 200,
+            minimum: 2,
+            maximum: 200,
             default: 1,
             help: {
               message: '2 or more',
             },
             validationMessages: {
-              min: 'Too low buddy!',
-              max: 'Crazy high!',
+              minimum: 'Too low buddy!',
+              maximum: 'Crazy high!',
             },
           },
         },
@@ -51,11 +51,11 @@
             type: 'string',
             format: 'date',
             title: 'Date input',
-            min: '2000-02-01',
-            max: '2010-01-01',
+            minimum: '2000-02-01',
+            maximum: '2010-01-01',
             validationMessages: {
-              min: 'Must be after Feb 2000',
-              max: 'Must be before Jan 2010',
+              minimum: 'Must be after Feb 2000',
+              maximum: 'Must be before Jan 2010',
             },
           },
           phone: {

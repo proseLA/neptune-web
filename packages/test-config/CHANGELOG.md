@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/transferwise/neptune-web/compare/@transferwise/test-config@3.0.6...@transferwise/test-config@3.0.7) (2021-06-11)
+
+**Note:** Version bump only for package @transferwise/test-config
+
+
+
+
+
+## [3.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/test-config@3.0.5...@transferwise/test-config@3.0.6) (2021-05-10)
+
+
+### Bug Fixes
+
+* reintroduced Panel animation ([#935](https://github.com/transferwise/neptune-web/issues/935)) ([495e230](https://github.com/transferwise/neptune-web/commit/495e230f4daec1f6593534259577cf8c9289a578))
+
+
+
+
+
 ## [3.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/test-config@3.0.4...@transferwise/test-config@3.0.5) (2021-04-07)
 
 **Note:** Version bump only for package @transferwise/test-config

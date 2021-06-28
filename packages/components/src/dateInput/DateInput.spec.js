@@ -1,6 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { shallow, mount } from 'enzyme';
+import { useDirection } from '../common/hooks';
 
 import DateInput from '.';
 
@@ -67,6 +68,7 @@ const DAY_SELECTOR = 'input[name="day"]';
 const MONTH_SELECTOR = 'Select';
 const YEAR_SELECTOR = 'input[name="year"]';
 
+jest.mock('../common/hooks/useDirection');
 jest.mock('react-intl');
 jest.mock('@transferwise/formatting', () => {
   return {
@@ -83,6 +85,7 @@ describe('Date Input Component', () => {
   const props = { onChange: jest.fn() };
 
   beforeEach(() => {
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
     useIntl.mockReturnValue({ locale: DEFAULT_LOCALE });
     component = shallow(<DateInput {...props} />);
 
@@ -227,6 +230,19 @@ describe('Date Input Component', () => {
       component = shallow(<DateInput {...props} />);
 
       expect(component.find('.form-control').at(0).type()).toBeInstanceOf(Function);
+    });
+
+    it('applies correct rtl css classes when isRTL is true', () => {
+      component = shallow(<DateInput {...props} />);
+      expect(component.find('.col-sm-3').hasClass('pull-right')).toEqual(true);
+      expect(component.find('.col-sm-5').hasClass('pull-right')).toEqual(true);
+    });
+
+    it('applies correct rtl css classes when isRTL is false', () => {
+      useDirection.mockImplementation(() => ({ isRTL: false }));
+      component = shallow(<DateInput {...props} />);
+      expect(component.find('.col-sm-3').hasClass('pull-right')).toEqual(false);
+      expect(component.find('.col-sm-5').hasClass('pull-right')).toEqual(false);
     });
   });
 

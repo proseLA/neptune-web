@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Types from 'prop-types';
 import { isNull } from '@transferwise/neptune-validation';
 import isEqual from 'lodash.isequal';
 import BasicTypeSchema from '../basicTypeSchema';
 import { isValidSchema } from '../../common/validation/schema-validators';
-import usePrev from '../../common/hooks/usePrev';
 import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
 import { getAsyncUrl } from '../../common/async/url';
 
 const ValidationAsyncSchema = (props) => {
-  const [validationAsyncModel, setValidationAsyncModel] = useState(null);
-  const prevValidationAsyncModel = usePrev(validationAsyncModel);
+  const [validationAsyncModel, setValidationAsyncModel] = useState(props.model);
+  const prevRequestedModelRef = useRef(null);
   const [validationAsyncSuccessMessage, setValidationAsyncSuccessMessage] = useState(null);
   const [validationAsyncErrors, setValidationAsyncErrors] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
@@ -21,6 +20,7 @@ const ValidationAsyncSchema = (props) => {
     const signal = abortCurrentRequestAndGetNewAbortSignal();
 
     const requestBody = { [validationAsyncSpec.param]: currentValidationAsyncModel };
+    prevRequestedModelRef.current = currentValidationAsyncModel;
     setFieldSubmitted(true);
 
     const validationAsyncFetch = fetch(getAsyncUrl(validationAsyncSpec.url, baseUrl), {
@@ -59,7 +59,10 @@ const ValidationAsyncSchema = (props) => {
   };
 
   const onBlur = () => {
-    if (!isNull(validationAsyncModel) && !isEqual(validationAsyncModel, prevValidationAsyncModel)) {
+    if (
+      !isNull(validationAsyncModel) &&
+      !isEqual(validationAsyncModel, prevRequestedModelRef.current)
+    ) {
       getValidationAsyncResponse(validationAsyncModel, props.schema.validationAsync);
     }
   };
@@ -80,6 +83,7 @@ const ValidationAsyncSchema = (props) => {
       onChange={validationAsyncOnChange}
       submitted={props.submitted || fieldSubmitted}
       schema={props.schema}
+      model={validationAsyncModel}
       errors={validationAsyncErrors || props.errors}
       onBlur={onBlur}
       validationAsyncSuccessMessage={validationAsyncSuccessMessage}
@@ -100,6 +104,7 @@ ValidationAsyncSchema.propTypes = {
       param: Types.string,
     }),
   }).isRequired,
+  model: Types.oneOfType([Types.string, Types.number, Types.bool]),
   onChange: Types.func.isRequired,
   submitted: Types.bool.isRequired,
   required: Types.bool,
@@ -107,6 +112,7 @@ ValidationAsyncSchema.propTypes = {
 };
 
 ValidationAsyncSchema.defaultProps = {
+  model: null,
   errors: null,
   required: false,
 };

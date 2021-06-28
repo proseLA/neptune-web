@@ -6,7 +6,7 @@ import BasicTypeSchema from '.';
 import SchemaFormControl from '../schemaFormControl';
 import ControlFeedback from '../controlFeedback';
 import DynamicAlert from '../../layout/alert';
-import Help from './help';
+import Help from '../help';
 
 describe('Given a component for rendering basic type schemas', () => {
   let component;

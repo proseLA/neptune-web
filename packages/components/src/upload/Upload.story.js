@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { select } from '@storybook/addon-knobs';
+import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Upload from '.';
 
@@ -34,21 +34,18 @@ export default {
 
 export const basic = () => {
   const size = select('size', ['sm', 'md', 'lg'], 'md');
-  const usAccept = select(
-    'accepted format',
-    ['*', 'image/*', 'application/*', 'text/csv'],
-    'image/*',
-  );
+  const usAccept = text('accepted format', '*');
+
   return (
     <Upload
       animationDelay={700}
-      csUploadText="Select other file?"
+      csButtonText="Select other file?"
       csFailureText="Upload failed.Please, try again"
       csSuccessText="Upload complete!"
       csTooLargeMessage="Please provide a file smaller than 5MB"
       csWrongTypeMessage="Please provide a supported format"
       maxSize={5000000}
-      psUploadText="Cancel"
+      psButtonText="Cancel"
       psProcessingText="Uploading..."
       size={size}
       usAccept={usAccept}
@@ -72,21 +69,18 @@ export const basic = () => {
 
 export const withCustomImage = () => {
   const size = select('size', ['sm', 'md', 'lg'], 'md');
-  const usAccept = select(
-    'accepted format',
-    ['*', 'image/*', 'application/*', 'text/csv'],
-    'image/*',
-  );
+  const usAccept = text('accepted format', '*');
+
   return (
     <Upload
       animationDelay={700}
-      csUploadText="Select other file?"
+      csButtonText="Select other file?"
       csFailureText="Upload failed.Please, try again"
       csSuccessText="Upload complete!"
       csTooLargeMessage="Please provide a file smaller than 5MB"
       csWrongTypeMessage="Please provide a supported format"
       maxSize={5000000}
-      psUploadText="Cancel"
+      psButtonText="Cancel"
       psProcessingText="Uploading..."
       size={size}
       usAccept={usAccept}

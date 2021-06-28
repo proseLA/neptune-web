@@ -1,9 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Popover on desktop renders when is open 1`] = `
+<div
+  class="np-panel np-panel--open np-popover__container"
+  data-popper-escaped="true"
+  data-popper-placement="right"
+  data-popper-reference-hidden="true"
+  style="position: absolute; left: 0px; top: 0px; transform: translate(16px, 0px);"
+>
+  <div
+    class="np-panel__content"
+  >
+    <div
+      aria-hidden="false"
+      class="np-popover__content"
+      role="tooltip"
+    >
+      <div
+        aria-level="1"
+        class="np-popover__title m-b-1"
+        role="heading"
+      >
+        title
+      </div>
+      content
+    </div>
+    <div
+      class="np-panel__arrow"
+      style="position: absolute; top: 0px; transform: translate(0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`Popover on mobile renders when is open 1`] = `
 <div>
   <span
-    class="np-popover d-inline-block"
+    class="np-popover"
   >
     <span
       class="d-inline-block"
@@ -19,67 +52,28 @@ exports[`Popover on desktop renders when is open 1`] = `
       style="visibility: visible;"
     >
       <div
-        class="np-panel--open"
+        class="dimmer"
       >
-        <span
-          class="np-focus-boundary d-inline-block outline-none"
-          tabindex="-1"
+        <div
+          class="sliding-panel np-bottom-sheet np-popover__container"
         >
           <div
-            class="np-panel np-popover__container"
-            data-popper-escaped="true"
-            data-popper-placement="right"
-            data-popper-reference-hidden="true"
-            style="position: absolute; left: 0px; top: 0px; transform: translate(16px, 0px);"
+            aria-hidden="false"
+            class="np-popover__content"
+            role="tooltip"
           >
             <div
-              class="np-panel__content"
+              aria-level="1"
+              class="np-popover__title m-b-1"
+              role="heading"
             >
-              <div
-                aria-hidden="false"
-                class="np-popover__content"
-                role="tooltip"
-              >
-                <div
-                  aria-level="1"
-                  class="np-popover__title m-b-1"
-                  role="heading"
-                >
-                  title
-                </div>
-                content
-              </div>
-              <div
-                class="np-panel__arrow"
-                style="position: absolute; top: 0px; transform: translate(0px, 0px);"
-              />
+              title
             </div>
+            content
           </div>
-        </span>
+        </div>
       </div>
     </div>
-  </span>
-</div>
-`;
-
-exports[`Popover on mobile renders when is open 1`] = `
-<div>
-  <span
-    class="np-popover d-inline-block"
-  >
-    <span
-      class="d-inline-block"
-    >
-      <button
-        type="button"
-      >
-        Open
-      </button>
-    </span>
-    <div
-      class="np-size-swapper d-inline-flex"
-      style="visibility: visible;"
-    />
   </span>
 </div>
 `;

@@ -1,11 +1,15 @@
 import React from 'react';
-import { fireEvent, render, waitFor, screen } from '../test-utils';
+import { render, screen, userEvent } from '../test-utils';
 import Popover from './Popover';
 import { Breakpoint, Position } from '../common';
 
-jest.mock(
-  'react-transition-group/CSSTransition',
-  () => (props) => (props.in ? <div className="np-panel--open">{props.children}</div> : null), // eslint-disable-line
+jest.mock('react-transition-group/CSSTransition', () => (props) =>
+  props.in ? props.children : null,
+);
+
+// eslint-disable-next-line react/prop-types
+jest.mock('../dimmer', () => ({ open, children }) =>
+  open ? <div className="dimmer">{children}</div> : null,
 );
 
 describe('Popover', () => {
@@ -21,79 +25,54 @@ describe('Popover', () => {
 
   describe('on desktop', () => {
     it('renders when is open', async () => {
-      await waitFor(() => {
-        ({ container, rerender } = render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        ));
-      });
+      render(
+        <Popover {...props}>
+          <button type="button">Open</button>
+        </Popover>,
+      );
 
-      await openPopover();
+      userEvent.click(screen.getByText('Open'));
 
-      expect(container).toMatchSnapshot();
+      await waitForPanel();
+      expect(getPanel()).toMatchSnapshot();
     });
 
     it('renders title', async () => {
-      await waitFor(() => {
-        ({ container, rerender } = render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        ));
-      });
+      ({ container, rerender } = render(
+        <Popover {...props}>
+          <button type="button">Open</button>
+        </Popover>,
+      ));
 
-      await openPopover();
+      userEvent.click(screen.getByText('Open'));
+      await waitForPanel();
 
       expect(getTitle()).toBeInTheDocument();
 
-      await waitFor(() => {
-        rerender(
-          <Popover {...props} title={undefined}>
-            <button type="button">Open</button>
-          </Popover>,
-        );
-      });
+      rerender(
+        <Popover {...props} title={undefined}>
+          <button type="button">Open</button>
+        </Popover>,
+      );
 
-      await openPopover();
+      userEvent.click(screen.getByText('Open'));
 
       expect(getTitle()).not.toBeInTheDocument();
     });
 
     it('renders Panel onClick', async () => {
-      await waitFor(() => {
-        render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        );
-      });
+      render(
+        <Popover {...props}>
+          <button type="button">Open</button>
+        </Popover>,
+      );
 
       expect(getPanel()).not.toBeInTheDocument();
 
-      await openPopover();
+      userEvent.click(screen.getByText('Open'));
+      await waitForPanel();
 
       expect(getPanel()).toBeInTheDocument();
-    });
-
-    it('closes Panel on document click', async () => {
-      await waitFor(() => {
-        render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        );
-      });
-
-      expect(getPanel()).not.toBeInTheDocument();
-
-      await openPopover();
-
-      expect(getPanel()).toBeInTheDocument();
-
-      fireEvent.click(document);
-
-      expect(getPanel()).not.toBeInTheDocument();
     });
   });
 
@@ -102,63 +81,35 @@ describe('Popover', () => {
       global.innerWidth = Breakpoint.SMALL - 1;
     });
 
-    it('renders when is open', async () => {
-      await waitFor(() => {
-        ({ container } = render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        ));
-      });
+    it('renders when is open', () => {
+      ({ container } = render(
+        <Popover {...props}>
+          <button type="button">Open</button>
+        </Popover>,
+      ));
 
-      await openPopover();
+      userEvent.click(screen.getByText('Open'));
 
       expect(container).toMatchSnapshot();
     });
 
-    it('renders BottomSheet onClick', async () => {
-      await waitFor(() => {
-        render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        );
-      });
+    it('renders BottomSheet onClick', () => {
+      render(
+        <Popover {...props}>
+          <button type="button">Open</button>
+        </Popover>,
+      );
 
       expect(getBottomSheet()).not.toBeInTheDocument();
 
-      await openPopover();
+      userEvent.click(screen.getByText('Open'));
 
       expect(getBottomSheet()).toBeInTheDocument();
-    });
-
-    it('close BottomSheet on document click', async () => {
-      await waitFor(() => {
-        render(
-          <Popover {...props}>
-            <button type="button">Open</button>
-          </Popover>,
-        );
-      });
-
-      expect(getBottomSheet()).not.toBeInTheDocument();
-
-      await openPopover();
-
-      expect(getBottomSheet()).toBeInTheDocument();
-
-      fireEvent.click(document);
-
-      expect(getBottomSheet()).not.toBeInTheDocument();
     });
   });
 
-  const getPanel = () => document.querySelector('.np-panel--open');
+  const waitForPanel = async () => screen.findByText('content');
+  const getPanel = () => document.querySelector('.np-panel');
   const getBottomSheet = () => document.querySelector('.np-bottom-sheet');
-  const getTrigger = () => screen.queryByText('Open');
   const getTitle = () => screen.queryByText('title');
-
-  const openPopover = async () => {
-    await waitFor(() => fireEvent.click(getTrigger()));
-  };
 });

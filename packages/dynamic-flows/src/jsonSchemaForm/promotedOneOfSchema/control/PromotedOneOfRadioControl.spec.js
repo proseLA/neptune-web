@@ -10,6 +10,7 @@ describe('Given a PromotedOneOfRadioControl component', () => {
   let props;
   let setSelection;
   const selection = 'promoted';
+  const title = 'Group title';
 
   const promotedOneOf = {
     title: 'a promoted oneOf title',
@@ -37,6 +38,7 @@ describe('Given a PromotedOneOfRadioControl component', () => {
   beforeEach(() => {
     setSelection = jest.fn();
     props = {
+      title,
       promotedOneOf,
       promotion,
       selection,
@@ -49,6 +51,10 @@ describe('Given a PromotedOneOfRadioControl component', () => {
       component = shallow(<PromotedOneOfRadioControl {...props} />);
 
       expect(component.find(RadioGroup)).toHaveLength(1);
+    });
+
+    it('should render the schema title in a label', () => {
+      expect(component.find('.control-label').text()).toContain(title);
     });
 
     describe('when promoted labels are available', () => {
@@ -69,6 +75,49 @@ describe('Given a PromotedOneOfRadioControl component', () => {
             secondary: 'Other description',
           },
         ]);
+      });
+    });
+
+    describe('when image and icon are provided for the promoted and other element', () => {
+      it('should render the avatars', () => {
+        const promotedOneOfWithImage = {
+          ...promotedOneOf,
+          image: {
+            url: 'someUrl',
+          },
+        };
+
+        const promotionWithIcon = {
+          other: {
+            title: 'Other title',
+            description: 'Other description',
+            icon: {
+              name: 'bank',
+            },
+          },
+        };
+
+        component = shallow(
+          <PromotedOneOfRadioControl
+            {...props}
+            promotedOneOf={promotedOneOfWithImage}
+            promotion={promotionWithIcon}
+          />,
+        );
+
+        const { radios } = component.find(RadioGroup).props();
+        const promoted = radios[0];
+        const other = radios[1];
+
+        expect(promoted.value).toBe('promoted');
+        expect(promoted.label).toBe('a promoted oneOf title');
+        expect(promoted.secondary).toBe('a promoted oneOf description');
+        expect(promoted.avatar).toBeDefined();
+
+        expect(other.value).toBe('other');
+        expect(other.label).toBe('Other title');
+        expect(other.secondary).toBe('Other description');
+        expect(other.avatar).toBeDefined();
       });
     });
 

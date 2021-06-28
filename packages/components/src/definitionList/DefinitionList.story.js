@@ -1,5 +1,5 @@
 import React from 'react';
-import { select, object, boolean } from '@storybook/addon-knobs';
+import { select, text, boolean } from '@storybook/addon-knobs';
 import DefinitionList from './DefinitionList';
 import { Layout } from '../common';
 
@@ -9,14 +9,17 @@ export default {
 };
 
 export const basic = () => {
-  const items = [
+  const muted = boolean('muted', false);
+  const layout = select('layout', Object.values(Layout), Layout.HORIZONTAL_LEFT_ALIGNED);
+
+  const definitions = [
     {
-      title: 'A simple title',
-      value: 'A simple value',
+      title: text('title', 'Editable title'),
+      value: text('value', 'Editable value'),
       key: 'first',
     },
     {
-      title: <span>Use wrapper elements to style</span>,
+      title: 'Use wrapper elements to style',
       value: <span className="h3">89.45GBP</span>,
       key: 'second',
     },
@@ -26,10 +29,6 @@ export const basic = () => {
       key: 'third',
     },
   ];
-
-  const definitions = object('items', items);
-  const muted = boolean('muted', false);
-  const layout = select('layout', Object.values(Layout), Layout.HORIZONTAL_LEFT_ALIGNED);
 
   return <DefinitionList layout={layout} muted={muted} definitions={definitions} />;
 };

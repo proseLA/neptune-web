@@ -14,7 +14,7 @@ describe('Given a component for dynamically rendering columns', () => {
   const button1 = {
     type: 'button',
     action: {
-      label: 'Button 1',
+      title: 'Button 1',
       url: '/example',
       method: 'GET',
     },
@@ -23,7 +23,7 @@ describe('Given a component for dynamically rendering columns', () => {
   const button2 = {
     type: 'button',
     action: {
-      label: 'Button 2',
+      title: 'Button 2',
       url: '/example',
       method: 'GET',
     },
