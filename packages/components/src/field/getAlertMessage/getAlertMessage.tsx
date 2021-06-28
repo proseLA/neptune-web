@@ -1,12 +1,11 @@
 import React from 'react';
 import { Sentiment } from '../../common/propsValues/sentiment';
-import { Validations } from '../Field';
 
 interface Args {
   blurred: boolean;
   changed: boolean;
   focused: boolean;
-  messages: { error: string; help: string; validations: Validations[] };
+  messages: { error: string; help: string; validations: { message: string }[] };
   submitted: boolean;
 }
 

@@ -7,10 +7,6 @@ import Info from '../info';
 import WithExtendedMethods from '../withExtendedMethods';
 import { Sentiment } from '../common';
 
-export interface Validations {
-  message: string;
-}
-
 type FieldProps = {
   children: React.ReactElement;
   label?: string;
@@ -18,7 +14,7 @@ type FieldProps = {
     error: string;
     help: string;
     info: { content: string; 'aria-label': string };
-    validations: Validations[];
+    validations: { message: string }[];
   };
   submitted?: boolean;
 };
