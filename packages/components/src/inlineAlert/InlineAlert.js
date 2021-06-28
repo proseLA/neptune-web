@@ -11,7 +11,6 @@ const typeClassMap = {
 const InlineAlert = (props) => {
   const AlertWithArrow = withArrow(({ children, className, type }) => {
     const typeClass = `alert-${typeClassMap[type] || type}`;
-
     return (
       <div
         role="alert"
@@ -28,7 +27,7 @@ const InlineAlert = (props) => {
 InlineAlert.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  type: PropTypes.oneOf(['success', 'error', 'warning', 'info', 'negative', 'neutral']),
+  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
 };
 
 InlineAlert.defaultProps = {

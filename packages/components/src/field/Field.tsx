@@ -79,15 +79,17 @@ const Field: React.FunctionComponent<FieldProps> = ({
   return (
     <div
       className={classNames('form-group', {
-        'has-error': type === Sentiment.NEGATIVE && message,
-        'has-info': type === Sentiment.NEUTRAL,
+        'has-error': type === Sentiment.ERROR && message,
+        'has-info': type === Sentiment.INFO,
       })}
     >
       {label ? (
         <label className="control-label d-block">
           <>
-            {label}
-            {messages?.info && <Info {...messages.info} className="m-l-1" />}
+            <span className="d-flex">
+              {label}
+              {messages?.info && <Info {...messages.info} className="m-l-1" />}
+            </span>
             {child}
           </>
         </label>
