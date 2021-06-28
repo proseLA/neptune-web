@@ -6,7 +6,7 @@ import { render, screen } from '../test-utils';
 import WithExtendedMethods from '.';
 
 describe('WithExtendedMethods', () => {
-  const methodsToOvverride = {
+  const methodsToExtend = {
     onFocus: jest.fn(),
     onChange: jest.fn(),
   };
@@ -26,7 +26,7 @@ describe('WithExtendedMethods', () => {
             ...overriddenMethods,
           })
         }
-        methodsToOvverride={methodsToOvverride}
+        methodsToExtend={methodsToExtend}
         {...children.props}
       />,
     );
@@ -35,7 +35,7 @@ describe('WithExtendedMethods', () => {
     input.focus();
 
     expect(originalOnFocus).toHaveBeenCalled();
-    expect(methodsToOvverride.onFocus).toHaveBeenCalled();
+    expect(methodsToExtend.onFocus).toHaveBeenCalled();
   });
   it('when user types original change gets called', () => {
     render(
@@ -46,7 +46,7 @@ describe('WithExtendedMethods', () => {
             ...overriddenMethods,
           })
         }
-        methodsToOvverride={methodsToOvverride}
+        methodsToExtend={methodsToExtend}
         {...children.props}
       />,
     );
@@ -56,6 +56,6 @@ describe('WithExtendedMethods', () => {
     userEvent.type(input, 'username');
 
     expect(originalMethod).toHaveBeenCalled();
-    expect(methodsToOvverride.onChange).toHaveBeenCalled();
+    expect(methodsToExtend.onChange).toHaveBeenCalled();
   });
 });

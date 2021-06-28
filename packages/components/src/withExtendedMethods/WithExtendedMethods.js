@@ -1,12 +1,12 @@
 /**
  * This function allows to extend method by also retaining the original functionalitites.
  */
-const WithExtendedMethods = ({ render, methodsToOvverride, ...props }) => {
+const WithExtendedMethods = ({ render, methodsToExtend, ...props }) => {
   const handleChildEvent = (method) => (event) => {
     if (event?.persist) {
       event.persist();
     }
-    methodsToOvverride[method](event);
+    methodsToExtend[method](event);
     // Invokes original child onChange when change
     if (props[method]) {
       props[method](event);
@@ -14,7 +14,7 @@ const WithExtendedMethods = ({ render, methodsToOvverride, ...props }) => {
   };
 
   return render(
-    Object.keys(methodsToOvverride).reduce((acc, method) => {
+    Object.keys(methodsToExtend).reduce((acc, method) => {
       acc[method] = handleChildEvent(method);
       return acc;
     }, {}),

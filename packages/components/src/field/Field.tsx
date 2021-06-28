@@ -19,7 +19,7 @@ type FieldProps = {
   submitted?: boolean;
 };
 
-type OverriddenMethods = {
+type extendedMethods = {
   onChange: (arg: any) => string;
   onBlur: (arg: any) => string;
   onFocus: (arg: any) => string;
@@ -65,10 +65,10 @@ const Field: React.FunctionComponent<FieldProps> = ({
 
   const child = (
     <WithExtendedMethods
-      render={(overriddenMethods: OverriddenMethods) =>
+      render={(extendedMethods: extendedMethods) =>
         cloneElement(children, {
           className: 'form-control',
-          ...overriddenMethods,
+          ...extendedMethods,
         })
       }
       methodsToExtend={methodsToExtend}
