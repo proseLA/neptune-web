@@ -57,7 +57,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
     submitted,
   });
 
-  const methodsToOvverride = {
+  const methodsToExtend = {
     onBlur: handleOnBlur,
     onChange: handleOnChange,
     onFocus: handleOnFocus,
@@ -71,7 +71,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
           ...overriddenMethods,
         })
       }
-      methodsToOvverride={methodsToOvverride}
+      methodsToExtend={methodsToExtend}
       {...children.props}
     />
   );
