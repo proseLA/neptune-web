@@ -41,7 +41,7 @@
     "lintless:fix": "yarn lintless --fix"
   },
   "dependencies": {
-    "@transferwise/neptune-tokens": "^1.0.0",
+    "@transferwise/neptune-tokens": "2.0.0",
     "bootstrap": "github:transferwise/bootstrap#semver:^5.20.0",
     "svgo": "1.3.2"
   },
