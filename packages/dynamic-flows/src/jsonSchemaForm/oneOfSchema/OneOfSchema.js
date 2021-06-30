@@ -98,11 +98,11 @@ const OneOfSchema = (props) => {
     return null;
   };
 
-  const onChildModelChange = (index, model, triggerSchema, triggerModel) => {
+  const onChildModelChange = (index, model, triggerSchema, triggerModel, lastTriggerModel) => {
     models[index] = model;
     setModels(models);
     setChanged(true);
-    props.onChange(model, triggerSchema, triggerModel);
+    props.onChange(model, triggerSchema, triggerModel, lastTriggerModel);
   };
 
   const onFocus = () => {
@@ -229,8 +229,8 @@ const OneOfSchema = (props) => {
           errors={props.errors}
           locale={props.locale}
           translations={props.translations}
-          onChange={(model, triggerSchema, triggerModel) =>
-            onChildModelChange(schemaIndex, model, triggerSchema, triggerModel)
+          onChange={(model, triggerSchema, triggerModel, lastTriggerModel) =>
+            onChildModelChange(schemaIndex, model, triggerSchema, triggerModel, lastTriggerModel)
           }
           submitted={props.submitted}
           hideTitle
