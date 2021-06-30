@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.7.0...@transferwise/dynamic-flows@13.8.0) (2021-06-30)
+
+
+### Features
+
+* broadcast `lastModel` in `onChange` events ([#1024](https://github.com/transferwise/neptune-web/issues/1024)) ([4c70973](https://github.com/transferwise/neptune-web/commit/4c70973d7364687d8db54d3aafaac3290535e855))
+
+
+
+
+
 # [13.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.6.12...@transferwise/dynamic-flows@13.7.0) (2021-06-28)
 
 
