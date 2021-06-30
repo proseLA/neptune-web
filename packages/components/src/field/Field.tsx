@@ -13,7 +13,7 @@ type FieldProps = {
   messages: {
     error: string;
     help: string;
-    info: { content: string; 'aria-label': string };
+    info?: { content: string; 'aria-label': string };
     validations: { message: string }[];
   };
   submitted?: boolean;
