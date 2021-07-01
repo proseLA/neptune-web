@@ -6,15 +6,18 @@ import InlineAlert from '../inlineAlert';
 import Info from '../info';
 import WithExtendedMethods from '../withExtendedMethods';
 import { Sentiment } from '../common';
+import { useIntl } from 'react-intl';
+import translations from './Field.messages';
 
 type FieldProps = {
   children: React.ReactElement;
   label?: string;
   messages: {
-    error: string;
-    help: string;
-    info?: { content: string; 'aria-label': string };
-    validations: { message: string }[];
+    error?: string;
+    help?: string;
+    info?: string;
+    infoAriaLabel?: string;
+    validations?: { message: string }[];
   };
   submitted?: boolean;
 };
@@ -34,6 +37,8 @@ const Field: React.FunctionComponent<FieldProps> = ({
   const [blurred, setBlurred] = useState(false);
   const [changed, setChanged] = useState(false);
   const [focused, setFocused] = useState(false);
+
+  const intl = useIntl();
 
   const handleOnBlur = () => {
     setFocused(false);
@@ -56,6 +61,10 @@ const Field: React.FunctionComponent<FieldProps> = ({
     messages,
     submitted,
   });
+
+  const infoAriaLabel = messages?.infoAriaLabel
+    ? messages?.infoAriaLabel
+    : intl.formatMessage(translations.infoAriaLabel);
 
   const methodsToExtend = {
     onBlur: handleOnBlur,
@@ -87,7 +96,9 @@ const Field: React.FunctionComponent<FieldProps> = ({
         <label className="control-label d-block">
           <span className="d-flex">
             {label}
-            {messages?.info && <Info {...messages.info} className="m-l-1" />}
+            {messages?.info && (
+              <Info content={messages.info} aria-label={infoAriaLabel} className="m-l-1" />
+            )}
           </span>
           {child}
         </label>

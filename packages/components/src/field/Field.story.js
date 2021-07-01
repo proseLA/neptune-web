@@ -41,10 +41,8 @@ export const TextField = () => {
         help,
         error,
         validations,
-        info: {
-          content,
-          'aria-label': 'Click here for more details',
-        },
+        info: content,
+        infoAriaLabel: 'Click here for more details',
       }}
     >
       <input type="text" value={value} onChange={(event) => handleOnChange(event.target.value)} />

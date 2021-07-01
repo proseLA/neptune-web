@@ -18,6 +18,7 @@
   "neptune.Upload.usButtonText": "Or select a file",
   "neptune.Upload.usDropMessage": "Drop file to start upload",
   "neptune.Upload.usPlaceholder": "Drag and drop a file less than 5MB",
+  "neptune.field.infoAriaLabel": "Click for more help with this field",
   "neptune.field.maxLength": "Please enter less than {maxLength} characters.",
   "neptune.field.maximum": "Please enter a number that’s {maximum} or less.",
   "neptune.field.minLength": "Please enter at least {minLength} characters.",

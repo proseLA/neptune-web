@@ -33,6 +33,11 @@ const messages: {
     defaultMessage: 'This field is required.',
     description: 'Validation message for required entires',
   },
+  infoAriaLabel: {
+    id: 'neptune.field.infoAriaLabel',
+    defaultMessage: 'Click for more help with this field',
+    description: 'Aria label for field popover help button',
+  },
 });
 
 export default messages;
