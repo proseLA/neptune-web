@@ -28,10 +28,8 @@
         help: 'Please insert a value between 3 and 6 character',
         error: 'manual error',
         validations,
-        info: {
-          content: 'Auxiliary help text for field',
-          'aria-label': 'Click here for more details',
-        },
+        info: 'Auxiliary help text for field',
+        infoAriaLabel: 'Click here for more details',
       }}
     >
       <input type="text" value={value} onChange={(event) => handleOnChange(event.target.value)} />
