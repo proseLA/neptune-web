@@ -343,12 +343,19 @@ describe('Given a component for rendering a dynamic flow', () => {
       const expetectModel = { b: 'c', c: true };
 
       beforeEach(() => {
-        getLayout().invoke('onModelChange')(newModel1, thingSchema, newModel1.b, stringSchema);
+        getLayout().invoke('onModelChange')(
+          newModel1,
+          thingSchema,
+          newModel1.b,
+          stringSchema,
+          'not-c',
+        );
         getLayout().invoke('onModelChange')(
           newModel2,
           anotherThingSchema,
           newModel2.c,
           stringSchema,
+          !newModel2.c,
         );
       });
 

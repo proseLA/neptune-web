@@ -102,7 +102,7 @@ describe('Given a component for rendering object schemas', () => {
 
   describe('when a generic schema component triggers onChange', () => {
     beforeEach(() => {
-      numberSchemaComponent.simulate('change', 2, schema.properties.number, 2);
+      numberSchemaComponent.simulate('change', 2, schema.properties.number, 2, 1);
     });
 
     it('should trigger the components onChange with the new value under the correct key', () => {
@@ -110,6 +110,7 @@ describe('Given a component for rendering object schemas', () => {
         { string: 'a', number: 2 },
         schema.properties.number,
         2,
+        1,
       );
     });
 
@@ -120,11 +121,16 @@ describe('Given a component for rendering object schemas', () => {
 
   describe('when a generic schema component triggers a null onChange', () => {
     beforeEach(() => {
-      numberSchemaComponent.simulate('change', null, schema.properties.number, null);
+      numberSchemaComponent.simulate('change', null, schema.properties.number, null, 222);
     });
 
     it('should trigger the components onChange with the key remove', () => {
-      expect(props.onChange).toHaveBeenCalledWith({ string: 'a' }, schema.properties.number, null);
+      expect(props.onChange).toHaveBeenCalledWith(
+        { string: 'a' },
+        schema.properties.number,
+        null,
+        222,
+      );
     });
   });
 

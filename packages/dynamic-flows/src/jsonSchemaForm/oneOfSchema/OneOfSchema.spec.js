@@ -304,7 +304,7 @@ describe('Given a oneOfSchema component', () => {
 
     describe('when the generic schema triggers an onChange event', () => {
       beforeEach(() => {
-        genericSchema.simulate('change', { b: 4 }, schema.oneOf[1], 4);
+        genericSchema.simulate('change', { b: 4 }, schema.oneOf[1], 4, 1);
       });
 
       it('should trigger the components onChange once', () => {
@@ -312,7 +312,7 @@ describe('Given a oneOfSchema component', () => {
       });
 
       it('should broadcast the changed model from the child', () => {
-        expect(onChange).toHaveBeenCalledWith({ b: 4 }, schema.oneOf[1], 4);
+        expect(onChange).toHaveBeenCalledWith({ b: 4 }, schema.oneOf[1], 4, 1);
       });
 
       it('should not change the input model', () => {
