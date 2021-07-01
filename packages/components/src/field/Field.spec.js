@@ -41,10 +41,8 @@ describe('Field', () => {
         {...props}
         messages={{
           ...props.messages,
-          info: {
-            content: 'content',
-            'aria-label': ariaLabel,
-          },
+          info: 'content',
+          infoAriaLabel: ariaLabel,
         }}
       >
         <input type="text" />
@@ -53,6 +51,22 @@ describe('Field', () => {
 
     expect(screen.getByLabelText(ariaLabel)).toBeInTheDocument();
   });
+  it(`renders info with default arialabel`, () => {
+    render(
+      <Field
+        {...props}
+        messages={{
+          ...props.messages,
+          info: 'content',
+        }}
+        label="a label"
+      >
+        <input type="text" />
+      </Field>,
+    );
+
+    expect(screen.queryByLabelText('Click for more help with this field')).toBeInTheDocument();
+  });
   it(`doesn't renders info if label is not provided`, () => {
     const ariaLabel = 'Click here for more details';
     render(
@@ -60,10 +74,8 @@ describe('Field', () => {
         {...props}
         messages={{
           ...props.messages,
-          info: {
-            content: 'content',
-            'aria-label': ariaLabel,
-          },
+          info: 'content',
+          infoAriaLabel: ariaLabel,
         }}
         label={null}
       >
@@ -73,6 +85,7 @@ describe('Field', () => {
 
     expect(screen.queryByLabelText(ariaLabel)).not.toBeInTheDocument();
   });
+
   it('renders children', () => {
     render(
       <Field {...props}>
@@ -82,7 +95,7 @@ describe('Field', () => {
 
     expect(screen.getByLabelText(props.label)).toBeInTheDocument();
   });
-  it('renders info', () => {
+  it('renders label', () => {
     render(
       <Field {...props}>
         <input type="text" />
