@@ -54,7 +54,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
     setBlurred(false);
   };
 
-  const { message, type } = getAlertMessage({
+  const alert = getAlertMessage({
     blurred,
     changed,
     focused,
@@ -88,8 +88,8 @@ const Field: React.FunctionComponent<FieldProps> = ({
   return (
     <div
       className={classNames('form-group', {
-        'has-error': type === Sentiment.ERROR && message,
-        'has-info': type === Sentiment.INFO,
+        'has-error': alert.type === Sentiment.ERROR && alert.message,
+        'has-info': alert.type === Sentiment.INFO,
       })}
     >
       {label ? (
@@ -105,7 +105,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
       ) : (
         child
       )}
-      {message && <InlineAlert type={type}>{message}</InlineAlert>}
+      {alert.message && <InlineAlert type={alert.type}>{alert.message}</InlineAlert>}
     </div>
   );
 };

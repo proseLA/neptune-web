@@ -11,7 +11,7 @@ interface Args {
 
 interface Return {
   message: undefined | string | React.ReactElement;
-  type: string | Sentiment.ERROR | Sentiment.INFO;
+  type: Sentiment.ERROR | Sentiment.INFO;
 }
 
 const getAlertMessage = ({
@@ -21,8 +21,8 @@ const getAlertMessage = ({
   messages: { error, help, validations },
   submitted,
 }: Args): Return => {
-  let type = '';
-  let message = undefined;
+  let type = Sentiment.INFO;
+  let message;
 
   const isErrorVisible = !changed && error;
   const isValidationVisible = (submitted || (changed && blurred)) && !!validations?.length;
