@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.8.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.0...@transferwise/components@36.8.1) (2021-07-02)
+
+
+### Bug Fixes
+
+* add delete to money input allowlist ([#1034](https://github.com/transferwise/neptune-web/issues/1034)) ([6fc415c](https://github.com/transferwise/neptune-web/commit/6fc415c252ceab12c342c8004f0426ae640b4559))
+
+
+
+
+
 # [36.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.7.2...@transferwise/components@36.8.0) (2021-06-24)
 
 
