@@ -54,14 +54,6 @@ const Field: React.FunctionComponent<FieldProps> = ({
     setBlurred(false);
   };
 
-  const alert = getAlertMessage({
-    blurred,
-    changed,
-    focused,
-    messages,
-    submitted,
-  });
-
   const infoAriaLabel = messages?.infoAriaLabel
     ? messages?.infoAriaLabel
     : intl.formatMessage(translations.infoAriaLabel);
@@ -84,6 +76,14 @@ const Field: React.FunctionComponent<FieldProps> = ({
       {...children.props}
     />
   );
+
+  const alert = getAlertMessage({
+    blurred,
+    changed,
+    focused,
+    messages,
+    submitted,
+  });
 
   return (
     <div
