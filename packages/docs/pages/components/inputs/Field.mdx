@@ -14,7 +14,27 @@ Field is a component that wraps an input and returns it with an attached alert m
 
 The validation logic hasn't been integrated in Field on purpose so consumers can provide their own custom validations.
 
-Field accepts an array of validation messages that will be displayed in an attached InlineAlert component. A set of default translated messages are provided and can be access via id. See list of supported error messages [here](https://github.com/transferwise/neptune-web/blob/main/packages/components/src/Field/Fiels.messages.ts)
+Field accepts an array of validation messages that will be displayed in an attached InlineAlert component.
+
+A set of default translated messages are provided and can be access via id. See list of supported error messages [here](https://github.com/transferwise/neptune-web/blob/main/packages/components/src/Field/Fiels.messages.ts)
+
+Here's an example with a default message
+
+```
+if (val.length < minLength) {
+  const message = intl.formatMessage({ id: 'neptune.field.minLength' }, { minLength });
+  failures.push(message);
+}
+```
+
+vs custom message
+
+```
+if (val.length > maxLength) {
+  const message = 'A custom message for maxLength errors';
+  failures.push(message);
+}
+```
 
 Validation messages are automatically attached to the children based on user interaction and with styling.
 
