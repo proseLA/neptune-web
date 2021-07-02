@@ -29,6 +29,7 @@ const formatAmountIfSet = (amount, currency, locale) => {
 
 const inputKeyCodeAllowlist = [
   keyCodes.BACKSPACE,
+  keyCodes.DELETE,
   keyCodes.COMMA,
   keyCodes.PERIOD,
   keyCodes.DOWN,
