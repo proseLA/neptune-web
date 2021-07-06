@@ -8,6 +8,7 @@ import Option from './option';
 import KEY_CODES from '../common/keyCodes';
 import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
 import { addClassAndTriggerReflow, removeClass } from './domHelpers';
+import { DirectionProvider } from '../provider/direction';
 
 jest.mock('react-dom');
 jest.mock('react-transition-group/Transition', () => jest.fn('placeholder'));
@@ -564,5 +565,14 @@ describe('Select', () => {
     expect(component.find('.dimmer')).toHaveLength(1);
 
     expect(element('.dropdown-menu--open').exists()).toBe(true);
+  });
+
+  it('applies correct CSS classes when a RTL locale is provided by DirectionProvider', () => {
+    const rtlComponent = mount(
+      <DirectionProvider locale="he-IL">
+        <Select {...props} />
+      </DirectionProvider>,
+    );
+    expect(rtlComponent.find('.tw-select').hasClass('tw-select--rtl')).toBe(true);
   });
 });

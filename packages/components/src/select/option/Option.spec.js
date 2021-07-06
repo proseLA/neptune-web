@@ -4,12 +4,17 @@ import { Profile as ProfileIcon } from '@transferwise/icons';
 
 import Option from './Option';
 
+import { useDirection } from '../../common/hooks';
+
+jest.mock('../../common/hooks/useDirection');
+
 describe('option', () => {
   let component;
   let props;
 
   beforeEach(() => {
     props = { label: 'hello' };
+    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
     component = shallow(<Option {...props} />);
   });
 
@@ -54,5 +59,10 @@ describe('option', () => {
       },
     });
     expect(component.find('i.currency-flag-xyz.currency-flag-hustle-xyz').length).toBe(1);
+  });
+
+  it('applies correct CSS classes when isRTL is true', () => {
+    const rtlComponent = shallow(<Option {...props} note="a note" />);
+    expect(rtlComponent.find('.small').hasClass('m-r-1')).toBe(true);
   });
 });

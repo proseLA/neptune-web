@@ -16,6 +16,8 @@ import Dimmer from '../dimmer';
 import SlidingPanel from '../slidingPanel';
 import SearchBox from './searchBox';
 
+import { DirectionContext } from '../provider/direction';
+
 function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);
 }
@@ -430,10 +432,13 @@ export default class Select extends Component {
     const { open, shouldRenderWithPortal } = this.state;
     const s = this.style;
 
+    const isRTL = this.context === 'rtl';
+
     const groupClass = classNames(s('tw-select'), s('btn-group'), {
       [s('btn-block')]: block,
       [s('dropup')]: dropdownUp,
       [s('dropdown')]: !dropdownUp,
+      [s('tw-select--rtl')]: isRTL,
     });
 
     const buttonClass = classNames(
@@ -506,6 +511,8 @@ export default class Select extends Component {
     );
   }
 }
+
+Select.contextType = DirectionContext;
 
 Select.propTypes = {
   placeholder: PropTypes.string,

@@ -62,6 +62,72 @@
   .circle .tw-icon {
     vertical-align: middle;
   }
+
+  &.tw-select--rtl {
+    .currency-flag {
+      margin-left: var(--size-8);
+      margin-right: 0;
+    }
+
+    .btn-input.dropdown-toggle {
+      display: flex;
+
+      > span {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      &.btn-sm.dropdown-toggle {
+        padding-right: 12px;
+      }
+
+      &.btn-md,
+      &.btn-lg {
+        padding-right: 16px;
+      }
+
+      .tw-icon {
+        right: 0;
+        left: 16px;
+      }
+
+      .option-currency--rtl {
+        display: block;
+      }
+    }
+
+    > .dropdown-menu {
+      left: 0;
+      right: auto;
+
+      > .dropdown-header {
+        display: flex;
+      }
+
+      .tw-dropdown-item {
+        &--divider {
+          text-align: start;
+        }
+
+        > a {
+          display: inline-flex;
+          text-align: start;
+
+          span {
+            display: inline-flex;
+
+            .tw-icon {
+              margin-left: var(--size-8);
+            }
+          }
+        }
+
+        .option-secondary--rtl {
+          display: block;
+        }
+      }
+    }
+  }
 }
 
 @media (--screen-xs-max) {

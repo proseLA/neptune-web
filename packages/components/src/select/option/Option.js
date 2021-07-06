@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNamesFunc from 'classnames';
+
+import { useDirection } from '../../common/hooks';
 
 const Option = ({ currency, label, note, secondary, icon, classNames, selected }) => {
   const style = (classes) =>
@@ -12,15 +15,24 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
       ])}`
     : null;
 
+  const { isRTL } = useDirection();
+
   return (
-    <span>
+    <span
+      className={classNamesFunc({
+        'option-secondary--rtl': isRTL && secondary,
+        'option-currency--rtl': isRTL && currency,
+      })}
+    >
       {currency ? (
         <i className={currencyClassNames} />
       ) : (
         icon && React.cloneElement(icon, { size: 24, className: `${style(['tw-icon'])}` })
       )}
       {label}
-      {note && <span className="small m-l-1">{note}</span>}
+      {note && (
+        <span className={classNamesFunc('small', { 'm-l-1': !isRTL, 'm-r-1': isRTL })}>{note}</span>
+      )}
       {secondary && <span className="small text-ellipsis">{secondary}</span>}
     </span>
   );
