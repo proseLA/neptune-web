@@ -92,9 +92,6 @@ const Layout = ({ children, router: { pathname } }) => {
         </>
       ) : null}
       {children}
-      <a className="btn btn-default m-t-4" href={editPath}>
-        Edit these docs on Github
-      </a>
     </div>
   );
 
