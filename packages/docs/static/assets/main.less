@@ -18,12 +18,12 @@ p + h2[id] {
 /* Layout  */
 
 .PageLayout__Inner {
-  background: var(--color-background-neutral);
+  background: var(--color-background-screen);
 }
 
 .Header {
   min-height: 100vh;
-  background: var(--color-primary);
+  background: var(--color-background-screen);
 }
 
 .Header__Fixed {
@@ -50,8 +50,9 @@ p + h2[id] {
   flex-direction: column;
   width: 220px;
   height: 100vh;
-  border-right: 1px solid var(--color-border-neutral);
-  background-color: var(--color-background-neutral);
+  border-right: 1px solid var(--color-primary);
+  border-left: 1px solid var(--color-primary);
+  background-color: var(--color-background-screen);
 }
 
 .Sidebar__Header {
@@ -88,7 +89,7 @@ p + h2[id] {
   padding: var(--size-8) var(--size-16);
   transition: color 0.15s;
   text-decoration: none;
-  color: #37517e;
+  color: var(--color-primary);
   outline: 0 !important;
   font-weight: @font-weight-base;
 }
@@ -99,9 +100,15 @@ p + h2[id] {
 }
 
 .Nav__Link.active {
-  color: var(--color-text-link-active);
-  background: var(--color-background-screen);
+  color: var(--color-background-screen);
+  background: var(--color-primary);
   font-weight: @font-weight-bold;
+}
+
+.Nav__Theme {
+  position: absolute;
+  bottom: 0;
+  left: var(--size-16);
 }
 
 .Nav--dark {
@@ -124,22 +131,12 @@ p + h2[id] {
   margin-top: var(--size-24);
 }
 
-.Nav--dark .Nav__Link {
-  color: #fff;
-  border-bottom: 0;
-  font-weight: @font-weight-bold;
-}
-
-.Nav--dark .Nav__Link.active {
-  background: #2e4369;
-}
-
 .Content {
   position: relative;
   width: 100%;
   min-height: 100vh;
   padding: var(--size-32);
-  background: #fff;
+  background: var(--color-background-screen);
 }
 
 @media (min-width: 767px) {
