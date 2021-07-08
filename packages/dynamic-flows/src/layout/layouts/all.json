@@ -122,12 +122,12 @@
     "components": [
       {
         "type": "button",
-        "context": "primary",
         "action": {
           "title": "Submit",
           "url": "",
           "method": "GET",
-          "data": {}
+          "data": {},
+          "type": "primary"
         }
       },
       {

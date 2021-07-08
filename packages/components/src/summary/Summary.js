@@ -70,6 +70,7 @@ const Summary = ({
               aria-label={info['aria-label']}
               className={classNames({ 'm-l-1': !isRTL, 'm-r-1': isRTL }, 'hidden-xs')}
               content={info.content}
+              onClick={info.onClick}
               presentation={info.presentation}
               title={info.title}
             />
@@ -94,6 +95,7 @@ const Summary = ({
           aria-label={info['aria-label']}
           className="m-l-2 hidden-sm hidden-md hidden-lg hidden-xl"
           content={info.content}
+          onClick={info.onClick}
           presentation={info.presentation}
           size={Size.LARGE}
           title={info.title}
@@ -142,6 +144,7 @@ Summary.propTypes = {
   info: PropTypes.shape({
     'aria-label': PropTypes.string.isRequired,
     content: PropTypes.node.isRequired,
+    onClick: PropTypes.func,
     presentation: PropTypes.oneOf(['POPOVER', 'MODAL']),
     title: PropTypes.node,
   }),

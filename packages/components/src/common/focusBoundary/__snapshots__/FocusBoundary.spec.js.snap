@@ -3,7 +3,7 @@
 exports[`FocusBoundary renders component 1`] = `
 <div>
   <span
-    class="np-focus-boundary d-inline-flex outline-none"
+    class="np-focus-boundary outline-none"
     tabindex="-1"
   >
     <a

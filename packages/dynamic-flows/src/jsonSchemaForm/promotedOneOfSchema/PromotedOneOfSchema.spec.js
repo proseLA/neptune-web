@@ -171,6 +171,100 @@ describe('Given a PromotedOneOfSchema component', () => {
       });
     });
 
+    describe('when the model is not valid for any schema', () => {
+      describe('when the "promoted" schema is a better match than the "other" one', () => {
+        it('should select the "promoted" schema', () => {
+          const localSchema = {
+            title: 'Choose schema',
+            oneOf: [
+              {
+                type: 'object',
+                title: 'Option A',
+                properties: {
+                  a: { type: 'number' },
+                  kind: { type: 'string', const: 'A' },
+                },
+                required: ['a'],
+                promoted: true,
+              },
+              {
+                type: 'object',
+                title: 'Option B',
+                properties: {
+                  b: { type: 'number' },
+                  kind: { type: 'string', const: 'B' },
+                },
+                required: ['b'],
+              },
+            ],
+            promotion: {
+              other: {
+                title: 'Other title',
+                icon: { name: 'bank', type: 'icon' },
+                heading: { text: 'Other group heading', type: 'heading' },
+              },
+              default: 'other',
+            },
+            control: 'tab',
+          };
+
+          model = { kind: 'A' };
+          props = { ...props, model, schema: localSchema };
+
+          component = shallow(<PromotedOneOfSchema {...props} />);
+
+          const control = component.find(PromotedOneOfControl);
+
+          expect(control.props().selection).toBe('promoted');
+        });
+      });
+      describe('when the "other" schema is a better match than the "promoted" one', () => {
+        it('should select the "other" schema', () => {
+          const localSchema = {
+            title: 'Choose schema',
+            oneOf: [
+              {
+                type: 'object',
+                title: 'Option A',
+                properties: {
+                  a: { type: 'number' },
+                  kind: { type: 'string', const: 'A' },
+                },
+                required: ['a'],
+                promoted: true,
+              },
+              {
+                type: 'object',
+                title: 'Option B',
+                properties: {
+                  b: { type: 'number' },
+                  kind: { type: 'string', const: 'B' },
+                },
+                required: ['b'],
+              },
+            ],
+            promotion: {
+              other: {
+                title: 'Other title',
+                icon: { name: 'bank', type: 'icon' },
+                heading: { text: 'Other group heading', type: 'heading' },
+              },
+            },
+            control: 'tab',
+          };
+
+          model = { kind: 'B' };
+          props = { ...props, model, schema: localSchema };
+
+          component = shallow(<PromotedOneOfSchema {...props} />);
+
+          const control = component.find(PromotedOneOfControl);
+
+          expect(control.props().selection).toBe('other');
+        });
+      });
+    });
+
     it('should display the promoted option', () => {
       const promoted = component.find(ObjectSchema);
 

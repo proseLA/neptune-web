@@ -84,7 +84,12 @@ const Alert = (props) => {
         )}
       </div>
       {onDismiss && (
-        <CloseButton onClick={onDismiss} size={16} className="m-l-2" ref={closeButtonRef} />
+        <CloseButton
+          onClick={onDismiss}
+          size={16}
+          className={classNames({ 'm-l-2': !isRTL, 'm-r-2': isRTL })}
+          ref={closeButtonRef}
+        />
       )}
     </div>
   );
