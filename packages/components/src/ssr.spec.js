@@ -9,6 +9,7 @@ import en from './i18n/en.json';
 const excluded = [
   // hooks
   'useSnackbar',
+  'useDirection',
 
   // specific components
   'Provider',

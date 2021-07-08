@@ -12,13 +12,13 @@ const LiveEditorBlock = ({ code, scope, display }) => (
           <div className="col-xs-12 live-preview m-b-5 p-x-0">
             <LivePreview />
           </div>
-          <div className="col-xs-12 live-editor m-b-5">
+          <div dir="ltr" className="col-xs-12 live-editor m-b-5">
             <LiveEditor theme={theme} />
           </div>
         </>
       ) : (
         <>
-          <div className="col-xl-6 live-editor">
+          <div dir="ltr" className="col-xl-6 live-editor">
             <LiveEditor theme={theme} />
           </div>
           <div className="col-xl-6 live-preview">

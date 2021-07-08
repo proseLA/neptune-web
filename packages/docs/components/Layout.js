@@ -8,6 +8,7 @@ import Meta from './Meta';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
+import LocaleToggle from './LocaleToggle';
 
 import Sidebar from './Sidebar';
 import ThreeColumnLayout from './layout/threeColumnLayout';
@@ -52,6 +53,9 @@ const Layout = ({ children, router: { pathname } }) => {
             </li>
           ))}
       </ul>
+      <div className="Nav__Locale m-x-1 m-b-1">
+        <LocaleToggle />
+      </div>
     </div>
   );
 

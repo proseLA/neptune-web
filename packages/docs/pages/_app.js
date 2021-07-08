@@ -6,6 +6,8 @@ import Head from 'next/head';
 import Router from 'next/router';
 import { Provider, getLangFromLocale, DEFAULT_LOCALE } from '@transferwise/components';
 import Layout from '../components/Layout';
+import { LocaleContext } from '../components/LocaleContext';
+
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
@@ -28,6 +30,19 @@ class MyApp extends App {
     return { locale: DEFAULT_LOCALE, messages };
   }
 
+  constructor(props) {
+    super(props);
+
+    this.toggleLocale = () =>
+      this.setState(({ locale }) => ({
+        locale: locale === this.props.locale ? 'he-IL' : this.props.locale,
+      }));
+
+    this.state = {
+      locale: this.props.locale,
+    };
+  }
+
   componentDidMount() {
     const { pathname } = Router;
     if (pathname === '/' || pathname === '/_error') {
@@ -46,19 +61,23 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps, locale, messages } = this.props;
+    const { Component, pageProps, messages } = this.props;
+    const { locale } = this.state;
 
     return (
-      <Provider i18n={{ locale, messages }}>
-        <Head>
-          <title>Neptune Web - the Wise Design System on Web</title>
-          <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
-        </Head>
-
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+      <LocaleContext.Provider value={{ locale, toggleLocale: this.toggleLocale }}>
+        <Provider i18n={{ locale, messages }}>
+          <Head>
+            <title>Neptune Web - the Wise Design System on Web</title>
+            <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
+          </Head>
+          <div dir={this.state.locale === 'he-IL' ? 'rtl' : 'ltr'}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </div>
+        </Provider>
+      </LocaleContext.Provider>
     );
   }
 }

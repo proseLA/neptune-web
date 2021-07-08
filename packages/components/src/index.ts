@@ -63,6 +63,7 @@ export { default as Logo } from './logo';
  * Hooks
  */
 export { default as useSnackbar } from './snackbar/useSnackbar';
+export { default as useDirection } from './common/hooks/useDirection';
 
 /**
  * Enums

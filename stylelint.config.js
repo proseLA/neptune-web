@@ -15,5 +15,12 @@ module.exports = {
       },
     ],
   },
-  ignoreFiles: ['**/*.js', '**/*.ts', '**/*.tsx'],
+  ignoreFiles: [
+    '**/*.js',
+    '**/*.ts',
+    '**/*.tsx',
+    '**/static/assets/main.css',
+    '**/.next',
+    '**/docs-build',
+  ],
 };

@@ -34,6 +34,7 @@ dist
 packages/css/pages/styles
 !packages/css/src/props/*.css
 !storybook.css
+packages/docs/static/assets/main.css
 
 # docs
 .next
