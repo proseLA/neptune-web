@@ -43,4 +43,4 @@ async function request({ action, data }) {
   }
 }
 
-export const httpClient = { init, request };
+export const mockClient = { init, request };

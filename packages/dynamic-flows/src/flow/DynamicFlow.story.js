@@ -3,7 +3,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import DynamicFlow from './DynamicFlow';
-import { mockHttpClient } from './httpClient';
+import { mockClient } from './client';
 
 export default {
   component: DynamicFlow,
@@ -34,10 +34,13 @@ export const basic = () => {
     action('onStepChange');
   };
 
+  const baseUrl = '';
+
   return (
     <DynamicFlow
       flowUrl={flowUrl}
-      httpClient={mockHttpClient}
+      baseUrl={baseUrl}
+      httpClient={mockClient}
       onClose={onClose}
       onStepChange={onStepChange}
     />
