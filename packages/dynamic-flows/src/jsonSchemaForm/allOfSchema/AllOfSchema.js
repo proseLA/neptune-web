@@ -6,11 +6,11 @@ import GenericSchema from '../genericSchema';
 import { getValidModelParts } from '../../common/validation/valid-model';
 
 const AllOfSchema = (props) => {
-  const onChangeModelIndex = (index, model, triggerSchema, triggerModel) => {
+  const onChangeModelIndex = (index, model, triggerSchema, triggerModel, lastTriggerModel) => {
     const modelSchema = props.schema.allOf[index];
     models[index] = getValidModelParts(model, modelSchema);
     setModels(models);
-    props.onChange(combineModels(models), triggerSchema, triggerModel);
+    props.onChange(combineModels(models), triggerSchema, triggerModel, lastTriggerModel);
   };
 
   const splitModel = (model, schemas) => {
@@ -50,8 +50,8 @@ const AllOfSchema = (props) => {
               errors={props.errors}
               locale={props.locale}
               translations={props.translations}
-              onChange={(model, triggerSchema, triggerModel) =>
-                onChangeModelIndex(index, model, triggerSchema, triggerModel)
+              onChange={(model, triggerSchema, triggerModel, lastTriggerModel) =>
+                onChangeModelIndex(index, model, triggerSchema, triggerModel, lastTriggerModel)
               }
               submitted={props.submitted}
               disabled={props.disabled}

@@ -15,7 +15,6 @@ import DynamicParagraph from './paragraph';
 import DynamicReview from './review';
 
 import { componentModel } from './models';
-import { convertStepToLayout } from '../flow/layoutService';
 
 const DynamicLayout = (props) => {
   const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync } = props;
@@ -85,8 +84,6 @@ const DynamicLayout = (props) => {
         return (
           <DynamicDecision key={getKey(component)} component={component} onAction={onAction} />
         );
-      case 'final':
-        return <>{convertStepToLayout(component).map(renderComponent)}</>;
       default:
         return <div key={getKey(component)} />;
     }

@@ -13,6 +13,7 @@ export const basic = () => {
   const content = text('content', 'Normally, the button and icon are vertically centered.');
   const title = text('title', 'Checkbox option');
   const disabled = boolean('disabled', false);
+  const showMediaAtAllSizes = boolean('showMediaAtAllSizes', false);
 
   return (
     <CheckboxOption
@@ -24,6 +25,7 @@ export const basic = () => {
       content={content}
       onChange={(newValue) => setChecked(newValue)}
       media={<FastFlagIcon />}
+      showMediaAtAllSizes={showMediaAtAllSizes}
     />
   );
 };

@@ -51,11 +51,11 @@
         "right": [
           {
             "type": "button",
-            "context": "primary",
             "action": {
               "title": "Invite & earn",
               "url": "/check",
-              "method": "GET"
+              "method": "GET",
+              "type": "primary"
             }
           }
         ]

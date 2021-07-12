@@ -22,14 +22,6 @@ describe('Modal', () => {
     expect(getModal()).toHaveClass('tw-modal--content');
   });
 
-  it('renders with correct positioning class', () => {
-    const { rerender } = render(<Modal {...props} open />);
-    expect(getModal()).not.toHaveClass('align-self-center');
-
-    rerender(<Modal {...props} open position={Position.CENTER} />);
-    expect(getModal()).toHaveClass('align-self-center');
-  });
-
   it(`doesn't calls onClose when click is inside modal`, () => {
     render(<Modal {...props} open />);
 
@@ -49,7 +41,7 @@ describe('Modal', () => {
     render(<Modal {...props} open closeOnClick />);
     expect(props.onClose).not.toHaveBeenCalled();
 
-    fireEvent.click(document);
+    fireEvent.click(screen.getByRole('presentation'));
     expect(props.onClose).toHaveBeenCalled();
   });
 

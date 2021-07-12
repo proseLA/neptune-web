@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/neptune-validation",
-  "version": "2.1.2",
+  "version": "2.1.5",
   "description": "Neptune Web validation",
   "license": "Apache-2.0",
   "main": "./build/umd/polyfill/main.js",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
-    "@babel/core": "7.12.9",
+    "@babel/core": "7.14.6",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "@rollup/plugin-babel": "^5.2.2",

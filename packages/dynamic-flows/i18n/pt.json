@@ -1,3 +1,6 @@
 {
+  "dynamicFlows.ErrorBoundary.errorAlert": "Ops! Algo deu errado...",
+  "dynamicFlows.ErrorBoundary.retry": "Tentar novamente",
+  "dynamicFlows.Help.ariaLabel": "Clique aqui para mais informações.",
   "dynamicFlows.PersistAsyncSchema.genericError": "Houve algum problema. Por favor, tente novamente mais tarde!"
 }

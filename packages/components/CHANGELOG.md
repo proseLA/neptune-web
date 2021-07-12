@@ -3,6 +3,131 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.8.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.3...@transferwise/components@36.8.4) (2021-07-05)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.8.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.2...@transferwise/components@36.8.3) (2021-07-05)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.8.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.1...@transferwise/components@36.8.2) (2021-07-05)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.8.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.0...@transferwise/components@36.8.1) (2021-07-02)
+
+
+### Bug Fixes
+
+* add delete to money input allowlist ([#1034](https://github.com/transferwise/neptune-web/issues/1034)) ([6fc415c](https://github.com/transferwise/neptune-web/commit/6fc415c252ceab12c342c8004f0426ae640b4559))
+
+
+
+
+
+# [36.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.7.2...@transferwise/components@36.8.0) (2021-06-24)
+
+
+### Features
+
+* info onClick prop ([#1013](https://github.com/transferwise/neptune-web/issues/1013)) ([f05fb39](https://github.com/transferwise/neptune-web/commit/f05fb39d2438c18e95283205943f9d2823923584))
+
+
+
+
+
+## [36.7.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.7.1...@transferwise/components@36.7.2) (2021-06-23)
+
+
+### Bug Fixes
+
+* remove scroll lock from panel and prevent focus boundary taking 100% height ([#1014](https://github.com/transferwise/neptune-web/issues/1014)) ([001d8c0](https://github.com/transferwise/neptune-web/commit/001d8c04c266d09ec4ec03fa622c47351bf415f5))
+
+
+
+
+
+## [36.7.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.7.0...@transferwise/components@36.7.1) (2021-06-23)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+# [36.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.2...@transferwise/components@36.7.0) (2021-06-22)
+
+
+### Features
+
+* add multiple dominican republic country codes to PhoneNumberInput ([#1020](https://github.com/transferwise/neptune-web/issues/1020)) ([ab79ebb](https://github.com/transferwise/neptune-web/commit/ab79ebbdcf70a78681c6285ce68220e75f755853))
+
+
+
+
+
+## [36.6.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.1...@transferwise/components@36.6.2) (2021-06-16)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.6.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.0...@transferwise/components@36.6.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* modal close behaviour ([#1008](https://github.com/transferwise/neptune-web/issues/1008)) ([b84b507](https://github.com/transferwise/neptune-web/commit/b84b507a1300b3795561bfdfb199658d2a2aac1f))
+
+
+
+
+
+# [36.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.3...@transferwise/components@36.6.0) (2021-06-16)
+
+
+### Features
+
+* **CheckboxOption:** Add showMediaAtAllSizes prop ([#1009](https://github.com/transferwise/neptune-web/issues/1009)) ([c70e128](https://github.com/transferwise/neptune-web/commit/c70e1288ac5298582909ed8fb8b768928fb8cf81))
+
+
+
+
+
+## [36.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.2...@transferwise/components@36.5.3) (2021-06-15)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.1...@transferwise/components@36.5.2) (2021-06-15)
+
+
+### Bug Fixes
+
+* add media class conditions ([#1006](https://github.com/transferwise/neptune-web/issues/1006)) ([d1e25ae](https://github.com/transferwise/neptune-web/commit/d1e25ae5fd17af8b01510e2d8939db8e98f63a1f))
+
+
+
+
+
 ## [36.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.0...@transferwise/components@36.5.1) (2021-06-11)
 
 **Note:** Version bump only for package @transferwise/components

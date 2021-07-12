@@ -49,7 +49,12 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
           >
             {isString(title) ? <span className="h5">{title}</span> : title}
           </div>
-          <div className="media-right d-flex align-items-center">
+          <div
+            className={classNames('d-flex align-items-center', {
+              'media-right': !isRTL,
+              'media-left': isRTL,
+            })}
+          >
             <Chevron orientation={open ? Position.TOP : Position.BOTTOM} />
           </div>
         </div>

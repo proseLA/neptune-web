@@ -6,7 +6,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import * as components from '.';
 
-const excluded = ['useSnackbar'];
+const excluded = ['useSnackbar', 'convertStepToLayout', 'inlineReferences', 'DynamicFlow'];
 
 function isNotExcluded(componentName) {
   return !excluded.includes(componentName);

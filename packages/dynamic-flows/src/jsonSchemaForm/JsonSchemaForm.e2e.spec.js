@@ -133,7 +133,12 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     });
 
     it('should broadcast a change for the const', () => {
-      expect(onChange).toHaveBeenCalledWith({ string: 'foo', const: 'abcd' }, constSchema, 'abcd');
+      expect(onChange).toHaveBeenCalledWith(
+        { string: 'foo', const: 'abcd' },
+        constSchema,
+        'abcd',
+        null,
+      );
       expect(onChange).toHaveBeenCalledTimes(1);
     });
   });
@@ -146,7 +151,12 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     });
 
     it('should trigger the component onChange', () => {
-      expect(onChange).toHaveBeenCalledWith({ string: 'new', const: 'abcd' }, stringSchema, 'new');
+      expect(onChange).toHaveBeenCalledWith(
+        { string: 'new', const: 'abcd' },
+        stringSchema,
+        'new',
+        'foo',
+      );
       expect(onChange).toHaveBeenCalledTimes(2);
     });
   });
@@ -159,7 +169,12 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     });
 
     it('should NOT remove the value from the model', () => {
-      expect(onChange).toHaveBeenLastCalledWith({ const: 'abcd', string: 'x' }, stringSchema, 'x');
+      expect(onChange).toHaveBeenLastCalledWith(
+        { const: 'abcd', string: 'x' },
+        stringSchema,
+        'x',
+        'foo',
+      );
     });
 
     describe('and then to something else invalid', () => {
@@ -182,6 +197,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
           { string: 'bar', const: 'abcd' },
           stringSchema,
           'bar',
+          'x',
         );
       });
 

@@ -65,12 +65,19 @@ describe('Given a component for dynamically rendering forms', () => {
           an: { type: 'string' },
         },
         'example',
+        'last value',
       );
     });
     it('should broadcast onAction', () => {
-      expect(onModelChange).toHaveBeenCalledWith(model, schema, 'example', {
-        an: { type: 'string' },
-      });
+      expect(onModelChange).toHaveBeenCalledWith(
+        model,
+        schema,
+        'example',
+        {
+          an: { type: 'string' },
+        },
+        'last value',
+      );
     });
   });
 });

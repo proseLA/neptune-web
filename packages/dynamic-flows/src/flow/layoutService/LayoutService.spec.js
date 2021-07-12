@@ -69,22 +69,20 @@ describe('Given a utility service for handling dynamic layouts', () => {
         title: 'Exit',
         type: 'success',
         exit: true,
-        data: {
-          exitValue: 'value',
-        },
+        result: { someKey: 'some value' },
       };
 
       const finalStep = {
         type: 'final',
         key: 'thing-final',
         details: {
-          action: exitAction,
           title: 'We create the thing!',
           description: 'You now do stuff with the thing',
           image: {
             url: '/images/1234.png',
           },
         },
+        actions: [exitAction],
         success: true,
       };
 

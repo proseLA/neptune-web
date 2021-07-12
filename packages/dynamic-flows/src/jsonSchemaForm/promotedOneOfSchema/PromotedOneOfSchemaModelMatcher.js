@@ -1,13 +1,9 @@
-import { isValidSchema } from '../../common/validation/schema-validators';
+import { getBestMatchingSchemaIndexForModel } from '../oneOfSchema/OneOfSchemaModelMatcher';
 
 export const getSelectionFromModel = (schema, model) => {
-  const matchingSchemas = schema.oneOf.filter((childSchema) => isValidSchema(model, childSchema));
-  if (matchingSchemas.length === 1) {
-    if (matchingSchemas[0].promoted) {
-      return 'promoted';
-    }
-    return 'other';
+  const index = getBestMatchingSchemaIndexForModel(schema, model);
+  if (index !== null) {
+    return schema.oneOf[index].promoted ? 'promoted' : 'other';
   }
-
   return null;
 };

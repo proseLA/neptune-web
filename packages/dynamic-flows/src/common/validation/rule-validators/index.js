@@ -1,4 +1,4 @@
-import { isString, isNumber, isArray, isUndefined } from '../type-validators';
+import { isString, isNumber, isArray, isUndefined } from '@transferwise/neptune-validation';
 
 function isValidRequired(value, isRequired) {
   return !isRequired || !isUndefined(value);

@@ -13,14 +13,11 @@ import { isValidSchema } from '../../common/validation/schema-validators';
 
 import DynamicAlert from '../../layout/alert';
 import Help from '../help';
-
-function isConstSchema(schema) {
-  return !!schema && (schema.const || (schema.enum && schema.enum.length === 1));
-}
-
-function isNoNConstSchema(schema) {
-  return !!schema && !isConstSchema(schema);
-}
+import {
+  getBestMatchingSchemaIndexForModel,
+  isConstSchema,
+  isNoNConstSchema,
+} from './OneOfSchemaModelMatcher';
 
 const OneOfSchema = (props) => {
   const [changed, setChanged] = useState(false);
@@ -43,31 +40,6 @@ const OneOfSchema = (props) => {
 
   const getValidIndexFromDefault = (schema) =>
     schema.oneOf.findIndex((childSchema) => isValidSchema(schema.default, childSchema));
-
-  const getSchemaProperties = (schema) =>
-    schema.properties !== null && typeof schema.properties === 'object'
-      ? Object.entries(schema.properties)
-      : [];
-
-  const getBestMatchingSchemaIndexForModel = (schema, model) => {
-    const schemaPoints = schema.oneOf.map((childSchema) => {
-      let points = 0;
-      getSchemaProperties(childSchema).forEach(([key, propertySchema]) => {
-        if (isConstSchema(propertySchema) && propertySchema.const === model[key]) {
-          points += 2;
-        } else if (isNoNConstSchema(propertySchema) && typeof model[key] !== 'undefined') {
-          points += 1;
-        }
-      });
-      return points;
-    });
-
-    if (schemaPoints.every((p) => p === schemaPoints[0])) {
-      return null;
-    }
-    const bestMatchingSchemaIndex = schemaPoints.indexOf(Math.max(...schemaPoints));
-    return bestMatchingSchemaIndex;
-  };
 
   const getActiveSchemaIndex = (schema, model) => {
     const indexFromModel = getValidIndexFromModel(schema, model);
@@ -98,11 +70,11 @@ const OneOfSchema = (props) => {
     return null;
   };
 
-  const onChildModelChange = (index, model, triggerSchema, triggerModel) => {
+  const onChildModelChange = (index, model, triggerSchema, triggerModel, lastTriggerModel) => {
     models[index] = model;
     setModels(models);
     setChanged(true);
-    props.onChange(model, triggerSchema, triggerModel);
+    props.onChange(model, triggerSchema, triggerModel, lastTriggerModel);
   };
 
   const onFocus = () => {
@@ -147,13 +119,6 @@ const OneOfSchema = (props) => {
 
     setId(generateId());
   }, [props.schema]);
-
-  useEffect(() => {
-    const modelIndex = getActiveSchemaIndex(props.schema, props.model);
-    if (modelIndex !== schemaIndex) {
-      onChooseNewSchema(modelIndex);
-    }
-  }, [props.model]);
 
   // We want our model to be the index, so alter the oneOf schemas to be a const
   const mapOneOfToConst = (schema, index) => {
@@ -236,8 +201,8 @@ const OneOfSchema = (props) => {
           errors={props.errors}
           locale={props.locale}
           translations={props.translations}
-          onChange={(model, triggerSchema, triggerModel) =>
-            onChildModelChange(schemaIndex, model, triggerSchema, triggerModel)
+          onChange={(model, triggerSchema, triggerModel, lastTriggerModel) =>
+            onChildModelChange(schemaIndex, model, triggerSchema, triggerModel, lastTriggerModel)
           }
           submitted={props.submitted}
           hideTitle
