@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.8.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.5...@transferwise/components@36.8.6) (2021-07-13)
+
+
+### Bug Fixes
+
+* prevent DefinitionList from throwing error when null passed in as Definition ([#1041](https://github.com/transferwise/neptune-web/issues/1041)) ([219b179](https://github.com/transferwise/neptune-web/commit/219b1795077ba77c6885841bab359ccf0fc64b66))
+
+
+
+
+
 ## [36.8.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.4...@transferwise/components@36.8.5) (2021-07-12)
 
 **Note:** Version bump only for package @transferwise/components
