@@ -98,11 +98,14 @@ const BasicTypeSchema = (props) => {
       <>
         <div className={classNames(formGroupClasses)}>
           {showLabel && (
-            <label className="control-label" htmlFor={id}>
-              {props.schema.title}
-            </label>
+            <div className="d-inline-block">
+              <label className="control-label d-inline" htmlFor={id}>
+                {props.schema.title}
+              </label>
+              {hasHelp && <Help help={props.schema.help} />}
+            </div>
           )}
-          {hasHelp && <Help help={props.schema.help} />}
+          {!showLabel && hasHelp && <Help help={props.schema.help} />}
           <SchemaFormControl
             id={id}
             schema={props.schema}
