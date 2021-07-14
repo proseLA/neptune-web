@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.10.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.9.0...@transferwise/components@36.10.0) (2021-07-14)
+
+
+### Features
+
+* Emphasis component ([#1042](https://github.com/transferwise/neptune-web/issues/1042)) ([2be2634](https://github.com/transferwise/neptune-web/commit/2be26347d3eec7148a08b4b99000a5faf12b1e1d))
+
+
+
+
+
 # [36.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.6...@transferwise/components@36.9.0) (2021-07-14)
 
 

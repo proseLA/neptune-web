@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.2.31...@transferwise/neptune-docs@12.3.0) (2021-07-14)
+
+
+### Features
+
+* Emphasis component ([#1042](https://github.com/transferwise/neptune-web/issues/1042)) ([2be2634](https://github.com/transferwise/neptune-web/commit/2be26347d3eec7148a08b4b99000a5faf12b1e1d))
+
+
+
+
+
 ## [12.2.31](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.2.30...@transferwise/neptune-docs@12.2.31) (2021-07-14)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
