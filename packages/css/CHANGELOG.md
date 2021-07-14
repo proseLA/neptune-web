@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@9.2.1...@transferwise/neptune-css@9.2.2) (2021-07-14)
+
+
+### Bug Fixes
+
+* render help icon inline with label ([#996](https://github.com/transferwise/neptune-web/issues/996)) ([5deb575](https://github.com/transferwise/neptune-web/commit/5deb5753705ebb88a262952e8dfa039086d6b2fd))
+
+
+
+
+
 ## [9.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@9.2.0...@transferwise/neptune-css@9.2.1) (2021-06-15)
 
 **Note:** Version bump only for package @transferwise/neptune-css

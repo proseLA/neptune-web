@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.6...@transferwise/components@36.9.0) (2021-07-14)
+
+
+### Features
+
+* add theme to accordion ([#948](https://github.com/transferwise/neptune-web/issues/948)) ([8d982f4](https://github.com/transferwise/neptune-web/commit/8d982f494519f6059b3515335426b9bc8aca7771))
+
+
+
+
+
 ## [36.8.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.5...@transferwise/components@36.8.6) (2021-07-13)
 
 

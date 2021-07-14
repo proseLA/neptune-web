@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.8.7](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.6...@transferwise/dynamic-flows@13.8.7) (2021-07-14)
+
+
+### Bug Fixes
+
+* render help icon inline with label ([#996](https://github.com/transferwise/neptune-web/issues/996)) ([5deb575](https://github.com/transferwise/neptune-web/commit/5deb5753705ebb88a262952e8dfa039086d6b2fd))
+
+
+
+
+
 ## [13.8.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.5...@transferwise/dynamic-flows@13.8.6) (2021-07-13)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
