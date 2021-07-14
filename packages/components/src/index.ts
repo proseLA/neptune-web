@@ -27,6 +27,7 @@ export { default as ProcessIndicator } from './processIndicator';
 export { default as Upload } from './upload';
 export { default as DefinitionList } from './definitionList';
 export { default as DynamicFieldDefinitionList } from './dynamicFieldDefinitionList';
+export { default as Emphasis } from './emphasis';
 export { default as Avatar } from './avatar';
 export { default as Button } from './button';
 export { default as CircularButton } from './circularButton';
