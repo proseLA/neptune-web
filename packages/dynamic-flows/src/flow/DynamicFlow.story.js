@@ -24,14 +24,24 @@ export const basic = () => {
 
   const flowUrl = select('step', steps, '/decision');
 
-  const onClose = () => {
-    console.log('onClose'); // eslint-disable-line
-    action('onClose');
+  const onSuccessClose = (...args) => {
+    console.log('onSuccessClose', ...args); // eslint-disable-line
+    action('onSuccessClose');
   };
 
-  const onStepChange = (broadcastAction) => {
-    console.log('onStepChange', broadcastAction); // eslint-disable-line
+  const onFailureClose = (...args) => {
+    console.log('onFailureClose', ...args); // eslint-disable-line
+    action('onFailureClose');
+  };
+
+  const onStepChange = (...args) => {
+    console.log('onStepChange', ...args); // eslint-disable-line
     action('onStepChange');
+  };
+
+  const onError = (...args) => {
+    console.log('onError', ...args); // eslint-disable-line
+    action('onError');
   };
 
   const baseUrl = '';
@@ -41,8 +51,10 @@ export const basic = () => {
       flowUrl={flowUrl}
       baseUrl={baseUrl}
       httpClient={mockClient}
-      onClose={onClose}
+      onSuccessClose={onSuccessClose}
+      onFailureClose={onFailureClose}
       onStepChange={onStepChange}
+      onError={onError}
     />
   );
 };

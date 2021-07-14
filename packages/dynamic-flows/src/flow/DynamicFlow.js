@@ -23,7 +23,8 @@ const DynamicFlow = (props) => {
   const {
     baseUrl,
     flowUrl,
-    onClose,
+    onSuccessClose,
+    onFailureClose,
     onStepChange,
     onError,
     httpClient: propsHttpClient,
@@ -61,10 +62,15 @@ const DynamicFlow = (props) => {
       .then(({ data: json }) => {
         setStepSpecification(json);
 
-        onStepChange(json);
+        onStepChange({ nextStep: json });
+
+        setSubmitted(false);
       })
-      .then(() => setSubmitted(false))
-      .catch(handleFetchError)
+      .catch(handleFetchValidationError)
+      .catch((error) => {
+        onFailureClose({ errors: error });
+        throw error;
+      })
       .finally(() => setLoading(false));
   };
 
@@ -74,23 +80,30 @@ const DynamicFlow = (props) => {
       .then(({ data: json }) => {
         setStepSpecification(json);
       })
-      .catch(handleFetchError);
+      .catch(handleFetchValidationError)
+      .catch((error) => {
+        onError({ errors: error });
+        throw error;
+      });
   };
 
   const fetchExitResult = (action, data) => {
     return httpClient
       .request({ action, data })
       .then(validateExitResult)
-      .catch(handleFetchError);
+      .catch(handleFetchValidationError)
+      .catch((error) => {
+        onError({ errors: error });
+        throw error;
+      });
   };
 
-  const handleFetchError = (error) => {
+  const handleFetchValidationError = (error) => {
     const { validation } = error;
 
     if (validation) {
       setValidations(validation);
     } else {
-      onError(error);
       throw error;
     }
   };
@@ -102,7 +115,7 @@ const DynamicFlow = (props) => {
       const exitHeader = 'X-DF-Exit';
 
       if (headers && headers.get(exitHeader)) {
-        onClose(data);
+        onSuccessClose({ result: data });
         return;
       }
 
@@ -146,10 +159,10 @@ const DynamicFlow = (props) => {
           ...(result || {}),
         };
 
-        onClose(mergedResult);
+        onSuccessClose({ result: mergedResult });
         return;
       }
-      onClose(result);
+      onSuccessClose({ result });
       return;
     }
 
@@ -191,7 +204,7 @@ const DynamicFlow = (props) => {
     Object.values(formModels).reduce((prev, model) => ({ ...prev, ...model }), {});
 
   const areModelsValid = (formModels, schemas) =>
-    !schemas.some((schema) => !isValidSchema(formModels[schema.$id] || {}, schema));
+    !schemas?.some((schema) => !isValidSchema(formModels[schema.$id] || {}, schema));
 
   const isSubmissionMethod = (method) => {
     const submissionMethods = ['POST', 'PUT', 'PATCH'];
@@ -214,7 +227,7 @@ const DynamicFlow = (props) => {
     components && (
       <div className="m-a-3 m-t-5">
         {loading ? (
-          <Loader size={Size.SMALL} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+          <Loader size={Size.EXTRA_LARGE} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
         ) : (
           <DynamicLayout
             components={components}
@@ -236,7 +249,8 @@ const DynamicFlow = (props) => {
 DynamicFlow.propTypes = {
   baseUrl: Types.string.isRequired,
   flowUrl: Types.string,
-  onClose: Types.func.isRequired,
+  onSuccessClose: Types.func,
+  onFailureClose: Types.func,
   onStepChange: Types.func,
   onError: Types.func,
   httpClient: Types.shape({
@@ -247,6 +261,8 @@ DynamicFlow.propTypes = {
 
 DynamicFlow.defaultProps = {
   flowUrl: '',
+  onSuccessClose: () => {},
+  onFailureClose: () => {},
   onStepChange: () => {},
   onError: () => {},
   httpClient: undefined,

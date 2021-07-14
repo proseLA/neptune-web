@@ -17,15 +17,15 @@ const withErrorBoundary = (WrappedComponent) => {
     }
 
     componentDidCatch(error) {
-      const { onError } = this.props;
+      const { onFailureClose } = this.props;
 
-      onError(error);
+      onFailureClose({ errors: error });
     }
 
-    handleError = (error, isFatalError = false) => {
+    handleError = (arg, isFatalError = false) => {
       const { onError } = this.props;
 
-      onError(error);
+      onError(arg);
       this.setState({ hasError: true, isFatalError });
     };
 
@@ -52,13 +52,7 @@ const withErrorBoundary = (WrappedComponent) => {
             />
           )}
 
-          {!isFatalError && (
-            <WrappedComponent
-              {...this.props}
-              onError={this.handleError}
-              onErrorReset={this.handleErrorReset}
-            />
-          )}
+          {!isFatalError && <WrappedComponent {...this.props} onError={this.handleError} />}
         </>
       );
     }
@@ -66,10 +60,12 @@ const withErrorBoundary = (WrappedComponent) => {
 
   ErrorBoundary.propTypes = {
     onError: PropTypes.func,
+    onFailureClose: PropTypes.func,
   };
 
   ErrorBoundary.defaultProps = {
     onError: () => {},
+    onFailureClose: () => {},
   };
 
   return injectIntl(ErrorBoundary);
