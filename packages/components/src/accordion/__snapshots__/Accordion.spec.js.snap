@@ -5,7 +5,7 @@ exports[`Accordion defaults renders an empty list when no items are passed 1`] =
 exports[`Accordion open and close opens an item when clicked 1`] = `
 <div>
   <div
-    class="tw-accordion-item decision p-a-0"
+    class="tw-accordion-item decision p-a-0 tw-accordion-item--light"
   >
     <button
       aria-expanded="true"
@@ -39,7 +39,7 @@ exports[`Accordion open and close opens an item when clicked 1`] = `
           class="media-body title text-xs-left"
         >
           <span
-            class="h5"
+            class="h5 tw-accordion-item__title"
           >
             This is title number one
           </span>
@@ -80,7 +80,7 @@ exports[`Accordion open and close opens an item when clicked 1`] = `
     </div>
   </div>
   <div
-    class="tw-accordion-item decision p-a-0 closed"
+    class="tw-accordion-item decision p-a-0 tw-accordion-item--light closed"
   >
     <button
       aria-expanded="false"
@@ -119,7 +119,7 @@ exports[`Accordion open and close opens an item when clicked 1`] = `
           class="media-body title text-xs-left"
         >
           <span
-            class="h5"
+            class="h5 tw-accordion-item__title"
           >
             This is title two
           </span>
@@ -160,7 +160,7 @@ exports[`Accordion open and close opens an item when clicked 1`] = `
     </div>
   </div>
   <div
-    class="tw-accordion-item decision p-a-0 closed"
+    class="tw-accordion-item decision p-a-0 tw-accordion-item--light closed"
   >
     <button
       aria-expanded="false"
@@ -199,7 +199,7 @@ exports[`Accordion open and close opens an item when clicked 1`] = `
           class="media-body title text-xs-left"
         >
           <span
-            class="h5"
+            class="h5 tw-accordion-item__title"
           >
             This is title three
           </span>

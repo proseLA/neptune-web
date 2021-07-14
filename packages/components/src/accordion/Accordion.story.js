@@ -4,7 +4,7 @@ import { FastFlag as FastFlagIcon, Check } from '@transferwise/icons';
 import Accordion from './Accordion';
 import Modal from '../modal';
 
-import { Size, Scroll } from '../common';
+import { Size, Scroll, Theme } from '../common';
 
 export default {
   component: Accordion,
@@ -34,7 +34,13 @@ export const basic = () => {
 
   const indexOpen = select('indexOpen', [0, 1, 2], 0);
 
-  return <Accordion items={items} indexOpen={indexOpen} />;
+  const theme = select('Theme', [Theme.LIGHT, Theme.DARK], Theme.LIGHT);
+
+  return (
+    <div className={theme === 'dark' ? 'bg--dark p-a-3' : 'p-a-3'}>
+      <Accordion items={items} indexOpen={indexOpen} theme={theme} />
+    </div>
+  );
 };
 
 export const withIcons = () => {

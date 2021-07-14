@@ -4,18 +4,18 @@ import classNames from 'classnames';
 import { isString } from '@transferwise/neptune-validation';
 
 import Chevron from '../../chevron';
-import { Position } from '../../common';
+import { Position, Theme } from '../../common';
 
 import { useDirection } from '../../common/hooks';
 
-const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
+const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
   const iconEl = icon ? cloneElement(icon, { size: 24 }) : null;
   const { isRTL } = useDirection();
 
   return (
     <div
       id={id}
-      className={classNames('tw-accordion-item decision p-a-0', {
+      className={classNames('tw-accordion-item decision p-a-0', `tw-accordion-item--${theme}`, {
         closed: !open,
       })}
     >
@@ -47,7 +47,7 @@ const AccordionItem = ({ id, title, content, onClick, open, icon }) => {
               'text-xs-right': isRTL,
             })}
           >
-            {isString(title) ? <span className="h5">{title}</span> : title}
+            {isString(title) ? <span className="h5 tw-accordion-item__title">{title}</span> : title}
           </div>
           <div
             className={classNames('d-flex align-items-center', {
@@ -81,11 +81,13 @@ AccordionItem.propTypes = {
   open: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
   title: PropTypes.node.isRequired,
+  theme: PropTypes.oneOf(['light', 'dark']),
 };
 
 AccordionItem.defaultProps = {
   icon: null,
   id: null,
+  theme: Theme.LIGHT,
 };
 
 export default AccordionItem;
