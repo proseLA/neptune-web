@@ -14,7 +14,6 @@ type Props = {
   title: ReactChild;
 }
 
-
 const SwitchOption: ComponentType<Props> = ({ checked, complex, content, disabled, id, media, onChange, title }) => {
   const sharedProps = { media, title, content, complex, disabled };
 
