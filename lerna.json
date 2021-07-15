@@ -9,6 +9,7 @@
         "**/*.spec.js",
         "**/*.yml",
         "**/*.story.js",
+        "**/*.story.tsx",
         "**/.storybook/**",
         "**/neptuneCssTest/**",
         "**/test/**",

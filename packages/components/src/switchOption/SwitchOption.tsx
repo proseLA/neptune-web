@@ -14,7 +14,7 @@ type Props = {
   title: ReactChild;
 }
 
-const SwitchOption: ComponentType<Props> = ({ checked, complex, content, disabled, id, media, onChange, title }) => {
+const SwitchOption: ComponentType<Props> = ({ checked, complex, content, disabled, id, media, onChange, title }: Props) => {
   const sharedProps = { media, title, content, complex, disabled };
 
   const stopPropagation = (event?: MouseEvent<HTMLSpanElement>) => {

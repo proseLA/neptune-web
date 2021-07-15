@@ -23,7 +23,7 @@ type Props = {
   onClick: (event?: MouseEvent<HTMLSpanElement>)=>void;
 }
 
-const Switch: ComponentType<Props> = (props) => {
+const Switch: ComponentType<Props> = (props: Props) => {
   const { isRTL } = useDirection();
   const { checked, className, id, onClick, disabled } = props;
 

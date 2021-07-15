@@ -26,7 +26,6 @@ const files = glob.sync(`../components/src/**/*.{js,tsx}`, {
     '../components/src/**/index.{js,ts}',
     '../**/common/**',
     '../**/utils/**',
-    '../components/src/flowNavigation/avatar/*.{js,tsx,ts}',
   ],
 });
 

@@ -7,7 +7,7 @@ type Props = {
   children: ReactElement[];
 }
 
-const SwitchOptionList: ComponentType<Props> = ({ children }) => {
+const SwitchOptionList: ComponentType<Props> = ({ children }: Props) => {
   return (
     <ul className="tw-switch-options-list">
       {Children.map(children, (child, index) => (
