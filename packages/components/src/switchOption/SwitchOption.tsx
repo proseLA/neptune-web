@@ -10,7 +10,7 @@ type Props = {
   disabled?: boolean;
   id?: string;
   media?: ReactNode;
-  onChange: (...args: any[])=>any;
+  onChange: (newValue: boolean)=>void;
   title: ReactNode;
 }
 
@@ -18,7 +18,7 @@ type Props = {
 const SwitchOption: ComponentType<Props> = ({ checked, complex, content, disabled, id, media, onChange, title }) => {
   const sharedProps = { media, title, content, complex, disabled };
 
-  const stopPropagation = (event: MouseEvent<HTMLSpanElement>) => {
+  const stopPropagation = (event?: MouseEvent<HTMLSpanElement>) => {
     if (event) {
       event.stopPropagation();
       event.preventDefault();
@@ -28,7 +28,7 @@ const SwitchOption: ComponentType<Props> = ({ checked, complex, content, disable
     }
   };
 
-  const toggle = (event: MouseEvent<HTMLSpanElement>) => {
+  const toggle = (event?: MouseEvent<HTMLSpanElement>) => {
     stopPropagation(event);
 
     onChange(!checked);
