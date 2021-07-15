@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 
-import { boolean, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
 import SwitchOption from './SwitchOption';
 
 export default {
@@ -12,9 +11,9 @@ export default {
 };
 
 export const basic = () => {
-  const checked = boolean('checked', true);
-  const title = text('title', 'Title');
-  const content = text('content', 'Content');
+  const [checked, setChecked] = useState(false);
+  const title = text('title', 'Switch option');
+  const content = text('content', 'Normally, the button and icon are vertically centered.');
 
   return (
     <SwitchOption
@@ -23,7 +22,7 @@ export const basic = () => {
       content={content}
       id="id"
       checked={checked}
-      onChange={action('onClick')}
+      onChange={setChecked}
       complex={false}
     />
   );
