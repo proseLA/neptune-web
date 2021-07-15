@@ -94,9 +94,5 @@ describe('SwitchOption', () => {
     fireEvent.click(screen.getAllByRole('checkbox')[0]);
 
     expect(mockOnChange).toHaveBeenCalledTimes(3);
-
-    fireEvent.click(screen.getAllByRole('checkbox')[1]);
-
-    expect(mockOnChange).toHaveBeenCalledTimes(4);
   });
 });
