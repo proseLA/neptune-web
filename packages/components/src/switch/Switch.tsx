@@ -1,4 +1,4 @@
-import React, { ComponentType, KeyboardEventHandler, MouseEvent } from 'react';
+import React, { ComponentType, KeyboardEventHandler, MouseEvent, MouseEventHandler } from 'react';
 import classnames from 'classnames';
 import { CheckCircle, CrossCircle } from '@transferwise/icons';
 import './Switch.css';
@@ -16,17 +16,17 @@ type Props = {
   checked?: boolean;
   /** Classes to apply to the switch container */
   className?: string;
+  disabled?: boolean;
   /** ID to apply to the switch container */
   id?: string;
   /** Function called when the switch is toggled */
   onClick: (event?: MouseEvent<HTMLSpanElement>)=>void;
 }
 
-// TODO: add disabled prop
-
 const Switch: ComponentType<Props> = (props) => {
   const { isRTL } = useDirection();
-  const { checked, className, id, onClick } = props;
+  const { checked, className, id, onClick, disabled } = props;
+
   const handleKeyDown: KeyboardEventHandler = (event) => {
     if (event.code === "32" || event.keyCode === KeyCodes.SPACE) {
       event.preventDefault();
@@ -62,6 +62,7 @@ const Switch: ComponentType<Props> = (props) => {
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledby}
       id={id}
+      aria-disabled={disabled}
     >
       <span className="np-switch--thumb">
         {checked ? <CheckCircle filled size={24} /> : <CrossCircle filled size={24} />}

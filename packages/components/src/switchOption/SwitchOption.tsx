@@ -29,7 +29,10 @@ const SwitchOption: ComponentType<Props> = ({ checked, complex, content, disable
 
   const toggle = (event?: MouseEvent<HTMLSpanElement>) => {
     stopPropagation(event);
-
+    if (disabled) {
+      return;
+    }
+    
     onChange(!checked);
   };
 
@@ -37,7 +40,7 @@ const SwitchOption: ComponentType<Props> = ({ checked, complex, content, disable
     <Option
       {...sharedProps}
       onClick={toggle}
-      button={<Switch id={id} checked={checked} onClick={toggle} />}
+      button={<Switch id={id} checked={checked} onClick={toggle} disabled={disabled} />}
     />
   );
 };
