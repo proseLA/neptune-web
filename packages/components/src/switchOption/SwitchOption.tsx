@@ -1,4 +1,4 @@
-import React, { ComponentType, MouseEvent, ReactNode } from 'react';
+import React, { ComponentType, MouseEvent, ReactChild } from 'react';
 
 import Option from '../common/Option';
 import Switch from '../switch';
@@ -6,12 +6,12 @@ import Switch from '../switch';
 type Props = {
   checked?: boolean;
   complex?: boolean;
-  content?: ReactNode;
+  content?: ReactChild;
   disabled?: boolean;
   id?: string;
-  media?: ReactNode;
+  media?: ReactChild;
   onChange: (newValue: boolean)=>void;
-  title: ReactNode;
+  title: ReactChild;
 }
 
 
