@@ -265,6 +265,53 @@ describe('Given a PromotedOneOfSchema component', () => {
       });
     });
 
+    describe('when the model is null', () => {
+      it('should select the default schema', () => {
+        const localSchema = {
+          title: 'Choose schema',
+          oneOf: [
+            {
+              type: 'object',
+              title: 'Option A',
+              properties: {
+                a: { type: 'number' },
+                kind: { type: 'string', const: 'A' },
+              },
+              required: ['a'],
+              promoted: true,
+            },
+            {
+              type: 'object',
+              title: 'Option B',
+              properties: {
+                b: { type: 'number' },
+                kind: { type: 'string', const: 'B' },
+              },
+              required: ['b'],
+            },
+          ],
+          promotion: {
+            other: {
+              title: 'Other title',
+              icon: { name: 'bank', type: 'icon' },
+              heading: { text: 'Other group heading', type: 'heading' },
+            },
+            default: 'promoted',
+          },
+          control: 'tab',
+        };
+
+        model = null;
+        props = { ...props, model, schema: localSchema };
+
+        component = shallow(<PromotedOneOfSchema {...props} />);
+
+        const control = component.find(PromotedOneOfControl);
+
+        expect(control.props().selection).toBe('promoted');
+      });
+    });
+
     it('should display the promoted option', () => {
       const promoted = component.find(ObjectSchema);
 

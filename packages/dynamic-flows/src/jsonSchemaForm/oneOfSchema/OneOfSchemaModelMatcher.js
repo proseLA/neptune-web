@@ -1,4 +1,8 @@
 export function getBestMatchingSchemaIndexForModel(schema, model) {
+  if (model === null || model === undefined) {
+    return null;
+  }
+
   const getSchemaProperties = (childSchema) =>
     childSchema.properties !== null && typeof childSchema.properties === 'object'
       ? Object.entries(childSchema.properties)
