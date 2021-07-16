@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.8.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.8...@transferwise/dynamic-flows@13.8.9) (2021-07-16)
+
+
+### Bug Fixes
+
+* PromotedOneOfSchema with a null model throws a TypeError. ([#1046](https://github.com/transferwise/neptune-web/issues/1046)) ([8a6ce32](https://github.com/transferwise/neptune-web/commit/8a6ce326807342a8381252751d96ee4673949ed2))
+
+
+
+
+
 ## [13.8.8](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.7...@transferwise/dynamic-flows@13.8.8) (2021-07-14)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
