@@ -12,6 +12,8 @@ import { Key as keyValues } from '../common/key';
 import messages from './MoneyInput.messages';
 import { formatAmount, parseAmount } from './currencyFormatting';
 
+import { DirectionContext } from '../provider/direction';
+
 const Currency = PropTypes.shape({
   header: PropTypes.string,
   value: PropTypes.string,
@@ -183,6 +185,7 @@ class MoneyInput extends Component {
   style = (className) => this.props.classNames[className] || className;
 
   render() {
+    const isRTL = this.context === 'rtl';
     const { selectedCurrency, onCurrencyChange, size, addon } = this.props;
     const selectOptions = this.getSelectOptions();
     const isFixedCurrency =
@@ -197,6 +200,7 @@ class MoneyInput extends Component {
           this.style('tw-money-input'),
           this.style('input-group'),
           this.style(`input-group-${size}`),
+          isRTL ? this.style('tw-money-input--rtl') : '',
         )}
       >
         <input
@@ -283,6 +287,8 @@ class MoneyInput extends Component {
     );
   }
 }
+
+MoneyInput.contextType = DirectionContext;
 
 function filterOptionsForQuery(options, query) {
   if (!query) {

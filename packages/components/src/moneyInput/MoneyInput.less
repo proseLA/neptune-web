@@ -26,6 +26,49 @@
 
     position: relative;
   }
+
+  &.tw-money-input--rtl {
+    &.tw-money-input {
+      input {
+        border-right: 1px solid @color-base-smoke-mid;
+        border-radius: 0 3px 3px 0;
+        border-left: 0;
+
+        &:hover {
+          border-right: 1px solid @color-base-grey-light;
+        }
+
+        &:focus {
+          border-right: 1px solid var(--color-border-focus);
+        }
+      }
+
+      .input-group-btn {
+        .dropdown-menu {
+          right: auto;
+          left: 0;
+
+          .tw-select-filter {
+            border-right: 0;
+          }
+        }
+
+        .btn {
+          padding-right: var(--size-16);
+          border-radius: 3px 0 0 3px;
+
+          .tw-icon {
+            padding-right: 0;
+            padding-left: var(--size-16);
+          }
+
+          .currency-flag:first-child {
+            margin-left: var(--size-8);
+          }
+        }
+      }
+    }
+  }
 }
 
 // Fix chevron icon alignment (icons v2) in currency select button
@@ -43,7 +86,7 @@
 }
 
 .tw-money-input .amount-currency-select-btn > .tw-select > .btn-addon.dropdown-toggle {
-  padding-right: calc(var(--size-8) * 2);
+  padding-right: var(--size-16);
 }
 
 .tw-money-input .amount-currency-select-btn > .tw-select > .btn-lg > span {
@@ -56,5 +99,5 @@
 
 .tw-money-input .amount-currency-select-btn > .tw-select > .btn > span.tw-icon {
   position: static;
-  padding-right: calc(var(--size-8) * 2);
+  padding-right: var(--size-16);
 }

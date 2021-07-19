@@ -1,10 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Select, MoneyInput } from '..';
+
+import { DirectionProvider } from '../provider/direction';
 
 jest.mock('./currencyFormatting', () => ({
   parseAmount: jest.fn(),
@@ -534,6 +536,18 @@ describe('Money Input', () => {
       });
     });
   });
+
+  describe('RTL support', () => {
+    it('applies correct css classes when isRTL is true', () => {
+      const wrapper = mount(
+        <DirectionProvider locale="he-IL">
+          <MoneyInput {...props} />
+        </DirectionProvider>,
+      );
+      expect(wrapper.find('.tw-money-input').hasClass('tw-money-input--rtl')).toBe(true);
+    });
+  });
+
 
   describe('when typing', () => {
     let rtlComponent;
