@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.11.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.10.0...@transferwise/components@36.11.0) (2021-07-19)
+
+
+### Features
+
+* add SwitchOption component ([#1044](https://github.com/transferwise/neptune-web/issues/1044)) ([f8f2ec2](https://github.com/transferwise/neptune-web/commit/f8f2ec2ea2c0a03a3d2655a16237cc9b4e9c1b1b))
+
+
+
+
+
 # [36.10.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.9.0...@transferwise/components@36.10.0) (2021-07-14)
 
 
