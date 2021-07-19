@@ -4,8 +4,6 @@ import classNames from 'classnames';
 
 import { Size, Key } from '../common';
 
-import './Tile.css';
-
 export const Tile = ({
   className,
   description,

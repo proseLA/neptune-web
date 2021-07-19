@@ -11,8 +11,6 @@ import {
   CommonProps,
 } from '../common';
 
-import './Badge.css';
-
 type Props = {
   badge: ReactNode;
   children: ReactNode;

@@ -5,8 +5,6 @@ import CSSTransition from 'react-transition-group/CSSTransition';
 import withNextPortal from '../withNextPortal/withNextPortal';
 import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
 
-import './Dimmer.css';
-
 import FocusBoundary from '../common/focusBoundary';
 import DimmerManager from './dimmerManager';
 

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './RadioButton.css';
-
 const RadioButton = ({ id, value, name, checked, onChange, disabled, readOnly }) => (
   <>
     <input

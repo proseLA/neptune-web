@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Header from '../header';
 import CloseButton from '../common/closeButton';
 
-import './OverlayHeader.css';
 import Logo from '../logo';
 
 const OverlayHeader = ({ avatar, onClose, logo }) => {

@@ -6,7 +6,6 @@ import { Position, Key } from '../common';
 
 import Chevron from '../chevron';
 import Option from '../common/Option';
-import './Card.css';
 
 const Card = React.forwardRef((props, ref) => {
   const {

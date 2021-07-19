@@ -13,7 +13,7 @@ import {
   isTypeValid,
   getFileType,
 } from './utils';
-import './Upload.css';
+
 import messages from './Upload.messages';
 import { Status } from '../common';
 

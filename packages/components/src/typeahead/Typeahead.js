@@ -20,7 +20,6 @@ import {
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
 
-import './Typeahead.css';
 import { Size, Sentiment } from '../common';
 
 const DEFAULT_MIN_QUERY_LENGTH = 3;

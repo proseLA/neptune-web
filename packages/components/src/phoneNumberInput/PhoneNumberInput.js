@@ -21,8 +21,6 @@ import {
 
 import countries from './data/countries';
 
-import './PhoneNumberInput.css';
-
 const ALLOWED_PHONE_CHARS = /^$|^[\d-\s]+$/;
 
 const PhoneNumberInput = (props) => {

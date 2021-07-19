@@ -10,6 +10,7 @@ import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
+import '@transferwise/components/styles/main.css';
 
 import { addBasePath } from '../utils/pageUtils';
 

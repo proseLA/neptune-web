@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
 import Select from '../select';
-import './MoneyInput.css';
+
 import { Size } from '../common/propsValues/size';
 import keyCodes from '../common/keyCodes';
 import { Key as keyValues } from '../common/key';

@@ -21,10 +21,26 @@ npm install @transferwise/dynamic-flows react react-dom prop-types
 ```
 
 ```js
-// This line only needs to be imported once in your application
+// These CSS imports only need to be imported once in your application in 'pages/_app.{js,jsx,tsx}'
 import '@transferwise/neptune-css/dist/css/neptune.css';
+import '@transferwise/dynamic-flows/styles/main.css';
+```
 
+```js
+// Import and use JsonSchemaForm in your app component
 import { JsonSchemaForm } from '@transferwise/dynamic-flows';
+
+<JsonSchemaForm
+  schema={schema}
+  model={model}
+  errors={errors}
+  translations={translationsFromProps}
+  onChange={() => {}}
+  submitted={submitted}
+  disabled={disabled}
+  baseUrl=""
+  onPersistAsync={() => {}}
+/>
 ```
 
 ## Documentation

@@ -11,7 +11,6 @@ import { Size, DateMode, MonthFormat } from '../common';
 import { explodeDate, convertToLocalMidnight } from './utils';
 import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/dateUtils';
 import { useDirection } from '../common/hooks';
-import './DateInput.css';
 
 const MonthBeforeDay = ['en-US', 'ja-JP'];
 const INITIAL_DEFAULT_STATE = { year: null, month: null, day: null };

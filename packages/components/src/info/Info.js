@@ -6,7 +6,6 @@ import Popover from '../popover';
 import Modal from '../modal';
 import { Size, Position } from '../common';
 import { InfoPresentation } from './infoPresentations';
-import './Info.css';
 
 const Info = (props) => {
   const { className, content, onClick, presentation, size, title } = props;

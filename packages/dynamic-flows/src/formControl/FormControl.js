@@ -15,8 +15,6 @@ import {
 
 import { Size, MonthFormat, DateMode, FormControlType } from '../common';
 
-import './FormControl.css';
-
 const ACCEPTED_FORMAT = ['*', 'image/*', 'application/*'];
 
 export default class FormControl extends PureComponent {

@@ -1,7 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
-import postcss from 'rollup-plugin-postcss';
 import { uglify } from 'rollup-plugin-uglify';
 import json from '@rollup/plugin-json';
 
@@ -43,11 +42,6 @@ const plugins = [
   }),
   // Convert CJ into ES6
   commonjs({ sourcemap: false, namedExports }),
-  postcss({
-    config: true,
-    extract: pkg.style,
-    extensions: ['.css'],
-  }),
   json(),
   uglify(),
 ];

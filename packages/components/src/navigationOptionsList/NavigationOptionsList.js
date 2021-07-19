@@ -1,8 +1,6 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 
-import './NavigationOptionsList.css';
-
 export default function NavigationOptionList({ children }) {
   return (
     <ul className="tw-navigation-options-list">

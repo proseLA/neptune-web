@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import SlidingPanel from '../slidingPanel';
 import Dimmer from '../dimmer';
-import './Drawer.css';
+
 import { Position } from '../common/propsValues/position';
 import { logActionRequiredIf } from '../utilities';
 import CloseButton from '../common/closeButton';

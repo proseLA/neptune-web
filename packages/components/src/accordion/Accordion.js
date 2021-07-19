@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AccordionItem from './AccordionItem';
 import { Theme } from '../common';
-import './Accordion.css';
 
 const Accordion = ({ items, onClick, indexOpen, theme }) => {
   const [itemsOpen, setItemsOpen] = useState(() => items.map((val, index) => index === indexOpen));

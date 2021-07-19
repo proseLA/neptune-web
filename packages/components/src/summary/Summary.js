@@ -13,7 +13,6 @@ import Info from '../info';
 import { Status, Size } from '../common';
 
 import messages from './Summary.messages';
-import './Summary.css';
 
 import { useDirection } from '../common/hooks';
 

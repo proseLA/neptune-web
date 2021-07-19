@@ -2,7 +2,6 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import './SlidingPanel.css';
 
 export const EXIT_ANIMATION = 350;
 

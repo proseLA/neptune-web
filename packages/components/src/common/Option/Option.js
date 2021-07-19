@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import requiredIf from 'react-required-if';
 
-import './Option.css';
-
 const Option = ({
   as: Element,
   href,

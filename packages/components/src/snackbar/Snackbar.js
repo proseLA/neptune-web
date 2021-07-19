@@ -8,8 +8,6 @@ import { Theme } from '../common';
 
 import { DirectionContext } from '../provider/direction';
 
-import './Snackbar.css';
-
 export const CSS_TRANSITION_DURATION = 400;
 
 export class Snackbar extends Component {

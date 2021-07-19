@@ -5,8 +5,6 @@ import classNames from 'classnames';
 import { ControlType, Priority } from '../common';
 import { typeClassMap, priorityClassMap } from '../button/classMap';
 
-import './CircularButton.css';
-
 const CircularButton = ({ className, children, disabled, icon, priority, type, ...rest }) => {
   const classes = classNames('btn np-btn', typeClassMap[type], priorityClassMap[priority]);
 

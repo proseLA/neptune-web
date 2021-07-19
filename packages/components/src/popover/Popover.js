@@ -6,8 +6,6 @@ import { Position } from '../common';
 import ResponsivePanel from '../common/responsivePanel';
 import { logActionRequiredIf } from '../utilities';
 
-import './Popover.css';
-
 const Popover = ({ children, className, content, preferredPlacement, title }) => {
   logActionRequired({ preferredPlacement });
   const anchorRef = useRef(null);

@@ -5,12 +5,13 @@
   "license": "Apache-2.0",
   "main": "./build/es/polyfill/index.js",
   "module": "./build/es/polyfill/index.js",
-  "style": "./build/main.css",
+  "style": "./styles/main.css",
   "sideEffects": [
     "*.css"
   ],
   "files": [
-    "build"
+    "build",
+    "styles"
   ],
   "repository": {
     "type": "git",
@@ -28,8 +29,8 @@
     "build:compile-less": "gulp compileLess --dest=src",
     "build:es": "NODE_ENV=es babel src -d build/es/polyfill --ignore '**/*.spec.js','**/*.story.js','**/spec.js'",
     "build:es-nopolyfill": "NODE_ENV=es-nopolyfill babel src -d build/es/no-polyfill --ignore '**/*.spec.js','**/*.story.js','**/spec.js'",
-    "build:copy-files": "cpx 'src/**/!(db)/*.{css,json,svg}' build/es/polyfill",
-    "build:copy-files2": "cpx 'src/**/!(db)/*.{css,json,svg}' build/es/no-polyfill",
+    "build:copy-files": "cpx 'src/**/!(db)/*.{json,svg}' build/es/polyfill & cpx 'src/**/!(db)/*.{json,svg}' build/es/no-polyfill",
+    "build:copy-css": "cpx 'src/**/*.css' styles/",
     "build:copy-lang": "cpx 'i18n/*.json' build/i18n && cpx 'i18n/index.js' build/i18n",
     "test": "jest --env=jsdom --maxWorkers=4 --config=../../node_modules/@transferwise/test-config/jest.config.js",
     "test:watch": "jest --watch --env=jsdom --config=../../node_modules/@transferwise/test-config/jest.config.js",

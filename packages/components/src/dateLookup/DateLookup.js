@@ -14,8 +14,6 @@ import YearCalendar from './yearCalendar';
 import SlidingPanel from '../slidingPanel';
 import Dimmer from '../dimmer';
 
-import './DateLookup.css';
-
 const MODE = {
   DAY: 'day',
   MONTH: 'month',

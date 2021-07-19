@@ -7,7 +7,6 @@ import Chevron from '../chevron';
 
 import Option from '../common/Option';
 import { Position } from '../common';
-import './NavigationOption.css';
 
 const NavigationOption = ({
   as,

@@ -1,8 +1,6 @@
 import React, { ReactElement } from 'react';
 import EmphasisHtmlTransformer from './EmphasisHtmlTransformer';
 
-import './Emphasis.css';
-
 const SUPPORTED_TAGS = ['important', 'positive', 'negative', 'warning'];
 const emphasisHtmlTransformer = new EmphasisHtmlTransformer(SUPPORTED_TAGS);
 

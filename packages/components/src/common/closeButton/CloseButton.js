@@ -6,8 +6,6 @@ import { Cross as CrossIcon } from '@transferwise/icons';
 
 import messages from './CloseButton.messages';
 
-import './CloseButton.css';
-
 export const CloseButton = React.forwardRef((props, ref) => {
   const intl = useIntl();
   const { onClick, className, size } = props;

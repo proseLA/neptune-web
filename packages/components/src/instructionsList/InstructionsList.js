@@ -5,8 +5,6 @@ import {
   CheckCircle as CheckCircleIcon,
 } from '@transferwise/icons';
 
-import './InstructionsList.css';
-
 const InstructionsList = ({ dos, donts }) => (
   <div className="tw-instructions">
     {dos.map((doThis, index) => (

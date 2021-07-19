@@ -8,7 +8,6 @@ import { ChevronLeft, ChevronRight } from '@transferwise/icons';
 import PaginationLink from './paginationLink';
 
 import messages from './Pagination.messages';
-import './Pagination.css';
 
 const Type = {
   NUMBERS_ONLY: 'numbersOnly',

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import Dimmer from '../../dimmer';
 import SlidingPanel from '../../slidingPanel';
-import './BottomSheet.css';
+
 import { Position } from '../propsValues/position';
 
 const BottomSheet = forwardRef(({ children, open, className, onClose }, ref) => (

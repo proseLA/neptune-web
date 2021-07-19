@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Position } from '../common';
 
-import './Tooltip.css';
-
 function getTooltipStyle(parent, tooltip, position, offset) {
   switch (position) {
     case Position.TOP:

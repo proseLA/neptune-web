@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 import { isIpadOsSafari, isMobileSafari } from './utils';
 
-import './MobileNav.css';
-
 function useMobileNavRef() {
   const [mobileNav, setMobileNav] = useState(null);
   const ref = useCallback((node) => {

@@ -18,8 +18,6 @@ import {
 } from './utils';
 import { Size, Width } from '../common';
 
-import './Tabs.css';
-
 const MIN_INDEX = 0;
 
 const enabledTabsFilter = (tab) => !tab.disabled;

@@ -10,10 +10,11 @@ import {
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
+import '@transferwise/components/styles/main.css';
 
 import translations from '../i18n';
 
-import './storybook.css';
+import '../src/main.css';
 
 // Set up Axe to run in the console
 if (process.env.NODE_ENV !== 'production') {

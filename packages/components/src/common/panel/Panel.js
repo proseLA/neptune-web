@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import { usePopper } from 'react-popper';
 import Dimmer from '../../dimmer';
 import { Position } from '..';
-import './Panel.css';
 
 const POPOVER_OFFSET = [0, 16];
 

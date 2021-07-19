@@ -10,7 +10,6 @@ import CloseButton from '../common/closeButton';
 import { Breakpoint, Layout } from '../common';
 import { useClientWidth } from '../common/hooks';
 
-import './FlowNavigation.css';
 import Logo from '../logo';
 
 // Size switches on parent container which may or may not have the same size as the window.

@@ -4,8 +4,6 @@ import classNames from 'classnames';
 
 import { Layout } from '../common';
 
-import './DefinitionList.css';
-
 const isLayoutHorizontal = (layout) =>
   [
     Layout.HORIZONTAL_LEFT_ALIGNED,
