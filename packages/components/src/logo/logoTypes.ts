@@ -2,4 +2,4 @@
 export enum LogoType {
   WISE = 'WISE',
   WISE_BUSINESS = 'WISE_BUSINESS',
-};
+}

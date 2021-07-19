@@ -3,14 +3,14 @@ const ESCAPED_CLOSING_CHEVRON = '&gt;';
 
 type Tags = {
   transformed: {
-    opening: string,
-    closing: string
-  }
+    opening: string;
+    closing: string;
+  };
   escapedRegex: {
-    opening: RegExp,
-    closing: RegExp
-  }
-}
+    opening: RegExp;
+    closing: RegExp;
+  };
+};
 
 class EmphasisHtmlTransformer {
   tags: Array<Tags>;
@@ -41,17 +41,15 @@ class EmphasisHtmlTransformer {
       return null;
     }
 
-    const safe = unsafe.replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+    const safe = unsafe.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     return this.tags
-        .reduce((accumulator, tag) => {
-          return accumulator
-              .replace(tag.escapedRegex.opening, tag.transformed.opening)
-              .replace(tag.escapedRegex.closing, tag.transformed.closing);
-        }, safe)
-        .replace(/\\n/g, '<br />');
+      .reduce((accumulator, tag) => {
+        return accumulator
+          .replace(tag.escapedRegex.opening, tag.transformed.opening)
+          .replace(tag.escapedRegex.closing, tag.transformed.closing);
+      }, safe)
+      .replace(/\\n/g, '<br />');
   }
 }
 

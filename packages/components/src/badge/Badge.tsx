@@ -1,6 +1,15 @@
 import React, { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
-import { Size, Theme, SizeSmall, SizeMedium, SizeLarge, ThemeDark, ThemeLight, CommonProps } from '../common';
+import {
+  Size,
+  Theme,
+  SizeSmall,
+  SizeMedium,
+  SizeLarge,
+  ThemeDark,
+  ThemeLight,
+  CommonProps,
+} from '../common';
 
 import './Badge.css';
 

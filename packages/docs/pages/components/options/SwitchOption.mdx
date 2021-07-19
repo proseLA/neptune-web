@@ -1,0 +1,15 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { FastFlag as FastFlagIcon } from '@transferwise/icons';
+import { SwitchOption } from '@transferwise/components';
+import code from '../../../liveEditorCode/switchOption.code';
+
+<LiveEditorBlock code={code} scope={{ SwitchOption, FastFlagIcon }} />
+<GeneratePropsTable componentName="SwitchOption" />
+
+export const meta = {
+  name: 'SwitchOption',
+  badge: {
+    type: 'new',
+    expiryDate: '2021-09-30',
+  },
+};

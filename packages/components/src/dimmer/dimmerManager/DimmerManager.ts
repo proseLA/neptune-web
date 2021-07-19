@@ -2,7 +2,6 @@
  * Dimmer state management inspired by Material UI's ModalManager (https://github.com/mui-org/material-ui)
  */
 export default class DimmerManager {
-
   /**
    * Dimmer refs
    */

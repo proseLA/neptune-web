@@ -53,6 +53,7 @@ export { default as Markdown } from './markdown';
 export { default as Card } from './card';
 export { default as Summary } from './summary';
 export { default as Switch } from './switch';
+export { default as SwitchOption } from './switchOption';
 export { default as Decision } from './decision';
 export { default as Nudge } from './nudge';
 export { default as InlineAlert } from './inlineAlert';

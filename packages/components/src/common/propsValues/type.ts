@@ -5,7 +5,7 @@ export enum Type {
   PRIMARY = 'primary',
 
   /**
-   * @deprecated use 
+   * @deprecated use
    */
   PAY = 'pay',
   SECONDARY = 'secondary',

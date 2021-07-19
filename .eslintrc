@@ -41,13 +41,21 @@
       "node": {
         "extensions": [".js", ".ts", ".tsx", ".json"]
       }
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     }
   },
   "overrides": [
     {
-      "files": ["**/*.tsx"],
+      "files": ["**/*.ts?(x)"],
+      "parser": "@typescript-eslint/parser",
       "rules": {
-        "react/require-default-props": "off"
+        "react/require-default-props": "off",
+        "no-undef": "off",
+        "react/prop-types": "off",
+        "no-shadow": "off",
+        "no-unused-vars": "off"
       }
     }
   ]

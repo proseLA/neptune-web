@@ -1,4 +1,3 @@
 {
-  "extends": ["@transferwise", "../../.eslintrc"],
-  "ignorePatterns": ["**/*.ts", "**/*.tsx"]
+  "extends": ["@transferwise", "../../.eslintrc"]
 }

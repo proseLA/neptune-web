@@ -10,7 +10,7 @@ type EmphasisProps = {
   text?: string;
 };
 
-const Emphasis = ({ text = undefined }: EmphasisProps ) : ReactElement | null => {
+const Emphasis = ({ text = undefined }: EmphasisProps): ReactElement | null => {
   if (!text) {
     return null;
   }

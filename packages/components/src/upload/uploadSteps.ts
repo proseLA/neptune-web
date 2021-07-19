@@ -2,4 +2,4 @@
 export enum UploadStep {
   UPLOAD_IMAGE_STEP = 'uploadImageStep',
   MEDIA_UPLOAD_STEP = 'mediaUploadStep',
-};
+}
