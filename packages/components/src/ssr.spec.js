@@ -154,6 +154,7 @@ describe('Server side rendering', () => {
       media: <img alt="img" />,
     },
     Modal: { position: 'top' },
+    ActionOption: { action: 'hello' },
   };
 
   const { Provider } = exposedLibraryItems;
