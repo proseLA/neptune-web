@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.12.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.1...@transferwise/components@36.12.0) (2021-07-20)
+
+
+### Features
+
+* add ActionOption component ([#1050](https://github.com/transferwise/neptune-web/issues/1050)) ([dc5aaad](https://github.com/transferwise/neptune-web/commit/dc5aaad364ca1809330a6c413218dc5e377d6f20))
+
+
+
+
+
 ## [36.11.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.0...@transferwise/components@36.11.1) (2021-07-20)
 
 
