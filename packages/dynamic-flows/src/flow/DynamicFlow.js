@@ -52,6 +52,10 @@ const DynamicFlow = (props) => {
     }
   }, [stepSpecification]);
 
+  useEffect(() => {
+    setModelIsValid(areModelsValid(models, stepSpecification.schemas));
+  }, [models]);
+
   const fetchStep = async (action, data) => {
     setLoading(true);
 
@@ -132,13 +136,20 @@ const DynamicFlow = (props) => {
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
     const { $id } = formSchema;
 
-    const updatedModels = updateModels($id, newModel);
+    setModels((prevModels) => {
+      const updatedModels = {
+        ...prevModels,
+        [$id]: newModel,
+      };
 
-    if (triggerSchema?.refreshFormOnChange) {
-      const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
-      const action = { url, method: 'POST' };
-      fetchRefresh(action, combineModels(updatedModels));
-    }
+      if (triggerSchema?.refreshFormOnChange) {
+        const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
+        const action = { url, method: 'POST' };
+        fetchRefresh(action, combineModels(updatedModels));
+      }
+
+      return updatedModels;
+    });
   };
 
   const onAction = async (action) => {
@@ -175,18 +186,6 @@ const DynamicFlow = (props) => {
     }
 
     fetchStep(action);
-  };
-
-  const updateModels = (schemaRef, model) => {
-    const newModels = {
-      ...models,
-      [schemaRef]: model,
-    };
-
-    setModels(newModels);
-    setModelIsValid(areModelsValid(newModels, stepSpecification.schemas));
-
-    return newModels;
   };
 
   const buildInitialModels = (model, schemas) => {
