@@ -11,6 +11,7 @@ describe('SwitchOption', () => {
         media={<FastFlag data-testid="fast-flag" />}
         id="id"
         title="title"
+        aria-label="title"
         content="content"
         onChange={() => {}}
         checked={false}
@@ -33,6 +34,7 @@ describe('SwitchOption', () => {
       <SwitchOption
         id="id"
         title="title"
+        aria-label="title"
         content="content"
         onChange={mockOnChange}
         checked={false}
@@ -50,7 +52,14 @@ describe('SwitchOption', () => {
     expect(mockOnChange).toHaveBeenCalledTimes(1);
 
     rerender(
-      <SwitchOption id="id" title="title" content="content" onChange={mockOnChange} checked />,
+      <SwitchOption
+        id="id"
+        title="title"
+        aria-label="title"
+        content="content"
+        onChange={mockOnChange}
+        checked
+      />,
     );
 
     expect(getSwitch()).toBeChecked();
@@ -67,6 +76,7 @@ describe('SwitchOption', () => {
       <SwitchOption
         id="id"
         title="title"
+        aria-label="title"
         content="content"
         onChange={mockOnChange}
         checked={false}
@@ -79,7 +89,15 @@ describe('SwitchOption', () => {
   it('fires the onClick handler once regardless of where you click on the option', () => {
     const mockOnChange = jest.fn();
 
-    render(<SwitchOption id="id" title="title" content="content" onChange={mockOnChange} />);
+    render(
+      <SwitchOption
+        id="id"
+        title="title"
+        aria-label="title"
+        content="content"
+        onChange={mockOnChange}
+      />,
+    );
 
     expect(mockOnChange).toHaveBeenCalledTimes(0);
 

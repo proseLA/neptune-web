@@ -12,6 +12,7 @@ type Props = {
   media?: ReactChild;
   onChange: (newValue: boolean) => void;
   title: ReactChild;
+  'aria-label': string;
 };
 
 const SwitchOption = ({
@@ -23,6 +24,7 @@ const SwitchOption = ({
   media,
   onChange,
   title,
+  'aria-label': ariaLabel,
 }: Props): ReactElement => {
   const sharedProps = { media, title, content, complex, disabled };
 
@@ -49,7 +51,15 @@ const SwitchOption = ({
     <Option
       {...sharedProps}
       onClick={toggle}
-      button={<Switch id={id} checked={checked} onClick={toggle} disabled={disabled} />}
+      button={
+        <Switch
+          id={id}
+          checked={checked}
+          onClick={toggle}
+          disabled={disabled}
+          aria-label={ariaLabel}
+        />
+      }
     />
   );
 };

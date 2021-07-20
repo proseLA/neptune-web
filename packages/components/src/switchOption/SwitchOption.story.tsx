@@ -26,6 +26,7 @@ export const basic = () => {
       onChange={setChecked}
       complex={false}
       disabled={disabled}
+      aria-label={title}
     />
   );
 };
