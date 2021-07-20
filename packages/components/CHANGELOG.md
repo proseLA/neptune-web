@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.11.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.0...@transferwise/components@36.11.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* expose aria-label in SwitchOption for Switch ([#1051](https://github.com/transferwise/neptune-web/issues/1051)) ([9295515](https://github.com/transferwise/neptune-web/commit/92955157cb20a24d50e914102cacc0b5b9e83e58))
+
+
+
+
+
 # [36.11.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.10.0...@transferwise/components@36.11.0) (2021-07-19)
 
 
