@@ -1,7 +1,6 @@
 class HttpClient {
   init(params = {}) {
     this.baseUrl = params.baseUrl;
-    this.oauthToken = params.oauthToken;
 
     return this;
   }
@@ -15,8 +14,8 @@ class HttpClient {
     return fetch(endpoint, {
       method,
       headers: {
-        ...(this.oauthToken && { Authorization: `Bearer ${this.oauthToken}` }),
         'Content-Type': 'application/json',
+        'X-Access-Token': 'Tr4n5f3rw153',
       },
       body,
     }).then(async (response) => {

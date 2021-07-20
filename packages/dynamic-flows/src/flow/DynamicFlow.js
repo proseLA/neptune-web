@@ -28,7 +28,6 @@ const DynamicFlow = (props) => {
     onStepChange,
     onError,
     httpClient: propsHttpClient,
-    oauthToken,
   } = props;
 
   const { locale } = useIntl();
@@ -40,7 +39,7 @@ const DynamicFlow = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
 
-  const httpClient = propsHttpClient || defaultHttpClient.init({ baseUrl, oauthToken });
+  const httpClient = propsHttpClient || defaultHttpClient.init({ baseUrl });
 
   useEffect(() => {
     const action = { url: flowUrl, method: 'GET' };
@@ -256,7 +255,6 @@ DynamicFlow.propTypes = {
   httpClient: Types.shape({
     request: Types.func,
   }),
-  oauthToken: Types.string,
 };
 
 DynamicFlow.defaultProps = {
@@ -266,7 +264,6 @@ DynamicFlow.defaultProps = {
   onStepChange: () => {},
   onError: () => {},
   httpClient: undefined,
-  oauthToken: '',
 };
 
 export default withErrorBoundary(DynamicFlow);
