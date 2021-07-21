@@ -24,14 +24,14 @@ npm install react react-dom react-intl prop-types currency-flags # peer dependen
 ## Usage
 
 ```js
-// These CSS imports only need to be imported once in your application in 'pages/_app.{js,jsx,tsx}'
+// These CSS imports only need to be imported once in your application
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 
 // Include styles for all components (easiest and fail-safe solution)
 import '@transferwise/components/styles/main.css';
 
-// Or -- if concerned about bundle size -- list all the component styles that your application is using, including nested usages in other packages (@transferwise/calculator etc).
+// Or -- if concerned about bundle size -- list all the component styles that your application is using, including style(s) of dependency packages that also use Neptune components
 // CAUTION: your app will break if you upgrade one of the libraries that starts using a new component and you forget to update this list.
 import '@transferwise/components/styles/accordion/Accordion.css';
 import '@transferwise/components/styles/button/Button.css';
@@ -41,9 +41,7 @@ import '@transferwise/components/styles/avatar/Avatar.css';
 // It's also possible to import styles right where you're using the component:
 import { Accordion } from "@transferwise/components";
 import '@transferwise/components/styles/accordion/Accordion.css';
-```
 
-```js
 // Usage in app components. Render <Provider /> at the root of your app.
 import {
   Provider,
