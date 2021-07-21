@@ -45,7 +45,7 @@ export const basic = () => {
     <DynamicFlow
       flowUrl={flowUrl}
       baseUrl={baseUrl}
-      // httpClient={mockClient}
+      httpClient={mockClient}
       onClose={onClose}
       onStepChange={onStepChange}
       onError={onError}
