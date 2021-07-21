@@ -17,8 +17,7 @@ inlineReferences.mockImplementation(layoutService.inlineReferences);
 describe('Given a component for rendering a dynamic flow', () => {
   let component;
   let mockClient;
-  let onSuccessClose;
-  let onFailureClose;
+  let onClose;
   let onStepChange;
   let onError;
 
@@ -229,8 +228,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       init: jest.fn(),
       request: jest.fn().mockImplementation(mockRequest),
     };
-    onSuccessClose = jest.fn();
-    onFailureClose = jest.fn();
+    onClose = jest.fn();
     onStepChange = jest.fn();
     onError = jest.fn();
     convertStepToLayout.mockClear();
@@ -247,8 +245,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           baseUrl={baseUrl}
           flowUrl={decisionUrl}
           httpClient={mockClient}
-          onSuccessClose={onSuccessClose}
-          onFailureClose={onFailureClose}
+          onClose={onClose}
           onStepChange={onStepChange}
         />,
       );
@@ -273,8 +270,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           baseUrl={baseUrl}
           flowUrl={decisionUrl}
           httpClient={mockClient}
-          onSuccessClose={onSuccessClose}
-          onFailureClose={onFailureClose}
+          onClose={onClose}
           onStepChange={onStepChange}
         />,
       );
@@ -294,8 +290,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           baseUrl={baseUrl}
           flowUrl={formNoLayoutUrl}
           httpClient={mockClient}
-          onSuccessClose={onSuccessClose}
-          onFailureClose={onFailureClose}
+          onClose={onClose}
           onStepChange={onStepChange}
         />,
       );
@@ -319,8 +314,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           baseUrl={baseUrl}
           flowUrl={finalUrl}
           httpClient={mockClient}
-          onSuccessClose={onSuccessClose}
-          onFailureClose={onFailureClose}
+          onClose={onClose}
           onStepChange={onStepChange}
         />,
       );
@@ -345,8 +339,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           baseUrl={baseUrl}
           flowUrl={formUrl}
           httpClient={mockClient}
-          onSuccessClose={onSuccessClose}
-          onFailureClose={onFailureClose}
+          onClose={onClose}
           onStepChange={onStepChange}
         />,
       );
@@ -563,7 +556,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should exit the flow', () => {
-        expect(onSuccessClose).toHaveBeenCalled();
+        expect(onClose).toHaveBeenCalled();
       });
 
       it('should not trigger onStepChange', () => {
@@ -618,8 +611,8 @@ describe('Given a component for rendering a dynamic flow', () => {
         getLayout().invoke('onAction')(exitAction);
       });
 
-      it('should trigger the onSuccessClose callback with exit data', () => {
-        expect(onSuccessClose).toHaveBeenCalledWith({ result: exitAction.result });
+      it('should trigger the onClose callback with exit data', () => {
+        expect(onClose).toHaveBeenCalledWith({ result: exitAction.result });
       });
     });
 
@@ -642,7 +635,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it("should exit the flow with the action's result", () => {
-        expect(onSuccessClose).toHaveBeenCalledWith({ result: exitAction.result });
+        expect(onClose).toHaveBeenCalledWith({ result: exitAction.result });
       });
 
       it('should not trigger onStepChange', () => {
@@ -674,7 +667,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           ...exitResult,
           ...exitAction.result,
         };
-        expect(onSuccessClose).toHaveBeenCalledWith({ result: mergedResult });
+        expect(onClose).toHaveBeenCalledWith({ result: mergedResult });
       });
 
       it('should not trigger onStepChange', () => {
@@ -698,7 +691,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should exit the flow', () => {
-        expect(onSuccessClose).toHaveBeenCalled();
+        expect(onClose).toHaveBeenCalled();
       });
 
       it('should not trigger onStepChange', () => {
@@ -714,8 +707,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           baseUrl={baseUrl}
           flowUrl={decisionUrl}
           httpClient={mockClient}
-          onSuccessClose={onSuccessClose}
-          onFailureClose={onFailureClose}
+          onClose={onClose}
           onStepChange={onStepChange}
           onError={onError}
         />,
@@ -727,13 +719,15 @@ describe('Given a component for rendering a dynamic flow', () => {
     waitBeforeEach();
 
     describe('when a JS error is thrown', () => {
+      const errors = new Error();
+
       beforeEach(() => {
-        getLayout().simulateError(new Error());
+        getLayout().simulateError(errors);
       });
 
-      fit('it should call onFailureClose with error', () => {
-        expect(onError).not.toHaveBeenCalled();
-        expect(onFailureClose).toHaveBeenCalled();
+      it('it should call onError with error', () => {
+        expect(onClose).not.toHaveBeenCalled();
+        expect(onError).toHaveBeenCalledWith({ errors });
       });
     });
   });

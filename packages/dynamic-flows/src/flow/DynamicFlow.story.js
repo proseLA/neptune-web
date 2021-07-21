@@ -24,14 +24,9 @@ export const basic = () => {
 
   const flowUrl = select('step', steps, '/decision');
 
-  const onSuccessClose = (...args) => {
-    console.log('onSuccessClose', ...args); // eslint-disable-line
-    action('onSuccessClose');
-  };
-
-  const onFailureClose = (...args) => {
-    console.log('onFailureClose', ...args); // eslint-disable-line
-    action('onFailureClose');
+  const onClose = (...args) => {
+    console.log('onClose', ...args); // eslint-disable-line
+    action('onClose');
   };
 
   const onStepChange = (...args) => {
@@ -50,9 +45,8 @@ export const basic = () => {
     <DynamicFlow
       flowUrl={flowUrl}
       baseUrl={baseUrl}
-      httpClient={mockClient}
-      onSuccessClose={onSuccessClose}
-      onFailureClose={onFailureClose}
+      // httpClient={mockClient}
+      onClose={onClose}
       onStepChange={onStepChange}
       onError={onError}
     />

@@ -20,15 +20,7 @@ import { getValidModelParts } from '../common/validation/valid-model';
  * and reformats it to use a DynamicLayout for presentation.
  */
 const DynamicFlow = (props) => {
-  const {
-    baseUrl,
-    flowUrl,
-    onSuccessClose,
-    onFailureClose,
-    onStepChange,
-    onError,
-    httpClient: propsHttpClient,
-  } = props;
+  const { baseUrl, flowUrl, onClose, onStepChange, onError, httpClient: propsHttpClient } = props;
 
   const { locale } = useIntl();
 
@@ -56,7 +48,7 @@ const DynamicFlow = (props) => {
     setModelIsValid(areModelsValid(models, stepSpecification.schemas));
   }, [models]);
 
-  const fetchStep = async (action, data) => {
+  const fetchStep = (action, data) => {
     setLoading(true);
 
     return httpClient
@@ -71,7 +63,7 @@ const DynamicFlow = (props) => {
       })
       .catch(handleFetchValidationError)
       .catch((error) => {
-        onFailureClose({ errors: error });
+        onError({ errors: error });
         throw error;
       })
       .finally(() => setLoading(false));
@@ -118,7 +110,7 @@ const DynamicFlow = (props) => {
       const exitHeader = 'X-DF-Exit';
 
       if (headers && headers.get(exitHeader)) {
-        onSuccessClose({ result: data });
+        onClose({ result: data });
         return;
       }
 
@@ -169,10 +161,10 @@ const DynamicFlow = (props) => {
           ...(result || {}),
         };
 
-        onSuccessClose({ result: mergedResult });
+        onClose({ result: mergedResult });
         return;
       }
-      onSuccessClose({ result });
+      onClose({ result });
       return;
     }
 
@@ -247,8 +239,7 @@ const DynamicFlow = (props) => {
 DynamicFlow.propTypes = {
   baseUrl: Types.string.isRequired,
   flowUrl: Types.string,
-  onSuccessClose: Types.func,
-  onFailureClose: Types.func,
+  onClose: Types.func,
   onStepChange: Types.func,
   onError: Types.func,
   httpClient: Types.shape({
@@ -258,8 +249,7 @@ DynamicFlow.propTypes = {
 
 DynamicFlow.defaultProps = {
   flowUrl: '',
-  onSuccessClose: () => {},
-  onFailureClose: () => {},
+  onClose: () => {},
   onStepChange: () => {},
   onError: () => {},
   httpClient: undefined,
