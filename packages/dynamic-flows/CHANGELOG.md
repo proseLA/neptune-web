@@ -5,9 +5,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [13.8.13](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.12...@transferwise/dynamic-flows@13.8.13) (2021-07-22)
 
-**Note:** Version bump only for package @transferwise/dynamic-flows
+**BREAKING CHANGE:** This version contains a breaking change, but was incorrectly released as a patch.
 
+The property name for the refresh-on-change feature used to be `refreshRequirementsOnChange` in V2.
+But it's `refreshFormOnChange` in V3.
 
+We'll try to unpublish this version from the npm registry.
 
 
 
