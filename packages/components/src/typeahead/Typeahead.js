@@ -375,8 +375,8 @@ export default class Typeahead extends Component {
       dropdownOpen,
     });
 
-    const hasError = errorState || (alert && alert.type === Sentiment.ERROR);
-    const displayAlert = (!errorState && alert) || (alert && alert.type === Sentiment.ERROR);
+    const hasError = errorState || (alert && alert.type === Sentiment.NEGATIVE);
+    const displayAlert = (!errorState && alert) || (alert && alert.type === Sentiment.NEGATIVE);
     const hasWarning = displayAlert && alert.type === Sentiment.WARNING;
     return (
       <div
@@ -462,7 +462,7 @@ Typeahead.propTypes = {
   placeholder: PropTypes.string,
   alert: PropTypes.shape({
     message: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(['error', 'warning']).isRequired,
+    type: PropTypes.oneOf(['negative', 'warning']).isRequired,
   }),
   footer: PropTypes.node,
   validateChip: PropTypes.func,

@@ -78,7 +78,11 @@ export const basic = () => {
   const showSuggestions = boolean('showSuggestions', true);
   const showNewEntry = boolean('showNewEntry', true);
   const showAlert = boolean('alert', false);
-  const alertType = select('alert type', [Sentiment.ERROR, Sentiment.WARNING], Sentiment.ERROR);
+  const alertType = select(
+    'alert type',
+    [Sentiment.NEGATIVE, Sentiment.WARNING],
+    Sentiment.NEGATIVE,
+  );
 
   return (
     <Typeahead

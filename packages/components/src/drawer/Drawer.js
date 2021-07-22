@@ -5,15 +5,9 @@ import SlidingPanel from '../slidingPanel';
 import Dimmer from '../dimmer';
 
 import { Position } from '../common/propsValues/position';
-import { logActionRequiredIf } from '../utilities';
 import CloseButton from '../common/closeButton';
 
 const Drawer = ({ children, footerContent, headerTitle, onClose, open, position }) => {
-  logActionRequiredIf(
-    'Drawer now expects `onClose`, and will soon make this prop required. Please update your usage to provide it.',
-    !onClose,
-  );
-
   return (
     <Dimmer open={open} onClose={onClose}>
       <SlidingPanel open={open} position={position}>

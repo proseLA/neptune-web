@@ -3,10 +3,9 @@ import '@testing-library/jest-dom';
 import { render, cleanup, screen, userEvent } from '../test-utils';
 
 import Button from '.';
-import { ControlType, Type, Priority, Size } from '../common';
+import { ControlType, Priority, Size } from '../common';
 
 const { ACCENT, POSITIVE, NEGATIVE } = ControlType;
-const { PAY, LINK, DANGER } = Type;
 const { PRIMARY, SECONDARY, TERTIARY } = Priority;
 const { SMALL, MEDIUM, LARGE } = Size;
 
@@ -154,27 +153,6 @@ describe('Button', () => {
 
     it('renders as block if block is true', () => {
       expect(render(<Button {...props} block />).container).toMatchSnapshot();
-    });
-  });
-
-  describe('deprecated types', () => {
-    it('renders primary as accent buttons and logs a warning ', () => {
-      expect(render(<Button {...props} type={PRIMARY} />).container).toMatchSnapshot();
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('renders pay as positive buttons and logs a warning', () => {
-      expect(render(<Button {...props} type={PAY} />).container).toMatchSnapshot();
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('renders danger as negative buttons with priority secondary and logs a warning', () => {
-      expect(render(<Button {...props} type={DANGER} />).container).toMatchSnapshot();
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('renders link as accent buttons with priority tertiary and logs a warning', () => {
-      expect(render(<Button {...props} type={LINK} />).container).toMatchSnapshot();
     });
   });
 });

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { ControlType, Priority } from '../common';
-import { typeClassMap, priorityClassMap } from '../button/classMap';
+import { priorityClassMap } from '../button/classMap';
 
 const CircularButton = ({ className, children, disabled, icon, priority, type, ...rest }) => {
-  const classes = classNames('btn np-btn', typeClassMap[type], priorityClassMap[priority]);
+  const classes = classNames('btn np-btn', `btn-${type}`, priorityClassMap[priority]);
 
   const iconEl = icon.props.size !== 24 ? cloneElement(icon, { size: 24 }) : icon;
 

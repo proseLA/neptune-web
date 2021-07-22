@@ -6,8 +6,6 @@ import {
   CheckCircle as CheckCircleIcon,
   PendingCircle as PendingCircleIcon,
 } from '@transferwise/icons';
-import requiredIf from 'react-required-if';
-import { deprecated } from '../utilities';
 
 import Info from '../info';
 import { Status, Size } from '../common';
@@ -27,25 +25,11 @@ const statusLabels = {
   [Status.PENDING]: 'statusPending',
 };
 
-const expiryDate = new Date('03-01-2021');
-
-const Summary = ({
-  action,
-  as: Element,
-  className,
-  content,
-  description = content,
-  help,
-  icon,
-  illustration,
-  info = help,
-  status,
-  title,
-}) => {
+const Summary = ({ action, as: Element, className, description, icon, info, status, title }) => {
   const intl = useIntl();
   const { isRTL } = useDirection();
 
-  let media = illustration;
+  let media;
   if (icon) {
     const iconSize = icon?.props?.size;
     media = iconSize !== 24 ? cloneElement(icon, { size: 24 }) : icon;
@@ -117,27 +101,8 @@ Summary.propTypes = {
   as: PropTypes.string,
   /** Extra classes applied to Summary */
   className: PropTypes.string,
-  /** @deprecated please use description instead */
-  content: deprecated(PropTypes.node, {
-    component: 'Summary',
-    newProp: 'description',
-    expiryDate,
-  }),
   /** Summary description */
-  // eslint-disable-next-line
   description: PropTypes.node,
-  /** @deprecated please use info instead */
-  help: deprecated(
-    PropTypes.shape({
-      content: PropTypes.node.isRequired,
-      title: PropTypes.node,
-    }),
-    {
-      component: 'Summary',
-      newProp: 'info',
-      expiryDate,
-    },
-  ),
   /** Infos displayed on help Icon click inside Popover or Modal */
   // eslint-disable-next-line
   info: PropTypes.shape({
@@ -147,15 +112,9 @@ Summary.propTypes = {
     presentation: PropTypes.oneOf(['POPOVER', 'MODAL']),
     title: PropTypes.node,
   }),
-  /** @deprecated please use icon instead */
-  illustration: deprecated(PropTypes.node, {
-    component: 'Summary',
-    newProp: 'icon',
-    expiryDate,
-  }),
   /** Main Summary Icon */
   // eslint-disable-next-line
-  icon: requiredIf(PropTypes.node, ({ illustration }) => !illustration),
+  icon: PropTypes.node,
   /** Decides the badge applied to Icon */
   status: PropTypes.oneOf(['notDone', 'done', 'pending']),
   /** Summary title */
@@ -166,9 +125,8 @@ Summary.defaultProps = {
   action: null,
   as: 'div',
   className: null,
-  content: null,
-  help: null,
-  illustration: null,
+  icon: null,
+  description: null,
   status: null,
 };
 

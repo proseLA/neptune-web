@@ -248,7 +248,7 @@ describe('Typeahead', () => {
     expect(event.preventDefault).toBeCalled();
   });
 
-  it('displays alert when alert is provided and chips are valid or alert type is error', () => {
+  it('displays alert when alert is provided and chips are valid or alert type is negative', () => {
     const event = {
       key: 'Enter',
       keyCode: KeyCodes.ENTER,
@@ -265,7 +265,7 @@ describe('Typeahead', () => {
       allowNew: true,
       alert: {
         message: 'test',
-        type: Sentiment.ERROR,
+        type: Sentiment.NEGATIVE,
       },
     });
 

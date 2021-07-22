@@ -3,13 +3,9 @@ import classNames from 'classnames';
 import { Sentiment } from '../common';
 import withArrow, { AlertArrowPosition } from '../alert/withArrow';
 
-const typeClassMap = {
-  [Sentiment.ERROR]: 'danger',
-};
-
 const InlineAlert = (props) => {
   const AlertWithArrow = withArrow(({ children, className, type }) => {
-    const typeClass = `alert-${typeClassMap[type] || type}`;
+    const typeClass = `alert-${type}`;
     return (
       <div
         role="alert"
@@ -26,12 +22,12 @@ const InlineAlert = (props) => {
 InlineAlert.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
+  type: PropTypes.oneOf(['negative', 'neutral', 'positive', 'warning']),
 };
 
 InlineAlert.defaultProps = {
   className: undefined,
-  type: Sentiment.INFO,
+  type: Sentiment.NEUTRAL,
 };
 
 export default InlineAlert;

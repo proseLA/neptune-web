@@ -11,8 +11,8 @@ export default {
 export const basic = () => {
   const type = select(
     'type',
-    [Sentiment.SUCCESS, Sentiment.ERROR, Sentiment.INFO, Sentiment.WARNING],
-    Sentiment.ERROR,
+    [Sentiment.NEGATIVE, Sentiment.NEUTRAL, Sentiment.POSITIVE, Sentiment.WARNING],
+    Sentiment.NEGATIVE,
   );
 
   const message = text('message', 'Please enter a password over 5 characters');
@@ -23,8 +23,8 @@ export const basic = () => {
 export const input = () => {
   const type = select(
     'type',
-    [Sentiment.SUCCESS, Sentiment.ERROR, Sentiment.INFO, Sentiment.WARNING],
-    Sentiment.ERROR,
+    [Sentiment.NEGATIVE, Sentiment.NEUTRAL, Sentiment.POSITIVE, Sentiment.WARNING],
+    Sentiment.NEGATIVE,
   );
 
   const message = text('message', 'Please enter a password over 5 characters');

@@ -1,10 +1,4 @@
-import { ControlType, Priority } from '../common';
-
-export const typeClassMap = {
-  [ControlType.ACCENT]: 'btn-accent',
-  [ControlType.POSITIVE]: 'btn-positive',
-  [ControlType.NEGATIVE]: 'btn-negative',
-};
+import { Priority } from '../common';
 
 export const priorityClassMap = {
   [Priority.PRIMARY]: 'btn-priority-1',

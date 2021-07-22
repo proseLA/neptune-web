@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import commonmark from 'commonmark';
 import difference from 'lodash.difference';
-import { logActionRequired } from '../utilities';
 import { MarkdownNodeType } from '../common';
 
 const reader = new commonmark.Parser();
@@ -12,12 +11,6 @@ const NODE_TYPE_LIST = Object.values(MarkdownNodeType);
 const Markdown = ({ as: Element, children, className, allowList, blockList }) => {
   if (!children) {
     return null;
-  }
-
-  if (allowList?.length && blockList?.length) {
-    logActionRequired(
-      'Markdown supports only one of `allowList` or `blockList` to be used at a time. `blockList` will be ignored.',
-    );
   }
 
   const parser = (nodes) => {

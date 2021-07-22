@@ -3,17 +3,4 @@ export enum Sentiment {
   NEUTRAL = 'neutral',
   POSITIVE = 'positive',
   WARNING = 'warning',
-
-  /**
-   * @deprecated
-   */
-  INFO = 'info',
-  /**
-   * @deprecated
-   */
-  ERROR = 'error',
-  /**
-   * @deprecated
-   */
-  SUCCESS = 'success',
 }

@@ -12,8 +12,7 @@ import { render, cleanup, screen, userEvent, fireEvent } from '../test-utils';
 import Alert from './Alert';
 import { useDirection } from '../common/hooks';
 
-import { Sentiment, Size } from '../common';
-import { AlertArrowPosition } from './withArrow';
+import { Sentiment } from '../common';
 
 jest.mock('react', () => {
   const originReact = jest.requireActual('react');
@@ -85,69 +84,6 @@ describe('Alert', () => {
 
     it('has no arrow', () => {
       expect(component).not.toHaveClass('arrow');
-    });
-  });
-
-  describe('deprecated props', () => {
-    it('renders arrows but logs a warning', () => {
-      render(<Alert arrow={AlertArrowPosition.BOTTOM} message={message} />);
-      component = screen.getByRole('alert');
-
-      expect(component).toHaveClass('arrow');
-      expect(component).toHaveClass('arrow-bottom');
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('renders children but logs a warning', () => {
-      render(<Alert>{message}</Alert>);
-
-      expect(screen.getByText(message)).toBeInTheDocument();
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('dismissible is ignored and a warning is logged', () => {
-      ({ container } = render(<Alert dismissible message={message} />));
-
-      expect(container.querySelector('button')).not.toBeInTheDocument();
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('size is ignored and a warning is logged', () => {
-      const { container: small } = render(<Alert size={Size.SMALL} message={message} />);
-      const { container: large } = render(<Alert size={Size.LARGE} message={message} />);
-
-      expect(small.innerHTML).toEqual(large.innerHTML);
-      expect(mockedWarn).toHaveBeenCalledTimes(2);
-    });
-
-    it('maps type SUCCESS to type POSITIVE and logs a warning', () => {
-      render(<Alert type={Sentiment.SUCCESS} message={message} />);
-
-      const success = screen.getByRole('alert');
-
-      expect(success).toHaveClass(classForType(Sentiment.POSITIVE));
-      expect(success).toContainHTML(iconTypeMap[Sentiment.POSITIVE]);
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('maps type INFO to type NEUTRAL and logs a warning', () => {
-      render(<Alert type={Sentiment.INFO} message={message} />);
-
-      const info = screen.getByRole('alert');
-
-      expect(info).toHaveClass(classForType(Sentiment.NEUTRAL));
-      expect(info).toContainHTML(iconTypeMap[Sentiment.NEUTRAL]);
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
-    });
-
-    it('maps type ERROR to type NEGATIVE and logs a warning', () => {
-      render(<Alert type={Sentiment.ERROR} message={message} />);
-
-      const error = screen.getByRole('alert');
-
-      expect(error).toHaveClass(classForType(Sentiment.NEGATIVE));
-      expect(error).toContainHTML(iconTypeMap[Sentiment.NEGATIVE]);
-      expect(mockedWarn).toHaveBeenCalledTimes(1);
     });
   });
 

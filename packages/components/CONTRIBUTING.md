@@ -103,7 +103,6 @@ import PropTypes from 'prop-types';
 ```javascript
 // don't
 onClick: requiredIf(PropTypes.func, ...),
-content: deprecated(PropTypes.node, ...),
 ```
 - Ultimately, always check the generated types:
    - run `yarn build` inside `packages/components` folder

@@ -22,8 +22,8 @@ describe('InlineAlert', () => {
       getByText(message);
     });
 
-    it('will be of type info', () => {
-      expect(component.className).toContain('alert-info');
+    it('will be of type neutral', () => {
+      expect(component.className).toContain('alert-neutral');
     });
 
     it('has a top left arrow', () => {
@@ -37,19 +37,19 @@ describe('InlineAlert', () => {
       return getAlert(container);
     };
 
-    it('renders info', () => {
-      component = getComponentWithType(Sentiment.INFO);
-      expect(component.className).toContain('alert-info');
+    it('renders neutral', () => {
+      component = getComponentWithType(Sentiment.NEUTRAL);
+      expect(component.className).toContain('alert-neutral');
     });
 
-    it('renders success', () => {
-      component = getComponentWithType(Sentiment.SUCCESS);
-      expect(component.className).toContain('alert-success');
+    it('renders positive', () => {
+      component = getComponentWithType(Sentiment.POSITIVE);
+      expect(component.className).toContain('alert-positive');
     });
 
-    it('renders error', () => {
-      component = getComponentWithType(Sentiment.ERROR);
-      expect(component.className).toContain('alert-danger');
+    it('renders negative', () => {
+      component = getComponentWithType(Sentiment.NEGATIVE);
+      expect(component.className).toContain('alert-negative');
     });
 
     it('renders warning', () => {

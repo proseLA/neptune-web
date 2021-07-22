@@ -2,8 +2,6 @@ import { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
 import classnames from 'classnames';
 import { CheckCircle, CrossCircle } from '@transferwise/icons';
 
-import { logActionRequiredIf } from '../utilities';
-
 import KeyCodes from '../common/keyCodes';
 import { useDirection } from '../common/hooks';
 import { CommonProps } from '../common';
@@ -35,11 +33,6 @@ const Switch = (props: Props): ReactElement => {
 
   const ariaLabel = props['aria-label'];
   const ariaLabelledby = ariaLabel ? undefined : props['aria-labelledby'];
-
-  logActionRequiredIf(
-    'Switch now expects either `aria-label` or `aria-labelledby`, and will soon make these props required. Please update your usage to provide one or the other.',
-    !ariaLabel && !ariaLabelledby,
-  );
 
   return (
     <span

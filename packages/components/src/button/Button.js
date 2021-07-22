@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import requiredIf from 'react-required-if';
 
 import { Size, ControlType, Priority } from '../common';
-import { establishNewPriority, establishNewType, logDeprecationNotices } from './legacyUtils';
-import { typeClassMap, priorityClassMap } from './classMap';
+import { priorityClassMap } from './classMap';
 
 const Button = (props) => {
   const {
@@ -20,11 +19,6 @@ const Button = (props) => {
     ...rest
   } = props;
 
-  logDeprecationNotices(props);
-
-  const newType = establishNewType(type);
-  const newPriority = establishNewPriority(priority, type);
-
   const classes = classNames(
     `btn btn-${size}`,
     `np-btn np-btn-${size}`,
@@ -32,8 +26,11 @@ const Button = (props) => {
       'btn-loading': loading,
       'btn-block np-btn-block': block,
     },
-    typeClassMap[newType],
-    priorityClassMap[newPriority],
+    `btn-${type}`,
+    priorityClassMap[
+      // Only ControlType.ACCENT supports tertiary styles
+      priority === Priority.TERTIARY && type !== ControlType.ACCENT ? Priority.SECONDARY : priority
+    ],
     className,
   );
 
@@ -56,19 +53,8 @@ Button.propTypes = {
   // eslint-disable-next-line
   onClick: requiredIf(PropTypes.func, (props) => props.htmlType !== 'submit'),
   priority: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
-  /** @deprecated `primary`, `pay`, `secondary`, `danger`, `link` */
-  type: PropTypes.oneOf([
-    'accent',
-    'positive',
-    'negative',
-    'primary',
-    'pay',
-    'secondary',
-    'danger',
-    'link',
-  ]),
-  /** @deprecated `xs` */
-  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
+  type: PropTypes.oneOf(['accent', 'positive', 'negative']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
 
 Button.defaultProps = {
