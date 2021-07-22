@@ -49,21 +49,23 @@ const DynamicFlow = (props) => {
   }, [models]);
 
   const fetchStep = (action, data) => {
+    const prevStep = stepSpecification;
+
     setLoading(true);
 
     return httpClient
       .request({ action, data })
       .then(checkForExitCondition)
-      .then(({ data: json }) => {
-        setStepSpecification(json);
+      .then(({ data: nextStep }) => {
+        setStepSpecification(nextStep);
 
-        onStepChange({ nextStep: json });
+        onStepChange(nextStep, prevStep);
 
         setSubmitted(false);
       })
       .catch(handleFetchValidationError)
       .catch((error) => {
-        onError({ errors: error });
+        onError(error);
         throw error;
       })
       .finally(() => setLoading(false));
@@ -77,7 +79,7 @@ const DynamicFlow = (props) => {
       })
       .catch(handleFetchValidationError)
       .catch((error) => {
-        onError({ errors: error });
+        onError(error);
         throw error;
       });
   };
@@ -88,7 +90,7 @@ const DynamicFlow = (props) => {
       .then(validateExitResult)
       .catch(handleFetchValidationError)
       .catch((error) => {
-        onError({ errors: error });
+        onError(error);
         throw error;
       });
   };
@@ -110,7 +112,7 @@ const DynamicFlow = (props) => {
       const exitHeader = 'X-DF-Exit';
 
       if (headers && headers.get(exitHeader)) {
-        onClose({ result: data });
+        onClose(data);
         return;
       }
 
@@ -161,10 +163,10 @@ const DynamicFlow = (props) => {
           ...(result || {}),
         };
 
-        onClose({ result: mergedResult });
+        onClose(mergedResult);
         return;
       }
-      onClose({ result });
+      onClose(result);
       return;
     }
 

@@ -535,7 +535,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should trigger the onStepChange callback with the new step', () => {
-        expect(onStepChange).toHaveBeenCalledWith({ nextStep: newStep });
+        expect(onStepChange).toHaveBeenCalledWith(newStep, formStep);
       });
     });
 
@@ -612,7 +612,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should trigger the onClose callback with exit data', () => {
-        expect(onClose).toHaveBeenCalledWith({ result: exitAction.result });
+        expect(onClose).toHaveBeenCalledWith(exitAction.result);
       });
     });
 
@@ -635,7 +635,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it("should exit the flow with the action's result", () => {
-        expect(onClose).toHaveBeenCalledWith({ result: exitAction.result });
+        expect(onClose).toHaveBeenCalledWith(exitAction.result);
       });
 
       it('should not trigger onStepChange', () => {
@@ -667,7 +667,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           ...exitResult,
           ...exitAction.result,
         };
-        expect(onClose).toHaveBeenCalledWith({ result: mergedResult });
+        expect(onClose).toHaveBeenCalledWith(mergedResult);
       });
 
       it('should not trigger onStepChange', () => {
@@ -727,7 +727,7 @@ describe('Given a component for rendering a dynamic flow', () => {
 
       it('it should call onError with error', () => {
         expect(onClose).not.toHaveBeenCalled();
-        expect(onError).toHaveBeenCalledWith({ errors });
+        expect(onError).toHaveBeenCalledWith(errors);
       });
     });
   });

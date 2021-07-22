@@ -19,7 +19,7 @@ const withErrorBoundary = (WrappedComponent) => {
     componentDidCatch(error) {
       const { onError } = this.props;
 
-      onError({ errors: error });
+      onError(error);
     }
 
     handleErrorReset = () => {
