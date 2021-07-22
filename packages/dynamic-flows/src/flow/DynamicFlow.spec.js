@@ -41,7 +41,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   const actions = [successAction, navigateAction, failureAction];
 
   const numberSchema = { type: 'number' };
-  const stringSchema = { type: 'string', refreshRequirementsOnChange: true };
+  const stringSchema = { type: 'string', refreshFormOnChange: true };
 
   const thingSchema = {
     $id: '#thing',

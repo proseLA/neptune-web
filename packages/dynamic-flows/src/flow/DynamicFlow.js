@@ -116,7 +116,7 @@ const DynamicFlow = (props) => {
 
     const updatedModels = updateModels($id, newModel);
 
-    if (triggerSchema?.refreshRequirementsOnChange) {
+    if (triggerSchema?.refreshFormOnChange) {
       const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
 
       const action = { url, method: 'POST' };
