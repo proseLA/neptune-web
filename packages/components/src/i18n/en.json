@@ -1,6 +1,8 @@
 {
   "neptune.ClearButton.ariaLabel": "Clear",
   "neptune.CloseButton.ariaLabel": "Close",
+  "neptune.Link.ariaLabel": "Open link",
+  "neptune.Link.ariaLabelNewTab": "Open link in a new tab",
   "neptune.MoneyInput.Select.placeholder": "Select an option...",
   "neptune.Pagination.ariaLabel": "Pagination navigation",
   "neptune.PaginationLink.ariaLabel.active": "Go to page {pageNumber}",

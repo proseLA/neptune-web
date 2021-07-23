@@ -155,6 +155,7 @@ describe('Server side rendering', () => {
     },
     Modal: { position: 'top' },
     ActionOption: { action: 'hello' },
+    Link: { size: 16 },
   };
 
   const { Provider } = exposedLibraryItems;

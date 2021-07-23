@@ -38,7 +38,7 @@
     "@storybook/react": "^6.3.2",
     "@transferwise/eslint-config": "^6.1.0",
     "@transferwise/files-scaffold": "^1.0.1",
-    "@transferwise/icons": "^2.6.0",
+    "@transferwise/icons": "^2.12.0",
     "@transferwise/neptune-tokens": "^1.0.0",
     "@typescript-eslint/parser": "^4.28.3",
     "bundlesize": "^0.18.0",

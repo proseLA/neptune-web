@@ -61,6 +61,7 @@ export { default as AvatarWrapper } from './avatarWrapper';
 export { default as Info } from './info';
 export { default as Logo } from './logo';
 export { default as ActionOption } from './actionOption';
+export { default as Link } from './link';
 
 /**
  * Hooks
