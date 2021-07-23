@@ -118,9 +118,7 @@ const DynamicFlow = (props) => {
 
     if (triggerSchema?.refreshFormOnChange) {
       const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
-
       const action = { url, method: 'POST' };
-
       fetchRefresh(action, combineModels(updatedModels));
     }
   };
