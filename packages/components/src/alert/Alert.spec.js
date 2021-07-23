@@ -127,13 +127,6 @@ describe('Alert', () => {
 
       expect(screen.getByRole('alert')).toContainHTML(output);
     });
-
-    it('does not convert children to markdown', () => {
-      render(<Alert>{input}</Alert>);
-
-      expect(screen.getByText(input)).toBeInTheDocument();
-      expect(screen.getByRole('alert')).not.toContainHTML(output);
-    });
   });
 
   describe('className', () => {
