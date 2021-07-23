@@ -1,7 +1,6 @@
 import { cloneElement, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import requiredIf from 'react-required-if';
 import { InfoCircle, CheckCircle, Alert as AlertIcon, AlertCircle } from '@transferwise/icons';
 import { Sentiment } from '../common';
 import CloseButton from '../common/closeButton';
@@ -98,7 +97,7 @@ Alert.propTypes = {
   /** An optional icon. If not provided, we will default the icon to something appropriate for the type */
   icon: PropTypes.element,
   /** The main body of the alert. Accepts plain text and bold words specified with **double stars** */
-  message: requiredIf(PropTypes.node, ({ children }) => !children),
+  message: PropTypes.node.isRequired,
   /** The presence of the onDismiss handler will trigger the visibility of the close button */
   onDismiss: PropTypes.func,
   /** The type dictates which icon and colour will be used */
@@ -107,7 +106,6 @@ Alert.propTypes = {
 
 Alert.defaultProps = {
   action: undefined,
-  arrow: undefined,
   className: undefined,
   icon: undefined,
   type: Sentiment.NEUTRAL,
