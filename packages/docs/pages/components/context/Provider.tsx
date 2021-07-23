@@ -11,7 +11,7 @@ import {
 // @ts-expect-error
 import messages from '@transferwise/components/build/es/no-polyfill/common/closeButton/CloseButton.messages';
 import { DocLink } from '../../../utils/pageUtils';
-import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { LiveEditorBlock, GeneratePropsTable, PolyfillsNote } from '../../../utils';
 import { Meta } from '../../../utils/sections';
 
 // @ts-expect-error
@@ -53,6 +53,7 @@ export default function PageContent(): ReactElement {
           defaultLocale,
         }}
       />
+      <PolyfillsNote />
       <GeneratePropsTable componentName="Provider" />
     </>
   );
