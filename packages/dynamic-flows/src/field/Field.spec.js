@@ -292,7 +292,7 @@ describe('Field', () => {
 
       const alertProps = alert.first().props();
       expect(alertProps.children.props.children).toBe('Custom error');
-      expect(alertProps.type).toBe('error');
+      expect(alertProps.type).toBe('negative');
     });
 
     describe('when the value changes', () => {
@@ -322,7 +322,7 @@ describe('Field', () => {
 
         const alertProps = alert.first().props();
         expect(alertProps.children.props.children).toBe('New custom error');
-        expect(alertProps.type).toBe('error');
+        expect(alertProps.type).toBe('negative');
       });
     });
   });
@@ -364,7 +364,7 @@ describe('Field', () => {
 
         const alertProps = alert.first().props();
         expect(alertProps.children.props.children).toBe('Some useful hint');
-        expect(alertProps.type).toBe('info');
+        expect(alertProps.type).toBe('neutral');
       });
     });
 

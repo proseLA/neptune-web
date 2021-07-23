@@ -57,7 +57,7 @@ describe('Given a component for rendering feedback next to controls', () => {
     it('should show an alert', () => {
       const alert = component.find(InlineAlert);
       expect(alert.length).toBe(1);
-      expect(alert.prop('type')).toBe('error');
+      expect(alert.prop('type')).toBe('negative');
       expect(alert.contains('There was an external error')).toBe(true);
     });
   });
@@ -83,7 +83,7 @@ describe('Given a component for rendering feedback next to controls', () => {
     it('should show an alert for description', () => {
       const alert = component.find(InlineAlert);
       expect(alert.length).toBe(1);
-      expect(alert.prop('type')).toBe('info');
+      expect(alert.prop('type')).toBe('neutral');
     });
 
     it('should show the supplied message', () => {
@@ -99,7 +99,7 @@ describe('Given a component for rendering feedback next to controls', () => {
     it('should show a validation alert', () => {
       const alert = component.find(InlineAlert);
       expect(alert.length).toBe(1);
-      expect(alert.prop('type')).toBe('error');
+      expect(alert.prop('type')).toBe('negative');
     });
 
     it('should show validation messages for validation keys', () => {
@@ -119,7 +119,7 @@ describe('Given a component for rendering feedback next to controls', () => {
     it('should show a validation alert', () => {
       const alert = component.find(InlineAlert);
       expect(alert.length).toBe(1);
-      expect(alert.prop('type')).toBe('error');
+      expect(alert.prop('type')).toBe('negative');
     });
 
     it('should show validation messages for validation keys', () => {
@@ -139,7 +139,7 @@ describe('Given a component for rendering feedback next to controls', () => {
     it('should show a validation alert', () => {
       const alert = component.find(InlineAlert);
       expect(alert.length).toBe(1);
-      expect(alert.prop('type')).toBe('error');
+      expect(alert.prop('type')).toBe('negative');
     });
 
     it('should show validation messages for validation keys', () => {
@@ -159,7 +159,7 @@ describe('Given a component for rendering feedback next to controls', () => {
     it('should render the validation async success message as an info InLineAlert', () => {
       const alert = component.find(InlineAlert);
       expect(alert.length).toBe(1);
-      expect(alert.prop('type')).toBe('info');
+      expect(alert.prop('type')).toBe('neutral');
     });
 
     it('should render the validation async success message', () => {

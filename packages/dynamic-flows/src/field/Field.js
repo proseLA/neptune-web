@@ -101,7 +101,7 @@ export default class Field extends Component {
 
     if (this.objectSizeOf(validationFailures) > 0) {
       return {
-        type: 'error',
+        type: 'negative',
         content: Object.keys(validationFailures).map((key) => (
           <div key={key}>{validationFailures[key]}</div>
         )),
@@ -109,7 +109,7 @@ export default class Field extends Component {
     }
     if (error && errorMessage) {
       return {
-        type: 'error',
+        type: 'negative',
         content: <>{errorMessage}</>,
       };
     }
@@ -121,13 +121,13 @@ export default class Field extends Component {
     }
     if (focused && field.help && field.help.message) {
       return {
-        type: 'info',
+        type: 'neutral',
         content: <>{field.help.message}</>,
       };
     }
     if (focused && field.help && field.help.list && field.help.list.length > 0) {
       return {
-        type: 'info',
+        type: 'neutral',
         // eslint-disable-next-line react/no-array-index-key
         content: field.help.list.map((item, index) => <div key={index}>{item}</div>),
       };
@@ -141,7 +141,7 @@ export default class Field extends Component {
       field.help.dont.length > 0
     ) {
       return {
-        type: 'info',
+        type: 'neutral',
         content: (
           <div className="m-b-1">
             <InstructionsList dos={field.help.do} donts={field.help.dont} />
@@ -151,7 +151,7 @@ export default class Field extends Component {
     }
     if (focused && control !== FormControlType.FILE && field.help && field.help.image) {
       return {
-        type: 'info',
+        type: 'neutral',
         content: <img className="thumbnail m-y-2" src={`${field.help.image}`} alt={field.label} />,
       };
     }
@@ -176,8 +176,8 @@ export default class Field extends Component {
     return (
       <div
         className={classNames('form-group', `tw-field-${name}`, {
-          'has-info': alert.type === 'info' && showAlert,
-          'has-error': alert.type === 'error' && showAlert,
+          'has-info': alert.type === 'neutral' && showAlert,
+          'has-error': alert.type === 'negative' && showAlert,
           'has-warning': alert.type === 'warning' && showAlert,
           hidden: field.hidden,
         })}

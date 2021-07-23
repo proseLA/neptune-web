@@ -17,16 +17,16 @@ const ControlFeedback = (props) => {
 
   return (
     <div>
-      {isErrorVisible && <InlineAlert type="error">{props.errors}</InlineAlert>}
+      {isErrorVisible && <InlineAlert type="negative">{props.errors}</InlineAlert>}
       {isValidationVisible && (
-        <InlineAlert type="error">
+        <InlineAlert type="negative">
           {props.validations.map((validation) => (
             <div key={validation}>{validationMessages[validation]}</div>
           ))}
         </InlineAlert>
       )}
       {(isDescriptionVisible || isValidationAsyncSuccessMessageVisible) && (
-        <InlineAlert type="info">
+        <InlineAlert type="neutral">
           {isDescriptionVisible && <div>{props.schema.description}</div>}
           {isValidationAsyncSuccessMessageVisible && (
             <div>{props.validationAsyncSuccessMessage}</div>
