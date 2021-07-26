@@ -183,13 +183,13 @@ const DynamicFlow = (props) => {
   };
 
   const buildInitialModels = (model, schemas) => {
-    return schemas?.reduce(
-      (accumulator, schema) => ({
-        ...accumulator,
-        [schema.$id]: getValidModelParts(stepSpecification.model, schema),
-      }),
-      {},
-    );
+    const schemaIdToModelMap = {};
+
+    schemas.forEach((schema) => {
+      schemaIdToModelMap[schema.$id] = getValidModelParts(stepSpecification.model, schema);
+    });
+
+    return schemaIdToModelMap;
   };
 
   const combineModels = (formModels) =>
