@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [36.12.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.12.0...@transferwise/components@36.12.1) (2021-07-26)
+
+
+### Bug Fixes
+
+* **ActionOption:** remove action option button padding ([#1060](https://github.com/transferwise/neptune-web/issues/1060)) ([bf7cf2e](https://github.com/transferwise/neptune-web/commit/bf7cf2e17828f0a43a1839662967f693696eb909))
+
+
+
+
+
 # [36.12.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.1...@transferwise/components@36.12.0) (2021-07-20)
 
 
