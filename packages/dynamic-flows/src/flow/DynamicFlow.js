@@ -130,6 +130,7 @@ const DynamicFlow = (props) => {
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
     const { $id } = formSchema;
 
+    // Multiple children might trigger model updates, we must access the previous model to ensure all changes are reflected in the new model
     setModels((prevModels) => {
       const updatedModels = {
         ...prevModels,
