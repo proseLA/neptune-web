@@ -1,4 +1,9 @@
 /**
+ * Types
+ */
+export type { UploadedFile, UploadError, UploadResponse } from './uploadInput/types';
+
+/**
  * Components
  */
 export { default as Provider } from './provider';
@@ -62,6 +67,7 @@ export { default as Info } from './info';
 export { default as Logo } from './logo';
 export { default as ActionOption } from './actionOption';
 export { default as Link } from './link';
+export { default as UploadInput } from './uploadInput';
 
 /**
  * Hooks
@@ -95,6 +101,7 @@ export { UploadStep } from './upload';
 export { DecisionPresentation, DecisionType } from './decision';
 export { AlertArrowPosition } from './alert/withArrow';
 export { LogoType } from './logo';
+export { FileType } from './common';
 
 /**
  * Utils

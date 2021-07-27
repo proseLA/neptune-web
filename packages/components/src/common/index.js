@@ -16,6 +16,7 @@ export { Sentiment } from './propsValues/sentiment';
 export { ProfileType } from './propsValues/profileType';
 export { Scroll } from './propsValues/scroll';
 export { MarkdownNodeType } from './propsValues/markdownNodeType';
+export { FileType } from './fileType';
 export { Key } from './key';
 export * from './locale';
 export * from './commonProps';

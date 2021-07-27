@@ -37,6 +37,12 @@ const excluded = [
   'DecisionType',
   'AlertArrowPosition',
   'LogoType',
+  'FileType',
+
+  // types
+  'UploadedFile',
+  'UploadError',
+  'UploadResponse',
 
   // utils
   'SUPPORTED_LANGUAGES',
