@@ -41,6 +41,7 @@ const ActionOption = ({
       {...sharedProps}
       button={
         <Button
+          className="p-x-0"
           type={ControlType.ACCENT}
           priority={Priority.TERTIARY}
           size={Size.SMALL}
