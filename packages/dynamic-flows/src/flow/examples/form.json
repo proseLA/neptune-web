@@ -26,7 +26,11 @@
           "maxLength": 7
         }
       },
-      "required": ["name", "accountNumber", "sortCode"]
+      "required": [
+        "name",
+        "accountNumber",
+        "sortCode"
+      ]
     }
   ],
   "model": {
