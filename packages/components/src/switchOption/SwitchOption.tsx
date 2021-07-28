@@ -8,6 +8,7 @@ type Props = {
   complex?: boolean;
   content?: ReactChild;
   disabled?: boolean;
+  showMediaAtAllSizes?: boolean;
   id?: string;
   media?: ReactChild;
   onChange: (newValue: boolean) => void;
@@ -24,9 +25,10 @@ const SwitchOption = ({
   media,
   onChange,
   title,
+  showMediaAtAllSizes,
   'aria-label': ariaLabel,
 }: Props): ReactElement => {
-  const sharedProps = { media, title, content, complex, disabled };
+  const sharedProps = { media, title, content, complex, disabled, showMediaAtAllSizes };
 
   const stopPropagation = (event?: MouseEvent<HTMLSpanElement>) => {
     if (event) {

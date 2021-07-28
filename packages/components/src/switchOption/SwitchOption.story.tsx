@@ -15,6 +15,7 @@ export const basic = () => {
   const title = text('title', 'Switch option');
   const content = text('content', 'Normally, the button and icon are vertically centered.');
   const disabled = boolean('disabled', false);
+  const showMediaAtAllSizes = boolean('showMediaAtAllSizes', false);
 
   return (
     <SwitchOption
@@ -26,6 +27,7 @@ export const basic = () => {
       onChange={setChecked}
       complex={false}
       disabled={disabled}
+      showMediaAtAllSizes={showMediaAtAllSizes}
       aria-label={title}
     />
   );

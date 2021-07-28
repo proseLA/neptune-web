@@ -12,6 +12,7 @@ type Props = {
   content?: ReactChild;
   disabled?: boolean;
   media?: ReactChild;
+  showMediaAtAllSizes?: boolean;
   onClick: () => void;
   title: ReactChild;
   action: ReactChild;
@@ -26,6 +27,7 @@ const ActionOption = ({
   content,
   complex,
   className,
+  showMediaAtAllSizes,
 }: Props): ReactElement => {
   const sharedProps = {
     media,
@@ -33,6 +35,7 @@ const ActionOption = ({
     content,
     complex,
     disabled,
+    showMediaAtAllSizes,
     className: classNames('tw-action-option', className),
   };
 
