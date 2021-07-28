@@ -76,7 +76,11 @@ Note: set the exact beta version without any [update types or version ranges](ht
 
 ### Visual Testing
 
-(To be added)
+We have visual tests, powered by [percy.io & Storybook](https://docs.percy.io/docs/storybook). It compares screenshots of your changes against code in `main` branch.
+
+To run it, go to [CircleCI](https://app.circleci.com/pipelines/github/transferwise/neptune-web), find your build and approve `hold-visual-test` job. Find link to results at the end of job's output.
+
+Note: job will be marked as passed/green even if visual tests failed.
 
 ## Versioning and commit lint
 

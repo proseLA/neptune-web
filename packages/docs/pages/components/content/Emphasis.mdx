@@ -1,0 +1,17 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { Emphasis } from '@transferwise/components';
+import code from '../../../liveEditorCode/emphasis.code';
+
+Applies emphasis styling to text.
+<p>Whilst it can be used for hard coded text, it is typically used for styled copy sourced from either translations or a BFF service.</p>
+
+<LiveEditorBlock code={code} scope={{ Emphasis }} />
+<GeneratePropsTable componentName="Emphasis" />
+
+export const meta = {
+  name: 'Emphasis',
+  badge: {
+    type: 'new',
+    expiryDate: '2021-09-30',
+  },
+};

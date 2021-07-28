@@ -27,6 +27,7 @@ export { default as ProcessIndicator } from './processIndicator';
 export { default as Upload } from './upload';
 export { default as DefinitionList } from './definitionList';
 export { default as DynamicFieldDefinitionList } from './dynamicFieldDefinitionList';
+export { default as Emphasis } from './emphasis';
 export { default as Avatar } from './avatar';
 export { default as Button } from './button';
 export { default as CircularButton } from './circularButton';
@@ -52,12 +53,14 @@ export { default as Markdown } from './markdown';
 export { default as Card } from './card';
 export { default as Summary } from './summary';
 export { default as Switch } from './switch';
+export { default as SwitchOption } from './switchOption';
 export { default as Decision } from './decision';
 export { default as Nudge } from './nudge';
 export { default as InlineAlert } from './inlineAlert';
 export { default as AvatarWrapper } from './avatarWrapper';
 export { default as Info } from './info';
 export { default as Logo } from './logo';
+export { default as ActionOption } from './actionOption';
 
 /**
  * Hooks

@@ -13,7 +13,7 @@ describe('Given a component for dynamically rendering reviews', () => {
   const option = {
     text: 'More information',
     action: {
-      label: 'Option A',
+      title: 'Option A',
       url: '/example',
       method: 'GET',
     },
@@ -29,8 +29,8 @@ describe('Given a component for dynamically rendering reviews', () => {
     component = shallow(<DynamicDecision component={spec} onAction={onAction} />);
   });
 
-  it('should use the action label for the decision title', () => {
-    expect(component.find(NavigationOption).prop('title')).toEqual(option.action.label);
+  it('should use the action title for the decision title', () => {
+    expect(component.find(NavigationOption).prop('title')).toEqual(option.action.title);
   });
 
   it('should use the action label for the action link', () => {

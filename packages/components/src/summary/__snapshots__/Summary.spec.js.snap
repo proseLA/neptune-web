@@ -46,7 +46,7 @@ exports[`Summary renders full component 1`] = `
           class="m-l-1 hidden-xs np-info np-info__small"
         >
           <span
-            class="np-popover d-inline-block"
+            class="np-popover"
           >
             <span
               class="d-inline-block"
@@ -103,7 +103,7 @@ exports[`Summary renders full component 1`] = `
       class="m-l-2 hidden-sm hidden-md hidden-lg hidden-xl np-info np-info__large"
     >
       <span
-        class="np-popover d-inline-block"
+        class="np-popover"
       >
         <span
           class="d-inline-block"

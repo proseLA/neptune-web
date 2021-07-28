@@ -4,8 +4,18 @@ import PropTypes from 'prop-types';
 import Option from '../common/Option';
 import CheckboxButton from '../checkboxButton';
 
-const CheckboxOption = ({ media, title, content, name, checked, onChange, complex, disabled }) => {
-  const sharedProps = { media, title, content, name, complex, disabled };
+const CheckboxOption = ({
+  media,
+  title,
+  content,
+  name,
+  checked,
+  onChange,
+  complex,
+  disabled,
+  showMediaAtAllSizes,
+}) => {
+  const sharedProps = { media, title, content, name, complex, disabled, showMediaAtAllSizes };
 
   return (
     <Option
@@ -27,6 +37,7 @@ CheckboxOption.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.node.isRequired,
+  showMediaAtAllSizes: PropTypes.bool,
 };
 
 CheckboxOption.defaultProps = {
@@ -35,6 +46,7 @@ CheckboxOption.defaultProps = {
   disabled: false,
   id: undefined,
   media: null,
+  showMediaAtAllSizes: false,
 };
 
 export default CheckboxOption;

@@ -8,7 +8,7 @@ import ControlFeedback from '../controlFeedback';
 import { getValidationFailures } from '../../common/validation/validation-failures';
 import { getValidModelParts } from '../../common/validation/valid-model';
 import DynamicAlert from '../../layout/alert';
-import Help from './help';
+import Help from '../help';
 
 const BasicTypeSchema = (props) => {
   const onChange = (newModel) => {
@@ -29,7 +29,7 @@ const BasicTypeSchema = (props) => {
     setLastModel(broadcastModel);
 
     if (broadcastModel !== lastModel) {
-      props.onChange(broadcastModel, props.schema, broadcastModel);
+      props.onChange(broadcastModel, props.schema, broadcastModel, lastModel);
     }
   };
 
@@ -98,11 +98,14 @@ const BasicTypeSchema = (props) => {
       <>
         <div className={classNames(formGroupClasses)}>
           {showLabel && (
-            <label className="control-label" htmlFor={id}>
-              {props.schema.title}
-            </label>
+            <div className="d-inline-block">
+              <label className="control-label d-inline" htmlFor={id}>
+                {props.schema.title}
+              </label>
+              {hasHelp && <Help help={props.schema.help} />}
+            </div>
           )}
-          {hasHelp && <Help help={props.schema.help} />}
+          {!showLabel && hasHelp && <Help help={props.schema.help} />}
           <SchemaFormControl
             id={id}
             schema={props.schema}

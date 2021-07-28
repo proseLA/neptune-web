@@ -59,7 +59,6 @@ const jsFiles = [
   { filename: 'Markdown', folder: 'markdown' },
   { filename: 'Card', folder: 'card' },
   { filename: 'Summary', folder: 'summary' },
-  { filename: 'Switch', folder: 'switch' },
   { filename: 'Decision', folder: 'decision' },
   { filename: 'Nudge', folder: 'nudge' },
   { filename: 'InlineAlert', folder: 'inlineAlert' },

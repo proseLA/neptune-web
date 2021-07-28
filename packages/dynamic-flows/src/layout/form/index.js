@@ -9,8 +9,8 @@ import { getMarginBottom } from '../utils';
 const DynamicForm = (props) => {
   const form = props.component;
 
-  const onChange = (model, triggerSchema, triggerModel) => {
-    props.onModelChange(model, form.schema, triggerModel, triggerSchema);
+  const onChange = (model, triggerSchema, triggerModel, lastTriggerModel) => {
+    props.onModelChange(model, form.schema, triggerModel, triggerSchema, lastTriggerModel);
   };
 
   return (

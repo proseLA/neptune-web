@@ -4,4 +4,4 @@ export enum AvatarType {
   ICON = 'icon',
   EMOJI = 'emoji',
   INITIALS = 'initials',
-};
+}

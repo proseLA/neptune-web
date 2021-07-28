@@ -3,7 +3,7 @@
 exports[`AccordionItem open / close renders an item closed 1`] = `
 <div>
   <div
-    class="tw-accordion-item decision p-a-0 closed"
+    class="tw-accordion-item decision p-a-0 tw-accordion-item--light closed"
   >
     <button
       aria-expanded="false"
@@ -17,13 +17,13 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
           class="media-body title text-xs-left"
         >
           <span
-            class="h5"
+            class="h5 tw-accordion-item__title"
           >
             This is title number one
           </span>
         </div>
         <div
-          class="media-right d-flex align-items-center"
+          class="d-flex align-items-center media-right"
         >
           <span
             aria-hidden="true"
@@ -63,7 +63,7 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
 exports[`AccordionItem open / close renders an item open 1`] = `
 <div>
   <div
-    class="tw-accordion-item decision p-a-0"
+    class="tw-accordion-item decision p-a-0 tw-accordion-item--light"
   >
     <button
       aria-expanded="true"
@@ -77,13 +77,13 @@ exports[`AccordionItem open / close renders an item open 1`] = `
           class="media-body title text-xs-left"
         >
           <span
-            class="h5"
+            class="h5 tw-accordion-item__title"
           >
             This is title number one
           </span>
         </div>
         <div
-          class="media-right d-flex align-items-center"
+          class="d-flex align-items-center media-right"
         >
           <span
             aria-hidden="true"

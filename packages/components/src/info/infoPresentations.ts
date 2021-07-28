@@ -2,4 +2,4 @@
 export enum InfoPresentation {
   POPOVER = 'POPOVER',
   MODAL = 'MODAL',
-};
+}

@@ -13,7 +13,7 @@ const {
 } = Layout;
 
 describe('DefinitionList', () => {
-  const someDefinitions = () => [{ title: 'First', value: 'first value', key: 'first' }];
+  const someDefinitions = () => [{ title: 'First', value: 'first value', key: 'first' }, null];
 
   const withLayout = (layout) =>
     shallow(<DefinitionList layout={layout} definitions={someDefinitions()} />);

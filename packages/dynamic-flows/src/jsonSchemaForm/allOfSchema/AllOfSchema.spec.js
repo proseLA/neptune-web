@@ -119,7 +119,7 @@ describe('Given a component from rendering allOf schemas', () => {
 
   describe('when a child schema triggers onChange', () => {
     beforeEach(() => {
-      numberSchemaComponent.simulate('change', { number: 2 }, numberSchema, 2);
+      numberSchemaComponent.simulate('change', { number: 2 }, numberSchema, 2, 1);
     });
 
     it('should trigger the components onChange once', () => {
@@ -127,7 +127,7 @@ describe('Given a component from rendering allOf schemas', () => {
     });
 
     it('should combine the changed model with the other (valid) parts of the model', () => {
-      expect(onChange).toHaveBeenCalledWith({ string: 'a', number: 2 }, numberSchema, 2);
+      expect(onChange).toHaveBeenCalledWith({ string: 'a', number: 2 }, numberSchema, 2, 1);
     });
   });
 });

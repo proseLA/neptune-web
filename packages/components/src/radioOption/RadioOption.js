@@ -15,8 +15,9 @@ const RadioOption = ({
   complex,
   disabled,
   value,
+  showMediaAtAllSizes,
 }) => {
-  const sharedProps = { media, title, content, name, complex, disabled };
+  const sharedProps = { media, title, content, name, complex, disabled, showMediaAtAllSizes };
   return (
     <Option
       {...sharedProps}
@@ -45,6 +46,7 @@ RadioOption.propTypes = {
   complex: PropTypes.bool,
   disabled: PropTypes.bool,
   value: PropTypes.string,
+  showMediaAtAllSizes: PropTypes.bool,
 };
 
 RadioOption.defaultProps = {
@@ -52,6 +54,7 @@ RadioOption.defaultProps = {
   content: null,
   complex: false,
   disabled: false,
+  showMediaAtAllSizes: false,
   value: '',
 };
 

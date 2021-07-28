@@ -27,12 +27,14 @@ const DefinitionList = ({ definitions, layout, muted }) => (
       'tw-definition-list--horizontal flex-column': isLayoutHorizontal(layout),
     })}
   >
-    {definitions.map(({ title, value, key }) => (
-      <div className="tw-definition-list__item" key={key}>
-        <dt>{title}</dt>
-        <dd className={alignmentClassMap[layout] || ''}>{value}</dd>
-      </div>
-    ))}
+    {definitions
+      .filter((definition) => definition)
+      .map(({ title, value, key }) => (
+        <div className="tw-definition-list__item" key={key}>
+          <dt>{title}</dt>
+          <dd className={alignmentClassMap[layout] || ''}>{value}</dd>
+        </div>
+      ))}
   </dl>
 );
 

@@ -6,4 +6,4 @@ export enum ArrowPosition {
   BOTTOM_LEFT = 'down-left',
   BOTTOM = 'down-center',
   BOTTOM_RIGHT = 'down-right',
-};
+}

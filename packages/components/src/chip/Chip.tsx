@@ -5,7 +5,6 @@ import { useDirection } from '../common/hooks';
 import { CommonProps } from '../common';
 import './Chip.css';
 
-
 type Props = {
   /**
    * label for Chip

@@ -1,4 +1,5 @@
 {
+  "neptune.ClearButton.ariaLabel": "清除",
   "neptune.CloseButton.ariaLabel": "關閉",
   "neptune.MoneyInput.Select.placeholder": "選擇一個選項……",
   "neptune.Pagination.ariaLabel": "分頁導航",

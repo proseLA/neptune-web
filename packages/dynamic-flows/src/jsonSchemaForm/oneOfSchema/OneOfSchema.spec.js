@@ -7,6 +7,7 @@ import GenericSchema from '../genericSchema';
 import SchemaFormControl from '../schemaFormControl';
 import ControlFeedback from '../controlFeedback';
 import DynamicAlert from '../../layout/alert';
+import Help from '../help';
 
 describe('Given a oneOfSchema component', () => {
   let component;
@@ -303,7 +304,7 @@ describe('Given a oneOfSchema component', () => {
 
     describe('when the generic schema triggers an onChange event', () => {
       beforeEach(() => {
-        genericSchema.simulate('change', { b: 4 }, schema.oneOf[1], 4);
+        genericSchema.simulate('change', { b: 4 }, schema.oneOf[1], 4, 1);
       });
 
       it('should trigger the components onChange once', () => {
@@ -311,7 +312,7 @@ describe('Given a oneOfSchema component', () => {
       });
 
       it('should broadcast the changed model from the child', () => {
-        expect(onChange).toHaveBeenCalledWith({ b: 4 }, schema.oneOf[1], 4);
+        expect(onChange).toHaveBeenCalledWith({ b: 4 }, schema.oneOf[1], 4, 1);
       });
 
       it('should not change the input model', () => {
@@ -531,6 +532,21 @@ describe('Given a oneOfSchema component', () => {
         const alertComponent = component.find(DynamicAlert);
 
         expect(alertComponent).toHaveLength(0);
+      });
+    });
+
+    describe('when help exists', () => {
+      it('should render help popover', () => {
+        const help = {
+          markdown: 'some help',
+        };
+        const schemaWithHelp = { ...schema, help };
+
+        component = shallow(<OneOfSchema {...props} schema={schemaWithHelp} />);
+
+        const helpPopover = component.find(Help);
+
+        expect(helpPopover).toHaveLength(1);
       });
     });
   });

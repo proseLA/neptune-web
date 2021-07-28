@@ -22,13 +22,6 @@ const withErrorBoundary = (WrappedComponent) => {
       onError(error);
     }
 
-    handleError = (error, isFatalError = false) => {
-      const { onError } = this.props;
-
-      onError(error);
-      this.setState({ hasError: true, isFatalError });
-    };
-
     handleErrorReset = () => {
       this.setState({ hasError: false, isFatalError: false });
     };
@@ -52,13 +45,7 @@ const withErrorBoundary = (WrappedComponent) => {
             />
           )}
 
-          {!isFatalError && (
-            <WrappedComponent
-              {...this.props}
-              onError={this.handleError}
-              onErrorReset={this.handleErrorReset}
-            />
-          )}
+          {!isFatalError && <WrappedComponent {...this.props} />}
         </>
       );
     }

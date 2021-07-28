@@ -18,6 +18,7 @@ const PromotedOneOfControl = (props) => {
 };
 
 PromotedOneOfControl.propTypes = {
+  title: Types.string,
   promotedOneOf: Types.shape({
     title: Types.string,
     description: Types.string,
@@ -41,6 +42,8 @@ PromotedOneOfControl.propTypes = {
   setSelection: Types.func.isRequired,
 };
 
-PromotedOneOfControl.defaultProps = {};
+PromotedOneOfControl.defaultProps = {
+  title: undefined,
+};
 
 export default PromotedOneOfControl;

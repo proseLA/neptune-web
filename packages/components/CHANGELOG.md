@@ -3,6 +3,247 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.13.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.12.1...@transferwise/components@36.13.0) (2021-07-28)
+
+
+### Features
+
+* add showMediaAtAllSizes to all option components ([#1063](https://github.com/transferwise/neptune-web/issues/1063)) ([14dbb2c](https://github.com/transferwise/neptune-web/commit/14dbb2c3f60fe1c76f70c18446551fab3a842308))
+* Emphasis component now supports newline characters and \n ([#1062](https://github.com/transferwise/neptune-web/issues/1062)) ([4d40b7f](https://github.com/transferwise/neptune-web/commit/4d40b7fad8f23ea13a27f42780e9da4c9ea73d44))
+
+
+
+
+
+## [36.12.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.12.0...@transferwise/components@36.12.1) (2021-07-26)
+
+
+### Bug Fixes
+
+* **ActionOption:** remove action option button padding ([#1060](https://github.com/transferwise/neptune-web/issues/1060)) ([bf7cf2e](https://github.com/transferwise/neptune-web/commit/bf7cf2e17828f0a43a1839662967f693696eb909))
+
+
+
+
+
+# [36.12.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.1...@transferwise/components@36.12.0) (2021-07-20)
+
+
+### Features
+
+* add ActionOption component ([#1050](https://github.com/transferwise/neptune-web/issues/1050)) ([dc5aaad](https://github.com/transferwise/neptune-web/commit/dc5aaad364ca1809330a6c413218dc5e377d6f20))
+
+
+
+
+
+## [36.11.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.0...@transferwise/components@36.11.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* expose aria-label in SwitchOption for Switch ([#1051](https://github.com/transferwise/neptune-web/issues/1051)) ([9295515](https://github.com/transferwise/neptune-web/commit/92955157cb20a24d50e914102cacc0b5b9e83e58))
+
+
+
+
+
+# [36.11.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.10.0...@transferwise/components@36.11.0) (2021-07-19)
+
+
+### Features
+
+* add SwitchOption component ([#1044](https://github.com/transferwise/neptune-web/issues/1044)) ([f8f2ec2](https://github.com/transferwise/neptune-web/commit/f8f2ec2ea2c0a03a3d2655a16237cc9b4e9c1b1b))
+
+
+
+
+
+# [36.10.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.9.0...@transferwise/components@36.10.0) (2021-07-14)
+
+
+### Features
+
+* Emphasis component ([#1042](https://github.com/transferwise/neptune-web/issues/1042)) ([2be2634](https://github.com/transferwise/neptune-web/commit/2be26347d3eec7148a08b4b99000a5faf12b1e1d))
+
+
+
+
+
+# [36.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.6...@transferwise/components@36.9.0) (2021-07-14)
+
+
+### Features
+
+* add theme to accordion ([#948](https://github.com/transferwise/neptune-web/issues/948)) ([8d982f4](https://github.com/transferwise/neptune-web/commit/8d982f494519f6059b3515335426b9bc8aca7771))
+
+
+
+
+
+## [36.8.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.5...@transferwise/components@36.8.6) (2021-07-13)
+
+
+### Bug Fixes
+
+* prevent DefinitionList from throwing error when null passed in as Definition ([#1041](https://github.com/transferwise/neptune-web/issues/1041)) ([219b179](https://github.com/transferwise/neptune-web/commit/219b1795077ba77c6885841bab359ccf0fc64b66))
+
+
+
+
+
+## [36.8.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.4...@transferwise/components@36.8.5) (2021-07-12)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.8.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.3...@transferwise/components@36.8.4) (2021-07-05)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.8.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.2...@transferwise/components@36.8.3) (2021-07-05)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.8.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.1...@transferwise/components@36.8.2) (2021-07-05)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.8.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.8.0...@transferwise/components@36.8.1) (2021-07-02)
+
+
+### Bug Fixes
+
+* add delete to money input allowlist ([#1034](https://github.com/transferwise/neptune-web/issues/1034)) ([6fc415c](https://github.com/transferwise/neptune-web/commit/6fc415c252ceab12c342c8004f0426ae640b4559))
+
+
+
+
+
+# [36.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.7.2...@transferwise/components@36.8.0) (2021-06-24)
+
+
+### Features
+
+* info onClick prop ([#1013](https://github.com/transferwise/neptune-web/issues/1013)) ([f05fb39](https://github.com/transferwise/neptune-web/commit/f05fb39d2438c18e95283205943f9d2823923584))
+
+
+
+
+
+## [36.7.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.7.1...@transferwise/components@36.7.2) (2021-06-23)
+
+
+### Bug Fixes
+
+* remove scroll lock from panel and prevent focus boundary taking 100% height ([#1014](https://github.com/transferwise/neptune-web/issues/1014)) ([001d8c0](https://github.com/transferwise/neptune-web/commit/001d8c04c266d09ec4ec03fa622c47351bf415f5))
+
+
+
+
+
+## [36.7.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.7.0...@transferwise/components@36.7.1) (2021-06-23)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+# [36.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.2...@transferwise/components@36.7.0) (2021-06-22)
+
+
+### Features
+
+* add multiple dominican republic country codes to PhoneNumberInput ([#1020](https://github.com/transferwise/neptune-web/issues/1020)) ([ab79ebb](https://github.com/transferwise/neptune-web/commit/ab79ebbdcf70a78681c6285ce68220e75f755853))
+
+
+
+
+
+## [36.6.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.1...@transferwise/components@36.6.2) (2021-06-16)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.6.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.6.0...@transferwise/components@36.6.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* modal close behaviour ([#1008](https://github.com/transferwise/neptune-web/issues/1008)) ([b84b507](https://github.com/transferwise/neptune-web/commit/b84b507a1300b3795561bfdfb199658d2a2aac1f))
+
+
+
+
+
+# [36.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.3...@transferwise/components@36.6.0) (2021-06-16)
+
+
+### Features
+
+* **CheckboxOption:** Add showMediaAtAllSizes prop ([#1009](https://github.com/transferwise/neptune-web/issues/1009)) ([c70e128](https://github.com/transferwise/neptune-web/commit/c70e1288ac5298582909ed8fb8b768928fb8cf81))
+
+
+
+
+
+## [36.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.2...@transferwise/components@36.5.3) (2021-06-15)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [36.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.1...@transferwise/components@36.5.2) (2021-06-15)
+
+
+### Bug Fixes
+
+* add media class conditions ([#1006](https://github.com/transferwise/neptune-web/issues/1006)) ([d1e25ae](https://github.com/transferwise/neptune-web/commit/d1e25ae5fd17af8b01510e2d8939db8e98f63a1f))
+
+
+
+
+
+## [36.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.5.0...@transferwise/components@36.5.1) (2021-06-11)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+# [36.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.4.1...@transferwise/components@36.5.0) (2021-06-10)
+
+
+### Features
+
+* target support in Decision ([#986](https://github.com/transferwise/neptune-web/issues/986)) ([8954ee9](https://github.com/transferwise/neptune-web/commit/8954ee9f3f055ba3843376f447a2461fe8ef5cd6))
+
+
+
+
+
 ## [36.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.4.0...@transferwise/components@36.4.1) (2021-06-03)
 
 

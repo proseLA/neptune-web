@@ -9,14 +9,20 @@ import DynamicAlert from '../../layout/alert';
 const ObjectSchema = (props) => {
   const [model, setModel] = useState({ ...(props.model || {}) });
 
-  const onChangeProperty = (propertyName, propertyModel, triggerSchema, triggerModel) => {
+  const onChangeProperty = (
+    propertyName,
+    propertyModel,
+    triggerSchema,
+    triggerModel,
+    lastTriggerModel,
+  ) => {
     if (propertyModel !== null) {
       model[propertyName] = propertyModel;
     } else {
       delete model[propertyName];
     }
     setModel(model);
-    props.onChange(model, triggerSchema, triggerModel);
+    props.onChange(model, triggerSchema, triggerModel, lastTriggerModel);
   };
 
   const getSchemaColumnClasses = (width) => {
@@ -65,8 +71,14 @@ const ObjectSchema = (props) => {
               errors={props.errors && props.errors[propertyName]}
               locale={props.locale}
               translations={props.translations}
-              onChange={(newModel, triggerSchema, triggerModel) =>
-                onChangeProperty(propertyName, newModel, triggerSchema, triggerModel)
+              onChange={(newModel, triggerSchema, triggerModel, lastTriggerModel) =>
+                onChangeProperty(
+                  propertyName,
+                  newModel,
+                  triggerSchema,
+                  triggerModel,
+                  lastTriggerModel,
+                )
               }
               submitted={props.submitted}
               required={isRequired(propertyName)}

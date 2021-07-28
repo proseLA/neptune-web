@@ -29,7 +29,7 @@ const PromotedOneOfSchema = (props) => {
 
   const getOtherOneOf = (schema) => {
     const other = schema.oneOf.filter((one) => !isPromoted(one));
-    const title = schema.promotion.other.heading.text;
+    const title = schema.promotion.other.heading?.text;
     if (other.length === 1) {
       return { ...other[0], title };
     }
@@ -52,6 +52,7 @@ const PromotedOneOfSchema = (props) => {
     <>
       {promotedAlert && <DynamicAlert component={promotedAlert} />}
       <PromotedOneOfControl
+        title={props.schema.title}
         promotedOneOf={promotedOneOf}
         promotion={props.schema.promotion}
         selection={selection}
@@ -66,6 +67,7 @@ const PromotedOneOfSchema = (props) => {
 
 PromotedOneOfSchema.propTypes = {
   schema: Types.shape({
+    title: Types.string,
     oneOf: Types.arrayOf(Types.object).isRequired,
     promotion: Types.shape({
       default: Types.string,
