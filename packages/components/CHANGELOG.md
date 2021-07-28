@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.13.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.12.1...@transferwise/components@36.13.0) (2021-07-28)
+
+
+### Features
+
+* add showMediaAtAllSizes to all option components ([#1063](https://github.com/transferwise/neptune-web/issues/1063)) ([14dbb2c](https://github.com/transferwise/neptune-web/commit/14dbb2c3f60fe1c76f70c18446551fab3a842308))
+* Emphasis component now supports newline characters and \n ([#1062](https://github.com/transferwise/neptune-web/issues/1062)) ([4d40b7f](https://github.com/transferwise/neptune-web/commit/4d40b7fad8f23ea13a27f42780e9da4c9ea73d44))
+
+
+
+
+
 ## [36.12.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.12.0...@transferwise/components@36.12.1) (2021-07-26)
 
 
