@@ -23,9 +23,15 @@ describe('creates safe, enphasised html', () => {
     );
   });
 
-  it('supports new line characters', () => {
-    const emphasisHtmlTransformer = new EmphasisHtmlTransformer();
-    expect(emphasisHtmlTransformer.transform('hello\\nworld')).toEqual('hello<br />world');
+  describe('supports new line characters', () => {
+    it('supports slash n in the string', () => {
+      const emphasisHtmlTransformer = new EmphasisHtmlTransformer();
+      expect(emphasisHtmlTransformer.transform('hello\\nworld')).toEqual('hello<br />world');
+    });
+    it('supports new line characters', () => {
+      const emphasisHtmlTransformer = new EmphasisHtmlTransformer();
+      expect(emphasisHtmlTransformer.transform('hello\nworld')).toEqual('hello<br />world');
+    });
   });
 
   describe('returns null when no input provided', () => {
