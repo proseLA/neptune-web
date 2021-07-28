@@ -8,7 +8,15 @@ describe('Radio option', () => {
   let component;
   beforeEach(() => {
     component = shallow(
-      <RadioOption media={<span />} id="" name="" title="" content="" onChange={jest.fn()} />,
+      <RadioOption
+        checked={false}
+        media={<span />}
+        id=""
+        name=""
+        title=""
+        content=""
+        onChange={jest.fn()}
+      />,
     );
   });
 

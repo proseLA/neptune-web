@@ -60,6 +60,7 @@ describe('Server side rendering', () => {
 
   // stick all possible properties we might need to render all components in here
   const allProps = {
+    checked: false,
     currencies: [],
     steps: [],
     stepper: {

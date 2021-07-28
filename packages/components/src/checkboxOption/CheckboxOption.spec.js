@@ -12,6 +12,7 @@ describe('Checkbox option', () => {
   const defaultProps = {
     id: 'id',
     name: 'name',
+    checked: false,
     title: 'Title',
     onChange: jest.fn(),
   };

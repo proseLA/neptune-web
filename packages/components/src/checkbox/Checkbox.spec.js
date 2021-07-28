@@ -9,6 +9,7 @@ describe('Checkbox', () => {
 
   beforeEach(() => {
     props = {
+      checked: false,
       label: <b>hello</b>,
       onChange: jest.fn(),
     };

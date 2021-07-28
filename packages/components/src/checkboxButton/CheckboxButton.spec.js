@@ -9,7 +9,7 @@ describe('Checkbox button', () => {
 
   describe('by default', () => {
     beforeEach(() => {
-      ({ getByRole } = render(<CheckboxButton onChange={jest.fn()} />));
+      ({ getByRole } = render(<CheckboxButton checked={false} onChange={jest.fn()} />));
     });
     it('is not checked', () => {
       getByRole('checkbox', { checked: false });
@@ -21,7 +21,9 @@ describe('Checkbox button', () => {
   });
 
   it('applies aria-label if provided', () => {
-    ({ getByRole } = render(<CheckboxButton onChange={jest.fn()} aria-label="An aria label" />));
+    ({ getByRole } = render(
+      <CheckboxButton checked={false} onChange={jest.fn()} aria-label="An aria label" />,
+    ));
     getByRole('checkbox', { name: 'An aria label' });
   });
 
@@ -31,13 +33,13 @@ describe('Checkbox button', () => {
   });
 
   it('is disabled when disabled prop is true', () => {
-    ({ getByRole } = render(<CheckboxButton disabled onChange={jest.fn()} />));
+    ({ getByRole } = render(<CheckboxButton checked={false} disabled onChange={jest.fn()} />));
     getByRole('checkbox', { disabled: true });
   });
 
   it('calls onChange handler on change', () => {
     const onChange = jest.fn();
-    ({ getByRole } = render(<CheckboxButton onChange={onChange} />));
+    ({ getByRole } = render(<CheckboxButton checked={false} onChange={onChange} />));
 
     const input = getByRole('checkbox');
 
