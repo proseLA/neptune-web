@@ -40,7 +40,7 @@ RadioOption.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.node.isRequired,
   content: PropTypes.node,
-  checked: PropTypes.bool,
+  checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   complex: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -50,7 +50,6 @@ RadioOption.propTypes = {
 RadioOption.defaultProps = {
   media: null,
   content: null,
-  checked: false,
   complex: false,
   disabled: false,
   value: '',

@@ -38,7 +38,7 @@ const Radio = ({ label, id, disabled, avatar, secondary, ...otherProps }) => {
 
 Radio.propTypes = {
   avatar: PropTypes.element,
-  checked: PropTypes.bool,
+  checked: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
   id: PropTypes.string,
   label: PropTypes.string.isRequired,
@@ -50,7 +50,6 @@ Radio.propTypes = {
 
 Radio.defaultProps = {
   avatar: undefined,
-  checked: false,
   disabled: false,
   id: null,
   secondary: null,

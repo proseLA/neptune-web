@@ -52,7 +52,7 @@ const Checkbox = ({
 
 Checkbox.propTypes = {
   id: PropTypes.string,
-  checked: PropTypes.bool,
+  checked: PropTypes.bool.isRequired,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
   readOnly: PropTypes.bool,
@@ -65,7 +65,6 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   id: null,
-  checked: false,
   required: false,
   disabled: false,
   readOnly: false,

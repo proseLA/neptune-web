@@ -16,7 +16,7 @@ const CheckboxButton = ({ checked, className, disabled, onChange, ...rest }) => 
 CheckboxButton.propTypes = {
   /* Provide this if the CheckboxButton is being used without a label */
   'aria-label': PropTypes.string,
-  checked: PropTypes.bool,
+  checked: PropTypes.bool.isRequired,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
@@ -24,7 +24,6 @@ CheckboxButton.propTypes = {
 
 CheckboxButton.defaultProps = {
   'aria-label': undefined,
-  checked: false,
   className: undefined,
   disabled: false,
 };

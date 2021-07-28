@@ -10,13 +10,12 @@ const Sticky = ({ open, position, children }) => (
 );
 
 Sticky.propTypes = {
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   position: PropTypes.oneOf(['top', 'bottom']),
   children: PropTypes.node,
 };
 
 Sticky.defaultProps = {
-  open: true,
   position: 'bottom',
   children: null,
 };

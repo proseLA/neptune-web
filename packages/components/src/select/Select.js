@@ -520,7 +520,8 @@ Select.propTypes = {
   selected: PropTypes.shape({
     // eslint-disable-next-line react/forbid-prop-types
     value: PropTypes.any.isRequired,
-    label: PropTypes.node,
+    /** label is required because Option uses it. */
+    label: PropTypes.node.isRequired,
     icon: PropTypes.node,
     currency: PropTypes.string,
     note: PropTypes.node,
@@ -571,13 +572,13 @@ Select.defaultProps = {
   required: false,
   disabled: false,
   block: true,
-  selected: null,
   onFocus: null,
   onBlur: null,
   onSearchChange: undefined,
   search: false,
   searchValue: '',
   searchPlaceholder: 'Search...',
+  selected: undefined,
   classNames: {},
   dropdownUp: false,
 };

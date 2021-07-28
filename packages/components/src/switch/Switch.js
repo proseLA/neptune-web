@@ -61,7 +61,7 @@ Switch.propTypes = {
   /** A reference to a label that describes the purpose of the switch. Ignored if aria-label is provided */
   'aria-labelledby': PropTypes.string,
   /** Whether the switch is checked or not */
-  checked: PropTypes.bool,
+  checked: PropTypes.bool.isRequired,
   /** Classes to apply to the switch container */
   className: PropTypes.string,
   /** ID to apply to the switch container */
@@ -73,7 +73,6 @@ Switch.propTypes = {
 Switch.defaultProps = {
   'aria-label': null,
   'aria-labelledby': null,
-  checked: false,
   className: null,
   id: null,
 };
