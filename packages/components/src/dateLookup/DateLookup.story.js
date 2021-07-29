@@ -9,7 +9,7 @@ export default {
 };
 
 export const basic = () => {
-  const [value, setValue] = useState(new Date('04-15-2021'));
+  const [value, setValue] = useState(null);
   const disabled = boolean('disabled', false);
   const label = text('label', 'label');
   const monthFormat = select('monthFormat', ['long', 'short']);

@@ -161,6 +161,7 @@ describe('Server side rendering', () => {
     },
     Modal: { position: 'top' },
     ActionOption: { action: 'hello' },
+    DateLookup: { value: new Date() },
     Link: { size: 16 },
   };
 
