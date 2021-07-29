@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/dynamic-flows",
-  "version": "14.0.1",
+  "version": "14.0.4",
   "description": "Wise Dynamic Flows and Forms",
   "license": "Apache-2.0",
   "main": "./build/es/polyfill/index.js",
@@ -46,7 +46,7 @@
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "@formatjs/cli": "^2.13.13",
-    "@transferwise/components": "^36.12.1",
+    "@transferwise/components": "^36.13.0",
     "@transferwise/icons": "^2.6.0",
     "@transferwise/less-config": "^3.0.2",
     "@transferwise/neptune-css": "^9.2.2",

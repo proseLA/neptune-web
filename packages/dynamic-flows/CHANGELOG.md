@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.3...@transferwise/dynamic-flows@14.0.4) (2021-07-28)
+
+
+### Bug Fixes
+
+* default usAccept to * instead of image/* ([#1064](https://github.com/transferwise/neptune-web/issues/1064)) ([1463fec](https://github.com/transferwise/neptune-web/commit/1463fecc3d3bb86e15b870a965096f6ee440b8ef))
+
+
+
+
+
+## [14.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.2...@transferwise/dynamic-flows@14.0.3) (2021-07-28)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [14.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.1...@transferwise/dynamic-flows@14.0.2) (2021-07-27)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 ## [14.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.0...@transferwise/dynamic-flows@14.0.1) (2021-07-26)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

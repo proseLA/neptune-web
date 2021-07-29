@@ -331,6 +331,7 @@ export default class FormControl extends PureComponent {
         return (
           <Upload
             {...uploadProps}
+            usAccept={uploadProps.usAccept || '*'}
             usDisabled={uploadProps.usDisabled || disabled}
             onSuccess={this.handleOnChange}
             onFailure={this.handleOnChange}
