@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.5.5...@transferwise/neptune-docs@12.5.6) (2021-07-28)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.5.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.5.4...@transferwise/neptune-docs@12.5.5) (2021-07-28)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.5.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.5.3...@transferwise/neptune-docs@12.5.4) (2021-07-27)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.5.2...@transferwise/neptune-docs@12.5.3) (2021-07-26)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.5.1...@transferwise/neptune-docs@12.5.2) (2021-07-23)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [12.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.5.0...@transferwise/neptune-docs@12.5.1) (2021-07-22)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+# [12.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.4.1...@transferwise/neptune-docs@12.5.0) (2021-07-20)
+
+
+### Features
+
+* add ActionOption component ([#1050](https://github.com/transferwise/neptune-web/issues/1050)) ([dc5aaad](https://github.com/transferwise/neptune-web/commit/dc5aaad364ca1809330a6c413218dc5e377d6f20))
+
+
+
+
+
+## [12.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.4.0...@transferwise/neptune-docs@12.4.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* expose aria-label in SwitchOption for Switch ([#1051](https://github.com/transferwise/neptune-web/issues/1051)) ([9295515](https://github.com/transferwise/neptune-web/commit/92955157cb20a24d50e914102cacc0b5b9e83e58))
+
+
+
+
+
 # [12.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@12.3.1...@transferwise/neptune-docs@12.4.0) (2021-07-19)
 
 

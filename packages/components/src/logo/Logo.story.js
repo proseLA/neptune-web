@@ -1,4 +1,3 @@
-import React from 'react';
 import { boolean, select } from '@storybook/addon-knobs';
 
 import Logo, { LogoType } from '.';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 
 import { AlertCircle as AlertCircleIcon, Document as DocumentIcon } from '@transferwise/icons';

@@ -1,5 +1,6 @@
 import decisionStep from '../examples/decision.json';
 import formStep from '../examples/form.json';
+import receiveStep from '../examples/recipient_details.json';
 import finalStep from '../examples/final.json';
 import layoutStep from '../examples/layout.json';
 
@@ -22,6 +23,8 @@ async function request({ action, data }) {
       return Promise.resolve({ data: decisionStep });
     case '/recipient':
       return Promise.resolve({ data: formStep });
+    case '/recipient_details':
+      return Promise.resolve({ data: receiveStep });
     case '/layout':
       return Promise.resolve({ data: layoutStep });
     case '/review':
@@ -40,4 +43,4 @@ async function request({ action, data }) {
   }
 }
 
-export const httpClient = { init, request };
+export const mockClient = { init, request };

@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Transition from 'react-transition-group/Transition';
@@ -256,18 +256,20 @@ export default class Select extends Component {
         if (!isTouchDevice && searchable && this.searchBoxRef.current) {
           this.searchBoxRef.current.focus();
         }
+
+        addClickClassToDocumentOnIos();
+        document.addEventListener('click', this.handleDocumentClick, false);
       });
     });
-
-    addClickClassToDocumentOnIos();
-    document.addEventListener('click', this.handleDocumentClick, false);
   }
 
   close() {
-    this.setState({ open: false, keyboardFocusedOptionIndex: null });
-
-    removeClickClassFromDocumentOnIos();
-    document.removeEventListener('click', this.handleDocumentClick, false);
+    this.setState({ open: false, keyboardFocusedOptionIndex: null }, () => {
+      defer(() => {
+        removeClickClassFromDocumentOnIos();
+        document.removeEventListener('click', this.handleDocumentClick, false);
+      });
+    });
   }
 
   handleButtonClick = () => {

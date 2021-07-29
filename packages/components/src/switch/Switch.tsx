@@ -1,4 +1,4 @@
-import React, { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
+import { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
 import classnames from 'classnames';
 import { CheckCircle, CrossCircle } from '@transferwise/icons';
 

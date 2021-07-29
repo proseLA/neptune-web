@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 import { boolean, text } from '@storybook/addon-knobs';
 import Radio from './Radio';
@@ -10,7 +10,7 @@ export default {
 };
 
 export const basic = () => {
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
 
   const disabled = boolean('disabled', false);
   const label = text('label', 'This is the label');

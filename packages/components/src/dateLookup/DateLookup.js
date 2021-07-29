@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { createRef, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import KeyCodes from '../common/keyCodes';
@@ -21,9 +21,9 @@ const MODE = {
 };
 
 class DateLookup extends PureComponent {
-  element = React.createRef();
+  element = createRef();
 
-  dropdown = React.createRef();
+  dropdown = createRef();
 
   constructor(props) {
     super(props);
@@ -301,7 +301,7 @@ class DateLookup extends PureComponent {
 }
 
 DateLookup.propTypes = {
-  value: PropTypes.instanceOf(Date),
+  value: PropTypes.instanceOf(Date).isRequired,
   min: PropTypes.instanceOf(Date),
   max: PropTypes.instanceOf(Date),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -316,7 +316,6 @@ DateLookup.propTypes = {
 };
 
 DateLookup.defaultProps = {
-  value: null,
   min: null,
   max: null,
   size: Size.MEDIUM,

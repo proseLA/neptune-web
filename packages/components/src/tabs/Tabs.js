@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import clamp from 'lodash.clamp';
@@ -24,7 +24,7 @@ const enabledTabsFilter = (tab) => !tab.disabled;
 
 const SpacerWidth = { default: 0, xs: 8, sm: 16, md: 24, lg: 32 };
 
-class Tabs extends React.Component {
+class Tabs extends Component {
   constructor(props) {
     super(props);
     this.state = {

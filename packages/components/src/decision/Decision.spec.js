@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '../test-utils';
 
@@ -29,7 +28,6 @@ describe('Decision', () => {
     type: Type.NAVIGATION,
   };
 
-  const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
   const resetClientWidth = (width) => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
       configurable: true,
@@ -38,6 +36,11 @@ describe('Decision', () => {
   };
 
   afterAll(() => {
+    const originalClientWidth = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      'clientWidth',
+    );
+
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
   });
 

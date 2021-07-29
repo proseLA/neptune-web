@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Types from 'prop-types';
 import { isNull } from '@transferwise/neptune-validation';
 import isEqual from 'lodash.isequal';

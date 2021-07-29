@@ -79,10 +79,17 @@ const testConfig = {
 module.exports = {
   // "unambiguous" - Consider the file a "module" if import/export statements are present, or else consider it a "script".
   sourceType: 'unambiguous',
+  presets: [
+    [
+      '@babel/preset-react',
+      {
+        runtime: 'automatic',
+      },
+    ],
+  ],
   plugins: [
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-transform-react-jsx',
     '@babel/plugin-transform-runtime',
     ['react-intl', { removeDefaultMessage: true }],
   ],

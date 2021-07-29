@@ -1,0 +1,48 @@
+.np-upload-item {
+  &:not(:last-child)::after {
+    display: block;
+    position: relative;
+    border-bottom: 1px solid var(--color-border-neutral);
+    content: ' ';
+    margin: 0 var(--size-16);
+  }
+}
+
+.np-upload-item__link {
+  a {
+    flex: 1;
+    text-decoration: none;
+    outline: none;
+    font-weight: var(--font-weight-regular);
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      background-color: var(--color-background-neutral);
+
+      ~ .np-upload-item__remove-button {
+        background-color: var(--color-background-neutral);
+      }
+    }
+  }
+}
+
+.np-upload-item__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.np-upload-item__remove-button {
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: var(--size-12) var(--size-16);
+  color: var(--color-text-inactive);
+  background: transparent;
+
+  &:hover,
+  &:focus {
+    color: var(--color-negative) !important; // Override btn:hover color
+  }
+}

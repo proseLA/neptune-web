@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, waitFor, fireEvent } from '../test-utils';
 import Summary from './Summary';
 import { Status } from '../common';

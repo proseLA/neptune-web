@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 
 import { boolean, text } from '@storybook/addon-knobs';
@@ -13,6 +11,7 @@ export default {
 
 export const basic = () => {
   const checked = boolean('checked', true);
+  const showMediaAtAllSizes = boolean('showMediaAtAllSizes', false);
   const title = text('title', 'title');
   const content = text('content', 'content');
   return (
@@ -27,6 +26,7 @@ export const basic = () => {
       complex={false}
       disabled={false}
       value="value"
+      showMediaAtAllSizes={showMediaAtAllSizes}
     />
   );
 };

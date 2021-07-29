@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, getByRole } from '../../test-utils';
 import withArrow from './withArrow';
 import { ArrowPosition } from './alertArrowPositions';

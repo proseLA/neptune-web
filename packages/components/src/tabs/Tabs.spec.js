@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 import { Spring } from 'react-spring/renderprops.cjs';
 import { getElasticDragDifference } from './utils';

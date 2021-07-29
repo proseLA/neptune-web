@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function hightlight(value, query) {
   if (value && query) {
     const highlightStart = value.toUpperCase().indexOf(query.trim().toUpperCase());

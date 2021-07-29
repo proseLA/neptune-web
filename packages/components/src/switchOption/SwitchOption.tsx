@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactChild, ReactElement } from 'react';
+import { MouseEvent, ReactChild, ReactElement } from 'react';
 
 import Option from '../common/Option';
 import Switch from '../switch';
@@ -8,10 +8,12 @@ type Props = {
   complex?: boolean;
   content?: ReactChild;
   disabled?: boolean;
+  showMediaAtAllSizes?: boolean;
   id?: string;
   media?: ReactChild;
   onChange: (newValue: boolean) => void;
   title: ReactChild;
+  'aria-label': string;
 };
 
 const SwitchOption = ({
@@ -23,8 +25,10 @@ const SwitchOption = ({
   media,
   onChange,
   title,
+  showMediaAtAllSizes,
+  'aria-label': ariaLabel,
 }: Props): ReactElement => {
-  const sharedProps = { media, title, content, complex, disabled };
+  const sharedProps = { media, title, content, complex, disabled, showMediaAtAllSizes };
 
   const stopPropagation = (event?: MouseEvent<HTMLSpanElement>) => {
     if (event) {
@@ -49,7 +53,15 @@ const SwitchOption = ({
     <Option
       {...sharedProps}
       onClick={toggle}
-      button={<Switch id={id} checked={checked} onClick={toggle} disabled={disabled} />}
+      button={
+        <Switch
+          id={id}
+          checked={checked}
+          onClick={toggle}
+          disabled={disabled}
+          aria-label={ariaLabel}
+        />
+      }
     />
   );
 };

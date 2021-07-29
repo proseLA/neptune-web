@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Profile as ProfileIcon, Bank as BankIcon } from '@transferwise/icons';

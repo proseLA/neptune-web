@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import isEqual from 'lodash.isequal';
 import Types from 'prop-types';
 import classNames from 'classnames';

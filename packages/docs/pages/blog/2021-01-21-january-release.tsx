@@ -1,6 +1,6 @@
 import { Image, Alert, Sentiment } from '@transferwise/components';
 
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { DocLink } from '../../utils/pageUtils';
 import flowNavigation from '../../static/assets/blog/flow-nav-release-jan-2021.png';
 import checkbox from '../../static/assets/blog/checkbox-release-jan-2021.png';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import SizeSwapper from './SizeSwapper';
 
 export default {

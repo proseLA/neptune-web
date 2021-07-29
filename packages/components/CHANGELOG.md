@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [36.13.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.12.1...@transferwise/components@36.13.0) (2021-07-28)
+
+
+### Features
+
+* add showMediaAtAllSizes to all option components ([#1063](https://github.com/transferwise/neptune-web/issues/1063)) ([14dbb2c](https://github.com/transferwise/neptune-web/commit/14dbb2c3f60fe1c76f70c18446551fab3a842308))
+* Emphasis component now supports newline characters and \n ([#1062](https://github.com/transferwise/neptune-web/issues/1062)) ([4d40b7f](https://github.com/transferwise/neptune-web/commit/4d40b7fad8f23ea13a27f42780e9da4c9ea73d44))
+
+
+
+
+
+## [36.12.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.12.0...@transferwise/components@36.12.1) (2021-07-26)
+
+
+### Bug Fixes
+
+* **ActionOption:** remove action option button padding ([#1060](https://github.com/transferwise/neptune-web/issues/1060)) ([bf7cf2e](https://github.com/transferwise/neptune-web/commit/bf7cf2e17828f0a43a1839662967f693696eb909))
+
+
+
+
+
+# [36.12.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.1...@transferwise/components@36.12.0) (2021-07-20)
+
+
+### Features
+
+* add ActionOption component ([#1050](https://github.com/transferwise/neptune-web/issues/1050)) ([dc5aaad](https://github.com/transferwise/neptune-web/commit/dc5aaad364ca1809330a6c413218dc5e377d6f20))
+
+
+
+
+
+## [36.11.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.11.0...@transferwise/components@36.11.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* expose aria-label in SwitchOption for Switch ([#1051](https://github.com/transferwise/neptune-web/issues/1051)) ([9295515](https://github.com/transferwise/neptune-web/commit/92955157cb20a24d50e914102cacc0b5b9e83e58))
+
+
+
+
+
 # [36.11.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.10.0...@transferwise/components@36.11.0) (2021-07-19)
 
 

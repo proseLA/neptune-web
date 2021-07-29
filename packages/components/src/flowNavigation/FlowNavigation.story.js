@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
 import FlowNavigation from './FlowNavigation';

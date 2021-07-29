@@ -49,7 +49,7 @@ class EmphasisHtmlTransformer {
           .replace(tag.escapedRegex.opening, tag.transformed.opening)
           .replace(tag.escapedRegex.closing, tag.transformed.closing);
       }, safe)
-      .replace(/\\n/g, '<br />');
+      .replace(/\\n|\n/g, '<br />');
   }
 }
 

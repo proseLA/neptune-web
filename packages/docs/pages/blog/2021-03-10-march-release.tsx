@@ -1,5 +1,5 @@
 import { Alert, Image, Sentiment } from '@transferwise/components';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { DocLink } from '../../utils/pageUtils';
 import { Meta } from '../../utils/sections';
 

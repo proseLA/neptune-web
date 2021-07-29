@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Types from 'prop-types';
 
 import { isKey, isUndefined } from '@transferwise/neptune-validation';

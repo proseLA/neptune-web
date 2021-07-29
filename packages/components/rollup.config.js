@@ -22,6 +22,7 @@ const namedExports = {
     'formatDate',
     'formatNumber',
   ],
+  'react/jsx-runtime': ['jsx', 'jsxs', 'Fragment'],
 };
 
 const globals = {

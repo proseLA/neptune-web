@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
@@ -7,7 +7,7 @@ import { Position, Key } from '../common';
 import Chevron from '../chevron';
 import Option from '../common/Option';
 
-const Card = React.forwardRef((props, ref) => {
+const Card = forwardRef((props, ref) => {
   const {
     as: Element,
     isExpanded,

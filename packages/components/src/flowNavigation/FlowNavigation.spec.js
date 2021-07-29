@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 
 import { render, screen } from '../test-utils';
@@ -24,7 +23,6 @@ jest.mock('./backButton', () => {
 });
 
 describe('FlowNavigation', () => {
-  const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
   const resetClientWidth = (width) => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
       configurable: true,
@@ -36,6 +34,11 @@ describe('FlowNavigation', () => {
   });
 
   afterAll(() => {
+    const originalClientWidth = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      'clientWidth',
+    );
+
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
   });
 

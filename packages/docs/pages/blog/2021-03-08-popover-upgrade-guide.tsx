@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Alert, Image } from '@transferwise/components';
 import popover1 from '../../static/assets/blog/popover-release-mar-2021_1.png';
 import popover2 from '../../static/assets/blog/popover-release-mar-2021_2.png';

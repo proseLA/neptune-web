@@ -1,6 +1,7 @@
 /** @jsx jsx */
-import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { jsx } from '@emotion/core';
+import { Children, cloneElement } from 'react';
 import Types from 'prop-types';
 import { Size, FlexDirection, Breakpoint } from '../common';
 
@@ -49,10 +50,10 @@ const Flex = (props) => {
 
   return (
     <Element className={className} css={style}>
-      {React.Children.map(children, (child) => {
+      {Children.map(children, (child) => {
         if (child && child.type && child.type.name === 'Box') {
           const childrenProps = { ...child.props, marginX, paddingX, marginY, paddingY };
-          return React.cloneElement(child, childrenProps);
+          return cloneElement(child, childrenProps);
         }
         return child;
       })}

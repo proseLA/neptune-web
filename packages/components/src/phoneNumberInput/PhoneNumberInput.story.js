@@ -1,4 +1,3 @@
-import React from 'react';
 import { select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import PhoneNumberInput from './PhoneNumberInput';

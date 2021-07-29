@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Types from 'prop-types';
 import ObjectSchema from '../objectSchema';
 import GenericSchema from '../genericSchema';

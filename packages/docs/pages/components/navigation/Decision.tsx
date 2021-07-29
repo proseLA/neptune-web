@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Decision, Avatar, DecisionPresentation, DecisionType } from '@transferwise/components';
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
 

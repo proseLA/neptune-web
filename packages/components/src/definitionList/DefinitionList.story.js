@@ -1,4 +1,3 @@
-import React from 'react';
 import { select, text, boolean } from '@storybook/addon-knobs';
 import DefinitionList from './DefinitionList';
 import { Layout } from '../common';

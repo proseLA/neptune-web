@@ -1,11 +1,11 @@
-import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { LiveEditorBlock, GeneratePropsTable, PolyfillsNote } from '../../../utils';
 import { Image } from '@transferwise/components';
 import code from '../../../liveEditorCode/image.code';
 
 Image component renders an img tag with some optional lazy load feature. "alt" and "src" props are required to enforce accessibility good practices.
-Lazy loading functionality is currently not supported on IE11. If you are need this kind of functionality to be supported you'll need to add a polyfill for Observer window object.
 
 <LiveEditorBlock code={code} scope={{ Image }} />
+<PolyfillsNote />
 <GeneratePropsTable componentName="Image" />
 
 Image component provides an image which is **responsive by default**. Responsive behaviours can be controlled by two props: `shrink` and `stretch`. When both of them are set to true the image will adapt to the parent whether the dimensions of the parent are bigger or smaller than native image sizes.

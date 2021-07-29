@@ -1,7 +1,6 @@
 /**
  * @jest-environment node
  */
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 import * as exposedLibraryItems from '.';
 import en from './i18n/en.json';
@@ -37,6 +36,12 @@ const excluded = [
   'DecisionType',
   'AlertArrowPosition',
   'LogoType',
+  'FileType',
+
+  // types
+  'UploadedFile',
+  'UploadError',
+  'UploadResponse',
 
   // utils
   'SUPPORTED_LANGUAGES',
@@ -154,6 +159,9 @@ describe('Server side rendering', () => {
       media: <img alt="img" />,
     },
     Modal: { position: 'top' },
+    ActionOption: { action: 'hello' },
+    DateLookup: { value: new Date() },
+    Link: { size: 16 },
   };
 
   const { Provider } = exposedLibraryItems;

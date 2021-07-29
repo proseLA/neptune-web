@@ -1,9 +1,7 @@
-import React from 'react';
-
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import DynamicFlow from './DynamicFlow';
-import { mockHttpClient } from './httpClient';
+import { mockClient } from './client';
 
 export default {
   component: DynamicFlow,
@@ -19,26 +17,36 @@ export const basic = () => {
     confirm: '/confirm',
     final: '/final',
     error: '/error',
+    recipient_details: '/recipient_details',
   };
 
   const flowUrl = select('step', steps, '/decision');
 
-  const onClose = () => {
-    console.log('onClose'); // eslint-disable-line
+  const onClose = (...args) => {
+    console.log('onClose', ...args); // eslint-disable-line
     action('onClose');
   };
 
-  const onStepChange = (broadcastAction) => {
-    console.log('onStepChange', broadcastAction); // eslint-disable-line
+  const onStepChange = (...args) => {
+    console.log('onStepChange', ...args); // eslint-disable-line
     action('onStepChange');
   };
+
+  const onError = (...args) => {
+    console.log('onError', ...args); // eslint-disable-line
+    action('onError');
+  };
+
+  const baseUrl = '';
 
   return (
     <DynamicFlow
       flowUrl={flowUrl}
-      httpClient={mockHttpClient}
+      baseUrl={baseUrl}
+      httpClient={mockClient}
       onClose={onClose}
       onStepChange={onStepChange}
+      onError={onError}
     />
   );
 };

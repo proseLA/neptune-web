@@ -1,0 +1,15 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { Link } from '@transferwise/components';
+
+import code from '../../../liveEditorCode/link.code';
+
+<LiveEditorBlock code={code} scope={{ Link }} />
+<GeneratePropsTable componentName="Link" />
+
+export const meta = {
+  name: 'Link',
+  badge: {
+    type: 'new',
+    expiryDate: '2021-09-30',
+  },
+};

@@ -1,4 +1,3 @@
-import React from 'react';
 import MobileNav from './MobileNav';
 import { Items } from './__mocks__/items';
 

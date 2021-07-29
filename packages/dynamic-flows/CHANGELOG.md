@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.3...@transferwise/dynamic-flows@14.0.4) (2021-07-28)
+
+
+### Bug Fixes
+
+* default usAccept to * instead of image/* ([#1064](https://github.com/transferwise/neptune-web/issues/1064)) ([1463fec](https://github.com/transferwise/neptune-web/commit/1463fecc3d3bb86e15b870a965096f6ee440b8ef))
+
+
+
+
+
+## [14.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.2...@transferwise/dynamic-flows@14.0.3) (2021-07-28)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [14.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.1...@transferwise/dynamic-flows@14.0.2) (2021-07-27)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [14.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@14.0.0...@transferwise/dynamic-flows@14.0.1) (2021-07-26)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [14.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.13...@transferwise/dynamic-flows@14.0.0) (2021-07-23)
+
+
+* fix!: force a major version bump (#1058) ([d5afdf8](https://github.com/transferwise/neptune-web/commit/d5afdf82db1b7a53da5a6c1e0986b39a5f6fa21a)), closes [#1058](https://github.com/transferwise/neptune-web/issues/1058)
+* fix!: changelog with breaking change (#1056) ([e380844](https://github.com/transferwise/neptune-web/commit/e3808444a27d995297c48a57ffa43ba336a4d411)), closes [#1056](https://github.com/transferwise/neptune-web/issues/1056)
+
+
+### BREAKING CHANGES
+
+* The property name for the refresh-on-change feature used to be refreshRequirementsOnChange in V2.
+But it's refreshFormOnChange in V3.
+* The property name for the refresh-on-change feature used to be `refreshRequirementsOnChange` in V2.
+But it's `refreshFormOnChange` in V3.
+
+
+
+
+
+## [13.8.13](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.12...@transferwise/dynamic-flows@13.8.13) (2021-07-22)
+
+**BREAKING CHANGE:** This version contains a breaking change, but was incorrectly released as a patch.
+
+The property name for the refresh-on-change feature used to be `refreshRequirementsOnChange` in V2.
+But it's `refreshFormOnChange` in V3.
+
+We'll try to unpublish this version from the npm registry.
+
+
+
+## [13.8.12](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.11...@transferwise/dynamic-flows@13.8.12) (2021-07-20)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [13.8.11](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.10...@transferwise/dynamic-flows@13.8.11) (2021-07-20)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 ## [13.8.10](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@13.8.9...@transferwise/dynamic-flows@13.8.10) (2021-07-19)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

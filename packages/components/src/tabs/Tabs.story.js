@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Tabs from './Tabs';
 import { Size, Width } from '../common';
 
@@ -8,7 +8,7 @@ export default {
 };
 
 export const basic = () => {
-  const [selected, setSelected] = React.useState(0);
+  const [selected, setSelected] = useState(0);
   return (
     <Tabs
       className="tabs-custom-class"
@@ -48,7 +48,7 @@ export const basic = () => {
 };
 
 export const blockTabHeaderWidth = () => {
-  const [selected, setSelected] = React.useState(0);
+  const [selected, setSelected] = useState(0);
   return (
     <Tabs
       className="tabs-custom-class"
@@ -91,7 +91,7 @@ export const blockTabHeaderWidth = () => {
 };
 
 export const noPanelAnimation = () => {
-  const [selected, setSelected] = React.useState(0);
+  const [selected, setSelected] = useState(0);
   return (
     <Tabs
       animatePanels={false}

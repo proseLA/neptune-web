@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import React from 'react';
 import '@testing-library/jest-dom';
 import { render, cleanup, screen, userEvent } from '../test-utils';
 

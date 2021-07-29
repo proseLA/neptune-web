@@ -1,4 +1,3 @@
-import React from 'react';
 import { Freeze } from '@transferwise/icons';
 
 import { render, userEvent } from '../../test-utils';

@@ -1,9 +1,9 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Layout } from '../common';
 
-const Header = React.forwardRef((props, ref) => {
+const Header = forwardRef((props, ref) => {
   const { bottomContent, className, layout, leftContent, rightContent } = props;
   const isVertical = layout === Layout.VERTICAL;
 

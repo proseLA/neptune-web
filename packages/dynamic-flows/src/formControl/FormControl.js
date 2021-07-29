@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import Types from 'prop-types';
 import {
   Checkbox,
@@ -329,6 +329,7 @@ export default class FormControl extends PureComponent {
         return (
           <Upload
             {...uploadProps}
+            usAccept={uploadProps.usAccept || '*'}
             usDisabled={uploadProps.usDisabled || disabled}
             onSuccess={this.handleOnChange}
             onFailure={this.handleOnChange}

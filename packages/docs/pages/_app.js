@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import React from 'react';
+import * as React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -49,17 +49,27 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, locale, messages } = this.props;
 
+    /**
+     * NextJS provides polyfills out of the box (https://nextjs.org/docs/basic-features/supported-browsers-features) using core-js,
+     * which doesn't provide polyfills for a couple things (https://github.com/zloirock/core-js#missing-polyfills)
+     * so we have to do that ourselves
+     */
+    const polyfills = ['Element.prototype.closest', 'Intl.Locale', 'IntersectionObserver'].join(
+      '%2C',
+    );
     return (
-      <Provider i18n={{ locale, messages }}>
+      <>
         <Head>
           <title>Neptune Web - the Wise Design System on Web</title>
           <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
+          <script src={`https://polyfill.io/v3/polyfill.min.js?features=${polyfills}`} />
         </Head>
-
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+        <Provider i18n={{ locale, messages }}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
+      </>
     );
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -68,15 +68,16 @@ class ProcessIndicator extends Component {
   };
 
   render() {
+    const { className, 'data-testid': dataTestId } = this.props;
     const { size, status } = this.state;
-    const classes = classNames(`process process-${size}`, {
+    const classes = classNames(`process process-${size}`, className, {
       [`process-danger`]: status === Status.FAILED,
       [`process-stopped`]: status === Status.HIDDEN,
       [`process-success`]: status === Status.SUCCEEDED,
     });
 
     return (
-      <span className={classes}>
+      <span className={classes} data-testid={dataTestId}>
         <span className="process-icon-container">
           <span className="process-icon-horizontal" />
           <span className="process-icon-vertical" />
@@ -98,12 +99,16 @@ ProcessIndicator.propTypes = {
   status: PropTypes.oneOf(['processing', 'failed', 'succeeded', 'hidden']),
   size: PropTypes.oneOf(['xs', 'sm', 'xl']),
   onAnimationCompleted: PropTypes.func,
+  className: PropTypes.string,
+  'data-testid': PropTypes.string,
 };
 
 ProcessIndicator.defaultProps = {
   status: Status.PROCESSING,
   size: Size.SMALL,
   onAnimationCompleted: null,
+  className: undefined,
+  'data-testid': null,
 };
 
 export default ProcessIndicator;

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
-import React from 'react';
+import { useState } from 'react';
 import { select, text } from '@storybook/addon-knobs';
 import { Button, Modal, DateInput } from '..';
 import { Size, Scroll, Position } from '../common';
@@ -12,7 +12,7 @@ export default {
 
 export const basic = () => {
   const size = select('size', Object.values(Size), Size.MEDIUM);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const title = text('title', 'title');
   const scroll = select('scroll', Object.values(Scroll), Scroll.CONTENT);
   const position = select('position', Object.values(Position), Position.CENTER);

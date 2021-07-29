@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import { useIntl } from 'react-intl';
 import { isEmpty, isObject } from '@transferwise/neptune-validation';
@@ -6,10 +6,10 @@ import { Loader } from '@transferwise/components';
 import { withErrorBoundary } from './errorBoundary';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
-
-import { restHttpClient as defaultHttpClient } from './httpClient';
+import { httpClient as defaultHttpClient } from './client';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { Size } from '../common';
+import { getValidModelParts } from '../common/validation/valid-model';
 
 /**
  * ## DynamicFlow
@@ -20,7 +20,7 @@ import { Size } from '../common';
  * and reformats it to use a DynamicLayout for presentation.
  */
 const DynamicFlow = (props) => {
-  const { baseUrl, flowUrl, httpClient, onClose, onStepChange, onError } = props;
+  const { baseUrl, flowUrl, onClose, onStepChange, onError, httpClient: propsHttpClient } = props;
 
   const { locale } = useIntl();
 
@@ -31,63 +31,79 @@ const DynamicFlow = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
 
-  const INITIALIZATION_SCHEMA_PROPERTY = 'initial';
+  const httpClient = propsHttpClient || defaultHttpClient.init({ baseUrl });
 
   useEffect(() => {
     const action = { url: flowUrl, method: 'GET' };
     fetchStep(action);
-  }, [baseUrl, flowUrl]);
+  }, [baseUrl, flowUrl, propsHttpClient]);
 
   useEffect(() => {
     if (stepSpecification?.model) {
-      setModels({ [INITIALIZATION_SCHEMA_PROPERTY]: stepSpecification.model });
+      setModels(buildInitialModels(stepSpecification.model, stepSpecification.schemas));
     }
   }, [stepSpecification]);
 
-  const fetchStep = async (action, data) => {
+  useEffect(() => {
+    setModelIsValid(areModelsValid(models, stepSpecification.schemas));
+  }, [models]);
+
+  const fetchStep = (action, data) => {
+    const prevStep = stepSpecification;
+
     setLoading(true);
 
-    return getHttpClient()
+    return httpClient
       .request({ action, data })
       .then(checkForExitCondition)
-      .then(({ data: json }) => {
-        setStepSpecification(json);
+      .then(({ data: nextStep }) => {
+        setStepSpecification(nextStep);
 
-        onStepChange(json);
+        onStepChange(nextStep, prevStep);
+
+        setSubmitted(false);
       })
-      .then(() => setSubmitted(false))
-      .catch(handleFetchError)
+      .catch(handleFetchValidationError)
+      .catch((error) => {
+        onError(error);
+        throw error;
+      })
       .finally(() => setLoading(false));
   };
 
   const fetchRefresh = (action, data) => {
-    return getHttpClient()
+    return httpClient
       .request({ action, data })
       .then(({ data: json }) => {
         setStepSpecification(json);
       })
-      .catch(handleFetchError);
+      .catch(handleFetchValidationError)
+      .catch((error) => {
+        onError(error);
+        throw error;
+      });
   };
 
   const fetchExitResult = (action, data) => {
-    return getHttpClient()
+    return httpClient
       .request({ action, data })
       .then(validateExitResult)
-      .catch(handleFetchError);
+      .catch(handleFetchValidationError)
+      .catch((error) => {
+        onError(error);
+        throw error;
+      });
   };
 
-  const handleFetchError = (error) => {
+  const handleFetchValidationError = (error) => {
     const { validation } = error;
 
     if (validation) {
       setValidations(validation);
     } else {
-      onError(error);
       throw error;
     }
   };
-
-  const getHttpClient = () => httpClient || defaultHttpClient.init({ baseUrl });
 
   const checkForExitCondition = (response) =>
     new Promise((resolve) => {
@@ -114,15 +130,21 @@ const DynamicFlow = (props) => {
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
     const { $id } = formSchema;
 
-    const updatedModels = updateModels($id, newModel);
+    // Multiple children might trigger model updates, we must access the previous model to ensure all changes are reflected in the new model
+    setModels((prevModels) => {
+      const updatedModels = {
+        ...prevModels,
+        [$id]: newModel,
+      };
 
-    if (triggerSchema?.refreshRequirementsOnChange) {
-      const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
+      if (triggerSchema?.refreshFormOnChange) {
+        const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
+        const action = { url, method: 'POST' };
+        fetchRefresh(action, combineModels(updatedModels));
+      }
 
-      const action = { url, method: 'POST' };
-
-      fetchRefresh(action, combineModels(updatedModels));
-    }
+      return updatedModels;
+    });
   };
 
   const onAction = async (action) => {
@@ -161,25 +183,21 @@ const DynamicFlow = (props) => {
     fetchStep(action);
   };
 
-  const updateModels = (schemaRef, model) => {
-    delete models[INITIALIZATION_SCHEMA_PROPERTY];
+  const buildInitialModels = (model, schemas) => {
+    const schemaIdToModelMap = {};
 
-    const newModels = {
-      ...models,
-      [schemaRef]: model,
-    };
+    schemas.forEach((schema) => {
+      schemaIdToModelMap[schema.$id] = getValidModelParts(stepSpecification.model, schema);
+    });
 
-    setModels(newModels);
-    setModelIsValid(areModelsValid(newModels, stepSpecification.schemas));
-
-    return newModels;
+    return schemaIdToModelMap;
   };
 
   const combineModels = (formModels) =>
     Object.values(formModels).reduce((prev, model) => ({ ...prev, ...model }), {});
 
   const areModelsValid = (formModels, schemas) =>
-    !schemas.some((schema) => !isValidSchema(formModels[schema.$id] || {}, schema));
+    !schemas?.some((schema) => !isValidSchema(formModels[schema.$id] || {}, schema));
 
   const isSubmissionMethod = (method) => {
     const submissionMethods = ['POST', 'PUT', 'PATCH'];
@@ -202,7 +220,7 @@ const DynamicFlow = (props) => {
     components && (
       <div className="m-a-3 m-t-5">
         {loading ? (
-          <Loader size={Size.SMALL} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+          <Loader size={Size.EXTRA_LARGE} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
         ) : (
           <DynamicLayout
             components={components}
@@ -222,22 +240,22 @@ const DynamicFlow = (props) => {
 
 // eslint-disable-next-line
 DynamicFlow.propTypes = {
-  baseUrl: Types.string,
+  baseUrl: Types.string.isRequired,
   flowUrl: Types.string,
+  onClose: Types.func,
+  onStepChange: Types.func,
+  onError: Types.func,
   httpClient: Types.shape({
     request: Types.func,
   }),
-  onClose: Types.func.isRequired,
-  onStepChange: Types.func,
-  onError: Types.func,
 };
 
 DynamicFlow.defaultProps = {
-  baseUrl: '',
   flowUrl: '',
-  httpClient: undefined,
+  onClose: () => {},
   onStepChange: () => {},
   onError: () => {},
+  httpClient: undefined,
 };
 
 export default withErrorBoundary(DynamicFlow);

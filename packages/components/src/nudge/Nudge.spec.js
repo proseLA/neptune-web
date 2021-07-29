@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent, cleanup } from '../test-utils';
 
 import Nudge from '.';

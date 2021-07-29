@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import React from 'react';
 import { shallow } from 'enzyme';
 import { Radio, RadioGroup } from '..';
 import Avatar, { AvatarType } from '../avatar';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import DynamicFlow from '.';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';
@@ -19,6 +17,9 @@ describe('Given a component for rendering a dynamic flow', () => {
   let mockClient;
   let onClose;
   let onStepChange;
+  let onError;
+
+  const translations = { 'neptune.CloseButton.ariaLabel': 'label' };
 
   const successAction = {
     label: 'Submit',
@@ -32,16 +33,22 @@ describe('Given a component for rendering a dynamic flow', () => {
     url: '/failure',
   };
 
+  const validationFailureAction = {
+    label: 'Submit',
+    method: 'POST',
+    url: '/validationFailure',
+  };
+
   const navigateAction = {
     label: 'Skip',
     method: 'GET',
     url: '/next',
   };
 
-  const actions = [successAction, navigateAction, failureAction];
+  const actions = [successAction, navigateAction, failureAction, validationFailureAction];
 
   const numberSchema = { type: 'number' };
-  const stringSchema = { type: 'string', refreshRequirementsOnChange: true };
+  const stringSchema = { type: 'string', refreshFormOnChange: true };
 
   const thingSchema = {
     $id: '#thing',
@@ -125,12 +132,17 @@ describe('Given a component for rendering a dynamic flow', () => {
     },
   };
 
+  const baseUrl = '';
   const formUrl = '/form';
   const formNoLayoutUrl = '/formNoLayout';
   const decisionUrl = '/decision';
   const finalUrl = '/final';
 
   const errorResponse = {
+    error: new Error(),
+  };
+
+  const validationErrorResponse = {
     error: "That's not allowed",
     validation: {
       a: 'something wrong with this',
@@ -185,13 +197,15 @@ describe('Given a component for rendering a dynamic flow', () => {
       case '/refresh':
       case '/refreshFromTrigger':
         if (data.failure) {
-          return reject(errorResponse);
+          return reject(validationErrorResponse);
         }
         return resolve(newStep);
       case '/failure':
         return reject(errorResponse);
+      case '/validationFailure':
+        return reject(validationErrorResponse);
       default:
-        return reject(errorResponse);
+        return reject(validationErrorResponse);
     }
   };
 
@@ -214,6 +228,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     };
     onClose = jest.fn();
     onStepChange = jest.fn();
+    onError = jest.fn();
     convertStepToLayout.mockClear();
     inlineReferences.mockClear();
   });
@@ -225,6 +240,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       // Use mount an manually mock, information above
       component = mount(
         <DynamicFlow
+          baseUrl={baseUrl}
           flowUrl={decisionUrl}
           httpClient={mockClient}
           onClose={onClose}
@@ -249,6 +265,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     beforeEach(() => {
       component = mount(
         <DynamicFlow
+          baseUrl={baseUrl}
           flowUrl={decisionUrl}
           httpClient={mockClient}
           onClose={onClose}
@@ -268,6 +285,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     beforeEach(() => {
       component = mount(
         <DynamicFlow
+          baseUrl={baseUrl}
           flowUrl={formNoLayoutUrl}
           httpClient={mockClient}
           onClose={onClose}
@@ -291,6 +309,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     beforeEach(() => {
       component = mount(
         <DynamicFlow
+          baseUrl={baseUrl}
           flowUrl={finalUrl}
           httpClient={mockClient}
           onClose={onClose}
@@ -315,6 +334,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     beforeEach(() => {
       component = mount(
         <DynamicFlow
+          baseUrl={baseUrl}
           flowUrl={formUrl}
           httpClient={mockClient}
           onClose={onClose}
@@ -485,13 +505,13 @@ describe('Given a component for rendering a dynamic flow', () => {
         onStepChange.mockClear();
 
         getLayout().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
-        getLayout().invoke('onAction')(failureAction);
+        getLayout().invoke('onAction')(validationFailureAction);
       });
 
       waitBeforeEach();
 
       it('should pass those errors to the layout', () => {
-        expect(getLayout().prop('errors')).toBe(errorResponse.validation);
+        expect(getLayout().prop('errors')).toBe(validationErrorResponse.validation);
         // TODO deal with global errors
       });
 
@@ -513,7 +533,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should trigger the onStepChange callback with the new step', () => {
-        expect(onStepChange).toHaveBeenCalledWith(newStep);
+        expect(onStepChange).toHaveBeenCalledWith(newStep, formStep);
       });
     });
 
@@ -674,6 +694,38 @@ describe('Given a component for rendering a dynamic flow', () => {
 
       it('should not trigger onStepChange', () => {
         expect(onStepChange).not.toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe('when there is a step with exceptions', () => {
+    beforeEach(() => {
+      component = mount(
+        <DynamicFlow
+          baseUrl={baseUrl}
+          flowUrl={decisionUrl}
+          httpClient={mockClient}
+          onClose={onClose}
+          onStepChange={onStepChange}
+          onError={onError}
+        />,
+        'en-GB',
+        translations,
+      );
+    });
+
+    waitBeforeEach();
+
+    describe('when a JS error is thrown', () => {
+      const errors = new Error();
+
+      beforeEach(() => {
+        getLayout().simulateError(errors);
+      });
+
+      it('it should call onError with error', () => {
+        expect(onClose).not.toHaveBeenCalled();
+        expect(onError).toHaveBeenCalledWith(errors);
       });
     });
   });

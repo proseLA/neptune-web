@@ -1,4 +1,3 @@
-import React from 'react';
 import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';

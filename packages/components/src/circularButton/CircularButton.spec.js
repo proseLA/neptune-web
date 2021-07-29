@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { Plus } from '@transferwise/icons';
 import { render, screen, userEvent } from '../test-utils';
