@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '../test-utils';
 
@@ -7,7 +6,6 @@ import SizeSwapper from '.';
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
 
 describe('SizeSwapper', () => {
-  const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
   const resetClientWidth = (width) => {
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
       configurable: true,
@@ -28,6 +26,11 @@ describe('SizeSwapper', () => {
   }));
 
   afterAll(() => {
+    const originalClientWidth = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      'clientWidth',
+    );
+
     Object.defineProperty(HTMLElement.prototype, 'clientWidth', originalClientWidth);
   });
 

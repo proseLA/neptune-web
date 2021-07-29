@@ -1,4 +1,3 @@
-import React from 'react';
 import Types from 'prop-types';
 import { parseISO, format } from 'date-fns';
 import { printDate } from '../utils/pageUtils';

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Types from 'prop-types';
 import classNames from 'classnames';
 

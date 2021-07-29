@@ -1,4 +1,3 @@
-import React from 'react';
 import { act, render, fireEvent, waitFor, screen } from '../test-utils';
 import Info, { InfoPresentation } from '.';
 import { Size } from '../common';

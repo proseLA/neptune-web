@@ -1,4 +1,3 @@
-import React from 'react';
 import { array } from '@storybook/addon-knobs';
 import InstructionsList from './InstructionsList';
 

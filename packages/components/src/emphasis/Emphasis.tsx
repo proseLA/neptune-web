@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import EmphasisHtmlTransformer from './EmphasisHtmlTransformer';
 
 import './Emphasis.css';

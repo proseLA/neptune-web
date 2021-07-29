@@ -1,4 +1,3 @@
-import React from 'react';
 import { select, text, number, date } from '@storybook/addon-knobs';
 import DynamicFieldDefinitionList from './DynamicFieldDefinitionList';
 import { Layout } from '../common';

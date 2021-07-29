@@ -1,4 +1,3 @@
-import React from 'react';
 import PersistAsyncSchema from './PersistAsyncSchema';
 import BasicTypeSchema from '../basicTypeSchema';
 import SchemaFormControl from '../schemaFormControl';

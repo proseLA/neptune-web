@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Types from 'prop-types';
 import { RadioGroup } from '@transferwise/components';
 import { mapAvatar, mapIcon } from '../../schemaFormControl/optionMapper';

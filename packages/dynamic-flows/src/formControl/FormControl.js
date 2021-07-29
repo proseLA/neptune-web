@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import Types from 'prop-types';
 import {
   Checkbox,

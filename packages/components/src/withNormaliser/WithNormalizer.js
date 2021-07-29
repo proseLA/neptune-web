@@ -1,4 +1,4 @@
-import React from 'react';
+import { cloneElement } from 'react';
 
 import { normalizeEvent } from './validation/event-utilities';
 
@@ -22,7 +22,7 @@ const WithNormaliser = ({ children }) => {
     }
   });
 
-  return React.cloneElement(children, {
+  return cloneElement(children, {
     ...eventHandlers,
   });
 };

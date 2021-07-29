@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 import { Profile as ProfileIcon, Globe as GlobeIcon } from '@transferwise/icons';
 
@@ -11,7 +11,7 @@ export default {
 };
 
 export const basic = () => {
-  const [selected, setSelected] = React.useState({
+  const [selected, setSelected] = useState({
     value: 0,
     label: 'A thing',
     note: 'with a note',
@@ -69,7 +69,7 @@ export const basic = () => {
 };
 
 export const customSearchFunction = () => {
-  const [selected, setSelected] = React.useState({
+  const [selected, setSelected] = useState({
     value: 1,
     label: 'EUR',
     currency: 'EUR',
@@ -181,8 +181,8 @@ export const customSearchFunction = () => {
 };
 
 export const advancedSearch = () => {
-  const [searchValue, setSearchValue] = React.useState('');
-  const [selected, setSelected] = React.useState({
+  const [searchValue, setSearchValue] = useState('');
+  const [selected, setSelected] = useState({
     value: 0,
     label: 'A thing',
     note: 'with a note',

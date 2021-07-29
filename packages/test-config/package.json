@@ -21,16 +21,16 @@
     "url": "git+https://github.com/transferwise/neptune-web.git"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.7.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/react-hooks": "^7.0.0",
-    "@testing-library/user-event": "^13.1.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@testing-library/user-event": "^13.1.9",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "jest": "^27.0.4",
-    "jest-cli": "^26.0.1",
+    "jest": "^27.0.6",
+    "jest-cli": "^27.0.6",
     "jest-fetch-mock": "^3.0.3",
-    "jest-runner-eslint": "^0.9.0"
+    "jest-runner-eslint": "^0.10.1"
   },
   "peerDependencies": {
     "@transferwise/eslint-config": "^6.0.0"

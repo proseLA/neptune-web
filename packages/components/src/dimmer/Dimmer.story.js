@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Button, Dimmer } from '..';

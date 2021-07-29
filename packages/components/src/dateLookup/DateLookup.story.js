@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { boolean, select, date, text } from '@storybook/addon-knobs';
 import DateLookup from './DateLookup';
 import { Size } from '../common';

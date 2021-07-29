@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import DimmerAppendingToBody, { Dimmer } from './Dimmer';

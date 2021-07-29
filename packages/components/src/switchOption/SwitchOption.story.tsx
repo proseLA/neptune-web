@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 

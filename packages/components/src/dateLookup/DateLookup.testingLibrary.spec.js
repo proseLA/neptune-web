@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
 

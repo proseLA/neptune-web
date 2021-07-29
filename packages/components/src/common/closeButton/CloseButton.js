@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
@@ -8,7 +8,7 @@ import messages from './CloseButton.messages';
 
 import './CloseButton.css';
 
-export const CloseButton = React.forwardRef((props, ref) => {
+export const CloseButton = forwardRef((props, ref) => {
   const intl = useIntl();
   const { onClick, className, size } = props;
   return (

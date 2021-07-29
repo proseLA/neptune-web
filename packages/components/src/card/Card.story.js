@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { select, text } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 

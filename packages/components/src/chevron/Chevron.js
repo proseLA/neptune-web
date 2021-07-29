@@ -1,5 +1,4 @@
 import '@transferwise/neptune-css/dist/css/chevron.css';
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ChevronUp } from '@transferwise/icons';

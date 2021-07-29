@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Types from 'prop-types';
 import { isNull } from '@transferwise/neptune-validation';
 import { useIntl } from 'react-intl';

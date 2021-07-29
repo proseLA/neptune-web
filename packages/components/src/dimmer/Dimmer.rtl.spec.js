@@ -1,4 +1,3 @@
-import React from 'react';
 import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
 
 import { render, cleanup, waitFor, screen, userEvent } from '../test-utils';

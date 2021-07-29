@@ -1,4 +1,3 @@
-import React from 'react';
 import { text, number } from '@storybook/addon-knobs';
 import Money from './Money';
 

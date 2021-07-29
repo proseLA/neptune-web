@@ -1,4 +1,4 @@
-import React, { ReactChild, ReactElement } from 'react';
+import { ReactChild, ReactElement } from 'react';
 import classNames from 'classnames';
 
 import Option from '../common/Option';
@@ -45,6 +45,7 @@ const ActionOption = ({
       button={
         <Button
           className="p-x-0"
+          aria-label={`${title}, ${action}`}
           type={ControlType.ACCENT}
           priority={Priority.TERTIARY}
           size={Size.SMALL}

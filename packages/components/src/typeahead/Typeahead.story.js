@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Search as SearchIcon } from '@transferwise/icons';
 import { select, boolean } from '@storybook/addon-knobs';
 import Typeahead from './Typeahead';
@@ -39,7 +39,7 @@ export const createable = () => {
 };
 
 export const basic = () => {
-  const [options, setOptions] = React.useState([
+  const [options, setOptions] = useState([
     {
       label: 'A thing',
       note: 'with a note',

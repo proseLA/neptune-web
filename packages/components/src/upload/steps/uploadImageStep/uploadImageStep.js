@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import { createRef, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Upload as UploadIcon } from '@transferwise/icons';
 
 class UploadImageStep extends PureComponent {
   constructor() {
     super();
-    this.uploadInputRef = React.createRef();
+    this.uploadInputRef = createRef();
   }
 
   onManualUpload = () => {

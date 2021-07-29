@@ -1,4 +1,3 @@
-import React from 'react';
 import { boolean, object, select, text } from '@storybook/addon-knobs';
 import AvatarWrapper from './AvatarWrapper';
 import { ProfileType } from '../common';

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
+import * as React from 'react';
 import {
   InfoCircle,
   CheckCircle,

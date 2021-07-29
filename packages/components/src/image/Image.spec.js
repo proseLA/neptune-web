@@ -1,5 +1,3 @@
-import React from 'react';
-
 import '@testing-library/jest-dom';
 import { render, fireEvent } from '../test-utils';
 import * as useHasIntersectedUtils from '../common/hooks/useHasIntersected/useHasIntersected';

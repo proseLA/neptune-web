@@ -1,4 +1,3 @@
-import React from 'react';
 import Types from 'prop-types';
 
 const PrintBundleSize = ({ bundleSize }) => <small>{bundleSize} Kb</small>;

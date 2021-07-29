@@ -1,5 +1,3 @@
-import React from 'react';
-
 import NavigationOptionsList from '.';
 import NavigationOption from '../navigationOption';
 

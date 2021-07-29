@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent, screen } from '../test-utils';
 import Modal from './Modal';
 import { Position, Scroll } from '../common';

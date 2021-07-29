@@ -1,5 +1,3 @@
-import React from 'react';
-
 import DynamicFlow from '.';
 import DynamicLayout from '../layout';
 import { convertStepToLayout, inlineReferences } from './layoutService';

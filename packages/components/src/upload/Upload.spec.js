@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Upload from '.';
 import { CompleteStep, UploadImageStep, MediaUploadStep, ProcessingStep } from './steps';
@@ -179,7 +178,7 @@ describe('Upload', () => {
         .instance()
         .fileDropped(TEST_FILE)
         .then(() => {
-          jest.runTimersToTime(props.animationDelay);
+          jest.advanceTimersByTime(props.animationDelay);
           component.update();
           expect(component.find(ProcessingStep).props()).toEqual({
             ...PROCESSING_STEP_PROPS,
@@ -196,7 +195,7 @@ describe('Upload', () => {
         .instance()
         .fileDropped(TEST_FILE)
         .then(() => {
-          jest.runTimersToTime(props.animationDelay);
+          jest.advanceTimersByTime(props.animationDelay);
           component.update();
           expect(component.find(ProcessingStep).props()).toEqual({
             ...PROCESSING_STEP_PROPS,
@@ -219,7 +218,7 @@ describe('Upload', () => {
         .instance()
         .fileDropped(TEST_FILE)
         .then(() => {
-          jest.runTimersToTime(props.animationDelay + ANIMATION_DELAY);
+          jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
           component.update();
           expect(component.find(UploadImageStep)).toHaveLength(0);
 
@@ -238,7 +237,7 @@ describe('Upload', () => {
         .instance()
         .fileDropped(TEST_FILE)
         .then(async () => {
-          jest.runTimersToTime(props.animationDelay + ANIMATION_DELAY);
+          jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
           component.update();
           expect(component.find(CompleteStep).props()).toEqual({
             ...COMPLETED_STEP_PROPS,
@@ -258,7 +257,7 @@ describe('Upload', () => {
         .instance()
         .fileDropped(TEST_FILE)
         .then(() => {
-          jest.runTimersToTime(props.animationDelay + ANIMATION_DELAY);
+          jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
           expect(props.onSuccess).toHaveBeenCalledWith('ServerResponse', TEST_FILE.name);
           done();
         });

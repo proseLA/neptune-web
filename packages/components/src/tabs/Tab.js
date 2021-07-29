@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Tab = React.forwardRef(
+const Tab = forwardRef(
   ({ children, id, disabled, panelId, selected, onKeyDown, onClick, style, focusTab }, ref) => {
     const firstUpdate = useRef(true);
 

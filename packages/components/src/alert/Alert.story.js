@@ -1,5 +1,4 @@
 /* eslint-disable no-alert */
-import React from 'react';
 import { select, text, boolean } from '@storybook/addon-knobs';
 import { Emoji } from '@transferwise/icons';
 
