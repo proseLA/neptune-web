@@ -1,11 +1,7 @@
-import React from 'react';
 import { render, screen } from '../../test-utils';
-import { useDirection } from '../../common/hooks/useDirection/useDirection';
 
 import UploadItem, { UploadItemProps, TEST_IDS } from './UploadItem';
 import { Status } from '../../common';
-
-import MESSAGES from './UploadItem.messages';
 
 describe('UploadItem', () => {
   const props: UploadItemProps = {

@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
 import { NavigateAway as NavigateAwayIcon } from '@transferwise/icons';
@@ -7,7 +6,7 @@ import { AriaLabelProp, CommonProps, LinkProps } from '../common';
 
 import messages from './Link.messages';
 
-type Props = React.PropsWithChildren<CommonProps & AriaLabelProp & LinkProps>;
+type Props = PropsWithChildren<CommonProps & AriaLabelProp & LinkProps>;
 
 /**
  * Standard Link component with navigate away icon

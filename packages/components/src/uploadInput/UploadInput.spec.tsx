@@ -1,4 +1,3 @@
-import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { within } from '@testing-library/dom';
 import { render, screen, waitFor, waitForElementToBeRemoved, act } from '../test-utils';
@@ -8,7 +7,6 @@ import UploadInput, { UploadInputProps } from './UploadInput';
 import { TEST_IDS as UPLOAD_BUTTON_TEST_IDS } from './uploadButton/UploadButton';
 import { TEST_IDS as UPLOAD_ITEM_TEST_IDS } from './uploadItem/UploadItem';
 import { Status } from '../common';
-import UPLOAD_BUTTON_MESSAGES from './uploadButton/UploadButton.messages';
 
 describe('UploadInput', () => {
   const pngFile = new File(['foo'], 'foo.png', { type: 'image/png' });

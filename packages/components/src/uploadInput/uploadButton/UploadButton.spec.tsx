@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, userEvent } from '../../test-utils';
 
 import UploadButton, { UploadButtonProps, TEST_IDS } from './UploadButton';
