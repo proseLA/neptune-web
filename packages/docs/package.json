@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
-    "dev:compile-css": "gulp watchLess --src='static/assets' --dest='static/assets'",
+    "dev:compile-css": "gulp watchLess --src='static/assets' --dest='public/static/assets'",
     "dev:next": "node ./docgen.js && next dev",
     "docs": "yarn dev",
     "build": "npm-run-all build:*",
