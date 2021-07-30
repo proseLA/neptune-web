@@ -6,7 +6,7 @@
   "main": "./build/umd/polyfill/main.js",
   "module": "./build/es/polyfill/index.js",
   "types": "./build/types/index.d.ts",
-  "style": "./styles/main.css",
+  "style": "./build/main.css",
   "sideEffects": [
     "*.css"
   ],
@@ -36,7 +36,7 @@
     "build:umd-nopolyfill": "NODE_ENV=umd-nopolyfill rollup -c",
     "build:generate-types": "tsc && node ./scripts/generate-type-declarations.js",
     "build:copy-files": "cpx 'src/**/!(db)/*.{json,svg}' build/es/polyfill & cpx 'src/**/!(db)/*.{json,svg}' build/es/no-polyfill",
-    "build:copy-css": "cpx 'src/main.css' build/ & cpx 'src/**/*.css' styles/",
+    "build:copy-css": "cpx 'src/main.css' build/ & cpx 'src/**/*.css' build/styles/",
     "build:copy-lang": "cpx 'src/i18n/*.json' build/i18n && cpx 'src/i18n/index.js' build/i18n",
     "docs": "yarn build",
     "test": "jest --env=jsdom --maxWorkers=4 --config=../../node_modules/@transferwise/test-config/jest.config.js",

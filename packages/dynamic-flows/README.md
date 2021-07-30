@@ -24,7 +24,7 @@ npm install @transferwise/dynamic-flows react react-dom prop-types
 // These CSS files should be imported once in your application
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
-import '@transferwise/components/styles/main.css';
+import '@transferwise/components/build/main.css';
 import '@transferwise/dynamic-flows/styles/main.css';
 
 import { JsonSchemaForm } from '@transferwise/dynamic-flows';
