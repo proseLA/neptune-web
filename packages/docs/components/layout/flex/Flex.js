@@ -1,6 +1,3 @@
-/** @jsx jsx */
-// eslint-disable-next-line no-unused-vars
-import { jsx } from '@emotion/core';
 import { Children, cloneElement } from 'react';
 import Types from 'prop-types';
 import { Size, FlexDirection, Breakpoint } from '../common';

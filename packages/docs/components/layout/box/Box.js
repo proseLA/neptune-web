@@ -1,6 +1,3 @@
-/** @jsx jsx */
-// eslint-disable-next-line no-unused-vars
-import { jsx } from '@emotion/core';
 import Types from 'prop-types';
 
 import { Size, JustifyContent, AlignItems, Breakpoint, Spacer } from '../common';
