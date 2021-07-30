@@ -14,7 +14,7 @@ import '@transferwise/components/build/main.css';
 
 import { addBasePath } from '../utils/pageUtils';
 
-import '../static/assets/main.css';
+import '../public/static/assets/main.css';
 
 if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
   const ReactDOM = require('react-dom'); // eslint-disable-line global-require

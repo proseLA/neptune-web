@@ -3,11 +3,11 @@ import { ReactElement } from 'react';
 import { DocLink } from '../../utils/pageUtils';
 import { Meta } from '../../utils/sections';
 
-import popoverNew from '../../static/assets/blog/popover-release-mar-2021_4.png';
-import buttonPriorityMap from '../../static/assets/blog/button-release-mar-2021_1.png';
-import circularButtons from '../../static/assets/blog/button-release-mar-2021_3.png';
-import infoButton from '../../static/assets/blog/info-button-release-march-2021.png';
-import inlineAlert from '../../static/assets/blog/inline-alert-release-mar-2021_1.png';
+import popoverNew from '../../public/static/assets/blog/popover-release-mar-2021_4.png';
+import buttonPriorityMap from '../../public/static/assets/blog/button-release-mar-2021_1.png';
+import circularButtons from '../../public/static/assets/blog/button-release-mar-2021_3.png';
+import infoButton from '../../public/static/assets/blog/info-button-release-march-2021.png';
+import inlineAlert from '../../public/static/assets/blog/inline-alert-release-mar-2021_1.png';
 
 export const meta: Meta = {
   name: 'March Release',

@@ -6,11 +6,11 @@
   "private": true,
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
-    "dev:compile-css": "gulp watchLess --src='static/assets' --dest='public/static/assets'",
+    "dev:compile-css": "gulp watchLess --src='public/static/assets' --dest='public/public/static/assets'",
     "dev:next": "node ./docgen.js && next dev",
     "docs": "yarn dev",
     "build": "npm-run-all build:*",
-    "build:compile-css": "gulp compileLess --src='static/assets' --dest='static/assets'",
+    "build:compile-css": "gulp compileLess --src='public/static/assets' --dest='public/static/assets'",
     "build:docs-gen": "node ./docgen.js && node ./utils/bundleSize/getBundleSize.js",
     "build:next": "next build",
     "docs:deploy": "npm-run-all deploy:*",
