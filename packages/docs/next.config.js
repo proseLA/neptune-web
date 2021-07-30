@@ -1,11 +1,8 @@
 const rehypePrism = require('@mapbox/rehype-prism');
 const rehypeSlug = require('rehype-slug');
+const rehypeRaw = require('rehype-raw');
+
 const withImages = require('next-images');
-const withMDX = require('@next/mdx')({
-  options: {
-    rehypePlugins: [rehypeSlug, rehypePrism],
-  },
-});
 const withTM = require('next-transpile-modules')([
   '@transferwise/dynamic-flows',
   // Required for labs which is only exported as es version.
@@ -35,6 +32,33 @@ const nextConfig = {
   webpack(config, options) {
     const { isServer } = options;
 
+    config.module.rules.push({
+      test: /\.mdx$/,
+      use: [
+        {
+          loader: 'xdm/webpack.cjs',
+          options: {
+            rehypePlugins: [
+              rehypeSlug,
+              rehypePrism,
+              [
+                rehypeRaw,
+                {
+                  passThrough: [
+                    'mdxjsEsm',
+                    'mdxFlowExpression',
+                    'mdxTextExpression',
+                    'mdxJsxFlowElement',
+                    'mdxJsxTextElement',
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      ],
+    });
+
     config.module.rules.push(
       {
         test: [/\.code.js$/, /\.txt$/],
@@ -62,4 +86,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withTM(withImages(withMDX(nextConfig)));
+module.exports = withTM(withImages(nextConfig));
