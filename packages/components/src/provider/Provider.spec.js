@@ -1,10 +1,11 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { render, waitFor, cleanup, screen } from '@testing-library/react';
 
 import Provider from '.';
 import closeButtonMessages from '../common/closeButton/CloseButton.messages';
+import { useSafeIntl } from '../common';
 
 describe('Provider', () => {
   beforeAll(() => {
@@ -43,7 +44,7 @@ describe('Provider', () => {
   ])('check locale value "%s"', (locale, expectedValue) => {
     const messages = {};
     const TestComponent = () => {
-      const intl = useIntl();
+      const intl = useSafeIntl();
       return <>locale: {intl.locale}</>;
     };
     const { container } = render(

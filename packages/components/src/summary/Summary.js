@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React, { cloneElement } from 'react';
-import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import {
   CheckCircle as CheckCircleIcon,
@@ -10,7 +9,7 @@ import requiredIf from 'react-required-if';
 import { deprecated } from '../utilities';
 
 import Info from '../info';
-import { Status, Size } from '../common';
+import { Status, Size, useSafeIntl } from '../common';
 
 import messages from './Summary.messages';
 import './Summary.css';
@@ -43,7 +42,7 @@ const Summary = ({
   status,
   title,
 }) => {
-  const intl = useIntl();
+  const intl = useSafeIntl();
   const { isRTL } = useDirection();
 
   let media = illustration;

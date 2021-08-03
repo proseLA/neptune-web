@@ -57,7 +57,7 @@ Note: Please try to follow these rules for both exposed and internal components 
 
 ```javascript
 // don't
-export default injectIntl(SomeComponent);
+export default injectSafeIntl(SomeComponent);
 export default withSomeHoC(SomeComponent);
 
 // do 

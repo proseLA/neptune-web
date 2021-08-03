@@ -1,5 +1,4 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 import { CrossCircle } from '@transferwise/icons';
@@ -9,7 +8,7 @@ import messages from './DateTrigger.messages';
 
 import Chevron from '../../chevron';
 
-import { Size, Position } from '../../common';
+import { Size, Position, useSafeIntl } from '../../common';
 import './DateTrigger.css';
 
 const DateTrigger = ({
@@ -22,7 +21,7 @@ const DateTrigger = ({
   onClick,
   onClear,
 }) => {
-  const { locale, formatMessage } = useIntl();
+  const { locale, formatMessage } = useSafeIntl();
 
   const handleKeyDown = (e) => {
     if (isKey({ keyType: 'Space', event: e }) || isKey({ keyType: 'Enter', event: e })) {

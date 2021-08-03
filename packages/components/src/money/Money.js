@@ -1,10 +1,10 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { formatMoney } from '@transferwise/formatting';
+import { useSafeIntl } from '../common';
 
 const Money = ({ amount, currency }) => {
-  const { locale } = useIntl();
+  const { locale } = useSafeIntl();
   return <>{formatMoney(amount, currency, locale)}</>;
 };
 

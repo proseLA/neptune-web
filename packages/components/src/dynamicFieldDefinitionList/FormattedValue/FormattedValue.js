@@ -1,9 +1,9 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatDate, formatNumber } from '@transferwise/formatting';
 import { formatUsingPattern } from '../utils/text-format';
+import { useSafeIntl } from '../../common';
 
 import './FormattedValue.css';
 
@@ -24,7 +24,7 @@ const getValueLabel = (options, value) => {
 const mask = (value) => new Array(value.length + 1).join('*');
 
 const FormattedValue = ({ field, value }) => {
-  const { locale } = useIntl();
+  const { locale } = useSafeIntl();
   const style = [];
   if (field.tagClassName && field.tagClassName.h3) {
     style.push('h3');

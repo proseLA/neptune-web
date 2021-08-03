@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 
+import { useSafeIntl } from '../../../common';
 import messages from './PaginationLink.messages';
 
 const PaginationLink = ({ disabled, active, pageNumber, onClick, children }) => {
-  const intl = useIntl();
+  const intl = useSafeIntl();
 
   const handleClick = (e) => {
     e.preventDefault();

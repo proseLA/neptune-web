@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { isArray } from '@transferwise/neptune-validation';
 import classNames from 'classnames';
-import { Size } from '../common';
+import { Size, useSafeIntl } from '../common';
 
 import { useDirection } from '../common/hooks';
 
@@ -37,7 +36,7 @@ const PhoneNumberInput = (props) => {
     onBlur,
     countryCode,
   } = props;
-  const { locale } = useIntl();
+  const { locale } = useSafeIntl();
   const { isRTL } = useDirection();
 
   const getInitialValue = () => {

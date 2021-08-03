@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
+import { injectSafeIntl } from '../../../common';
 import { getDayNames, isWithinRange } from '../../../common/dateUtils';
 import { getStartOfDay } from '../../getStartOfDay';
 
@@ -135,4 +135,4 @@ DayCalendarTable.defaultProps = {
   max: null,
 };
 
-export default injectIntl(DayCalendarTable);
+export default injectSafeIntl(DayCalendarTable);

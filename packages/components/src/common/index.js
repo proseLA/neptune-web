@@ -19,3 +19,4 @@ export { MarkdownNodeType } from './propsValues/markdownNodeType';
 export { Key } from './key';
 export * from './locale';
 export * from './commonProps';
+export * from './safeIntl';

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
@@ -11,6 +10,7 @@ import { Key as keyValues } from '../common/key';
 
 import messages from './MoneyInput.messages';
 import { formatAmount, parseAmount } from './currencyFormatting';
+import { injectSafeIntl } from '../common';
 
 const Currency = PropTypes.shape({
   header: PropTypes.string,
@@ -383,4 +383,4 @@ MoneyInput.defaultProps = {
 // to be able to properly generate TS types, this is due to us wrapping this component in `injectIntl` before exporting
 export { MoneyInput };
 
-export default injectIntl(MoneyInput);
+export default injectSafeIntl(MoneyInput);

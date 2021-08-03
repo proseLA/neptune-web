@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Plus as PlusIcon } from '@transferwise/icons';
@@ -15,7 +14,7 @@ import {
 } from './utils';
 import './Upload.css';
 import messages from './Upload.messages';
-import { Status } from '../common';
+import { Status, injectSafeIntl } from '../common';
 
 const PROCESS_STATE = ['error', 'success'];
 
@@ -415,4 +414,4 @@ Upload.defaultProps = {
 // to be able to properly generate TS types, this is due to us wrapping this component in `injectIntl` before exporting
 export { Upload };
 
-export default injectIntl(Upload);
+export default injectSafeIntl(Upload);

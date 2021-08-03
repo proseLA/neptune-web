@@ -29,7 +29,7 @@ import { Provider, Button, Size } from '@transferwise/components';
 
 export default function Hello() {
   return (
-    <Provider i18n={{ locale: 'en-UK', messages: en }}>
+    <Provider i18n={{ locale: 'en-GB', messages: en }}>
       <Button size={Size.SMALL} block={true}>
         Hello Neptune
       </Button>

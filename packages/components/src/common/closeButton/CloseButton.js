@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 import { Cross as CrossIcon } from '@transferwise/icons';
 
+import { useSafeIntl } from '../safeIntl';
 import messages from './CloseButton.messages';
 
 import './CloseButton.css';
 
 export const CloseButton = React.forwardRef((props, ref) => {
-  const intl = useIntl();
+  const intl = useSafeIntl();
   const { onClick, className, size } = props;
   return (
     <button

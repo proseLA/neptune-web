@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
-import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
-import { MonthFormat } from '../../common';
+import { injectSafeIntl, MonthFormat } from '../../common';
 import Header from '../header';
 import DayCalendarTable from './table';
 
@@ -71,4 +70,4 @@ DayCalendar.defaultProps = {
   max: null,
 };
 
-export default injectIntl(DayCalendar);
+export default injectSafeIntl(DayCalendar);

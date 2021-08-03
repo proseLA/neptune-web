@@ -1,16 +1,16 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 
 import TableLink from '../../tableLink';
+import { useSafeIntl } from '../../../common';
 
 const ROWS = 5;
 const COLS = 4;
 const YEAR_ONLY_FORMAT = { year: 'numeric' };
 
 const YearCalendarTable = ({ selectedDate, min, max, viewYear, placeholder, onSelect }) => {
-  const { locale } = useIntl();
+  const { locale } = useSafeIntl();
   const startYear = viewYear - (viewYear % 20);
   const getLink = (year) => (
     <TableLink

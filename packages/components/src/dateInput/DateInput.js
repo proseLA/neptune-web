@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import '../common/polyfills/closest';
 import Select from '../select';
 
-import { Size, DateMode, MonthFormat } from '../common';
+import { Size, DateMode, MonthFormat, useSafeIntl } from '../common';
 
 import { explodeDate, convertToLocalMidnight } from './utils';
 import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/dateUtils';
@@ -32,7 +31,8 @@ const DateInput = ({
   id,
 }) => {
   const { isRTL } = useDirection();
-  const { locale } = useIntl();
+  const { locale } = useSafeIntl();
+
   const getDateObject = () => {
     if (value && isDateValid(value)) {
       return typeof value === 'string' ? convertToLocalMidnight(value) : value;
