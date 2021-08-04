@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[7811],{90822:function(n,u,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/blog/2021-08-03-august-release",function(){return _(40176)}])}},function(n){n.O(0,[9774,2888,179],(function(){return u=90822,n(n.s=u);var u}));var u=n.O();_N_E=u}]);
