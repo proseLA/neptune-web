@@ -294,6 +294,22 @@ describe('FormControl', () => {
         });
       }
 
+      describe(`when it's disabled`, () => {
+        it(`should render the ${controlType} as disabled`, () => {
+          const allProps = { ...defaultProps, type: controlType, placeholder, disabled: true };
+          component = shallow(<FormControl {...allProps} />);
+          expect(component.find(selector).prop('disabled')).toBe(true);
+        });
+      });
+
+      describe(`when it's readOnly`, () => {
+        it(`should render the ${controlType} as readOnly`, () => {
+          const allProps = { ...defaultProps, type: controlType, placeholder, readOnly: true };
+          component = shallow(<FormControl {...allProps} />);
+          expect(component.find(selector).prop('readOnly')).toBe(true);
+        });
+      });
+
       testFocusHandler(() => {
         component.simulate('focus');
       });

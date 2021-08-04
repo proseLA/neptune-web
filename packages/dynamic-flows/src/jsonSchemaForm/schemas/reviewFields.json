@@ -1,0 +1,95 @@
+{
+  "title": "Object schema",
+  "type": "object",
+  "alert": {
+    "context": "warning",
+    "markdown": "Some **markdown** goes here"
+  },
+  "properties": {
+    "number": {
+      "type": "number",
+      "title": "Review Number",
+      "readOnly": true,
+      "disabled": true
+    },
+    "string": {
+      "type": "string",
+      "title": "Review Text",
+      "readOnly": true,
+      "disabled": true
+    },
+    "password": {
+      "type": "string",
+      "control": "password",
+      "title": "Review Password",
+      "readOnly": true,
+      "disabled": true
+    },
+    "checkbox": {
+      "type": "boolean",
+      "title": "Owned by customer",
+      "readOnly": true,
+      "disabled": true
+    },
+    "textarea": {
+      "type": "string",
+      "control": "textarea",
+      "title": "Review TextArea",
+      "readOnly": true,
+      "disabled": true
+    },
+    "select": {
+      "type": "integer",
+      "title": "Review Select",
+      "control": "select",
+      "placeholder": "Favourite number?",
+      "readOnly": true,
+      "disabled": true,
+      "oneOf": [
+        {
+          "title": "One",
+          "const": 1,
+          "description": "The first number"
+        },
+        {
+          "title": "Two",
+          "const": 2,
+          "description": "The second number"
+        },
+        {
+          "title": "Three",
+          "const": 3,
+          "description": "The third number",
+          "disabled": true
+        }
+      ]
+    },
+    "radio": {
+      "type": "integer",
+      "title": "Review Radio",
+      "control": "radio",
+      "placeholder": "Favourite number?",
+      "readOnly": true,
+      "disabled": true,
+      "oneOf": [
+        {
+          "title": "One",
+          "const": 1,
+          "description": "The first number"
+        },
+        {
+          "title": "Two",
+          "const": 2,
+          "description": "The second number"
+        },
+        {
+          "title": "Three",
+          "const": 3,
+          "description": "The third number",
+          "disabled": true
+        }
+      ]
+    }
+  },
+  "required": ["number", "string", "select"]
+}

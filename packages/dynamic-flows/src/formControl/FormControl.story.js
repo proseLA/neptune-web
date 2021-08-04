@@ -1,5 +1,5 @@
 import React from 'react';
-import { select, text } from '@storybook/addon-knobs';
+import { select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import FormControl from './FormControl';
 
@@ -12,6 +12,8 @@ export const basic = () => {
   const control = select('control', Object.values(FormControl.Type), 'text');
   const size = select('size', Object.values(FormControl.Size), 'md');
   const label = text('label', 'label');
+  const disabled = boolean('disabled', false);
+  const readOnly = boolean('readOnly', false);
 
   const value = {
     text: 'a value',
@@ -20,6 +22,9 @@ export const basic = () => {
     'date-time': new Date(),
     tel: '+447573135343',
     number: 123456,
+    password: 'p455w0rd',
+    checkbox: true,
+    select: 2,
   };
 
   return (
@@ -37,8 +42,8 @@ export const basic = () => {
         { value: '2', label: 'Two' },
         { value: '3', label: 'Three', secondary: 'secondary text' },
       ]}
-      disabled={false}
-      readOnly={false}
+      disabled={disabled}
+      readOnly={readOnly}
       required={false}
       onChange={(val) => action(val)}
       onBlur={(val) => action(val)}

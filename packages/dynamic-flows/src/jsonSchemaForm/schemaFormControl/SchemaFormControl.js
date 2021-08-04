@@ -3,6 +3,7 @@ import Types from 'prop-types';
 
 import { isNull, isUndefined } from '@transferwise/neptune-validation';
 import FormControl from '../../formControl';
+import ReviewFormControl from '../../formControl/ReviewFormControl';
 import { getValidModelParts } from '../../common/validation/valid-model';
 import { isOneOfSchema } from '../../common/schemaTypes/schemaTypes';
 import { FormControlType } from '../../common';
@@ -94,10 +95,17 @@ const SchemaFormControl = (props) => {
     placeholder: props.schema.placeholder,
     autoComplete: !props.schema.help,
     disabled: props.disabled || props.schema.disabled,
+    readOnly: props.readOnly || props.schema.readOnly,
     displayPattern: props.schema.displayFormat,
   };
 
-  return <FormControl type={controlType} value={safeValue} {...events} {...controlProps} />;
+  const isReview = controlProps.readOnly && controlProps.disabled;
+
+  return isReview ? (
+    <ReviewFormControl type={controlType} value={safeValue} {...controlProps} />
+  ) : (
+    <FormControl type={controlType} value={safeValue} {...events} {...controlProps} />
+  );
 };
 
 SchemaFormControl.propTypes = {
@@ -112,6 +120,7 @@ SchemaFormControl.propTypes = {
     help: Types.shape({}),
     displayFormat: Types.string,
     disabled: Types.bool,
+    readOnly: Types.bool,
   }).isRequired,
   onChange: Types.func.isRequired,
   onFocus: Types.func,
@@ -119,6 +128,7 @@ SchemaFormControl.propTypes = {
   translations: Types.shape({}),
   locale: Types.string,
   disabled: Types.bool,
+  readOnly: Types.bool,
 };
 
 SchemaFormControl.defaultProps = {
@@ -128,6 +138,7 @@ SchemaFormControl.defaultProps = {
   onFocus: null,
   onBlur: null,
   disabled: false,
+  readOnly: false,
 };
 
 export default SchemaFormControl;

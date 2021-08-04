@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import SchemaFormControl from '.';
 
 import FormControl from '../../formControl';
+import ReviewFormControl from '../../formControl/ReviewFormControl';
 
 describe('Given a component for rendering a form control based on a schema', () => {
   let component;
@@ -489,6 +490,24 @@ describe('Given a component for rendering a form control based on a schema', () 
         formControlComponent = component.find(FormControl);
 
         expect(formControlComponent.prop('disabled')).toBe(true);
+      });
+    });
+  });
+
+  describe('Review Fields in Schema', () => {
+    describe('when props contains disabled and readOnly properties', () => {
+      it('should render a ReviewFormControl instead of a FormControl', () => {
+        props = { ...props, disabled: true, readOnly: true };
+        component = shallow(<SchemaFormControl {...props} />);
+        expect(component.find(ReviewFormControl).exists()).toBe(true);
+      });
+    });
+
+    describe('when props.schema contains disabled and readOnly properties', () => {
+      it('should render a ReviewFormControl instead of a FormControl', () => {
+        props = { ...props, schema: { ...props.schema, disabled: true, readOnly: true } };
+        component = shallow(<SchemaFormControl {...props} />);
+        expect(component.find(ReviewFormControl).exists()).toBe(true);
       });
     });
   });

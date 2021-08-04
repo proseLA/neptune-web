@@ -12,6 +12,7 @@ import audRecipientSchema from './schemas/audRecipient.json';
 import fileUploadPersistAsyncSchema from './schemas/uploadPersistAsync.json';
 import currencySchema from './schemas/currency.json';
 import validationAsyncSchema from './schemas/validationAsync.json';
+import reviewFieldsSchema from './schemas/reviewFields.json';
 
 export default {
   component: JsonSchemaForm,
@@ -29,13 +30,19 @@ export const basic = () => {
     'File upload persist async': fileUploadPersistAsyncSchema,
     validationAsync: validationAsyncSchema,
     currency: currencySchema,
+    reviewFields: reviewFieldsSchema,
   };
 
-  const schema = select('schema', schemas, simpleSchema);
+  const schema = select('schema', schemas, reviewFieldsSchema);
 
   const model = {
     number: 3,
     string: 'hi',
+    textarea: 'this is a long text',
+    password: '********',
+    checkbox: true,
+    select: 3,
+    radio: 2,
   };
 
   const stringError = text('error from server', '');
