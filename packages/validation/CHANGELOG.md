@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-validation@2.1.5...@transferwise/neptune-validation@3.0.0) (2021-08-06)
+
+
+* feat!: Neptune August Release (#1059) ([734f67d](https://github.com/transferwise/neptune-web/commit/734f67d978bee5a873f8747f91b7f1d8b9a81555)), closes [#1059](https://github.com/transferwise/neptune-web/issues/1059) [#976](https://github.com/transferwise/neptune-web/issues/976) [#1028](https://github.com/transferwise/neptune-web/issues/1028) [#1015](https://github.com/transferwise/neptune-web/issues/1015) [#1065](https://github.com/transferwise/neptune-web/issues/1065) [#1047](https://github.com/transferwise/neptune-web/issues/1047) [#1049](https://github.com/transferwise/neptune-web/issues/1049) [#1072](https://github.com/transferwise/neptune-web/issues/1072) [#1023](https://github.com/transferwise/neptune-web/issues/1023)
+
+
+### BREAKING CHANGES
+
+* https://transferwise.github.io/neptune-web/about/Setup#polyfills-for-web-browser-api
+* import CSS from `@transferwise/components` and `@transferwise/dynamic-flows`
+
+
+
+
+
 ## [2.1.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-validation@2.1.4...@transferwise/neptune-validation@2.1.5) (2021-07-05)
 
 **Note:** Version bump only for package @transferwise/neptune-validation
