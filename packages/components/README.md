@@ -21,8 +21,9 @@ npm install @transferwise/components react react-dom prop-types currency-flags
 ```
 
 ```js
-// This line only needs to be imported once in your application
+// These CSS files should be imported once in your application
 import '@transferwise/neptune-css/dist/css/neptune.css';
+import '@transferwise/components/build/main.css';
 
 import en from '@transferwise/components/build/i18n/en.json';
 import { Provider, Button, Size } from '@transferwise/components';

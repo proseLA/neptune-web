@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-curly-brace-presence */
 /* eslint-disable prettier/prettier */
 import { Alert, Sentiment } from '@transferwise/components';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Meta } from '../../utils/sections';
 
 export const meta: Meta = {

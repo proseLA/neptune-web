@@ -24,11 +24,9 @@ npm install react react-dom react-intl prop-types currency-flags # peer dependen
 ## Usage
 
 ```js
-// These CSS imports only need to be imported once in your application
+// These CSS files should be imported once in your application
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/icons/lib/styles/main.min.css';
-
-// This is only necessary if you are using the UMD build
 import '@transferwise/components/build/main.css';
 
 import {
@@ -62,6 +60,94 @@ For information on what classes are available, see the <DocLink href="/styles/co
 
 By default, apps come polyfilled. If you would like to use an unpolyfilled version because your app provides its own polyfills, see [Advanced Components Usage](#advanced-components-usage) below.
 
+<h2 id="polyfills-for-web-browser-api">Polyfills for Web / Browser API</h2>
+
+We don't provide polyfills for <a href="https://developer.mozilla.org/en-US/docs/Web/API">Web API</a>, please provide it yourself in whichever way it best works for you.
+
+Table of API that require some polyfills.
+
+<table className="docs-table table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Require polyfill(s) for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <DocLink href="components/context/Provider">Provider</DocLink>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale">
+              <code>Intl.Locale</code>
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <DocLink href="components/content/Image">Image</DocLink>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver">
+              <code>IntersectionObserver</code>
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <DocLink href="components/inputs/DateInput">DateInput</DocLink>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/closest">
+              <code>Element#closest</code>
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <DocLink href="components/inputs/Upload">Upload</DocLink>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch">
+              <code>fetch</code>
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>adjustLocale</code>, <code>getLangFromLocale</code>,<br /> and{' '}
+        <code>getCountryFromLocale</code> locale util functions
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale">
+              <code>Intl.Locale</code>
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Translations and the Provider
 
 `Provider` supplies translations for our components. It must be used in all applications that bundle components (i.e. has `@transferwise/components` as a `dependency`). You need to pass it an object containing the translated messages for the current locale. It doesn't matter what translations library you are using for your app translations, though we recommend [react-intl](https://formatjs.io/docs/react-intl).
@@ -80,7 +166,7 @@ import appTranslations from '...';
 import {
   Provider,
   getLangFromLocale,
-  translations as componentTranslations
+  translations as componentTranslations,
 } from '@transferwise/components';
 
 export default function App() {
@@ -102,7 +188,7 @@ import appTranslations from '...';
 import {
   Provider,
   getLangFromLocale,
-  translations as componentTranslations
+  translations as componentTranslations,
 } from '@transferwise/components';
 
 export default function App() {
@@ -324,7 +410,7 @@ You will need to find out how to specify module overrides in your particular bui
   },
 ```
 
-#### Tree-shaking
+### Tree-shaking
 
 By default when importing this - `import { Button, Upload } from "@transferwise/components";` - you will get **polyfilled UMD** if your bundler doesn't support tree-shaking, **polyfilled ES** if it does.
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FastFlag } from '@transferwise/icons';
 import { render, screen, fireEvent } from '../test-utils';
 
@@ -18,7 +17,7 @@ describe('ActionOption', () => {
 
     expect(
       screen.getByRole('button', {
-        name: 'action',
+        name: 'title, action',
       }),
     ).toBeInTheDocument();
     expect(screen.queryByText('title')).toBeInTheDocument();
@@ -35,7 +34,7 @@ describe('ActionOption', () => {
 
     fireEvent.click(
       screen.getByRole('button', {
-        name: 'action',
+        name: 'title, action',
       }),
     );
 
@@ -59,7 +58,7 @@ describe('ActionOption', () => {
 
     fireEvent.click(
       screen.getByRole('button', {
-        name: 'action',
+        name: 'title, action',
       }),
     );
 

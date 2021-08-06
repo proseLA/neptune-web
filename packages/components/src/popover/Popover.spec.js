@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, userEvent } from '../test-utils';
 import Popover from './Popover';
 import { Breakpoint, Position } from '../common';

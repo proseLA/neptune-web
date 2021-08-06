@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import { parseISO } from 'date-fns';

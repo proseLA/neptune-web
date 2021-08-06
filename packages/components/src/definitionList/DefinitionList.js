@@ -1,10 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Layout } from '../common';
-
-import './DefinitionList.css';
 
 const isLayoutHorizontal = (layout) =>
   [

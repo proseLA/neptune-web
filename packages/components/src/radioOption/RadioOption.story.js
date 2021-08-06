@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 
 import { boolean, text } from '@storybook/addon-knobs';

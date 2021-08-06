@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { boolean } from '@storybook/addon-knobs';
 import CheckboxButton from './CheckboxButton';
 

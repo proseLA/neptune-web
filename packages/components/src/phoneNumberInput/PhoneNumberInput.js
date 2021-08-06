@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { isArray } from '@transferwise/neptune-validation';
@@ -20,8 +20,6 @@ import {
 } from './utils';
 
 import countries from './data/countries';
-
-import './PhoneNumberInput.css';
 
 const ALLOWED_PHONE_CHARS = /^$|^[\d-\s]+$/;
 

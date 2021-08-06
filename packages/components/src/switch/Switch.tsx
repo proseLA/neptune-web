@@ -1,7 +1,7 @@
-import React, { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
+import { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
 import classnames from 'classnames';
 import { CheckCircle, CrossCircle } from '@transferwise/icons';
-import './Switch.css';
+
 import { logActionRequiredIf } from '../utilities';
 
 import KeyCodes from '../common/keyCodes';

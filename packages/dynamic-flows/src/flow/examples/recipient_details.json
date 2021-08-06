@@ -13,18 +13,11 @@
             {
               "title": "Inside Europe",
               "type": "object",
-              "displayOrder": [
-                "name",
-                "ownedByCustomer",
-                "details",
-                "type"
-              ],
+              "displayOrder": ["name", "ownedByCustomer", "details", "type"],
               "properties": {
                 "name": {
                   "type": "object",
-                  "displayOrder": [
-                    "fullName"
-                  ],
+                  "displayOrder": ["fullName"],
                   "properties": {
                     "fullName": {
                       "title": "Full name of the account holder",
@@ -42,9 +35,7 @@
                       "maxLength": 140
                     }
                   },
-                  "required": [
-                    "fullName"
-                  ]
+                  "required": ["fullName"]
                 },
                 "ownedByCustomer": {
                   "title": "My own Account",
@@ -54,10 +45,7 @@
                 },
                 "details": {
                   "type": "object",
-                  "displayOrder": [
-                    "bic",
-                    "iban"
-                  ],
+                  "displayOrder": ["bic", "iban"],
                   "properties": {
                     "bic": {
                       "title": "Bank code (BIC/SWIFT)",
@@ -97,9 +85,7 @@
                       "maxLength": 42
                     }
                   },
-                  "required": [
-                    "iban"
-                  ]
+                  "required": ["iban"]
                 },
                 "type": {
                   "title": "Type",
@@ -108,11 +94,7 @@
                   "const": "Iban"
                 }
               },
-              "required": [
-                "type",
-                "name",
-                "details"
-              ],
+              "required": ["type", "name", "details"],
               "icon": {
                 "name": "bank",
                 "type": "icon"
@@ -121,18 +103,11 @@
             {
               "title": "Outside Europe",
               "type": "object",
-              "displayOrder": [
-                "name",
-                "ownedByCustomer",
-                "details",
-                "type"
-              ],
+              "displayOrder": ["name", "ownedByCustomer", "details", "type"],
               "properties": {
                 "name": {
                   "type": "object",
-                  "displayOrder": [
-                    "fullName"
-                  ],
+                  "displayOrder": ["fullName"],
                   "properties": {
                     "fullName": {
                       "title": "Full name of the account holder",
@@ -150,9 +125,7 @@
                       "maxLength": 140
                     }
                   },
-                  "required": [
-                    "fullName"
-                  ]
+                  "required": ["fullName"]
                 },
                 "ownedByCustomer": {
                   "title": "My own Account",
@@ -162,10 +135,7 @@
                 },
                 "details": {
                   "type": "object",
-                  "displayOrder": [
-                    "bic",
-                    "accountNumber"
-                  ],
+                  "displayOrder": ["bic", "accountNumber"],
                   "properties": {
                     "bic": {
                       "title": "SWIFT / BIC code",
@@ -196,10 +166,7 @@
                       "maxLength": 34
                     }
                   },
-                  "required": [
-                    "bic",
-                    "accountNumber"
-                  ]
+                  "required": ["bic", "accountNumber"]
                 },
                 "type": {
                   "title": "Type",
@@ -208,11 +175,7 @@
                   "const": "SwiftCode"
                 }
               },
-              "required": [
-                "type",
-                "name",
-                "details"
-              ],
+              "required": ["type", "name", "details"],
               "icon": {
                 "name": "bank",
                 "type": "icon"

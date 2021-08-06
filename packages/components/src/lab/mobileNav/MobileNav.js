@@ -1,10 +1,8 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { isIpadOsSafari, isMobileSafari } from './utils';
-
-import './MobileNav.css';
 
 function useMobileNavRef() {
   const [mobileNav, setMobileNav] = useState(null);

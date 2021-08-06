@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Alert, Image, Sentiment } from '@transferwise/components';
 
-import button1 from '../../static/assets/blog/button-release-mar-2021_1.png';
-import button2 from '../../static/assets/blog/button-release-mar-2021_2.png';
+import button1 from '../../public/static/assets/blog/button-release-mar-2021_1.png';
+import button2 from '../../public/static/assets/blog/button-release-mar-2021_2.png';
 
 export const meta = {
   name: 'Button Upgrade Guide',

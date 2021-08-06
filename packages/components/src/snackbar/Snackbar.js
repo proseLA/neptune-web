@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
@@ -7,8 +7,6 @@ import withNextPortal from '../withNextPortal/withNextPortal';
 import { Theme } from '../common';
 
 import { DirectionContext } from '../provider/direction';
-
-import './Snackbar.css';
 
 export const CSS_TRANSITION_DURATION = 400;
 

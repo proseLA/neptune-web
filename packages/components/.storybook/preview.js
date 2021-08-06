@@ -11,6 +11,7 @@ import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { DEFAULT_LOCALE, getLangFromLocale } from '../src/common/locale';
 import supportedLangs from '../src/i18n';
 
+import '../src/main.css';
 import './storybook.css';
 
 // Set up Axe to run in the console

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { cloneElement } from 'react';
+import { cloneElement } from 'react';
 import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import {
@@ -13,7 +13,6 @@ import Info from '../info';
 import { Status, Size } from '../common';
 
 import messages from './Summary.messages';
-import './Summary.css';
 
 import { useDirection } from '../common/hooks';
 

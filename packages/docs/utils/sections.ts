@@ -16,7 +16,9 @@
  */
 interface Badge {
   type: string;
-  // yyyy-mm-dd
+  /**
+   * Date format: yyyy-mm-dd
+   */
   expiryDate?: string;
 }
 

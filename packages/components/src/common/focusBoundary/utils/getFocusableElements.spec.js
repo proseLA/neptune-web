@@ -1,4 +1,3 @@
-import React from 'react';
 import { cleanup, render, screen } from '../../../test-utils';
 import { getFocusableElements } from './getFocusableElements';
 

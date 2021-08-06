@@ -1,0 +1,59 @@
+import { UploadInput, Status } from '@transferwise/components';
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import code from '../../../liveEditorCode/uploadInput.code';
+
+An upload input lets users upload a single file, or multiple files, within a form. See [usage guidelines](https://transferwise.github.io/neptune/components/upload-input/) for more info.
+
+Actual network request can be performed by the API library of your choice (e.g. `fetch` or `axios`). Perform the form submission for each file individually inside `onFileUpload(formData)` and return a `Promise` with the result that must contain an `id` and optionally `url`, `error` fields.
+
+Deletion is performed via `onDeleteFile(id)`, that receives the `id` of the file and can perform the API request, as long as it returns a `Promise<void>`.
+
+<LiveEditorBlock code={code} scope={{ UploadInput, Status }} display="vertical" />
+
+An example for an actual `onUploadFile()` callback:
+
+```javascript
+const onUploadFile = (formData) => {
+
+  const additionalData = {
+    activityId: '12345',
+    profileId: 6789,
+    ...
+  };
+
+  const customHeaders = {
+    'Accept-language': 'en',
+    ...
+  };
+
+  Object.keys(additionalData).forEach((key) => formData.append(key, additionalData[key]));
+
+  return fetch(`v2/someApi/someEndpoint`, {
+    method: 'POST',
+    body: formData,
+    headers: customHeaders
+    credentials: 'include',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        const error = new Error(response.statusText);
+        error.status = response.status;
+        throw error;
+      }
+      return response.json();
+    })
+    .catch((e) => {
+      throw e;
+    });
+};
+```
+
+<GeneratePropsTable componentName="UploadInput" />
+
+export const meta = {
+  name: 'UploadInput',
+  badge: {
+    type: 'new',
+    expiryDate: '2021-09-15',
+  },
+};

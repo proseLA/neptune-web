@@ -1,4 +1,3 @@
-import React from 'react';
 import { boolean, radios, text, select } from '@storybook/addon-knobs';
 
 import Avatar, { AvatarType } from '.';

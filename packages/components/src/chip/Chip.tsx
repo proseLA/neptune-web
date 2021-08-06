@@ -1,9 +1,8 @@
-import React, { MouseEventHandler, ReactElement } from 'react';
+import { MouseEventHandler, ReactElement } from 'react';
 import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
 import { useDirection } from '../common/hooks';
 import { CommonProps } from '../common';
-import './Chip.css';
 
 type Props = {
   /**

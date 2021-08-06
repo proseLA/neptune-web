@@ -1,4 +1,3 @@
-import React from 'react';
 import Types from 'prop-types';
 
 import { NavigationOption, NavigationOptionsList } from '@transferwise/components';

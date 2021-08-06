@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomSheet renders content when open 1`] = `
+<body
+  class="no-scroll"
+>
+  <div />
+  <div
+    class="dimmer"
+    role="presentation"
+  >
+    <span
+      class="np-focus-boundary outline-none"
+      tabindex="-1"
+    >
+      <div
+        class="sliding-panel np-bottom-sheet sliding-panel--open-bottom sliding-panel-appear sliding-panel-appear-active"
+        role="dialog"
+      >
+        <div
+          class="np-bottom-sheet--top-bar"
+        >
+          <div
+            class="np-bottom-sheet--handler"
+          />
+          <button
+            aria-label="Close"
+            class="np-close-button close btn-link text-no-decoration sr-only np-bottom-sheet--close-btn"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="tw-icon tw-icon-cross "
+              role="presentation"
+            >
+              <svg
+                fill="currentColor"
+                focusable="false"
+                height="16"
+                width="16"
+              >
+                <path
+                  d="M9.131 8l5.435-5.434-1.132-1.132L8 6.87 2.566 1.434 1.434 2.566 6.87 8l-5.435 5.434 1.132 1.132L8 9.13l5.434 5.435 1.132-1.132L9.13 8z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div
+          class="np-bottom-sheet--content"
+          style="max-height: calc(768px - 64px - 32px);"
+        >
+          <b>
+            Test Content
+          </b>
+        </div>
+      </div>
+    </span>
+  </div>
+</body>
+`;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { getMockFetchPromise, mount, wait } from '../../test-utils';
 import ValidationAsyncSchema from './ValidationAsyncSchema';
 import BasicTypeSchema from '../basicTypeSchema';

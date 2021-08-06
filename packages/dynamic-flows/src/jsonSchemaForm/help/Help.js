@@ -1,4 +1,3 @@
-import React from 'react';
 import Types from 'prop-types';
 
 import { Markdown, Info } from '@transferwise/components';

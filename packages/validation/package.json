@@ -42,7 +42,6 @@
     "@transferwise/test-config": "^3.0.7",
     "babel-preset-minify": "^0.5.1",
     "rollup": "^2.34.0",
-    "rollup-plugin-postcss": "^2.8.2",
     "rollup-plugin-uglify": "^6.0.4"
   }
 }

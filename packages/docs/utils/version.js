@@ -1,4 +1,3 @@
-import React from 'react';
 import Types from 'prop-types';
 
 const Version = ({ version }) => <small>v{version}</small>;

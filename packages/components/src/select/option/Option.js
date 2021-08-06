@@ -1,4 +1,4 @@
-import React from 'react';
+import { cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 const Option = ({ currency, label, note, secondary, icon, classNames, selected }) => {
@@ -17,7 +17,7 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
       {currency ? (
         <i className={currencyClassNames} />
       ) : (
-        icon && React.cloneElement(icon, { size: 24, className: `${style(['tw-icon'])}` })
+        icon && cloneElement(icon, { size: 24, className: `${style(['tw-icon'])}` })
       )}
       {label}
       {note && <span className="small m-l-1">{note}</span>}

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
@@ -8,7 +7,6 @@ import { ChevronLeft, ChevronRight } from '@transferwise/icons';
 import PaginationLink from './paginationLink';
 
 import messages from './Pagination.messages';
-import './Pagination.css';
 
 const Type = {
   NUMBERS_ONLY: 'numbersOnly',

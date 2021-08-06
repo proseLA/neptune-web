@@ -1,4 +1,3 @@
-import React from 'react';
 import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
 
 import { render, cleanup, waitFor, screen, userEvent } from '../test-utils';
@@ -111,7 +110,7 @@ describe('Dimmer', () => {
       unmount();
 
       await waitFor(() => {
-        expect(removeNoScrollBodyClass).toHaveBeenCalledTimes(1);
+        expect(removeNoScrollBodyClass).toHaveBeenCalledTimes(2);
       });
     });
   });

@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme/build';
 import WithDisplayFormat from './index';
 import { fakeKeyDownEventForKey } from '../common/fakeEvents';

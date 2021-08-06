@@ -1,4 +1,34 @@
 .np-bottom-sheet {
-  box-shadow: 0 0 40px rgba(34, 48, 73, 0.2);
   border-radius: var(--radius-medium) var(--radius-medium) 0 0;
+
+  &--top-bar {
+    cursor: grab;
+    padding: 8px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--shadow {
+      box-shadow: 0 4px 40px rgba(34, 48, 73, 0.2);
+    }
+  }
+
+  &--handler {
+    width: 40px;
+    height: 4px;
+    background: var(--color-border-neutral);
+    border-radius: var(--radius-small);
+  }
+
+  &--close-btn {
+    position: absolute;
+    right: var(--size-8);
+  }
+
+  &--content {
+    overflow-y: auto;
+    // adding extra padding at the bottom for Home Indicator on iPhone X
+    // https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }

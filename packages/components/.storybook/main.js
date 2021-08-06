@@ -1,6 +1,6 @@
 const path = require('path');
 
-const stories = ['../src/**/*.story.js', '../src/**/*.story.tsx'];
+const stories = ['../src/**/*.story.@(js|tsx)'];
 
 if (process.env.STORYBOOK_CIRCLECI) {
   stories.push('../test/**/*.story.js');

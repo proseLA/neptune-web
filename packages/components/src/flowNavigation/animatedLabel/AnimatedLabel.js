@@ -1,8 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-import './AnimatedLabel.css';
 
 const AnimatedLabel = ({ activeLabel, className, labels }) => {
   const numLabels = labels.length - 1;

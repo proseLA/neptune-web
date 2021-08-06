@@ -1,11 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import {
   CrossCircle as CrossCircleIcon,
   CheckCircle as CheckCircleIcon,
 } from '@transferwise/icons';
-
-import './InstructionsList.css';
 
 const InstructionsList = ({ dos, donts }) => (
   <div className="tw-instructions">

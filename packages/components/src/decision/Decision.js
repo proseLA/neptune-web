@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 import classNames from 'classnames';
@@ -6,7 +5,7 @@ import classNames from 'classnames';
 import SizeSwapper from '../sizeSwapper';
 import NavigationOption from '../navigationOption';
 import Tile from '../tile';
-import './Decision.css';
+
 import { Presentation, Type } from './decisionEnums';
 import { Size, Breakpoint } from '../common';
 import { useDirection } from '../common/hooks';

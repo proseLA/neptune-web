@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { select } from '@storybook/addon-knobs';
 import Drawer from './Drawer';
 import { Button, Modal } from '..';

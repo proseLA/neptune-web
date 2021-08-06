@@ -1,9 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-import './Modal.css';
 import { Size, Position, Scroll } from '../common';
 import Dimmer from '../dimmer';
 import CloseButton from '../common/closeButton';

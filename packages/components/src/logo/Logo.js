@@ -1,8 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { LogoType } from './logoTypes';
-import './Logo.css';
 
 const baseUrl = 'https://wise.com/public-resources/assets/logos/wise/';
 

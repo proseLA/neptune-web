@@ -1,10 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Size, Key } from '../common';
-
-import './Tile.css';
 
 export const Tile = ({
   className,

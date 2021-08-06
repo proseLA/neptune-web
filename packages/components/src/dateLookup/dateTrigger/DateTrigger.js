@@ -1,4 +1,3 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
@@ -10,7 +9,6 @@ import messages from './DateTrigger.messages';
 import Chevron from '../../chevron';
 
 import { Size, Position } from '../../common';
-import './DateTrigger.css';
 
 const DateTrigger = ({
   selectedDate,

@@ -1,0 +1,55 @@
+.np-upload-button {
+  width: 100%;
+  text-decoration: none !important; // Don't need underlines in btn
+  border: 0 !important; // Remove from btn
+  letter-spacing: normal !important; // Standardize between btn and html body text
+  padding: var(--size-12) var(--size-16);
+
+  &.np-upload-accent {
+    color: var(--color-control-accent);
+  }
+
+  label& {
+    &:not(.disabled) {
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: var(--color-background-neutral);
+      }
+    }
+
+    &.disabled {
+      color: var(--color-text-inactive); // Override .btn:hover color
+    }
+  }
+
+  .np-upload-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .np-upload-description {
+    font-weight: normal;
+    white-space: normal;
+  }
+}
+
+.np-upload-button-container {
+  &.droppable {
+    border: 0;
+  }
+
+  .droppable-card-content {
+    display: flex;
+  }
+
+  input[type='file'] {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+
+    &:focus + label {
+      background-color: var(--color-background-neutral); // Tab focus style
+    }
+  }
+}

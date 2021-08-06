@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -13,7 +13,7 @@ import {
   isTypeValid,
   getFileType,
 } from './utils';
-import './Upload.css';
+
 import messages from './Upload.messages';
 import { Status } from '../common';
 

@@ -1,11 +1,8 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { formatDate, formatNumber } from '@transferwise/formatting';
 import { formatUsingPattern } from '../utils/text-format';
-
-import './FormattedValue.css';
 
 /**
  *

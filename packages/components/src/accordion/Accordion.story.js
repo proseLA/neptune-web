@@ -1,4 +1,3 @@
-import React from 'react';
 import { select } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon, Check } from '@transferwise/icons';
 import Accordion from './Accordion';

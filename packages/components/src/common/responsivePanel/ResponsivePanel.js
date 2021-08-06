@@ -1,4 +1,3 @@
-import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { Position, Breakpoint } from '..';
@@ -8,18 +7,11 @@ import SizeSwapper from '../../sizeSwapper';
 
 const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open, position }) => {
   const windowRef = typeof window === 'undefined' ? undefined : window;
-  const ref = useRef(null);
 
   const items = [
     {
       items: [
-        <BottomSheet
-          open={open}
-          ref={ref}
-          key="bottomSheet"
-          className={className}
-          onClose={onClose}
-        >
+        <BottomSheet open={open} key="bottomSheet" className={className} onClose={onClose}>
           {children}
         </BottomSheet>,
       ],
@@ -30,7 +22,6 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
           arrow={arrow}
           open={open}
           position={position}
-          ref={ref}
           anchorRef={anchorRef}
           key="panel"
           className={className}

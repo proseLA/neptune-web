@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Alert, Image } from '@transferwise/components';
-import popover1 from '../../static/assets/blog/popover-release-mar-2021_1.png';
-import popover2 from '../../static/assets/blog/popover-release-mar-2021_2.png';
-import popover3 from '../../static/assets/blog/popover-release-mar-2021_3.png';
+import popover1 from '../../public/static/assets/blog/popover-release-mar-2021_1.png';
+import popover2 from '../../public/static/assets/blog/popover-release-mar-2021_2.png';
+import popover3 from '../../public/static/assets/blog/popover-release-mar-2021_3.png';
 
 export const meta = {
   name: 'Popover Upgrade guide',

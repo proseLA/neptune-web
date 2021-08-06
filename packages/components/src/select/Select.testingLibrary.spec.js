@@ -1,4 +1,3 @@
-import React from 'react';
 import Transition from 'react-transition-group/Transition';
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
@@ -235,7 +234,7 @@ describe('Select', () => {
       const input = getByPlaceholderText('Search...');
       user.type(input, 'o');
 
-      expect(getByRole('menu').children).toHaveLength(3);
+      expect(getByRole('list').children).toHaveLength(3);
     });
   });
 

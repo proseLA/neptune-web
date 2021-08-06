@@ -1,11 +1,11 @@
 import { Image, Alert, Sentiment } from '@transferwise/components';
 
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { DocLink } from '../../utils/pageUtils';
-import flowNavigation from '../../static/assets/blog/flow-nav-release-jan-2021.png';
-import checkbox from '../../static/assets/blog/checkbox-release-jan-2021.png';
-import overlayHeader from '../../static/assets/blog/overlay-header-release-jan-2021.png';
-import checkboxButton from '../../static/assets/blog/checkbox-button-release-jan-2021.png';
+import flowNavigation from '../../public/static/assets/blog/flow-nav-release-jan-2021.png';
+import checkbox from '../../public/static/assets/blog/checkbox-release-jan-2021.png';
+import overlayHeader from '../../public/static/assets/blog/overlay-header-release-jan-2021.png';
+import checkboxButton from '../../public/static/assets/blog/checkbox-button-release-jan-2021.png';
 
 import { Meta } from '../../utils/sections';
 

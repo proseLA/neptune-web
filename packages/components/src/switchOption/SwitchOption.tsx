@@ -1,4 +1,4 @@
-import React, { MouseEvent, ReactChild, ReactElement } from 'react';
+import { MouseEvent, ReactChild, ReactElement } from 'react';
 
 import Option from '../common/Option';
 import Switch from '../switch';

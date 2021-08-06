@@ -1,10 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
 import { useDirection } from '../common/hooks';
-
-import './Nudge.css';
 
 const Nudge = ({ media, title, link, href, onDismiss, id, className }) => {
   const { isRTL } = useDirection();

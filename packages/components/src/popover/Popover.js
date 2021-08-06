@@ -1,12 +1,10 @@
-import React, { useRef, useState, cloneElement } from 'react';
+import { useRef, useState, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { Position } from '../common';
 import ResponsivePanel from '../common/responsivePanel';
 import { logActionRequiredIf } from '../utilities';
-
-import './Popover.css';
 
 const Popover = ({ children, className, content, preferredPlacement, title }) => {
   logActionRequired({ preferredPlacement });

@@ -1,4 +1,3 @@
-import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Chevron from './Chevron';
 import { Position, Size } from '../common';

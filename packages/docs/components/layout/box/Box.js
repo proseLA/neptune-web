@@ -1,13 +1,13 @@
-/** @jsx jsx */
-/* eslint-disable */
-import { jsx } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+// eslint-disable-next-line no-unused-vars
+import { jsx } from '@emotion/react';
 import Types from 'prop-types';
 
 import { Size, JustifyContent, AlignItems, Breakpoint, Spacer } from '../common';
 
-const mediaQueries = Object.values(Breakpoint).map(bp => `@media (min-width: ${bp}px)`);
+const mediaQueries = Object.values(Breakpoint).map((bp) => `@media (min-width: ${bp}px)`);
 
-const Box = props => {
+const Box = (props) => {
   const {
     as: Element,
     size,
@@ -22,7 +22,7 @@ const Box = props => {
     customMediaQueries,
   } = props;
 
-  const getFlex = breakpoint => {
+  const getFlex = (breakpoint) => {
     const style = { flex: 0, display: 'none' };
     if (size && size[breakpoint]) {
       style.flex =

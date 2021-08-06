@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import React from 'react';
+import * as React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -10,10 +10,11 @@ import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
+import '@transferwise/components/build/main.css';
 
 import { addBasePath } from '../utils/pageUtils';
 
-import '../static/assets/main.css';
+import '../public/static/assets/main.css';
 
 if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined') {
   const ReactDOM = require('react-dom'); // eslint-disable-line global-require
@@ -48,17 +49,27 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, locale, messages } = this.props;
 
+    /**
+     * NextJS provides polyfills out of the box (https://nextjs.org/docs/basic-features/supported-browsers-features) using core-js,
+     * which doesn't provide polyfills for a couple things (https://github.com/zloirock/core-js#missing-polyfills)
+     * so we have to do that ourselves
+     */
+    const polyfills = ['Element.prototype.closest', 'Intl.Locale', 'IntersectionObserver'].join(
+      '%2C',
+    );
     return (
-      <Provider i18n={{ locale, messages }}>
+      <>
         <Head>
           <title>Neptune Web - the Wise Design System on Web</title>
           <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
+          <script src={`https://polyfill.io/v3/polyfill.min.js?features=${polyfills}`} />
         </Head>
-
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
+        <Provider i18n={{ locale, messages }}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Provider>
+      </>
     );
   }
 }

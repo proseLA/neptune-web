@@ -1,4 +1,4 @@
-import React from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, date, text } from '@storybook/addon-knobs';
 import DateInput from './DateInput';
@@ -22,7 +22,7 @@ export const basic = () => {
   const value = useInitialValue ? new Date(initialValue) : null;
 
   const { changeLog, appendToLog } = useChangeLog();
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     appendToLog(`DateInput key={${value}} ... />`);
   }, [useInitialValue, initialValue]);
 
@@ -85,7 +85,7 @@ export const basic = () => {
 };
 
 function useChangeLog() {
-  const [changeLog, setChangeLog] = React.useState('ChangeLog: (events from both components)');
+  const [changeLog, setChangeLog] = useState('ChangeLog: (events from both components)');
   const appendToLog = (line) => setChangeLog((log) => `${log}\n${line}`);
   return { changeLog, appendToLog };
 }

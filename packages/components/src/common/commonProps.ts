@@ -7,3 +7,12 @@ export type CommonProps = {
    */
   className?: string;
 };
+
+export type AriaLabelProp = {
+  'aria-label'?: string;
+};
+
+export type LinkProps = {
+  href: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+};

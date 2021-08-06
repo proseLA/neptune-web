@@ -1,10 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { AvatarType } from './avatarTypes';
 import { Size, Theme } from '../common';
-
-import './Avatar.css';
 
 const Avatar = ({ backgroundColor, children, className, outlined, size, theme, type }) => (
   <div

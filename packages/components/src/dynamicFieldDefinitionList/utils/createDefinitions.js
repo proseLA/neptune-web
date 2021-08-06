@@ -1,4 +1,3 @@
-import React from 'react';
 import toPairs from 'lodash.topairs';
 
 import FormattedValue from '../FormattedValue';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 
 import ProcessIndicator from '.';
@@ -43,7 +42,7 @@ describe('processIndicator', () => {
     expect(wrapper.props().status).toBe('succeeded');
     expect(wrapper.state().status).toBe('processing');
 
-    jest.runTimersToTime(ANIMATION_DURATION);
+    jest.advanceTimersByTime(ANIMATION_DURATION);
     wrapper.update();
 
     expect(wrapper.state().status).toBe('succeeded');
@@ -54,7 +53,7 @@ describe('processIndicator', () => {
     wrapper.setProps({ size: 'xl' });
     expect(wrapper.find('.process-xl')).toHaveLength(0);
 
-    jest.runTimersToTime(ANIMATION_DURATION);
+    jest.advanceTimersByTime(ANIMATION_DURATION);
     wrapper.update();
 
     expect(wrapper.find('.process-xs')).toHaveLength(0);
@@ -65,7 +64,7 @@ describe('processIndicator', () => {
   it('properly updates status classes with delay', () => {
     wrapper.setProps({ status: 'succeeded' });
     expect(wrapper.find('.process-success')).toHaveLength(0);
-    jest.runTimersToTime(ANIMATION_DURATION);
+    jest.advanceTimersByTime(ANIMATION_DURATION);
     wrapper.update();
     expect(wrapper.find('.process-success')).toHaveLength(1);
     expect(wrapper.find('.process-danger')).toHaveLength(0);
@@ -73,7 +72,7 @@ describe('processIndicator', () => {
 
     wrapper.setProps({ status: 'failed' });
     expect(wrapper.find('.process-danger')).toHaveLength(0);
-    jest.runTimersToTime(ANIMATION_DURATION);
+    jest.advanceTimersByTime(ANIMATION_DURATION);
     wrapper.update();
     expect(wrapper.find('.process-success')).toHaveLength(0);
     expect(wrapper.find('.process-danger')).toHaveLength(1);
@@ -81,7 +80,7 @@ describe('processIndicator', () => {
 
     wrapper.setProps({ status: 'hidden' });
     expect(wrapper.find('.process-stopped')).toHaveLength(0);
-    jest.runTimersToTime(ANIMATION_DURATION);
+    jest.advanceTimersByTime(ANIMATION_DURATION);
     wrapper.update();
     expect(wrapper.find('.process-success')).toHaveLength(0);
     expect(wrapper.find('.process-danger')).toHaveLength(0);
@@ -92,10 +91,10 @@ describe('processIndicator', () => {
     expect(props.onAnimationCompleted).not.toHaveBeenCalled();
     wrapper.setProps({ status: Status.FAILED });
     expect(props.onAnimationCompleted).not.toHaveBeenCalled();
-    jest.runTimersToTime(ANIMATION_DURATION * 2);
+    jest.advanceTimersByTime(ANIMATION_DURATION * 2);
     expect(props.onAnimationCompleted).toHaveBeenCalledWith(Status.FAILED);
     wrapper.setProps({ status: Status.SUCCEEDED });
-    jest.runTimersToTime(ANIMATION_DURATION * 2);
+    jest.advanceTimersByTime(ANIMATION_DURATION * 2);
     expect(props.onAnimationCompleted).toHaveBeenCalledWith(Status.SUCCEEDED);
   });
 });

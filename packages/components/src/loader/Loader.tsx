@@ -1,8 +1,6 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import classnames from 'classnames';
 import { Size, SizeExtraSmall, SizeSmall, SizeMedium, SizeLarge, SizeExtraLarge } from '../common';
-
-import './Loader.css';
 
 type SizeType = SizeExtraSmall | SizeSmall | SizeMedium | SizeLarge | SizeExtraLarge;
 

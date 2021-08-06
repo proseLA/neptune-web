@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Chevron from '../../chevron';
 import { Position, Size } from '../../common';

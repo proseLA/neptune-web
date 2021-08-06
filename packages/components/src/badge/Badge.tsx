@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 import {
   Size,
@@ -10,8 +10,6 @@ import {
   ThemeLight,
   CommonProps,
 } from '../common';
-
-import './Badge.css';
 
 type Props = {
   badge: ReactNode;

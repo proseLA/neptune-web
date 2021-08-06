@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { createRef, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import KeyCodes from '../common/keyCodes';
@@ -11,10 +11,7 @@ import DayCalendar from './dayCalendar';
 import MonthCalendar from './monthCalendar';
 import YearCalendar from './yearCalendar';
 
-import SlidingPanel from '../slidingPanel';
-import Dimmer from '../dimmer';
-
-import './DateLookup.css';
+import BottomSheet from '../common/bottomSheet';
 
 const MODE = {
   DAY: 'day',
@@ -23,9 +20,9 @@ const MODE = {
 };
 
 class DateLookup extends PureComponent {
-  element = React.createRef();
+  element = createRef();
 
-  dropdown = React.createRef();
+  dropdown = createRef();
 
   constructor(props) {
     super(props);
@@ -285,11 +282,9 @@ class DateLookup extends PureComponent {
           onClear={!disabled && clearable && value ? this.handleClear : null}
         />
         {isMobile ? (
-          <Dimmer open={open} onClose={this.close}>
-            <SlidingPanel open={open} position="bottom">
-              {this.getCalendar()}
-            </SlidingPanel>
-          </Dimmer>
+          <BottomSheet open={open} onClose={this.close}>
+            {this.getCalendar()}
+          </BottomSheet>
         ) : (
           open && (
             <div ref={this.dropdown} className="dropdown-menu tw-date-lookup-menu">
@@ -303,7 +298,7 @@ class DateLookup extends PureComponent {
 }
 
 DateLookup.propTypes = {
-  value: PropTypes.instanceOf(Date),
+  value: PropTypes.instanceOf(Date).isRequired,
   min: PropTypes.instanceOf(Date),
   max: PropTypes.instanceOf(Date),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -318,7 +313,6 @@ DateLookup.propTypes = {
 };
 
 DateLookup.defaultProps = {
-  value: null,
   min: null,
   max: null,
   size: Size.MEDIUM,

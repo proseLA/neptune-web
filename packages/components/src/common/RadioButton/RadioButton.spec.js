@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, render, userEvent } from '../../test-utils';
 
 import RadioButton from '.';

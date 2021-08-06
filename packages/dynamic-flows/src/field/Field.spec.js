@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import { InlineAlert } from '@transferwise/components';
 import Field, { FieldTypes, FieldFormats } from './Field';

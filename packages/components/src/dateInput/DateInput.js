@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import '../common/polyfills/closest';
 import Select from '../select';
 
 import { Size, DateMode, MonthFormat } from '../common';
@@ -11,7 +10,6 @@ import { Size, DateMode, MonthFormat } from '../common';
 import { explodeDate, convertToLocalMidnight } from './utils';
 import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/dateUtils';
 import { useDirection } from '../common/hooks';
-import './DateInput.css';
 
 const MonthBeforeDay = ['en-US', 'ja-JP'];
 const INITIAL_DEFAULT_STATE = { year: null, month: null, day: null };

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { isNull, isUndefined } from '@transferwise/neptune-validation';
 import { Avatar, AvatarType } from '@transferwise/components';
 import { Bank } from '@transferwise/icons';

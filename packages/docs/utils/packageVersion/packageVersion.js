@@ -1,4 +1,3 @@
-import React from 'react';
 import Types from 'prop-types';
 
 const PackageVersion = ({ version }) => <span>v{version}</span>;

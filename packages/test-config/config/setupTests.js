@@ -1,9 +1,9 @@
 /* eslint-disable */
-const enzyme = require('enzyme');
-const Adapter = require('enzyme-adapter-react-16');
+const Enzyme = require('enzyme');
+const Adapter = require('@wojtekmaj/enzyme-adapter-react-17');
 
 global.fetch = require('jest-fetch-mock');
-enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() });
 
 global.requestAnimationFrame = (cb) => cb();
 

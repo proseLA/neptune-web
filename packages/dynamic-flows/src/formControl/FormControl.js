@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import Types from 'prop-types';
 import {
   Checkbox,
@@ -14,8 +14,6 @@ import {
 } from '@transferwise/components';
 
 import { Size, MonthFormat, DateMode, FormControlType } from '../common';
-
-import './FormControl.css';
 
 const ACCEPTED_FORMAT = ['*', 'image/*', 'application/*'];
 

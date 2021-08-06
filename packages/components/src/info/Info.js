@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { HelpCircle as HelpCircleIcon } from '@transferwise/icons';
@@ -6,7 +6,6 @@ import Popover from '../popover';
 import Modal from '../modal';
 import { Size, Position } from '../common';
 import { InfoPresentation } from './infoPresentations';
-import './Info.css';
 
 const Info = (props) => {
   const { className, content, onClick, presentation, size, title } = props;

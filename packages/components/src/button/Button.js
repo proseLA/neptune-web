@@ -1,9 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import requiredIf from 'react-required-if';
-
-import './Button.css';
 
 import { Size, ControlType, Priority } from '../common';
 import { establishNewPriority, establishNewType, logDeprecationNotices } from './legacyUtils';

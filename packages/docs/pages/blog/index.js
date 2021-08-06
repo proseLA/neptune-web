@@ -1,4 +1,3 @@
-import React from 'react';
 import { parseISO } from 'date-fns';
 import { DocLink, getPagesInSection } from '../../utils/pageUtils';
 import Meta from '../../components/Meta';

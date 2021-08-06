@@ -1,4 +1,3 @@
-import React from 'react';
 import { select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import MoneyInput from '.';

@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import hightlight from '../util/highlight';
-import './TypeaheadOption.css';
 
 const Option = (props) => {
   const { option, selected, onClick, query } = props;
