@@ -25,6 +25,20 @@ class WithDisplayFormat extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    const oldPattern = prevProps.displayPattern;
+    const newPattern = this.props.displayPattern;
+
+    if (oldPattern !== newPattern) {
+      const oldCursorPosition = this.state.selectionStart;
+      const oldSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, oldPattern);
+      const newSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, newPattern);
+      const newCursorPosition = oldCursorPosition - oldSymbolsBeforeCursor + newSymbolsBeforeCursor;
+
+      console.log('move cursor from/to', oldCursorPosition, newCursorPosition);
+    }
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     const { displayPattern } = nextProps;
     const { prevDisplayPattern } = prevState;
