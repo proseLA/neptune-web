@@ -31,15 +31,15 @@ export default function PageContent(): ReactElement {
       This release introduces several new components, compatibility with React 17 & Next.js 11 and drop of polyfills for Web API.
       <h2 id="new-components" className="m-t-3 m-b-1">New Components</h2>
       <h4 className="m-b-1">Upload Input</h4>
-      <p>An <DocLink href="inputs/UploadInput">upload input component</DocLink> that allows users upload a single file, or multiple files, which is meant to be use in forms.</p>
+      <p>An <DocLink href="components/inputs/UploadInput">upload input component</DocLink> that allows users upload a single file, or multiple files, which is meant to be use in forms.</p>
       <h4 className="m-b-1">Bottom Sheet</h4>
       <p>
         A bottom sheet is a container you can use to display supporting content or a short, supplementary task on <b>mobile experiences</b>.
-        Here is the <DocLink href="overlays/BottomSheet">docs page</DocLink> for more info. Also, see this component in use at mobile view in <DocLink href="components/alerts/Popover">Popover</DocLink> and <DocLink href="components/inputs/DateLookup">DateLookup</DocLink> (later, potentially it will be integrated in Select).
+        Here is the <DocLink href="components/overlays/BottomSheet">docs page</DocLink> for more info. Also, see this component in use at mobile view in <DocLink href="components/alerts/Popover">Popover</DocLink> and <DocLink href="components/inputs/DateLookup">DateLookup</DocLink> (later, potentially it will be integrated in Select).
       </p>
       <h4 className="m-b-1">Link</h4>
       <p>
-        Introducing a <DocLink href="content/Link">link component</DocLink>, it encapsulates good a11y and security practices,
+        Introducing a <DocLink href="components/content/Link">link component</DocLink>, it encapsulates good a11y and security practices,
         adds Neptune specific styles, and most importantly attaches the navigate away icon for <code>{'target="_blank"'}</code>. The
         main purpose of this component is to enforce consistency for links across product.
       </p>
