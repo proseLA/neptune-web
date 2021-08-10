@@ -30,12 +30,15 @@ class WithDisplayFormat extends Component {
     const newPattern = this.props.displayPattern;
 
     if (oldPattern !== newPattern) {
+      // If the pattern changed, we should try to maintain the position of the cursor
       const oldCursorPosition = this.state.selectionStart;
       const oldSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, oldPattern);
       const newSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, newPattern);
       const newCursorPosition = oldCursorPosition - oldSymbolsBeforeCursor + newSymbolsBeforeCursor;
 
-      console.log('move cursor from/to', oldCursorPosition, newCursorPosition);
+      setTimeout(() => {
+        this.setCursorPosition(this.state.target.target, newCursorPosition, newCursorPosition);
+      }, 0);
     }
   }
 
@@ -114,16 +117,25 @@ class WithDisplayFormat extends Component {
 
     if (this.detectUndoRedo(event) === 'Undo') {
       newFormattedValue = formatWithPattern(historyNavigator.undo(), displayPattern);
-      this.setState({ value: newFormattedValue, triggerType: 'Undo' });
+      this.setState({ 
+        value: newFormattedValue, 
+        triggerType: 'Undo',
+        target: event.target
+      });
     } else if (this.detectUndoRedo(event) === 'Redo') {
       newFormattedValue = formatWithPattern(historyNavigator.redo(), displayPattern);
-      this.setState({ value: newFormattedValue, triggerType: 'Redo' });
+      this.setState({ 
+        value: newFormattedValue, 
+        triggerType: 'Redo',
+        target: event.target
+      });
     } else {
       this.setState({
         triggerEvent: event,
         triggerType: 'KeyDown',
         selectionStart,
         selectionEnd,
+        target: event.target
       });
     }
   };
@@ -227,12 +239,16 @@ class WithDisplayFormat extends Component {
     );
 
     setTimeout(() => {
-      if (triggerEvent) {
-        triggerEvent.target.setSelectionRange(cursorPosition, cursorPosition);
-      }
-      this.setState({ selectionStart: cursorPosition, selectionEnd: cursorPosition });
+      this.setCursorPosition(triggerEvent.target, cursorPosition, cursorPosition);
     }, 0);
   };
+
+  setCursorPosition(target, start, end) {
+    if (target) {
+      target.setSelectionRange(start, end);
+    }
+    this.setState({ selectionStart: start, selectionEnd: end });
+  }
 
   render() {
     const {
