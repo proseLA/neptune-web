@@ -10,38 +10,52 @@ export default {
 
 export const basic = () => {
   const [pattern, setPattern] = useState('** / **');
+  const [value, setValue] = useState('');
+  const [cursor, setCursor] = useState(0);
 
   const placeholder = text('Placeholder', '** / **');
   const displayPattern = text('DisplayPattern', pattern);
 
-  const handleOnChange = (value) => {
-    setTimeout(() => {
+  const handleOnChange = (value, cursorPosition) => {
+    const monthNeedingPrefix = new RegExp('^[2-9]$');
+    if (monthNeedingPrefix.test(value)) {
+      console.log('need prefix!', value);
+      const newValue = '0'+value;
 
-      if (["2", "3", "4", "5", "6", "7", "8", "9"].indexOf(value) >= 0) {
-        setPattern('0* / **');
-      }
-      if (value === "") {
-        setPattern('** / **');
-      }
-    }, 0);
+     console.log('onChange', newValue);
+      setValue(newValue);
+      setCursor(cursorPosition+1);
+      return;
+    }
+
+    console.log('onChange', value);
+    setValue(value);
+    setCursor(cursorPosition);
   }
 
   const handleOnPaste = (event, unformattedValue) => {
     const fullYear = new RegExp('^[0-9]{6}$');
     if (fullYear.test(unformattedValue)) {
-      return unformattedValue.substring(0, 2) + unformattedValue.substring(4, 6);
+      console.log('need truncation!', unformattedValue);
+      const newValue = unformattedValue.substring(0, 2) + unformattedValue.substring(4, 6);
+      setValue(newValue);
     }
+    setValue(unformattedValue);
   }
+
+  // 
+  // cursor={cursor}
 
   return (
     <InputWithDisplayFormat
+      value={value}
       placeholder={placeholder}
       displayPattern={pattern}
       className="form-control"
       onChange={handleOnChange}
-      onBlur={(v) => console.log(v)}
-      onFocus={(v) => console.log(v)}
       onPaste={handleOnPaste}
+      onBlur={(v) => console.log('onBlur')}
+      onFocus={(v) => console.log('onFocus')}
     />
   );
 };

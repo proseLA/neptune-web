@@ -36,11 +36,25 @@ class WithDisplayFormat extends Component {
   //     const newSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, newPattern);
   //     const newCursorPosition = oldCursorPosition - oldSymbolsBeforeCursor + newSymbolsBeforeCursor;
 
-  //     setTimeout(() => {
-  //       this.setCursorPosition(this.state.target.target, newCursorPosition, newCursorPosition);
-  //     }, 0);
+  //     this.setCursorPosition(this.state.target.target, newCursorPosition, newCursorPosition);
   //   }
   // }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.value != this.props.value) {
+      console.log('changed from outside!', this.props.value);
+      this.setState({
+        value: formatWithPattern(this.props.value, this.props.displayPattern)
+      });
+    }
+
+    if (prevProps.cursor != this.props.cursor) {
+      console.log('cursor changed');
+
+      const { target } = this.state;
+      this.setCursorPosition(target, this.props.cursor, this.props.cursor);
+    }
+  };
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { displayPattern } = nextProps;
@@ -143,22 +157,21 @@ class WithDisplayFormat extends Component {
   handleOnPaste = (event) => {
     const value = event.clipboardData.getData('Text');
 
-    const { displayPattern } = this.props;
+    const { displayPattern, onPaste } = this.props;
     let unformattedValue = unformatWithPattern(value, displayPattern);
 
     const pastedLength = unformattedValue.length;
 
     // If there is an onPaste function, and it returns a different value, use that.
-    if (this.props.onPaste) {
-      const response = this.props.onPaste(event, unformattedValue);
+    if (onPaste) {
+      const response = onPaste(event, unformattedValue);
       if (response) {
         event.preventDefault();
-        this.setState({ value: formatWithPattern(response, displayPattern) });
       }
     }
 
     this.setState({ triggerType: 'Paste', pastedLength });
-    return event;
+    // return event;
   };
 
   handleOnCut = () => {
@@ -178,11 +191,26 @@ class WithDisplayFormat extends Component {
     const { value } = event.target;
     let unformattedValue = unformatWithPattern(value, displayPattern);
 
-    const action =
-      triggerEvent === null
-        ? // triggerEvent can be null only in case of "autofilling" (via password manager extension or browser build-in one) events
-          'Paste'
-        : this.getUserAction(unformattedValue);
+    console.log('handling on change', unformattedValue);
+
+    // If there is an onChange function, and it returns a different value, use that.
+    // if (onChange) {
+    //   const response = onChange(event, unformattedValue);
+    //   if (response) {
+    //     console.log('custom change');
+    //     event.preventDefault();
+    //     this.setState({ value: formatWithPattern(response, displayPattern) });
+    //   }
+    // }
+
+    // triggerEvent can be null only in case of "autofilling" (via password manager extension or browser build-in one) events
+    const action = triggerEvent === null ? 'Paste' : this.getUserAction(unformattedValue);
+    
+    if (action === 'Paste') {
+      console.log('Paste!'); // TODO, bad?
+      return;
+    }
+
     if (!this.isKeyAllowed(action) || triggerType === 'Undo' || triggerType === 'Redo') {
       return;
     }
@@ -194,10 +222,13 @@ class WithDisplayFormat extends Component {
     const newFormattedValue = formatWithPattern(unformattedValue, displayPattern);
     historyNavigator.add(unformattedValue);
 
-    this.handleCursorPositioning(action);
+    const newCursorPosition = this.handleCursorPositioning(action);
 
-    this.setState({ value: newFormattedValue }, this.resetEvent(), onChange(unformattedValue));
-    return event;
+    this.setState(
+      { value: newFormattedValue }, 
+      this.resetEvent(), 
+      onChange(unformattedValue, newCursorPosition)
+    );
   };
 
   handleOnBlur = (event) => {
@@ -205,7 +236,6 @@ class WithDisplayFormat extends Component {
     if (onBlur) {
       onBlur(unformatWithPattern(event.target.value, displayPattern));
     }
-    return event;
   };
 
   handleOnFocus = (event) => {
@@ -213,7 +243,6 @@ class WithDisplayFormat extends Component {
     if (onFocus) {
       onFocus(unformatWithPattern(event.target.value, displayPattern));
     }
-    return event;
   };
 
   handleDelete = (unformattedValue, action) => {
@@ -253,16 +282,19 @@ class WithDisplayFormat extends Component {
       pastedLength,
     );
 
-    setTimeout(() => {
-      this.setCursorPosition(triggerEvent.target, cursorPosition, cursorPosition);
-    }, 0);
+    this.setCursorPosition(triggerEvent.target, cursorPosition, cursorPosition);
+
+    return cursorPosition;
   };
 
   setCursorPosition(target, start, end) {
-    if (target) {
-      target.setSelectionRange(start, end);
-    }
-    this.setState({ selectionStart: start, selectionEnd: end });
+    setTimeout(() => {
+      console.log('setCursor', target, start, end);
+      if (target) {
+        target.setSelectionRange(start, end);
+      }
+      this.setState({ selectionStart: start, selectionEnd: end });
+    }, 0);
   }
 
   render() {
@@ -330,6 +362,7 @@ WithDisplayFormat.propTypes = {
   type: PropTypes.string,
   inputMode: PropTypes.string,
   value: PropTypes.string,
+  cursor: PropTypes.number,
 };
 
 WithDisplayFormat.defaultProps = {
@@ -349,6 +382,7 @@ WithDisplayFormat.defaultProps = {
   value: '',
   onFocus: null,
   onBlur: null,
+  cursor: 0,
 };
 
 export default WithDisplayFormat;
