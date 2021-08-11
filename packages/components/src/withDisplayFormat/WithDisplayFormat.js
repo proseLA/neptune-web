@@ -25,22 +25,22 @@ class WithDisplayFormat extends Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    const oldPattern = prevProps.displayPattern;
-    const newPattern = this.props.displayPattern;
+  // componentDidUpdate(prevProps) {
+  //   const oldPattern = prevProps.displayPattern;
+  //   const newPattern = this.props.displayPattern;
 
-    if (oldPattern !== newPattern) {
-      // If the pattern changed, we should try to maintain the position of the cursor
-      const oldCursorPosition = this.state.selectionStart;
-      const oldSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, oldPattern);
-      const newSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, newPattern);
-      const newCursorPosition = oldCursorPosition - oldSymbolsBeforeCursor + newSymbolsBeforeCursor;
+  //   if (oldPattern !== newPattern) {
+  //     // If the pattern changed, we should try to maintain the position of the cursor
+  //     const oldCursorPosition = this.state.selectionStart;
+  //     const oldSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, oldPattern);
+  //     const newSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, newPattern);
+  //     const newCursorPosition = oldCursorPosition - oldSymbolsBeforeCursor + newSymbolsBeforeCursor;
 
-      setTimeout(() => {
-        this.setCursorPosition(this.state.target.target, newCursorPosition, newCursorPosition);
-      }, 0);
-    }
-  }
+  //     setTimeout(() => {
+  //       this.setCursorPosition(this.state.target.target, newCursorPosition, newCursorPosition);
+  //     }, 0);
+  //   }
+  // }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { displayPattern } = nextProps;
@@ -141,11 +141,24 @@ class WithDisplayFormat extends Component {
   };
 
   handleOnPaste = (event) => {
+    const value = event.clipboardData.getData('Text');
+
     const { displayPattern } = this.props;
-    const pastedLength = unformatWithPattern(event.clipboardData.getData('Text'), displayPattern)
-      .length;
+    let unformattedValue = unformatWithPattern(value, displayPattern);
+
+    const pastedLength = unformattedValue.length;
+
+    // If there is an onPaste function, and it returns a different value, use that.
+    if (this.props.onPaste) {
+      const response = this.props.onPaste(event, unformattedValue);
+      if (response) {
+        event.preventDefault();
+        this.setState({ value: formatWithPattern(response, displayPattern) });
+      }
+    }
 
     this.setState({ triggerType: 'Paste', pastedLength });
+    return event;
   };
 
   handleOnCut = () => {
@@ -164,6 +177,7 @@ class WithDisplayFormat extends Component {
     const { displayPattern, onChange } = this.props;
     const { value } = event.target;
     let unformattedValue = unformatWithPattern(value, displayPattern);
+
     const action =
       triggerEvent === null
         ? // triggerEvent can be null only in case of "autofilling" (via password manager extension or browser build-in one) events
@@ -182,9 +196,8 @@ class WithDisplayFormat extends Component {
 
     this.handleCursorPositioning(action);
 
-    const broadcastValue = unformatWithPattern(newFormattedValue, displayPattern);
-
-    this.setState({ value: newFormattedValue }, this.resetEvent(), onChange(broadcastValue));
+    this.setState({ value: newFormattedValue }, this.resetEvent(), onChange(unformattedValue));
+    return event;
   };
 
   handleOnBlur = (event) => {
@@ -192,6 +205,7 @@ class WithDisplayFormat extends Component {
     if (onBlur) {
       onBlur(unformatWithPattern(event.target.value, displayPattern));
     }
+    return event;
   };
 
   handleOnFocus = (event) => {
@@ -199,6 +213,7 @@ class WithDisplayFormat extends Component {
     if (onFocus) {
       onFocus(unformatWithPattern(event.target.value, displayPattern));
     }
+    return event;
   };
 
   handleDelete = (unformattedValue, action) => {
