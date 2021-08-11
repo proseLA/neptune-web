@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.0.0...@transferwise/components@37.0.1) (2021-08-11)
+
+
+### Bug Fixes
+
+* fix select chevron colour disabled state ([#1088](https://github.com/transferwise/neptune-web/issues/1088)) ([1d83a79](https://github.com/transferwise/neptune-web/commit/1d83a792d1e2a385289037342b55c30c5fce1894))
+
+
+
+
+
 # [37.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@36.13.0...@transferwise/components@37.0.0) (2021-08-06)
 
 
