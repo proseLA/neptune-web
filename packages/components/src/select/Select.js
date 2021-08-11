@@ -475,8 +475,8 @@ export default class Select extends Component {
             <Chevron
               disabled={disabled}
               className={`${s('tw-icon')} ${s('tw-chevron-up-icon')} ${s('tw-chevron')} ${s(
-                'chevron-color',
-              )} ${s('bottom')} ${s('tw-select-chevron')}`}
+                'bottom',
+              )} ${s('tw-select-chevron')}`}
             />
           </button>
           {!shouldRenderWithPortal ? (
