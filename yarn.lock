@@ -3998,11 +3998,6 @@
   resolved "https://registry.yarnpkg.com/@transferwise/formatting/-/formatting-2.7.0.tgz#73366e2447ea4fb973e72c08b6f125ed4010ff34"
   integrity sha512-iLa+iZIIGnweOta2co2RUwGHndp9PqJtpVcijM1n1tEd6zMJMA1zK+m5n6rum1o8GuV/Z4E7SxzFKvvTNn1Zsw==
 
-"@transferwise/icons@2.12.0":
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/@transferwise/icons/-/icons-2.12.0.tgz#41602437f605233d99ff08fd360cc8fde8f5be12"
-  integrity sha512-wuHB8vAB2SRe5bq7px6eQ55bF2WtCG8eVivMSXCtbdaP4/VdEzTa4htV+ynZn/qHCE1ho1UdXJJc3uFo59Gwag==
-
 "@transferwise/icons@^2.12.0", "@transferwise/icons@^2.14.0", "@transferwise/icons@^2.6.0":
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/@transferwise/icons/-/icons-2.14.0.tgz#61a7ba1bc0b150bb1332af1e7022faf8557f4678"
