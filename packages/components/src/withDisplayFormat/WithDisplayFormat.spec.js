@@ -11,9 +11,9 @@ const UNDO_EVENT = { ctrlKey: true, charCode: 'z', which: 90 };
 const triggerEvent = fakeKeyDownEventForKey();
 
 const TESTS = [
-  { value: '123', expectedValue: '12-3', displayPattern: '**-**-**' },
-  { value: '1234', expectedValue: '12-34', displayPattern: '**-**-**' },
-  { value: '1234', expectedValue: '+(12) 34', displayPattern: '+(**) *' },
+  { value: '123', expectedValue: '12-3', displayPattern: '**-**-**', cursorPosition: 4 },
+  { value: '1234', expectedValue: '12-34', displayPattern: '**-**-**', cursorPosition: 6 },
+  { value: '1234', expectedValue: '+(12) 34', displayPattern: '+(**) *', cursorPosition: 8 },
 ];
 
 describe('InputWithTextFormat', () => {
@@ -38,22 +38,50 @@ describe('InputWithTextFormat', () => {
   });
 
   TESTS.forEach((test) => {
-    const { value, expectedValue, displayPattern } = test;
-    it(`returns ${expectedValue} for ${value} if displayPattern is ${displayPattern} `, () => {
-      component.setProps({ displayPattern });
-      component.setState({ triggerEvent });
+    const { value, expectedValue, displayPattern, cursorPosition } = test;
 
-      componentInput().simulate('change', { target: { value } });
-      expect(componentInput().props().value).toEqual(expectedValue);
-      expect(props.onChange).toHaveBeenCalledWith(value);
+    describe(`when the pattern is ${displayPattern} and value is changed to ${value}`, () => {
+      let event;
+      beforeEach(() => {
+        props.onChange = jest.fn();
+        const selectionStart = expectedValue.length;
+        const selectionEnd = expectedValue.length;
+        component.setProps({ onChange: props.onChange, displayPattern, triggerEvent });
+        component.setState({ selectionStart, selectionEnd });
 
-      componentInput().simulate('focus', { target: { value } });
-      expect(componentInput().props().value).toEqual(expectedValue);
-      expect(props.onFocus).toHaveBeenCalledWith(value);
+        event = { target: { value, selectionStart, selectionEnd } };
 
-      componentInput().simulate('blur', { target: { value } });
-      expect(componentInput().props().value).toEqual(expectedValue);
-      expect(props.onBlur).toHaveBeenCalledWith(value);
+        componentInput().simulate('change', event);
+      });
+
+      it(`should display the formatted value: ${expectedValue}`, () => {
+        expect(componentInput().props().value).toEqual(expectedValue);
+      });
+      it(`should broadcast the unformatted value (${value}) and the event`, () => {
+        expect(props.onChange).toHaveBeenCalledWith(value, expect.any(Object), cursorPosition);
+      });
+
+      describe('when focused', () => {
+        beforeEach(() => {
+          props.onFocus = jest.fn();
+          component.setProps({ onFocus: props.onFocus });
+          componentInput().simulate('focus', { target: { value } });
+        });
+        it(`should call the handler with the unformatted value: ${value}`, () => {
+          expect(props.onFocus).toHaveBeenCalledWith(value);
+        });
+      });
+
+      describe('when blurred', () => {
+        beforeEach(() => {
+          props.onBlur = jest.fn();
+          component.setProps({ onBlur: props.onBlur });
+          componentInput().simulate('blur', { target: { value } });
+        });
+        it(`should call the handler with the unformatted value: ${value}`, () => {
+          expect(props.onBlur).toHaveBeenCalledWith(value);
+        });
+      });
     });
   });
 

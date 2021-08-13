@@ -16,25 +16,25 @@ export const basic = () => {
   const placeholder = text('Placeholder', '** / **');
   const displayPattern = text('DisplayPattern', pattern);
 
-  const handleOnChange = (value, cursorPosition) => {
+  const handleOnChange = (value, event, cursorPosition) => {
     const monthNeedingPrefix = new RegExp('^[2-9]$');
     if (monthNeedingPrefix.test(value)) {
       const newValue = '0' + value;
 
       setValue(newValue);
-      setCursor(cursorPosition + 1);
+      setCursor(2);
 
-      console.log('onChange', newValue);
+      console.log('onChange', newValue, 2);
       return;
     }
 
-    console.log('onChange', value);
+    console.log('onChange', value, event);
     setValue(value);
     setCursor(cursorPosition);
   };
 
   const handleOnPaste = (event, unformattedValue) => {
-    console.log('onChange', unformattedValue);
+    console.log('onPaste', unformattedValue);
 
     const fullYear = new RegExp('^[0-9]{6}$');
     if (fullYear.test(unformattedValue)) {
@@ -51,7 +51,7 @@ export const basic = () => {
     <InputWithDisplayFormat
       value={value}
       placeholder={placeholder}
-      displayPattern={pattern}
+      displayPattern={displayPattern}
       className="form-control"
       onChange={handleOnChange}
       onPaste={handleOnPaste}

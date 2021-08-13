@@ -34,7 +34,7 @@ class WithDisplayFormat extends Component {
 
     if (prevProps.cursor != this.props.cursor) {
       const { target } = this.state;
-      this.setCursorPosition(target, this.props.cursor, this.props.cursor);
+      this.setCursorPosition(target, this.props.cursor);
     }
   }
 
@@ -186,12 +186,12 @@ class WithDisplayFormat extends Component {
     const newFormattedValue = formatWithPattern(unformattedValue, displayPattern);
     historyNavigator.add(unformattedValue);
 
-    const newCursorPosition = this.handleCursorPositioning(action);
+    const cursorPosition = this.handleCursorPositioning(action);
 
     this.setState(
       { value: newFormattedValue },
+      onChange(unformattedValue, event, cursorPosition),
       this.resetEvent(),
-      onChange(unformattedValue, newCursorPosition),
     );
   };
 
@@ -246,17 +246,19 @@ class WithDisplayFormat extends Component {
       pastedLength,
     );
 
-    this.setCursorPosition(triggerEvent.target, cursorPosition, cursorPosition);
+    if (cursorPosition !== selectionStart) {
+      this.setCursorPosition(triggerEvent?.target, cursorPosition);
+    }
 
     return cursorPosition;
   };
 
-  setCursorPosition(target, start, end) {
+  setCursorPosition(target, position) {
     setTimeout(() => {
       if (target) {
-        target.setSelectionRange(start, end);
+        target.setSelectionRange(position, position);
       }
-      this.setState({ selectionStart: start, selectionEnd: end });
+      this.setState({ selectionStart: position, selectionEnd: position });
     }, 0);
   }
 
