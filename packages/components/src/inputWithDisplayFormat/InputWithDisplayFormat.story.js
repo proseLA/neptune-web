@@ -19,32 +19,33 @@ export const basic = () => {
   const handleOnChange = (value, cursorPosition) => {
     const monthNeedingPrefix = new RegExp('^[2-9]$');
     if (monthNeedingPrefix.test(value)) {
-      console.log('need prefix!', value);
-      const newValue = '0'+value;
+      const newValue = '0' + value;
 
-     console.log('onChange', newValue);
       setValue(newValue);
-      setCursor(cursorPosition+1);
+      setCursor(cursorPosition + 1);
+
+      console.log('onChange', newValue);
       return;
     }
 
     console.log('onChange', value);
     setValue(value);
     setCursor(cursorPosition);
-  }
+  };
 
   const handleOnPaste = (event, unformattedValue) => {
+    console.log('onChange', unformattedValue);
+
     const fullYear = new RegExp('^[0-9]{6}$');
     if (fullYear.test(unformattedValue)) {
-      console.log('need truncation!', unformattedValue);
       const newValue = unformattedValue.substring(0, 2) + unformattedValue.substring(4, 6);
       setValue(newValue);
+      return;
     }
     setValue(unformattedValue);
-  }
+  };
 
-  // 
-  // cursor={cursor}
+  // onPaste={handleOnPaste}
 
   return (
     <InputWithDisplayFormat
@@ -56,6 +57,7 @@ export const basic = () => {
       onPaste={handleOnPaste}
       onBlur={(v) => console.log('onBlur')}
       onFocus={(v) => console.log('onFocus')}
+      cursor={cursor}
     />
   );
 };

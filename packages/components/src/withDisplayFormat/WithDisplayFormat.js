@@ -25,36 +25,18 @@ class WithDisplayFormat extends Component {
     };
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const oldPattern = prevProps.displayPattern;
-  //   const newPattern = this.props.displayPattern;
-
-  //   if (oldPattern !== newPattern) {
-  //     // If the pattern changed, we should try to maintain the position of the cursor
-  //     const oldCursorPosition = this.state.selectionStart;
-  //     const oldSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, oldPattern);
-  //     const newSymbolsBeforeCursor = getCountOfSymbolsInSelection(0, oldCursorPosition, newPattern);
-  //     const newCursorPosition = oldCursorPosition - oldSymbolsBeforeCursor + newSymbolsBeforeCursor;
-
-  //     this.setCursorPosition(this.state.target.target, newCursorPosition, newCursorPosition);
-  //   }
-  // }
-
   componentDidUpdate(prevProps) {
     if (prevProps.value != this.props.value) {
-      console.log('changed from outside!', this.props.value);
       this.setState({
-        value: formatWithPattern(this.props.value, this.props.displayPattern)
+        value: formatWithPattern(this.props.value, this.props.displayPattern),
       });
     }
 
     if (prevProps.cursor != this.props.cursor) {
-      console.log('cursor changed');
-
       const { target } = this.state;
       this.setCursorPosition(target, this.props.cursor, this.props.cursor);
     }
-  };
+  }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { displayPattern } = nextProps;
@@ -131,17 +113,17 @@ class WithDisplayFormat extends Component {
 
     if (this.detectUndoRedo(event) === 'Undo') {
       newFormattedValue = formatWithPattern(historyNavigator.undo(), displayPattern);
-      this.setState({ 
-        value: newFormattedValue, 
+      this.setState({
+        value: newFormattedValue,
         triggerType: 'Undo',
-        target: event.target
+        target: event.target,
       });
     } else if (this.detectUndoRedo(event) === 'Redo') {
       newFormattedValue = formatWithPattern(historyNavigator.redo(), displayPattern);
-      this.setState({ 
-        value: newFormattedValue, 
+      this.setState({
+        value: newFormattedValue,
         triggerType: 'Redo',
-        target: event.target
+        target: event.target,
       });
     } else {
       this.setState({
@@ -149,7 +131,7 @@ class WithDisplayFormat extends Component {
         triggerType: 'KeyDown',
         selectionStart,
         selectionEnd,
-        target: event.target
+        target: event.target,
       });
     }
   };
@@ -158,20 +140,11 @@ class WithDisplayFormat extends Component {
     const value = event.clipboardData.getData('Text');
 
     const { displayPattern, onPaste } = this.props;
-    let unformattedValue = unformatWithPattern(value, displayPattern);
+    let unformattedPastedValue = unformatWithPattern(value, displayPattern);
 
-    const pastedLength = unformattedValue.length;
-
-    // If there is an onPaste function, and it returns a different value, use that.
-    if (onPaste) {
-      const response = onPaste(event, unformattedValue);
-      if (response) {
-        event.preventDefault();
-      }
-    }
+    const pastedLength = unformattedPastedValue.length;
 
     this.setState({ triggerType: 'Paste', pastedLength });
-    // return event;
   };
 
   handleOnCut = () => {
@@ -187,27 +160,18 @@ class WithDisplayFormat extends Component {
 
   handleOnChange = (event) => {
     const { historyNavigator, triggerEvent, triggerType } = this.state;
-    const { displayPattern, onChange } = this.props;
+    const { displayPattern, onChange, onPaste } = this.props;
     const { value } = event.target;
     let unformattedValue = unformatWithPattern(value, displayPattern);
 
-    console.log('handling on change', unformattedValue);
-
-    // If there is an onChange function, and it returns a different value, use that.
-    // if (onChange) {
-    //   const response = onChange(event, unformattedValue);
-    //   if (response) {
-    //     console.log('custom change');
-    //     event.preventDefault();
-    //     this.setState({ value: formatWithPattern(response, displayPattern) });
-    //   }
-    // }
-
     // triggerEvent can be null only in case of "autofilling" (via password manager extension or browser build-in one) events
     const action = triggerEvent === null ? 'Paste' : this.getUserAction(unformattedValue);
-    
-    if (action === 'Paste') {
-      console.log('Paste!'); // TODO, bad?
+
+    if (triggerType === 'Paste' && onPaste) {
+      // If there is an onPaste function, let it handle paste
+      const unformattedControlValue = unformatWithPattern(event.target.value, displayPattern);
+      onPaste(event, unformattedControlValue);
+      event.preventDefault();
       return;
     }
 
@@ -225,9 +189,9 @@ class WithDisplayFormat extends Component {
     const newCursorPosition = this.handleCursorPositioning(action);
 
     this.setState(
-      { value: newFormattedValue }, 
-      this.resetEvent(), 
-      onChange(unformattedValue, newCursorPosition)
+      { value: newFormattedValue },
+      this.resetEvent(),
+      onChange(unformattedValue, newCursorPosition),
     );
   };
 
@@ -289,7 +253,6 @@ class WithDisplayFormat extends Component {
 
   setCursorPosition(target, start, end) {
     setTimeout(() => {
-      console.log('setCursor', target, start, end);
       if (target) {
         target.setSelectionRange(start, end);
       }
@@ -354,6 +317,11 @@ WithDisplayFormat.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onChange: PropTypes.func.isRequired,
+  /**
+   * if you supply an onPaste function, the default behaviour is prevented,
+   * you will need to set the new value manually
+   */
+  onPaste: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   render: PropTypes.func.isRequired,
@@ -362,6 +330,9 @@ WithDisplayFormat.propTypes = {
   type: PropTypes.string,
   inputMode: PropTypes.string,
   value: PropTypes.string,
+  /**
+   * Use the cursor prop to manually override the cursor position after changing the value
+   */
   cursor: PropTypes.number,
 };
 
@@ -382,6 +353,7 @@ WithDisplayFormat.defaultProps = {
   value: '',
   onFocus: null,
   onBlur: null,
+  onPaste: null,
   cursor: 0,
 };
 
