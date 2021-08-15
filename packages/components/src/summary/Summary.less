@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
+@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 
 .np-summary {
   min-width: 280px;
@@ -21,7 +22,7 @@
     }
 
     .np-summary-icon__pending {
-      color: var(--color-interactive-warning);
+      color: @color-interactive-warning;
     }
     // The second icon is the badge
     :nth-child(2) {

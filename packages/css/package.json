@@ -37,7 +37,7 @@
     "copy:fonts": "cpx 'src/fonts/*' dist/fonts",
     "prettier": "prettier --write src/less/*.less",
     "lint": "yarn lintless",
-    "lintless": "stylelint './src/(less|props|variables)/**' '!**/bootstrap-forms.less'",
+    "lintless": "stylelint './src/(less|props|variables)/**/*.less'",
     "lintless:fix": "yarn lintless --fix"
   },
   "dependencies": {
