@@ -4,7 +4,7 @@ import Box from '../box';
 
 const Direction = { default: 'row', xs: 'row', sm: 'row', md: 'row', lg: 'row' };
 
-const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
+const ThreeColumns = ({ firstColumn = {}, secondColumn = {}, thirdColumn = {} }) => {
   return (
     <Flex
       direction={Direction}
@@ -14,7 +14,7 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
       marginY={0}
       className="PageLayout__Inner"
     >
-      {firstContent && (
+      {firstColumn.content && (
         <Box
           size={{
             default: 0,
@@ -27,12 +27,12 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
           justifyContent="flex-start"
           alignItems="flex-start"
           tagHtml="header"
-          className="Header"
+          className={`Header ${firstColumn.className || ''}`}
         >
-          {firstContent}
+          {firstColumn.content}
         </Box>
       )}
-      {secondContent && (
+      {secondColumn.content && (
         <Box
           size={{
             default: 0,
@@ -46,7 +46,7 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
           alignItems="flex-start"
           className="Sidebar"
         >
-          {secondContent}
+          {secondColumn.content}
         </Box>
       )}
       <Flex
@@ -55,7 +55,7 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
         paddingX={0}
         paddingY={0}
         marginY={0}
-        className="Flex__Container"
+        className={`Flex__Container ${secondColumn.className || ''}`}
       >
         <Box
           size={{
@@ -68,9 +68,9 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
           }}
           justifyContent="flex-start"
           alignItems="flex-start"
-          className="Box__Container"
+          className={`Box__Container ${thirdColumn.className || ''}`}
         >
-          {thirdContent}
+          {thirdColumn.content}
         </Box>
       </Flex>
     </Flex>
@@ -78,15 +78,23 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
 };
 
 ThreeColumns.propTypes = {
-  firstContent: PropTypes.node,
-  secondContent: PropTypes.node,
-  thirdContent: PropTypes.node,
+  firstColumn: PropTypes.shape({
+    column: PropTypes.node.isRequired,
+    className: PropTypes.string,
+  }),
+  secondColumn: PropTypes.shape({
+    column: PropTypes.node.isRequired,
+    className: PropTypes.string,
+  }),
+  thirdColumn: PropTypes.shape({
+    column: PropTypes.node.isRequired,
+    className: PropTypes.string,
+  }).isRequired,
 };
 
 ThreeColumns.defaultProps = {
-  firstContent: null,
-  secondContent: null,
-  thirdContent: null,
+  firstColumn: null,
+  secondColumn: null,
 };
 
 export default ThreeColumns;

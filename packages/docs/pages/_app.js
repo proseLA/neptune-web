@@ -6,6 +6,8 @@ import Head from 'next/head';
 import Router from 'next/router';
 import { Provider, getLangFromLocale, DEFAULT_LOCALE } from '@transferwise/components';
 import Layout from '../components/Layout';
+import { ThemeContext } from '../components/ThemeContext';
+
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
@@ -27,6 +29,26 @@ class MyApp extends App {
     const lang = getLangFromLocale(DEFAULT_LOCALE);
     const messages = await import(`@transferwise/components/build/i18n/${lang}`);
     return { locale: DEFAULT_LOCALE, messages };
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.toggleTheme = () => {
+      this.setState((state) => {
+        document.body.classList.remove(`np-theme-${state.theme}`);
+        const theme = state.theme === 'dark' ? 'light' : 'dark';
+        document.body.classList.add(`np-theme-${theme}`);
+        return {
+          theme,
+        };
+      });
+    };
+
+    this.state = {
+      theme: 'light',
+      toggleTheme: this.toggleTheme,
+    };
   }
 
   componentDidMount() {
@@ -59,16 +81,18 @@ class MyApp extends App {
     );
     return (
       <>
-        <Head>
-          <title>Neptune Web - the Wise Design System on Web</title>
-          <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
-          <script src={`https://polyfill.io/v3/polyfill.min.js?features=${polyfills}`} />
-        </Head>
-        <Provider i18n={{ locale, messages }}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </Provider>
+        <ThemeContext.Provider value={this.state}>
+          <Provider i18n={{ locale, messages }}>
+            <Head>
+              <title>Neptune Web - the Wise Design System on Web</title>
+              <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
+              <script src={`https://polyfill.io/v3/polyfill.min.js?features=${polyfills}`} />
+            </Head>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </Provider>
+        </ThemeContext.Provider>
       </>
     );
   }

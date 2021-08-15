@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import { parseISO } from 'date-fns';
@@ -7,6 +8,7 @@ import Meta from './Meta';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
+import ThemeToggle from './ThemeToggle';
 
 import Sidebar from './Sidebar';
 import ThreeColumnLayout from './layout/threeColumnLayout';
@@ -32,7 +34,7 @@ const Layout = ({ children, router: { pathname } }) => {
           </a>
         </Link>
       </div>
-      <ul className="Nav Nav--dark">
+      <ul className="Nav">
         <li className="Nav__Group">Neptune</li>
         {sections
           .filter((sec) => !sec.hidden)
@@ -51,6 +53,9 @@ const Layout = ({ children, router: { pathname } }) => {
             </li>
           ))}
       </ul>
+      <div className="Nav__Theme">
+        <ThemeToggle />
+      </div>
     </div>
   );
 
@@ -86,9 +91,9 @@ const Layout = ({ children, router: { pathname } }) => {
 
   return (
     <ThreeColumnLayout
-      firstContent={firstContent}
-      secondContent={secondContent}
-      thirdContent={thirdContent}
+      firstColumn={{ content: firstContent, className: 'np-theme-navy' }}
+      secondColumn={{ content: secondContent }}
+      thirdColumn={{ content: thirdContent }}
     />
   );
 };
