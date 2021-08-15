@@ -57,21 +57,23 @@ const ThreeColumns = ({ firstColumn = {}, secondColumn = {}, thirdColumn = {} })
         marginY={0}
         className={`Flex__Container ${secondColumn.className || ''}`}
       >
-        <Box
-          size={{
-            default: 1,
-            xs: 1,
-            sm: 1,
-            md: 1,
-            lg: 1,
-            xl: 1,
-          }}
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          className={`Box__Container ${thirdColumn.className || ''}`}
-        >
-          {thirdColumn.content}
-        </Box>
+        {thirdColumn && (
+          <Box
+            size={{
+              default: 1,
+              xs: 1,
+              sm: 1,
+              md: 1,
+              lg: 1,
+              xl: 1,
+            }}
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            className={`Box__Container ${thirdColumn.className || ''}`}
+          >
+            {thirdColumn.content}
+          </Box>
+        )}
       </Flex>
     </Flex>
   );
@@ -79,22 +81,23 @@ const ThreeColumns = ({ firstColumn = {}, secondColumn = {}, thirdColumn = {} })
 
 ThreeColumns.propTypes = {
   firstColumn: PropTypes.shape({
-    column: PropTypes.node.isRequired,
+    column: PropTypes.node,
     className: PropTypes.string,
   }),
   secondColumn: PropTypes.shape({
-    column: PropTypes.node.isRequired,
+    column: PropTypes.node,
     className: PropTypes.string,
   }),
   thirdColumn: PropTypes.shape({
-    column: PropTypes.node.isRequired,
+    column: PropTypes.node,
     className: PropTypes.string,
-  }).isRequired,
+  }),
 };
 
 ThreeColumns.defaultProps = {
   firstColumn: null,
   secondColumn: null,
+  thirdColumn: null,
 };
 
 export default ThreeColumns;
