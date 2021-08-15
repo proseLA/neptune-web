@@ -1,1 +1,2 @@
-@import '@transferwise/neptune-tokens/themes/light/tokens.css';
+/* TODO - update references once https://github.com/transferwise/neptune-tokens/pull/22 is merged */
+@import '../tokens/themes/default/tokens.css';
