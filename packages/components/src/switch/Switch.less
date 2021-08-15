@@ -5,7 +5,7 @@
   overflow: hidden;
   width: 50px;
   padding: 2px;
-  border: 1px solid @color-base-smoke-mid;
+  border: 1px solid @brand-smoke;
   border-radius: 16px;
 
   &--thumb {
@@ -13,12 +13,12 @@
     transition: transform cubic-bezier(0, 0.94, 0.62, 1) 350ms;
 
     .tw-icon {
-      color: var(--color-text-control);
+      color: var(--color-background-screen);
     }
   }
 
   &--unchecked {
-    background: @color-base-smoke-mid;
+    background: @brand-smoke;
 
     .switch--thumb {
       transform: translateX(0);
@@ -26,8 +26,8 @@
   }
 
   &--checked {
-    border: 1px solid var(--color-control-accent);
-    background: var(--color-control-accent);
+    border: 1px solid var(--color-interactive-accent);
+    background: var(--color-interactive-accent);
 
     .np-switch--thumb {
       transform: translateX(20px);

@@ -9,7 +9,7 @@ module.exports = {
     'postcss-import': {},
     autoprefixer: {},
     '@arshaw/postcss-custom-properties': {
-      importFrom: ['../../node_modules/@transferwise/neptune-tokens/tokens.css'],
+      importFrom: ['../../node_modules/@transferwise/neptune-tokens/themes/light/tokens.css'],
       preserveWithFallback: true,
     },
     'postcss-custom-media': {

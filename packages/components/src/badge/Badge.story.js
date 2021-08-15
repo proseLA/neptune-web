@@ -10,7 +10,7 @@ export default {
 };
 
 export const ExampleBadgeCss = {
-  background: 'var(--color-positive)',
+  background: 'var(--color-text-positive)',
   width: '100%',
   height: '100%',
   color: 'white',
@@ -28,7 +28,9 @@ export const basic = () => {
 
   return (
     <Badge badge={<div style={ExampleBadgeCss}>{BadgeText}</div>} border={border} size={size}>
-      <div style={{ background: 'var(--color-secondary)', color: 'white', padding: '0.5em 1em' }}>
+      <div
+        style={{ background: 'var(--color-text-secondary)', color: 'white', padding: '0.5em 1em' }}
+      >
         {BadgeInnerText}
       </div>
     </Badge>

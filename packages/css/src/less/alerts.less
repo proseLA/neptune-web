@@ -76,35 +76,35 @@
 .alert-success,
 .alert-positive {
   .alert-variant(
-    @color-background-positive;
-    @color-base-green-dark;
-    darken(@color-base-green-dark, 10%);
+    var(--color-background-positive);
+    var(--color-text-positive);
+    darken(@color-text-positive, 10%);
   );
 }
 
 .alert-info,
 .alert-neutral {
   .alert-variant(
-    @color-background-neutral;
-    @color-text-primary;
+    var(--color-background-neutral);
+    var(--color-text-primary);
     darken(@color-text-primary, 10%);
   );
 }
 
 .alert-warning {
   .alert-variant(
-    @color-background-warning;
-    @color-base-orange-dark;
-    darken(@color-base-orange-dark, 10%);
+    var(--color-background-warning);
+    var(--color-text-warning);
+    darken(@color-text-warning, 10%);
   );
 }
 
 .alert-danger,
 .alert-negative {
   .alert-variant(
-    @color-background-negative;
-    @color-base-red-dark;
-    darken(@color-base-red-dark, 10%);
+    var(--color-background-negative);
+    var(--color-text-negative);
+    darken(@color-text-negative, 10%);
   );
 }
 

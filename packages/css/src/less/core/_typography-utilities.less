@@ -212,7 +212,7 @@
 }
 
 .text-muted {
-  color: var(--color-text-inactive) !important;
+  color: var(--color-text-disabled) !important;
 }
 
 .display-1,
@@ -273,12 +273,12 @@
 .colored-dot {
   &::after {
     content: '.';
-    color: var(--color-accent);
+    color: var(--color-text-accent);
   }
 
   &--green {
     &::after {
-      color: var(--color-positive);
+      color: var(--color-text-positive);
     }
   }
 }
