@@ -1,6 +1,5 @@
 @import (reference) '../../variables/legacy-variables.less';
 @import (reference) '../../variables/neptune-tokens.less';
-
 @import (reference) '../mixins/_arrows.less';
 @import (reference) '../mixins/_grid.less';
 @import (reference) '../mixins/_forms.less';
@@ -885,8 +884,8 @@ input[type='checkbox'] {
     padding-top: 12px;
     padding-bottom: 10px;
     padding-right: 16px;
-    color: @input-color;
-    background-color: @brand-white;
+    color: var(--color-text-primary);
+    background-color: var(--color-background-screen);
     border: 1px solid @brand-smoke;
     border-radius: @border-radius-base;
     transition: border 0.15s ease-in-out, background-color 0.15s ease-in-out;
