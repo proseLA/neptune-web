@@ -1,5 +1,6 @@
 @import (reference) '@transferwise/neptune-css/src/less/addons/_spacing-utilities.less';
 @import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
+@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 
 @media (--screen-sm-max) {
   .tw-accordion-item {
@@ -56,7 +57,7 @@
   &.tw-accordion-item--dark {
     .media-body,
     .tw-accordion-item__title {
-      color: var(--color-text-control);
+      color: @color-text-control;
     }
   }
 }
