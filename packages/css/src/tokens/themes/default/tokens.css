@@ -1,0 +1,46 @@
+/**
+ * Do not edit directly
+ * Generated on Sun, 15 Aug 2021 16:26:02 GMT
+ */
+
+:root {
+  --color-blue-light: #00b9ff;
+  --color-blue-mid: #00a2dd;
+  --color-blue-dark: #0097c7;
+  --color-blue-fade: #38c8ff1a;
+  --color-green-light: #6fd698;
+  --color-green-mid: #2ead4b;
+  --color-green-dark: #008026;
+  --color-green-fade: #36c7971a;
+  --color-red-light: #ffa6a9;
+  --color-red-mid: #e74848;
+  --color-red-dark: #cf2929;
+  --color-red-fade: #ff87871a;
+  --color-orange-light: #ffd184;
+  --color-orange-mid: #df8700;
+  --color-orange-dark: #9a6500;
+  --color-orange-fade: #ffac001a;
+  --color-smoke-light: #e2e6e8;
+  --color-smoke-mid: #c9cbce;
+  --color-smoke-dark: #a8aaac;
+  --color-smoke-fade: #86a7bd1a;
+  --color-navy-light: #37517e;
+  --color-navy-mid: #2e4369;
+  --color-navy-dark: #253655;
+  --color-navy-fade: #849cc51a;
+  --color-grey-light: #829ca9;
+  --color-grey-mid: #6f8691;
+  --color-grey-dark: #5d7079;
+  --color-grey-fade: #829ca91a;
+  --color-white-light: #ffffff;
+  --color-white-mid: #ebebeb;
+  --color-white-fade: #ffffff1a;
+  --color-black-light: #202020;
+  --color-black-mid: #181818;
+  --color-black-dark: #000000;
+  --color-black-fade: #0000001a;
+  --color-brand-blue: #00b9ff;
+  --color-brand-purple: #485cc7;
+  --color-brand-amber: #ffb619;
+  --color-brand-borderless: #44ee70;
+}
