@@ -36,9 +36,9 @@ class MyApp extends App {
 
     this.toggleTheme = () => {
       this.setState((state) => {
-        document.body.classList.remove(`np-theme-${state.theme}`);
+        document.documentElement.classList.remove(`np-theme-${state.theme}`);
         const theme = state.theme === 'dark' ? 'light' : 'dark';
-        document.body.classList.add(`np-theme-${theme}`);
+        document.documentElement.classList.add(`np-theme-${theme}`);
         return {
           theme,
         };

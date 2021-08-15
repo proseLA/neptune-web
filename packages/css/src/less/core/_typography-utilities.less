@@ -164,7 +164,7 @@
 
 // Contextual colors `.text-*`
 .text-primary {
-  .text-emphasis-variant(@color-base-navy-light, @color-base-navy-light, @color-base-navy-mid);
+  .text-emphasis-variant(var(--color-text-primary), var(--color-text-primary), @color-base-navy-mid);
 
   .bg-primary & {
     color: @color-base-white !important;
