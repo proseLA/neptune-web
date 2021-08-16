@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.0.8...@transferwise/neptune-docs@13.1.0) (2021-08-16)
+
+
+### Features
+
+* add manual file download handler to UploadInput ([#1098](https://github.com/transferwise/neptune-web/issues/1098)) ([a944372](https://github.com/transferwise/neptune-web/commit/a944372b1368a1e2c41a7d37cea7c29ccf05ac93))
+
+
+
+
+
 ## [13.0.8](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.0.7...@transferwise/neptune-docs@13.0.8) (2021-08-16)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
