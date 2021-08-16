@@ -45,7 +45,7 @@
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.14.5",
-    "@formatjs/cli": "^2.13.13",
+    "@formatjs/cli": "^4.2.31",
     "@transferwise/components": "^37.1.0",
     "@transferwise/icons": "^2.6.0",
     "@transferwise/less-config": "^3.0.2",
