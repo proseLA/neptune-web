@@ -1,7 +1,7 @@
-import Types from 'prop-types';
-
 import { Markdown, Info } from '@transferwise/components';
+import Types from 'prop-types';
 import { useIntl } from 'react-intl';
+
 import messages from './Help.messages';
 
 const Help = (props) => {

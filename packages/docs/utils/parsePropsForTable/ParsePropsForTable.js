@@ -3,7 +3,6 @@ import { isObject, isArray } from 'util';
 const cleanValue = (value) => {
   let newValue = value;
   if (typeof value === 'object') {
-    /* eslint-disable-next-line */
     newValue = Object.values(value)[0];
   }
   return newValue && typeof newValue === 'string' ? newValue.replace(/"|'/gi, '') : newValue;
@@ -17,38 +16,38 @@ const parsePropsForTable = ({
   required,
   type,
 }) => {
-  const getAllowedValues = (propType) => {
-    switch (propType.name) {
+  const getAllowedValues = (propertyType) => {
+    switch (propertyType.name) {
       case 'arrayOf':
-        if (propType.value.value) {
-          return `{${Object.keys(propType.value.value).join(', ')}}`;
+        if (propertyType.value.value) {
+          return `{${Object.keys(propertyType.value.value).join(', ')}}`;
         }
-        return `{${Object.keys(propType.value).join(', ')}}`;
+        return `{${Object.keys(propertyType.value).join(', ')}}`;
 
       case 'enum':
-        if (isArray(propType.value)) {
-          return propType.value.map(({ value }) => cleanValue(value));
+        if (isArray(propertyType.value)) {
+          return propertyType.value.map(({ value }) => cleanValue(value));
         }
-        return cleanValue(propType.value) || '–';
+        return cleanValue(propertyType.value) || '–';
 
       case 'union':
-        if (isArray(propType.value)) {
-          return propType.value.map(({ name }) => name);
+        if (isArray(propertyType.value)) {
+          return propertyType.value.map(({ name }) => name);
         }
-        return cleanValue(propType.value) || '–';
+        return cleanValue(propertyType.value) || '–';
 
       case 'shape':
-        if (isObject(propType.value)) {
+        if (isObject(propertyType.value)) {
           return JSON.stringify(
-            Object.keys(propType.value).map((key) => ({
-              [key]: cleanValue(propType.value[key].name),
+            Object.keys(propertyType.value).map((key) => ({
+              [key]: cleanValue(propertyType.value[key].name),
             })),
           );
         }
-        return cleanValue(propType.value) || '–';
+        return cleanValue(propertyType.value) || '–';
 
       default:
-        return cleanValue(propType.value) || '–';
+        return cleanValue(propertyType.value) || '–';
     }
   };
 

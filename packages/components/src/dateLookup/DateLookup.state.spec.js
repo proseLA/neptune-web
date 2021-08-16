@@ -1,5 +1,5 @@
-import { useIntl } from 'react-intl';
 import { shallow } from 'enzyme';
+import { useIntl } from 'react-intl';
 
 import DateLookup from '.';
 
@@ -32,7 +32,7 @@ describe('DateLookup state', () => {
 
   it('does not update when date props did not change', () => {
     const props = { open: true };
-    expect(DateLookup.getDerivedStateFromProps(props, defaultState)).toEqual(null);
+    expect(DateLookup.getDerivedStateFromProps(props, defaultState)).toBeNull();
   });
 
   it('updates selectedDate on props value change', () => {

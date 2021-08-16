@@ -1,7 +1,7 @@
+import { Status } from '../../common';
 import { render, screen } from '../../test-utils';
 
 import UploadItem, { UploadItemProps, TEST_IDS } from './UploadItem';
-import { Status } from '../../common';
 
 describe('UploadItem', () => {
   const props: UploadItemProps = {

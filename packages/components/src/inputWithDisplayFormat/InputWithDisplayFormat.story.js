@@ -7,7 +7,7 @@ export default {
   title: 'InputWithDisplayFormat',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const placeholder = text('Placeholder', '**-**-**');
   const displayPattern = text('DisplayPattern', '**-**-**');
 

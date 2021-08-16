@@ -1,4 +1,5 @@
 import { render } from '../test-utils';
+
 import Logo, { LogoType } from '.';
 
 describe('Logo', () => {

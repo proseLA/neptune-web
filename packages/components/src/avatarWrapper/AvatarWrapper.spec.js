@@ -1,7 +1,7 @@
+import { Size } from '../common';
 import { render, screen } from '../test-utils';
 
 import Avatar from '.';
-import { Size } from '../common';
 
 const name = 'Elizabeth Alexandra Mary Windsor';
 

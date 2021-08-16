@@ -1,7 +1,9 @@
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import Field from './Field';
+import { select, text } from '@storybook/addon-knobs';
+
 import FormControl from '../formControl';
+
+import Field from './Field';
 
 export default {
   component: Field,
@@ -62,7 +64,7 @@ export const basic = () => {
           maximum: 'Must be 99 or less',
         },
       }}
-      onChange={(val) => action(val)}
+      onChange={(value_) => action(value_)}
     />
   );
 };

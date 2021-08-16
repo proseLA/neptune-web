@@ -1,16 +1,17 @@
 import { select } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon, Check } from '@transferwise/icons';
-import Accordion from './Accordion';
-import Modal from '../modal';
 
 import { Size, Scroll, Theme } from '../common';
+import Modal from '../modal';
+
+import Accordion from './Accordion';
 
 export default {
   component: Accordion,
   title: 'Accordion',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const items = [
     {
       title: 'Item 1',
@@ -42,7 +43,7 @@ export const basic = () => {
   );
 };
 
-export const withIcons = () => {
+export const WithIcons = () => {
   const items = [
     {
       title: 'Item 1',

@@ -44,7 +44,7 @@ function isValidObjectSchema(value, schema) {
       isObjectPropertyValid(
         value[propertyName],
         schema.properties[propertyName],
-        schema.required && schema.required.indexOf(propertyName) >= 0,
+        schema.required && schema.required.includes(propertyName),
       ),
     )
     .every((property) => property);
@@ -62,7 +62,7 @@ function isValidArraySchema(value, schema) {
     return false;
   }
 
-  if (getArrayValidationFailures(value, schema).length) {
+  if (getArrayValidationFailures(value, schema).length > 0) {
     return false;
   }
   return value.map((item) => isValidSchema(item, schema.items)).every((valid) => valid);

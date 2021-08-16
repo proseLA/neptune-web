@@ -1,4 +1,5 @@
 import { boolean, select } from '@storybook/addon-knobs';
+
 import SlidingPanel from './SlidingPanel';
 
 export default {
@@ -6,7 +7,7 @@ export default {
   title: 'SlidingPanel',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const open = boolean('open', false);
   const position = select('position', ['top', 'right', 'bottom', 'left'], 'top');
 

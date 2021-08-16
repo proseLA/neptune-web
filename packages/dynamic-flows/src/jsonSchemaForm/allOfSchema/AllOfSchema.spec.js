@@ -1,7 +1,8 @@
 import { shallow } from 'enzyme';
 
-import AllOfSchema from '.';
 import GenericSchema from '../genericSchema';
+
+import AllOfSchema from '.';
 
 describe('Given a component from rendering allOf schemas', () => {
   let component;
@@ -122,7 +123,7 @@ describe('Given a component from rendering allOf schemas', () => {
     });
 
     it('should trigger the components onChange once', () => {
-      expect(onChange).toHaveBeenCalled();
+      expect(onChange).toHaveBeenCalledTimes(1);
     });
 
     it('should combine the changed model with the other (valid) parts of the model', () => {

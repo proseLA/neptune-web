@@ -1,6 +1,5 @@
-import Types from 'prop-types';
-
 import { InlineAlert } from '@transferwise/components';
+import Types from 'prop-types';
 
 const ControlFeedback = (props) => {
   // Use validation messages from the schema if possible.

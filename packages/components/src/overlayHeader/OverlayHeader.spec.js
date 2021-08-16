@@ -1,9 +1,8 @@
+import Avatar, { AvatarType } from '../avatar';
+import { Size } from '../common';
 import { render } from '../test-utils';
 
 import OverlayHeader from '.';
-
-import Avatar, { AvatarType } from '../avatar';
-import { Size } from '../common';
 
 describe('OverlayHeader', () => {
   const props = {

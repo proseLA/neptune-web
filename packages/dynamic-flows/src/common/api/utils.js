@@ -25,10 +25,10 @@ export function QueryablePromise(promise) {
       isPending = false;
       return value;
     },
-    (exception) => {
+    (error) => {
       isRejected = true;
       isPending = false;
-      throw exception;
+      throw error;
     },
   );
 

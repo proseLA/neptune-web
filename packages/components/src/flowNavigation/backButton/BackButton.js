@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { ArrowLeft as ArrowLeftIcon } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const BackButton = ({ label, className, onClick }) => (
   <button

@@ -1,8 +1,8 @@
-import { render, fireEvent, screen } from '../test-utils';
-import Switch from './Switch';
-
-import KeyCodes from '../common/keyCodes';
 import { useDirection } from '../common/hooks';
+import KeyCodes from '../common/keyCodes';
+import { render, fireEvent, screen } from '../test-utils';
+
+import Switch from './Switch';
 
 jest.mock('../common/hooks/useDirection');
 
@@ -54,31 +54,31 @@ describe('Switch', () => {
     const { container } = render(
       <Switch
         checked={false}
-        onClick={props.onClick}
         className={props.className}
         id={props.id}
         aria-label={props['aria-label']}
+        onClick={props.onClick}
       />,
     );
     expect(container).toMatchSnapshot();
   });
 
   it('calls onClick when user press space key', () => {
-    const { getAllByRole } = render(
+    render(
       <Switch
         checked={props.checked}
-        onClick={props.onClick}
         className={props.className}
         id={props.id}
         aria-label={props['aria-label']}
+        onClick={props.onClick}
       />,
     );
 
-    const input = getAllByRole('checkbox')[0];
+    const input = screen.getAllByRole('checkbox')[0];
     fireEvent.keyDown(input, { key: '33', keyCode: KeyCodes.ENTER });
     expect(props.onClick).not.toHaveBeenCalled();
     fireEvent.keyDown(input, { key: '32', keyCode: KeyCodes.SPACE });
-    expect(props.onClick).toHaveBeenCalled();
+    expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('should apply correct css classes when isRTL is true', () => {

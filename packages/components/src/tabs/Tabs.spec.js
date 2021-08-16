@@ -1,11 +1,12 @@
 import { mount } from 'enzyme';
 import { Spring } from 'react-spring/renderprops.cjs';
-import { getElasticDragDifference } from './utils';
 
-import Tabs from './Tabs';
+import { Size, Width } from '../common';
+
 import Tab from './Tab';
 import TabPanel from './TabPanel';
-import { Size, Width } from '../common';
+import Tabs from './Tabs';
+import { getElasticDragDifference } from './utils';
 
 jest.useFakeTimers();
 
@@ -51,7 +52,7 @@ describe('Tabs', () => {
 
   it('renders with right props', () => {
     expect(component.find(Tabs)).toHaveLength(1);
-    expect(component.find(Tabs).props()).toEqual({ ...props });
+    expect(component.find(Tabs).props()).toStrictEqual({ ...props });
   });
 
   it('uses a ref to get the components width', () => {
@@ -63,7 +64,7 @@ describe('Tabs', () => {
 
     component.update();
 
-    expect(component.find(Spring).props()).toEqual(
+    expect(component.find(Spring).props()).toStrictEqual(
       expect.objectContaining({
         config: { clamp: true, precision: 0.01, velocity: expect.any(Number) },
         from: { transform: 'translateX(0px)' },
@@ -76,7 +77,7 @@ describe('Tabs', () => {
     component.simulate('touchstart', createStartTouchEventObject({ x: 0, y: 0 }));
     component.simulate('touchmove', createMoveTouchEventObject({ x: -10, y: 0 }));
 
-    expect(component.find(Spring).props()).toEqual(
+    expect(component.find(Spring).props()).toStrictEqual(
       expect.objectContaining({
         config: { clamp: true, precision: 1, velocity: expect.any(Number) },
         to: { transform: 'translateX(-10px)' },
@@ -88,7 +89,7 @@ describe('Tabs', () => {
     component.simulate('touchstart', createStartTouchEventObject({ x: 0, y: 0 }));
     component.simulate('touchmove', createMoveTouchEventObject({ x: -10, y: 0 }));
 
-    expect(component.find(Spring).props()).toEqual(
+    expect(component.find(Spring).props()).toStrictEqual(
       expect.objectContaining({
         to: { transform: 'translateX(-10px)' },
       }),
@@ -96,7 +97,7 @@ describe('Tabs', () => {
 
     component.simulate('touchend', createMoveTouchEventObject({ x: -10, y: 0 }));
 
-    expect(component.find(Spring).props()).toEqual(
+    expect(component.find(Spring).props()).toStrictEqual(
       expect.objectContaining({
         from: { transform: 'translateX(-10px)' },
         to: { transform: 'translateX(0px)' },
@@ -108,7 +109,7 @@ describe('Tabs', () => {
     component.simulate('touchstart', createStartTouchEventObject({ x: 0, y: 0 }));
     component.simulate('touchmove', createMoveTouchEventObject({ x: 10, y: 0 }));
 
-    expect(component.find(Spring).props()).toEqual(
+    expect(component.find(Spring).props()).toStrictEqual(
       expect.objectContaining({
         to: { transform: `translateX(${getElasticDragDifference(10)}px)` },
       }),
@@ -121,7 +122,7 @@ describe('Tabs', () => {
     component.simulate('touchstart', createStartTouchEventObject({ x: 0, y: 0 }));
     component.simulate('touchmove', createMoveTouchEventObject({ x: 10, y: 0 }));
 
-    expect(component.find(Spring).props()).toEqual(
+    expect(component.find(Spring).props()).toStrictEqual(
       expect.objectContaining({
         to: { transform: `translateX(${getElasticDragDifference(10)}px)` },
       }),
@@ -160,8 +161,8 @@ describe('Tabs', () => {
   it('renders the correct amount of tab titles and panels', () => {
     const enabledTabsLength = props.tabs.filter(({ disabled }) => !disabled).length;
 
-    expect(component.find(TabPanel).length).toBe(enabledTabsLength);
-    expect(component.find(Tab).length).toBe(props.tabs.length);
+    expect(component.find(TabPanel)).toHaveLength(enabledTabsLength);
+    expect(component.find(Tab)).toHaveLength(props.tabs.length);
   });
 
   it('does not animate when a tab before the selected tab goes from disabled to enabled', () => {
@@ -226,7 +227,7 @@ describe('Tabs', () => {
       component = mount(<Tabs {...props} />);
     });
 
-    test.each`
+    it.each`
       selected | headerWidth    | lineTranslateX | sliderTranslateX
       ${1}     | ${Width.BLOCK} | ${'100%'}      | ${'-300px'}
       ${99}    | ${Width.BLOCK} | ${'400%'}      | ${'-900px'}
@@ -349,13 +350,6 @@ describe('Tabs', () => {
       expect(getPanelWidth(component)).toBe('300px');
     });
   });
-
-  describe('handling prop updates', () => {
-    it(`when updating tabs prop to an empty array`, () => {
-      const newProps = { ...props, tabs: [] };
-      component.setProps({ ...newProps });
-    });
-  });
 });
 
 const defaultDisableds = [false, true, false];
@@ -392,11 +386,11 @@ function rightSpacer(component) {
   return component.find('[id="right-spacer"]');
 }
 
-export function createStartTouchEventObject({ x = 0, y = 0 }) {
+function createStartTouchEventObject({ x = 0, y = 0 }) {
   return { nativeEvent: { touches: [createClientXY(x, y)] } };
 }
 
-export function createMoveTouchEventObject({ x = 0, y = 0 }) {
+function createMoveTouchEventObject({ x = 0, y = 0 }) {
   return {
     nativeEvent: { changedTouches: [createClientXY(x, y)] },
   };

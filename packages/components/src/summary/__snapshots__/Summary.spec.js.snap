@@ -81,7 +81,7 @@ exports[`Summary renders full component 1`] = `
             </span>
             <div
               class="np-size-swapper d-inline-flex"
-              style="visibility: hidden;"
+              style="visibility: visible;"
             />
           </span>
         </span>
@@ -138,7 +138,7 @@ exports[`Summary renders full component 1`] = `
         </span>
         <div
           class="np-size-swapper d-inline-flex"
-          style="visibility: hidden;"
+          style="visibility: visible;"
         />
       </span>
     </span>

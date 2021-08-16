@@ -1,8 +1,9 @@
-import { MouseEventHandler, ReactElement } from 'react';
-import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
-import { useDirection } from '../common/hooks';
+import classNames from 'classnames';
+import { MouseEventHandler, ReactElement } from 'react';
+
 import { CommonProps } from '../common';
+import { useDirection } from '../common/hooks';
 
 type Props = {
   /**
@@ -20,13 +21,19 @@ type Props = {
  * `Chip` component
  *
  * Docs link: https://transferwise.github.io/neptune-web/components/internal/Chip
+ *
+ * @param root0
+ * @param root0.label
+ * @param root0.onRemove
+ * @param root0.hasError
+ * @param root0.className
  */
-export default function Chip({
+const Chip = ({
   label,
   onRemove,
   hasError = false,
   className = undefined,
-}: Props): ReactElement {
+}: Props): ReactElement => {
   const { isRTL } = useDirection();
   return (
     <div
@@ -49,4 +56,6 @@ export default function Chip({
       </button>
     </div>
   );
-}
+};
+
+export default Chip;

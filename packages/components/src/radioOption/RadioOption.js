@@ -25,9 +25,9 @@ const RadioOption = ({
           id={id}
           name={name}
           checked={checked}
-          onChange={onChange}
           disabled={disabled}
           value={value}
+          onChange={onChange}
         />
       }
     />

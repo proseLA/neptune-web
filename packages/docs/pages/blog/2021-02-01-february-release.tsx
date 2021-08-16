@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
-import { DocLink } from '../../utils/pageUtils';
+
+import { DocumentLink } from '../../utils/pageUtils';
 import { Meta } from '../../utils/sections';
 
 export const meta: Meta = {
@@ -18,11 +19,11 @@ export const meta: Meta = {
   tags: [],
 };
 
-export default function PageContent(): ReactElement {
+const PageContent = (): ReactElement => {
   return (
     <div className="d-flex flex-column m-t-4">
-      <DocLink href="/about/Setup#usage">Updated setup guide</DocLink>
-      <DocLink href="/components/context/Provider">Provider docs</DocLink>
+      <DocumentLink href="/about/Setup#usage">Updated setup guide</DocumentLink>
+      <DocumentLink href="/components/context/Provider">Provider docs</DocumentLink>
       <p className="m-t-2">
         We had previously introduced the Provider, but in this release we updated slightly how it
         works to reflect the differences between locale and languages.
@@ -53,4 +54,6 @@ export default function PageContent(): ReactElement {
       </p>
     </div>
   );
-}
+};
+
+export default PageContent;

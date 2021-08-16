@@ -5,7 +5,7 @@ export default {
   title: 'SizeSwapper',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const breakpoints = [
     0,
     SizeSwapper.Breakpoint.EXTRA_SMALL,
@@ -19,9 +19,9 @@ export const basic = () => {
     const isColumn = (key + 1) % 2 === 0;
 
     return {
-      items: [...Array(4)].map((val, key2) => (
+      items: [...new Array(4)].map((value, key2) => (
         // eslint-disable-next-line react/no-array-index-key
-        <div className="p-a-3 well m-x-2" key={`el-${key2}-${key}`}>
+        <div key={`el-${key2}-${key}`} className="p-a-3 well m-x-2">
           Element shown from {bp}px {isColumn && `in ${SizeSwapper.Layout.COLUMN} mode`}
         </div>
       )),

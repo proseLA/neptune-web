@@ -1,5 +1,7 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
+
+import { HistoryNavigator } from '../common';
 import {
   formatWithPattern,
   getCountOfSymbolsInSelection,
@@ -8,8 +10,6 @@ import {
   getDistanceToPreviousSymbol,
   getDistanceToNextSymbol,
 } from '../common/textFormat';
-
-import { HistoryNavigator } from '../common';
 
 class WithDisplayFormat extends Component {
   constructor(props) {
@@ -25,11 +25,11 @@ class WithDisplayFormat extends Component {
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps, previousState) {
     const { displayPattern } = nextProps;
-    const { prevDisplayPattern } = prevState;
-    if (prevState.prevDisplayPattern !== displayPattern) {
-      const { value, historyNavigator } = prevState;
+    const { prevDisplayPattern } = previousState;
+    if (previousState.prevDisplayPattern !== displayPattern) {
+      const { value, historyNavigator } = previousState;
 
       const unFormattedValue = unformatWithPattern(value, prevDisplayPattern);
       historyNavigator.reset();
@@ -116,8 +116,10 @@ class WithDisplayFormat extends Component {
 
   handleOnPaste = (event) => {
     const { displayPattern } = this.props;
-    const pastedLength = unformatWithPattern(event.clipboardData.getData('Text'), displayPattern)
-      .length;
+    const pastedLength = unformatWithPattern(
+      event.clipboardData.getData('Text'),
+      displayPattern,
+    ).length;
 
     this.setState({ triggerType: 'Paste', pastedLength });
   };
@@ -130,7 +132,7 @@ class WithDisplayFormat extends Component {
     const { displayPattern } = this.props;
     const symbolsInPattern = displayPattern.split('').filter((character) => character !== '*');
 
-    return symbolsInPattern.indexOf(action) === -1;
+    return !symbolsInPattern.includes(action);
   };
 
   handleOnChange = (event) => {

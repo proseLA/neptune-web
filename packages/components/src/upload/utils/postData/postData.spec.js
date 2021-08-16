@@ -10,40 +10,40 @@ describe('postData', () => {
 
   it('should work with resolve', async () => {
     const RESOLVE_RESPONSE = { ok: true, someOtherStuff: 'someOtherStuff' };
-    global.fetch = jest.fn(() => Promise.resolve(RESOLVE_RESPONSE));
+    jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve(RESOLVE_RESPONSE));
 
     expect.assertions(1);
 
-    await expect(postData(HTTPOPTIONS, DATA)).resolves.toEqual(RESOLVE_RESPONSE);
+    await expect(postData(HTTPOPTIONS, DATA)).resolves.toStrictEqual(RESOLVE_RESPONSE);
   });
 
   it('should throw when call fails', async () => {
     const REJECT_RESPONSE = { status: '500', statusText: 'Rejected' };
-    global.fetch = jest.fn(() => Promise.reject(REJECT_RESPONSE));
+    jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject(REJECT_RESPONSE));
 
     expect.assertions(1);
-    await expect(postData(HTTPOPTIONS, DATA)).rejects.toEqual(REJECT_RESPONSE);
+    await expect(postData(HTTPOPTIONS, DATA)).rejects.toStrictEqual(REJECT_RESPONSE);
   });
 
   it('should throw an Error when API returns an error code', async () => {
     expect.assertions(1);
 
     const ERROR_RESPONSE = { status: '500', statusText: 'Internal server error', ok: false };
-    global.fetch = jest.fn(() => Promise.resolve(ERROR_RESPONSE));
+    jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve(ERROR_RESPONSE));
 
-    await expect(postData(HTTPOPTIONS, DATA)).rejects.toEqual(expect.any(Error));
+    await expect(postData(HTTPOPTIONS, DATA)).rejects.toStrictEqual(expect.any(Error));
   });
 
   it('should include the full response in the Error thrown', async () => {
     expect.assertions(1);
 
     const ERROR_RESPONSE = { status: '500', statusText: 'Internal server error', ok: false };
-    global.fetch = jest.fn(() => Promise.resolve(ERROR_RESPONSE));
+    jest.spyOn(global, 'fetch').mockImplementation(() => Promise.resolve(ERROR_RESPONSE));
 
     try {
       await postData(HTTPOPTIONS, DATA);
     } catch (error) {
-      expect(error.response).toEqual(ERROR_RESPONSE);
+      expect(error.response).toStrictEqual(ERROR_RESPONSE);
     }
   });
 
@@ -54,7 +54,7 @@ describe('postData', () => {
 
     postData(HTTPOPTIONS, data);
 
-    expect(mockFetch.mock.calls[0][1].body).toEqual(data);
+    expect(mockFetch.mock.calls[0][1].body).toStrictEqual(data);
   });
 
   it('should override `Content-type` and add any custom headers to the request', () => {
@@ -72,8 +72,8 @@ describe('postData', () => {
       DATA,
     );
 
-    expect(mockFetch.mock.calls[0][1].headers['Content-type']).toEqual(CUSTOM_CONTENT_TYPE);
-    expect(mockFetch.mock.calls[0][1].headers['Accept-language']).toEqual(CUSTOM_LANGUAGE);
+    expect(mockFetch.mock.calls[0][1].headers['Content-type']).toStrictEqual(CUSTOM_CONTENT_TYPE);
+    expect(mockFetch.mock.calls[0][1].headers['Accept-language']).toStrictEqual(CUSTOM_LANGUAGE);
   });
 
   it('should set method to `POST` by default', () => {
@@ -82,7 +82,7 @@ describe('postData', () => {
 
     postData(HTTPOPTIONS, DATA);
 
-    expect(mockFetch.mock.calls[0][1].method).toEqual('POST');
+    expect(mockFetch.mock.calls[0][1].method).toStrictEqual('POST');
   });
 
   it('should not set `Content-type` by default', () => {

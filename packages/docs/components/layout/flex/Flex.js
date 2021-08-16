@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 // eslint-disable-next-line no-unused-vars
 import { jsx } from '@emotion/react';
-import { Children, cloneElement } from 'react';
 import Types from 'prop-types';
+import { Children, cloneElement } from 'react';
+
 import { Size, FlexDirection, Breakpoint } from '../common';
 
 const mediaQueries = Object.values(Breakpoint).map((bp) => `@media (min-width: ${bp}px)`);
@@ -21,7 +22,7 @@ const Flex = (props) => {
   } = props;
 
   const getFlexDirection = (breakpoint) => {
-    return direction && direction[breakpoint] && FlexDirection.indexOf(direction[breakpoint]) > -1
+    return direction && direction[breakpoint] && FlexDirection.includes(direction[breakpoint])
       ? direction[breakpoint]
       : 'row';
   };

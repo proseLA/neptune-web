@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { Upload as UploadIcon } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { getSupportedSpotMimeTypes, requestMedia } from '../../utils';
 

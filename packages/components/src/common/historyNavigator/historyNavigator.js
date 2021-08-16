@@ -1,6 +1,6 @@
 class HistoryNavigator {
   constructor(history = [], historyLimit = null) {
-    this.history = history && history.length ? history : [''];
+    this.history = history && history.length > 0 ? history : [''];
     this.currIndex = this.history.length - 1;
     this.historyLimit = historyLimit;
   }
@@ -23,8 +23,8 @@ class HistoryNavigator {
   };
 
   redo = () => {
-    const historyLen = this.history.length;
-    this.currIndex = this.currIndex + 1 < historyLen ? this.currIndex + 1 : historyLen - 1;
+    const historyLength = this.history.length;
+    this.currIndex = this.currIndex + 1 < historyLength ? this.currIndex + 1 : historyLength - 1;
     return this.history[this.currIndex];
   };
 

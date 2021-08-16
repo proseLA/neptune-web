@@ -1,5 +1,5 @@
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import Types from 'prop-types';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
 import theme from '../prismTheme';
 

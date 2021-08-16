@@ -5,7 +5,7 @@ describe('isValidPhoneNumber', () => {
     expect(isValidPhoneNumber('+393892712')).toBe(true);
   });
 
-  it('should return true for valid string numbers', () => {
+  it('should return true for formatted string numbers', () => {
     expect(isValidPhoneNumber('+39 3892 - 712')).toBe(true);
   });
 

@@ -2,13 +2,20 @@ import { render, screen, userEvent } from '../test-utils';
 
 import Drawer from './Drawer';
 
-// eslint-disable-next-line react/prop-types
-jest.mock('../dimmer', () => ({ open, children }) =>
-  open ? <div className="dimmer">{children}</div> : null,
+jest.mock(
+  '../dimmer',
+  () =>
+    function ({ open, children }) {
+      return open ? <div className="dimmer">{children}</div> : null;
+    },
 );
-// eslint-disable-next-line react/prop-types
-jest.mock('../slidingPanel', () => ({ open, children }) =>
-  open ? <div className="sliding-panel">{children}</div> : null,
+
+jest.mock(
+  '../slidingPanel',
+  () =>
+    function ({ open, children }) {
+      return open ? <div className="sliding-panel">{children}</div> : null;
+    },
 );
 
 describe('Drawer', () => {
@@ -41,7 +48,7 @@ describe('Drawer', () => {
     render(<Drawer {...props}>content</Drawer>);
     expect(props.onClose).not.toHaveBeenCalled();
     userEvent.click(getCloseButton());
-    expect(props.onClose).toHaveBeenCalled();
+    expect(props.onClose).toHaveBeenCalledTimes(1);
   });
 
   const getCloseButton = () => screen.getByLabelText('Close');

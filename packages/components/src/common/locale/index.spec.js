@@ -1,12 +1,11 @@
-import { getLangFromLocale, adjustLocale, getCountryFromLocale, SUPPORTED_LANGUAGES } from '.';
 import translationFiles from '../../i18n';
+
+import { getLangFromLocale, adjustLocale, getCountryFromLocale, SUPPORTED_LANGUAGES } from '.';
 
 describe('locale utils', () => {
   beforeAll(() => {
-    // eslint-disable-next-line no-console
-    console.error = jest.fn();
+    jest.spyOn(console, 'error').mockImplementation();
     jest.spyOn(console, 'error').mockImplementation(() => {});
-    // eslint-disable-next-line no-console
     jest.spyOn(console, 'warn').mockImplementation(() => {});
   });
   afterAll(() => {
@@ -14,7 +13,7 @@ describe('locale utils', () => {
   });
 
   describe('getLangFromLocale', () => {
-    test.each([
+    it.each([
       ['en-GB', 'en'],
       ['en_GB', 'en'],
       ['EN-GB', 'en'],
@@ -41,7 +40,7 @@ describe('locale utils', () => {
   });
 
   describe('adjustLocale', () => {
-    test.each([
+    it.each([
       ['en-GB', 'en-GB'],
       ['en_GB', 'en-GB'],
       ['EN-GB', 'en-GB'],
@@ -69,7 +68,7 @@ describe('locale utils', () => {
 
   describe('contract between SUPPORTED_LANGUAGES and names of translations files', () => {
     it('number of lang codes should be equal to number of translations files', () => {
-      expect(SUPPORTED_LANGUAGES.length).toBe(Object.keys(translationFiles).length);
+      expect(SUPPORTED_LANGUAGES).toHaveLength(Object.keys(translationFiles).length);
     });
 
     it('lang codes should match to names of translations object', () => {
@@ -84,18 +83,16 @@ describe('locale utils', () => {
     });
 
     it('lang codes should match with names of translations files', async () => {
-      for (let i = 0; i < SUPPORTED_LANGUAGES.length; i += 1) {
-        const locale = SUPPORTED_LANGUAGES[i];
-        // eslint-disable-next-line no-await-in-loop
+      for (const locale of SUPPORTED_LANGUAGES) {
         const file = await import(`../../i18n/${locale}.json`);
-        expect(file).not.toBe(null);
+        expect(file).not.toBeNull();
         expect(file.default).toBe(translationFiles[locale]);
       }
     });
   });
 
   describe('getCountryFromLocale', () => {
-    test.each([
+    it.each([
       ['en', null],
       ['fr', null],
       ['it', null],

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-import DefinitionList from '../definitionList';
-import { prepFields } from '../common/requirements';
-import createDefinitions from './utils/createDefinitions';
-
 import { Layout } from '../common';
+import { prepFields } from '../common/requirements';
+import DefinitionList from '../definitionList';
+
+import createDefinitions from './utils/createDefinitions';
 
 const DynamicFieldDefinitionList = ({ model, title, layout, fields }) => (
   <>

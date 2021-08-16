@@ -1,12 +1,11 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import withNextPortal from '../withNextPortal/withNextPortal';
 
 import { Theme } from '../common';
-
 import { DirectionContext } from '../provider/direction';
+import withNextPortal from '../withNextPortal/withNextPortal';
 
 export const CSS_TRANSITION_DURATION = 400;
 
@@ -47,19 +46,17 @@ export class Snackbar extends Component {
     }, timeout);
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(previousProps) {
     const { action, text, theme, timestamp } = this.props;
 
-    if (!prevProps.text) {
-      // eslint-disable-next-line react/no-did-update-set-state
+    if (!previousProps.text) {
       this.setState({ visible: true, action, text, theme }, () => {
         this.setLeaveTimeout();
       });
-    } else if (prevProps.timestamp !== timestamp) {
+    } else if (previousProps.timestamp !== timestamp) {
       clearTimeout(this.timeout);
 
       if (this.state.visible) {
-        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({ visible: false }, () => {
           this.transitionTimeout = setTimeout(() => {
             this.setState({ visible: true, action, text, theme });
@@ -67,7 +64,6 @@ export class Snackbar extends Component {
           }, CSS_TRANSITION_DURATION);
         });
       } else {
-        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({ visible: true, action, text, theme });
         this.setLeaveTimeout();
       }

@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import RadioButton from '../common/RadioButton';
-
 import { useDirection } from '../common/hooks';
 
 const Radio = ({ label, id, disabled, avatar, secondary, ...otherProps }) => {

@@ -1,14 +1,16 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import Button from './Button';
+
 import { Type, Priority, ControlType, Size } from '../common';
+
+import Button from './Button';
 
 export default {
   component: Button,
   title: 'Button',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const size = select('size', Object.values(Size), Size.SMALL);
   const type = select(
     'type',

@@ -1,4 +1,5 @@
 import { array } from '@storybook/addon-knobs';
+
 import InstructionsList from './InstructionsList';
 
 export default {
@@ -6,7 +7,7 @@ export default {
   title: 'InstructionsList',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const dos = array('dos', [
     'Do an initial money transfer',
     'Invite at least 3 friends',

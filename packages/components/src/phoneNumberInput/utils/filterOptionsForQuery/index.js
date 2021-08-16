@@ -2,6 +2,7 @@ import { isOptionAndFitsQuery } from '../isOptionAndFitsQuery';
 
 /**
  * Filters a set of options based on search string
+ *
  * @param options
  * @param query
  * @returns {*}

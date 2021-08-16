@@ -16,6 +16,6 @@ describe('longestMatchingPrefix', () => {
     },
   ];
   it('should return a country with the longest matching prefix', () => {
-    expect(longestMatchingPrefix(matchingcodes)).toEqual(matchingcodes[1]);
+    expect(longestMatchingPrefix(matchingcodes)).toStrictEqual(matchingcodes[1]);
   });
 });

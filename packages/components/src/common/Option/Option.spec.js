@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
-import { render } from '../../test-utils';
+
+import { render, screen } from '../../test-utils';
 
 import Option from '.';
 
@@ -48,13 +49,13 @@ describe('Option', () => {
     const event = { iAmAnEvent: true };
     component.setProps({ onClick });
 
-    expect(onClick).not.toBeCalled();
+    expect(onClick).not.toHaveBeenCalled();
     component.simulate('click', event);
-    expect(onClick).toBeCalledWith(event);
+    expect(onClick).toHaveBeenCalledWith(event);
   });
 
   it('has for attribute to label when prop is passed', () => {
-    expect(htmlFor()).toBe(null);
+    expect(htmlFor()).toBeNull();
     component.setProps({ htmlFor: 'some-id' });
     expect(htmlFor()).toBe('some-id');
   });
@@ -73,11 +74,9 @@ describe('Option', () => {
   });
 
   it('renders the title', () => {
-    const { getByText } = render(
-      <Option title="Option title" content="" media={<span />} button={<span />} />,
-    );
+    render(<Option title="Option title" content="" media={<span />} button={<span />} />);
 
-    expect(() => getByText('Option title')).not.toThrow();
+    expect(() => screen.getByText('Option title')).not.toThrow();
   });
 
   it('has passed content', () => {

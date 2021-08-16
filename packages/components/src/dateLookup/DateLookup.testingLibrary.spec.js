@@ -1,13 +1,18 @@
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
 
+import { Breakpoint } from '../common';
 import { render, screen, fireEvent } from '../test-utils';
 
 import DateLookup from '.';
-import { Breakpoint } from '../common';
 
-// eslint-disable-next-line
-jest.mock('../dimmer', () => ({ children }) => <div className="dimmer">{children}</div>);
+jest.mock(
+  '../dimmer',
+  () =>
+    function ({ children }) {
+      return <div className="dimmer">{children}</div>;
+    },
+);
 
 describe('DateLookup (events)', () => {
   const date = new Date(2018, 11, 27);
@@ -39,7 +44,7 @@ describe('DateLookup (events)', () => {
   });
 
   afterEach(() => {
-    closeDateLookup(container);
+    closeDateLookup();
   });
 
   it('sets focus to header label', () => {
@@ -84,7 +89,7 @@ describe('DateLookup (events)', () => {
 
   describe('adjust if offscreen', () => {
     const calPosition = (left) => {
-      Element.prototype.getBoundingClientRect = jest.fn(() => {
+      jest.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(() => {
         return {
           width: 200,
           height: 100,
@@ -127,13 +132,13 @@ describe('DateLookup (events)', () => {
   });
 
   describe('at extra small breakpoints', () => {
-    it('it opens dateLookup using slider', () => {
+    it('opens dateLookup using slider', () => {
       winWidth(Breakpoint.SMALL);
       openDateLookup();
       expect(getDimmer()).toBeInTheDocument();
     });
 
-    it('it opens dateLookup using slider', () => {
+    it('opens dateLookup using slider on small + 1 width', () => {
       winWidth(Breakpoint.SMALL + 1);
       openDateLookup();
       expect(getDimmer()).not.toBeInTheDocument();
@@ -153,16 +158,6 @@ describe('DateLookup (events)', () => {
       expect(getClearButton()).toBeInTheDocument();
 
       rerender(<DateLookup {...props} disabled />);
-
-      expect(getClearButton()).not.toBeInTheDocument();
-    });
-
-    // prop-types doesn't allow value prop to be type of `Date | null | undefined` and test fails because of warning message
-    // unignore test when refactor component to TS
-    xit(`doesn't show clear button if value is null`, () => {
-      expect(getClearButton()).toBeInTheDocument();
-
-      rerender(<DateLookup {...props} value={null} />);
 
       expect(getClearButton()).not.toBeInTheDocument();
     });
@@ -195,14 +190,17 @@ describe('DateLookup (events)', () => {
     user.click(getClearButton());
   };
 
-  const getActiveYearButton = () =>
-    container.querySelector('button.tw-date-lookup-year-option.active');
+  const getActiveYearButton = () => {
+    return container.querySelector('button.tw-date-lookup-year-option.active');
+  };
 
-  const getActiveMonthButton = () =>
-    container.querySelector('button.tw-date-lookup-month-option.active');
+  const getActiveMonthButton = () => {
+    return container.querySelector('button.tw-date-lookup-month-option.active');
+  };
 
-  const getActiveDayButton = () =>
-    container.querySelector('button.tw-date-lookup-day-option.active');
+  const getActiveDayButton = () => {
+    return container.querySelector('button.tw-date-lookup-day-option.active');
+  };
 
   const getClearButton = () => container.querySelector('.clear-btn');
   const getOpenButton = () => container.querySelector('button.np-date-trigger');

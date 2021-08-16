@@ -5,7 +5,7 @@ export default {
   title: 'Link',
 };
 
-export const basic = () => {
+export const Basic = () => {
   return (
     <>
       <p>

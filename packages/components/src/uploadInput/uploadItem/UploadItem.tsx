@@ -1,12 +1,11 @@
-import React, { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
-import classNames from 'classnames';
 import { AlertCircle, CrossCircle } from '@transferwise/icons';
-
-import ProcessIndicator from '../../processIndicator/ProcessIndicator';
+import classNames from 'classnames';
+import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
 
 import { Size, Status } from '../../common';
 import { useDirection } from '../../common/hooks';
+import ProcessIndicator from '../../processIndicator/ProcessIndicator';
 import { UploadedFile } from '../types';
 
 import MESSAGES from './UploadItem.messages';
@@ -114,8 +113,8 @@ const UploadItem = ({ file, canDelete, onDelete }: UploadItemProps) => {
               'media-right': !isRTL,
               'media-left': isRTL,
             })}
-            onClick={() => onDelete()}
             type="button"
+            onClick={() => onDelete()}
           >
             <CrossCircle filled size={16} />
           </button>

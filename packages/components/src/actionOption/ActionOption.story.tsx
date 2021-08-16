@@ -1,7 +1,7 @@
-import { FastFlag as FastFlagIcon } from '@transferwise/icons';
-
 import { action } from '@storybook/addon-actions';
 import { text, boolean } from '@storybook/addon-knobs';
+import { FastFlag as FastFlagIcon } from '@transferwise/icons';
+
 import ActionOption from './ActionOption';
 
 export default {
@@ -9,7 +9,7 @@ export default {
   title: 'ActionOption',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const title = text('title', 'Action option');
   const content = text('content', 'Normally, the button and icon are vertically centered.');
   const actionText = text('action', 'Action');
@@ -22,10 +22,10 @@ export const basic = () => {
       media={<FastFlagIcon />}
       title={title}
       content={content}
-      onClick={action('Button Clicked')}
       complex={false}
       disabled={disabled}
       showMediaAtAllSizes={showMediaAtAllSizes}
+      onClick={action('Button Clicked')}
     />
   );
 };

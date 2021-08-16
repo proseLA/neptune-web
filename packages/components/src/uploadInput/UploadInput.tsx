@@ -1,21 +1,18 @@
+import classNames from 'classnames';
 import React, { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
-import classNames from 'classnames';
 
-import { UploadedFile, UploadResponse } from './types';
-
+import Button from '../button';
 import { CommonProps, ControlType, Priority, Status } from '../common';
+import Modal from '../modal';
 import { isSizeValid } from '../upload/utils/isSizeValid';
 import { isTypeValid } from '../upload/utils/isTypeValid';
-import Button from '../button';
-import Modal from '../modal';
-
-import UploadButton, { UploadButtonProps } from './uploadButton/UploadButton';
-import { DEFAULT_SIZE_LIMIT, imageFileTypes } from './uploadButton/defaults';
-
-import UploadItem from './uploadItem/UploadItem';
 
 import MESSAGES from './UploadInput.messages';
+import { UploadedFile, UploadError, UploadResponse } from './types';
+import UploadButton, { UploadButtonProps } from './uploadButton/UploadButton';
+import { DEFAULT_SIZE_LIMIT, imageFileTypes } from './uploadButton/defaults';
+import UploadItem from './uploadItem/UploadItem';
 
 export type UploadInputProps = {
   /**
@@ -30,6 +27,7 @@ export type UploadInputProps = {
 
   /**
    * Callback that handles form submission
+   *
    * @param formData
    */
   onUploadFile: (formData: FormData) => Promise<UploadResponse>;
@@ -37,12 +35,14 @@ export type UploadInputProps = {
   /**
    * Provide a callback if the file can be removed/deleted from the server
    * Your app is responsible for reloading the uploaded files list and updating the component to ensure that the file has in fact been deleted successfully
+   *
    * @param id
    */
   onDeleteFile?: (id: string | number) => Promise<any>;
 
   /**
    * Provide a callback to trigger on validation error
+   *
    * @param file
    */
   onValidationError?: (file: UploadedFile) => void;
@@ -90,10 +90,10 @@ const UploadInput = ({
   const [markedFileForDelete, setMarkedFileForDelete] = useState<UploadedFile | null>(null);
   const { formatMessage } = useIntl();
 
-  const PROGRESS_STATUSES = [Status.PENDING, Status.PROCESSING];
+  const PROGRESS_STATUSES = new Set([Status.PENDING, Status.PROCESSING]);
 
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
-    multiple || !files.length ? files : [files[0]],
+    multiple || files.length === 0 ? files : [files[0]],
   );
 
   const removeFileFromList = (file: UploadedFile) => {
@@ -126,7 +126,7 @@ const UploadInput = ({
       onDeleteFile(id)
         .then(() => removeFileFromList(file))
         .catch((error) => {
-          modifyFileInList(file, { error });
+          modifyFileInList(file, { error: error as UploadError });
         });
     }
   };
@@ -159,7 +159,6 @@ const UploadInput = ({
           if (onValidationError) {
             onValidationError(failedUpload);
           }
-          // eslint-disable-next-line no-continue
           continue;
         }
 
@@ -178,7 +177,6 @@ const UploadInput = ({
           if (onValidationError) {
             onValidationError(failedUpload);
           }
-          // eslint-disable-next-line no-continue
           continue;
         }
 
@@ -198,7 +196,7 @@ const UploadInput = ({
             modifyFileInList(pendingFile, { id, url, error, status: Status.SUCCEEDED });
           })
           .catch((error) => {
-            modifyFileInList(pendingFile, { error, status: Status.FAILED });
+            modifyFileInList(pendingFile, { error: error as UploadError, status: Status.FAILED });
           });
 
         if (!multiple) {
@@ -218,7 +216,7 @@ const UploadInput = ({
             file={file}
             canDelete={
               (!!onDeleteFile || file.status === Status.FAILED) &&
-              (!file.status || !PROGRESS_STATUSES.includes(file.status))
+              (!file.status || !PROGRESS_STATUSES.has(file.status))
             }
             onDelete={
               file.status === Status.FAILED
@@ -249,9 +247,6 @@ const UploadInput = ({
             ? deleteConfirm.body
             : formatMessage(MESSAGES.deleteModalBody)
         }
-        onClose={() => {
-          setMarkedFileForDelete(null);
-        }}
         open={!!markedFileForDelete}
         footer={
           <>
@@ -278,6 +273,9 @@ const UploadInput = ({
             </Button>
           </>
         }
+        onClose={() => {
+          setMarkedFileForDelete(null);
+        }}
       />
     </>
   );

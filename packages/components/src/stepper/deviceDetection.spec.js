@@ -2,13 +2,11 @@ import { isTouchDevice } from './deviceDetection';
 
 describe('Device detection', () => {
   function fakeUserAgent(userAgent) {
-    // eslint-disable-next-line
     navigator.__defineGetter__('userAgent', () => userAgent);
     // need to use this instead of defineProperty, as it's blocked from overriding
   }
 
   function fakeMaxTouchPoints(maxTouchPoints) {
-    // eslint-disable-next-line
     navigator.__defineGetter__('maxTouchPoints', () => maxTouchPoints);
   }
 
@@ -21,7 +19,7 @@ describe('Device detection', () => {
 
   it('recognizes touch devices via window events', () => {
     expect(isTouchDevice()).toBe(false);
-    window.ontouchstart = jest.fn();
+    window.ontouchstart = {};
     expect(isTouchDevice()).toBe(true);
   });
 

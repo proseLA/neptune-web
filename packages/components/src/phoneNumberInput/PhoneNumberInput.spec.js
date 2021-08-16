@@ -1,16 +1,16 @@
-import { useIntl } from 'react-intl';
 import { shallow, mount } from 'enzyme';
+import { useIntl } from 'react-intl';
+
+import { fakeEvent } from '../common/fakeEvents';
+import { useDirection } from '../common/hooks';
 
 import PhoneNumberInput from '.';
-import { fakeEvent } from '../common/fakeEvents';
-
-import { useDirection } from '../common/hooks';
 
 jest.mock('react-intl');
 jest.mock('../common/hooks/useDirection');
 
-const simulatePaste = (el, value) =>
-  el.simulate('paste', { nativeEvent: { clipboardData: { getData: () => value } } });
+const simulatePaste = (element, value) =>
+  element.simulate('paste', { nativeEvent: { clipboardData: { getData: () => value } } });
 
 describe('Given a telephone number component', () => {
   let select;
@@ -37,7 +37,7 @@ describe('Given a telephone number component', () => {
     });
 
     it('should set prefix control to default UK value', () => {
-      expect(select.props().selected).toEqual({ value: '+44', label: '+44' });
+      expect(select.props().selected).toStrictEqual({ value: '+44', label: '+44' });
     });
     it('should set number control to empty', () => {
       expect(input.prop('value')).toBe('');
@@ -58,7 +58,7 @@ describe('Given a telephone number component', () => {
     });
 
     it('should set control values correctly', () => {
-      expect(select.props().selected.value).toEqual('+39');
+      expect(select.props().selected.value).toStrictEqual('+39');
       expect(input.prop('value')).toBe('123456789');
     });
   });
@@ -83,7 +83,7 @@ describe('Given a telephone number component', () => {
     ].forEach(({ number, countryCode, localNumber }) => {
       it(`${number} code should update the value properly`, () => {
         simulatePaste(component.find('input'), number);
-        expect(select().props().selected.value).toEqual(countryCode);
+        expect(select().props().selected.value).toStrictEqual(countryCode);
         expect(input().prop('value')).toBe(localNumber);
         expect(props.onChange).toHaveBeenCalledWith(number.replace(/(\s|-)+/g, ''));
       });
@@ -91,30 +91,30 @@ describe('Given a telephone number component', () => {
 
     it('should not paste invalid characters', () => {
       simulatePaste(component.find('input'), '+36asdasdasd');
-      expect(select().props().selected.value).toEqual('+39');
+      expect(select().props().selected.value).toStrictEqual('+39');
       expect(input().prop('value')).toBe('123456789');
-      expect(props.onChange).not.toBeCalled();
+      expect(props.onChange).not.toHaveBeenCalled();
     });
 
     it('should not paste countries which are not in the select', () => {
       simulatePaste(component.find('input'), '+9992342343423');
-      expect(select().props().selected.value).toEqual('+39');
+      expect(select().props().selected.value).toStrictEqual('+39');
       expect(input().prop('value')).toBe('123456789');
-      expect(props.onChange).not.toBeCalled();
+      expect(props.onChange).not.toHaveBeenCalled();
     });
 
     it("should not paste numbers which doesn't start with the country code", () => {
       simulatePaste(component.find('input'), '0+36303932551');
-      expect(select().props().selected.value).toEqual('+39');
+      expect(select().props().selected.value).toStrictEqual('+39');
       expect(input().prop('value')).toBe('123456789');
-      expect(props.onChange).not.toBeCalled();
+      expect(props.onChange).not.toHaveBeenCalled();
     });
 
     it("should not paste numbers which doesn't contain a country code", () => {
       simulatePaste(component.find('input'), '06303932551');
-      expect(select().props().selected.value).toEqual('+39');
+      expect(select().props().selected.value).toStrictEqual('+39');
       expect(input().prop('value')).toBe('123456789');
-      expect(props.onChange).not.toBeCalled();
+      expect(props.onChange).not.toHaveBeenCalled();
     });
   });
 
@@ -126,7 +126,7 @@ describe('Given a telephone number component', () => {
     });
 
     it('should set the select to the longest matching prefix', () => {
-      expect(select.props().selected.value).toEqual('+1868');
+      expect(select.props().selected.value).toStrictEqual('+1868');
     });
     it('should set the number input to the rest of the number', () => {
       expect(input.prop('value')).toBe('123456789');
@@ -141,7 +141,7 @@ describe('Given a telephone number component', () => {
     });
 
     it('should empty the select', () => {
-      expect(select.props().selected.value).toEqual('');
+      expect(select.props().selected.value).toStrictEqual('');
     });
     it('should put the whole value in the input without the plus', () => {
       expect(input.prop('value')).toBe('999123456789');
@@ -154,18 +154,8 @@ describe('Given a telephone number component', () => {
 
       select = component.find(PREFIX_SELECT_SELECTOR);
       input = component.find(NUMBER_SELECTOR);
-      expect(select.props().selected.value).toEqual('+44');
+      expect(select.props().selected.value).toStrictEqual('+44');
       expect(input.prop('value')).toBe('');
-    });
-  });
-
-  describe('when a valid model is supplied', () => {
-    it('should explode model', () => {
-      component = shallow(<PhoneNumberInput {...props} initialValue="+393892713713" />);
-      select = component.find(PREFIX_SELECT_SELECTOR);
-      input = component.find(NUMBER_SELECTOR);
-      expect(select.props().selected.value).toEqual('+39');
-      expect(input.prop('value')).toBe('3892713713');
     });
   });
 
@@ -211,7 +201,7 @@ describe('Given a telephone number component', () => {
       select = component.find(PREFIX_SELECT_SELECTOR);
     });
 
-    it('should use the provided searchPlaceholder ', () => {
+    it('should use the provided searchPlaceholder', () => {
       expect(select.prop('searchPlaceholder')).toBe('searchPlaceholder');
     });
   });
@@ -298,7 +288,7 @@ describe('Given a telephone number component', () => {
     });
   });
 
-  describe('when user insert invalid character ', () => {
+  describe('when user insert invalid character', () => {
     it('should strip them', () => {
       component = mount(<PhoneNumberInput {...props} value="+12345678" />);
       input = component.find(NUMBER_SELECTOR);
@@ -309,7 +299,7 @@ describe('Given a telephone number component', () => {
     });
   });
 
-  describe('when user search by number options are sorted by phone values ', () => {
+  describe('when user search by number options are sorted by phone values', () => {
     it('should return sorted by value options', () => {
       component = mount(<PhoneNumberInput {...props} value="+12345678" />);
 

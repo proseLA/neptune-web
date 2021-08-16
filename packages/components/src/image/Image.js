@@ -1,6 +1,7 @@
-import { useRef } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { useRef } from 'react';
+
 import { useHasIntersected } from '../common/hooks';
 
 /**
@@ -10,32 +11,32 @@ import { useHasIntersected } from '../common/hooks';
  * @param {string} [alt=""] - string that contains the alt text. Required.
  * @param {string} [src=""] - string that contains the src text. Required.
  * @param {string} [id=""] - string that contains the id text.
- * @param {function} [onLoad=()=>{}] - function that contains load callback. Doesn't fire on SSR https://github.com/facebook/react/issues/15446
- * @param {function} [onError=()=>{}] - function that contains error callback. Doesn't fire on SSR https://github.com/facebook/react/issues/15446
+ * @param {Function} [onLoad=()=>{}] - function that contains load callback. Doesn't fire on SSR https://github.com/facebook/react/issues/15446
+ * @param {Function} [onError=()=>{}] - function that contains error callback. Doesn't fire on SSR https://github.com/facebook/react/issues/15446
  * @param {boolean} [loading="lazy"] - This attribute follows the loading API attribute. If set to eager image will load immediately just like a normal image tag otherwise it will lazy load.
- *
  * @usage `<Image alt="alt" src="src" id="id1" onLoad={()=>{}} onError={())=>{}} loading="lazy" />`
- * */
+ */
 
 export const EmptyTransparentImage =
   'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 const Image = ({ id, src, alt, onLoad, onError, className, loading, stretch, shrink }) => {
-  const elRef = useRef();
-  const [hasIntersected] = useHasIntersected({ elRef, loading });
-  let imageSrc = src;
+  const elementReference = useRef();
+  const [hasIntersected] = useHasIntersected({ elRef: elementReference, loading });
+  let imageSource = src;
   let imageOnLoad = onLoad;
 
   if (loading === 'lazy' && !hasIntersected) {
-    imageSrc = EmptyTransparentImage;
+    imageSource = EmptyTransparentImage;
     imageOnLoad = null;
   }
 
   return (
     <img
+      ref={elementReference}
       id={id}
       alt={alt}
-      src={imageSrc}
+      src={imageSource}
       className={classnames([
         'tw-image',
         {
@@ -44,7 +45,6 @@ const Image = ({ id, src, alt, onLoad, onError, className, loading, stretch, shr
         },
         className,
       ])}
-      ref={elRef}
       onLoad={imageOnLoad}
       onError={onError}
     />

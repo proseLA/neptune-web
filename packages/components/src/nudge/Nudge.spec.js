@@ -1,8 +1,7 @@
-import { render, fireEvent, cleanup } from '../test-utils';
+import { useDirection } from '../common/hooks';
+import { render, fireEvent, cleanup, screen } from '../test-utils';
 
 import Nudge from '.';
-
-import { useDirection } from '../common/hooks';
 
 jest.mock('../common/hooks/useDirection');
 
@@ -26,40 +25,40 @@ describe('Nudge', () => {
   afterEach(cleanup);
 
   it('renders a media element', () => {
-    const { getByRole } = render(<Nudge {...defaultProps} />);
-    const media = getByRole('img');
-    expect(media).toBeDefined();
+    render(<Nudge {...defaultProps} />);
+    const media = screen.getByRole('img');
+    expect(media).toBeInTheDocument();
   });
 
   it('renders a title', () => {
-    const { getByText } = render(<Nudge {...defaultProps} />);
-    const title = getByText('A nudge title');
-    expect(title).toBeDefined();
+    render(<Nudge {...defaultProps} />);
+    const title = screen.getByText('A nudge title');
+    expect(title).toBeInTheDocument();
   });
 
   it('renders a link to the passed href', () => {
-    const { getByText } = render(<Nudge {...defaultProps} />);
-    const link = getByText('CTA');
-    expect(link).toBeDefined();
-    expect(link.getAttribute('href')).toBe(defaultProps.href);
+    render(<Nudge {...defaultProps} />);
+    const link = screen.getByText('CTA');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', defaultProps.href);
   });
 
   it('calls onDismiss prop when close button is clicked', () => {
-    const { getByLabelText } = render(<Nudge {...defaultProps} />);
-    const closeButton = getByLabelText('close');
+    render(<Nudge {...defaultProps} />);
+    const closeButton = screen.getByLabelText('close');
     fireEvent.click(closeButton);
-    expect(defaultProps.onDismiss).toHaveBeenCalled();
+    expect(defaultProps.onDismiss).toHaveBeenCalledTimes(1);
   });
 
   it('adds the passed id to the parent container', () => {
-    const { getByRole } = render(<Nudge {...defaultProps} id="nudge-id" />);
-    const parentContainer = getByRole('img').parentElement.parentElement;
+    render(<Nudge {...defaultProps} id="nudge-id" />);
+    const parentContainer = screen.getByRole('img').parentElement.parentElement;
     expect(parentContainer.id).toBe('nudge-id');
   });
 
   it(`adds the passed className to the parent container's className`, () => {
-    const { getByRole } = render(<Nudge {...defaultProps} className="happy-nudge" />);
-    const parentContainer = getByRole('img').parentElement.parentElement;
+    render(<Nudge {...defaultProps} className="happy-nudge" />);
+    const parentContainer = screen.getByRole('img').parentElement.parentElement;
     expect(parentContainer).toHaveClass('happy-nudge');
   });
 

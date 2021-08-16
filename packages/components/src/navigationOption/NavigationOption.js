@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
-import classNames from 'classnames';
-import Chevron from '../chevron';
 
-import Option from '../common/Option';
+import Chevron from '../chevron';
 import { Position } from '../common';
+import Option from '../common/Option';
 
 const NavigationOption = ({
   as,
@@ -42,12 +42,12 @@ const NavigationOption = ({
   return (
     <Option
       {...sharedProps}
+      button={<Chevron orientation={Position.RIGHT} disabled={disabled} className="d-block" />}
       onClick={(event) => {
         if (!disabled) {
           onClick(event);
         }
       }}
-      button={<Chevron orientation={Position.RIGHT} disabled={disabled} className="d-block" />}
     />
   );
 };

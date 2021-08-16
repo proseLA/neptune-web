@@ -1,10 +1,19 @@
-import { useState, useEffect } from 'react';
+import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
 import Types from 'prop-types';
-import classNames from 'classnames';
-import GenericSchema from '../genericSchema';
+import { useState, useEffect } from 'react';
+
 import { getValidModelParts } from '../../common/validation/valid-model';
 import DynamicAlert from '../../layout/alert';
+import GenericSchema from '../genericSchema';
+
+const getSchemaColumnClasses = (width) => {
+  return {
+    'col-xs-12': true,
+    'col-sm-6': width === 'md',
+    'col-sm-4': width === 'sm',
+  };
+};
 
 const ObjectSchema = (props) => {
   const [model, setModel] = useState({ ...(props.model || {}) });
@@ -25,16 +34,8 @@ const ObjectSchema = (props) => {
     props.onChange(model, triggerSchema, triggerModel, lastTriggerModel);
   };
 
-  const getSchemaColumnClasses = (width) => {
-    return {
-      'col-xs-12': true,
-      'col-sm-6': width === 'md',
-      'col-sm-4': width === 'sm',
-    };
-  };
-
   const isRequired = (propertyName) =>
-    props.schema.required && props.schema.required.indexOf(propertyName) >= 0;
+    props.schema.required && props.schema.required.includes(propertyName);
 
   useEffect(() => {
     // When the schema changes, only retain valid parts of the model
@@ -71,6 +72,9 @@ const ObjectSchema = (props) => {
               errors={props.errors && props.errors[propertyName]}
               locale={props.locale}
               translations={props.translations}
+              submitted={props.submitted}
+              required={isRequired(propertyName)}
+              disabled={props.disabled}
               onChange={(newModel, triggerSchema, triggerModel, lastTriggerModel) =>
                 onChangeProperty(
                   propertyName,
@@ -80,9 +84,6 @@ const ObjectSchema = (props) => {
                   lastTriggerModel,
                 )
               }
-              submitted={props.submitted}
-              required={isRequired(propertyName)}
-              disabled={props.disabled}
               onPersistAsync={props.onPersistAsync}
             />
           </div>

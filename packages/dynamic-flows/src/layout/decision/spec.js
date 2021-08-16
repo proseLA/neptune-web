@@ -1,6 +1,5 @@
-import { shallow } from 'enzyme';
-
 import { NavigationOption } from '@transferwise/components';
+import { shallow } from 'enzyme';
 
 import DynamicDecision from '.';
 
@@ -29,7 +28,7 @@ describe('Given a component for dynamically rendering reviews', () => {
   });
 
   it('should use the action title for the decision title', () => {
-    expect(component.find(NavigationOption).prop('title')).toEqual(option.action.title);
+    expect(component.find(NavigationOption).prop('title')).toStrictEqual(option.action.title);
   });
 
   it('should use the action label for the action link', () => {

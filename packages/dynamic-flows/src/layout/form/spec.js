@@ -43,16 +43,16 @@ describe('Given a component for dynamically rendering forms', () => {
   });
 
   it('should pass the schema to the json schema form', () => {
-    expect(component.find(JsonSchemaForm).prop('schema')).toEqual(schema);
+    expect(component.find(JsonSchemaForm).prop('schema')).toStrictEqual(schema);
   });
   it('should pass the model to the json schema form', () => {
-    expect(component.find(JsonSchemaForm).prop('model')).toEqual(model);
+    expect(component.find(JsonSchemaForm).prop('model')).toStrictEqual(model);
   });
   it('should pass whether the form is submitted', () => {
-    expect(component.find(JsonSchemaForm).prop('submitted')).toEqual(submitted);
+    expect(component.find(JsonSchemaForm).prop('submitted')).toStrictEqual(submitted);
   });
-  it('should pass the errors to the form ', () => {
-    expect(component.find(JsonSchemaForm).prop('errors')).toEqual(errors);
+  it('should pass the errors to the form', () => {
+    expect(component.find(JsonSchemaForm).prop('errors')).toStrictEqual(errors);
   });
 
   describe('when the form triggers a model change', () => {

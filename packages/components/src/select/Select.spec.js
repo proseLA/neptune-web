@@ -1,19 +1,24 @@
+/* eslint-disable jest/expect-expect */
+import { Profile } from '@transferwise/icons';
 import { mount } from 'enzyme';
 import doTimes from 'lodash.times';
 import Transition from 'react-transition-group/Transition';
-import { Profile } from '@transferwise/icons';
-import Select from '.';
-import Option from './option';
-import KEY_CODES from '../common/keyCodes';
+
 import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
+import KEY_CODES from '../common/keyCodes';
+
 import { addClassAndTriggerReflow, removeClass } from './domHelpers';
+import Option from './option';
+
+import Select from '.';
 
 jest.mock('react-dom');
 jest.mock('react-transition-group/Transition', () => jest.fn('placeholder'));
 jest.mock('./domHelpers');
 jest.mock('../dimmer', () => {
-  // eslint-disable-next-line
-  return ({ children }) => <div className="dimmer">{children}</div>;
+  return function ({ children }) {
+    return <div className="dimmer">{children}</div>;
+  };
 });
 
 describe('Select', () => {
@@ -65,14 +70,14 @@ describe('Select', () => {
     await openSelect();
     component.setProps({ onSearchChange: jest.fn() });
   };
-  const callSearchChangeWith = (str) =>
-    component.find('input').simulate('change', { target: { value: str } });
+  const callSearchChangeWith = (string) =>
+    component.find('input').simulate('change', { target: { value: string } });
 
   const activeOptionIndex = () => {
     let elementIndex = null;
-    element('li').forEach((el, index) => {
-      if (el.is('.active')) {
-        expect(element('.active').length).toBe(1);
+    element('li').forEach((element_, index) => {
+      if (element_.is('.active')) {
+        expect(element('.active')).toHaveLength(1);
         elementIndex = index;
       }
     });
@@ -82,9 +87,9 @@ describe('Select', () => {
 
   const focusedOptionIndex = () => {
     let elementIndex = null;
-    element('li').forEach((el, index) => {
-      if (el.is('.tw-dropdown-item--focused')) {
-        expect(element('.tw-dropdown-item--focused').length).toBe(1);
+    element('li').forEach((element_, index) => {
+      if (element_.is('.tw-dropdown-item--focused')) {
+        expect(element('.tw-dropdown-item--focused')).toHaveLength(1);
         elementIndex = index;
       }
     });
@@ -166,37 +171,37 @@ describe('Select', () => {
 
   describe('placeholders', () => {
     it('will not render a placeholder if none is provided', () => {
-      expect(component.find('button').text()).toEqual('');
+      expect(component.find('button').text()).toStrictEqual('');
     });
 
     it('can be given a placeholder', () => {
       component.setProps({ placeholder: 'hello world' });
-      expect(component.find('button').text()).toEqual('hello world');
+      expect(component.find('button').text()).toStrictEqual('hello world');
     });
 
     it('renders basic options and placeholder when open and not required', async () => {
       await openSelect();
       component.setProps({ placeholder: 'ayy lmao' });
 
-      expect(component.find('li').length).toBe(props.options.length + 1);
-      expect(findNthListElement(0).text()).toEqual('ayy lmao');
-      expect(findNthOption(0).prop('label')).toEqual('yo');
-      expect(findNthOption(1).prop('label')).toEqual('dawg');
+      expect(component.find('li')).toHaveLength(props.options.length + 1);
+      expect(findNthListElement(0).text()).toStrictEqual('ayy lmao');
+      expect(findNthOption(0).prop('label')).toStrictEqual('yo');
+      expect(findNthOption(1).prop('label')).toStrictEqual('dawg');
     });
 
     it('does not render placeholder in list when open and required', async () => {
       await openSelect();
       component.setProps({ placeholder: 'this will not be shown', required: true });
 
-      expect(component.find('li').length).toBe(props.options.length);
-      expect(findNthListElement(0).text()).not.toEqual('this will not be shown');
+      expect(component.find('li')).toHaveLength(props.options.length);
+      expect(findNthListElement(0).text()).not.toStrictEqual('this will not be shown');
     });
 
     it('calls onChange with nothing when selecting the placeholder', async () => {
       component.setProps({ placeholder: 'this is not a real option' });
       await openSelect();
       findNthListElement(0).simulate('click', fakeEvent());
-      expect(props.onChange).toBeCalledWith(null);
+      expect(props.onChange).toHaveBeenCalledWith(null);
     });
 
     it('renders the selected option if given instead of the placeholder', () => {
@@ -213,17 +218,17 @@ describe('Select', () => {
       };
       component.setProps({ selected });
       const buttonChild = component.find('button').children().first();
-      expect(buttonChild.type()).toEqual(Option);
-      expect(buttonChild.props()).toEqual(selected);
+      expect(buttonChild.type()).toStrictEqual(Option);
+      expect(buttonChild.props()).toStrictEqual(selected);
     });
   });
 
   it('can select an option and closes itself', async () => {
     await openSelect();
-    expect(props.onChange).not.toBeCalled();
+    expect(props.onChange).not.toHaveBeenCalled();
     findNthListElement(0).simulate('click', fakeEvent());
     await bustStackAndUpdate();
-    expect(props.onChange).toBeCalledWith(props.options[0]);
+    expect(props.onChange).toHaveBeenCalledWith(props.options[0]);
     expectDropdownToBe().closed();
   });
 
@@ -237,7 +242,7 @@ describe('Select', () => {
   it('shows the currently selected option as active in the dropdown', async () => {
     await openSelect();
     component.setProps({ required: true });
-    expect(activeOptionIndex()).toBe(null);
+    expect(activeOptionIndex()).toBeNull();
     component.setProps({ selected: props.options[0] });
     expect(activeOptionIndex()).toBe(0);
   });
@@ -246,10 +251,10 @@ describe('Select', () => {
     await openSelect();
     component.setProps({ options: [{ header: 'hello' }, { header: 'good morning' }] });
 
-    expect(component.find('li.dropdown-header').first().text()).toEqual('hello');
-    expect(component.find('li.dropdown-header').at(1).text()).toEqual('good morning');
+    expect(component.find('li.dropdown-header').first().text()).toStrictEqual('hello');
+    expect(component.find('li.dropdown-header').at(1).text()).toStrictEqual('good morning');
     component.find('li.dropdown-header').first().simulate('click', fakeEvent());
-    expect(props.onChange).not.toBeCalled();
+    expect(props.onChange).not.toHaveBeenCalled();
     expectDropdownToBe().open();
   });
 
@@ -266,7 +271,7 @@ describe('Select', () => {
       });
 
       it('should render a disabled link for any disabled options', () => {
-        expect(component.find('li.tw-dropdown-item').first().text()).toEqual('a thing');
+        expect(component.find('li.tw-dropdown-item').first().text()).toStrictEqual('a thing');
       });
 
       describe('when a disabled option is clicked', () => {
@@ -279,7 +284,7 @@ describe('Select', () => {
         });
 
         it('should not call the onChange callback', () => {
-          expect(props.onChange).not.toBeCalled();
+          expect(props.onChange).not.toHaveBeenCalled();
         });
       });
     });
@@ -295,10 +300,10 @@ describe('Select', () => {
 
   it('shows a searchbox when a search handler is passed in', async () => {
     await openSelect();
-    expect(component.find('input').length).toBe(0);
+    expect(component.find('input')).toHaveLength(0);
 
     component.setProps({ onSearchChange: jest.fn() });
-    expect(component.find('input').length).toBe(1);
+    expect(component.find('input')).toHaveLength(1);
   });
 
   it('lets you search', async () => {
@@ -306,13 +311,13 @@ describe('Select', () => {
     const onSearchChange = jest.fn();
     component.setProps({ onSearchChange });
     callSearchChangeWith('hello');
-    expect(onSearchChange).toBeCalledWith('hello');
+    expect(onSearchChange).toHaveBeenCalledWith('hello');
   });
 
   it('shows the search value in the searchbox', async () => {
     await openSearchableSelect();
     component.setProps({ searchValue: 'hello' });
-    expect(component.find('input').prop('value')).toEqual('hello');
+    expect(component.find('input').prop('value')).toStrictEqual('hello');
   });
 
   it('has a default search placeholder', async () => {
@@ -324,14 +329,14 @@ describe('Select', () => {
   it('can set the search placeholder', async () => {
     await openSearchableSelect();
     component.setProps({ searchPlaceholder: 'hello' });
-    expect(component.find('input').prop('placeholder')).toEqual('hello');
+    expect(component.find('input').prop('placeholder')).toStrictEqual('hello');
   });
 
   it('has first search result in focus', async () => {
     await openSelect();
     component.setProps({
-      onSearchChange: (e) => {
-        component.setProps({ options: [{ value: 2, label: 'yo' }], searchValue: e });
+      onSearchChange: (event) => {
+        component.setProps({ options: [{ value: 2, label: 'yo' }], searchValue: event });
       },
     });
 
@@ -346,8 +351,8 @@ describe('Select', () => {
     component.setState({ keyboardFocusedOptionIndex: 0 });
     await openSelect();
     component.setProps({
-      onSearchChange: (e) => {
-        component.setProps({ options: [], searchValue: e });
+      onSearchChange: (event) => {
+        component.setProps({ options: [], searchValue: event });
       },
     });
     callSearchChangeWith('hello');
@@ -528,10 +533,10 @@ describe('Select', () => {
     });
     await openSelect();
     expect(findNthListElement(1).prop('className')).toBe('divider');
-    expect(findNthListElement(1).children().length).toBe(0);
+    expect(findNthListElement(1).children()).toHaveLength(0);
   });
 
-  it('ensures namespaced classNames can be provided and used ', async () => {
+  it('ensures namespaced classNames can be provided and used', async () => {
     const styles = { 'dropdown-toggle': 'dropdown-toggle_TWISAWESOME125' };
     expect(component.find('.dropdown-toggle').exists()).toBe(true);
 

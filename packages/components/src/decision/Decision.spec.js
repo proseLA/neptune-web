@@ -1,11 +1,14 @@
+/* eslint-disable testing-library/no-render-in-setup */
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '../test-utils';
 
-import Decision from '.';
-import { Presentation, Type } from './decisionEnums';
 import Avatar from '../avatar';
 import { Breakpoint, Size } from '../common';
 import { useDirection } from '../common/hooks';
+import { render, fireEvent } from '../test-utils';
+
+import { Presentation, Type } from './decisionEnums';
+
+import Decision from '.';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
 jest.mock('../common/hooks/useDirection');

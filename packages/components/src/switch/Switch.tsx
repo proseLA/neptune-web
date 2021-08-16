@@ -1,12 +1,11 @@
-import { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
-import classnames from 'classnames';
 import { CheckCircle, CrossCircle } from '@transferwise/icons';
+import classnames from 'classnames';
+import { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
 
-import { logActionRequiredIf } from '../utilities';
-
-import KeyCodes from '../common/keyCodes';
-import { useDirection } from '../common/hooks';
 import { CommonProps } from '../common';
+import { useDirection } from '../common/hooks';
+import KeyCodes from '../common/keyCodes';
+import { logActionRequiredIf } from '../utilities';
 
 type Props = CommonProps & {
   /** Used to describe the purpose of the switch. To be used if there is no external label (i.e. aria-labelledby is null) */
@@ -53,8 +52,6 @@ const Switch = (props: Props): ReactElement => {
         },
         className,
       )}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
       tabIndex={0}
       role="switch"
       aria-checked={checked}
@@ -62,6 +59,8 @@ const Switch = (props: Props): ReactElement => {
       aria-labelledby={ariaLabelledby}
       id={id}
       aria-disabled={disabled}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
     >
       <span className="np-switch--thumb">
         {checked ? <CheckCircle filled size={24} /> : <CrossCircle filled size={24} />}

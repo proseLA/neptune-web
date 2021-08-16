@@ -1,18 +1,20 @@
-import { Children } from 'react';
 import PropTypes from 'prop-types';
+import { Children } from 'react';
 
-export default function NavigationOptionList({ children }) {
+const NavigationOptionList = ({ children }) => {
   return (
     <ul className="tw-navigation-options-list">
       {Children.map(children, (child) => (
-        <li className="tw-navigation-options-list__item" key={child.key}>
+        <li key={child.key} className="tw-navigation-options-list__item">
           {child}
         </li>
       ))}
     </ul>
   );
-}
+};
 
 NavigationOptionList.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default NavigationOptionList;

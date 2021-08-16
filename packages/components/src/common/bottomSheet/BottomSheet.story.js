@@ -1,16 +1,17 @@
-import { useState } from 'react';
 import { FastFlag } from '@transferwise/icons';
+import { useState } from 'react';
 
-import BottomSheet from './BottomSheet';
 import Button from '../../button';
 import NavigationOption from '../../navigationOption';
+
+import BottomSheet from './BottomSheet';
 
 export default {
   component: BottomSheet,
   title: 'BottomSheet',
 };
 
-export const opened = () => {
+export const Opened = () => {
   const [toggler, setToggler] = useState(true);
 
   return (
@@ -38,7 +39,7 @@ export const opened = () => {
   );
 };
 
-export const openedWithOverflowContent = () => {
+export const OpenedWithOverflowContent = () => {
   const [toggler, setToggler] = useState(true);
   return (
     <div style={{ height: '2000px' }}>

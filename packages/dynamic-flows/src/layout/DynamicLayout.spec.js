@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 
-import DynamicLayout from '.';
 import DynamicAlert from './alert';
 import DynamicBox from './box';
 import DynamicButton from './button';
@@ -13,6 +12,8 @@ import DynamicImage from './image';
 import DynamicInfo from './info';
 import DynamicParagraph from './paragraph';
 import DynamicReview from './review';
+
+import DynamicLayout from '.';
 
 describe('Given a component for rendering a dynamic layout', () => {
   let props;

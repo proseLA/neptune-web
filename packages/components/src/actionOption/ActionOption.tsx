@@ -1,9 +1,9 @@
-import { ReactChild, ReactElement } from 'react';
 import classNames from 'classnames';
+import { ReactChild, ReactElement } from 'react';
 
-import Option from '../common/Option';
 import Button from '../button';
 import { CommonProps, ControlType, Priority, Size } from '../common';
+import Option from '../common/Option';
 
 type Props = {
   complex?: boolean;
@@ -37,13 +37,27 @@ const ActionOption = ({
     className: classNames('tw-action-option', className),
   };
 
+  const getAriaLabel = (): string | undefined => {
+    const labels: string[] = [];
+
+    if (typeof title === 'string') {
+      labels.push(title);
+    }
+
+    if (typeof action === 'string') {
+      labels.push(action);
+    }
+
+    return labels.join(', ') || undefined;
+  };
+
   return (
     <Option
       {...sharedProps}
       button={
         <Button
           className="p-x-0"
-          aria-label={`${title}, ${action}`}
+          aria-label={getAriaLabel()}
           type={ControlType.ACCENT}
           priority={Priority.TERTIARY}
           size={Size.SMALL}

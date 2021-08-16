@@ -1,12 +1,12 @@
-import { createContext } from 'react';
 import PropTypes from 'prop-types';
+import { createContext } from 'react';
 
 import { DEFAULT_LOCALE, SUPPORTED_RTL } from '../../common/locale';
 
 export const DirectionContext = createContext('ltr');
 
 export const DirectionProvider = ({ locale, children }) => (
-  <DirectionContext.Provider value={SUPPORTED_RTL.indexOf(locale) > -1 ? 'rtl' : 'ltr'}>
+  <DirectionContext.Provider value={SUPPORTED_RTL.includes(locale) ? 'rtl' : 'ltr'}>
     {children}
   </DirectionContext.Provider>
 );

@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 const DEFAULT_INPUT_MIN_WIDTH = 10;
 
@@ -22,8 +22,8 @@ export default class TypeaheadInput extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.value !== this.props.value && this.props.multiple) {
+  componentDidUpdate(previousProps) {
+    if (previousProps.value !== this.props.value && this.props.multiple) {
       this.recalculateWidth();
     }
   }
@@ -57,23 +57,18 @@ export default class TypeaheadInput extends Component {
     const hasPlaceholder = !multiple || selected.length === 0;
     return (
       <input
+        ref={(reference) => {
+          this.inputRef = reference;
+        }}
         className={classnames({
           'typeahead__input form-control': multiple,
           'form-control': !multiple,
         })}
         type="text"
-        ref={(ref) => {
-          this.inputRef = ref;
-        }}
         name={name}
         id={`input-${typeaheadId}`}
         autoFocus={autoFocus}
         placeholder={hasPlaceholder ? placeholder : ''}
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-        onClick={onFocus}
-        onFocus={onFocus}
-        onPaste={onPaste}
         aria-autocomplete="list"
         aria-expanded={optionsShown}
         aria-haspopup="listbox"
@@ -82,6 +77,11 @@ export default class TypeaheadInput extends Component {
         role="combobox"
         value={value}
         style={multiple && selected.length > 0 ? { width: inputWidth } : {}}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        onClick={onFocus}
+        onFocus={onFocus}
+        onPaste={onPaste}
       />
     );
   };
@@ -92,10 +92,10 @@ export default class TypeaheadInput extends Component {
     return multiple ? (
       <div
         className="form-control typeahead__input-container"
+        style={maxHeight && { maxHeight }}
         onClick={() => {
           this.inputRef.focus();
         }}
-        style={maxHeight && { maxHeight }}
       >
         <div className="typeahead__input-wrapper">
           {selected && selected.map((chip, idx) => renderChip(chip, idx))}
@@ -104,8 +104,8 @@ export default class TypeaheadInput extends Component {
           <div className="typeahead__input-aligner" />
         </div>
         <div
-          ref={(ref) => {
-            this.sizerRef = ref;
+          ref={(reference) => {
+            this.sizerRef = reference;
           }}
           className="sizer form-control typeahead__input"
         >

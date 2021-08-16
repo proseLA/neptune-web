@@ -1,7 +1,7 @@
+import { action } from '@storybook/addon-actions';
+import { boolean, text } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 
-import { boolean, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import RadioOption from './RadioOption';
 
 export default {
@@ -9,7 +9,7 @@ export default {
   title: 'RadioOption',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const checked = boolean('checked', true);
   const showMediaAtAllSizes = boolean('showMediaAtAllSizes', false);
   const title = text('title', 'title');
@@ -22,11 +22,11 @@ export const basic = () => {
       id="id"
       name="radio-option"
       checked={checked}
-      onChange={action('checked')}
       complex={false}
       disabled={false}
       value="value"
       showMediaAtAllSizes={showMediaAtAllSizes}
+      onChange={action('checked')}
     />
   );
 };

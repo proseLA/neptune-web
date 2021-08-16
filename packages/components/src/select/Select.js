@@ -1,19 +1,20 @@
-import { Component, createRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { Component, createRef } from 'react';
 import Transition from 'react-transition-group/Transition';
 
-import Option from './option';
 import Chevron from '../chevron';
-import KeyCodes from '../common/keyCodes';
 import { Breakpoint } from '../common';
 import {
   addClickClassToDocumentOnIos,
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
-import { addClassAndTriggerReflow, removeClass } from './domHelpers';
+import KeyCodes from '../common/keyCodes';
 import Dimmer from '../dimmer';
 import SlidingPanel from '../slidingPanel';
+
+import { addClassAndTriggerReflow, removeClass } from './domHelpers';
+import Option from './option';
 import SearchBox from './searchBox';
 
 function clamp(from, to, value) {
@@ -49,10 +50,10 @@ const BOOTSTRAP_DROPDOWN_ANIMATION_TIME = 200;
 
 const defer = (fn) => setTimeout(fn, 0);
 
-const includesString = (str1, str2) => str1.toLowerCase().indexOf(str2.toLowerCase()) > -1;
+const includesString = (string1, string2) => string1.toLowerCase().includes(string2.toLowerCase());
 
 const arrayIncludesString = (arrayToSearch, keyword) =>
-  arrayToSearch.some((str) => includesString(str, keyword));
+  arrayToSearch.some((string) => includesString(string, keyword));
 
 const defaultFilterFunction = (option, keyword) =>
   (option.label && includesString(option.label, keyword)) ||
@@ -330,24 +331,22 @@ export default class Select extends Component {
       [s(`dropdown-menu--open`)]: open,
     });
 
-    const list = (
+    return (
       <ul className={dropdownClass}>
         {!required && !canSearch && placeholder ? this.renderPlaceHolderOption() : ''}
         {canSearch && (
           <SearchBox
+            ref={this.searchBoxRef}
             classNames={this.props.classNames}
+            value={searchValue || this.state.searchValue}
+            placeholder={searchPlaceholder}
             onChange={this.handleSearchChange}
             onClick={stopPropagation}
-            value={searchValue || this.state.searchValue}
-            ref={this.searchBoxRef}
-            placeholder={searchPlaceholder}
           />
         )}
         {this.renderOptions()}
       </ul>
     );
-
-    return list;
   }
 
   renderOptions() {
@@ -357,16 +356,14 @@ export default class Select extends Component {
   renderPlaceHolderOption() {
     const { placeholder } = this.props;
     return (
-      /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
       <li
-        onClick={this.createSelectHandlerForOption({ placeholder })}
-        onKeyPress={this.createSelectHandlerForOption({ placeholder })}
         className={classNames(
           this.style('tw-dropdown-item--clickable'),
           this.style('tw-dropdown-item--divider'),
         )}
+        onClick={this.createSelectHandlerForOption({ placeholder })}
+        onKeyPress={this.createSelectHandlerForOption({ placeholder })}
       >
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>{placeholder}</a>
       </li>
     );
@@ -381,9 +378,9 @@ export default class Select extends Component {
       return (
         <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
           key={index}
+          className={this.style('dropdown-header')}
           onClick={stopPropagation}
           onKeyPress={stopPropagation}
-          className={this.style('dropdown-header')}
         >
           {option.header}
         </li>
@@ -405,13 +402,12 @@ export default class Select extends Component {
       },
     );
     return (
-      <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
+      <li
         key={index}
+        className={className}
         onClick={option.disabled ? stopPropagation : this.createSelectHandlerForOption(option)}
         onKeyPress={option.disabled ? stopPropagation : this.createSelectHandlerForOption(option)}
-        className={className}
       >
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a disabled={option.disabled}>
           <Option {...option} classNames={this.props.classNames} />
         </a>
@@ -456,8 +452,8 @@ export default class Select extends Component {
       // A transition is used here in order to mount and unmount the dropdown menu while retaining animations
       <>
         <div // eslint-disable-line jsx-a11y/no-static-element-interactions
-          className={groupClass}
           ref={this.dropdownMenuRef}
+          className={groupClass}
           onKeyDown={this.handleKeyDown}
           onTouchMove={this.handleTouchStart}
           onFocus={this.handleOnFocus}
@@ -520,7 +516,6 @@ Select.propTypes = {
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   block: PropTypes.bool,
   selected: PropTypes.shape({
-    // eslint-disable-next-line react/forbid-prop-types
     value: PropTypes.any.isRequired,
     label: PropTypes.node,
     icon: PropTypes.node,
@@ -539,7 +534,6 @@ Select.propTypes = {
   onBlur: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      // eslint-disable-next-line react/forbid-prop-types
       value: PropTypes.any,
       label: PropTypes.node,
       header: PropTypes.node,

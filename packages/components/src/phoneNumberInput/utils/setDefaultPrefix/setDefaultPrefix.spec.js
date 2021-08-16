@@ -1,7 +1,7 @@
 import { setDefaultPrefix } from '..';
 
 describe('setDefaultPrefix', () => {
-  test.each([
+  it.each([
     ['en-GB', '+44'],
     ['en-US', '+1'],
     ['en', '+44'],

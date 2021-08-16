@@ -1,16 +1,17 @@
-import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { boolean, select } from '@storybook/addon-knobs';
 
-import Decision, { DecisionPresentation, DecisionType } from '.';
 import Avatar from '../avatar';
 import { Size } from '../common';
+
+import Decision, { DecisionPresentation, DecisionType } from '.';
 
 export default {
   component: Decision,
   title: 'Decision',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const presentation = select(
     'presentation',
     DecisionPresentation,

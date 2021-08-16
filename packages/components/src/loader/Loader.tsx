@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
 import classnames from 'classnames';
+import { ReactElement } from 'react';
+
 import { Size, SizeExtraSmall, SizeSmall, SizeMedium, SizeLarge, SizeExtraLarge } from '../common';
 
 type SizeType = SizeExtraSmall | SizeSmall | SizeMedium | SizeLarge | SizeExtraLarge;
@@ -19,13 +20,18 @@ type Props = {
  * Loader component
  *
  * Docs link: https://transferwise.github.io/neptune-web/components/progress/Loader
+ *
+ * @param root0
+ * @param root0.small
+ * @param root0.size
+ * @param root0.classNames
  */
-function Loader({
+const Loader = ({
   small = false,
   size = Size.EXTRA_LARGE,
   classNames = {},
   ...restProps
-}: Props): ReactElement {
+}: Props): ReactElement => {
   const style = (className: string): string => classNames[className] || className;
 
   const legacySize: SizeType = small ? Size.EXTRA_SMALL : size;
@@ -35,15 +41,12 @@ function Loader({
       className={classnames(style('tw-loader'), style(`tw-loader--${legacySize}`))}
       data-testid={restProps['data-testid']}
     >
-      {Array(5)
-        // @ts-expect-error
-        .fill()
-        .map((item, index: number) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <div className={style('tw-loader__stripe')} key={index} />
-        ))}
+      {new Array(5).fill(undefined).map((item, index: number) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <div key={index} className={style('tw-loader__stripe')} />
+      ))}
     </div>
   );
-}
+};
 
 export default Loader;

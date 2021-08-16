@@ -1,7 +1,10 @@
 import { shallow, mount } from 'enzyme';
-import Upload from '.';
-import { CompleteStep, UploadImageStep, MediaUploadStep, ProcessingStep } from './steps';
+
 import { ANIMATION_DURATION_IN_MS } from '../processIndicator';
+
+import { CompleteStep, UploadImageStep, MediaUploadStep, ProcessingStep } from './steps';
+
+import Upload from '.';
 
 jest.useFakeTimers();
 jest.mock('./utils/postData', () => ({
@@ -13,9 +16,12 @@ const { asyncFileRead } = require('./utils/asyncFileRead');
 
 const defaultLocale = 'en-GB';
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => (
-    <Component {...props} intl={{ locale: defaultLocale, formatMessage: (id) => `${id}` }} />
-  ),
+  injectIntl: (Component) =>
+    function (props) {
+      return (
+        <Component {...props} intl={{ locale: defaultLocale, formatMessage: (id) => `${id}` }} />
+      );
+    },
   defineMessages: (translations) => translations,
 }));
 
@@ -127,140 +133,108 @@ describe('Upload', () => {
     expect(component.find('.droppable-dropping-card')).toHaveLength(1);
   });
 
-  describe('before file is dropped ', () => {
+  describe('before file is dropped', () => {
     it('renders the UploadImageStep with right props', () => {
-      expect(component.find(UploadImageStep).props()).toEqual(UPLOADIMAGE_STEP_PROPS);
+      expect(component.find(UploadImageStep).props()).toStrictEqual(UPLOADIMAGE_STEP_PROPS);
     });
   });
 
   describe('when file is dropped', () => {
-    it('onStart is called with file', () => {
-      component
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(() => {
-          expect(props.onStart).toHaveBeenCalledWith(TEST_FILE);
-        });
+    it('onStart is called with file', async () => {
+      await component.instance().fileDropped(TEST_FILE);
+
+      expect(props.onStart).toHaveBeenCalledWith(TEST_FILE);
     });
 
-    it('step changes from UploadImageStep to ProcessingStep', (done) => {
+    it('step changes from UploadImageStep to ProcessingStep', async () => {
       expect(component.find(UploadImageStep)).toHaveLength(1);
       expect(component.find(ProcessingStep)).toHaveLength(0);
       expect(component.find(CompleteStep)).toHaveLength(0);
 
-      component
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(() => {
-          component.update();
-          expect(component.find(UploadImageStep)).toHaveLength(0);
-          expect(component.find(ProcessingStep)).toHaveLength(1);
-          expect(component.find(CompleteStep)).toHaveLength(0);
-          done();
-        });
+      await component.instance().fileDropped(TEST_FILE);
+      component.update();
+
+      expect(component.find(UploadImageStep)).toHaveLength(0);
+      expect(component.find(ProcessingStep)).toHaveLength(1);
+      expect(component.find(CompleteStep)).toHaveLength(0);
     });
 
-    it('step changes from UploadImageStep to ProcessingStep with right props', (done) => {
-      component
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(() => {
-          component.update();
-          expect(component.find(ProcessingStep).props()).toEqual(PROCESSING_STEP_PROPS);
-          done();
-        });
+    it('step changes from UploadImageStep to ProcessingStep with right props', async () => {
+      await component.instance().fileDropped(TEST_FILE);
+      component.update();
+
+      expect(component.find(ProcessingStep).props()).toStrictEqual(PROCESSING_STEP_PROPS);
     });
   });
 
   describe('when file is being processed', () => {
-    it('step ProcessingStep is called with success props', (done) => {
-      component
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(() => {
-          jest.advanceTimersByTime(props.animationDelay);
-          component.update();
-          expect(component.find(ProcessingStep).props()).toEqual({
-            ...PROCESSING_STEP_PROPS,
-            isSuccess: true,
-          });
-          done();
-        });
+    it('step ProcessingStep is called with success props', async () => {
+      await component.instance().fileDropped(TEST_FILE);
+      jest.advanceTimersByTime(props.animationDelay);
+      component.update();
+
+      expect(component.find(ProcessingStep).props()).toStrictEqual({
+        ...PROCESSING_STEP_PROPS,
+        isSuccess: true,
+      });
     });
 
-    it('step ProcessingStep is called with error props', (done) => {
+    it('step ProcessingStep is called with error props', async () => {
       asyncFileRead.mockImplementation(() => new Promise((resolve, reject) => reject('An error')));
 
-      component
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(() => {
-          jest.advanceTimersByTime(props.animationDelay);
-          component.update();
-          expect(component.find(ProcessingStep).props()).toEqual({
-            ...PROCESSING_STEP_PROPS,
-            isError: true,
-          });
-          done();
-        });
+      await component.instance().fileDropped(TEST_FILE);
+      jest.advanceTimersByTime(props.animationDelay);
+      component.update();
+
+      expect(component.find(ProcessingStep).props()).toStrictEqual({
+        ...PROCESSING_STEP_PROPS,
+        isError: true,
+      });
     });
   });
 
   describe('when file is processed', () => {
-    it('step changes from UploadImageStep to CompleteStep', (done) => {
+    it('step changes from UploadImageStep to CompleteStep', async () => {
       component = mount(<Upload {...props} />);
       const upload = component.children();
       expect(upload.find(UploadImageStep)).toHaveLength(1);
       expect(upload.find(ProcessingStep)).toHaveLength(0);
       expect(upload.find(CompleteStep)).toHaveLength(0);
 
-      upload
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(() => {
-          jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
-          component.update();
-          expect(component.find(UploadImageStep)).toHaveLength(0);
+      await upload.instance().fileDropped(TEST_FILE);
+      jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
+      component.update();
 
-          expect(component.find(ProcessingStep)).toHaveLength(0);
-          expect(component.find(CompleteStep)).toHaveLength(1);
-          done();
-        });
+      expect(component.find(UploadImageStep)).toHaveLength(0);
+      expect(component.find(ProcessingStep)).toHaveLength(0);
+      expect(component.find(CompleteStep)).toHaveLength(1);
     });
 
-    it('step CompleteStep is called with error props', (done) => {
+    it('step CompleteStep is called with error props', async () => {
       component = mount(<Upload {...props} />);
       const upload = component.children();
       asyncFileRead.mockImplementation(() => new Promise((resolve, reject) => reject('An error')));
 
-      upload
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(async () => {
-          jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
-          component.update();
-          expect(component.find(CompleteStep).props()).toEqual({
-            ...COMPLETED_STEP_PROPS,
-            isImage: false,
-            isComplete: true,
-            isError: true,
-            uploadedImage: null,
-          });
-          done();
-        });
+      await upload.instance().fileDropped(TEST_FILE);
+      jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
+      component.update();
+
+      expect(component.find(CompleteStep).props()).toStrictEqual({
+        ...COMPLETED_STEP_PROPS,
+        isImage: false,
+        isComplete: true,
+        isError: true,
+        uploadedImage: null,
+      });
     });
 
-    it('onSuccess is called with response when httpOptions are provided', (done) => {
+    it('onSuccess is called with response when httpOptions are provided', async () => {
       component = mount(<Upload {...props} httpOptions={{ url: 'a-url' }} />).children();
 
-      component
-        .instance()
-        .fileDropped(TEST_FILE)
-        .then(() => {
-          jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
-          expect(props.onSuccess).toHaveBeenCalledWith('ServerResponse', TEST_FILE.name);
-          done();
-        });
+      await component.instance().fileDropped(TEST_FILE);
+      jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
+
+      expect(props.onSuccess).toHaveBeenCalledWith('ServerResponse', TEST_FILE.name);
     });
   });
 });

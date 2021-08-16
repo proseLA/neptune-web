@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import * as React from 'react';
 import {
   InfoCircle,
   CheckCircle,
@@ -7,20 +6,21 @@ import {
   Alert as AlertIcon,
   Emoji,
 } from '@transferwise/icons';
-
-import { render, cleanup, screen, userEvent, fireEvent } from '../test-utils';
-import Alert from './Alert';
-import { useDirection } from '../common/hooks';
+import React from 'react';
 
 import { Sentiment, Size } from '../common';
+import { useDirection } from '../common/hooks';
+import { render, cleanup, screen, userEvent, fireEvent } from '../test-utils';
+
+import Alert from './Alert';
 import { AlertArrowPosition } from './withArrow';
 
 jest.mock('react', () => {
   const originReact = jest.requireActual('react');
-  const mUseRef = jest.fn();
+  const mUseReference = jest.fn();
   return {
     ...originReact,
-    useRef: mUseRef,
+    useRef: mUseReference,
   };
 });
 
@@ -116,7 +116,7 @@ describe('Alert', () => {
       const { container: small } = render(<Alert size={Size.SMALL} message={message} />);
       const { container: large } = render(<Alert size={Size.LARGE} message={message} />);
 
-      expect(small.innerHTML).toEqual(large.innerHTML);
+      expect(small.innerHTML).toStrictEqual(large.innerHTML);
       expect(mockedWarn).toHaveBeenCalledTimes(2);
     });
 
@@ -159,11 +159,11 @@ describe('Alert', () => {
       };
       render(<Alert action={action} message={message} />);
 
-      const el = screen.getByText(action.text);
+      const element = screen.getByText(action.text);
 
-      expect(el).toHaveAttribute('href', action.href);
-      expect(el).not.toHaveAttribute('aria-label');
-      expect(el).not.toHaveAttribute('target');
+      expect(element).toHaveAttribute('href', action.href);
+      expect(element).not.toHaveAttribute('aria-label');
+      expect(element).not.toHaveAttribute('target');
     });
 
     it('adds additional attributes', () => {
@@ -175,10 +175,10 @@ describe('Alert', () => {
       };
       render(<Alert action={action} message={message} />);
 
-      const el = screen.getByText(action.text);
+      const element = screen.getByText(action.text);
 
-      expect(el).toHaveAttribute('aria-label', action['aria-label']);
-      expect(el).toHaveAttribute('target', action.target);
+      expect(element).toHaveAttribute('aria-label', action['aria-label']);
+      expect(element).toHaveAttribute('target', action.target);
     });
   });
 
@@ -211,19 +211,19 @@ describe('Alert', () => {
   describe('custom icon', () => {
     it('uses any provided icon in preference to the default', () => {
       const icon = <Emoji size={24} />;
-      const iconHTML = renderIcon(Emoji);
+      const view = renderIcon(Emoji);
 
       render(<Alert icon={icon} message={message} />);
       component = screen.getByRole('alert');
 
-      expect(component).toContainHTML(iconHTML);
+      expect(component).toContainHTML(view);
       expect(component).not.toContainHTML(iconTypeMap[Sentiment.NEGATIVE]);
     });
   });
 
   describe('onDismiss', () => {
     it('renders the close button if onDismiss is provided', () => {
-      render(<Alert onDismiss={jest.fn()} message={message} />);
+      render(<Alert message={message} onDismiss={jest.fn()} />);
 
       expect(screen.getByRole('button')).toBeInTheDocument();
     });
@@ -231,7 +231,7 @@ describe('Alert', () => {
     it('calls onDismiss when the close button is clicked', () => {
       const onDismiss = jest.fn();
 
-      render(<Alert onDismiss={onDismiss} message={message} />);
+      render(<Alert message={message} onDismiss={onDismiss} />);
 
       userEvent.click(screen.getByRole('button'));
 
@@ -279,7 +279,7 @@ describe('Alert', () => {
 
     beforeAll(() => {
       delete window.location;
-      window.open = jest.fn();
+      jest.spyOn(window, 'open').mockImplementation();
       window.location = {
         assign: jest.fn(),
       };

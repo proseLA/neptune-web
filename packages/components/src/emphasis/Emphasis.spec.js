@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom';
 import { render } from '../test-utils';
+
 import Emphasis from './Emphasis';
 
 describe('Emphasis', () => {
   describe('renders emphasis tags as spans with the correct class applied', () => {
-    test.each`
+    it.each`
       text                                  | selector
       ${'<important>important</important>'} | ${'span.emphasis.emphasis--important'}
       ${'<positive>positive</positive>'}    | ${'span.emphasis.emphasis--positive'}

@@ -1,9 +1,12 @@
-import { forwardRef, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { forwardRef, useEffect, useRef } from 'react';
 
 const Tab = forwardRef(
-  ({ children, id, disabled, panelId, selected, onKeyDown, onClick, style, focusTab }, ref) => {
+  (
+    { children, id, disabled, panelId, selected, onKeyDown, onClick, style, focusTab },
+    reference,
+  ) => {
     const firstUpdate = useRef(true);
 
     const checkFocus = () => {
@@ -23,20 +26,20 @@ const Tab = forwardRef(
 
     return (
       <li
+        ref={reference}
         className={classNames('tabs__tab', {
           'tabs__tab--selected': selected,
           'tabs__tab--disabled': disabled,
         })}
-        ref={ref}
         role="tab"
         id={id}
         aria-selected={selected ? 'true' : 'false'}
         aria-disabled={disabled ? 'true' : 'false'}
         aria-controls={disabled ? null : panelId}
         tabIndex="0"
+        style={style}
         onKeyDown={disabled ? null : onKeyDown}
         onClick={onClick}
-        style={style}
       >
         {children}
       </li>

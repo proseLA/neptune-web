@@ -1,12 +1,11 @@
 import { Image, Alert, Sentiment } from '@transferwise/components';
-
 import { ReactElement } from 'react';
-import { DocLink } from '../../utils/pageUtils';
-import flowNavigation from '../../public/static/assets/blog/flow-nav-release-jan-2021.png';
-import checkbox from '../../public/static/assets/blog/checkbox-release-jan-2021.png';
-import overlayHeader from '../../public/static/assets/blog/overlay-header-release-jan-2021.png';
-import checkboxButton from '../../public/static/assets/blog/checkbox-button-release-jan-2021.png';
 
+import checkboxButton from '../../public/static/assets/blog/checkbox-button-release-jan-2021.png';
+import checkbox from '../../public/static/assets/blog/checkbox-release-jan-2021.png';
+import flowNavigation from '../../public/static/assets/blog/flow-nav-release-jan-2021.png';
+import overlayHeader from '../../public/static/assets/blog/overlay-header-release-jan-2021.png';
+import { DocumentLink } from '../../utils/pageUtils';
 import { Meta } from '../../utils/sections';
 
 export const meta: Meta = {
@@ -29,7 +28,7 @@ export const meta: Meta = {
   tags: ['FlowNavigation', 'OverflowHeader'],
 };
 
-export default function PageContent(): ReactElement {
+const PageContent = (): ReactElement => {
   return (
     <div className="d-flex flex-column">
       <p className="m-t-4">
@@ -38,8 +37,10 @@ export default function PageContent(): ReactElement {
       </p>
       <h2 className="m-t-1 m-b-1">New and Improved</h2>
       <h3 className="m-t-4 m-b-1">FlowNavigation</h3>
-      <DocLink href="/blog/2020-12-15-flownavigation-upgrade-guide">Upgrade guide</DocLink>
-      <DocLink href="/components/navigation/FlowNavigation">Component docs</DocLink>
+      <DocumentLink href="/blog/2020-12-15-flownavigation-upgrade-guide">
+        Upgrade guide
+      </DocumentLink>
+      <DocumentLink href="/components/navigation/FlowNavigation">Component docs</DocumentLink>
       <p className="m-t-3">
         The FlowNavigation component has had layout issues for a long time - as I’m sure you will
         have noticed if you ever saw it caught in that awkward screen width between “mobile” and
@@ -54,8 +55,8 @@ export default function PageContent(): ReactElement {
         <Image src={flowNavigation} alt="New Flow Navigation" loading="lazy" stretch={false} />
       </div>
       <h3 className="m-t-4 m-b-1">OverlayHeader</h3>
-      <DocLink href="/blog/2021-01-22-overlayheader-upgrade-guide">Upgrade guide</DocLink>
-      <DocLink href="/components/navigation/OverlayHeader">Component docs</DocLink>
+      <DocumentLink href="/blog/2021-01-22-overlayheader-upgrade-guide">Upgrade guide</DocumentLink>
+      <DocumentLink href="/components/navigation/OverlayHeader">Component docs</DocumentLink>
       <p className="m-t-3">
         OverlayHeader has been improved as part of the FlowNavigation work. If you use it, take a
         look in the Breaking Changes section for updates to the API.
@@ -64,7 +65,7 @@ export default function PageContent(): ReactElement {
         <Image src={overlayHeader} alt="New Overlay Header" loading="lazy" stretch={false} />
       </div>
       <h3 className="m-t-4 m-b-1">CheckboxButton</h3>
-      <DocLink href="/components/inputs/CheckboxButton">Component docs</DocLink>
+      <DocumentLink href="/components/inputs/CheckboxButton">Component docs</DocumentLink>
       <p className="m-t-3">
         Misleadingly named because it’s not a button, this cute little fellow comes in handy when
         you have a long list of checks in a grid, and each item in the grid is labelled by the row
@@ -85,7 +86,7 @@ export default function PageContent(): ReactElement {
         We’ve also made some slight changes to the API (details below).
       </p>
       <h3 className="m-t-4 m-b-1">Checkbox</h3>
-      <DocLink href="/components/inputs/Checkbox">Component docs</DocLink>
+      <DocumentLink href="/components/inputs/Checkbox">Component docs</DocumentLink>
       <p className="m-t-3">
         As you would expect, Checkbox has been updated to use the new CheckboxButton, so it is now
         also more accessible, and has some updated focus and hover states. Oh - and we finally fixed
@@ -101,15 +102,19 @@ export default function PageContent(): ReactElement {
       <p>
         <strong>Relevant for you:</strong> If you use FlowNavigation.
         <br /> There are quite a few changes to the API, so please check out the{' '}
-        <DocLink href="/blog/2020-12-15-flownavigation-upgrade-guide">upgrade guide</DocLink> for
-        instructions on how to update.
+        <DocumentLink href="/blog/2020-12-15-flownavigation-upgrade-guide">
+          upgrade guide
+        </DocumentLink>{' '}
+        for instructions on how to update.
       </p>
       <h3 className="m-t-4">OverlayHeader API</h3>
       <Alert className="m-y-2" message="Breaking change" type={Sentiment.NEGATIVE} />
       <p>
         <strong>Relevant for you:</strong> If you use OverlayHeader.
         <br /> Once again, there are quite a few changes to the API, so please check out the{' '}
-        <DocLink href="/blog/2021-01-22-overlayheader-upgrade-guide">upgrade guide</DocLink>
+        <DocumentLink href="/blog/2021-01-22-overlayheader-upgrade-guide">
+          upgrade guide
+        </DocumentLink>
       </p>
       <h3 className="m-t-4">CheckboxButton API</h3>
       <Alert className="m-y-2" message="API Change" type={Sentiment.WARNING} />
@@ -125,4 +130,6 @@ export default function PageContent(): ReactElement {
       </p>
     </div>
   );
-}
+};
+
+export default PageContent;

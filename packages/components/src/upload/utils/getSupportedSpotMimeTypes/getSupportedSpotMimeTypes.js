@@ -14,9 +14,5 @@ export const getSupportedSpotMimeTypes = (mimeTypes) => {
 
   const mapSupportedMimeTypes = mimeTypesArray.map((type) => mimeMapping[type] || type);
 
-  const supportedMimeTypes = mapSupportedMimeTypes.filter(
-    (type) => SUPPORTED_MIME_TYPES.indexOf(type) > -1,
-  );
-
-  return supportedMimeTypes;
+  return mapSupportedMimeTypes.filter((type) => SUPPORTED_MIME_TYPES.includes(type));
 };

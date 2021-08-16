@@ -1,6 +1,5 @@
-import { shallow } from 'enzyme';
-
 import { Profile as ProfileIcon, Bank as BankIcon } from '@transferwise/icons';
+import { shallow } from 'enzyme';
 
 import DynamicIcon from '.';
 

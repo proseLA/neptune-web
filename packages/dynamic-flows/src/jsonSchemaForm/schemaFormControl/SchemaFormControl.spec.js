@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 
-import SchemaFormControl from '.';
-
 import FormControl from '../../formControl';
+
+import SchemaFormControl from '.';
 
 describe('Given a component for rendering a form control based on a schema', () => {
   let component;
@@ -40,7 +40,7 @@ describe('Given a component for rendering a form control based on a schema', () 
   });
 
   it('should render a FormControl', () => {
-    expect(formControlComponent.length).toBe(1);
+    expect(formControlComponent).toHaveLength(1);
   });
 
   it('should pass the id to the FormControl', () => {
@@ -55,22 +55,17 @@ describe('Given a component for rendering a form control based on a schema', () 
     expect(formControlComponent.prop('autoComplete')).toBe(true);
   });
 
-  // TODO translations need to be broken out to separate props for FormControl
-  // it('should pass the translations to the FormControl', () => {
-  //   expect(formControlComponent.prop('translations')).toBe(translations);
-  // });
-
   describe('when a string schema is supplied', () => {
     beforeEach(() => {
       component.setProps({ schema: { type: 'string', displayFormat: '**-**-*' } });
     });
 
     it('should ask the FormControl for a text control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('text');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('text');
     });
 
     it('should pass the displayFormat down', () => {
-      expect(component.find(FormControl).prop('displayPattern')).toEqual('**-**-*');
+      expect(component.find(FormControl).prop('displayPattern')).toStrictEqual('**-**-*');
     });
   });
 
@@ -80,7 +75,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a date control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('date');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('date');
     });
   });
 
@@ -90,7 +85,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a telephone control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('tel');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('tel');
     });
   });
 
@@ -100,7 +95,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a file upload control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('file');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('file');
     });
   });
 
@@ -110,7 +105,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a number control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('number');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('number');
     });
   });
 
@@ -120,7 +115,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a number control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('number');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('number');
     });
   });
 
@@ -130,7 +125,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a checkbox control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('checkbox');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('checkbox');
     });
   });
 
@@ -148,11 +143,11 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a radio control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('radio');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('radio');
     });
 
     it('should pass the FormControl options in the correct format', () => {
-      expect(component.find(FormControl).prop('options')).toEqual([
+      expect(component.find(FormControl).prop('options')).toStrictEqual([
         { value: 1, label: 'One' },
         { value: 2, label: 'Two' },
       ]);
@@ -169,11 +164,11 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a select control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('select');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('select');
     });
 
     it('should pass the FormControl options in the correct format', () => {
-      expect(component.find(FormControl).prop('options')).toEqual([
+      expect(component.find(FormControl).prop('options')).toStrictEqual([
         { value: 'one', label: 'one' },
         { value: 'two', label: 'two' },
         { value: 'three', label: 'three' },
@@ -192,7 +187,7 @@ describe('Given a component for rendering a form control based on a schema', () 
 
     it('should ask the FormControl for a select control', () => {
       // Sometimes we want to force a conscious decision for the customer to select an option even when there is only 1
-      expect(component.find(FormControl).prop('type')).toEqual('select');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('select');
     });
   });
 
@@ -209,7 +204,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a radio control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('radio');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('radio');
     });
   });
 
@@ -227,11 +222,11 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should ask the FormControl for a select control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('select');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('select');
     });
 
     it('should pass the FormControl options in the correct format', () => {
-      expect(component.find(FormControl).prop('options')).toEqual([
+      expect(component.find(FormControl).prop('options')).toStrictEqual([
         { value: 1, label: 'One' },
         { value: 2, label: 'Two' },
         { value: 3, label: 'Three' },
@@ -252,7 +247,7 @@ describe('Given a component for rendering a form control based on a schema', () 
           },
         });
 
-        expect(component.find(FormControl).prop('options')[0].secondary).toEqual(
+        expect(component.find(FormControl).prop('options')[0].secondary).toStrictEqual(
           'reeeeeeaaallllllllly loooooooooooooooooooooongggggggggggg',
         );
       });
@@ -266,7 +261,9 @@ describe('Given a component for rendering a form control based on a schema', () 
           },
         });
 
-        expect(component.find(FormControl).prop('options')[0].note).toEqual('short description');
+        expect(component.find(FormControl).prop('options')[0].note).toStrictEqual(
+          'short description',
+        );
       });
     });
 
@@ -282,7 +279,7 @@ describe('Given a component for rendering a form control based on a schema', () 
           },
         });
 
-        expect(component.find(FormControl).prop('options')).toEqual([
+        expect(component.find(FormControl).prop('options')).toStrictEqual([
           { value: 1, label: 'One' },
           { value: 2, label: 'Two', currency: 'usd' },
           { value: 3, label: 'Three', currency: 'gbp' },
@@ -302,7 +299,7 @@ describe('Given a component for rendering a form control based on a schema', () 
           },
         });
 
-        expect(component.find(FormControl).prop('options')).toEqual([
+        expect(component.find(FormControl).prop('options')).toStrictEqual([
           { value: 1, label: 'One' },
           { value: 2, label: 'Two', currency: 'usd' },
           { value: 3, label: 'Three' },
@@ -321,7 +318,7 @@ describe('Given a component for rendering a form control based on a schema', () 
           },
         });
 
-        expect(component.find(FormControl).prop('options')).toEqual([
+        expect(component.find(FormControl).prop('options')).toStrictEqual([
           { value: 1, label: 'One' },
           { value: 3, label: 'Three' },
         ]);
@@ -351,7 +348,7 @@ describe('Given a component for rendering a form control based on a schema', () 
 
         component.setProps(schemaFormControlProps);
 
-        expect(component.find(FormControl).prop('type')).toEqual('tab');
+        expect(component.find(FormControl).prop('type')).toStrictEqual('tab');
       });
     });
 
@@ -372,7 +369,7 @@ describe('Given a component for rendering a form control based on a schema', () 
 
         component.setProps(schemaFormControlProps);
 
-        expect(component.find(FormControl).prop('type')).toEqual('select');
+        expect(component.find(FormControl).prop('type')).toStrictEqual('select');
       });
     });
   });
@@ -391,11 +388,11 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should override the default and ask for the specified control', () => {
-      expect(component.find(FormControl).prop('type')).toEqual('select');
+      expect(component.find(FormControl).prop('type')).toStrictEqual('select');
     });
   });
 
-  describe('when the schema contains help information ', () => {
+  describe('when the schema contains help information', () => {
     beforeEach(() => {
       component.setProps({ schema: { type: 'string', help: { message: 'help!' } } });
     });
@@ -411,7 +408,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should pass an empty string to the FormControl', () => {
-      expect(component.find(FormControl).prop('value')).toEqual('');
+      expect(component.find(FormControl).prop('value')).toStrictEqual('');
     });
   });
 
@@ -441,7 +438,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should trigger the components onChange handler', () => {
-      expect(onFocus).toHaveBeenCalled();
+      expect(onFocus).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -451,7 +448,7 @@ describe('Given a component for rendering a form control based on a schema', () 
     });
 
     it('should trigger the components onBlur handler', () => {
-      expect(onBlur).toHaveBeenCalled();
+      expect(onBlur).toHaveBeenCalledTimes(1);
     });
   });
 

@@ -1,14 +1,15 @@
 import { text, select } from '@storybook/addon-knobs';
 
-import Info, { InfoPresentation } from '.';
 import { Size } from '../common';
+
+import Info, { InfoPresentation } from '.';
 
 export default {
   component: Info,
   title: 'Info',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const content = text(
     'Content',
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
@@ -21,10 +22,10 @@ export const basic = () => {
     <Info
       aria-label="Click here for more details"
       content={content}
-      onClick={() => console.log('Info clicked')}
       presentation={presentation}
       size={size}
       title={title}
+      onClick={() => console.log('Info clicked')}
     />
   );
 };

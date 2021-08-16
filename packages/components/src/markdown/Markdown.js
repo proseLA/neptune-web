@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import commonmark from 'commonmark';
 import difference from 'lodash.difference';
-import { logActionRequired } from '../utilities';
+import PropTypes from 'prop-types';
+
 import { MarkdownNodeType } from '../common';
+import { logActionRequired } from '../utilities';
 
 const reader = new commonmark.Parser();
 const writer = new commonmark.HtmlRenderer({ safe: true });

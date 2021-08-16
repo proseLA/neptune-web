@@ -26,7 +26,7 @@ describe('Number formatting', () => {
     expect(parseAmount('-123.45', 'gbp')).toBe(123.45);
   });
 
-  test.each([
+  it.each([
     ['0---9(s.t.r!@#$%^&*()_+^[]{};’,<>?', 9],
     ['$12.341', 12.34],
     ['$12.347', 12.35],

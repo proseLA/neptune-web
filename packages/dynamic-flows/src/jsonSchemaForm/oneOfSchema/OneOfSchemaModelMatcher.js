@@ -1,12 +1,13 @@
+const getSchemaProperties = (childSchema) => {
+  return childSchema.properties !== null && typeof childSchema.properties === 'object'
+    ? Object.entries(childSchema.properties)
+    : [];
+};
+
 export function getBestMatchingSchemaIndexForModel(schema, model) {
   if (model === null || model === undefined) {
     return null;
   }
-
-  const getSchemaProperties = (childSchema) =>
-    childSchema.properties !== null && typeof childSchema.properties === 'object'
-      ? Object.entries(childSchema.properties)
-      : [];
 
   const schemaPoints = schema.oneOf.map((childSchema) => {
     let points = 0;
@@ -23,8 +24,7 @@ export function getBestMatchingSchemaIndexForModel(schema, model) {
   if (schemaPoints.every((p) => p === schemaPoints[0])) {
     return null;
   }
-  const bestMatchingSchemaIndex = schemaPoints.indexOf(Math.max(...schemaPoints));
-  return bestMatchingSchemaIndex;
+  return schemaPoints.indexOf(Math.max(...schemaPoints));
 }
 
 export function isConstSchema(schema) {

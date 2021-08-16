@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { boolean, text } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
+import { useState } from 'react';
+
 import CheckboxOption from './CheckboxOption';
 
 export default {
@@ -8,7 +9,7 @@ export default {
   title: 'CheckboxOption',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [checked, setChecked] = useState(true);
   const content = text('content', 'Normally, the button and icon are vertically centered.');
   const title = text('title', 'Checkbox option');
@@ -23,9 +24,9 @@ export const basic = () => {
       disabled={disabled}
       title={title}
       content={content}
-      onChange={(newValue) => setChecked(newValue)}
       media={<FastFlagIcon />}
       showMediaAtAllSizes={showMediaAtAllSizes}
+      onChange={(newValue) => setChecked(newValue)}
     />
   );
 };

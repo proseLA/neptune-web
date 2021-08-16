@@ -1,6 +1,6 @@
+import { Upload as UploadIcon } from '@transferwise/icons';
 import { shallow } from 'enzyme';
 
-import { Upload as UploadIcon } from '@transferwise/icons';
 import UploadImageStep from '.';
 
 describe('uploadImageStep', () => {

@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '../test-utils';
 
 import { Select } from '..';
+import { render, screen } from '../test-utils';
+
 import WithNormaliser from '.';
 
 describe('WithNormaliser', () => {
@@ -49,13 +50,13 @@ describe('WithNormaliser', () => {
         <Select
           size="md"
           placeholder="placeholder"
-          onChange={onChange}
           searchPlaceholder="Search placeholder"
           options={[
             { header: 'Basic' },
             { value: 0, label: 'A thing', note: 'with a note' },
             { value: 1, label: 'Another thing', secondary: 'with secondary text this time' },
           ]}
+          onChange={onChange}
         />
       </WithNormaliser>,
     );

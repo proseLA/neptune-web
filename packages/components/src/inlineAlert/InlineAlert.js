@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Sentiment } from '../common';
+import PropTypes from 'prop-types';
+
 import withArrow, { AlertArrowPosition } from '../alert/withArrow';
+import { Sentiment } from '../common';
 
 const typeClassMap = {
   [Sentiment.ERROR]: 'danger',

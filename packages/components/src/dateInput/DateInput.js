@@ -1,17 +1,16 @@
-import { useState } from 'react';
-import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
-import Select from '../select';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { Size, DateMode, MonthFormat } from '../common';
-
-import { explodeDate, convertToLocalMidnight } from './utils';
 import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/dateUtils';
 import { useDirection } from '../common/hooks';
+import Select from '../select';
 
-const MonthBeforeDay = ['en-US', 'ja-JP'];
+import { explodeDate, convertToLocalMidnight } from './utils';
+
+const MonthBeforeDay = new Set(['en-US', 'ja-JP']);
 const INITIAL_DEFAULT_STATE = { year: null, month: null, day: null };
 
 const DateInput = ({
@@ -78,18 +77,17 @@ const DateInput = ({
     const months = getMonthNames(locale, monthFormat);
 
     return (
-      // eslint-disable-next-line
       <label>
         <span className="sr-only">{monthLabel}</span>
         <Select
           name="month"
           className="form-control"
-          onChange={(selectedValue) => handleMonthChange(selectedValue)}
           disabled={disabled}
           placeholder={placeholders.month}
           options={getMonthsOptions()}
           size={size}
           selected={month === null ? null : { value: month, label: months[month] }}
+          onChange={(selectedValue) => handleMonthChange(selectedValue)}
         />
       </label>
     );
@@ -209,14 +207,18 @@ const DateInput = ({
     'pull-right': isRTL,
   });
 
-  const monthBeforeDay = MonthBeforeDay.indexOf(locale) > -1;
+  const monthBeforeDay = MonthBeforeDay.has(locale);
 
   return (
     <div
       className="tw-date"
       id={id}
-      onFocus={(e) => (shouldPropagateOnFocus(e) ? onFocus && onFocus() : e.stopPropagation())}
-      onBlur={(e) => (shouldPropagateOnBlur(e) ? onBlur && onBlur() : e.stopPropagation())}
+      onFocus={(event) =>
+        shouldPropagateOnFocus(event) ? onFocus && onFocus() : event.stopPropagation()
+      }
+      onBlur={(event) =>
+        shouldPropagateOnBlur(event) ? onBlur && onBlur() : event.stopPropagation()
+      }
     >
       <div className="row">
         {monthBeforeDay && <div className={monthWidth}>{getSelectElement()}</div>}
@@ -230,9 +232,9 @@ const DateInput = ({
                   name="day"
                   className="form-control"
                   value={day || ''}
-                  onChange={(event) => handleDayChange(event)}
                   placeholder={placeholders.day}
                   disabled={disabled}
+                  onChange={(event) => handleDayChange(event)}
                 />
               </label>
             </div>
@@ -251,8 +253,8 @@ const DateInput = ({
                 className="form-control"
                 placeholder={placeholders.year}
                 value={year || ''}
-                onChange={(event) => handleYearChange(event)}
                 disabled={disabled}
+                onChange={(event) => handleYearChange(event)}
               />
             </label>
           </div>

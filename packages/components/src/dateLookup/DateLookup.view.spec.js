@@ -1,14 +1,18 @@
 import { shallow } from 'enzyme';
 
-import DateLookup from '.';
 import DateTrigger from './dateTrigger';
 import DayCalendar from './dayCalendar';
 import MonthCalendar from './monthCalendar';
 import YearCalendar from './yearCalendar';
 
+import DateLookup from '.';
+
 const defaultLocale = 'en-GB';
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale: defaultLocale }} />;
+    },
   useIntl: () => ({ locale: defaultLocale }),
   defineMessages: (translations) => translations,
 }));
@@ -45,7 +49,7 @@ describe('DateLookup view', () => {
     expect(dateTrigger().prop('monthFormat')).toBe('long');
     expect(dateTrigger().prop('disabled')).toBe(false);
     expect(dateTrigger().prop('onClick')).toBe(component.instance().open);
-    expect(dateTrigger().prop('children')).not.toBe(null);
+    expect(dateTrigger().prop('children')).not.toBeNull();
   });
 
   it('does not show calendar initially', () => {
@@ -61,7 +65,7 @@ describe('DateLookup view', () => {
 
   it('passes onClear prop to open button', () => {
     component.setProps({ clearable: true });
-    expect(dateTrigger().prop('onClear')).not.toBe(null);
+    expect(dateTrigger().prop('onClear')).not.toBeNull();
   });
 
   describe('when in day mode', () => {

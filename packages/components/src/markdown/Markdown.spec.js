@@ -1,6 +1,7 @@
-import { render } from '../test-utils';
-import Markdown from './Markdown';
 import { MarkdownNodeType } from '../common';
+import { render } from '../test-utils';
+
+import Markdown from './Markdown';
 
 const list = `* list
 * list`;

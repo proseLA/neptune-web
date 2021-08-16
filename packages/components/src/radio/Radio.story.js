@@ -1,15 +1,16 @@
+import { boolean, text } from '@storybook/addon-knobs';
 import { useState } from 'react';
 
-import { boolean, text } from '@storybook/addon-knobs';
-import Radio from './Radio';
 import Avatar, { AvatarType } from '../avatar';
+
+import Radio from './Radio';
 
 export default {
   component: Radio,
   title: 'Radio',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [checked, setChecked] = useState(true);
 
   const disabled = boolean('disabled', false);
@@ -25,7 +26,6 @@ export const basic = () => {
       checked={checked}
       disabled={disabled}
       secondary={secondary}
-      onChange={() => setChecked(!checked)}
       avatar={
         showAvatar ? (
           <Avatar type={AvatarType.THUMBNAIL}>
@@ -33,6 +33,7 @@ export const basic = () => {
           </Avatar>
         ) : null
       }
+      onChange={() => setChecked(!checked)}
     />
   );
 };

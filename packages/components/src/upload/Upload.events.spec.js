@@ -1,11 +1,15 @@
 import { shallow } from 'enzyme';
+
 import Upload from '.';
 
 const defaultLocale = 'en-GB';
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => (
-    <Component {...props} intl={{ locale: defaultLocale, formatMessage: (id) => `${id}` }} />
-  ),
+  injectIntl: (Component) =>
+    function (props) {
+      return (
+        <Component {...props} intl={{ locale: defaultLocale, formatMessage: (id) => `${id}` }} />
+      );
+    },
   defineMessages: (translations) => translations,
 }));
 
@@ -27,19 +31,19 @@ describe('Upload (events)', () => {
 
     it('increments dragCounter on dragenter', () => {
       component.find('.droppable').simulate('dragenter', new Event('event'));
-      expect(component.instance().dragCounter).toEqual(1);
+      expect(component.instance().dragCounter).toStrictEqual(1);
     });
 
     it('decrements dragCounter on dragleave', () => {
       component.find('.droppable').simulate('dragleave', new Event('event'));
-      expect(component.instance().dragCounter).toEqual(-1);
+      expect(component.instance().dragCounter).toStrictEqual(-1);
     });
 
     it('reset dragCounter on drop', () => {
       component.find('.droppable').simulate('dragenter', new Event('event'));
-      expect(component.instance().dragCounter).toEqual(1);
+      expect(component.instance().dragCounter).toStrictEqual(1);
       component.find('.droppable').simulate('drop', new Event('event'));
-      expect(component.instance().dragCounter).toEqual(0);
+      expect(component.instance().dragCounter).toStrictEqual(0);
     });
   });
 });

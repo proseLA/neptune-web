@@ -1,4 +1,5 @@
 import { cleanup, render, screen } from '../../../test-utils';
+
 import { getFocusableElements } from './getFocusableElements';
 
 describe('getFocusableElements', () => {
@@ -18,7 +19,7 @@ describe('getFocusableElements', () => {
       </>,
     );
     getFocusableElements(container);
-    expect(getFocusableElements(container)).toEqual({
+    expect(getFocusableElements(container)).toStrictEqual({
       first: first(),
       last: last(),
     });
@@ -31,7 +32,7 @@ describe('getFocusableElements', () => {
       </>,
     );
     getFocusableElements(container);
-    expect(getFocusableElements(container)).toEqual({
+    expect(getFocusableElements(container)).toStrictEqual({
       first: container,
       last: container,
     });
@@ -39,7 +40,7 @@ describe('getFocusableElements', () => {
 
   it('returns undefined if container is not provided', () => {
     getFocusableElements();
-    expect(getFocusableElements()).toEqual({
+    expect(getFocusableElements()).toStrictEqual({
       first: undefined,
       last: undefined,
     });

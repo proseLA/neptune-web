@@ -1,6 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 
 import { Status } from '../common';
+
 import UploadInput, { UploadInputProps } from './UploadInput';
 import { UploadResponse } from './types';
 
@@ -63,54 +64,54 @@ const props = {
 
 const Template: Story<UploadInputProps> = (args: UploadInputProps) => <UploadInput {...args} />;
 
-export const singleFile = Template.bind({});
-singleFile.args = { ...props };
+export const SingleFile = Template.bind({});
+SingleFile.args = { ...props };
 
-export const multipleFiles = Template.bind({});
-multipleFiles.args = { ...props, multiple: true };
+export const MultipleFiles = Template.bind({});
+MultipleFiles.args = { ...props, multiple: true };
 
-export const disabled = Template.bind({});
-disabled.args = { ...props, disabled: true };
+export const Disabled = Template.bind({});
+Disabled.args = { ...props, disabled: true };
 
-export const withAnyFileType = Template.bind({});
-withAnyFileType.args = { ...props, fileTypes: '*' };
+export const WithAnyFileType = Template.bind({});
+WithAnyFileType.args = { ...props, fileTypes: '*' };
 
-export const withSingleFileType = Template.bind({});
-withSingleFileType.args = { ...props, fileTypes: '.zip,application/zip' };
+export const WithSingleFileType = Template.bind({});
+WithSingleFileType.args = { ...props, fileTypes: '.zip,application/zip' };
 
-export const withMultipleExistingFiles = Template.bind({});
-withMultipleExistingFiles.args = {
+export const WithMultipleExistingFiles = Template.bind({});
+WithMultipleExistingFiles.args = {
   ...props,
   files,
   multiple: true,
 };
 
-export const withoutDelete = Template.bind({});
-withoutDelete.args = {
+export const WithoutDelete = Template.bind({});
+WithoutDelete.args = {
   ...props,
   files,
   onDeleteFile: undefined,
   multiple: true,
 };
 
-export const withUploadFailed = Template.bind({});
-withUploadFailed.args = {
+export const WithUploadFailed = Template.bind({});
+WithUploadFailed.args = {
   ...props,
   files: files.slice(0),
   onUploadFile: () => createDelayedPromise({ successful: false }),
   multiple: true,
 };
 
-export const withDeleteFailed = Template.bind({});
-withDeleteFailed.args = {
+export const WithDeleteFailed = Template.bind({});
+WithDeleteFailed.args = {
   ...props,
   files: files.slice(0),
   onDeleteFile: () => createDelayedPromise({ successful: false }),
   multiple: true,
 };
 
-export const customConfirmMessage = Template.bind({});
-customConfirmMessage.args = {
+export const CustomConfirmMessage = Template.bind({});
+CustomConfirmMessage.args = {
   ...props,
   files: files.slice(0),
   deleteConfirm: {

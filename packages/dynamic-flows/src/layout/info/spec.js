@@ -1,6 +1,5 @@
-import { shallow } from 'enzyme';
-
 import { Markdown } from '@transferwise/components';
+import { shallow } from 'enzyme';
 
 import DynamicInfo from '.';
 

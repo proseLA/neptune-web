@@ -42,12 +42,14 @@ describe('Given a utility service for handling dynamic layouts', () => {
             {
               text: option1.description,
               action: {
+                disabled: undefined,
                 title: option1.title,
                 method: 'GET',
                 url: option1.url,
               },
             },
             {
+              text: undefined,
               action: {
                 title: option2.title,
                 method: 'GET',
@@ -59,7 +61,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         },
       ];
 
-      expect(convertStepToLayout(decisionStep)).toEqual(decisionLayout);
+      expect(convertStepToLayout(decisionStep)).toStrictEqual(decisionLayout);
     });
   });
 
@@ -102,6 +104,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
               type: 'image',
               url: finalStep.details.image.url,
               margin: 'lg',
+              text: undefined,
             },
           ],
         },
@@ -123,7 +126,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         },
       ];
 
-      expect(convertStepToLayout(finalStep)).toEqual(finalLayout);
+      expect(convertStepToLayout(finalStep)).toStrictEqual(finalLayout);
     });
   });
 
@@ -204,6 +207,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
           width: 'md',
           components: [
             {
+              model: undefined,
               type: 'form',
               schema,
             },
@@ -235,7 +239,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         },
       ];
 
-      expect(convertStepToLayout(formStep)).toEqual(finalLayout);
+      expect(convertStepToLayout(formStep)).toStrictEqual(finalLayout);
     });
   });
 
@@ -302,6 +306,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
 
       const expected = [
         {
+          model: undefined,
           type: 'form',
           schema: {
             $id: '#myDetails',
@@ -312,6 +317,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
           },
         },
         {
+          model: undefined,
           type: 'form',
           schema: {
             $id: '#myAddress',
@@ -331,7 +337,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         },
       ];
 
-      expect(inlineReferences(simpleLayout, schemas, actions)).toEqual(expected);
+      expect(inlineReferences(simpleLayout, schemas, actions)).toStrictEqual(expected);
     });
 
     it('should inline schemas inside boxes', () => {
@@ -358,6 +364,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
           type: 'box',
           components: [
             {
+              model: undefined,
               type: 'form',
               schema: {
                 $id: '#myAddress',
@@ -375,7 +382,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         },
       ];
 
-      expect(inlineReferences(boxLayout, schemas, actions)).toEqual(expected);
+      expect(inlineReferences(boxLayout, schemas, actions)).toStrictEqual(expected);
     });
 
     it('should inline schemas inside columns', () => {
@@ -414,6 +421,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
           type: 'columns',
           left: [
             {
+              model: undefined,
               type: 'form',
               schema: {
                 $id: '#myDetails',
@@ -430,6 +438,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
           ],
           right: [
             {
+              model: undefined,
               type: 'form',
               schema: {
                 $id: '#myAddress',
@@ -447,7 +456,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         },
       ];
 
-      expect(inlineReferences(columnLayout, schemas, actions)).toEqual(expected);
+      expect(inlineReferences(columnLayout, schemas, actions)).toStrictEqual(expected);
     });
   });
 
@@ -464,15 +473,15 @@ describe('Given a utility service for handling dynamic layouts', () => {
     ];
 
     it('should return the original layout', () => {
-      expect(inlineReferences(layout, undefined)).toEqual(layout);
-      expect(inlineReferences(layout, [])).toEqual(layout);
+      expect(inlineReferences(layout, undefined)).toStrictEqual(layout);
+      expect(inlineReferences(layout, [])).toStrictEqual(layout);
     });
   });
 
   describe('when asked to inline schemas and there is no layout', () => {
     it('should return an empty layout', () => {
-      expect(inlineReferences(undefined, undefined)).toEqual([]);
-      expect(inlineReferences(undefined, [])).toEqual([]);
+      expect(inlineReferences(undefined, undefined)).toStrictEqual([]);
+      expect(inlineReferences(undefined, [])).toStrictEqual([]);
     });
   });
 });

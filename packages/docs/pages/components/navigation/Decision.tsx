@@ -1,11 +1,11 @@
-import { ReactElement } from 'react';
 import { Decision, Avatar, DecisionPresentation, DecisionType } from '@transferwise/components';
+import { ReactElement } from 'react';
+
+// @ts-expect-error liveEditorCode
+import code from '../../../liveEditorCode/decision.code';
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
 
-// @ts-ignore
-import code from '../../../liveEditorCode/decision.code';
-
-export default function PageContent(): ReactElement {
+const PageContent = (): ReactElement => {
   return (
     <>
       <p>
@@ -18,7 +18,7 @@ export default function PageContent(): ReactElement {
         presentation.
       </p>
       <LiveEditorBlock
-        code={code}
+        code={code as string}
         scope={{ Decision, Avatar, DecisionPresentation, DecisionType }}
         display="vertical"
       />
@@ -30,8 +30,10 @@ export default function PageContent(): ReactElement {
       <GeneratePropsTable componentName="Decision" />
     </>
   );
-}
+};
 
 export const meta = {
   name: 'Decision',
 };
+
+export default PageContent;

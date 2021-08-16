@@ -17,7 +17,7 @@ describe('InputWithDisplayFormat', () => {
       const { container } = renderInput({ value });
       const input = container.querySelector('input');
 
-      expect(input).not.toBe(null);
+      expect(input).not.toBeNull();
       expect(input.value).toBe(value);
     });
 
@@ -26,7 +26,7 @@ describe('InputWithDisplayFormat', () => {
       const { container } = renderInput({ inputMode });
       const input = container.querySelector('input');
 
-      expect(input).not.toBe(null);
+      expect(input).not.toBeNull();
       expect(input).toHaveAttribute('inputmode');
       expect(input.inputMode).toBe(inputMode);
     });

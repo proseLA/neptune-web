@@ -1,13 +1,13 @@
+import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { injectIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { isEmpty, isNumber, isNull } from '@transferwise/neptune-validation';
-import Select from '../select';
 
-import { Size } from '../common/propsValues/size';
-import keyCodes from '../common/keyCodes';
 import { Key as keyValues } from '../common/key';
+import keyCodes from '../common/keyCodes';
+import { Size } from '../common/propsValues/size';
+import Select from '../select';
 
 import messages from './MoneyInput.messages';
 import { formatAmount, parseAmount } from './currencyFormatting';
@@ -27,7 +27,7 @@ const formatAmountIfSet = (amount, currency, locale) => {
   return typeof amount === 'number' ? formatAmount(amount, currency, locale) : '';
 };
 
-const inputKeyCodeAllowlist = [
+const inputKeyCodeAllowlist = new Set([
   keyCodes.BACKSPACE,
   keyCodes.DELETE,
   keyCodes.COMMA,
@@ -39,9 +39,9 @@ const inputKeyCodeAllowlist = [
   keyCodes.ENTER,
   keyCodes.ESCAPE,
   keyCodes.TAB,
-];
+]);
 
-const inputKeyAllowlist = [keyValues.PERIOD, keyValues.COMMA];
+const inputKeyAllowlist = new Set([keyValues.PERIOD, keyValues.COMMA]);
 
 class MoneyInput extends Component {
   constructor(props) {
@@ -55,8 +55,7 @@ class MoneyInput extends Component {
     };
   }
 
-  // eslint-disable-next-line
-  UNSAFE_componentWillReceiveProps(nextProps, prevState) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({ locale: nextProps?.intl?.locale });
 
     if (!this.amountFocused) {
@@ -78,8 +77,8 @@ class MoneyInput extends Component {
       isNumberKey ||
       metaKey ||
       ctrlKey ||
-      inputKeyCodeAllowlist.includes(keyCode) ||
-      inputKeyAllowlist.includes(key)
+      inputKeyCodeAllowlist.has(keyCode) ||
+      inputKeyAllowlist.has(key)
     );
   };
 
@@ -205,11 +204,6 @@ class MoneyInput extends Component {
           type="text"
           inputMode="decimal"
           className={classNames(this.style('form-control'))}
-          onKeyDown={this.handleKeyDown}
-          onChange={this.onAmountChange}
-          onFocus={this.onAmountFocus}
-          onBlur={this.onAmountBlur}
-          onPaste={this.handlePaste}
           disabled={disabled}
           placeholder={formatAmountIfSet(
             this.props.placeholder,
@@ -217,6 +211,11 @@ class MoneyInput extends Component {
             this.state.locale,
           )}
           autoComplete="off"
+          onKeyDown={this.handleKeyDown}
+          onChange={this.onAmountChange}
+          onFocus={this.onAmountFocus}
+          onBlur={this.onAmountBlur}
+          onPaste={this.handlePaste}
         />
         {addon && (
           <span
@@ -266,16 +265,16 @@ class MoneyInput extends Component {
               classNames={this.props.classNames}
               options={selectOptions}
               selected={{ ...selectedCurrency, note: null }}
-              onChange={this.handleSelectChange}
               placeholder={this.formatMessage(messages.selectPlaceholder)}
               searchPlaceholder={this.props.searchPlaceholder}
-              onSearchChange={this.handleSearchChange}
               searchValue={this.state.searchQuery}
               size={size}
               required
               dropdownRight="xs"
               dropdownWidth="lg"
               inverse
+              onChange={this.handleSelectChange}
+              onSearchChange={this.handleSearchChange}
             />
           </div>
         )}
@@ -301,7 +300,7 @@ function removeDuplicateValueOptions(options) {
   const resultValues = [];
 
   options.forEach((option) => {
-    if (option.value && resultValues.indexOf(option.value) === -1) {
+    if (option.value && !resultValues.includes(option.value)) {
       result.push(option);
       resultValues.push(option.value);
     }
@@ -323,7 +322,7 @@ function isCurrencyOptionAndFitsQuery(option, query) {
 }
 
 function contains(property, query) {
-  return property && property.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+  return property && property.toLowerCase().includes(query.toLowerCase());
 }
 
 function sortOptionsLabelsToFirst(options, query) {

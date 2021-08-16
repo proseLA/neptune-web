@@ -1,6 +1,7 @@
-import { useIntl } from 'react-intl';
-import { shallow } from 'enzyme';
 import { formatNumber } from '@transferwise/formatting';
+import { shallow } from 'enzyme';
+import { useIntl } from 'react-intl';
+
 import FormattedValue from './FormattedValue';
 
 jest.mock('react-intl');
@@ -37,7 +38,7 @@ describe('FormattedValue', () => {
     });
 
     it('has h3 styling added when provided', () => {
-      expect(item.find('.h3').length).toBe(1);
+      expect(item.find('.h3')).toHaveLength(1);
     });
   });
 

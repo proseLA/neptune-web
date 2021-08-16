@@ -1,7 +1,9 @@
 import { mount } from 'enzyme/build';
-import WithDisplayFormat from './index';
-import { fakeKeyDownEventForKey } from '../common/fakeEvents';
+
 import { HistoryNavigator } from '../common';
+import { fakeKeyDownEventForKey } from '../common/fakeEvents';
+
+import WithDisplayFormat from '.';
 
 jest.useFakeTimers();
 
@@ -16,6 +18,12 @@ const TESTS = [
   { value: '1234', expectedValue: '+(12) 34', displayPattern: '+(**) *' },
 ];
 
+const mountComponent = (props) => {
+  return mount(
+    <WithDisplayFormat {...props} render={(renderProps) => <input {...renderProps} />} />,
+  );
+};
+
 describe('InputWithTextFormat', () => {
   let component;
   const props = {
@@ -28,9 +36,7 @@ describe('InputWithTextFormat', () => {
   };
 
   beforeEach(() => {
-    component = mount(
-      <WithDisplayFormat {...props} render={(renderProps) => <input {...renderProps} />} />,
-    );
+    component = mountComponent(props);
   });
 
   afterEach(() => {
@@ -44,21 +50,21 @@ describe('InputWithTextFormat', () => {
       component.setState({ triggerEvent });
 
       componentInput().simulate('change', { target: { value } });
-      expect(componentInput().props().value).toEqual(expectedValue);
+      expect(componentInput().props().value).toStrictEqual(expectedValue);
       expect(props.onChange).toHaveBeenCalledWith(value);
 
       componentInput().simulate('focus', { target: { value } });
-      expect(componentInput().props().value).toEqual(expectedValue);
+      expect(componentInput().props().value).toStrictEqual(expectedValue);
       expect(props.onFocus).toHaveBeenCalledWith(value);
 
       componentInput().simulate('blur', { target: { value } });
-      expect(componentInput().props().value).toEqual(expectedValue);
+      expect(componentInput().props().value).toStrictEqual(expectedValue);
       expect(props.onBlur).toHaveBeenCalledWith(value);
     });
   });
 
   describe('when Undo/Redo is preformed', () => {
-    it(`it goes back/forward in input value's history`, () => {
+    it(`goes back/forward in input value's history`, () => {
       component.setProps({ displayPattern: '***' });
       component.setState({
         historyNavigator: new HistoryNavigator(['@', '@@', '@@@']),
@@ -82,9 +88,7 @@ describe('InputWithTextFormat', () => {
 
   describe('on "autofill"', () => {
     beforeEach(() => {
-      component = mount(
-        <WithDisplayFormat {...props} render={(renderProps) => <input {...renderProps} />} />,
-      );
+      component = mountComponent(props);
     });
 
     it('tests case with 5 random digits', () => {
@@ -98,22 +102,20 @@ describe('InputWithTextFormat', () => {
 
   describe('when backspace is pressed', () => {
     beforeEach(() => {
-      component = mount(
-        <WithDisplayFormat {...props} render={(renderProps) => <input {...renderProps} />} />,
-      );
+      component = mountComponent(props);
       component.setState({
         triggerEvent: { ...triggerEvent, key: 'Backspace' },
       });
     });
 
-    it(`it has default behaviour if deleted char is not a symbol`, () => {
+    it(`has default behaviour if deleted char is not a symbol`, () => {
       component.setState({ selectionStart: 2, selectionEnd: 2 });
 
       componentInput().simulate('change', { target: { value: '12-3' } });
       expect(componentInput().props().value).toBe('12-3');
     });
 
-    it(`it has default behaviour for multiple deletion`, () => {
+    it(`has default behaviour for multiple deletion`, () => {
       component.setState({ selectionStart: 3, selectionEnd: 1 });
 
       componentInput().simulate('change', { target: { value: '12-3' } });
@@ -194,7 +196,7 @@ describe('InputWithTextFormat', () => {
       expect(component.state().selectionStart).toBe(4);
     });
 
-    it(`when cut selection before a symbol `, () => {
+    it('cut selection before a symbol', () => {
       component.setState({
         triggerType: 'Cut',
       });
@@ -204,7 +206,7 @@ describe('InputWithTextFormat', () => {
       expect(component.state().selectionStart).toBe(0);
     });
 
-    it(`when cut selection before a symbol `, () => {
+    it('cut another selection before a symbol', () => {
       component.setState({
         triggerType: 'Cut',
       });

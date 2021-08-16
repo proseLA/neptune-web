@@ -1,8 +1,12 @@
+import { Plus as PlusIcon } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Plus as PlusIcon } from '@transferwise/icons';
+
+import { Status } from '../common';
+
+import messages from './Upload.messages';
 import { UploadImageStep, MediaUploadStep, ProcessingStep, CompleteStep } from './steps';
 import { UploadStep } from './uploadSteps';
 import {
@@ -13,9 +17,6 @@ import {
   isTypeValid,
   getFileType,
 } from './utils';
-
-import messages from './Upload.messages';
-import { Status } from '../common';
 
 const PROCESS_STATE = ['error', 'success'];
 
@@ -55,16 +56,16 @@ class Upload extends PureComponent {
     };
   }
 
-  onDragLeave(e) {
-    e.preventDefault();
+  onDragLeave(event) {
+    event.preventDefault();
     this.dragCounter -= 1;
     if (this.dragCounter === 0) {
       this.setState({ isDroppable: false });
     }
   }
 
-  onDragEnter(e) {
-    e.preventDefault();
+  onDragEnter(event) {
+    event.preventDefault();
     this.dragCounter += 1;
     const { usDisabled } = this.props;
     if (this.dragCounter === 1 && !usDisabled) {
@@ -72,11 +73,11 @@ class Upload extends PureComponent {
     }
   }
 
-  onDrop(e) {
-    e.preventDefault();
+  onDrop(event) {
+    event.preventDefault();
     this.reset();
-    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
-      this.fileDropped(e.dataTransfer.files[0]);
+    if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
+      this.fileDropped(event.dataTransfer.files[0]);
     }
   }
 
@@ -140,8 +141,8 @@ class Upload extends PureComponent {
     return httpOptions;
   };
 
-  handleOnClear = (e) => {
-    e.preventDefault();
+  handleOnClear = (event) => {
+    event.preventDefault();
     const { onCancel } = this.props;
     if (onCancel) {
       onCancel();
@@ -195,8 +196,8 @@ class Upload extends PureComponent {
 
     try {
       file64 = await asyncFileRead(file);
-    } catch (e) {
-      this.asyncResponse(e, PROCESS_STATE[0]);
+    } catch (error) {
+      this.asyncResponse(error, PROCESS_STATE[0]);
     }
 
     if (!file64) {
@@ -204,7 +205,7 @@ class Upload extends PureComponent {
     }
 
     this.setState({
-      isImage: getFileType(file, file64).indexOf('image') > -1,
+      isImage: getFileType(file, file64).includes('image'),
     });
 
     if (!isTypeValid(file, usAccept, file64)) {
@@ -286,10 +287,10 @@ class Upload extends PureComponent {
           'droppable-processing': isProcessing,
           'droppable-complete': isComplete,
         })}
-        onDragEnter={(e) => this.onDragEnter(e)}
-        onDragLeave={(e) => this.onDragLeave(e)}
-        onDrop={(e) => this.onDrop(e)}
-        onDragOver={(e) => e.preventDefault()}
+        onDragEnter={(event) => this.onDragEnter(event)}
+        onDragLeave={(event) => this.onDragLeave(event)}
+        onDrop={(event) => this.onDrop(event)}
+        onDragOver={(event) => event.preventDefault()}
       >
         {!isProcessing && !isComplete && (
           <UploadStepComponent
@@ -309,10 +310,10 @@ class Upload extends PureComponent {
             isComplete={isComplete}
             isError={isError}
             isSuccess={isSuccess}
-            onAnimationCompleted={(status) => this.onAnimationCompleted(status)}
-            onClear={(e) => this.handleOnClear(e)}
             psButtonText={psButtonText || this.formatMessage(messages.psButtonText)}
             psProcessingText={psProcessingText || this.formatMessage(messages.psProcessingText)}
+            onAnimationCompleted={(status) => this.onAnimationCompleted(status)}
+            onClear={(event) => this.handleOnClear(event)}
           />
         )}
         {/* Starts render the step when isSuccess or isError are true so markup is there when css transition kicks in
@@ -323,11 +324,11 @@ class Upload extends PureComponent {
             isComplete={isComplete}
             isError={isError}
             isImage={isImage}
-            onClear={(e) => this.handleOnClear(e)}
             csButtonText={csButtonText || this.formatMessage(messages.csButtonText)}
             csFailureText={errorMessage}
             csSuccessText={csSuccessText || this.formatMessage(messages.csSuccessText)}
             uploadedImage={uploadedImage}
+            onClear={(event) => this.handleOnClear(event)}
           />
         )}
         {!isProcessing && (
@@ -358,9 +359,7 @@ Upload.propTypes = {
     url: PropTypes.string.isRequired,
     method: PropTypes.oneOf(['POST', 'PUT', 'PATCH']),
     fileInputName: PropTypes.string,
-    // eslint-disable-next-line react/forbid-prop-types
     data: PropTypes.object,
-    // eslint-disable-next-line react/forbid-prop-types
     headers: PropTypes.object,
   }),
   maxSize: PropTypes.number,
@@ -374,7 +373,7 @@ Upload.propTypes = {
   /**
    * You can provide multiple rules separated by comma, e.g.: "application/pdf,image/*".
    * Using "*" will allow every file type to be uploaded.
-   * */
+   */
   usAccept: PropTypes.string,
   usButtonText: PropTypes.string,
   usDisabled: PropTypes.bool,

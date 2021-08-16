@@ -37,7 +37,7 @@ export function getVelocity(coords) {
     const last = relevant[relevant.length - 1];
 
     return Math.abs(first.x - last.x) / (last.time - first.time);
-  } catch (e) {
+  } catch {
     return 0;
   }
 }

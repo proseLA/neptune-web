@@ -1,8 +1,9 @@
 import { getMockFetchPromise, mount, wait } from '../../test-utils';
-import ValidationAsyncSchema from './ValidationAsyncSchema';
 import BasicTypeSchema from '../basicTypeSchema';
-import SchemaFormControl from '../schemaFormControl';
 import ControlFeedback from '../controlFeedback';
+import SchemaFormControl from '../schemaFormControl';
+
+import ValidationAsyncSchema from './ValidationAsyncSchema';
 
 describe('Given a component for rendering validation async schemas', () => {
   let props;
@@ -24,9 +25,10 @@ describe('Given a component for rendering validation async schemas', () => {
   const translations = {};
   const submitted = false;
 
-  global.fetch = jest.fn((input, init) => {
+  jest.spyOn(global, 'fetch').mockImplementation((input, init) => {
     let response;
 
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(input).toBe('https://test-url/v1/validate');
 
     switch (JSON.parse(init.body)[param]) {
@@ -91,13 +93,13 @@ describe('Given a component for rendering validation async schemas', () => {
   describe('when the supplied props are valid', () => {
     let component;
 
-    function getControlFeedbackProp(prop) {
+    function getControlFeedbackProperty(property) {
       const controlFeedback = component
         .update()
         .find(ValidationAsyncSchema)
         .find(BasicTypeSchema)
         .find(ControlFeedback);
-      return controlFeedback.prop(prop);
+      return controlFeedback.prop(property);
     }
 
     function enterValueAndBlur(value) {
@@ -175,7 +177,7 @@ describe('Given a component for rendering validation async schemas', () => {
 
             await wait(5);
 
-            expect(getControlFeedbackProp('validationAsyncSuccessMessage')).toBe(
+            expect(getControlFeedbackProperty('validationAsyncSuccessMessage')).toBe(
               'response-from-200-fast',
             );
           });
@@ -187,7 +189,7 @@ describe('Given a component for rendering validation async schemas', () => {
 
             await wait(5);
 
-            expect(getControlFeedbackProp('validationAsyncSuccessMessage')).toBe(null);
+            expect(getControlFeedbackProperty('validationAsyncSuccessMessage')).toBeNull();
           });
         });
 
@@ -197,7 +199,7 @@ describe('Given a component for rendering validation async schemas', () => {
 
             await wait(1);
 
-            expect(getControlFeedbackProp('errors')).toBe('Invalid param! (422)');
+            expect(getControlFeedbackProperty('errors')).toBe('Invalid param! (422)');
           });
         });
 
@@ -207,8 +209,8 @@ describe('Given a component for rendering validation async schemas', () => {
 
             await wait(1);
 
-            expect(getControlFeedbackProp('validationAsyncSuccessMessage')).toBeNull();
-            expect(getControlFeedbackProp('errors')).toBeNull();
+            expect(getControlFeedbackProperty('validationAsyncSuccessMessage')).toBeNull();
+            expect(getControlFeedbackProperty('errors')).toBeNull();
           });
         });
 
@@ -220,7 +222,7 @@ describe('Given a component for rendering validation async schemas', () => {
               enterValueAndBlur('200--ok--fast-5ms');
               await wait(120);
 
-              expect(getControlFeedbackProp('validationAsyncSuccessMessage')).toBe(
+              expect(getControlFeedbackProperty('validationAsyncSuccessMessage')).toBe(
                 'response-from-200-fast',
               );
             });
@@ -234,8 +236,8 @@ describe('Given a component for rendering validation async schemas', () => {
 
             enterValueAndBlur('some-new-value');
 
-            expect(getControlFeedbackProp('validationAsyncSuccessMessage')).toBeNull();
-            expect(getControlFeedbackProp('errors')).toBeNull();
+            expect(getControlFeedbackProperty('validationAsyncSuccessMessage')).toBeNull();
+            expect(getControlFeedbackProperty('errors')).toBeNull();
           });
 
           describe('when the new value is the same as before', () => {

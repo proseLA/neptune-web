@@ -1,9 +1,10 @@
-import { useIntl } from 'react-intl';
-import { shallow } from 'enzyme';
 import * as formatting from '@transferwise/formatting';
+import { shallow } from 'enzyme';
+import { useIntl } from 'react-intl';
+
+import TableLink from '../../tableLink';
 
 import MonthCalendarTable from '.';
-import TableLink from '../../tableLink';
 
 jest.mock('react-intl');
 jest.mock('@transferwise/formatting', () => ({

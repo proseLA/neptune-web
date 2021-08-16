@@ -1,6 +1,6 @@
-import { useRef, useState, cloneElement } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { useRef, useState, cloneElement } from 'react';
 
 import { Position } from '../common';
 import ResponsivePanel from '../common/responsivePanel';
@@ -8,14 +8,14 @@ import { logActionRequiredIf } from '../utilities';
 
 const Popover = ({ children, className, content, preferredPlacement, title }) => {
   logActionRequired({ preferredPlacement });
-  const anchorRef = useRef(null);
+  const anchorReference = useRef(null);
   const [open, setOpen] = useState(false);
 
   const onClose = () => setOpen(false);
 
   return (
     <span className={classnames('np-popover', className)}>
-      <span className="d-inline-block" ref={anchorRef}>
+      <span ref={anchorReference} className="d-inline-block">
         {cloneElement(children, {
           onClick: () => {
             if (children?.props?.onClick) {
@@ -27,11 +27,11 @@ const Popover = ({ children, className, content, preferredPlacement, title }) =>
       </span>
       <ResponsivePanel
         open={open}
-        anchorRef={anchorRef}
+        anchorRef={anchorReference}
         position={deprecatedPlacements[preferredPlacement] || preferredPlacement}
-        onClose={onClose}
         arrow
         className="np-popover__container"
+        onClose={onClose}
       >
         <div className="np-popover__content" aria-hidden={!open} role="tooltip">
           {title && (

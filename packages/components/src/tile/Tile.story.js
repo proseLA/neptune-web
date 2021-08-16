@@ -1,16 +1,17 @@
-import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { text, boolean } from '@storybook/addon-knobs';
+
+import Avatar from '../avatar';
 import { Size } from '../common';
 
 import Tile from '.';
-import Avatar from '../avatar';
 
 export default {
   component: Tile,
   title: 'Tile',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const description = text('Description', 'Click here to send money to Mr. Miller');
   const disabled = boolean('Disabled', false);
   const medium = boolean('Medium', true);
@@ -29,9 +30,9 @@ export const basic = () => {
             style={{ width: '100%' }}
           />
         }
-        onClick={action('onClick')}
         size={medium ? Size.MEDIUM : Size.SMALL}
         title={title}
+        onClick={action('onClick')}
       />
       <Tile
         description={description}
@@ -42,9 +43,9 @@ export const basic = () => {
             HM
           </Avatar>
         }
-        onClick={action('onClick')}
         size={medium ? Size.MEDIUM : Size.SMALL}
         title={title}
+        onClick={action('onClick')}
       />
     </div>
   );

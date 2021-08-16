@@ -1,17 +1,16 @@
-import { createRef, PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { createRef, PureComponent } from 'react';
 
-import KeyCodes from '../common/keyCodes';
 import { Size, MonthFormat, Breakpoint } from '../common';
+import BottomSheet from '../common/bottomSheet';
 import { isWithinRange, moveToWithinRange } from '../common/dateUtils';
-import { getStartOfDay } from './getStartOfDay';
+import KeyCodes from '../common/keyCodes';
 
 import DateTrigger from './dateTrigger';
 import DayCalendar from './dayCalendar';
+import { getStartOfDay } from './getStartOfDay';
 import MonthCalendar from './monthCalendar';
 import YearCalendar from './yearCalendar';
-
-import BottomSheet from '../common/bottomSheet';
 
 const MODE = {
   DAY: 'day',
@@ -65,8 +64,8 @@ class DateLookup extends PureComponent {
     return null;
   }
 
-  componentDidUpdate(prevProps) {
-    if (+this.props.value !== +prevProps.value && this.state.open) {
+  componentDidUpdate(previousProps) {
+    if (+this.props.value !== +previousProps.value && this.state.open) {
       this.focusOn('.active');
     }
   }
@@ -197,9 +196,9 @@ class DateLookup extends PureComponent {
   };
 
   focusOn = (preferredElement, fallbackElement) => {
-    const el = this.element.current.querySelector(preferredElement);
-    if (el) {
-      el.focus();
+    const element = this.element.current.querySelector(preferredElement);
+    if (element) {
+      element.focus();
     } else if (fallbackElement) {
       this.focusOn(fallbackElement);
     }

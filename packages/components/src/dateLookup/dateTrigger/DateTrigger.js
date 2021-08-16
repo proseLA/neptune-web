@@ -1,14 +1,13 @@
-import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
 import { CrossCircle } from '@transferwise/icons';
 import { isKey } from '@transferwise/neptune-validation';
-
-import messages from './DateTrigger.messages';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import Chevron from '../../chevron';
-
 import { Size, Position } from '../../common';
+
+import messages from './DateTrigger.messages';
 
 const DateTrigger = ({
   selectedDate,
@@ -22,20 +21,20 @@ const DateTrigger = ({
 }) => {
   const { locale, formatMessage } = useIntl();
 
-  const handleKeyDown = (e) => {
-    if (isKey({ keyType: 'Space', event: e }) || isKey({ keyType: 'Enter', event: e })) {
-      e.stopPropagation();
-      e.preventDefault();
+  const handleKeyDown = (event) => {
+    if (isKey({ keyType: 'Space', event: event }) || isKey({ keyType: 'Enter', event: event })) {
+      event.stopPropagation();
+      event.preventDefault();
       onClear();
     }
   };
 
   return (
     <button
-      onClick={onClick}
       className={`btn btn-${size} btn-input dropdown-toggle np-date-trigger np-date-trigger--${size}`}
       disabled={disabled}
       type="button"
+      onClick={onClick}
     >
       {label && <span className="control-label small m-r-1">{label}</span>}
       {selectedDate ? (
@@ -58,16 +57,16 @@ const DateTrigger = ({
         <Chevron orientation={Position.BOTTOM} disabled={disabled} />
       ) : (
         <span
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            onClear();
-          }}
-          onKeyDown={handleKeyDown}
           role="button"
           tabIndex={0}
           className="clear-btn d-flex align-items-center"
           aria-label={formatMessage(messages.ariaLabel)}
+          onClick={(event) => {
+            event.stopPropagation();
+            event.preventDefault();
+            onClear();
+          }}
+          onKeyDown={handleKeyDown}
         >
           <CrossCircle filled size={size === Size.SMALL ? 16 : 24} />
         </span>

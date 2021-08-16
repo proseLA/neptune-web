@@ -1,6 +1,6 @@
+import { AlertCircle as AlertCircleIcon, Document as DocumentIcon } from '@transferwise/icons';
 import { shallow } from 'enzyme';
 
-import { AlertCircle as AlertCircleIcon, Document as DocumentIcon } from '@transferwise/icons';
 import CompleteStep from '.';
 
 describe('CompleteStep', () => {
@@ -51,6 +51,6 @@ describe('CompleteStep', () => {
 
   it('calls onClear when button is clicked', () => {
     component.find('button.btn-default').simulate('click', {});
-    expect(COMPLETED_STEP_PROPS.onClear).toHaveBeenCalled();
+    expect(COMPLETED_STEP_PROPS.onClear).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,5 +1,3 @@
-import { PureComponent } from 'react';
-import Types from 'prop-types';
 import {
   Checkbox,
   DateInput,
@@ -12,6 +10,8 @@ import {
   Upload,
   Tabs,
 } from '@transferwise/components';
+import Types from 'prop-types';
+import { PureComponent } from 'react';
 
 import { Size, MonthFormat, DateMode, FormControlType } from '../common';
 
@@ -35,8 +35,8 @@ export default class FormControl extends PureComponent {
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.prevValue !== nextProps.value) {
+  static getDerivedStateFromProps(nextProps, previousState) {
+    if (previousState.prevValue !== nextProps.value) {
       return { prevValue: nextProps.value, value: nextProps.value };
     }
     return null;
@@ -146,9 +146,9 @@ export default class FormControl extends PureComponent {
         return (
           <RadioGroup
             radios={options.map(this.mapOption)}
-            onChange={this.handleOnChange}
             name={name}
             selectedValue={value}
+            onChange={this.handleOnChange}
           />
         );
 
@@ -158,11 +158,11 @@ export default class FormControl extends PureComponent {
             checked={value}
             disabled={disabled}
             label={label}
+            required={required}
+            readOnly={readOnly}
             onBlur={this.handleOnBlur}
             onChange={this.handleOnChange}
             onFocus={this.handleOnFocus}
-            required={required}
-            readOnly={readOnly}
           />
         );
 
@@ -172,18 +172,18 @@ export default class FormControl extends PureComponent {
             id={id}
             selected={this.getSelectedOption(options)}
             options={options}
-            onChange={(newValue) => {
-              this.setState({ selectedOption: newValue });
-              this.handleOnChange(newValue);
-            }}
             search={options.length >= 20}
-            onFocus={this.handleOnFocus}
-            onBlur={this.handleOnBlur}
             required={required}
             disabled={disabled}
             placeholder={placeholder}
             searchPlaceholder={searchPlaceholder}
             searchValue={searchValue}
+            onChange={(newValue) => {
+              this.setState({ selectedOption: newValue });
+              this.handleOnChange(newValue);
+            }}
+            onFocus={this.handleOnFocus}
+            onBlur={this.handleOnBlur}
             onSearchChange={onSearchChange}
           />
         );
@@ -198,11 +198,11 @@ export default class FormControl extends PureComponent {
               content: <></>,
               disabled: option.disabled || false,
             }))}
+            name={id}
             onTabSelect={(newIndex) => {
               this.setState({ selectedOption: this.getSelectedOptionFromIndex(options, newIndex) });
               this.handleOnChange(newIndex);
             }}
-            name={id}
           />
         );
 
@@ -215,15 +215,15 @@ export default class FormControl extends PureComponent {
             id={id}
             max={max}
             min={min}
-            onBlur={this.handleOnBlur}
-            onChange={this.handleOnChange}
-            onFocus={this.handleOnFocus}
             placeholder={placeholder}
             readOnly={readOnly}
             required={required}
             step={step}
             type="number"
             value={value}
+            onBlur={this.handleOnBlur}
+            onChange={this.handleOnChange}
+            onFocus={this.handleOnFocus}
           />
         );
 
@@ -237,14 +237,14 @@ export default class FormControl extends PureComponent {
             className="form-control"
             disabled={disabled}
             id={id}
-            onBlur={this.handleOnBlur}
-            onChange={this.handleOnChange}
-            onFocus={this.handleOnFocus}
             placeholder={placeholder}
             readOnly={readOnly}
             required={required}
             type="password"
             value={value}
+            onBlur={this.handleOnBlur}
+            onChange={this.handleOnChange}
+            onFocus={this.handleOnFocus}
           />
         );
 
@@ -253,13 +253,13 @@ export default class FormControl extends PureComponent {
         return (
           <DateInput
             disabled={disabled}
-            onBlur={this.handleOnBlur}
-            onChange={this.handleOnChange}
-            onFocus={this.handleOnFocus}
             size={size}
             value={value}
             mode={mode}
             monthFormat={monthFormat}
+            onBlur={this.handleOnBlur}
+            onChange={this.handleOnChange}
+            onFocus={this.handleOnFocus}
           />
         );
 
@@ -271,9 +271,9 @@ export default class FormControl extends PureComponent {
             max={maxDate}
             placeholder={placeholder}
             label={label}
-            onChange={this.handleOnChange}
             monthFormat={monthFormat}
             disabled={disabled}
+            onChange={this.handleOnChange}
             onBlur={this.handleOnBlur}
             onFocus={this.handleOnFocus}
           />
@@ -284,14 +284,14 @@ export default class FormControl extends PureComponent {
           <PhoneNumberInput
             disabled={disabled}
             countryCode={countryCode}
-            onBlur={this.handleOnBlur}
-            onChange={this.handleOnChange}
-            onFocus={this.handleOnFocus}
             placeholder={placeholder}
             required={required}
             searchPlaceholder={searchPlaceholder}
             size={size}
             initialValue={value}
+            onBlur={this.handleOnBlur}
+            onChange={this.handleOnChange}
+            onFocus={this.handleOnFocus}
           />
         );
 

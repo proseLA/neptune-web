@@ -1,14 +1,15 @@
 import { select, text } from '@storybook/addon-knobs';
 
-import InlineAlert from './InlineAlert';
 import { Sentiment } from '../common';
+
+import InlineAlert from './InlineAlert';
 
 export default {
   component: InlineAlert,
   title: 'InlineAlert',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const type = select(
     'type',
     [Sentiment.SUCCESS, Sentiment.ERROR, Sentiment.INFO, Sentiment.WARNING],
@@ -20,7 +21,7 @@ export const basic = () => {
   return <InlineAlert type={type}>{message}</InlineAlert>;
 };
 
-export const input = () => {
+export const Input = () => {
   const type = select(
     'type',
     [Sentiment.SUCCESS, Sentiment.ERROR, Sentiment.INFO, Sentiment.WARNING],
@@ -33,6 +34,7 @@ export const input = () => {
 
   return (
     <>
+      {/*eslint-disable-next-line react/no-adjacent-inline-elements */}
       <p>
         The styling for the input (the coloured border) and the visibility of the inline alert is
         controlled through the use of <code>has-***</code> classes which are applied to the{' '}

@@ -5,9 +5,9 @@ export default function hightlight(value, query) {
     if (highlightStart !== -1) {
       return (
         <>
-          {value.substring(0, highlightStart)}
-          <strong>{value.substring(highlightStart, highlightEnd)}</strong>
-          {value.substring(highlightEnd)}
+          {value.slice(0, Math.max(0, highlightStart))}
+          <strong>{value.slice(highlightStart, highlightEnd)}</strong>
+          {value.slice(Math.max(0, highlightEnd))}
         </>
       );
     }

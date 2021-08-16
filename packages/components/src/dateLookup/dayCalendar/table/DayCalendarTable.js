@@ -1,11 +1,10 @@
+import { formatDate } from '@transferwise/formatting';
+import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import { formatDate } from '@transferwise/formatting';
 
 import { getDayNames, isWithinRange } from '../../../common/dateUtils';
 import { getStartOfDay } from '../../getStartOfDay';
-
 import TableLink from '../../tableLink';
 
 const SHORT_DAY_FORMAT = { day: 'numeric' };
@@ -36,7 +35,7 @@ class DayCalendarTable extends PureComponent {
         week = [];
       }
     }
-    if (week.length) {
+    if (week.length > 0) {
       // Pad last week
       for (i = week.length; i < 7; i += 1) {
         week.push(false);
@@ -79,10 +78,8 @@ class DayCalendarTable extends PureComponent {
           <tr>
             {this.days.map((day, index) => (
               <th key={day} className="text-xs-center">
-                <span className="hidden-xs">{day.substring(0, 3)}</span>
-                <span className="visible-xs-inline-block">
-                  {this.daysShort[index].substring(0, 2)}
-                </span>
+                <span className="hidden-xs">{day.slice(0, 3)}</span>
+                <span className="visible-xs-inline-block">{this.daysShort[index].slice(0, 2)}</span>
               </th>
             ))}
           </tr>

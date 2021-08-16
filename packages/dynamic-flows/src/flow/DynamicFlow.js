@@ -1,15 +1,49 @@
-import { useEffect, useState } from 'react';
-import Types from 'prop-types';
-import { useIntl } from 'react-intl';
-import { isEmpty, isObject } from '@transferwise/neptune-validation';
 import { Loader } from '@transferwise/components';
-import { withErrorBoundary } from './errorBoundary';
-import DynamicLayout from '../layout';
-import { convertStepToLayout, inlineReferences } from './layoutService';
-import { httpClient as defaultHttpClient } from './client';
-import { isValidSchema } from '../common/validation/schema-validators';
+import { isEmpty, isObject } from '@transferwise/neptune-validation';
+import Types from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import { Size } from '../common';
+import { isValidSchema } from '../common/validation/schema-validators';
 import { getValidModelParts } from '../common/validation/valid-model';
+import DynamicLayout from '../layout';
+
+import { httpClient as defaultHttpClient } from './client';
+import { withErrorBoundary } from './errorBoundary';
+import { convertStepToLayout, inlineReferences } from './layoutService';
+
+const validateExitResult = ({ data: json }) => {
+  return new Promise((resolve, reject) => {
+    if (!isObject(json)) {
+      reject('Incorrect response when submitting an exit action. Expected an object');
+    }
+    resolve(json);
+  });
+};
+
+const combineModels = (formModels) => {
+  return Object.values(formModels).reduce((previous, model) => ({ ...previous, ...model }), {});
+};
+
+const areModelsValid = (formModels, schemas) => {
+  return !schemas?.some((schema) => !isValidSchema(formModels[schema.$id] || {}, schema));
+};
+
+const isSubmissionMethod = (method) => {
+  const submissionMethods = ['POST', 'PUT', 'PATCH'];
+  return submissionMethods.includes(method.toUpperCase());
+};
+
+const getComponents = (step) => {
+  if (!step || isEmpty(step) || (!step.layout && !step.type)) {
+    return [];
+  }
+
+  const layout = step.layout ? step.layout : convertStepToLayout(step);
+
+  return inlineReferences(layout, step.schemas, step.actions);
+};
 
 /**
  * ## DynamicFlow
@@ -49,7 +83,7 @@ const DynamicFlow = (props) => {
   }, [models]);
 
   const fetchStep = (action, data) => {
-    const prevStep = stepSpecification;
+    const previousStep = stepSpecification;
 
     setLoading(true);
 
@@ -59,7 +93,7 @@ const DynamicFlow = (props) => {
       .then(({ data: nextStep }) => {
         setStepSpecification(nextStep);
 
-        onStepChange(nextStep, prevStep);
+        onStepChange(nextStep, previousStep);
 
         setSubmitted(false);
       })
@@ -119,21 +153,13 @@ const DynamicFlow = (props) => {
       resolve(response);
     });
 
-  const validateExitResult = ({ data: json }) =>
-    new Promise((resolve, reject) => {
-      if (!isObject(json)) {
-        reject('Incorrect response when submitting an exit action. Expected an object');
-      }
-      resolve(json);
-    });
-
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
     const { $id } = formSchema;
 
     // Multiple children might trigger model updates, we must access the previous model to ensure all changes are reflected in the new model
-    setModels((prevModels) => {
+    setModels((previousModels) => {
       const updatedModels = {
-        ...prevModels,
+        ...previousModels,
         [$id]: newModel,
       };
 
@@ -193,27 +219,6 @@ const DynamicFlow = (props) => {
     return schemaIdToModelMap;
   };
 
-  const combineModels = (formModels) =>
-    Object.values(formModels).reduce((prev, model) => ({ ...prev, ...model }), {});
-
-  const areModelsValid = (formModels, schemas) =>
-    !schemas?.some((schema) => !isValidSchema(formModels[schema.$id] || {}, schema));
-
-  const isSubmissionMethod = (method) => {
-    const submissionMethods = ['POST', 'PUT', 'PATCH'];
-    return submissionMethods.includes(method.toUpperCase());
-  };
-
-  const getComponents = (step) => {
-    if (!step || isEmpty(step) || (!step.layout && !step.type)) {
-      return [];
-    }
-
-    const layout = step.layout ? step.layout : convertStepToLayout(step);
-
-    return inlineReferences(layout, step.schemas, step.actions);
-  };
-
   const components = getComponents(stepSpecification);
 
   return (
@@ -238,7 +243,6 @@ const DynamicFlow = (props) => {
   );
 };
 
-// eslint-disable-next-line
 DynamicFlow.propTypes = {
   baseUrl: Types.string.isRequired,
   flowUrl: Types.string,

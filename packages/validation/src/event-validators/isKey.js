@@ -1,5 +1,5 @@
-import { isArray } from '../type-validators';
 import { keyMap } from '../common/keyMap';
+import { isArray } from '../type-validators';
 
 const isKey = ({ keyType, event }) => {
   if (!keyType || !event) {
@@ -15,7 +15,7 @@ const isKey = ({ keyType, event }) => {
   const { key, keyCode } = event;
 
   if (key) {
-    return isArray(keyDef.key) ? keyDef.key.indexOf(key) > -1 : key === keyDef.key;
+    return isArray(keyDef.key) ? keyDef.key.includes(key) : key === keyDef.key;
   }
 
   return keyCode === keyDef.keyCode;

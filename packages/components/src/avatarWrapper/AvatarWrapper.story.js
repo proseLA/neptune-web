@@ -1,13 +1,15 @@
 import { boolean, object, select, text } from '@storybook/addon-knobs';
-import AvatarWrapper from './AvatarWrapper';
+
 import { ProfileType } from '../common';
+
+import AvatarWrapper from './AvatarWrapper';
 
 export default {
   component: AvatarWrapper,
   title: 'AvatarWrapper',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const showAvatar = boolean('Show avatar', false);
   const showBadge = boolean('Show badge', true);
   const profileType = select('Profile type', {

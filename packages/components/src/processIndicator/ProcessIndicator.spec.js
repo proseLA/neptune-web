@@ -1,7 +1,8 @@
 import { mount } from 'enzyme';
 
-import ProcessIndicator from '.';
 import { Status, Size } from '../common';
+
+import ProcessIndicator from '.';
 
 describe('processIndicator', () => {
   let wrapper;

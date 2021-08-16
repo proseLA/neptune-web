@@ -1,13 +1,15 @@
-import { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import clamp from 'lodash.clamp';
+import PropTypes from 'prop-types';
+import { Component, Fragment } from 'react';
 import { Spring } from 'react-spring/renderprops.cjs';
+
+import { Size, Width } from '../common';
+import KeyCodes from '../common/keyCodes';
 
 import Tab from './Tab';
 import TabList from './TabList';
 import TabPanel from './TabPanel';
-import KeyCodes from '../common/keyCodes';
 import {
   getElasticDragDifference,
   getSwipeDifference,
@@ -16,7 +18,6 @@ import {
   swipeShouldChangeTab,
   getVelocity,
 } from './utils';
-import { Size, Width } from '../common';
 
 const MIN_INDEX = 0;
 
@@ -66,34 +67,37 @@ class Tabs extends Component {
     window.addEventListener('resize', this.handleResize);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(previousProps, previousState) {
     const currentSelected = this.props.selected;
-    const prevSelected = prevProps.selected;
+    const previousSelected = previousProps.selected;
     const currentSelectedTab = this.props.tabs[currentSelected];
     const currentSelectedTabIsDisabled = currentSelectedTab && currentSelectedTab.disabled;
-    const prevSelectedTab = prevProps.tabs[prevSelected];
-    const prevSelectedTabIsDisabled = prevSelectedTab && prevSelectedTab.disabled;
+    const previousSelectedTab = previousProps.tabs[previousSelected];
+    const previousSelectedTabIsDisabled = previousSelectedTab && previousSelectedTab.disabled;
     const currentTabsLength = this.props.tabs.length;
-    const prevTabsLength = prevProps.tabs.length;
+    const previousTabsLength = previousProps.tabs.length;
     const currentDisabledTabsLength = this.props.tabs.filter(enabledTabsFilter).length;
-    const prevDisabledTabsLength = prevProps.tabs.filter(enabledTabsFilter).length;
+    const previousDisabledTabsLength = previousProps.tabs.filter(enabledTabsFilter).length;
     const currentHeaderWidth = this.props.headerWidth;
-    const prevFullHeaderWidth = prevProps.headerWidth;
+    const previousFullHeaderWidth = previousProps.headerWidth;
     const { animatePanelsOnClick } = this.props;
-    const instantOnClick = !animatePanelsOnClick && !prevState.isSwiping;
+    const instantOnClick = !animatePanelsOnClick && !previousState.isSwiping;
 
-    if (currentHeaderWidth !== prevFullHeaderWidth || currentTabsLength !== prevTabsLength) {
+    if (
+      currentHeaderWidth !== previousFullHeaderWidth ||
+      currentTabsLength !== previousTabsLength
+    ) {
       this.setTabWidth();
     }
 
     if (
-      currentSelected !== prevSelected ||
-      currentDisabledTabsLength !== prevDisabledTabsLength ||
-      currentSelectedTabIsDisabled !== prevSelectedTabIsDisabled
+      currentSelected !== previousSelected ||
+      currentDisabledTabsLength !== previousDisabledTabsLength ||
+      currentSelectedTabIsDisabled !== previousSelectedTabIsDisabled
     ) {
       this.animateToTab(
         clamp(currentSelected, MIN_INDEX, this.MAX_INDEX),
-        currentSelected === prevSelected || instantOnClick,
+        currentSelected === previousSelected || instantOnClick,
       );
     }
   }
@@ -135,8 +139,8 @@ class Tabs extends Component {
 
   getAllTabsWidth = () => {
     return this.tabRefs
-      .map((ref) => {
-        return ref ? ref.getBoundingClientRect().width : 0;
+      .map((reference) => {
+        return reference ? reference.getBoundingClientRect().width : 0;
       })
       .reduce((a, b) => a + b, 0);
   };
@@ -144,7 +148,7 @@ class Tabs extends Component {
   getDistanceToSelectedTab = (selectedTabIndex) => {
     return this.tabRefs
       .filter((_, idx) => idx < selectedTabIndex)
-      .map((ref) => (ref ? ref.getBoundingClientRect().width : 0))
+      .map((reference) => (reference ? reference.getBoundingClientRect().width : 0))
       .reduce((a, b) => a + b, 0);
   };
 
@@ -173,8 +177,8 @@ class Tabs extends Component {
       return `${(1 / tabs.length) * 100}%`;
     }
 
-    const ref = this.tabRefs[selected] || this.tabRefs[this.tabRefs.length - 1];
-    const width = ref ? ref.getBoundingClientRect().width : 0;
+    const reference = this.tabRefs[selected] || this.tabRefs[this.tabRefs.length - 1];
+    const width = reference ? reference.getBoundingClientRect().width : 0;
     return `${width}px`;
   };
 
@@ -250,8 +254,8 @@ class Tabs extends Component {
   };
 
   animateLine = (index) => {
-    this.setState((prevState) => ({
-      translateLineX: prevState.fullWidthTabs
+    this.setState((previousState) => ({
+      translateLineX: previousState.fullWidthTabs
         ? `${index * 100}%`
         : `${this.getDistanceToSelectedTab(index)}px`,
     }));
@@ -272,11 +276,11 @@ class Tabs extends Component {
     });
   };
 
-  disableScroll = (e) => {
+  disableScroll = (event) => {
     const { isSwiping } = this.state;
 
     if (isSwiping) {
-      e.preventDefault();
+      event.preventDefault();
     }
   };
 
@@ -437,28 +441,28 @@ class Tabs extends Component {
 
     return (
       <div
+        className={classNames('tabs', className)}
         onTouchStart={changeTabOnSwipe ? this.handleTouchStart : undefined}
         onTouchEnd={changeTabOnSwipe ? this.handleTouchEnd : undefined}
         onTouchMove={changeTabOnSwipe ? this.handleTouchMove : undefined}
-        className={classNames('tabs', className)}
       >
         <TabList>
           {tabs.map(({ title, disabled }, index) => {
             return (
               <Tab
                 key={title}
+                ref={(node) => {
+                  this.tabRefs[index] = node;
+                }}
                 id={`${name}-tab-${index}`}
                 panelId={`${name}-panel-${index}`}
                 selected={selected === index}
                 disabled={disabled}
-                onClick={disabled ? null : this.handleTabClick(index)}
-                onKeyDown={this.onKeyDown(index)}
-                ref={(node) => {
-                  this.tabRefs[index] = node;
-                }}
                 focusTab={() => {
                   this.tabRefs[index].focus();
                 }}
+                onClick={disabled ? null : this.handleTabClick(index)}
+                onKeyDown={this.onKeyDown(index)}
                 {...(fullWidthTabs ? { style: { width: `${(1 / tabs.length) * 100}%` } } : {})}
               >
                 {title}
@@ -476,8 +480,8 @@ class Tabs extends Component {
           ) : null}
         </TabList>
         <div
-          className="tabs__panel-container"
           ref={this.setContainerRefAndWidth}
+          className="tabs__panel-container"
           style={{
             overflow: hidePanelOverflow ? 'hidden' : 'visible',
           }}

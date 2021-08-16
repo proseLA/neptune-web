@@ -1,12 +1,23 @@
-import { useState } from 'react';
 import Types from 'prop-types';
-import ObjectSchema from '../objectSchema';
-import GenericSchema from '../genericSchema';
+import { useState } from 'react';
+
 import DynamicAlert from '../../layout/alert';
-import PromotedOneOfControl from './control/PromotedOneOfControl';
+import GenericSchema from '../genericSchema';
+import ObjectSchema from '../objectSchema';
+
 import { getSelectionFromModel } from './PromotedOneOfSchemaModelMatcher';
+import PromotedOneOfControl from './control/PromotedOneOfControl';
 
 const isPromoted = (schema) => schema.promoted === true;
+
+const getPromotedObjectSchema = (promotedSchema) => {
+  return {
+    ...promotedSchema,
+    // We don't need to show these since they are already displayed in the radio option
+    title: undefined,
+    description: undefined,
+  };
+};
 
 const PromotedOneOfSchema = (props) => {
   const [selection, setSelection] = useState(
@@ -17,15 +28,6 @@ const PromotedOneOfSchema = (props) => {
 
   const promotedAlert = props.schema.alert;
   const promotedOneOf = props.schema.oneOf.find(isPromoted);
-
-  const getPromotedObjectSchema = (promotedSchema) => {
-    return {
-      ...promotedSchema,
-      // We don't need to show these since they are already displayed in the radio option
-      title: undefined,
-      description: undefined,
-    };
-  };
 
   const getOtherOneOf = (schema) => {
     const other = schema.oneOf.filter((one) => !isPromoted(one));

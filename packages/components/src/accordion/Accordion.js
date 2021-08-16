@@ -1,11 +1,14 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import PropTypes from 'prop-types';
-import AccordionItem from './AccordionItem';
 import { Theme } from '../common';
 
+import AccordionItem from './AccordionItem';
+
 const Accordion = ({ items, onClick, indexOpen, theme }) => {
-  const [itemsOpen, setItemsOpen] = useState(() => items.map((val, index) => index === indexOpen));
+  const [itemsOpen, setItemsOpen] = useState(() =>
+    items.map((value, index) => index === indexOpen),
+  );
   const handleOnClick = (index) => {
     if (onClick) {
       onClick(index);
@@ -18,8 +21,8 @@ const Accordion = ({ items, onClick, indexOpen, theme }) => {
   return items.map((item, index) => (
     <AccordionItem
       key={item.id || index}
-      onClick={() => handleOnClick(index)}
       open={itemsOpen[index]}
+      onClick={() => handleOnClick(index)}
       {...item}
       theme={theme}
     />

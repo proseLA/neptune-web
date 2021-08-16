@@ -1,13 +1,18 @@
-import { shallow } from 'enzyme';
 import * as formatting from '@transferwise/formatting';
+import { shallow } from 'enzyme';
+
+import Header from '../header';
+
+import MonthCalendarTable from './table';
 
 import MonthCalendar from '.';
-import Header from '../header';
-import MonthCalendarTable from './table';
 
 const defaultLocale = 'en-GB';
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale: defaultLocale }} />;
+    },
 }));
 jest.mock('@transferwise/formatting', () => ({
   formatDate: jest.fn().mockReturnValue('XXXX'),
@@ -59,12 +64,12 @@ describe('MonthCalendar', () => {
 
   it('calls onViewDateUpdate on previous year select', () => {
     component.instance().selectPreviousYear();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 2017 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 2017 });
   });
 
   it('calls onViewDateUpdate on next year select', () => {
     component.instance().selectNextYear();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 2019 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 2019 });
   });
 
   it('shows month calendar table', () => {
@@ -85,8 +90,8 @@ describe('MonthCalendar', () => {
 
   it('calls onViewDateUpdate and onSelect on month select', () => {
     component.instance().onMonthSelect(1);
-    expect(props.onViewDateUpdate).toBeCalledWith({ month: 1 });
-    expect(props.onSelect).toBeCalled();
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ month: 1 });
+    expect(props.onSelect).toHaveBeenCalledTimes(1);
   });
 
   const header = () => component.find(Header);

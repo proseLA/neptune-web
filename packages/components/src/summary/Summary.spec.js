@@ -1,8 +1,8 @@
-import { render, waitFor, fireEvent } from '../test-utils';
-import Summary from './Summary';
 import { Status } from '../common';
-
 import { useDirection } from '../common/hooks';
+import { render, waitFor, fireEvent, screen } from '../test-utils';
+
+import Summary from './Summary';
 
 jest.mock('../common/hooks/useDirection');
 
@@ -16,29 +16,26 @@ describe('Summary', () => {
   });
 
   it('renders full component', async () => {
-    let container;
-    await waitFor(() => {
-      ({ container } = render(
-        <Summary
-          action={{
-            text: 'text',
-            href: 'href',
-            'aria-label': 'aria-label',
-          }}
-          description="description"
-          info={{
-            title: 'title',
-            content: 'description',
-            'aria-label': 'aria-label',
-          }}
-          icon={<strong>icon</strong>}
-          status={Status.DONE}
-          title="title"
-        />,
-      ));
+    const { container } = render(
+      <Summary
+        action={{
+          text: 'text',
+          href: 'href',
+          'aria-label': 'aria-label',
+        }}
+        description="description"
+        info={{
+          title: 'title',
+          content: 'description',
+          'aria-label': 'aria-label',
+        }}
+        icon={<strong>icon</strong>}
+        status={Status.DONE}
+        title="title"
+      />,
+    );
 
-      expect(container).toMatchSnapshot();
-    });
+    expect(container).toMatchSnapshot();
   });
 
   it('does not apply rtl classes when isRTL is false', () => {
@@ -61,10 +58,10 @@ describe('Summary', () => {
     };
 
     it('sets target on the link', () => {
-      const { getByText } = render(<Summary {...props} />);
+      render(<Summary {...props} />);
 
-      const el = getByText('text');
-      expect(el).toHaveAttribute('target', props.action.target);
+      const element = screen.getByText('text');
+      expect(element).toHaveAttribute('target', props.action.target);
     });
 
     it('runs the onClick callback provided', () => {
@@ -72,7 +69,7 @@ describe('Summary', () => {
 
       fireEvent.click(container.querySelector('.np-summary__action'));
 
-      expect(onClickStub).toBeCalledTimes(1);
+      expect(onClickStub).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -88,24 +85,24 @@ describe('Summary', () => {
     });
 
     it('renders an aria-label and no badge for a not done status', () => {
-      const { container, getByLabelText } = render(<Summary {...props} status={Status.NOT_DONE} />);
+      const { container } = render(<Summary {...props} status={Status.NOT_DONE} />);
 
-      getByLabelText('Item to do');
+      expect(screen.getByLabelText('Item to do')).toBeInTheDocument();
       expect(container.querySelector('.np-summary-icon__pending')).not.toBeInTheDocument();
       expect(container.querySelector('.np-summary-icon__done')).not.toBeInTheDocument();
     });
 
     it('renders badge and aria-label for a pending status', () => {
-      const { container, getByLabelText } = render(<Summary {...props} status={Status.PENDING} />);
+      const { container } = render(<Summary {...props} status={Status.PENDING} />);
 
-      getByLabelText('Item pending');
+      expect(screen.getByLabelText('Item pending')).toBeInTheDocument();
       expect(container.querySelector('.np-summary-icon__pending')).toBeInTheDocument();
     });
 
     it('renders badge and aria-label for a done status', () => {
-      const { container, getByLabelText } = render(<Summary {...props} status={Status.DONE} />);
+      const { container } = render(<Summary {...props} status={Status.DONE} />);
 
-      getByLabelText('Item done');
+      expect(screen.getByLabelText('Item done')).toBeInTheDocument();
       expect(container.querySelector('.np-summary-icon__done')).toBeInTheDocument();
     });
   });

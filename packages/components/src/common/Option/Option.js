@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 
 const Option = ({
@@ -28,10 +28,10 @@ const Option = ({
       'tw-option__sm-media': showMediaAtAllSizes,
     })}
     href={href}
-    onClick={onClick}
     htmlFor={htmlFor}
     target={target}
     disabled={disabled && Element === 'button'}
+    onClick={onClick}
   >
     {media && (
       <div className="media-left">

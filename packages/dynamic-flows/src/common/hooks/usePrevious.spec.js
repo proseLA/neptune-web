@@ -1,19 +1,20 @@
 import { renderHook } from '@testing-library/react-hooks';
-import usePrev from './usePrev';
+
+import usePrevious from './usePrevious';
 
 describe('when usePrev is used', () => {
-  let val;
+  let value;
   let rerender;
 
   describe('when used with primitive', () => {
     beforeEach(() => {
-      const hook = renderHook(({ state }) => usePrev(state), { initialProps: { state: 0 } });
-      val = hook.result;
-      rerender = hook.rerender;
+      const view = renderHook(({ state }) => usePrevious(state), { initialProps: { state: 0 } });
+      value = view.result;
+      rerender = view.rerender;
     });
 
     it('should be undefined initially', () => {
-      expect(val.current).toBeUndefined();
+      expect(value.current).toBeUndefined();
     });
 
     describe('when value is updated', () => {
@@ -22,7 +23,7 @@ describe('when usePrev is used', () => {
       });
 
       it('should return previous value', () => {
-        expect(val.current).toBe(0);
+        expect(value.current).toBe(0);
       });
 
       describe('when value is updated again', () => {
@@ -31,7 +32,7 @@ describe('when usePrev is used', () => {
         });
 
         it('should still render previous value', () => {
-          expect(val.current).toBe(1);
+          expect(value.current).toBe(1);
         });
       });
     });
@@ -39,15 +40,15 @@ describe('when usePrev is used', () => {
 
   describe('when used with object', () => {
     beforeEach(() => {
-      const hook = renderHook(({ state }) => usePrev(state), {
+      const view = renderHook(({ state }) => usePrevious(state), {
         initialProps: { state: { foo: 'bar' } },
       });
-      val = hook.result;
-      rerender = hook.rerender;
+      value = view.result;
+      rerender = view.rerender;
     });
 
     it('should be undefined initially', () => {
-      expect(val.current).toBeUndefined();
+      expect(value.current).toBeUndefined();
     });
 
     describe('when value is updated', () => {
@@ -56,7 +57,7 @@ describe('when usePrev is used', () => {
       });
 
       it('should return previous value', () => {
-        expect(val.current).toMatchObject({ foo: 'bar' });
+        expect(value.current).toMatchObject({ foo: 'bar' });
       });
 
       describe('when value is updated again', () => {
@@ -65,7 +66,7 @@ describe('when usePrev is used', () => {
         });
 
         it('should still render previous value', () => {
-          expect(val.current).toMatchObject({ foo: 'foo' });
+          expect(value.current).toMatchObject({ foo: 'foo' });
         });
       });
     });

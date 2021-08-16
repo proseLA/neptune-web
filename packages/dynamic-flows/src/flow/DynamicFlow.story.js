@@ -1,11 +1,30 @@
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
+
 import DynamicFlow from './DynamicFlow';
 import { mockClient } from './client';
 
 export default {
   component: DynamicFlow,
   title: 'DynamicFlow',
+};
+
+const onClose = (...args) => {
+  // eslint-disable-next-line no-console
+  console.log('onClose', ...args);
+  action('onClose');
+};
+
+const onStepChange = (...args) => {
+  // eslint-disable-next-line no-console
+  console.log('onStepChange', ...args);
+  action('onStepChange');
+};
+
+const onError = (...args) => {
+  // eslint-disable-next-line no-console
+  console.log('onError', ...args);
+  action('onError');
 };
 
 export const basic = () => {
@@ -21,21 +40,6 @@ export const basic = () => {
   };
 
   const flowUrl = select('step', steps, '/decision');
-
-  const onClose = (...args) => {
-    console.log('onClose', ...args); // eslint-disable-line
-    action('onClose');
-  };
-
-  const onStepChange = (...args) => {
-    console.log('onStepChange', ...args); // eslint-disable-line
-    action('onStepChange');
-  };
-
-  const onError = (...args) => {
-    console.log('onError', ...args); // eslint-disable-line
-    action('onError');
-  };
 
   const baseUrl = '';
 

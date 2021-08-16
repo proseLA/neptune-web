@@ -1,9 +1,10 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-import Tooltip from '../tooltip';
-import { isTouchDevice } from './deviceDetection';
 import { Position } from '../common';
+import Tooltip from '../tooltip';
+
+import { isTouchDevice } from './deviceDetection';
 
 function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);

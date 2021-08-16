@@ -1,32 +1,33 @@
 import '@testing-library/jest-dom';
-import { render } from '../test-utils';
-import Chevron from '.';
 import { Size, Position } from '../common';
+import { render } from '../test-utils';
+
+import Chevron from '.';
 
 describe('Chevron', () => {
   describe('test rotation', () => {
     it('top', () => {
       const { container } = render(<Chevron orientation={Position.TOP} />);
 
-      expect(container.querySelector('.tw-icon-chevron-up.top')).not.toBe(null);
+      expect(container.querySelector('.tw-icon-chevron-up.top')).not.toBeNull();
     });
 
     it('right', () => {
       const { container } = render(<Chevron orientation={Position.RIGHT} />);
 
-      expect(container.querySelector('.tw-icon-chevron-up.right')).not.toBe(null);
+      expect(container.querySelector('.tw-icon-chevron-up.right')).not.toBeNull();
     });
 
     it('left', () => {
       const { container } = render(<Chevron orientation={Position.LEFT} />);
 
-      expect(container.querySelector('.tw-icon-chevron-up.left')).not.toBe(null);
+      expect(container.querySelector('.tw-icon-chevron-up.left')).not.toBeNull();
     });
 
     it('down (default)', () => {
       const { container } = render(<Chevron />);
 
-      expect(container.querySelector('.tw-icon-chevron-up.bottom')).not.toBe(null);
+      expect(container.querySelector('.tw-icon-chevron-up.bottom')).not.toBeNull();
     });
   });
 

@@ -1,15 +1,16 @@
-import { useRef, useState } from 'react';
-import Types from 'prop-types';
 import { isNull } from '@transferwise/neptune-validation';
 import isEqual from 'lodash.isequal';
-import BasicTypeSchema from '../basicTypeSchema';
-import { isValidSchema } from '../../common/validation/schema-validators';
-import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import Types from 'prop-types';
+import { useRef, useState } from 'react';
+
 import { getAsyncUrl } from '../../common/async/url';
+import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import { isValidSchema } from '../../common/validation/schema-validators';
+import BasicTypeSchema from '../basicTypeSchema';
 
 const ValidationAsyncSchema = (props) => {
   const [validationAsyncModel, setValidationAsyncModel] = useState(props.model);
-  const prevRequestedModelRef = useRef(null);
+  const previousRequestedModelReference = useRef(null);
   const [validationAsyncSuccessMessage, setValidationAsyncSuccessMessage] = useState(null);
   const [validationAsyncErrors, setValidationAsyncErrors] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
@@ -20,7 +21,7 @@ const ValidationAsyncSchema = (props) => {
     const signal = abortCurrentRequestAndGetNewAbortSignal();
 
     const requestBody = { [validationAsyncSpec.param]: currentValidationAsyncModel };
-    prevRequestedModelRef.current = currentValidationAsyncModel;
+    previousRequestedModelReference.current = currentValidationAsyncModel;
     setFieldSubmitted(true);
 
     const validationAsyncFetch = fetch(getAsyncUrl(validationAsyncSpec.url, baseUrl), {
@@ -46,7 +47,7 @@ const ValidationAsyncSchema = (props) => {
         setValidationAsyncErrors(jsonResponse.message);
       }
       // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch {}
   };
 
   const abortCurrentRequestAndGetNewAbortSignal = () => {
@@ -61,7 +62,7 @@ const ValidationAsyncSchema = (props) => {
   const onBlur = () => {
     if (
       !isNull(validationAsyncModel) &&
-      !isEqual(validationAsyncModel, prevRequestedModelRef.current)
+      !isEqual(validationAsyncModel, previousRequestedModelReference.current)
     ) {
       getValidationAsyncResponse(validationAsyncModel, props.schema.validationAsync);
     }
@@ -80,13 +81,13 @@ const ValidationAsyncSchema = (props) => {
   return (
     <BasicTypeSchema
       required={props.required}
-      onChange={validationAsyncOnChange}
       submitted={props.submitted || fieldSubmitted}
       schema={props.schema}
       model={validationAsyncModel}
       errors={validationAsyncErrors || props.errors}
-      onBlur={onBlur}
       validationAsyncSuccessMessage={validationAsyncSuccessMessage}
+      onChange={validationAsyncOnChange}
+      onBlur={onBlur}
     />
   );
 };

@@ -1,14 +1,18 @@
+/* eslint-disable jest/expect-expect */
 import { mount } from 'enzyme';
 
-import KEY_CODES from '../common/keyCodes';
 import { fakeKeyDownEventForKey } from '../common/fakeEvents';
+import KEY_CODES from '../common/keyCodes';
 
 import DateLookup from '.';
 
 const defaultLocale = 'en-GB';
 
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale: defaultLocale }} />;
+    },
   useIntl: () => ({ locale: defaultLocale }),
   defineMessages: (translations) => translations,
 }));

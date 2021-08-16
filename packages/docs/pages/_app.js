@@ -1,17 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import * as React from 'react';
+import { Provider, getLangFromLocale, DEFAULT_LOCALE } from '@transferwise/components';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
-import { Provider, getLangFromLocale, DEFAULT_LOCALE } from '@transferwise/components';
-import Layout from '../components/Layout';
+import React from 'react';
+
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
 import '@transferwise/components/build/main.css';
 
+import Layout from '../components/Layout';
 import { addBasePath } from '../utils/pageUtils';
 
 import '../public/static/assets/main.css';

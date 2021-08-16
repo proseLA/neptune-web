@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import { DirectionProvider } from './direction';
-import en from '../i18n/en.json';
-import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
 
-function Provider({ i18n, children }) {
+import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
+import en from '../i18n/en.json';
+
+import { DirectionProvider } from './direction';
+
+const Provider = ({ i18n, children }) => {
   const { locale, messages, defaultRichTextElements } = i18n;
   const adjustedLocale = adjustLocale(locale);
   let intlConfig;
@@ -30,7 +32,7 @@ function Provider({ i18n, children }) {
       </IntlProvider>
     </DirectionProvider>
   );
-}
+};
 
 Provider.propTypes = {
   i18n: PropTypes.shape({

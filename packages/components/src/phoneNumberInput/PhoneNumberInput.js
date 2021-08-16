@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
 import { isArray } from '@transferwise/neptune-validation';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useIntl } from 'react-intl';
+
 import { Size } from '../common';
-
 import { useDirection } from '../common/hooks';
-
 import Select from '../select';
+
+import countries from './data/countries';
 import {
   explodeNumberModel,
   filterOptionsForQuery,
@@ -18,8 +19,6 @@ import {
   sortArrayByProperty,
   groupCountriesByPrefix,
 } from './utils';
-
-import countries from './data/countries';
 
 const ALLOWED_PHONE_CHARS = /^$|^[\d-\s]+$/;
 
@@ -99,11 +98,11 @@ const PhoneNumberInput = (props) => {
     }
   };
 
-  const handlePaste = (e) => {
-    if (!e.nativeEvent.clipboardData) {
+  const handlePaste = (event) => {
+    if (!event.nativeEvent.clipboardData) {
       return;
     }
-    const pasteValue = (e.nativeEvent.clipboardData.getData('text/plain') || '').replace(
+    const pasteValue = (event.nativeEvent.clipboardData.getData('text/plain') || '').replace(
       /(\s|-)+/g,
       '',
     );
@@ -129,14 +128,14 @@ const PhoneNumberInput = (props) => {
         <Select
           options={options}
           selected={{ value: prefix, label: prefix }}
-          onChange={handleChangeSelect}
           placeholder="Select an option..."
           searchPlaceholder={searchPlaceholder}
-          onSearchChange={(newSearch) => setSearchQuery(newSearch)}
           searchValue={searchQuery}
           required={required}
           disabled={disabled}
           size={size}
+          onChange={handleChangeSelect}
+          onSearchChange={(newSearch) => setSearchQuery(newSearch)}
         />
       </div>
 
@@ -149,12 +148,12 @@ const PhoneNumberInput = (props) => {
             type="text"
             className="form-control"
             disabled={disabled}
+            required={required}
+            placeholder={placeholder}
             onChange={handleInputChange}
             onPaste={handlePaste}
             onFocus={onFocus}
             onBlur={onBlur}
-            required={required}
-            placeholder={placeholder}
           />
         </div>
       </div>

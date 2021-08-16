@@ -1,6 +1,7 @@
-import { render, fireEvent, screen } from '../test-utils';
-import Modal from './Modal';
 import { Position, Scroll } from '../common';
+import { render, fireEvent, screen } from '../test-utils';
+
+import Modal from './Modal';
 
 describe('Modal', () => {
   const props = {
@@ -41,7 +42,7 @@ describe('Modal', () => {
     expect(props.onClose).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByRole('presentation'));
-    expect(props.onClose).toHaveBeenCalled();
+    expect(props.onClose).toHaveBeenCalledTimes(1);
   });
 
   it('calls onClose when Escape is pressed on Modal', () => {
@@ -49,7 +50,7 @@ describe('Modal', () => {
     expect(props.onClose).not.toHaveBeenCalled();
 
     fireEvent.keyDown(getDialog(), { key: 'Escape' });
-    expect(props.onClose).toHaveBeenCalled();
+    expect(props.onClose).toHaveBeenCalledTimes(1);
   });
 
   it('calls onClose when Escape is pressed on document', () => {
@@ -57,7 +58,7 @@ describe('Modal', () => {
     expect(props.onClose).not.toHaveBeenCalled();
 
     fireEvent.keyDown(document, { key: 'Escape' });
-    expect(props.onClose).toHaveBeenCalled();
+    expect(props.onClose).toHaveBeenCalledTimes(1);
   });
 
   const getDialog = () => screen.getByRole('dialog');

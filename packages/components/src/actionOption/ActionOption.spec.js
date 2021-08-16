@@ -1,4 +1,5 @@
 import { FastFlag } from '@transferwise/icons';
+
 import { render, screen, fireEvent } from '../test-utils';
 
 import ActionOption from '.';
@@ -10,8 +11,8 @@ describe('ActionOption', () => {
         media={<FastFlag data-testid="fast-flag" />}
         title="title"
         content="content"
-        onClick={() => {}}
         action="action"
+        onClick={() => {}}
       />,
     );
 
@@ -20,9 +21,9 @@ describe('ActionOption', () => {
         name: 'title, action',
       }),
     ).toBeInTheDocument();
-    expect(screen.queryByText('title')).toBeInTheDocument();
-    expect(screen.queryByText('content')).toBeInTheDocument();
-    expect(screen.queryByTestId('fast-flag')).toBeInTheDocument();
+    expect(screen.getByText('title')).toBeInTheDocument();
+    expect(screen.getByText('content')).toBeInTheDocument();
+    expect(screen.getByTestId('fast-flag')).toBeInTheDocument();
   });
 
   it('fires the onClick handler when you click on the action', () => {

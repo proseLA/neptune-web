@@ -1,6 +1,8 @@
 import { shallow } from 'enzyme';
-import ProcessingStep from '.';
+
 import ProcessIndicator from '../../../processIndicator';
+
+import ProcessingStep from '.';
 
 describe('ProcessingStep', () => {
   const PROCESSING_STEP_PROPS = {
@@ -46,6 +48,6 @@ describe('ProcessingStep', () => {
 
   it('calls onClear when button is clicked', () => {
     component.find('button.btn-default').simulate('click', {});
-    expect(PROCESSING_STEP_PROPS.onClear).toHaveBeenCalled();
+    expect(PROCESSING_STEP_PROPS.onClear).toHaveBeenCalledTimes(1);
   });
 });

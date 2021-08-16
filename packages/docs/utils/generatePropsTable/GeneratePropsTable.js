@@ -1,7 +1,7 @@
 import Types from 'prop-types';
 
-import { parsePropsForTable } from '../parsePropsForTable';
 import propsData from '../../temp-tabular-props';
+import { parsePropsForTable } from '../parsePropsForTable';
 
 const GeneratePropsTable = ({ componentName }) => {
   let data = propsData;
@@ -9,10 +9,10 @@ const GeneratePropsTable = ({ componentName }) => {
   // If componentName === * return all props for all components
   // otherwise return only the ones of the component specified.
   if (componentName !== '*') {
-    data = data.filter((el) => el.displayName === componentName);
+    data = data.filter((element) => element.displayName === componentName);
   }
 
-  return data && data.length ? (
+  return data?.length > 0 ? (
     <div className="scroll-table">
       <h2 className="docs-heading">Props</h2>
       <table id="props" className="table table-condensed docs-table">

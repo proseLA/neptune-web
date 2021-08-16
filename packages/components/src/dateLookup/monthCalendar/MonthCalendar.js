@@ -1,9 +1,10 @@
+import { formatDate } from '@transferwise/formatting';
+import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import { formatDate } from '@transferwise/formatting';
 
 import Header from '../header';
+
 import MonthCalendarTable from './table';
 
 class MonthCalendar extends PureComponent {

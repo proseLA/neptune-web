@@ -1,24 +1,24 @@
-import { useEffect, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { useEffect, useCallback, useState } from 'react';
 
 import { isIpadOsSafari, isMobileSafari } from './utils';
 
-function useMobileNavRef() {
+function useMobileNavReference() {
   const [mobileNav, setMobileNav] = useState(null);
-  const ref = useCallback((node) => {
+  const reference = useCallback((node) => {
     if (node !== null) {
       setMobileNav(node);
     }
   }, []);
-  return [mobileNav, ref];
+  return [mobileNav, reference];
 }
 
 const mobileNavType = { CALL_TO_ACTION: 'call-to-action' };
 
 const MobileNav = ({ items, activeItemPath }) => {
   const [hasBanner, setHasBanner] = useState(false);
-  const [mobileNav, ref] = useMobileNavRef();
+  const [mobileNav, reference] = useMobileNavReference();
 
   useEffect(() => {
     /**
@@ -60,17 +60,17 @@ const MobileNav = ({ items, activeItemPath }) => {
       });
     };
 
-    let prevHeight = window.innerHeight;
+    let previousHeight = window.innerHeight;
     const onVisibilityChange = () => {
       if (!document.hidden) {
-        if (prevHeight !== window.innerHeight) {
+        if (previousHeight !== window.innerHeight) {
           // if banner is in view when swapping tabs in safari it hides the banner going back to the tab 🤷‍♂️
           setHasBanner(false);
         }
         // other occurrences (when app switching and swapping tabs)
         checkForBanner();
       } else {
-        prevHeight = window.innerHeight;
+        previousHeight = window.innerHeight;
       }
     };
 
@@ -90,7 +90,7 @@ const MobileNav = ({ items, activeItemPath }) => {
 
   return (
     <div
-      ref={ref}
+      ref={reference}
       className={classNames('mobileNav', { 'mobileNav--with-open-in-app-banner': hasBanner })}
     >
       <ul className="mobileNav__items">
@@ -103,7 +103,7 @@ const MobileNav = ({ items, activeItemPath }) => {
             })}
           >
             {item.path && (
-              <a className="mobileNavItem__link" onClick={item.onClick} href={item.path}>
+              <a className="mobileNavItem__link" href={item.path} onClick={item.onClick}>
                 <span className="mobileNavItem__icon">{item.icon}</span>
                 <span className="mobileNavItem__label">{item.label}</span>
               </a>

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { Layout } from '../common';
 
@@ -8,7 +8,7 @@ const isLayoutHorizontal = (layout) =>
     Layout.HORIZONTAL_LEFT_ALIGNED,
     Layout.HORIZONTAL_RIGHT_ALIGNED,
     Layout.HORIZONTAL_JUSTIFIED,
-  ].indexOf(layout) >= 0;
+  ].includes(layout);
 
 const alignmentClassMap = {
   [Layout.HORIZONTAL_RIGHT_ALIGNED]: 'text-sm-right',
@@ -27,7 +27,7 @@ const DefinitionList = ({ definitions, layout, muted }) => (
     {definitions
       .filter((definition) => definition)
       .map(({ title, value, key }) => (
-        <div className="tw-definition-list__item" key={key}>
+        <div key={key} className="tw-definition-list__item">
           <dt>{title}</dt>
           <dd className={alignmentClassMap[layout] || ''}>{value}</dd>
         </div>

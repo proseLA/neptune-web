@@ -1,13 +1,13 @@
-import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import requiredIf from 'react-required-if';
 import classNames from 'classnames';
-import { Position, Key } from '../common';
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
+import requiredIf from 'react-required-if';
 
 import Chevron from '../chevron';
+import { Position, Key } from '../common';
 import Option from '../common/Option';
 
-const Card = forwardRef((props, ref) => {
+const Card = forwardRef((props, reference) => {
   const {
     as: Element,
     isExpanded,
@@ -21,27 +21,25 @@ const Card = forwardRef((props, ref) => {
     ...rest
   } = props;
   const isOpen = !!(isExpanded && children);
-  const TOGGLE_KEYS = [Key.ENTER, ...Key.SPACE];
+  const TOGGLE_KEYS = new Set([Key.ENTER, ...Key.SPACE]);
 
   return (
     <Element
+      ref={reference}
       className={classNames('tw-card list-group-item p-a-0', className, { active: isOpen })}
       id={id}
       data-testid={rest['data-testid']}
-      ref={ref}
     >
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         aria-expanded={isExpanded}
         className={classNames('p-a-panel tw-card__panel', {
           'tw-card__panel--inactive': !children,
         })}
         role={children ? 'button' : null}
-        onClick={() => children && onClick(!isExpanded)} // TODO: Consider renaming to onExpand as Card can be expanded with keyboard
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={children ? 0 : undefined}
+        onClick={() => children && onClick(!isExpanded)} // TODO: Consider renaming to onExpand as Card can be expanded with keyboard
         onKeyDown={(event) => {
-          if (TOGGLE_KEYS.includes(event.key) && children) {
+          if (TOGGLE_KEYS.has(event.key) && children) {
             event.preventDefault();
             onClick(!isExpanded);
           }
@@ -78,11 +76,9 @@ const hasChildren = ({ children }) => children;
 
 Card.propTypes = {
   as: PropTypes.string,
-  // eslint-disable-next-line
   isExpanded: requiredIf(PropTypes.bool, hasChildren),
   title: PropTypes.node.isRequired,
   details: PropTypes.node.isRequired,
-  // eslint-disable-next-line
   onClick: requiredIf(PropTypes.func, hasChildren),
   icon: PropTypes.node.isRequired,
   children: PropTypes.node,

@@ -1,6 +1,7 @@
-import { act, render, fireEvent, waitFor, screen } from '../test-utils';
-import Info, { InfoPresentation } from '.';
 import { Size } from '../common';
+import { act, render, fireEvent, waitFor, screen } from '../test-utils';
+
+import Info, { InfoPresentation } from '.';
 
 describe('Info', () => {
   const props = {
@@ -34,7 +35,7 @@ describe('Info', () => {
     await act(async () => {
       fireEvent.click(getTriggerButton());
     });
-    expect(fn).toHaveBeenCalled();
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   describe(`when in ${InfoPresentation.POPOVER} mode`, () => {

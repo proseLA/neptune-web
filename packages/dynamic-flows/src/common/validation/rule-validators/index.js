@@ -16,7 +16,7 @@ function isValidPattern(value, pattern) {
   try {
     const regex = new RegExp(pattern);
     return typeof value !== 'undefined' && !!regex.test(value);
-  } catch (error) {
+  } catch {
     return true;
   }
 }

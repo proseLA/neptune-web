@@ -14,7 +14,7 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return only required', () => {
-      expect(getValidationFailures(null, schema, true)).toEqual(['required']);
+      expect(getValidationFailures(null, schema, true)).toStrictEqual(['required']);
     });
   });
 
@@ -29,22 +29,22 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array for valid string', () => {
-      expect(getValidationFailures('string', schema)).toEqual([]);
+      expect(getValidationFailures('string', schema)).toStrictEqual([]);
     });
     it('should return an empty array for null if not required', () => {
-      expect(getValidationFailures(null, schema, false)).toEqual([]);
+      expect(getValidationFailures(null, schema, false)).toStrictEqual([]);
     });
     it('should return minLength when too short', () => {
-      expect(getValidationFailures('st', schema)).toEqual(['minLength']);
+      expect(getValidationFailures('st', schema)).toStrictEqual(['minLength']);
     });
     it('should return [maxLength] when too long', () => {
-      expect(getValidationFailures('strings', schema)).toEqual(['maxLength']);
+      expect(getValidationFailures('strings', schema)).toStrictEqual(['maxLength']);
     });
     it('should return [pattern] when does not pass regex', () => {
-      expect(getValidationFailures('STRING', schema)).toEqual(['pattern']);
+      expect(getValidationFailures('STRING', schema)).toStrictEqual(['pattern']);
     });
     it('should return [type] when incorrect data type', () => {
-      expect(getValidationFailures(1234, schema)).toEqual(['type']);
+      expect(getValidationFailures(1234, schema)).toStrictEqual(['type']);
     });
   });
 
@@ -58,13 +58,13 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array for valid date', () => {
-      expect(getValidationFailures('2005-01-01T00:00:00Z', schema)).toEqual([]);
+      expect(getValidationFailures('2005-01-01T00:00:00Z', schema)).toStrictEqual([]);
     });
     it('should return [min] when date is too early', () => {
-      expect(getValidationFailures('1999-01-01T00:00:00Z', schema)).toEqual(['minimum']);
+      expect(getValidationFailures('1999-01-01T00:00:00Z', schema)).toStrictEqual(['minimum']);
     });
     it('should return [max] when date is too late', () => {
-      expect(getValidationFailures('2011-01-01T00:00:00Z', schema)).toEqual(['maximum']);
+      expect(getValidationFailures('2011-01-01T00:00:00Z', schema)).toStrictEqual(['maximum']);
     });
   });
 
@@ -78,25 +78,25 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array for an integer in range', () => {
-      expect(getValidationFailures(10, schema)).toEqual([]);
+      expect(getValidationFailures(10, schema)).toStrictEqual([]);
     });
     it('should return an empty array for a float in range', () => {
-      expect(getValidationFailures(12.34, schema)).toEqual([]);
+      expect(getValidationFailures(12.34, schema)).toStrictEqual([]);
     });
     it('should return an empty array for a number that matches our min', () => {
-      expect(getValidationFailures(0, schema)).toEqual([]);
+      expect(getValidationFailures(0, schema)).toStrictEqual([]);
     });
     it('should return an empty array for a number that matches our max', () => {
-      expect(getValidationFailures(20, schema)).toEqual([]);
+      expect(getValidationFailures(20, schema)).toStrictEqual([]);
     });
     it('should return [min] when number is too low', () => {
-      expect(getValidationFailures(-1, schema)).toEqual(['minimum']);
+      expect(getValidationFailures(-1, schema)).toStrictEqual(['minimum']);
     });
     it('should return [max] when number is too high', () => {
-      expect(getValidationFailures(21, schema)).toEqual(['maximum']);
+      expect(getValidationFailures(21, schema)).toStrictEqual(['maximum']);
     });
     it('should return [type] when incorrect data type', () => {
-      expect(getValidationFailures('string', schema)).toEqual(['type']);
+      expect(getValidationFailures('string', schema)).toStrictEqual(['type']);
     });
   });
 
@@ -106,10 +106,10 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array for valid integer', () => {
-      expect(getValidationFailures(15, schema)).toEqual([]);
+      expect(getValidationFailures(15, schema)).toStrictEqual([]);
     });
     it('should return [type] when a number is not an integer', () => {
-      expect(getValidationFailures(12.34, schema)).toEqual(['type']);
+      expect(getValidationFailures(12.34, schema)).toStrictEqual(['type']);
     });
   });
 
@@ -119,11 +119,11 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array for valid boolean', () => {
-      expect(getValidationFailures(true, schema)).toEqual([]);
-      expect(getValidationFailures(false, schema)).toEqual([]);
+      expect(getValidationFailures(true, schema)).toStrictEqual([]);
+      expect(getValidationFailures(false, schema)).toStrictEqual([]);
     });
     it('should return [type] when incorrect data type', () => {
-      expect(getValidationFailures(1, schema)).toEqual(['type']);
+      expect(getValidationFailures(1, schema)).toStrictEqual(['type']);
     });
   });
 
@@ -133,13 +133,13 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array when the const matches', () => {
-      expect(getValidationFailures('abcd', schema)).toEqual([]);
+      expect(getValidationFailures('abcd', schema)).toStrictEqual([]);
     });
     it('should return [enum] when not const', () => {
-      expect(getValidationFailures('1234', schema)).toEqual(['enum']);
+      expect(getValidationFailures('1234', schema)).toStrictEqual(['enum']);
     });
     it('should return [enum] when null', () => {
-      expect(getValidationFailures(null, schema)).toEqual(['enum']);
+      expect(getValidationFailures(null, schema)).toStrictEqual(['enum']);
     });
   });
 
@@ -149,13 +149,13 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array when value is one of the enums', () => {
-      expect(getValidationFailures('b', schema)).toEqual([]);
+      expect(getValidationFailures('b', schema)).toStrictEqual([]);
     });
     it('should return [enum] when not allowed', () => {
-      expect(getValidationFailures('d', schema)).toEqual(['enum']);
+      expect(getValidationFailures('d', schema)).toStrictEqual(['enum']);
     });
     it('should return [enum] when null', () => {
-      expect(getValidationFailures(null, schema)).toEqual(['enum']);
+      expect(getValidationFailures(null, schema)).toStrictEqual(['enum']);
     });
   });
 
@@ -172,16 +172,16 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array for a valid array', () => {
-      expect(getValidationFailures([1, 2], schema)).toEqual([]);
+      expect(getValidationFailures([1, 2], schema)).toStrictEqual([]);
     });
     it('should return [minItems] when the array is too small', () => {
-      expect(getValidationFailures([1], schema)).toEqual(['minItems']);
+      expect(getValidationFailures([1], schema)).toStrictEqual(['minItems']);
     });
     it('should return [maxItems] when the array is too big', () => {
-      expect(getValidationFailures([1, 2, 3], schema)).toEqual(['maxItems']);
+      expect(getValidationFailures([1, 2, 3], schema)).toStrictEqual(['maxItems']);
     });
     it('should return [type] when incorrect data type', () => {
-      expect(getValidationFailures({ a: 1 }, schema)).toEqual(['type']);
+      expect(getValidationFailures({ a: 1 }, schema)).toStrictEqual(['type']);
     });
   });
 
@@ -199,13 +199,13 @@ describe('Given a library for identifying validation failures', () => {
     });
 
     it('should return an empty array for a valid object', () => {
-      expect(getValidationFailures({ a: 1 }, schema)).toEqual([]);
+      expect(getValidationFailures({ a: 1 }, schema)).toStrictEqual([]);
     });
     it('should return [required] when required properties are missing', () => {
-      expect(getValidationFailures({}, schema)).toEqual(['required']);
+      expect(getValidationFailures({}, schema)).toStrictEqual(['required']);
     });
     it('should return [type] when incorrect data type', () => {
-      expect(getValidationFailures([1], schema)).toEqual(['type']);
+      expect(getValidationFailures([1], schema)).toStrictEqual(['type']);
     });
   });
 });

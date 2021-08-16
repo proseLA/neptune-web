@@ -19,7 +19,7 @@ function getValidModelParts(model, schema) {
     return cleanModelWithOneOfSchema(model, schema);
   }
 
-  if (schema.enum && schema.enum.indexOf(model) >= 0) {
+  if (schema.enum && schema.enum.includes(model)) {
     return model;
   }
 
@@ -152,4 +152,4 @@ function deepMergeObject(object1, object2) {
   return combined;
 }
 
-export { getValidModelParts }; // eslint-disable-line
+export { getValidModelParts };

@@ -1,14 +1,19 @@
-import { render, screen, userEvent } from '../test-utils';
-import Popover from './Popover';
 import { Breakpoint, Position } from '../common';
+import { render, screen, userEvent } from '../test-utils';
 
-jest.mock('react-transition-group/CSSTransition', () => (props) =>
-  props.in ? props.children : null,
+import Popover from './Popover';
+
+jest.mock(
+  'react-transition-group/CSSTransition',
+  () => (props) => props.in ? props.children : null,
 );
 
-// eslint-disable-next-line react/prop-types
-jest.mock('../dimmer', () => ({ open, children }) =>
-  open ? <div className="dimmer">{children}</div> : null,
+jest.mock(
+  '../dimmer',
+  () =>
+    function ({ open, children }) {
+      return open ? <div className="dimmer">{children}</div> : null;
+    },
 );
 
 describe('Popover', () => {

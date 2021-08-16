@@ -1,12 +1,10 @@
-import PropTypes from 'prop-types';
+import { ChevronLeft, ChevronRight } from '@transferwise/icons';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
-import { ChevronLeft, ChevronRight } from '@transferwise/icons';
-
-import PaginationLink from './paginationLink';
-
 import messages from './Pagination.messages';
+import PaginationLink from './paginationLink';
 
 const Type = {
   NUMBERS_ONLY: 'numbersOnly',
@@ -88,8 +86,8 @@ const Pagination = ({
         {showArrows && (
           <PaginationLink
             pageNumber={currentPageIndex - 1}
-            onClick={onClick}
             disabled={disableLeftArrow}
+            onClick={onClick}
           >
             <ChevronLeft />
           </PaginationLink>
@@ -101,8 +99,8 @@ const Pagination = ({
             <PaginationLink
               key={page.index}
               pageNumber={page.index}
-              onClick={onClick}
               active={page.active}
+              onClick={onClick}
             >
               {label}
             </PaginationLink>
@@ -112,8 +110,8 @@ const Pagination = ({
         {showArrows && (
           <PaginationLink
             pageNumber={currentPageIndex + 1}
-            onClick={onClick}
             disabled={disableRightArrow}
+            onClick={onClick}
           >
             <ChevronRight />
           </PaginationLink>

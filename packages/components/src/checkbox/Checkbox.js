@@ -1,8 +1,7 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import classNames from 'classnames';
 import CheckboxButton from '../checkboxButton';
-
 import { useDirection } from '../common/hooks';
 
 const Checkbox = ({
@@ -34,10 +33,10 @@ const Checkbox = ({
         <CheckboxButton
           className={classNames({ 'has-error': hasError, 'p-r-2': !isRTL, 'p-l-2': isRTL })}
           checked={checked}
+          disabled={disabled || readOnly}
           onFocus={onFocus}
           onChange={() => onChange(!checked)}
           onBlur={onBlur}
-          disabled={disabled || readOnly}
         />
         <span className="np-checkbox__text">
           {label}

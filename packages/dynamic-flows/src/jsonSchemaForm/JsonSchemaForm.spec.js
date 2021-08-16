@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 
-import JsonSchemaForm from '.';
-
 import GenericSchema from './genericSchema';
+
+import JsonSchemaForm from '.';
 
 describe('Given a component for rendering a JSON schema form', () => {
   let component;
@@ -49,23 +49,23 @@ describe('Given a component for rendering a JSON schema form', () => {
 
   describe('when initialised', () => {
     it('should render a generic schema component', () => {
-      expect(genericSchema.prop('schema')).toEqual(props.schema);
+      expect(genericSchema.prop('schema')).toStrictEqual(props.schema);
     });
 
     it('should pass the generic schema the model', () => {
-      expect(genericSchema.prop('model')).toEqual(props.model);
+      expect(genericSchema.prop('model')).toStrictEqual(props.model);
     });
 
     it('should pass the generic schema the errors', () => {
-      expect(genericSchema.prop('errors')).toEqual(props.errors);
+      expect(genericSchema.prop('errors')).toStrictEqual(props.errors);
     });
 
     it('should pass the generic schema the translations', () => {
-      expect(genericSchema.prop('translations')).toEqual(props.translations);
+      expect(genericSchema.prop('translations')).toStrictEqual(props.translations);
     });
 
     it('should pass the generic schema the locale', () => {
-      expect(genericSchema.prop('locale')).toEqual(props.locale);
+      expect(genericSchema.prop('locale')).toStrictEqual(props.locale);
     });
   });
 

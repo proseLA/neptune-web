@@ -1,6 +1,6 @@
-import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
 import { formatMoney } from '@transferwise/formatting';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 const Money = ({ amount, currency }) => {
   const { locale } = useIntl();

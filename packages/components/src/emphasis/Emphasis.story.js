@@ -1,4 +1,5 @@
 import { text } from '@storybook/addon-knobs';
+
 import Emphasis from './Emphasis';
 
 export default {
@@ -11,7 +12,7 @@ export default {
   },
 };
 
-export const basic = () => {
+export const Basic = () => {
   return (
     <Emphasis
       text={text(

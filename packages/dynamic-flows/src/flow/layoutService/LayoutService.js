@@ -164,7 +164,7 @@ function getSchemaLayout(step) {
   if (step.schemas && step.schemas[0]) {
     const schema = step.schemas[0];
     const dynamicForm = convertStepSchemaToDynamicForm(schema, step.model);
-    if (isWideForm(schema)) {
+    if (isWideForm()) {
       layout.push(dynamicForm);
     } else {
       layout.push(dynamicBox([dynamicForm], 'md'));

@@ -55,11 +55,11 @@ describe('startWith', () => {
       expect(startsWith(['AA', 'BB'], 'BB')).toBe(true);
     });
 
-    it(`returns false if any value doesn't start with`, () => {
+    it("returns false if any value in an array doesn't start with", () => {
       expect(startsWith(['CCAA', 'CCBB'], 'BB')).toBe(false);
     });
 
-    it(`returns false if any value doesn't start with`, () => {
+    it('returns false for an empty value', () => {
       expect(startsWith('', 'BB')).toBe(false);
     });
   });

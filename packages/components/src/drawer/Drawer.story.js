@@ -1,28 +1,30 @@
-import { useState } from 'react';
 import { select } from '@storybook/addon-knobs';
-import Drawer from './Drawer';
+import { useState } from 'react';
+
 import { Button, Modal } from '..';
 import { Position } from '../common';
+
+import Drawer from './Drawer';
 
 export default {
   component: Drawer,
   title: 'Drawer',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const position = select('position', Object.values(Position), Position.RIGHT);
 
-  const handleDrawerClose = (e) => {
+  const handleDrawerClose = (event) => {
     console.log('drawer close');
-    e.stopPropagation();
+    event.stopPropagation();
     setOpenDrawer(false);
   };
 
-  const handleModalClose = (e) => {
+  const handleModalClose = (event) => {
     console.log('modal close');
-    e.stopPropagation();
+    event.stopPropagation();
     setOpenModal(false);
   };
 
@@ -34,8 +36,8 @@ export const basic = () => {
       <Drawer
         open={openDrawer}
         position={position}
-        onClose={handleDrawerClose}
         headerTitle="A title"
+        onClose={handleDrawerClose}
       >
         <input type="text" className="form-control" />
         <p className="m-t-3">Cat ipsum dolor sit amet, purr when being pet.</p>
@@ -57,9 +59,9 @@ export const basic = () => {
             </>
           }
           open={openModal}
-          onClose={handleModalClose}
           title="Title"
           closeOnClick
+          onClose={handleModalClose}
         />
       </Drawer>
     </>

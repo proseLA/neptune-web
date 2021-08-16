@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
-import Types from 'prop-types';
 import { RadioGroup } from '@transferwise/components';
+import Types from 'prop-types';
+import { useState, useEffect } from 'react';
+
 import { mapAvatar, mapIcon } from '../../schemaFormControl/optionMapper';
+
+const generateId = () => {
+  return String(Math.floor(100000000 * Math.random()));
+};
 
 const PromotedOneOfRadioControl = (props) => {
   const { selection, setSelection, promotion, promotedOneOf, title } = props;
 
   const [id, setId] = useState('');
-
-  const generateId = () => String(Math.floor(100000000 * Math.random()));
 
   useEffect(() => {
     setId(generateId());
@@ -40,10 +43,10 @@ const PromotedOneOfRadioControl = (props) => {
       )}
       <RadioGroup
         name="promoted-selection"
-        onChange={setSelection}
         selectedValue={selection}
         radios={radios}
         id={id}
+        onChange={setSelection}
       />
     </div>
   );

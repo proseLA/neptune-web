@@ -1,6 +1,5 @@
-import { render, fireEvent } from '../test-utils';
-
 import { Key, Size } from '../common';
+import { render, fireEvent, screen } from '../test-utils';
 
 import Tile from '.';
 
@@ -29,9 +28,9 @@ describe(Tile, () => {
   });
 
   it('calls onClick when anchor is clicked', () => {
-    const { getByText } = render(<Tile {...defaultProps} />);
+    render(<Tile {...defaultProps} />);
 
-    const title = getByText('Receive money');
+    const title = screen.getByText('Receive money');
 
     expect(onClick).not.toHaveBeenCalled();
 
@@ -41,9 +40,9 @@ describe(Tile, () => {
   });
 
   it('calls onClick when space or enter keys are pressed', () => {
-    const { getByText } = render(<Tile {...defaultProps} />);
+    render(<Tile {...defaultProps} />);
 
-    const title = getByText('Receive money');
+    const title = screen.getByText('Receive money');
 
     fireEvent.keyDown(title, { key: Key.ENTER });
 
@@ -55,17 +54,17 @@ describe(Tile, () => {
   });
 
   it(`doesn't call onClick when disabled anchor is clicked`, () => {
-    const { getByText } = render(<Tile {...defaultProps} disabled />);
+    render(<Tile {...defaultProps} disabled />);
 
-    fireEvent.click(getByText('Receive money'));
+    fireEvent.click(screen.getByText('Receive money'));
 
     expect(onClick).not.toHaveBeenCalled();
   });
 
   it(`doesn't call onClick when space or enter keys are pressed on disabled anchor`, () => {
-    const { getByText } = render(<Tile {...defaultProps} disabled />);
+    render(<Tile {...defaultProps} disabled />);
 
-    const title = getByText('Receive money');
+    const title = screen.getByText('Receive money');
 
     fireEvent.keyDown(title, { key: Key.ENTER });
 

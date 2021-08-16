@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 
 import { Position, Breakpoint } from '..';
+import SizeSwapper from '../../sizeSwapper';
 import BottomSheet from '../bottomSheet';
 import Panel from '../panel';
-import SizeSwapper from '../../sizeSwapper';
 
 const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open, position }) => {
-  const windowRef = typeof window === 'undefined' ? undefined : window;
+  const windowReference = typeof window === 'undefined' ? undefined : window;
 
   const items = [
     {
       items: [
-        <BottomSheet open={open} key="bottomSheet" className={className} onClose={onClose}>
+        <BottomSheet key="bottomSheet" open={open} className={className} onClose={onClose}>
           {children}
         </BottomSheet>,
       ],
@@ -19,11 +19,11 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
     {
       items: [
         <Panel
+          key="panel"
           arrow={arrow}
           open={open}
           position={position}
           anchorRef={anchorRef}
-          key="panel"
           className={className}
           onClose={onClose}
         >
@@ -33,7 +33,7 @@ const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open,
       breakpoint: Breakpoint.SMALL,
     },
   ];
-  return <SizeSwapper items={items} ref={windowRef} inline />;
+  return <SizeSwapper ref={windowReference} items={items} inline />;
 };
 
 ResponsivePanel.defaultProps = {

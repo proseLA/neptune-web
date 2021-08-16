@@ -1,8 +1,8 @@
+import Avatar, { AvatarType } from '../avatar';
+import { useDirection } from '../common/hooks';
 import { render } from '../test-utils';
 
 import Radio from '.';
-import { useDirection } from '../common/hooks';
-import Avatar, { AvatarType } from '../avatar';
 
 jest.mock('../common/hooks');
 

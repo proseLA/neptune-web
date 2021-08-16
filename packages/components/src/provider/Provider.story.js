@@ -8,7 +8,7 @@ export default {
   title: 'Provider',
 };
 
-export const basic = () => {
+export const Basic = () => {
   return (
     <>
       Translated message: <FormattedMessage {...closeButtonMessages.ariaLabel} />

@@ -12,15 +12,15 @@ describe('SwitchOption', () => {
         title="title"
         aria-label="title"
         content="content"
-        onChange={() => {}}
         checked={false}
+        onChange={() => {}}
       />,
     );
 
-    expect(screen.queryByText('title')).toBeInTheDocument();
-    expect(screen.queryByText('content')).toBeInTheDocument();
-    expect(screen.queryByTestId('fast-flag')).toBeInTheDocument();
-    expect(screen.queryAllByRole('checkbox')[0]).toBeInTheDocument();
+    expect(screen.getByText('title')).toBeInTheDocument();
+    expect(screen.getByText('content')).toBeInTheDocument();
+    expect(screen.getByTestId('fast-flag')).toBeInTheDocument();
+    expect(screen.getAllByRole('checkbox')[0]).toBeInTheDocument();
   });
 
   it('checks the switch when the user interacts with it', () => {
@@ -35,8 +35,8 @@ describe('SwitchOption', () => {
         title="title"
         aria-label="title"
         content="content"
-        onChange={mockOnChange}
         checked={false}
+        onChange={mockOnChange}
       />,
     );
 
@@ -56,8 +56,8 @@ describe('SwitchOption', () => {
         title="title"
         aria-label="title"
         content="content"
-        onChange={mockOnChange}
         checked
+        onChange={mockOnChange}
       />,
     );
 
@@ -77,8 +77,8 @@ describe('SwitchOption', () => {
         title="title"
         aria-label="title"
         content="content"
-        onChange={mockOnChange}
         checked={false}
+        onChange={mockOnChange}
       />,
     );
 

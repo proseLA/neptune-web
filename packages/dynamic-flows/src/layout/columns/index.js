@@ -1,9 +1,8 @@
 import Types from 'prop-types';
 
+import DynamicLayout from '..';
 import { marginModel } from '../models';
 import { getMarginBottom } from '../utils';
-
-import DynamicLayout from '../index';
 
 const DynamicColumns = (props) => {
   const columns = props.component;

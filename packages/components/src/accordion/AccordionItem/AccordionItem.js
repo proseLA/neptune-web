@@ -1,15 +1,14 @@
-import { cloneElement } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { isString } from '@transferwise/neptune-validation';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { cloneElement } from 'react';
 
 import Chevron from '../../chevron';
 import { Position, Theme } from '../../common';
-
 import { useDirection } from '../../common/hooks';
 
 const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
-  const iconEl = icon ? cloneElement(icon, { size: 24 }) : null;
+  const iconElement = icon ? cloneElement(icon, { size: 24 }) : null;
   const { isRTL } = useDirection();
 
   return (
@@ -22,11 +21,11 @@ const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
       <button
         type="button"
         aria-expanded={open}
-        onClick={onClick}
         className={classNames('tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3', {
           'p-b-3': !open,
           'p-b-2': open,
         })}
+        onClick={onClick}
       >
         <div className="media">
           {icon && (
@@ -38,7 +37,7 @@ const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
                 'p-l-2': isRTL,
               })}
             >
-              {iconEl}
+              {iconElement}
             </div>
           )}
           <div

@@ -1,8 +1,9 @@
+import { isIosDevice } from '../deviceDetection';
+
 import {
   addClickClassToDocumentOnIos,
   removeClickClassFromDocumentOnIos,
 } from './documentIosClick';
-import { isIosDevice } from '../deviceDetection';
 
 jest.mock('../deviceDetection');
 
@@ -27,12 +28,12 @@ describe('Document ios click', () => {
 
   it('does not add ios click to document if it is not ios device', () => {
     addClickClassToDocumentOnIos();
-    expect(add).not.toBeCalled();
+    expect(add).not.toHaveBeenCalled();
   });
 
   it('does not remove ios click from document if it is not ios device', () => {
     removeClickClassFromDocumentOnIos();
-    expect(remove).not.toBeCalled();
+    expect(remove).not.toHaveBeenCalled();
   });
 
   it('does add ios click to document if it is ios device', () => {
@@ -44,6 +45,6 @@ describe('Document ios click', () => {
   it('does remove ios click from document if it is ios device', () => {
     isIosDevice.mockReturnValue(true);
     removeClickClassFromDocumentOnIos();
-    expect(remove).toBeCalledWith('ios-click');
+    expect(remove).toHaveBeenCalledWith('ios-click');
   });
 });

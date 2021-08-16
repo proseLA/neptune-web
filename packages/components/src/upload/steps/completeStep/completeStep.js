@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import { AlertCircle as AlertCircleIcon, Document as DocumentIcon } from '@transferwise/icons';
+import PropTypes from 'prop-types';
 
 const CompleteStep = (props) => {
   const {
@@ -47,7 +47,7 @@ const CompleteStep = (props) => {
           <button
             type="button"
             className="btn btn-default btn-sm m-t-3"
-            onClick={(e) => onClear(e)}
+            onClick={(event) => onClear(event)}
           >
             {csButtonText}
           </button>

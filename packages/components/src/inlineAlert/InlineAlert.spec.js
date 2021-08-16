@@ -1,60 +1,62 @@
 /* eslint-disable no-console */
 import '@testing-library/jest-dom';
-import { render, getByRole } from '../test-utils';
-import InlineAlert from './InlineAlert';
 import { Sentiment } from '../common';
+import { render, screen } from '../test-utils';
+
+import InlineAlert from './InlineAlert';
 
 describe('InlineAlert', () => {
-  let component;
-  let container;
-  let getByText;
-
-  const getAlert = (el) => getByRole(el, 'alert');
   const message = 'Your card is on its way.';
 
   describe('defaults', () => {
-    beforeEach(() => {
-      ({ container, getByText } = render(<InlineAlert>{message}</InlineAlert>));
-      component = getAlert(container);
-    });
-
     it('the message is rendered', () => {
-      getByText(message);
+      render(<InlineAlert>{message}</InlineAlert>);
+
+      expect(screen.getByText(message)).toBeInTheDocument();
     });
 
     it('will be of type info', () => {
-      expect(component.className).toContain('alert-info');
+      render(<InlineAlert>{message}</InlineAlert>);
+      const component = screen.getByRole('alert');
+
+      expect(component).toHaveClass('alert-info');
     });
 
     it('has a top left arrow', () => {
-      expect(component.className).toContain('arrow');
+      render(<InlineAlert>{message}</InlineAlert>);
+      const component = screen.getByRole('alert');
+
+      expect(component).toHaveClass('arrow');
     });
   });
 
-  describe('types', () => {
-    const getComponentWithType = (type) => {
-      ({ container } = render(<InlineAlert type={type}>{message}</InlineAlert>));
-      return getAlert(container);
-    };
-
+  describe('render with types', () => {
     it('renders info', () => {
-      component = getComponentWithType(Sentiment.INFO);
-      expect(component.className).toContain('alert-info');
+      render(<InlineAlert type={Sentiment.INFO}>{message}</InlineAlert>);
+      const component = screen.getByRole('alert');
+
+      expect(component).toHaveClass('alert-info');
     });
 
     it('renders success', () => {
-      component = getComponentWithType(Sentiment.SUCCESS);
-      expect(component.className).toContain('alert-success');
+      render(<InlineAlert type={Sentiment.SUCCESS}>{message}</InlineAlert>);
+      const component = screen.getByRole('alert');
+
+      expect(component).toHaveClass('alert-success');
     });
 
     it('renders error', () => {
-      component = getComponentWithType(Sentiment.ERROR);
-      expect(component.className).toContain('alert-danger');
+      render(<InlineAlert type={Sentiment.ERROR}>{message}</InlineAlert>);
+      const component = screen.getByRole('alert');
+
+      expect(component).toHaveClass('alert-danger');
     });
 
     it('renders warning', () => {
-      component = getComponentWithType(Sentiment.WARNING);
-      expect(component.className).toContain('alert-warning');
+      render(<InlineAlert type={Sentiment.WARNING}>{message}</InlineAlert>);
+      const component = screen.getByRole('alert');
+
+      expect(component).toHaveClass('alert-warning');
     });
   });
 });

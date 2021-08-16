@@ -34,7 +34,8 @@ describe('UploadButton', () => {
       userEvent.upload(input, [pngFile, jpgFile]);
 
       expect(props.onChange).toHaveBeenCalledTimes(1);
-      expect((props.onChange as jest.Mock).mock.calls[0][0].length).toEqual(1);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      expect((props.onChange as jest.Mock).mock.calls[0][0]).toHaveLength(1);
     });
   });
 
@@ -53,7 +54,8 @@ describe('UploadButton', () => {
       userEvent.upload(input, [pngFile, jpgFile]);
 
       expect(props.onChange).toHaveBeenCalledTimes(1);
-      expect((props.onChange as jest.Mock).mock.calls[0][0].length).toEqual(2);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      expect((props.onChange as jest.Mock).mock.calls[0][0]).toHaveLength(2);
     });
   });
 

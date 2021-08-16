@@ -1,6 +1,7 @@
-import { mount } from 'enzyme';
 import { Provider } from '@transferwise/components';
+import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
+
 import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
 
 const getMockFetchPromise = (status, jsonFn, delay, signal) => {

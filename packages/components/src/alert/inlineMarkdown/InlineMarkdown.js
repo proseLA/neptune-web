@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import Markdown from '../../markdown';
+
 import { MarkdownNodeType } from '../../common';
+import Markdown from '../../markdown';
 
 const allowList = [MarkdownNodeType.STRONG];
 

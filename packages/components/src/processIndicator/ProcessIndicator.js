@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 import { Status, Size } from '../common';
 
@@ -44,6 +44,9 @@ class ProcessIndicator extends Component {
   /**
    * Only trigger render if comopnent's state got
    * updated from interval callback
+   *
+   * @param nextProps
+   * @param nextState
    */
   shouldComponentUpdate(nextProps, nextState) {
     const isSameStatus = nextProps.status === nextState.status;

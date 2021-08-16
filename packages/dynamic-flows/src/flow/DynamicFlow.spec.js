@@ -1,10 +1,18 @@
-import DynamicFlow from '.';
 import DynamicLayout from '../layout';
-import { convertStepToLayout, inlineReferences } from './layoutService';
 import { mount, wait } from '../test-utils';
 
+import { convertStepToLayout, inlineReferences } from './layoutService';
+
+import DynamicFlow from '.';
+
 jest.mock('./layoutService');
-jest.mock('../layout', () => () => <div />);
+jest.mock(
+  '../layout',
+  () =>
+    function () {
+      return <div />;
+    },
+);
 
 // We want to use the original implementation so everything continues to function
 const layoutService = jest.requireActual('./layoutService');
@@ -209,16 +217,8 @@ describe('Given a component for rendering a dynamic flow', () => {
     }
   };
 
-  // eslint-disable-next-line
   function getLayout() {
     return component.find(DynamicLayout);
-  }
-
-  function waitBeforeEach() {
-    beforeEach(async () => {
-      await wait(0);
-      component.update();
-    });
   }
 
   beforeEach(async () => {
@@ -232,6 +232,14 @@ describe('Given a component for rendering a dynamic flow', () => {
     convertStepToLayout.mockClear();
     inlineReferences.mockClear();
   });
+
+  function waitBeforeEach() {
+    // eslint-disable-next-line jest/no-duplicate-hooks
+    beforeEach(async () => {
+      await wait(0);
+      component.update();
+    });
+  }
 
   describe('when instantiated', () => {
     beforeEach(() => {
@@ -256,9 +264,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   });
 
   describe('when there is JS step', () => {
-    it('should use the DynamicJS component', () => {
-      // TODO
-    });
+    it.todo('should use the DynamicJS component');
   });
 
   describe('when there is a decision step with no step layout', () => {
@@ -301,7 +307,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     it('should inline any schemas referenced by id using the layout service', () => {
-      expect(inlineReferences).toHaveBeenCalled();
+      expect(inlineReferences).toHaveBeenCalledTimes(3);
     });
   });
 
@@ -327,8 +333,8 @@ describe('Given a component for rendering a dynamic flow', () => {
 
   describe('when there is a step layout', () => {
     const inlineFormLayout = [
-      { type: 'form', schema: thingSchema },
-      { type: 'form', schema: anotherThingSchema },
+      { model: undefined, type: 'form', schema: thingSchema },
+      { model: undefined, type: 'form', schema: anotherThingSchema },
     ];
 
     beforeEach(() => {
@@ -350,11 +356,11 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     it('should inline the form schema(s) and pass as the specification as a layout', () => {
-      expect(getLayout().prop('components')).toEqual(inlineFormLayout);
+      expect(getLayout().prop('components')).toStrictEqual(inlineFormLayout);
     });
 
     it('should pass the layout the step model', () => {
-      expect(getLayout().prop('model')).toEqual(formStep.model);
+      expect(getLayout().prop('model')).toStrictEqual(formStep.model);
     });
 
     describe('when a model update is triggered by mulitple schemas', () => {
@@ -382,7 +388,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should pass the expected model to the layout', () => {
-        expect(getLayout().prop('model')).toEqual(expetectModel);
+        expect(getLayout().prop('model')).toStrictEqual(expetectModel);
       });
     });
 
@@ -404,11 +410,11 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should pass the new schema to the layout', () => {
-        expect(getLayout().prop('components')).toEqual(newLayout);
+        expect(getLayout().prop('components')).toStrictEqual(newLayout);
       });
 
       it('should pass the new model to the layout', () => {
-        expect(getLayout().prop('model')).toEqual(newModel);
+        expect(getLayout().prop('model')).toStrictEqual(newModel);
       });
     });
 
@@ -434,11 +440,11 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should pass the new schema to the layout', () => {
-        expect(getLayout().prop('components')).toEqual(newLayout);
+        expect(getLayout().prop('components')).toStrictEqual(newLayout);
       });
 
       it('should pass the new model to the layout', () => {
-        expect(getLayout().prop('model')).toEqual(newModel);
+        expect(getLayout().prop('model')).toStrictEqual(newModel);
       });
     });
 
@@ -448,7 +454,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should continue to render the original step', () => {
-        expect(getLayout().prop('components')).toEqual(inlineFormLayout);
+        expect(getLayout().prop('components')).toStrictEqual(inlineFormLayout);
       });
     });
 
@@ -554,7 +560,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should exit the flow', () => {
-        expect(onClose).toHaveBeenCalled();
+        expect(onClose).toHaveBeenCalledTimes(1);
       });
 
       it('should not trigger onStepChange', () => {
@@ -579,21 +585,6 @@ describe('Given a component for rendering a dynamic flow', () => {
         });
       });
     });
-
-    // No such thing at the moment
-    // describe('when we recieve a flow termination', () => {
-    //   beforeEach(() => {
-    //     stepResolve({ exit: true }); // TODO what is the format for exit?
-    //   });
-    //
-    //   it('should exit the flow', () => {
-    //     expect(onClose).toHaveBeenCalled();
-    //   });
-    //
-    //   it('should not trigger onStepChange', () => {
-    //     expect(onStepChange).not.toHaveBeenCalled();
-    //   });
-    // });
 
     describe('when the layout triggers a client side exit action', () => {
       const exitAction = {
@@ -689,7 +680,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should exit the flow', () => {
-        expect(onClose).toHaveBeenCalled();
+        expect(onClose).toHaveBeenCalledTimes(1);
       });
 
       it('should not trigger onStepChange', () => {
@@ -723,7 +714,7 @@ describe('Given a component for rendering a dynamic flow', () => {
         getLayout().simulateError(errors);
       });
 
-      it('it should call onError with error', () => {
+      it('should call onError with error', () => {
         expect(onClose).not.toHaveBeenCalled();
         expect(onError).toHaveBeenCalledWith(errors);
       });

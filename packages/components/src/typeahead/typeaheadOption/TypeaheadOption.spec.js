@@ -26,21 +26,21 @@ describe('Typeahead Option', () => {
   it('renders a label', () => {
     const label = 'test';
     component.setProps({ option: { label } });
-    expect(labelSpan().text()).toEqual(label);
+    expect(labelSpan().text()).toStrictEqual(label);
   });
 
   it('renders a note', () => {
     const label = 'test';
     const note = 'test note';
     component.setProps({ option: { label, note } });
-    expect(noteSpan().text()).toEqual(note);
+    expect(noteSpan().text()).toStrictEqual(note);
   });
 
   it('renders a seconday text', () => {
     const label = 'test';
     const secondary = 'test note';
     component.setProps({ option: { label, secondary } });
-    expect(secondaryTextSpan().text()).toEqual(secondary);
+    expect(secondaryTextSpan().text()).toStrictEqual(secondary);
   });
 
   it('highlights when selected', () => {
@@ -59,6 +59,6 @@ describe('Typeahead Option', () => {
 
     dropdownItem().simulate('click', fakeEvent);
 
-    expect(onClick).toBeCalled();
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

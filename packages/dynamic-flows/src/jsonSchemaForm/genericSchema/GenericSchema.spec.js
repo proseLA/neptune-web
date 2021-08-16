@@ -1,12 +1,12 @@
 import { shallow } from 'enzyme';
 
-import GenericSchema from '.';
-
+import AllOfSchema from '../allOfSchema';
 import BasicTypeSchema from '../basicTypeSchema';
 import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
-import AllOfSchema from '../allOfSchema';
 import PersistAsyncSchema from '../persistAsyncSchema';
+
+import GenericSchema from '.';
 
 describe('Given a component for rendering any generic schema', () => {
   let component;
@@ -38,7 +38,7 @@ describe('Given a component for rendering any generic schema', () => {
     };
   });
 
-  describe('when a string schema is supplied ', () => {
+  describe('when a string schema is supplied', () => {
     let stringSchemaComponent;
 
     beforeEach(() => {
@@ -54,15 +54,15 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render a StringSchema', () => {
-      expect(stringSchemaComponent.length).toBe(1);
+      expect(stringSchemaComponent).toHaveLength(1);
     });
 
     it('should pass through the supplied data to the StringSchema', () => {
-      expect(stringSchemaComponent.prop('schema')).toEqual(schema);
-      expect(stringSchemaComponent.prop('model')).toEqual(model);
-      expect(stringSchemaComponent.prop('errors')).toEqual(errors);
-      expect(stringSchemaComponent.prop('locale')).toEqual(locale);
-      expect(stringSchemaComponent.prop('translations')).toEqual(translations);
+      expect(stringSchemaComponent.prop('schema')).toStrictEqual(schema);
+      expect(stringSchemaComponent.prop('model')).toStrictEqual(model);
+      expect(stringSchemaComponent.prop('errors')).toStrictEqual(errors);
+      expect(stringSchemaComponent.prop('locale')).toStrictEqual(locale);
+      expect(stringSchemaComponent.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when the child component triggers onChange', () => {
@@ -76,7 +76,7 @@ describe('Given a component for rendering any generic schema', () => {
     });
   });
 
-  describe('when a number schema is supplied ', () => {
+  describe('when a number schema is supplied', () => {
     let numberSchemaComponent;
 
     beforeEach(() => {
@@ -92,15 +92,15 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render a StringSchema', () => {
-      expect(numberSchemaComponent.length).toBe(1);
+      expect(numberSchemaComponent).toHaveLength(1);
     });
 
     it('should pass through the supplied data to the StringSchema', () => {
-      expect(numberSchemaComponent.prop('schema')).toEqual(schema);
-      expect(numberSchemaComponent.prop('model')).toEqual(model);
-      expect(numberSchemaComponent.prop('errors')).toEqual(errors);
-      expect(numberSchemaComponent.prop('locale')).toEqual(locale);
-      expect(numberSchemaComponent.prop('translations')).toEqual(translations);
+      expect(numberSchemaComponent.prop('schema')).toStrictEqual(schema);
+      expect(numberSchemaComponent.prop('model')).toStrictEqual(model);
+      expect(numberSchemaComponent.prop('errors')).toStrictEqual(errors);
+      expect(numberSchemaComponent.prop('locale')).toStrictEqual(locale);
+      expect(numberSchemaComponent.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when the child component triggers onChange', () => {
@@ -114,7 +114,7 @@ describe('Given a component for rendering any generic schema', () => {
     });
   });
 
-  describe('when a boolean schema is supplied ', () => {
+  describe('when a boolean schema is supplied', () => {
     let booleanSchemaComponent;
 
     beforeEach(() => {
@@ -130,15 +130,15 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render a StringSchema', () => {
-      expect(booleanSchemaComponent.length).toBe(1);
+      expect(booleanSchemaComponent).toHaveLength(1);
     });
 
     it('should pass through the supplied data to the StringSchema', () => {
-      expect(booleanSchemaComponent.prop('schema')).toEqual(schema);
-      expect(booleanSchemaComponent.prop('model')).toEqual(model);
-      expect(booleanSchemaComponent.prop('errors')).toEqual(errors);
-      expect(booleanSchemaComponent.prop('locale')).toEqual(locale);
-      expect(booleanSchemaComponent.prop('translations')).toEqual(translations);
+      expect(booleanSchemaComponent.prop('schema')).toStrictEqual(schema);
+      expect(booleanSchemaComponent.prop('model')).toStrictEqual(model);
+      expect(booleanSchemaComponent.prop('errors')).toStrictEqual(errors);
+      expect(booleanSchemaComponent.prop('locale')).toStrictEqual(locale);
+      expect(booleanSchemaComponent.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when the child component triggers onChange', () => {
@@ -152,7 +152,7 @@ describe('Given a component for rendering any generic schema', () => {
     });
   });
 
-  describe('when an object schema is supplied ', () => {
+  describe('when an object schema is supplied', () => {
     let objectSchemaComponent;
 
     beforeEach(() => {
@@ -174,15 +174,15 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render a ObjectSchema', () => {
-      expect(objectSchemaComponent.length).toBe(1);
+      expect(objectSchemaComponent).toHaveLength(1);
     });
 
     it('should pass through the supplied data to the ObjectSchema', () => {
-      expect(objectSchemaComponent.prop('schema')).toEqual(schema);
-      expect(objectSchemaComponent.prop('model')).toEqual(model);
-      expect(objectSchemaComponent.prop('errors')).toEqual(errors);
-      expect(objectSchemaComponent.prop('locale')).toEqual(locale);
-      expect(objectSchemaComponent.prop('translations')).toEqual(translations);
+      expect(objectSchemaComponent.prop('schema')).toStrictEqual(schema);
+      expect(objectSchemaComponent.prop('model')).toStrictEqual(model);
+      expect(objectSchemaComponent.prop('errors')).toStrictEqual(errors);
+      expect(objectSchemaComponent.prop('locale')).toStrictEqual(locale);
+      expect(objectSchemaComponent.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when the child component triggers onChange', () => {
@@ -196,7 +196,7 @@ describe('Given a component for rendering any generic schema', () => {
     });
   });
 
-  describe('when a oneOf schema is supplied ', () => {
+  describe('when a oneOf schema is supplied', () => {
     let oneOfComponent;
 
     beforeEach(() => {
@@ -217,15 +217,15 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render a oneOfSchema', () => {
-      expect(oneOfComponent.length).toBe(1);
+      expect(oneOfComponent).toHaveLength(1);
     });
 
     it('should pass through the supplied data to the oneOfSchema', () => {
-      expect(oneOfComponent.prop('schema')).toEqual(schema);
-      expect(oneOfComponent.prop('model')).toEqual(model);
-      expect(oneOfComponent.prop('errors')).toEqual(errors);
-      expect(oneOfComponent.prop('locale')).toEqual(locale);
-      expect(oneOfComponent.prop('translations')).toEqual(translations);
+      expect(oneOfComponent.prop('schema')).toStrictEqual(schema);
+      expect(oneOfComponent.prop('model')).toStrictEqual(model);
+      expect(oneOfComponent.prop('errors')).toStrictEqual(errors);
+      expect(oneOfComponent.prop('locale')).toStrictEqual(locale);
+      expect(oneOfComponent.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when the child component triggers onChange', () => {
@@ -239,7 +239,7 @@ describe('Given a component for rendering any generic schema', () => {
     });
   });
 
-  describe('when a oneOf schema also has a type ', () => {
+  describe('when a oneOf schema also has a type', () => {
     let oneOfComponent;
     let basicTypeSchemaComponent;
 
@@ -263,14 +263,14 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render a oneOfSchema', () => {
-      expect(oneOfComponent.length).toBe(1);
+      expect(oneOfComponent).toHaveLength(1);
     });
     it('should not render a basicTypeSchema', () => {
-      expect(basicTypeSchemaComponent.length).toBe(0);
+      expect(basicTypeSchemaComponent).toHaveLength(0);
     });
   });
 
-  describe('when an allOf schema is supplied ', () => {
+  describe('when an allOf schema is supplied', () => {
     let allOfComponent;
 
     beforeEach(() => {
@@ -291,15 +291,15 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render a AllOfSchema', () => {
-      expect(allOfComponent.length).toBe(1);
+      expect(allOfComponent).toHaveLength(1);
     });
 
     it('should pass through the supplied data to the AllOfSchema', () => {
-      expect(allOfComponent.prop('schema')).toEqual(schema);
-      expect(allOfComponent.prop('model')).toEqual(model);
-      expect(allOfComponent.prop('errors')).toEqual(errors);
-      expect(allOfComponent.prop('locale')).toEqual(locale);
-      expect(allOfComponent.prop('translations')).toEqual(translations);
+      expect(allOfComponent.prop('schema')).toStrictEqual(schema);
+      expect(allOfComponent.prop('model')).toStrictEqual(model);
+      expect(allOfComponent.prop('errors')).toStrictEqual(errors);
+      expect(allOfComponent.prop('locale')).toStrictEqual(locale);
+      expect(allOfComponent.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when the child component triggers onChange', () => {
@@ -337,21 +337,21 @@ describe('Given a component for rendering any generic schema', () => {
     });
 
     it('should render persist async schema', () => {
-      expect(component.find(PersistAsyncSchema).length).toBe(1);
+      expect(component.find(PersistAsyncSchema)).toHaveLength(1);
     });
 
     it('should pass through the supplied data to the PersistAsyncSchema', () => {
       const persistAsyncComponent = component.find(PersistAsyncSchema);
 
-      expect(persistAsyncComponent.prop('schema')).toEqual(schema);
-      expect(persistAsyncComponent.prop('model')).toEqual(model);
-      expect(persistAsyncComponent.prop('errors')).toEqual(errors);
-      expect(persistAsyncComponent.prop('locale')).toEqual(locale);
-      expect(persistAsyncComponent.prop('translations')).toEqual(translations);
+      expect(persistAsyncComponent.prop('schema')).toStrictEqual(schema);
+      expect(persistAsyncComponent.prop('model')).toStrictEqual(model);
+      expect(persistAsyncComponent.prop('errors')).toStrictEqual(errors);
+      expect(persistAsyncComponent.prop('locale')).toStrictEqual(locale);
+      expect(persistAsyncComponent.prop('translations')).toStrictEqual(translations);
     });
 
     it('should not render basic type schema', () => {
-      expect(component.find(BasicTypeSchema).length).toBe(0);
+      expect(component.find(BasicTypeSchema)).toHaveLength(0);
     });
   });
 });

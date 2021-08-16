@@ -1,13 +1,18 @@
-import { shallow } from 'enzyme';
 import * as formatting from '@transferwise/formatting';
+import { shallow } from 'enzyme';
+
+import Header from '../header';
+
+import DayCalendarTable from './table';
 
 import DayCalendar from '.';
-import Header from '../header';
-import DayCalendarTable from './table';
 
 const locale = 'en-GB';
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale }} />,
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale }} />;
+    },
 }));
 jest.mock('@transferwise/formatting', () => ({
   formatDate: jest.fn().mockReturnValue('MonthName XXXX'),
@@ -70,24 +75,24 @@ describe('DayCalendar', () => {
 
   it('calls onViewDateUpdate on previous month select', () => {
     component.instance().selectPreviousMonth();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 2018, month: 9 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 2018, month: 9 });
   });
 
   it('calls onViewDateUpdate on previous month select (year before)', () => {
     component.setProps({ viewMonth: 0 });
     component.instance().selectPreviousMonth();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 2017, month: 11 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 2017, month: 11 });
   });
 
   it('calls onViewDateUpdate on next year select', () => {
     component.instance().selectNextMonth();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 2018, month: 11 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 2018, month: 11 });
   });
 
   it('calls onViewDateUpdate on next year select (year after)', () => {
     component.setProps({ viewMonth: 11 });
     component.instance().selectNextMonth();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 2019, month: 0 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 2019, month: 0 });
   });
 
   it('shows month calendar table', () => {

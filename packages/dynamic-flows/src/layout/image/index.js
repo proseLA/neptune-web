@@ -1,16 +1,16 @@
+import { Image } from '@transferwise/components';
 import Types from 'prop-types';
 
-import { Image } from '@transferwise/components';
 import { marginModel } from '../models';
 import { getMarginBottom } from '../utils';
 
+const getImageClasses = (component) => {
+  const margin = getMarginBottom(component.margin);
+  return `img-responsive ${margin}`;
+};
+
 const DynamicImage = (props) => {
   const image = props.component;
-
-  const getImageClasses = (component) => {
-    const margin = getMarginBottom(component.margin);
-    return `img-responsive ${margin}`;
-  };
 
   const imageProps = {
     alt: image.text,

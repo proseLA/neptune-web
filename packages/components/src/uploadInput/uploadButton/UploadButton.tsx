@@ -1,14 +1,14 @@
+import { Upload as UploadIcon, PlusCircle as PlusIcon } from '@transferwise/icons';
+import classNames from 'classnames';
 import React, { useState, useRef, DragEvent, ChangeEvent } from 'react';
 import { useIntl } from 'react-intl';
-import classNames from 'classnames';
-import { Upload as UploadIcon, PlusCircle as PlusIcon } from '@transferwise/icons';
 
-import { useDirection } from '../../common/hooks';
-import { imageFileTypes, DEFAULT_SIZE_LIMIT } from './defaults';
-import getAllowedFileTypes from './getAllowedFileTypes';
 import { FileType } from '../../common';
+import { useDirection } from '../../common/hooks';
 
 import MESSAGES from './UploadButton.messages';
+import { imageFileTypes, DEFAULT_SIZE_LIMIT } from './defaults';
+import getAllowedFileTypes from './getAllowedFileTypes';
 
 export type UploadButtonProps = {
   /**
@@ -33,6 +33,7 @@ export type UploadButtonProps = {
 
   /**
    * Called when some files were successfully selected
+   *
    * @param files
    */
   onChange: (files: FileList) => void;
@@ -43,6 +44,10 @@ export enum TEST_IDS {
   mediaBody = 'mediaBody',
 }
 
+const onDragOver = (event: DragEvent): void => {
+  event.preventDefault();
+};
+
 const UploadButton = ({
   disabled,
   multiple,
@@ -52,7 +57,7 @@ const UploadButton = ({
 }: UploadButtonProps) => {
   const { isRTL } = useDirection();
   const { formatMessage } = useIntl();
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputReference = useRef<HTMLInputElement>(null);
 
   const [isDropping, setIsDropping] = useState(false);
 
@@ -63,42 +68,38 @@ const UploadButton = ({
     setIsDropping(false);
   };
 
-  const onDragLeave = (e: DragEvent): void => {
-    e.preventDefault();
+  const onDragLeave = (event: DragEvent): void => {
+    event.preventDefault();
     dragCounter.current -= 1;
     if (dragCounter.current === 0) {
       setIsDropping(false);
     }
   };
 
-  const onDragEnter = (e: DragEvent): void => {
-    e.preventDefault();
+  const onDragEnter = (event: DragEvent): void => {
+    event.preventDefault();
     dragCounter.current += 1;
     if (dragCounter.current === 1) {
       setIsDropping(true);
     }
   };
 
-  const onDrop = (e: DragEvent): void => {
-    e.preventDefault();
+  const onDrop = (event: DragEvent): void => {
+    event.preventDefault();
     reset();
-    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
-      onChange(e.dataTransfer.files);
+    if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
+      onChange(event.dataTransfer.files);
     }
   };
 
-  const onDragOver = (e: DragEvent): void => {
-    e.preventDefault();
-  };
-
-  const filesSelected = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { files } = e.target;
+  const filesSelected = (event: ChangeEvent<HTMLInputElement>): void => {
+    const { files } = event.target;
 
     if (files) {
       onChange(files);
 
-      if (inputRef.current) {
-        inputRef.current.value = '';
+      if (inputReference.current) {
+        inputReference.current.value = '';
       }
     }
   };
@@ -130,7 +131,7 @@ const UploadButton = ({
       {...(!disabled && { onDragEnter, onDragLeave, onDrop, onDragOver })}
     >
       <input
-        ref={inputRef}
+        ref={inputReference}
         id="np-upload-button"
         type="file"
         {...(!allowAllFileTypes && { accept: acceptFileTypes })}
@@ -138,8 +139,8 @@ const UploadButton = ({
         className="tw-droppable-input"
         disabled={disabled}
         name="file-upload"
-        onChange={filesSelected}
         data-testid={TEST_IDS.uploadInput}
+        onChange={filesSelected}
       />
       <label
         htmlFor="np-upload-button"

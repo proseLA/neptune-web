@@ -1,4 +1,5 @@
 import { text } from '@storybook/addon-knobs';
+
 import Markdown from './Markdown';
 
 export default {
@@ -6,7 +7,7 @@ export default {
   title: 'Markdown',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const markdown = text(
     'markdown',
     `# Heading

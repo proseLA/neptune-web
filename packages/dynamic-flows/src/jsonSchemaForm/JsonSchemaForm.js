@@ -1,6 +1,8 @@
 import Types from 'prop-types';
-import GenericSchema from './genericSchema';
+
 import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
+
+import GenericSchema from './genericSchema';
 
 const JsonSchemaForm = (props) => {
   const { baseUrl } = props;

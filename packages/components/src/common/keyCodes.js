@@ -1,5 +1,6 @@
 /**
  * TODO: mention what to use instead or consider to delete this object
+ *
  * @deprecated
  */
 export default {

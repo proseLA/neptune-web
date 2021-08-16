@@ -1,15 +1,15 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import JsonSchemaForm from './JsonSchemaForm';
 
-import simpleSchema from './schemas/simple.json';
-import promotedOneOfSchema from './schemas/promotedOneOf.json';
-import promotedOneOfCheckboxSchema from './schemas/promotedOneOfCheckbox.json';
-import oneOfSchema from './schemas/oneOf.json';
+import JsonSchemaForm from './JsonSchemaForm';
 import allOfSchema from './schemas/allOf.json';
 import audRecipientSchema from './schemas/audRecipient.json';
-import fileUploadPersistAsyncSchema from './schemas/uploadPersistAsync.json';
 import currencySchema from './schemas/currency.json';
+import oneOfSchema from './schemas/oneOf.json';
+import promotedOneOfSchema from './schemas/promotedOneOf.json';
+import promotedOneOfCheckboxSchema from './schemas/promotedOneOfCheckbox.json';
+import simpleSchema from './schemas/simple.json';
+import fileUploadPersistAsyncSchema from './schemas/uploadPersistAsync.json';
 import validationAsyncSchema from './schemas/validationAsync.json';
 
 export default {
@@ -49,10 +49,10 @@ export const basic = () => {
       model={model}
       errors={errors}
       translations={translationsFromProps}
-      onChange={action('onChange')}
       submitted={submitted}
       disabled={disabled}
       baseUrl=""
+      onChange={action('onChange')}
       onPersistAsync={() => {}}
     />
   );

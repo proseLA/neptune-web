@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const RadioButton = ({ id, value, name, checked, onChange, disabled, readOnly }) => (
   <>
@@ -10,8 +10,8 @@ const RadioButton = ({ id, value, name, checked, onChange, disabled, readOnly })
       value={value}
       name={name}
       checked={checked}
-      onChange={() => (!checked ? onChange(value) : null)}
       disabled={disabled || readOnly}
+      onChange={() => (!checked ? onChange(value) : null)}
     />
     <span className={classNames('tw-radio-button', { checked, disabled: disabled || readOnly })}>
       <span className="tw-radio-check" />

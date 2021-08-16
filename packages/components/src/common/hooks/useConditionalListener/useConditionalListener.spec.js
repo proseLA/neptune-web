@@ -1,5 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks';
+
 import { fireEvent } from '../../../test-utils';
+
 import { useConditionalListener } from './useConditionalListener';
 
 describe('useConditionalListener', () => {
@@ -30,7 +32,7 @@ describe('useConditionalListener', () => {
         fireEvent.click(document, triggeredEvent);
       });
 
-      expect(args.callback).toHaveBeenCalled();
+      expect(args.callback).toHaveBeenCalledTimes(1);
     });
   });
 

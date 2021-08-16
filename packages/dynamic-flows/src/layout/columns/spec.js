@@ -1,7 +1,8 @@
 import { shallow } from 'enzyme';
 
-import DynamicColumns from '.';
 import DynamicLayout from '../DynamicLayout';
+
+import DynamicColumns from '.';
 
 describe('Given a component for dynamically rendering columns', () => {
   let component;

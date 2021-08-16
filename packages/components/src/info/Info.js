@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { HelpCircle as HelpCircleIcon } from '@transferwise/icons';
-import Popover from '../popover';
-import Modal from '../modal';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+
 import { Size, Position } from '../common';
+import Modal from '../modal';
+import Popover from '../popover';
+
 import { InfoPresentation } from './infoPresentations';
 
 const Info = (props) => {
@@ -39,7 +41,7 @@ const Info = (props) => {
             }}
             {...buttonProps}
           />
-          <Modal body={content} onClose={() => setOpen(false)} open={open} title={title} />
+          <Modal body={content} open={open} title={title} onClose={() => setOpen(false)} />
         </>
       ) : (
         <Popover content={content} preferredPlacement={Position.BOTTOM} title={title}>

@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import Tabs from './Tabs';
+
 import { Size, Width } from '../common';
+
+import Tabs from './Tabs';
 
 export default {
   component: Tabs,
   title: 'Tabs',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [selected, setSelected] = useState(0);
   return (
     <Tabs
@@ -47,7 +49,7 @@ export const basic = () => {
   );
 };
 
-export const blockTabHeaderWidth = () => {
+export const BlockTabHeaderWidth = () => {
   const [selected, setSelected] = useState(0);
   return (
     <Tabs
@@ -90,7 +92,7 @@ export const blockTabHeaderWidth = () => {
   );
 };
 
-export const noPanelAnimation = () => {
+export const NoPanelAnimation = () => {
   const [selected, setSelected] = useState(0);
   return (
     <Tabs

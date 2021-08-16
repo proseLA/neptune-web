@@ -1,6 +1,6 @@
-import { createRef, PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { Upload as UploadIcon } from '@transferwise/icons';
+import PropTypes from 'prop-types';
+import { createRef, PureComponent } from 'react';
 
 class UploadImageStep extends PureComponent {
   constructor() {
@@ -51,13 +51,13 @@ class UploadImageStep extends PureComponent {
                 <UploadIcon size={24} className="m-r-0" />
               )}
               <input
+                ref={this.uploadInputRef}
                 type="file"
                 accept={usAccept === '*' ? null : usAccept}
                 className="tw-droppable-input hidden"
                 disabled={usDisabled}
                 name="file-upload"
                 onChange={() => this.onManualUpload()}
-                ref={this.uploadInputRef}
               />
             </label>
           </div>

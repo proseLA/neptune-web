@@ -1,5 +1,5 @@
-import Types from 'prop-types';
 import { Checkbox } from '@transferwise/components';
+import Types from 'prop-types';
 
 const PromotedOneOfCheckboxControl = (props) => {
   const { selection, setSelection } = props;
@@ -17,7 +17,7 @@ const PromotedOneOfCheckboxControl = (props) => {
 
   return (
     <div className="form-group">
-      <Checkbox label={title} onChange={toggleSelection} checked={checked} />
+      <Checkbox label={title} checked={checked} onChange={toggleSelection} />
     </div>
   );
 };

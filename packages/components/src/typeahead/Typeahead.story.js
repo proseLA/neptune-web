@@ -1,20 +1,24 @@
-import { useState } from 'react';
-import { Search as SearchIcon } from '@transferwise/icons';
 import { select, boolean } from '@storybook/addon-knobs';
-import Typeahead from './Typeahead';
+import { Search as SearchIcon } from '@transferwise/icons';
+import { useState } from 'react';
+
 import { Sentiment } from '../common';
+
+import Typeahead from './Typeahead';
 
 export default {
   component: Typeahead,
   title: 'Typeahead',
 };
 
-export const createable = () => {
-  const validateChip = (option) =>
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      option.label,
-    );
+const validateChip = (option) => {
+  // eslint-disable-next-line unicorn/no-unsafe-regex
+  return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    option.label,
+  );
+};
 
+export const createable = () => {
   return (
     <Typeahead
       id="typeahead"
@@ -30,15 +34,15 @@ export const createable = () => {
       placeholder="placeholder"
       chipSeparators={[',', ' ']}
       validateChip={validateChip}
-      onChange={() => {}}
       addon={<SearchIcon />}
-      onBlur={() => {}}
       options={[]}
+      onChange={() => {}}
+      onBlur={() => {}}
     />
   );
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [options, setOptions] = useState([
     {
       label: 'A thing',
@@ -64,13 +68,10 @@ export const basic = () => {
       label: 'Something else',
     },
   ]);
-  const validateChip =
-    multiple && allowNew
-      ? (option) =>
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-            option.label,
-          )
-      : undefined;
+
+  const validateChipWhenMultiple = () => {
+    return multiple && allowNew ? (option) => validateChip(option) : undefined;
+  };
 
   const multiple = boolean('multiple', false);
   const clearable = boolean('clearable', false);
@@ -94,16 +95,16 @@ export const basic = () => {
       showNewEntry={showNewEntry}
       placeholder="placeholder"
       chipSeparators={[',', ' ']}
-      validateChip={validateChip}
+      validateChip={validateChipWhenMultiple}
       alert={showAlert && { message: `Couldn't add item`, type: alertType }}
+      addon={<SearchIcon />}
+      options={options}
+      inputAutoComplete="off"
       onSearch={() => {
         setTimeout(() => setOptions(options), 1500);
       }}
       onChange={() => {}}
-      addon={<SearchIcon />}
       onBlur={() => {}}
-      options={options}
-      inputAutoComplete="off"
     />
   );
 };

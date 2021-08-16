@@ -3,7 +3,7 @@ import WithDisplayFormat from '.';
 describe('WithDisplayFormat', () => {
   it('should return null if props change to the same value', () => {
     const nextProps = { displayPattern: '**-**' };
-    const prevState = {
+    const previousState = {
       value: '11/11',
       prevDisplayPattern: '**-**',
       historyNavigator: { reset: jest.fn() },
@@ -13,12 +13,14 @@ describe('WithDisplayFormat', () => {
     };
     const expectedState = null;
 
-    expect(WithDisplayFormat.getDerivedStateFromProps(nextProps, prevState)).toEqual(expectedState);
+    expect(WithDisplayFormat.getDerivedStateFromProps(nextProps, previousState)).toStrictEqual(
+      expectedState,
+    );
   });
 
   it('should update displayPattern on props change', () => {
     const nextProps = { displayPattern: '**-**' };
-    const prevState = {
+    const previousState = {
       value: '11/11',
       prevDisplayPattern: '**/**',
       historyNavigator: { reset: jest.fn() },
@@ -33,6 +35,8 @@ describe('WithDisplayFormat', () => {
       triggerType: null,
       pastedLength: 0,
     };
-    expect(WithDisplayFormat.getDerivedStateFromProps(nextProps, prevState)).toEqual(expectedState);
+    expect(WithDisplayFormat.getDerivedStateFromProps(nextProps, previousState)).toStrictEqual(
+      expectedState,
+    );
   });
 });

@@ -1,14 +1,16 @@
-import { cloneElement, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import requiredIf from 'react-required-if';
 import { InfoCircle, CheckCircle, Alert as AlertIcon, AlertCircle } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { cloneElement, useState, useRef } from 'react';
+import requiredIf from 'react-required-if';
+
 import { Sentiment } from '../common';
 import CloseButton from '../common/closeButton';
-import withArrow from './withArrow';
-import InlineMarkdown from './inlineMarkdown';
-import { logActionRequiredIf, deprecated } from '../utilities';
 import { useDirection } from '../common/hooks';
+import { logActionRequiredIf, deprecated } from '../utilities';
+
+import InlineMarkdown from './inlineMarkdown';
+import withArrow from './withArrow';
 
 const deprecatedTypeMap = {
   [Sentiment.SUCCESS]: Sentiment.POSITIVE,
@@ -26,7 +28,7 @@ const iconTypeMap = {
 const Alert = (props) => {
   const [shouldFire, setShouldFire] = useState(false);
   const { arrow, action, children, className, icon, onDismiss, message, type } = props;
-  const closeButtonRef = useRef(null);
+  const closeButtonReference = useRef(null);
   const { isRTL } = useDirection();
 
   if (arrow) {
@@ -39,7 +41,7 @@ const Alert = (props) => {
   const mappedType = deprecatedTypeMap[type] || type;
 
   const Icon = iconTypeMap[mappedType];
-  const iconEl = icon ? cloneElement(icon, { size: 24 }) : <Icon size={24} />;
+  const iconElement = icon ? cloneElement(icon, { size: 24 }) : <Icon size={24} />;
 
   const handleTouchStart = () => setShouldFire(true);
 
@@ -48,7 +50,7 @@ const Alert = (props) => {
   const handleTouchEnd = (event) => {
     if (shouldFire && action) {
       // Check if current event is triggered from closeButton
-      if (closeButtonRef?.current && !closeButtonRef.current.contains(event.target)) {
+      if (closeButtonReference?.current && !closeButtonReference.current.contains(event.target)) {
         if (action?.target === '_blank') {
           window.top.open(action.href);
         } else {
@@ -59,7 +61,7 @@ const Alert = (props) => {
     setShouldFire(false);
   };
 
-  const alert = (
+  return (
     <div
       role="alert"
       className={classNames('alert d-flex', `alert-${mappedType}`, className)}
@@ -67,7 +69,7 @@ const Alert = (props) => {
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
     >
-      {iconEl}
+      {iconElement}
       <div
         className={classNames('alert__message flex-grow-1', { 'p-l-2': !isRTL, 'p-r-2': isRTL })}
       >
@@ -85,16 +87,14 @@ const Alert = (props) => {
       </div>
       {onDismiss && (
         <CloseButton
-          onClick={onDismiss}
+          ref={closeButtonReference}
           size={16}
           className={classNames({ 'm-l-2': !isRTL, 'm-r-2': isRTL })}
-          ref={closeButtonRef}
+          onClick={onDismiss}
         />
       )}
     </div>
   );
-
-  return alert;
 };
 
 const deprecatedTypeMapMessage = {
@@ -127,7 +127,7 @@ Alert.propTypes = {
   className: PropTypes.string,
   /** An optional icon. If not provided, we will default the icon to something appropriate for the type */
   icon: PropTypes.element,
-  /** The main body of the alert. Accepts plain text and bold words specified with **double stars** */
+  /** The main body of the alert. Accepts plain text and bold words specified with **double stars*/
   message: requiredIf(PropTypes.node, ({ children }) => !children),
   /** The presence of the onDismiss handler will trigger the visibility of the close button */
   onDismiss: PropTypes.func,

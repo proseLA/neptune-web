@@ -1,6 +1,7 @@
 import { Freeze, Emoji, New } from '@transferwise/icons';
 
 import { render, screen, userEvent } from '../test-utils';
+
 import Accordion from './Accordion';
 
 describe('Accordion', () => {
@@ -38,7 +39,7 @@ describe('Accordion', () => {
     it('renders a list with a specified item open if indexOpen is set', () => {
       const { container } = render(<Accordion items={items} indexOpen={1} />);
       const openItems = container.querySelectorAll('.tw-accordion-item[aria-expanded="true"]');
-      expect(openItems.length).toBe(1);
+      expect(openItems).toHaveLength(1);
 
       const openItem = container.querySelector(
         '.tw-accordion-item[aria-expanded="true"] .title .h5',
@@ -49,8 +50,8 @@ describe('Accordion', () => {
 
   describe('open and close', () => {
     it('opens an item when clicked', () => {
-      const { getAllByRole, container } = render(<Accordion items={items} />);
-      userEvent.click(getAllByRole('button')[0]);
+      const { container } = render(<Accordion items={items} />);
+      userEvent.click(screen.getAllByRole('button')[0]);
 
       expect(container).toMatchSnapshot();
       expect(container.querySelectorAll('.closed')).toHaveLength(2);
@@ -61,9 +62,9 @@ describe('Accordion', () => {
     it('calls onClick when an item is clicked', () => {
       const onClick = jest.fn();
 
-      const { getAllByRole } = render(<Accordion items={items} onClick={onClick} />);
+      render(<Accordion items={items} onClick={onClick} />);
 
-      userEvent.click(getAllByRole('button')[0]);
+      userEvent.click(screen.getAllByRole('button')[0]);
 
       expect(onClick).toHaveBeenCalledTimes(1);
       expect(onClick).toHaveBeenCalledWith(0);

@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 
 const prepRequirements = (alternatives) => {
-  if (!alternatives || !alternatives.length) {
+  if (!alternatives || alternatives.length === 0) {
     return [];
   }
 
@@ -70,7 +70,7 @@ const prepField = (field, model, validationMessages) => {
  * to a single array, which is returned.
  */
 const flattenFieldsWithGroups = (fields) => {
-  if (fields instanceof Array) {
+  if (Array.isArray(fields)) {
     let flattenedFields = [];
     fields.forEach((field) => {
       // If we've been given a group with nested fields, break them out.
@@ -90,20 +90,20 @@ const flattenFieldsWithGroups = (fields) => {
 
 const flattenFieldWithGroup = (field, subFields) => {
   // If first field doesn't have a label, use the one from the group
-  if (field.name && subFields.length && !subFields[0].name) {
+  if (field.name && subFields.length > 0 && !subFields[0].name) {
     subFields[0].name = field.name;
   }
 
-  if (field.width && subFields.length && !subFields[0].width) {
+  if (field.width && subFields.length > 0 && !subFields[0].width) {
     subFields[0].width = field.width;
   }
 
   // If there was a tooltip at fieldGroup level move it to first field.
-  if (field.tooltip && subFields.length && !subFields[0].help) {
+  if (field.tooltip && subFields.length > 0 && !subFields[0].help) {
     subFields[0].help = { message: field.tooltip };
   }
 
-  if (field.info && subFields.length && !subFields[0].help) {
+  if (field.info && subFields.length > 0 && !subFields[0].help) {
     subFields[0].help = { message: field.info };
   }
 
@@ -128,7 +128,7 @@ const flattenFieldWithGroup = (field, subFields) => {
  * from the property name to the spec.  This converts arrays to maps.
  */
 const transformFieldArrayToMap = (fields) => {
-  if (fields instanceof Array) {
+  if (Array.isArray(fields)) {
     const fieldMap = {};
     fields.forEach((field) => {
       const key = field.key || field.name;
@@ -148,8 +148,8 @@ const transformFieldArrayToMap = (fields) => {
  * this object spec to a nested fieldset.
  */
 const transformNestedKeysToNestedSpecs = (fieldMap) => {
-  if (fieldMap instanceof Array) {
-    throw new Error('Expecting a map of fields, not an array');
+  if (Array.isArray(fieldMap)) {
+    throw new TypeError('Expecting a map of fields, not an array');
   }
 
   const nestedFields = {};
@@ -290,7 +290,7 @@ const prepLegacyProps = (field) => {
     // In some legacy arrays the first value is a placeholder, extract it.
     if (
       field.values &&
-      field.values.length &&
+      field.values.length > 0 &&
       field.values[0] &&
       !field.values[0].value &&
       field.values[0].label &&
@@ -329,8 +329,8 @@ const prepLegacyValue = (value) => {
 const prepPattern = (field) => {
   if (field.pattern) {
     try {
-      RegExp(field.pattern);
-    } catch (ex) {
+      new RegExp(field.pattern);
+    } catch {
       // eslint-disable-next-line no-console
       console.warn('API regexp is invalid');
       delete field.pattern;
@@ -367,7 +367,7 @@ const getControlType = (field) => {
   if (field.hidden) {
     return 'hidden';
   }
-  if (field.values && field.values.length) {
+  if (field.values && field.values.length > 0) {
     return getSelectionType(field);
   }
 
@@ -420,7 +420,7 @@ const getSelectionType = (field) => {
   return 'select';
 };
 
-const copyOf = (obj) => JSON.parse(JSON.stringify(obj));
+const copyOf = (object) => JSON.parse(JSON.stringify(object));
 
 /**
  * Some older requirments formats do not include a label for alternatives

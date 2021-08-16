@@ -1,8 +1,9 @@
 import { shallow } from 'enzyme';
+
+import Option from '../common/Option';
 import { render } from '../test-utils';
 
 import NavigationOption from '.';
-import Option from '../common/Option';
 
 describe('Navigation option', () => {
   let component;
@@ -29,9 +30,9 @@ describe('Navigation option', () => {
     const onClick = jest.fn();
     component.setProps({ onClick });
 
-    expect(onClick).not.toBeCalled();
+    expect(onClick).not.toHaveBeenCalled();
     option().simulate('click', { event: true });
-    expect(onClick).toBeCalledWith({ event: true });
+    expect(onClick).toHaveBeenCalledWith({ event: true });
   });
 
   it('tells option to render as an anchor when a href is passed', () => {
@@ -50,9 +51,9 @@ describe('Navigation option', () => {
     const onClick = jest.fn();
     component.setProps({ onClick, disabled: true });
 
-    expect(onClick).not.toBeCalled();
+    expect(onClick).not.toHaveBeenCalled();
     option().simulate('click');
-    expect(onClick).not.toBeCalled();
+    expect(onClick).not.toHaveBeenCalled();
   });
 
   it('renders the circle when enabled', () => {

@@ -1,22 +1,22 @@
-import { useEffect, useRef } from 'react';
-import Types from 'prop-types';
-
 import { isKey, isUndefined } from '@transferwise/neptune-validation';
+import Types from 'prop-types';
+import { useEffect, useRef } from 'react';
 
 import { useConditionalListener } from '../hooks';
-import { getFocusableElements, resetFocus } from './utils';
 import { Key } from '../key';
+
+import { getFocusableElements, resetFocus } from './utils';
 
 const { TAB } = Key;
 
 const FocusBoundary = ({ children }) => {
-  const boundaryRef = useRef();
+  const boundaryReference = useRef();
   const parent = isUndefined(document) ? undefined : document;
   let focusableEls = {};
 
   useEffect(() => {
-    boundaryRef.current.focus();
-    focusableEls = getFocusableElements(boundaryRef.current);
+    boundaryReference.current.focus();
+    focusableEls = getFocusableElements(boundaryReference.current);
   }, []);
 
   // If event type is Tab the resetFocus will force the focus to either the first focusable or last in boundaryRef .
@@ -28,7 +28,7 @@ const FocusBoundary = ({ children }) => {
   });
 
   return (
-    <span ref={boundaryRef} tabIndex={-1} className="np-focus-boundary outline-none">
+    <span ref={boundaryReference} tabIndex={-1} className="np-focus-boundary outline-none">
       {children}
     </span>
   );

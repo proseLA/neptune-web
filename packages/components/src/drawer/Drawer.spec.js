@@ -1,22 +1,33 @@
 import { shallow } from 'enzyme';
+
 import Drawer from '.';
 
 jest.mock('../common');
 jest.useFakeTimers();
 
-// eslint-disable-next-line react/prop-types
-jest.mock('../dimmer', () => ({ open, children }) =>
-  open ? <div className="dimmer">{children}</div> : null,
+jest.mock(
+  '../dimmer',
+  () =>
+    function ({ open, children }) {
+      return open ? <div className="dimmer">{children}</div> : null;
+    },
 );
-// eslint-disable-next-line react/prop-types
-jest.mock('../slidingPanel', () => ({ open, children }) =>
-  open ? <div className="sliding-panel">{children}</div> : null,
+
+jest.mock(
+  '../slidingPanel',
+  () =>
+    function ({ open, children }) {
+      return open ? <div className="sliding-panel">{children}</div> : null;
+    },
 );
 
 const defaultLocale = 'en-GB';
 
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale: defaultLocale }} />;
+    },
   useIntl: () => ({ locale: defaultLocale, formatMessage: (id) => `${id}` }),
   defineMessages: (translations) => translations,
 }));
@@ -65,7 +76,7 @@ describe('Drawer', () => {
     expect(component.find('.np-drawer-footer')).toHaveLength(1);
   });
 
-  it('adds padding ', () => {
+  it('adds padding', () => {
     component.setProps({ children: 'content', footerContent: 'content' });
     expect(component.find('.np-drawer-p-x')).toHaveLength(3);
     expect(component.find('.np-drawer-p-y')).toHaveLength(1);

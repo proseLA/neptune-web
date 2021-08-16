@@ -1,7 +1,6 @@
 import Types from 'prop-types';
 
 import JsonSchemaForm from '../../jsonSchemaForm';
-
 import { marginModel, orientationModel } from '../models';
 import { getMarginBottom } from '../utils';
 
@@ -17,11 +16,11 @@ const DynamicForm = (props) => {
       schema={form.schema}
       model={props.model}
       submitted={props.submitted}
-      onChange={onChange}
       className={getMarginBottom(form.margin || 'lg')}
       errors={props.errors}
-      onPersistAsync={props.onPersistAsync}
       baseUrl={props.baseUrl}
+      onChange={onChange}
+      onPersistAsync={props.onPersistAsync}
     />
   );
 };

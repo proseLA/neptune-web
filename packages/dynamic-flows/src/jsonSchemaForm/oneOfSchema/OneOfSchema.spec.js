@@ -1,12 +1,12 @@
 import { shallow, mount } from 'enzyme';
 
-import OneOfSchema from '.';
-
-import GenericSchema from '../genericSchema';
-import SchemaFormControl from '../schemaFormControl';
-import ControlFeedback from '../controlFeedback';
 import DynamicAlert from '../../layout/alert';
+import ControlFeedback from '../controlFeedback';
+import GenericSchema from '../genericSchema';
 import Help from '../help';
+import SchemaFormControl from '../schemaFormControl';
+
+import OneOfSchema from '.';
 
 describe('Given a oneOfSchema component', () => {
   let component;
@@ -95,27 +95,27 @@ describe('Given a oneOfSchema component', () => {
     });
 
     it('should render one generic schema component', () => {
-      expect(genericSchema.length).toBe(1);
+      expect(genericSchema).toHaveLength(1);
     });
 
     it('should pass the first schema with a valid model to the genericSchema', () => {
-      expect(genericSchema.prop('schema')).toEqual(schema.oneOf[1]);
+      expect(genericSchema.prop('schema')).toStrictEqual(schema.oneOf[1]);
     });
 
     it('should pass the valid part of the model to the genericSchema', () => {
-      expect(genericSchema.prop('model')).toEqual({ b: 2 });
+      expect(genericSchema.prop('model')).toStrictEqual({ b: 2 });
     });
 
     it('should pass errors to the nested generic schema component', () => {
-      expect(genericSchema.prop('errors')).toEqual(errors);
+      expect(genericSchema.prop('errors')).toStrictEqual(errors);
     });
 
     it('should pass locale to the nested generic schema component', () => {
-      expect(genericSchema.prop('locale')).toEqual(locale);
+      expect(genericSchema.prop('locale')).toStrictEqual(locale);
     });
 
     it('should pass translations to the nested generic schema component', () => {
-      expect(genericSchema.prop('translations')).toEqual(translations);
+      expect(genericSchema.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when some of the child schemas contain const properties', () => {
@@ -184,7 +184,7 @@ describe('Given a oneOfSchema component', () => {
           const localModel = { d: 'XXXX' };
           component = shallow(<OneOfSchema {...props} schema={localSchema} model={localModel} />);
           const control = component.find(SchemaFormControl);
-          expect(control.prop('value')).toBe(null);
+          expect(control.prop('value')).toBeNull();
         });
       });
     });
@@ -195,7 +195,7 @@ describe('Given a oneOfSchema component', () => {
           component = shallow(<OneOfSchema {...props} model={{}} />);
           genericSchema = component.find(GenericSchema);
 
-          expect(genericSchema.length).toBe(0);
+          expect(genericSchema).toHaveLength(0);
         });
       });
 
@@ -254,7 +254,7 @@ describe('Given a oneOfSchema component', () => {
         });
 
         describe('and there is no valid default value', () => {
-          it('renders a SchemaFormControl with a value of null  ', () => {
+          it('renders a SchemaFormControl with a value of null', () => {
             component = shallow(
               <OneOfSchema
                 {...props}
@@ -263,7 +263,7 @@ describe('Given a oneOfSchema component', () => {
               />,
             );
             const control = component.find(SchemaFormControl);
-            expect(control.prop('value')).toBe(null);
+            expect(control.prop('value')).toBeNull();
           });
 
           it('does not broadcast onChange callback', () => {
@@ -293,7 +293,7 @@ describe('Given a oneOfSchema component', () => {
       });
 
       it('should pass the valid parts of the original model to the nested generic schema', () => {
-        expect(genericSchema.prop('model')).toEqual({ c: 3 });
+        expect(genericSchema.prop('model')).toStrictEqual({ c: 3 });
       });
 
       it('should trigger onChange with only the properties in the new schema', () => {
@@ -307,7 +307,7 @@ describe('Given a oneOfSchema component', () => {
       });
 
       it('should trigger the components onChange once', () => {
-        expect(onChange).toHaveBeenCalled();
+        expect(onChange).toHaveBeenCalledTimes(1);
       });
 
       it('should broadcast the changed model from the child', () => {
@@ -315,7 +315,7 @@ describe('Given a oneOfSchema component', () => {
       });
 
       it('should not change the input model', () => {
-        expect(model).toEqual({ b: 2, c: 3 });
+        expect(model).toStrictEqual({ b: 2, c: 3 });
       });
 
       describe('when the user toggles to another schema, and back again', () => {
@@ -326,7 +326,7 @@ describe('Given a oneOfSchema component', () => {
         });
 
         it('should remember and pass down the changed value', () => {
-          expect(genericSchema.prop('model')).toEqual({ b: 4 });
+          expect(genericSchema.prop('model')).toStrictEqual({ b: 4 });
         });
       });
     });
@@ -412,11 +412,11 @@ describe('Given a oneOfSchema component', () => {
     });
 
     it('should not render a generic schema', () => {
-      expect(genericSchema.length).toBe(0);
+      expect(genericSchema).toHaveLength(0);
     });
 
     it('should not set a default for the SchemaFormControl value', () => {
-      expect(schemaFormControl.prop('value')).toBe(null);
+      expect(schemaFormControl.prop('value')).toBeNull();
     });
 
     it('should not broadcast a model update', () => {
@@ -436,7 +436,7 @@ describe('Given a oneOfSchema component', () => {
       );
 
       controlFeedback = component.find(ControlFeedback);
-      expect(controlFeedback.prop('errors')).toBe(null);
+      expect(controlFeedback.prop('errors')).toBeNull();
     });
 
     describe('when one option is supplied', () => {
@@ -486,13 +486,13 @@ describe('Given a oneOfSchema component', () => {
         it('should not display validation errors', () => {
           schemaFormControl.simulate('change', 1);
 
-          expect(controlFeedback.prop('validations').length).toBe(0);
+          expect(controlFeedback.prop('validations')).toHaveLength(0);
         });
       });
 
       describe('when no value exists', () => {
         it('should not display validation errors', () => {
-          expect(controlFeedback.prop('validations').length).toBe(0);
+          expect(controlFeedback.prop('validations')).toHaveLength(0);
         });
       });
     });
@@ -504,7 +504,7 @@ describe('Given a oneOfSchema component', () => {
           schemaFormControl = component.find(SchemaFormControl);
 
           controlFeedback = component.find(ControlFeedback);
-          expect(controlFeedback.prop('validations').length).toBe(1);
+          expect(controlFeedback.prop('validations')).toHaveLength(1);
         });
       });
     });

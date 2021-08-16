@@ -1,14 +1,16 @@
-import { select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import MoneyInput from '.';
+import { select, number } from '@storybook/addon-knobs';
+
 import { Size } from '../common';
+
+import MoneyInput from '.';
 
 export default {
   component: MoneyInput,
   title: 'MoneyInput',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const size = select('size', Object.values(Size), Size.LARGE);
   const amount = number('amount', 1000);
   const placeholder = number('placeholder', null);
@@ -20,13 +22,9 @@ export const basic = () => {
         id="money-input"
         amount={amount}
         size={size}
-        onAmountChange={action('amount changed')}
-        onCurrencyChange={action('currency changed')}
         addon={null}
         placeholder={placeholder}
         searchPlaceholder="Type a currency or country"
-        onSearchChange={action('search query changed')}
-        onCustomAction={action('Custom action')}
         customActionLabel="Custom action label"
         currencies={[
           {
@@ -54,6 +52,10 @@ export const basic = () => {
           currency: 'eur',
           searchable: 'Spain, Germany, France, Austria',
         }}
+        onAmountChange={action('amount changed')}
+        onCurrencyChange={action('currency changed')}
+        onSearchChange={action('search query changed')}
+        onCustomAction={action('Custom action')}
       />
     </>
   );

@@ -1,8 +1,9 @@
 import { mount, shallow } from 'enzyme';
 
-import ObjectSchema from './ObjectSchema';
-import GenericSchema from '../genericSchema';
 import DynamicAlert from '../../layout/alert';
+import GenericSchema from '../genericSchema';
+
+import ObjectSchema from './ObjectSchema';
 
 describe('Given a component for rendering object schemas', () => {
   let component;

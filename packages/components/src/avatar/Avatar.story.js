@@ -1,14 +1,15 @@
 import { boolean, radios, text, select } from '@storybook/addon-knobs';
 
-import Avatar, { AvatarType } from '.';
 import { Size, Theme } from '../common';
+
+import Avatar, { AvatarType } from '.';
 
 export default {
   component: Avatar,
   title: 'Avatar',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const type = radios(
     'type',
     {

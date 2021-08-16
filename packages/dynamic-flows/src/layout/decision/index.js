@@ -1,10 +1,9 @@
+import { NavigationOption, NavigationOptionsList } from '@transferwise/components';
 import Types from 'prop-types';
 
-import { NavigationOption, NavigationOptionsList } from '@transferwise/components';
+import DynamicIcon from '../icon';
 import { marginModel, actionModel } from '../models';
 import { getMarginBottom } from '../utils';
-
-import DynamicIcon from '../icon';
 
 const DynamicDecision = (props) => {
   const decision = props.component;
@@ -15,9 +14,9 @@ const DynamicDecision = (props) => {
         key={JSON.stringify(option)}
         title={option.action.title}
         content={option.text}
-        onClick={() => onAction(option.action)}
         disabled={option.action.disabled}
         media={<DynamicIcon type={option.icon} />}
+        onClick={() => onAction(option.action)}
       />
     );
   };

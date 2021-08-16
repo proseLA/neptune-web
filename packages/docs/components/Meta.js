@@ -1,8 +1,9 @@
-import Types from 'prop-types';
 import { parseISO, format } from 'date-fns';
+import Types from 'prop-types';
+
 import { printDate } from '../utils/pageUtils';
 
-export default function Meta({ date, authors, version, tags }) {
+const Meta = ({ date, authors, version, tags }) => {
   const renderAuthors = () => (
     <>
       {authors?.map(({ name, githubUsername }, index) => (
@@ -21,14 +22,14 @@ export default function Meta({ date, authors, version, tags }) {
   const renderVersion = () => (
     <ul className="p-l-2 m-y-1">
       {Object.entries(version).map(([key, value]) => (
-        <li>
+        <li key={key}>
           <strong>{key}</strong>: {value}
         </li>
       ))}
     </ul>
   );
 
-  const renderTags = () => (tags.length ? <span> - {tags.join(', ')} </span> : null);
+  const renderTags = () => (tags.length > 0 ? <span> - {tags.join(', ')} </span> : null);
 
   const createdDate = parseISO(date);
   return (
@@ -41,7 +42,7 @@ export default function Meta({ date, authors, version, tags }) {
       {renderAuthors()}
     </small>
   );
-}
+};
 
 Meta.propTypes = {
   date: Types.string.isRequired,
@@ -66,3 +67,5 @@ Meta.defaultProps = {
   version: {},
   tags: [],
 };
+
+export default Meta;

@@ -1,5 +1,5 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 class TableLink extends PureComponent {
   onClick = (event) => {
@@ -15,12 +15,12 @@ class TableLink extends PureComponent {
       <>
         <button
           type="button"
-          onClick={this.onClick}
           className={`tw-date-lookup-${type}-option ${active ? 'active' : ''} ${
             today ? 'today' : ''
           }`}
           disabled={disabled}
           aria-label={longTitle}
+          onClick={this.onClick}
         >
           {title || item}
         </button>

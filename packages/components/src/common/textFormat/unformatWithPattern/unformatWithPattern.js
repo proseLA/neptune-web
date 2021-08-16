@@ -1,8 +1,8 @@
 const unformatWithPattern = (value, pattern) => {
   let valueArray = [''];
-  if (value && value.length) {
+  if (value && value.length > 0) {
     valueArray = value.toString().split('');
-    valueArray = valueArray.filter((el) => getSymbolsInPattern(pattern).indexOf(el) === -1);
+    valueArray = valueArray.filter((element) => !getSymbolsInPattern(pattern).includes(element));
   }
 
   return valueArray.join('');

@@ -123,7 +123,7 @@ function getEnumValidationFailures(value, schema, isRequired) {
     return ['required'];
   }
 
-  if (isNull(value) || schema.enum.indexOf(value) === -1) {
+  if (isNull(value) || !schema.enum.includes(value)) {
     return ['enum'];
   }
   return [];
@@ -169,8 +169,8 @@ function getObjectValidationFailures(value, schema) {
   }
 
   const allPresent = schema.required
-    .map((prop) => typeof value[prop] !== 'undefined')
-    .reduce((propInModel, validSoFar) => propInModel && validSoFar, true);
+    .map((property) => typeof value[property] !== 'undefined')
+    .reduce((propertyInModel, validSoFar) => propertyInModel && validSoFar, true);
 
   return allPresent ? [] : ['required'];
 }

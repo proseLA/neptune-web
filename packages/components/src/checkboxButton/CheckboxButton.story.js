@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { boolean } from '@storybook/addon-knobs';
+import { useState } from 'react';
+
 import CheckboxButton from './CheckboxButton';
 
 export default {
@@ -7,14 +8,13 @@ export default {
   title: 'CheckboxButton',
 };
 
-export const basic = () => {
+const onBlur = () => console.log('blur');
+const onClick = () => console.log('click');
+const onFocus = () => console.log('focus');
+
+export const Basic = () => {
   const [checked, setChecked] = useState(true);
   const disabled = boolean('disabled', false);
-
-  /* eslint-disable no-console */
-  const onBlur = () => console.log('blur');
-  const onClick = () => console.log('click');
-  const onFocus = () => console.log('focus');
 
   return (
     <CheckboxButton

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import Option from '../common/Option';
 import CheckboxButton from '../checkboxButton';
+import Option from '../common/Option';
 
 const CheckboxOption = ({
   media,

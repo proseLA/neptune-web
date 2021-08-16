@@ -1,9 +1,10 @@
-import { shallow } from 'enzyme';
 import * as formatting from '@transferwise/formatting';
+import { shallow } from 'enzyme';
 
-import DateTrigger from '.';
 import Chevron from '../../chevron';
 import { fakeKeyDownEventForKey } from '../../common/fakeEvents';
+
+import DateTrigger from '.';
 
 const defaultLocale = 'en-GB';
 jest.mock('react-intl', () => ({
@@ -74,7 +75,7 @@ describe('DateTrigger', () => {
 
   it('calls on click handler on button click', () => {
     button().simulate('click');
-    expect(props.onClick).toBeCalled();
+    expect(props.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('can disable the button', () => {
@@ -111,14 +112,14 @@ describe('DateTrigger', () => {
     const onClear = jest.fn();
     component.setProps({ onClear });
     clearButton().simulate('keydown', fakeKeyDownEventForKey(32));
-    expect(onClear).toHaveBeenCalled();
+    expect(onClear).toHaveBeenCalledTimes(1);
   });
 
   it('calls onClear when user press Enter', () => {
     const onClear = jest.fn();
     component.setProps({ onClear });
     clearButton().simulate('keydown', fakeKeyDownEventForKey(13));
-    expect(onClear).toHaveBeenCalled();
+    expect(onClear).toHaveBeenCalledTimes(1);
   });
 
   it(`doesn't call onClear when user press a random key`, () => {

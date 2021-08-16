@@ -1,16 +1,13 @@
-import { useRef, useState, ReactElement, PropsWithChildren, CSSProperties } from 'react';
-
 import classNames from 'classnames';
+import { useRef, useState, ReactElement, PropsWithChildren, CSSProperties } from 'react';
 
 import Dimmer from '../../dimmer';
 import SlidingPanel from '../../slidingPanel';
 import CloseButton from '../closeButton';
-
+import { CommonProps } from '../commonProps';
 import { isServerSideRendering } from '../domHelpers';
 import { useConditionalListener } from '../hooks';
-
 import { Position } from '../propsValues/position';
-import { CommonProps } from '../commonProps';
 
 const INITIAL_Y_POSITION = 0;
 
@@ -24,11 +21,13 @@ type Props = PropsWithChildren<{ onClose: () => void; open: boolean } & CommonPr
  * Neptune: https://transferwise.github.io/neptune/components/bottom-sheet/
  *
  * Neptune Web: https://transferwise.github.io/neptune-web/components/overlays/BottomSheet
+ *
+ * @param props
  */
-function BottomSheet(props: Props): ReactElement {
-  const bottomSheetRef = useRef<HTMLDivElement>(null);
-  const topBarRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+const BottomSheet = (props: Props): ReactElement => {
+  const bottomSheetReference = useRef<HTMLDivElement>(null);
+  const topBarReference = useRef<HTMLDivElement>(null);
+  const contentReference = useRef<HTMLDivElement>(null);
 
   const [pressed, setPressed] = useState<boolean>(false);
 
@@ -52,8 +51,8 @@ function BottomSheet(props: Props): ReactElement {
   useConditionalListener({
     attachListener: props.open && !isServerSideRendering(),
     callback: () => {
-      if (topBarRef.current !== null) {
-        const { classList } = topBarRef.current;
+      if (topBarReference.current !== null) {
+        const { classList } = topBarReference.current;
         if (!isContentScrollPositionAtTop()) {
           classList.add('np-bottom-sheet--top-bar--shadow');
         } else {
@@ -66,43 +65,47 @@ function BottomSheet(props: Props): ReactElement {
   });
 
   function move(newHeight: number): void {
-    if (bottomSheetRef.current !== null) {
-      bottomSheetRef.current.style.transform = `translateY(${newHeight}px)`;
+    if (bottomSheetReference.current !== null) {
+      bottomSheetReference.current.style.transform = `translateY(${newHeight}px)`;
     }
   }
 
   function close(): void {
     setPressed(false);
     moveOffset.current = INITIAL_Y_POSITION;
-    if (bottomSheetRef.current !== null) {
-      bottomSheetRef.current.style.removeProperty('transform');
+    if (bottomSheetReference.current !== null) {
+      bottomSheetReference.current.style.removeProperty('transform');
     }
     if (props.onClose) {
       props.onClose();
     }
   }
 
-  const onSwipeStart = (isMobile: boolean) => (event: TouchEvent & MouseEvent): void => {
-    initialYCoordinate.current = (isMobile ? event.touches[0] : event).clientY;
-    setPressed(true);
-  };
+  const onSwipeStart =
+    (isMobile: boolean) =>
+    (event: TouchEvent & MouseEvent): void => {
+      initialYCoordinate.current = (isMobile ? event.touches[0] : event).clientY;
+      setPressed(true);
+    };
 
-  const onSwipeMove = (isMobile: boolean) => (event: TouchEvent & MouseEvent): void => {
-    if (pressed) {
-      const { clientY } = isMobile ? event.touches[0] : event;
+  const onSwipeMove =
+    (isMobile: boolean) =>
+    (event: TouchEvent & MouseEvent): void => {
+      if (pressed) {
+        const { clientY } = isMobile ? event.touches[0] : event;
 
-      const offset = calculateOffsetAfterMove(clientY);
-      // check whether move is to the bottom only and content scroll position is at the top
-      if (offset > INITIAL_Y_POSITION && isContentScrollPositionAtTop()) {
-        moveOffset.current = offset;
-        animationId.current = requestAnimationFrame(() => {
-          if (animationId.current !== undefined && bottomSheetRef.current !== null) {
-            move(offset);
-          }
-        });
+        const offset = calculateOffsetAfterMove(clientY);
+        // check whether move is to the bottom only and content scroll position is at the top
+        if (offset > INITIAL_Y_POSITION && isContentScrollPositionAtTop()) {
+          moveOffset.current = offset;
+          animationId.current = requestAnimationFrame(() => {
+            if (animationId.current !== undefined && bottomSheetReference.current !== null) {
+              move(offset);
+            }
+          });
+        }
       }
-    }
-  };
+    };
 
   function onSwipeEnd(): void {
     // stop moving component
@@ -122,14 +125,16 @@ function BottomSheet(props: Props): ReactElement {
 
   function isContentScrollPositionAtTop(): boolean {
     return (
-      contentRef?.current?.scrollTop !== undefined &&
-      contentRef.current.scrollTop <= CONTENT_SCROLL_THRESHOLD
+      contentReference?.current?.scrollTop !== undefined &&
+      contentReference.current.scrollTop <= CONTENT_SCROLL_THRESHOLD
     );
   }
 
   /**
    * Calculates how hard user moves component,
    * result value used to determine whether to hide component or re-position to default state
+   *
+   * @param afterMoveYCoordinate
    */
   function calculateOffsetAfterMove(afterMoveYCoordinate: number): number {
     return afterMoveYCoordinate - initialYCoordinate.current;
@@ -140,46 +145,50 @@ function BottomSheet(props: Props): ReactElement {
    * and ensures space for safe zone (32px) at the top.
    */
   function setContentMaxHeight(): CSSProperties {
-    const safeZoneHeight: string = '64px';
-    const topbarHeight: string = '32px';
+    const safeZoneHeight = '64px';
+    const topbarHeight = '32px';
     const windowHight: number = isServerSideRendering() ? 0 : window.innerHeight;
     /**
      * Calculate _real_ height of the screen (taking into account parts of browser interface).
      *
      * See https://css-tricks.com/the-trick-to-viewport-units-on-mobile for more details.
      */
-    const screenHeight: string = `${windowHight * 0.01 * 100}px`;
+    const screenHeight = `${windowHight * 0.01 * 100}px`;
     return {
       maxHeight: `calc(${screenHeight} - ${safeZoneHeight} - ${topbarHeight})`,
     };
   }
   return (
-    <Dimmer open={props.open} onClose={close} fadeContentOnEnter fadeContentOnExit>
+    <Dimmer open={props.open} fadeContentOnEnter fadeContentOnExit onClose={close}>
       {/* @ts-expect-error remove when SlidingPanel will be written on TS */}
       <SlidingPanel
+        ref={bottomSheetReference}
         open={props.open}
         position={Position.BOTTOM}
-        ref={bottomSheetRef}
         className={classNames('np-bottom-sheet', props.className)}
+        role="dialog"
         onTouchStart={onSwipeStart(true)}
         onTouchMove={onSwipeMove(true)}
         onTouchEnd={onSwipeEnd}
         onMouseDown={onSwipeStart(false)}
         onMouseMove={onSwipeMove(false)}
         onMouseUp={onSwipeEnd}
-        role="dialog"
       >
-        <div className="np-bottom-sheet--top-bar" ref={topBarRef}>
+        <div ref={topBarReference} className="np-bottom-sheet--top-bar">
           <div className="np-bottom-sheet--handler" />
           {/* @ts-expect-error remove when CloseButton will be written on TS */}
-          <CloseButton onClick={close} size={16} className="sr-only np-bottom-sheet--close-btn" />
+          <CloseButton size={16} className="sr-only np-bottom-sheet--close-btn" onClick={close} />
         </div>
-        <div style={setContentMaxHeight()} className="np-bottom-sheet--content" ref={contentRef}>
+        <div
+          ref={contentReference}
+          style={setContentMaxHeight()}
+          className="np-bottom-sheet--content"
+        >
           {props.children}
         </div>
       </SlidingPanel>
     </Dimmer>
   );
-}
+};
 
 export default BottomSheet;

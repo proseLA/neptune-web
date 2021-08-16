@@ -6,7 +6,7 @@ const formatUsingPattern = (value = '', pattern) => {
   let newPattern = pattern;
 
   if (newPattern.indexOf('||') > 0) {
-    newPattern = newPattern.substring(0, pattern.indexOf('||'));
+    newPattern = newPattern.slice(0, Math.max(0, pattern.indexOf('||')));
   }
 
   let newValue = '';
@@ -27,7 +27,7 @@ const formatUsingPattern = (value = '', pattern) => {
 
   const separatorsAfterCursor = countSeparatorsAfterCursor(newPattern, position);
   if (separatorsAfterCursor) {
-    newValue += newPattern.substr(position, separatorsAfterCursor);
+    newValue += newPattern.slice(position, separatorsAfterCursor);
   }
   return newValue;
 };

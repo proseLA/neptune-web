@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
 
-const getAllFiles = (dirPath, arrayOfFiles = []) => {
-  const resolvedPath = path.resolve(dirPath);
+const getAllFiles = (directoryPath, arrayOfFiles = []) => {
+  const resolvedPath = path.resolve(directoryPath);
   const files = fs.readdirSync(resolvedPath);
   let returnArray = arrayOfFiles;
   files.forEach((file) => {

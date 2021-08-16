@@ -2,7 +2,7 @@ import { findCountryByPrefix } from '.';
 
 describe('findCountryByPrefix', () => {
   it('should return a country with the longest matching prefix', () => {
-    expect(findCountryByPrefix('+1')).toEqual({
+    expect(findCountryByPrefix('+1')).toStrictEqual({
       iso2: 'US',
       iso3: 'USA',
       name: 'United States of America',

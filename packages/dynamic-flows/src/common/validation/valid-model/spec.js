@@ -174,7 +174,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1 }, schema);
       });
       it('should return the property', () => {
-        expect(result).toEqual({ a: 1 });
+        expect(result).toStrictEqual({ a: 1 });
       });
     });
 
@@ -183,7 +183,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: '1' }, schema);
       });
       it('should return an empty object', () => {
-        expect(result).toEqual({});
+        expect(result).toStrictEqual({});
       });
     });
 
@@ -192,7 +192,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: 2 }, schema);
       });
       it('should return the object without those properties', () => {
-        expect(result).toEqual({ a: 1 });
+        expect(result).toStrictEqual({ a: 1 });
       });
     });
   });
@@ -222,7 +222,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: { c: 2 } }, schema);
       });
       it('should be returned', () => {
-        expect(result).toEqual({ a: 1, b: { c: 2 } });
+        expect(result).toStrictEqual({ a: 1, b: { c: 2 } });
       });
     });
 
@@ -231,7 +231,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: { c: 2, d: 3 }, e: 4 }, schema);
       });
       it('should remove them', () => {
-        expect(result).toEqual({ a: 1, b: { c: 2 } });
+        expect(result).toStrictEqual({ a: 1, b: { c: 2 } });
       });
     });
   });
@@ -265,7 +265,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: 2 }, schema);
       });
       it('should return them', () => {
-        expect(result).toEqual({ a: 1, b: 2 });
+        expect(result).toStrictEqual({ a: 1, b: 2 });
       });
     });
 
@@ -274,7 +274,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: '2' }, schema);
       });
       it('should remove them', () => {
-        expect(result).toEqual({ a: 1 });
+        expect(result).toStrictEqual({ a: 1 });
       });
     });
 
@@ -283,7 +283,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: 2, c: 3 }, schema);
       });
       it('should remove them', () => {
-        expect(result).toEqual({ a: 1, b: 2 });
+        expect(result).toStrictEqual({ a: 1, b: 2 });
       });
     });
   });
@@ -297,17 +297,17 @@ describe('Given a library for returning the valid parts of a model based on a sc
 
     describe('when the value is in the const collection', () => {
       it('should return the value', () => {
-        expect(getValidModelParts(0, schema)).toEqual(0);
-        expect(getValidModelParts(1, schema)).toEqual(1);
-        expect(getValidModelParts(2, schema)).toEqual(2);
+        expect(getValidModelParts(0, schema)).toStrictEqual(0);
+        expect(getValidModelParts(1, schema)).toStrictEqual(1);
+        expect(getValidModelParts(2, schema)).toStrictEqual(2);
       });
     });
 
     describe('when the value is not in the const collection', () => {
       it('should return null', () => {
-        expect(getValidModelParts(3, schema)).toEqual(null);
-        expect(getValidModelParts({}, schema)).toEqual(null);
-        expect(getValidModelParts(null, schema)).toEqual(null);
+        expect(getValidModelParts(3, schema)).toBeNull();
+        expect(getValidModelParts({}, schema)).toBeNull();
+        expect(getValidModelParts(null, schema)).toBeNull();
       });
     });
   });
@@ -341,7 +341,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: 2 }, schema);
       });
       it('should return them', () => {
-        expect(result).toEqual({ a: 1, b: 2 });
+        expect(result).toStrictEqual({ a: 1, b: 2 });
       });
     });
 
@@ -350,7 +350,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: '2' }, schema);
       });
       it('should remove them', () => {
-        expect(result).toEqual({ a: 1 });
+        expect(result).toStrictEqual({ a: 1 });
       });
     });
 
@@ -359,7 +359,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
         result = getValidModelParts({ a: 1, b: 2, c: 3 }, schema);
       });
       it('should remove them', () => {
-        expect(result).toEqual({ a: 1, b: 2 });
+        expect(result).toStrictEqual({ a: 1, b: 2 });
       });
     });
   });
@@ -402,7 +402,7 @@ describe('Given a library for returning the valid parts of a model based on a sc
     });
 
     it('should deep merge the content of the nested objects', () => {
-      expect(result).toEqual(model);
+      expect(result).toStrictEqual(model);
     });
   });
 });

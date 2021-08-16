@@ -1,9 +1,9 @@
 import { shallow } from 'enzyme';
 
 import { fakeEvent } from '../common/fakeEvents';
-import Chip from './Chip';
-
 import { useDirection } from '../common/hooks';
+
+import Chip from './Chip';
 
 jest.mock('../common/hooks/useDirection');
 
@@ -34,12 +34,12 @@ describe('option', () => {
   });
 
   it('renders label', () => {
-    expect(component.childAt(0).text()).toEqual(props.label);
+    expect(component.childAt(0).text()).toStrictEqual(props.label);
   });
 
   it('calls onRemove when remove button clicked', () => {
     removeButton().simulate('click', fakeEvent());
-    expect(props.onRemove).toBeCalled();
+    expect(props.onRemove).toHaveBeenCalledTimes(1);
   });
 
   it('renders invalid chip correctly', () => {

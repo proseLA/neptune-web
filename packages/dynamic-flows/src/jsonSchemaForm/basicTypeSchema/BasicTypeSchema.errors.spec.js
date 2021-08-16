@@ -1,9 +1,9 @@
 import { mount } from 'enzyme';
 
-import BasicTypeSchema from '.';
-
-import SchemaFormControl from '../schemaFormControl';
 import ControlFeedback from '../controlFeedback';
+import SchemaFormControl from '../schemaFormControl';
+
+import BasicTypeSchema from '.';
 
 function createProps() {
   return {

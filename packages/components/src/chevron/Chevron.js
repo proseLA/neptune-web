@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { ChevronUp } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
 import { Size, Position } from '../common';
 
 const CONTAINER_SIZE = {

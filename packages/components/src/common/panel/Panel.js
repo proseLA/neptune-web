@@ -1,9 +1,10 @@
-import { useState, forwardRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { useState, forwardRef, useEffect } from 'react';
 import { usePopper } from 'react-popper';
-import Dimmer from '../../dimmer';
+
 import { Position } from '..';
+import Dimmer from '../../dimmer';
 
 const POPOVER_OFFSET = [0, 16];
 
@@ -18,7 +19,7 @@ const fallbackPlacements = {
 };
 
 const Panel = forwardRef(
-  ({ arrow, children, className, open, onClose, position: placement, anchorRef }, ref) => {
+  ({ arrow, children, className, open, onClose, position: placement, anchorRef }, reference) => {
     const [arrowElement, setArrowElement] = useState(null);
     const [popperElement, setPopperElement] = useState(null);
 
@@ -60,20 +61,20 @@ const Panel = forwardRef(
     }, [open]);
 
     return (
-      <Dimmer open={open} onClose={onClose} transparent fadeContentOnEnter fadeContentOnExit>
+      <Dimmer open={open} transparent fadeContentOnEnter fadeContentOnExit onClose={onClose}>
         <div
           ref={setPopperElement}
           style={{ ...styles.popper }}
           {...attributes.popper}
           className={classnames('np-panel', { 'np-panel--open': open }, className)}
         >
-          <div ref={ref} className={classnames('np-panel__content')}>
+          <div ref={reference} className={classnames('np-panel__content')}>
             {children}
             {/* Arrow has to stay inside content to get the same animations as the "dialog" and to get hidden when panel is closed. */}
             {arrow && (
               <div
-                className={classnames('np-panel__arrow')}
                 ref={setArrowElement}
+                className={classnames('np-panel__arrow')}
                 style={styles.arrow}
               />
             )}
@@ -112,7 +113,6 @@ Panel.propTypes = {
   ]),
   // Ref currently doesn't have a clear defined propType
   // https://github.com/facebook/prop-types/issues/240
-  // eslint-disable-next-line
   anchorRef: PropTypes.shape({ current: PropTypes.any }).isRequired,
 };
 

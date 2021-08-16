@@ -1,8 +1,8 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-import { SnackbarContext } from './SnackbarContext';
 import SnackbarPortal from './Snackbar';
+import { SnackbarContext } from './SnackbarContext';
 
 class SnackbarProvider extends Component {
   constructor() {

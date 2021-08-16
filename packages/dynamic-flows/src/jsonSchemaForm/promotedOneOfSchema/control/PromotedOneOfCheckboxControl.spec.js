@@ -1,6 +1,5 @@
-import { shallow, mount } from 'enzyme';
-
 import { Checkbox } from '@transferwise/components';
+import { shallow, mount } from 'enzyme';
 
 import PromotedOneOfCheckboxControl from './PromotedOneOfCheckboxControl';
 
@@ -60,7 +59,7 @@ describe('Given a PromotedOneOfCheckboxControl component', () => {
     });
 
     it('should use the other title for the checkbox', () => {
-      expect(component.find(Checkbox).props().label).toEqual('Other title');
+      expect(component.find(Checkbox).props().label).toStrictEqual('Other title');
     });
 
     describe('when promoted is selected initially', () => {
@@ -108,14 +107,14 @@ describe('Given a PromotedOneOfCheckboxControl component', () => {
     });
 
     it('should use the promoted title', () => {
-      expect(component.find(Checkbox).props().label).toEqual('Promoted title');
+      expect(component.find(Checkbox).props().label).toStrictEqual('Promoted title');
     });
 
     describe('when the promoted title is missing', () => {
       it('should use the promoted oneOf title', () => {
         component = shallow(<PromotedOneOfCheckboxControl {...props} promotion={{}} />);
 
-        expect(component.find(Checkbox).props().label).toEqual('a promoted oneOf title');
+        expect(component.find(Checkbox).props().label).toStrictEqual('a promoted oneOf title');
       });
     });
 

@@ -1,15 +1,17 @@
-import { ReactNode, ReactElement } from 'react';
 import NextLink from 'next/link';
+import { ReactNode, ReactElement } from 'react';
 
 type LinkProps = {
   href: string;
   children: ReactNode;
 };
 
-export default function Link({ href, children }: LinkProps): ReactElement {
+const Link = ({ href, children }: LinkProps): ReactElement => {
   return (
-    <NextLink href={process.env.ASSET_PREFIX + href} prefetch={false}>
+    <NextLink href={process.env.ASSET_PREFIX || '' + href} prefetch={false}>
       {children}
     </NextLink>
   );
-}
+};
+
+export default Link;

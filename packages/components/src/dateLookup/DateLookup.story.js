@@ -1,14 +1,16 @@
-import { useState } from 'react';
 import { boolean, select, date, text } from '@storybook/addon-knobs';
-import DateLookup from './DateLookup';
+import { useState } from 'react';
+
 import { Size } from '../common';
+
+import DateLookup from './DateLookup';
 
 export default {
   component: DateLookup,
   title: 'DateLookup',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [value, setValue] = useState(null);
   const disabled = boolean('disabled', false);
   const label = text('label', 'label');
@@ -27,16 +29,16 @@ export const basic = () => {
       max={new Date(maxvalue)}
       min={new Date(minvalue)}
       monthFormat={monthFormat}
-      onChange={(v) => setValue(v)}
       placeholder={placeholder}
       size={size}
       value={value}
       clearable={clearable}
+      onChange={(v) => setValue(v)}
     />
   );
 };
 
-export const rightAligned = () => {
+export const RightAligned = () => {
   const [value, setValue] = useState(new Date('04-15-2021'));
   const disabled = boolean('disabled', false);
   const label = text('label', 'label');
@@ -64,11 +66,11 @@ export const rightAligned = () => {
           max={new Date(maxvalue)}
           min={new Date(minvalue)}
           monthFormat={monthFormat}
-          onChange={(v) => setValue(v)}
           placeholder={placeholder}
           size={size}
           value={value}
           clearable={clearable}
+          onChange={(v) => setValue(v)}
         />
       </div>
     </div>

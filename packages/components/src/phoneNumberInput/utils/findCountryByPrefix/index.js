@@ -7,5 +7,5 @@ export const findCountryByPrefix = (number) => {
     matchingCodes = countries.filter((country) => number.indexOf(country.phone) === 0);
   }
 
-  return matchingCodes && matchingCodes.length ? longestMatchingPrefix(matchingCodes) : null;
+  return matchingCodes && matchingCodes.length > 0 ? longestMatchingPrefix(matchingCodes) : null;
 };

@@ -1,4 +1,4 @@
-const basicTypes = ['string', 'number', 'integer', 'boolean'];
+const basicTypes = new Set(['string', 'number', 'integer', 'boolean']);
 
 export const schemaType = {
   PERSIST_ASYNC: 'persistAsync',
@@ -23,7 +23,7 @@ export const isOneOfSchema = (schema) => !!schema.oneOf;
 export const isAllOfSchema = (schema) => !!schema.allOf;
 
 export const isBasicSchema = (schema) =>
-  basicTypes.indexOf(schema.type) >= 0 || !!schema.enum || !!schema.const;
+  basicTypes.has(schema.type) || !!schema.enum || !!schema.const;
 
 export const getSchemaType = (schema) => {
   // Order of application is important here

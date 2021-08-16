@@ -1,6 +1,7 @@
-import { isNull, isUndefined } from '@transferwise/neptune-validation';
 import { Avatar, AvatarType } from '@transferwise/components';
 import { Bank } from '@transferwise/icons';
+import { isNull, isUndefined } from '@transferwise/neptune-validation';
+
 import { getCurrencyFlag } from './availableCurrencyFlags';
 
 export const mapConstSchemaToOption = (schema) => {
@@ -18,21 +19,15 @@ export const mapConstSchemaToOption = (schema) => {
 const mapCurrency = (icon) => (icon ? getCurrencyFlag(icon.name) : null);
 
 export const mapIcon = (icon) => {
-  if (icon) {
-    switch (icon.name) {
-      case 'bank':
-        return {
-          avatar: (
-            <Avatar type={AvatarType.ICON}>
-              <Bank />
-            </Avatar>
-          ),
-        };
-      default:
-        return null;
-    }
+  if (icon?.name === 'bank') {
+    return {
+      avatar: (
+        <Avatar type={AvatarType.ICON}>
+          <Bank />
+        </Avatar>
+      ),
+    };
   }
-
   return null;
 };
 

@@ -1,6 +1,5 @@
-import { shallow } from 'enzyme';
-
 import { RadioGroup } from '@transferwise/components';
+import { shallow } from 'enzyme';
 
 import PromotedOneOfRadioControl from './PromotedOneOfRadioControl';
 
@@ -62,7 +61,7 @@ describe('Given a PromotedOneOfRadioControl component', () => {
           <PromotedOneOfRadioControl {...props} promotion={promotionWithPromotedLabels} />,
         );
 
-        expect(component.find(RadioGroup).props().radios).toEqual([
+        expect(component.find(RadioGroup).props().radios).toStrictEqual([
           {
             value: 'promoted',
             label: 'Promoted title',
@@ -124,7 +123,7 @@ describe('Given a PromotedOneOfRadioControl component', () => {
       it('should fallback to using the labels of the promoted oneOf', () => {
         component = shallow(<PromotedOneOfRadioControl {...props} />);
 
-        expect(component.find(RadioGroup).props().radios).toEqual([
+        expect(component.find(RadioGroup).props().radios).toStrictEqual([
           {
             value: 'promoted',
             label: 'a promoted oneOf title',

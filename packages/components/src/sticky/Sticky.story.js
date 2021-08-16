@@ -1,4 +1,5 @@
 import { select, boolean } from '@storybook/addon-knobs';
+
 import Sticky from './Sticky';
 
 export default {
@@ -6,7 +7,7 @@ export default {
   title: 'Sticky',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const open = boolean('open', false);
   const position = select('position', ['top', 'right', 'bottom', 'left'], 'bottom');
   const fullParentWidth = boolean('fullParentWidth', true);

@@ -1,19 +1,20 @@
-import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import WithNormalizer from './WithNormalizer';
+import { useState } from 'react';
+
 import Select from '../select';
 import Upload from '../upload';
+
+import WithNormalizer from './WithNormalizer';
 
 export default {
   component: WithNormalizer,
   title: 'WithNormalizer',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [inputValue, setInputValue] = useState('');
   const [selectValue, setSelectValue] = useState('');
   const [uploadValue, setUploadValue] = useState('');
-  // eslint-disable-next-line
   console.log('uploadValue', uploadValue);
   return (
     <>
@@ -25,7 +26,7 @@ export const basic = () => {
             type="text"
             id="inputTest"
             className="form-control"
-            onChange={(e) => setInputValue(e)}
+            onChange={(event) => setInputValue(event)}
           />
         </WithNormalizer>
         <div className="m-t-2">
@@ -41,7 +42,6 @@ export const basic = () => {
             placeholder="placeholder"
             inverse={false}
             block
-            onChange={(v) => setSelectValue(v)}
             required
             searchPlaceholder="Search placeholder"
             options={[
@@ -49,6 +49,7 @@ export const basic = () => {
               { value: 0, label: 'A thing', note: 'with a note' },
               { value: 1, label: 'Another thing', secondary: 'with secondary text this time' },
             ]}
+            onChange={(v) => setSelectValue(v)}
           />
         </WithNormalizer>
         <div className="m-t-2">

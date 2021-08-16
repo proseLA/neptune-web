@@ -70,7 +70,7 @@ exports[`Button deprecated types renders pay as positive buttons and logs a warn
 </div>
 `;
 
-exports[`Button deprecated types renders primary as accent buttons and logs a warning  1`] = `
+exports[`Button deprecated types renders primary as accent buttons and logs a warning 1`] = `
 <div>
   <button
     class="btn btn-md np-btn np-btn-md btn-accent btn-priority-1"

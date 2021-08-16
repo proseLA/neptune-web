@@ -17,7 +17,7 @@ describe('unformatWithPattern', () => {
     const value = '';
     const pattern = '**-**-**';
     const expectedValue = '';
-    expect(unformatWithPattern(value, pattern)).toEqual(expectedValue);
+    expect(unformatWithPattern(value, pattern)).toStrictEqual(expectedValue);
   });
 
   tests.forEach((test) => {

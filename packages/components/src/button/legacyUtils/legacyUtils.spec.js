@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import { ControlType, Priority, Size, Type } from '../../common';
-import { establishNewPriority, establishNewType, logDeprecationNotices } from '.';
 import { cleanup } from '../../test-utils';
+
+import { establishNewPriority, establishNewType, logDeprecationNotices } from '.';
 
 describe('establishNewPriority', () => {
   it('returns the provided priority for supported combinations', () => {
@@ -83,12 +84,12 @@ describe('logDeprecationNotices', () => {
     console.warn = origWarn;
   });
 
-  it('logs a warning if someone uses an extra small button ', () => {
+  it('logs a warning if someone uses an extra small button', () => {
     logDeprecationNotices({ size: Size.EXTRA_SMALL });
     expect(mockedWarn).toHaveBeenCalledTimes(1);
   });
 
-  it('logs a warning if someone uses a deprecated prop type ', () => {
+  it('logs a warning if someone uses a deprecated prop type', () => {
     [ControlType.ACCENT, ControlType.POSITIVE, ControlType.NEGATIVE].forEach((type) => {
       logDeprecationNotices({ type });
       expect(mockedWarn).toHaveBeenCalledTimes(0);

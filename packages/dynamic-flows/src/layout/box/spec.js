@@ -1,7 +1,8 @@
 import { shallow } from 'enzyme';
 
-import DynamicBox from '.';
 import DynamicLayout from '../DynamicLayout';
+
+import DynamicBox from '.';
 
 describe('Given a component for dynamically rendering a box of other components', () => {
   let component;

@@ -1,6 +1,5 @@
-import Types from 'prop-types';
-
 import { Markdown } from '@transferwise/components';
+import Types from 'prop-types';
 
 import { marginModel } from '../models';
 import { getTextAlignmentAndMargin } from '../utils';

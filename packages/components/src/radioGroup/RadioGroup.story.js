@@ -1,14 +1,16 @@
-import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import RadioGroup from './RadioGroup';
+import { boolean } from '@storybook/addon-knobs';
+
 import Avatar, { AvatarType } from '../avatar';
+
+import RadioGroup from './RadioGroup';
 
 export default {
   component: RadioGroup,
   title: 'RadioGroup',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const showAvatars = boolean('avatar', false);
 
   const avatar = showAvatars ? (
@@ -21,7 +23,6 @@ export const basic = () => {
     <RadioGroup
       selectedValue="radio-2"
       name="radio-group"
-      onChange={(v) => action(v)}
       radios={[
         {
           value: 'radio-1',
@@ -48,6 +49,7 @@ export const basic = () => {
           avatar,
         },
       ]}
+      onChange={(v) => action(v)}
     />
   );
 };

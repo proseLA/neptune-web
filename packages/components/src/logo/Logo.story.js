@@ -7,7 +7,7 @@ export default {
   title: 'Logo',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const type = select('Type', [LogoType.WISE, LogoType.WISE_BUSINESS]);
   const inverse = boolean('Inverse', false);
 

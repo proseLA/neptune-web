@@ -10,15 +10,16 @@ import DynamicForm from './form';
 import DynamicHeading from './heading';
 import DynamicImage from './image';
 import DynamicInfo from './info';
+import { componentModel } from './models';
 import DynamicParagraph from './paragraph';
 import DynamicReview from './review';
 
-import { componentModel } from './models';
+const getKey = (component) => {
+  return JSON.stringify(component);
+};
 
 const DynamicLayout = (props) => {
   const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync } = props;
-
-  const getKey = (component) => JSON.stringify(component);
 
   const renderComponent = (component) => {
     switch (component.type) {

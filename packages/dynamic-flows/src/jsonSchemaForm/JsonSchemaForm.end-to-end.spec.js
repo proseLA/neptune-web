@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+
 import JsonSchemaForm from './JsonSchemaForm';
 
 describe('E2E: Given a component for rendering a JSON schema form', () => {
@@ -114,13 +115,13 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     });
 
     it('should render radio buttons for the enum schema', () => {
-      screen.getByText('Enum');
-      expect(screen.getAllByRole('radio').length).toEqual(2);
+      expect(screen.getByText('Enum')).toBeInTheDocument();
+      expect(screen.getAllByRole('radio')).toHaveLength(2);
     });
 
     it('should render a select for the large enum schema', () => {
-      const selectDropdownBtn = screen.getByLabelText('Large Enum');
-      expect(selectDropdownBtn.closest('div')).toHaveClass('tw-select');
+      const selectDropdownButton = screen.getByLabelText('Large Enum');
+      expect(selectDropdownButton.closest('div')).toHaveClass('tw-select');
     });
 
     it('should render the model value in the relevant control', () => {
@@ -246,7 +247,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     it('should display validation errors', () => {
       node.rerender(<JsonSchemaForm {...props} schema={requiredSchema} submitted />);
 
-      screen.getByText('Value is required...');
+      expect(screen.getByText('Value is required...')).toBeInTheDocument();
     });
   });
 });

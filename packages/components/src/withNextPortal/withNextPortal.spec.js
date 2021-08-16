@@ -1,5 +1,6 @@
-import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
+import ReactDOM from 'react-dom';
+
 import withNextPortal from './withNextPortal';
 
 jest.mock('react-dom');
@@ -15,7 +16,7 @@ describe('withNextPortal', () => {
     const Component = withNextPortal(AnyComponent);
     const expected = mount(<AnyComponent {...props} />);
     mount(<Component {...props} />);
-    expect(ReactDOM.createPortal).toBeCalled();
+    expect(ReactDOM.createPortal).toHaveBeenCalledTimes(1);
     const [comp, body] = ReactDOM.createPortal.mock.calls[0];
     expect(comp).toMatchObject(expected);
     expect(body).toMatchObject(document.body);

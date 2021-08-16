@@ -1,22 +1,22 @@
+import { DefinitionList } from '@transferwise/components';
 import Types from 'prop-types';
 
-import { DefinitionList } from '@transferwise/components';
 import { marginModel, actionModel, orientationModel } from '../models';
 import { getMarginBottom } from '../utils';
 
+const mapFieldsToDefinitions = ({ label, value }, index) => {
+  return { key: String(index), title: label, value };
+};
+
+const getReviewLayout = (orientation) => {
+  if (orientation === 'horizontal') {
+    return 'HORIZONTAL_RIGHT_ALIGNED';
+  }
+  return 'VERTICAL_ONE_COLUMN';
+};
+
 const DynamicReview = (props) => {
   const review = props.component;
-
-  const mapFieldsToDefinitions = ({ label, value }, index) => {
-    return { key: String(index), title: label, value };
-  };
-
-  const getReviewLayout = (orientation) => {
-    if (orientation === 'horizontal') {
-      return 'HORIZONTAL_RIGHT_ALIGNED';
-    }
-    return 'VERTICAL_ONE_COLUMN';
-  };
 
   const margin = getMarginBottom(review.margin || 'lg');
 
@@ -27,7 +27,7 @@ const DynamicReview = (props) => {
 
   const getReviewAction = (action) => {
     return (
-      <a href={action.url} className="pull-right" onClick={onActionClick} role="button">
+      <a href={action.url} className="pull-right" role="button" onClick={onActionClick}>
         {action.title}
       </a>
     );

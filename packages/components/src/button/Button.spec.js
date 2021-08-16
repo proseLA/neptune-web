@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import '@testing-library/jest-dom';
+import { ControlType, Type, Priority, Size } from '../common';
 import { render, cleanup, screen, userEvent } from '../test-utils';
 
 import Button from '.';
-import { ControlType, Type, Priority, Size } from '../common';
 
 const { ACCENT, POSITIVE, NEGATIVE } = ControlType;
 const { PAY, LINK, DANGER } = Type;
@@ -39,11 +39,11 @@ describe('Button', () => {
     });
 
     it('renders the text', () => {
-      screen.getByText('Send money');
+      expect(screen.getByText('Send money')).toBeInTheDocument();
     });
 
     it('is not disabled', () => {
-      expect(screen.getByRole('button')).not.toBeDisabled();
+      expect(screen.getByRole('button')).toBeEnabled();
     });
 
     it('renders a medium button of type accent and priority primary', () => {
@@ -78,7 +78,7 @@ describe('Button', () => {
 
     it('does not call onClick when clicked if disabled', () => {
       const onClick = jest.fn();
-      render(<Button {...props} onClick={onClick} disabled />);
+      render(<Button {...props} disabled onClick={onClick} />);
       userEvent.click(screen.getByRole('button'));
       expect(onClick).toHaveBeenCalledTimes(0);
     });
@@ -158,7 +158,7 @@ describe('Button', () => {
   });
 
   describe('deprecated types', () => {
-    it('renders primary as accent buttons and logs a warning ', () => {
+    it('renders primary as accent buttons and logs a warning', () => {
       expect(render(<Button {...props} type={PRIMARY} />).container).toMatchSnapshot();
       expect(mockedWarn).toHaveBeenCalledTimes(1);
     });

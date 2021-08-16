@@ -77,7 +77,7 @@ describe('createDefinitions', () => {
 
     const definitions = createDefinitions(fields, model);
 
-    expect(definitions.length).toBe(1);
+    expect(definitions).toHaveLength(1);
     expect(definitions[0].key).toBe('present');
   });
 });

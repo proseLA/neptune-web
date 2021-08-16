@@ -1,10 +1,11 @@
 import { parseISO } from 'date-fns';
-import { DocLink, getPagesInSection } from '../../utils/pageUtils';
+
 import Meta from '../../components/Meta';
+import { DocumentLink, getPagesInSection } from '../../utils/pageUtils';
 
 const isBlogPost = (page) => !page?.linkText;
 
-export default function Home() {
+const Home = () => {
   const posts = getPagesInSection({ dir: 'blog' })
     .map(({ component: { meta } }) => meta)
     .filter(isBlogPost)
@@ -17,9 +18,9 @@ export default function Home() {
         const fileName = `${date}-${name.toLowerCase().replace(/ /g, '-')}`;
         return (
           // eslint-disable-next-line react/no-array-index-key
-          <div className="m-b-3" key={`${index}`}>
+          <div key={`${index}`} className="m-b-3">
             <h2>
-              <DocLink href={`/blog/${fileName}`}>{name}</DocLink>
+              <DocumentLink href={`/blog/${fileName}`}>{name}</DocumentLink>
             </h2>
 
             <Meta {...{ date, authors, version, tags }} />
@@ -28,9 +29,11 @@ export default function Home() {
       })}
     </>
   );
-}
+};
 
 export const meta = {
   name: 'The latest news about Neptune Web',
   linkText: 'Home',
 };
+
+export default Home;

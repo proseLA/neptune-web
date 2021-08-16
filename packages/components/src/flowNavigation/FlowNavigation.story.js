@@ -1,12 +1,14 @@
-import { useState } from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
-import FlowNavigation from './FlowNavigation';
-import OverlayHeader from '../overlayHeader';
+import { useState } from 'react';
+
 import Avatar, { AvatarType } from '../avatar';
 import AvatarWrapper from '../avatarWrapper';
-import Logo, { LogoType } from '../logo';
 import { ProfileType, Size } from '../common';
+import Logo, { LogoType } from '../logo';
+import OverlayHeader from '../overlayHeader';
+
+import FlowNavigation from './FlowNavigation';
 
 export default {
   component: FlowNavigation,
@@ -18,7 +20,7 @@ const avatarProfiles = {
   Profile: <ProfileIcon />,
 };
 
-export const withAvatarIcon = () => {
+export const WithAvatarIcon = () => {
   const [activeStep, setActiveStep] = useState(4);
   const [closed, setClosed] = useState(false);
   const showAvatar = select('avatar', Object.keys(avatarProfiles), 'Profile');
@@ -37,10 +39,6 @@ export const withAvatarIcon = () => {
           )
         }
         logo={<Logo />}
-        onClose={showCloseButton && (() => setClosed(true))}
-        onGoBack={
-          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
-        }
         activeStep={activeStep}
         done={done}
         steps={[
@@ -76,6 +74,10 @@ export const withAvatarIcon = () => {
             onClick: () => setActiveStep(4),
           },
         ]}
+        onClose={showCloseButton && (() => setClosed(true))}
+        onGoBack={
+          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
+        }
       />
 
       <FlowNavigation
@@ -87,10 +89,6 @@ export const withAvatarIcon = () => {
           )
         }
         logo={<Logo type={LogoType.WISE_BUSINESS} />}
-        onClose={showCloseButton && (() => setClosed(true))}
-        onGoBack={
-          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
-        }
         activeStep={activeStep}
         done={done}
         steps={[
@@ -126,15 +124,15 @@ export const withAvatarIcon = () => {
             onClick: () => setActiveStep(4),
           },
         ]}
+        onClose={showCloseButton && (() => setClosed(true))}
+        onGoBack={
+          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
+        }
       />
 
       <FlowNavigation
         avatar={false}
         logo={<Logo />}
-        onClose={showCloseButton && (() => setClosed(true))}
-        onGoBack={
-          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
-        }
         activeStep={activeStep}
         done={done}
         steps={[
@@ -170,15 +168,15 @@ export const withAvatarIcon = () => {
             onClick: () => setActiveStep(4),
           },
         ]}
+        onClose={showCloseButton && (() => setClosed(true))}
+        onGoBack={
+          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
+        }
       />
 
       <FlowNavigation
         avatar={false}
         logo={<Logo type={LogoType.WISE_BUSINESS} />}
-        onClose={showCloseButton && (() => setClosed(true))}
-        onGoBack={
-          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
-        }
         activeStep={activeStep}
         done={done}
         steps={[
@@ -214,6 +212,10 @@ export const withAvatarIcon = () => {
             onClick: () => setActiveStep(4),
           },
         ]}
+        onClose={showCloseButton && (() => setClosed(true))}
+        onGoBack={
+          showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
+        }
       />
       <div
         className="bg--dark"
@@ -231,7 +233,7 @@ export const withAvatarIcon = () => {
   ) : null;
 };
 
-export const withCustomAvatarImage = () => {
+export const WithCustomAvatarImage = () => {
   const [activeStep, setActiveStep] = useState(4);
   const [closed, setClosed] = useState(false);
   const showAvatar = boolean('show avatar', true);
@@ -251,10 +253,6 @@ export const withCustomAvatarImage = () => {
             />
           </Avatar>
         )
-      }
-      onClose={showCloseButton && (() => setClosed(true))}
-      onGoBack={
-        showMobileBackButton && (() => setActiveStep(activeStep - 1 > 0 ? activeStep - 1 : 0))
       }
       activeStep={activeStep}
       steps={[
@@ -290,74 +288,15 @@ export const withCustomAvatarImage = () => {
           onClick: () => setActiveStep(4),
         },
       ]}
-    />
-  ) : null;
-};
-
-export const withAvatar = () => {
-  const [activeStep, setActiveStep] = useState(4);
-  const [closed, setClosed] = useState(false);
-  const showAvatar = boolean('show avatar', true);
-  const showCloseButton = boolean('show closeButton', true);
-  const showMobileBackButton = boolean('show mobile backButton', true);
-  const done = boolean('done', false);
-
-  return !closed ? (
-    <FlowNavigation
-      done={done}
-      avatar={
-        !showAvatar ? null : (
-          <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM}>
-            <img
-              src="https://wise.com/public-resources/assets/illustrations/users.svg"
-              alt="avatar"
-            />
-          </Avatar>
-        )
-      }
       onClose={showCloseButton && (() => setClosed(true))}
       onGoBack={
         showMobileBackButton && (() => setActiveStep(activeStep - 1 > 0 ? activeStep - 1 : 0))
       }
-      activeStep={activeStep}
-      steps={[
-        {
-          label: 'Amount',
-          hoverLabel: (
-            <>
-              <div>
-                <strong>100 GBP</strong>
-              </div>
-              0.2351 ETH
-            </>
-          ),
-          onClick: () => setActiveStep(0),
-        },
-        {
-          label: 'You',
-          hoverLabel: (
-            <>
-              <div>
-                <strong>Elena Durante</strong>
-              </div>
-              elenadurante@test.com
-            </>
-          ),
-          onClick: () => setActiveStep(1),
-        },
-        { label: 'Recipient', hoverLabel: 'Daniele Tomboro', onClick: () => setActiveStep(2) },
-        { label: 'Review', hoverLabel: 'Antonio Dozortevo', onClick: () => setActiveStep(3) },
-        {
-          label: 'Pay',
-          hoverLabel: 'Enrico Gusso II',
-          onClick: () => setActiveStep(4),
-        },
-      ]}
     />
   ) : null;
 };
 
-export const withAvatarWrapper = () => {
+export const WithAvatarWrapper = () => {
   const [activeStep, setActiveStep] = useState(4);
   const [closed, setClosed] = useState(false);
   const profileType = select('profileType', Object.keys(ProfileType));
@@ -370,10 +309,6 @@ export const withAvatarWrapper = () => {
     <FlowNavigation
       done={done}
       avatar={<AvatarWrapper url={avatarURL} profileType={profileType} />}
-      onClose={showCloseButton && (() => setClosed(true))}
-      onGoBack={
-        showMobileBackButton && (() => setActiveStep(activeStep - 1 > 0 ? activeStep - 1 : 0))
-      }
       activeStep={activeStep}
       steps={[
         {
@@ -408,11 +343,15 @@ export const withAvatarWrapper = () => {
           onClick: () => setActiveStep(4),
         },
       ]}
+      onClose={showCloseButton && (() => setClosed(true))}
+      onGoBack={
+        showMobileBackButton && (() => setActiveStep(activeStep - 1 > 0 ? activeStep - 1 : 0))
+      }
     />
   ) : null;
 };
 
-export const withOverlayHeaderComparison = () => {
+export const WithOverlayHeaderComparison = () => {
   const [activeStep, setActiveStep] = useState(4);
   const [closed, setClosed] = useState(false);
   const showAvatar = select('avatar', Object.keys(avatarProfiles), 'Profile');
@@ -431,18 +370,17 @@ export const withOverlayHeaderComparison = () => {
               </Avatar>
             ) : null
           }
+          activeStep={activeStep}
+          done={done}
+          steps={[]}
           onClose={showCloseButton && (() => setClosed(true))}
           onGoBack={
             showMobileBackButton && (() => setActiveStep(activeStep > 0 ? activeStep - 1 : 0))
           }
-          activeStep={activeStep}
-          done={done}
-          steps={[]}
         />
       </div>
       <div style={{ border: '1px solid #e8e8e8' }}>
         <OverlayHeader
-          onClose={showCloseButton && (() => setClosed(true))}
           avatar={
             showAvatar ? (
               <Avatar type={AvatarType.ICON} size={Size.MEDIUM}>
@@ -450,6 +388,7 @@ export const withOverlayHeaderComparison = () => {
               </Avatar>
             ) : null
           }
+          onClose={showCloseButton && (() => setClosed(true))}
         />
       </div>
     </>

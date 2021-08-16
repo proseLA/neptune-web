@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
 import { formatDistance } from 'date-fns';
+import PropTypes from 'prop-types';
 
 /**
  * Check if date is past date
  *
  * @param {Date | null | undefined} endDate test date
- * @return {boolean} `true` if date is less than today or equal `null` / `undefined`,
+ * @returns {boolean} `true` if date is less than today or equal `null` / `undefined`,
  * otherwise returns `false`
  */
 export function isExpired(endDate) {
@@ -27,37 +27,39 @@ const getPages = () => {
     const path = `/${pathParts.join('/')}`;
     const slug = pathParts.pop();
 
-    const obj = {
+    return {
       rootDir: pathParts[0],
       component: req(filePath),
       slug,
       path,
     };
-
-    return obj;
   });
 };
 
 const pages = getPages();
 
-const pagesByPath = pages.reduce((acc, page) => {
-  acc[page.path] = page;
-  return acc;
+const pagesByPath = pages.reduce((accumulator, page) => {
+  accumulator[page.path] = page;
+  return accumulator;
 }, {});
 
-const pageInSection = (page, dir) => page.path.indexOf(dir) === 1;
+const pageInSection = (page, directory) => page.path.indexOf(directory) === 1;
 
-const getPagesInOrder = (dir, fileOrder) =>
-  fileOrder.map((fileName) => pagesByPath[`/${dir}/${fileName}`]);
+const getPagesInOrder = (directory, fileOrder) =>
+  fileOrder.map((fileName) => pagesByPath[`/${directory}/${fileName}`]);
 
 /**
  * Given a path, find a matching page.
+ *
+ * @param pathname
  */
 export const getPageFromPath = (pathname) => pagesByPath[pathname];
 
 /**
  * Pass in a section name and get an ordered list of page objects belonging to the section.
  * Page order is defined in sections.js.
+ *
+ * @param section
  */
 export const getPagesInSection = (section) => {
   if (section.children) {
@@ -82,6 +84,8 @@ export const getPagesInSection = (section) => {
 
 /**
  * Pass in a section name and get the first page (in order) in response.
+ *
+ * @param section
  */
 export const getFirstPageInSection = (section) => {
   if (section.fileOrder) {
@@ -107,9 +111,9 @@ export const getFirstPageInSection = (section) => {
 export const addBasePath = (url) =>
   `${process.env.ASSET_PREFIX}/${url.indexOf('/') === 0 ? url.slice(1) : url}`;
 
-export const DocLink = ({ href, children }) => <a href={addBasePath(href)}>{children}</a>;
+export const DocumentLink = ({ href, children }) => <a href={addBasePath(href)}>{children}</a>;
 
-DocLink.propTypes = {
+DocumentLink.propTypes = {
   href: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };

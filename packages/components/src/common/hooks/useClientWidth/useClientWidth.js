@@ -1,5 +1,5 @@
-import { useLayoutEffect, useState, useEffect } from 'react';
 import throttle from 'lodash.throttle';
+import { useLayoutEffect, useState, useEffect } from 'react';
 
 const THROTTLE_MS = 100;
 
@@ -9,6 +9,7 @@ export const useClientWidth = ({ ref, throttleMs = THROTTLE_MS }) => {
   const [clientWidth, setClientWidth] = useState(null);
 
   useIsomorphicLayoutEffect(() => {
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const updateClientWidth = () => {
       if (ref) {
         // when `ref` is a window

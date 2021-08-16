@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-import SlidingPanel from '../slidingPanel';
-import Dimmer from '../dimmer';
-
-import { Position } from '../common/propsValues/position';
-import { logActionRequiredIf } from '../utilities';
 import CloseButton from '../common/closeButton';
+import { Position } from '../common/propsValues/position';
+import Dimmer from '../dimmer';
+import SlidingPanel from '../slidingPanel';
+import { logActionRequiredIf } from '../utilities';
 
 const Drawer = ({ children, footerContent, headerTitle, onClose, open, position }) => {
   logActionRequiredIf(

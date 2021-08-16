@@ -2,25 +2,24 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import debounce from 'lodash.debounce';
-import clamp from 'lodash.clamp';
-import classNames from 'classnames';
-
 import { Cross as CrossIcon } from '@transferwise/icons';
+import classNames from 'classnames';
+import clamp from 'lodash.clamp';
+import debounce from 'lodash.debounce';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-import KeyCodes from '../common/keyCodes';
-import TypeaheadInput from './typeaheadInput/TypeaheadInput';
-import TypeaheadOption from './typeaheadOption/TypeaheadOption';
-import InlineAlert from '../inlineAlert';
 import Chip from '../chip';
+import { Size, Sentiment } from '../common';
 import {
   addClickClassToDocumentOnIos,
   removeClickClassFromDocumentOnIos,
 } from '../common/domHelpers';
+import KeyCodes from '../common/keyCodes';
+import InlineAlert from '../inlineAlert';
 
-import { Size, Sentiment } from '../common';
+import TypeaheadInput from './typeaheadInput/TypeaheadInput';
+import TypeaheadOption from './typeaheadOption/TypeaheadOption';
 
 const DEFAULT_MIN_QUERY_LENGTH = 3;
 const SEARCH_DELAY = 200;
@@ -39,11 +38,10 @@ export default class Typeahead extends Component {
     };
   }
 
-  // eslint-disable-next-line
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.multiple !== this.props.multiple) {
-      this.setState((prevState) => {
-        const { selected } = prevState;
+      this.setState((previousState) => {
+        const { selected } = previousState;
         if (!nextProps.multiple && selected.length > 0) {
           return {
             query: selected[0].label,
@@ -121,11 +119,7 @@ export default class Typeahead extends Component {
     const { keyboardFocusedOptionIndex, query, selected } = this.state;
     const chipsMode = !showSuggestions && allowNew && multiple;
 
-    if (
-      chipsMode &&
-      ['Enter', 'Tab', ...chipSeparators].indexOf(event.key) !== -1 &&
-      query.trim()
-    ) {
+    if (chipsMode && ['Enter', 'Tab', ...chipSeparators].includes(event.key) && query.trim()) {
       event.preventDefault();
       this.selectItem({ label: query });
     } else {
@@ -158,8 +152,8 @@ export default class Typeahead extends Component {
   };
 
   moveFocusedOption(offset) {
-    this.setState((prevState) => {
-      const { keyboardFocusedOptionIndex } = prevState;
+    this.setState((previousState) => {
+      const { keyboardFocusedOptionIndex } = previousState;
       const { options } = this.props;
       let index = 0;
       if (keyboardFocusedOptionIndex !== null) {
@@ -204,8 +198,8 @@ export default class Typeahead extends Component {
       onSearch(query);
     }
 
-    this.setState((prevState) => ({
-      keyboardFocusedOptionIndex: prevState.keyboardFocusedOptionIndex === null ? null : 0,
+    this.setState((previousState) => ({
+      keyboardFocusedOptionIndex: previousState.keyboardFocusedOptionIndex === null ? null : 0,
     }));
   };
 
@@ -408,11 +402,11 @@ export default class Typeahead extends Component {
               value={query}
               typeaheadId={id}
               renderChip={this.renderChip}
+              autoComplete={inputAutoComplete}
               onChange={this.handleOnChange}
               onKeyDown={this.handleOnKeyDown}
               onFocus={this.handleOnFocus}
               onPaste={this.handleOnPaste}
-              autoComplete={inputAutoComplete}
             />
 
             {clearButton && (

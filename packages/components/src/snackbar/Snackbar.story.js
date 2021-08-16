@@ -1,17 +1,19 @@
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
-import SnackbarProvider from './SnackbarProvider';
-import { SnackbarConsumer } from './SnackbarContext';
-import { Snackbar } from './Snackbar';
-import { Theme } from '../common/theme';
+
 import Button from '../button';
+import { Theme } from '../common/theme';
+
+import { Snackbar } from './Snackbar';
+import { SnackbarConsumer } from './SnackbarContext';
+import SnackbarProvider from './SnackbarProvider';
 
 export default {
   component: Snackbar,
   title: 'Snackbar',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const theme = select('Theme', [Theme.LIGHT, Theme.DARK], Theme.LIGHT);
 
   return (

@@ -1,17 +1,17 @@
-import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { useIntl } from 'react-intl';
 import { Cross as CrossIcon } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
+import { useIntl } from 'react-intl';
 
 import messages from './CloseButton.messages';
 
-export const CloseButton = forwardRef((props, ref) => {
+export const CloseButton = forwardRef((props, reference) => {
   const intl = useIntl();
   const { onClick, className, size } = props;
   return (
     <button
-      ref={ref}
+      ref={reference}
       type="button"
       className={classNames(
         'np-close-button close btn-link text-no-decoration',

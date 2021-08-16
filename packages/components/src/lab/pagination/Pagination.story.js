@@ -1,5 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number, select } from '@storybook/addon-knobs';
+
 import Pagination, { PaginationType } from './Pagination';
 
 export default {
@@ -7,7 +8,7 @@ export default {
   title: 'Pagination',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const canFetchMorePages = boolean('Can fetch more pages', false);
   const inverse = boolean('Inverse', false);
   const type = select(
@@ -28,8 +29,8 @@ export const basic = () => {
         type={type}
         numberOfPages={numberOfPages}
         currentPageIndex={currentPageIndex}
-        onClick={action('Page selected')}
         inverse={inverse}
+        onClick={action('Page selected')}
       />
     </div>
   );

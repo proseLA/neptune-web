@@ -1,14 +1,15 @@
-import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
+
 import { Layout } from '../common';
 
-const Header = forwardRef((props, ref) => {
+const Header = forwardRef((props, reference) => {
   const { bottomContent, className, layout, leftContent, rightContent } = props;
   const isVertical = layout === Layout.VERTICAL;
 
   return (
-    <div className={classNames('np-header', 'd-flex', 'flex-wrap', className)} ref={ref}>
+    <div ref={reference} className={classNames('np-header', 'd-flex', 'flex-wrap', className)}>
       <div
         className={classNames('align-items-center', 'np-header__left', 'd-flex', {
           'flex__item--8': isVertical,

@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { Cross as CrossIcon } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
 import { useDirection } from '../common/hooks';
 
 const Nudge = ({ media, title, link, href, onDismiss, id, className }) => {
@@ -16,7 +17,7 @@ const Nudge = ({ media, title, link, href, onDismiss, id, className }) => {
         </a>
       </div>
       <div className={classNames({ 'media-right': !isRTL, 'media-left': isRTL })}>
-        <button type="button" className="close" onClick={onDismiss} aria-label="close">
+        <button type="button" className="close" aria-label="close" onClick={onDismiss}>
           <CrossIcon />
         </button>
       </div>

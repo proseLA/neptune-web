@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
-import Types from 'prop-types';
 import classNames from 'classnames';
+import Types from 'prop-types';
+import { useState, useEffect } from 'react';
 
-import SchemaFormControl from '../schemaFormControl';
-import ControlFeedback from '../controlFeedback';
-
-import { getValidationFailures } from '../../common/validation/validation-failures';
 import { getValidModelParts } from '../../common/validation/valid-model';
+import { getValidationFailures } from '../../common/validation/validation-failures';
 import DynamicAlert from '../../layout/alert';
+import ControlFeedback from '../controlFeedback';
 import Help from '../help';
+import SchemaFormControl from '../schemaFormControl';
+
+const generateId = () => {
+  return String(Math.floor(100000000 * Math.random()));
+};
 
 const BasicTypeSchema = (props) => {
   const onChange = (newModel) => {
@@ -43,8 +46,6 @@ const BasicTypeSchema = (props) => {
       props.onBlur();
     }
   };
-
-  const generateId = () => String(Math.floor(100000000 * Math.random()));
 
   const [id, setId] = useState('');
   const [model, setModel] = useState(props.model);
@@ -111,10 +112,10 @@ const BasicTypeSchema = (props) => {
             schema={props.schema}
             value={model}
             locale={props.locale}
+            disabled={props.disabled}
             onChange={onChange}
             onFocus={onFocus}
             onBlur={onBlur}
-            disabled={props.disabled}
           />
           <ControlFeedback
             changed={changed}

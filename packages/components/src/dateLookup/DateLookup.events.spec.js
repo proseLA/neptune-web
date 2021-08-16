@@ -4,7 +4,10 @@ import DateLookup from '.';
 
 const defaultLocale = 'en-GB';
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale: defaultLocale }} />,
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale: defaultLocale }} />;
+    },
   useIntl: () => ({ locale: defaultLocale }),
   defineMessages: (translations) => translations,
 }));
@@ -21,8 +24,8 @@ describe('DateLookup (events)', () => {
   beforeEach(() => {
     originalAddEventListener = global.document.addEventListener;
     originalRemoveEventListener = global.document.removeEventListener;
-    global.document.addEventListener = jest.fn();
-    global.document.removeEventListener = jest.fn();
+    jest.spyOn(global.document, 'addEventListener').mockImplementation();
+    jest.spyOn(global.document, 'removeEventListener').mockImplementation();
     props = {
       value: date,
       min,

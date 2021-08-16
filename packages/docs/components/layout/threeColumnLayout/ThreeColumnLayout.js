@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import Flex from '../flex';
+
 import Box from '../box';
+import Flex from '../flex';
 
 const Direction = { default: 'row', xs: 'row', sm: 'row', md: 'row', lg: 'row' };
 

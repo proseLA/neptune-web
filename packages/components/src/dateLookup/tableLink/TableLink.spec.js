@@ -30,9 +30,9 @@ describe('TableLink', () => {
   it('disables the link', () => {
     component.setProps({ disabled: true });
     expect(button().prop('disabled')).toBe(true);
-    expect(props.onClick).not.toBeCalled();
+    expect(props.onClick).not.toHaveBeenCalled();
     button().simulate('click', { preventDefault: () => {} });
-    expect(props.onClick).not.toBeCalled();
+    expect(props.onClick).not.toHaveBeenCalled();
   });
 
   it('highlights active link', () => {
@@ -49,7 +49,7 @@ describe('TableLink', () => {
 
   it('calls click handler on click', () => {
     button().simulate('click', { preventDefault: () => {} });
-    expect(props.onClick).toBeCalledWith(5);
+    expect(props.onClick).toHaveBeenCalledWith(5);
   });
 
   const button = () => component.find('button');

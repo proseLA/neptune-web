@@ -2,7 +2,6 @@ import { isIosDevice } from './deviceDetection';
 
 describe('Device detection', () => {
   function fakeUserAgent(userAgent) {
-    // eslint-disable-next-line
     navigator.__defineGetter__('userAgent', () => userAgent);
     // need to use this instead of defineProperty, as it's blocked from overriding
   }

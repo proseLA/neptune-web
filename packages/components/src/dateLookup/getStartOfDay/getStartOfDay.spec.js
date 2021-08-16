@@ -3,12 +3,12 @@ import { getStartOfDay } from '.';
 describe('getStartOfDay', () => {
   it('works for date created with long date string', () => {
     const date = getStartOfDay(new Date('December 17, 1995 03:24:00'));
-    expect(getDatePartsArray(date)).toEqual([1995, 11, 17, 0, 0]);
+    expect(getDatePartsArray(date)).toStrictEqual([1995, 11, 17, 0, 0]);
   });
 
   it('works for date in format "YYYY-MM-DDTHH:SS:SS"', () => {
     const date = getStartOfDay(new Date('1995-12-17T03:24:00'));
-    expect(getDatePartsArray(date)).toEqual([1995, 11, 17, 0, 0]);
+    expect(getDatePartsArray(date)).toStrictEqual([1995, 11, 17, 0, 0]);
   });
 
   it('works for date in format "YYYY-MM-DD"', () => {
@@ -27,12 +27,12 @@ describe('getStartOfDay', () => {
 
   it('works for date created with year, month', () => {
     const date = getStartOfDay(new Date(2018, 5));
-    expect(getDatePartsArray(date)).toEqual([2018, 5, 1, 0, 0]);
+    expect(getDatePartsArray(date)).toStrictEqual([2018, 5, 1, 0, 0]);
   });
 
   it('works for date created with year, month, day, hours, minutes', () => {
     const date = getStartOfDay(new Date(2018, 11, 1, 23, 59));
-    expect(getDatePartsArray(date)).toEqual([2018, 11, 1, 0, 0]);
+    expect(getDatePartsArray(date)).toStrictEqual([2018, 11, 1, 0, 0]);
   });
 
   it('returns null when no Date is provided', () => {

@@ -1,11 +1,12 @@
-import { shallow } from 'enzyme';
 import { RadioGroup } from '@transferwise/components';
+import { shallow } from 'enzyme';
 
-import PromotedOneOfSchema from './PromotedOneOfSchema';
+import DynamicAlert from '../../layout/alert';
+import GenericSchema from '../genericSchema';
 import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
-import GenericSchema from '../genericSchema';
-import DynamicAlert from '../../layout/alert';
+
+import PromotedOneOfSchema from './PromotedOneOfSchema';
 import PromotedOneOfControl from './control/PromotedOneOfControl';
 import PromotedOneOfRadioControl from './control/PromotedOneOfRadioControl';
 
@@ -331,6 +332,7 @@ describe('Given a PromotedOneOfSchema component', () => {
       });
     });
 
+    // eslint-disable-next-line jest/expect-expect
     it('should pass down all props to the promoted option', () => {
       const promoted = component.find(ObjectSchema);
 
@@ -341,11 +343,11 @@ describe('Given a PromotedOneOfSchema component', () => {
       describe('when there is one other option', () => {
         let objectSchema;
 
-        const initialize = (promotionObj) => {
+        const initialize = (promotionObject) => {
           schema = {
             title: 'Choose schema',
             oneOf: [promotedSchema, ...oneOtherOption],
-            promotion: promotionObj,
+            promotion: promotionObject,
           };
 
           props = { ...props, schema };
@@ -383,6 +385,7 @@ describe('Given a PromotedOneOfSchema component', () => {
           });
         });
 
+        // eslint-disable-next-line jest/expect-expect
         it('should pass down all props to the other option', () => {
           expectPropsToBeEqual(objectSchema, props);
         });
@@ -408,6 +411,7 @@ describe('Given a PromotedOneOfSchema component', () => {
           });
         });
 
+        // eslint-disable-next-line jest/expect-expect
         it('should pass down all props to the other option', () => {
           expectPropsToBeEqual(oneOfSchema, props);
         });

@@ -1,6 +1,6 @@
+import { InlineAlert } from '@transferwise/components';
 import { shallow } from 'enzyme';
 
-import { InlineAlert } from '@transferwise/components';
 import ControlFeedback from '.';
 
 describe('Given a component for rendering feedback next to controls', () => {
@@ -45,7 +45,7 @@ describe('Given a component for rendering feedback next to controls', () => {
 
   describe('when initialised without error', () => {
     it('should not show any alerts', () => {
-      expect(component.find(InlineAlert).length).toBe(0);
+      expect(component.find(InlineAlert)).toHaveLength(0);
     });
   });
 
@@ -56,7 +56,7 @@ describe('Given a component for rendering feedback next to controls', () => {
 
     it('should show an alert', () => {
       const alert = component.find(InlineAlert);
-      expect(alert.length).toBe(1);
+      expect(alert).toHaveLength(1);
       expect(alert.prop('type')).toBe('error');
       expect(alert.contains('There was an external error')).toBe(true);
     });
@@ -71,7 +71,7 @@ describe('Given a component for rendering feedback next to controls', () => {
     });
 
     it('should not show the original error', () => {
-      expect(component.find(InlineAlert).length).toBe(0);
+      expect(component.find(InlineAlert)).toHaveLength(0);
     });
   });
 
@@ -82,7 +82,7 @@ describe('Given a component for rendering feedback next to controls', () => {
 
     it('should show an alert for description', () => {
       const alert = component.find(InlineAlert);
-      expect(alert.length).toBe(1);
+      expect(alert).toHaveLength(1);
       expect(alert.prop('type')).toBe('info');
     });
 
@@ -98,7 +98,7 @@ describe('Given a component for rendering feedback next to controls', () => {
 
     it('should show a validation alert', () => {
       const alert = component.find(InlineAlert);
-      expect(alert.length).toBe(1);
+      expect(alert).toHaveLength(1);
       expect(alert.prop('type')).toBe('error');
     });
 
@@ -118,7 +118,7 @@ describe('Given a component for rendering feedback next to controls', () => {
 
     it('should show a validation alert', () => {
       const alert = component.find(InlineAlert);
-      expect(alert.length).toBe(1);
+      expect(alert).toHaveLength(1);
       expect(alert.prop('type')).toBe('error');
     });
 
@@ -138,7 +138,7 @@ describe('Given a component for rendering feedback next to controls', () => {
 
     it('should show a validation alert', () => {
       const alert = component.find(InlineAlert);
-      expect(alert.length).toBe(1);
+      expect(alert).toHaveLength(1);
       expect(alert.prop('type')).toBe('error');
     });
 
@@ -158,7 +158,7 @@ describe('Given a component for rendering feedback next to controls', () => {
 
     it('should render the validation async success message as an info InLineAlert', () => {
       const alert = component.find(InlineAlert);
-      expect(alert.length).toBe(1);
+      expect(alert).toHaveLength(1);
       expect(alert.prop('type')).toBe('info');
     });
 

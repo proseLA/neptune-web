@@ -1,10 +1,11 @@
-import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
-import SnackbarAppendingToBody, { Snackbar, CSS_TRANSITION_DURATION } from './Snackbar';
-import SnackbarProvider from './SnackbarProvider';
-import { SnackbarConsumer } from './SnackbarContext';
+import ReactDOM from 'react-dom';
 
 import { DirectionProvider } from '../provider/direction';
+
+import SnackbarAppendingToBody, { Snackbar, CSS_TRANSITION_DURATION } from './Snackbar';
+import { SnackbarConsumer } from './SnackbarContext';
+import SnackbarProvider from './SnackbarProvider';
 
 describe('Snackbar', () => {
   const timeout = 1000;
@@ -45,7 +46,7 @@ describe('Snackbar', () => {
     expect(createPortal).not.toHaveBeenCalled();
     mount(<SnackbarAppendingToBody {...props} />);
 
-    expect(createPortal).toBeCalledTimes(1);
+    expect(createPortal).toHaveBeenCalledTimes(1);
     /** Using toBeCalledWith was not matching properly */
     const [comp, body] = ReactDOM.createPortal.mock.calls[0];
     expect(comp).toMatchObject(snackbar());
@@ -83,7 +84,7 @@ describe('Snackbar', () => {
     buttonTrigger().simulate('click');
     buttonTrigger().simulate('click');
     expect(snackbar().text()).toContain(props.text);
-    expect(snackbar().length).toBe(1);
+    expect(snackbar()).toHaveLength(1);
 
     jest.advanceTimersByTime(timeout + CSS_TRANSITION_DURATION + 500);
 

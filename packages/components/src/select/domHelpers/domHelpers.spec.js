@@ -2,6 +2,7 @@ import { addClassAndTriggerReflow, removeClass } from '.';
 
 class FakeNode {
   constructor() {
+    // eslint-disable-next-line jest/prefer-spy-on
     this.scrollTopAccessorMock = jest.fn();
     this.classList = {
       add: jest.fn(),
@@ -21,7 +22,7 @@ describe('Select dom helpers', () => {
     expect(node.scrollTopAccessorMock).not.toHaveBeenCalled();
     expect(node.classList.add).not.toHaveBeenCalled();
     addClassAndTriggerReflow(node, 'some-class');
-    expect(node.scrollTopAccessorMock).toHaveBeenCalled();
+    expect(node.scrollTopAccessorMock).toHaveBeenCalledTimes(1);
     expect(node.classList.add).toHaveBeenCalledWith('some-class');
   });
 

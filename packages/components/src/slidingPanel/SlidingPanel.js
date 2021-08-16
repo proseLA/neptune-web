@@ -1,6 +1,6 @@
-import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
 export const EXIT_ANIMATION = 350;
@@ -16,7 +16,7 @@ const SlidingPanel = forwardRef(
       slidingPanelPositionFixed,
       ...rest
     },
-    ref,
+    reference,
   ) => {
     return (
       <CSSTransition
@@ -35,7 +35,7 @@ const SlidingPanel = forwardRef(
         appear
         unmountOnExit
       >
-        <div className={classNames('sliding-panel', className)} ref={ref}>
+        <div ref={reference} className={classNames('sliding-panel', className)}>
           {children}
         </div>
       </CSSTransition>

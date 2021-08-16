@@ -1,4 +1,4 @@
-import HistoryNavigator from './index';
+import HistoryNavigator from '.';
 
 describe('historyNavigator', () => {
   it('returns empty for empty history', () => {
@@ -11,7 +11,7 @@ describe('historyNavigator', () => {
   it('add elements to history', () => {
     const historyNavigator = new HistoryNavigator([1, 2, 3]);
     historyNavigator.add(4);
-    expect(historyNavigator.history).toEqual([1, 2, 3, 4]);
+    expect(historyNavigator.history).toStrictEqual([1, 2, 3, 4]);
   });
 
   it('reads the history backwards/forward', () => {
@@ -29,7 +29,7 @@ describe('historyNavigator', () => {
   it('resets history', () => {
     const historyNavigator = new HistoryNavigator([1, 2, 3]);
     historyNavigator.reset([2]);
-    expect(historyNavigator.history).toEqual([2]);
+    expect(historyNavigator.history).toStrictEqual([2]);
   });
 
   it('update the index to the latest element', () => {

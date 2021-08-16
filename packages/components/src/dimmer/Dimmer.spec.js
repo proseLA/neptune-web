@@ -1,5 +1,6 @@
-import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
+import ReactDOM from 'react-dom';
+
 import DimmerAppendingToBody, { Dimmer } from './Dimmer';
 
 jest.mock('react-dom');
@@ -12,10 +13,12 @@ describe('Dimmer', () => {
     fadeContentOnEnter: false,
     onClick: jest.fn(),
     children: <div />,
+    className: undefined,
+    onClose: undefined,
   };
 
   beforeEach(() => {
-    ReactDOM.createPortal = jest.fn();
+    jest.spyOn(ReactDOM, 'createPortal').mockImplementation();
     ReactDOM.createPortal.mockReturnValue(<Dimmer {...props} />);
     component = shallow(<Dimmer {...props} />);
   });
@@ -26,10 +29,10 @@ describe('Dimmer', () => {
   });
 
   it('is appended to body', () => {
-    expect(ReactDOM.createPortal).not.toBeCalled();
+    expect(ReactDOM.createPortal).not.toHaveBeenCalled();
     mount(<DimmerAppendingToBody {...props} />);
 
-    expect(ReactDOM.createPortal).toBeCalledTimes(1);
+    expect(ReactDOM.createPortal).toHaveBeenCalledTimes(1);
     /** Using toBeCalledWith was not matching properly */
     const [comp, body] = ReactDOM.createPortal.mock.calls[0];
     expect(comp).toMatchObject(component);
@@ -39,7 +42,7 @@ describe('Dimmer', () => {
   it('renders with right props', () => {
     component = mount(<Dimmer {...props} />);
     expect(component.find(Dimmer)).toHaveLength(1);
-    expect(component.find(Dimmer).props()).toEqual({
+    expect(component.find(Dimmer).props()).toStrictEqual({
       ...props,
       disableClickToClose: false,
       transparent: false,
@@ -59,7 +62,7 @@ describe('Dimmer', () => {
   it('fade content on enter if fadeContentOnEnter is true', () => {
     component.setProps({ fadeContentOnEnter: true });
     const cssTransition = component.find('CSSTransition');
-    expect(cssTransition.prop('classNames')).toEqual({
+    expect(cssTransition.prop('classNames')).toStrictEqual({
       enter: 'dimmer--enter-fade',
       enterDone: 'dimmer--enter-done dimmer--enter-fade',
       exit: 'dimmer--exit',
@@ -69,7 +72,7 @@ describe('Dimmer', () => {
   it('fade content on exit if fadeContentOnExit is true', () => {
     component.setProps({ fadeContentOnExit: true });
     const cssTransition = component.find('CSSTransition');
-    expect(cssTransition.prop('classNames')).toEqual({
+    expect(cssTransition.prop('classNames')).toStrictEqual({
       enter: '',
       enterDone: 'dimmer--enter-done',
       exit: 'dimmer--exit dimmer--exit-fade',

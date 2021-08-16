@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { Size, Key } from '../common';
 
@@ -33,17 +33,17 @@ export const Tile = ({
       )}
       href={href}
       target={target}
+      aria-label={title}
       onClick={disabled ? null : onClick}
       onKeyDown={
         disabled
           ? null
           : ({ key }) => {
-              if (key === Key.ENTER || Key.SPACE.indexOf(key) > -1) {
+              if (key === Key.ENTER || Key.SPACE.includes(key)) {
                 onClick();
               }
             }
       }
-      aria-label={title}
     >
       <div className="np-tile__media d-flex justify-content-center">{media}</div>
       <div className="np-tile__title">{title}</div>

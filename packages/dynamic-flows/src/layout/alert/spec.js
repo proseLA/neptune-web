@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import DynamicAlert from '.';
 
@@ -13,12 +13,12 @@ describe('Given a component for dynamically rendering alert', () => {
   });
 
   it('should render the markdown in an alert component', () => {
-    const { container, getByText } = render(<DynamicAlert component={spec} />);
+    const { container } = render(<DynamicAlert component={spec} />);
 
     const bolded = container.querySelector('strong');
     expect(bolded).toBeInTheDocument();
     expect(bolded.innerHTML).toBe('This is a bold title');
 
-    expect(getByText('and some normal text')).toBeTruthy();
+    expect(screen.getByText('and some normal text')).toBeInTheDocument();
   });
 });

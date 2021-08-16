@@ -1,10 +1,10 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 import { Checkbox } from '../..';
 
-class OptionDocs extends Component {
+class OptionDocumentation extends Component {
   constructor() {
     super();
     this.state = {
@@ -42,10 +42,10 @@ class OptionDocs extends Component {
   id="${type}-option"
   name="${type}-option"
   title="${title}"
-  content="${getContentForComplexState(complex)}"${boolProp(propName, propValue)}${boolProp(
+  content="${getContentForComplexState(complex)}"${boolProperty(propName, propValue)}${boolProperty(
             'complex',
             complex,
-          )}${boolProp('disabled', disabled)}
+          )}${boolProperty('disabled', disabled)}
   ${callbackName}={${callbackString}}${hasMedia ? '\n  media={<FastFlagIcon />}' : ''}
 />`}
         </pre>
@@ -122,14 +122,14 @@ function getContentForComplexState(complex) {
     : 'Normally, the button and icon are vertically centered.';
 }
 
-function boolProp(name, value) {
+function boolProperty(name, value) {
   return value
     ? `
   ${name}`
     : '';
 }
 
-OptionDocs.propTypes = {
+OptionDocumentation.propTypes = {
   type: PropTypes.string.isRequired,
   Option: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
@@ -143,10 +143,10 @@ OptionDocs.propTypes = {
   extra: PropTypes.string,
 };
 
-OptionDocs.defaultProps = {
+OptionDocumentation.defaultProps = {
   propName: null,
   propValue: false,
   extra: '',
 };
 
-export default OptionDocs;
+export default OptionDocumentation;

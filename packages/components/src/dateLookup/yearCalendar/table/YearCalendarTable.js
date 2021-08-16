@@ -1,6 +1,6 @@
-import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
 import { formatDate } from '@transferwise/formatting';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import TableLink from '../../tableLink';
 
@@ -31,9 +31,9 @@ const YearCalendarTable = ({ selectedDate, min, max, viewYear, placeholder, onSe
       </thead>
       <tbody>
         {/* eslint-disable react/no-array-index-key */}
-        {[...Array(ROWS)].map((row, rowIndex) => (
+        {[...new Array(ROWS)].map((row, rowIndex) => (
           <tr key={rowIndex}>
-            {[...Array(COLS)].map((col, colIndex) => (
+            {[...new Array(COLS)].map((col, colIndex) => (
               <td key={colIndex}>{getLink(startYear + rowIndex * COLS + colIndex)}</td>
             ))}
           </tr>

@@ -47,10 +47,10 @@ const arraySortedByPhone = [
 
 describe('sortArrayByPropery', () => {
   it('should sort the array based on property phone', () => {
-    expect(sortArrayByProperty(arrayToSort, 'phone')).toEqual(arraySortedByPhone);
+    expect(sortArrayByProperty(arrayToSort, 'phone')).toStrictEqual(arraySortedByPhone);
   });
 
   it('should sort the array based on property iso3', () => {
-    expect(sortArrayByProperty(arrayToSort, 'iso3')).toEqual(arraySortedByISO3);
+    expect(sortArrayByProperty(arrayToSort, 'iso3')).toStrictEqual(arraySortedByISO3);
   });
 });

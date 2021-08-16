@@ -1,11 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'next/router';
 import { parseISO } from 'date-fns';
-import Link from './Link';
-import Badge from './Badge';
+import { withRouter } from 'next/router';
+import PropTypes from 'prop-types';
+import { useState, useEffect, useRef } from 'react';
 
 import { getPagesInSection } from '../utils/pageUtils';
+
+import Badge from './Badge';
+import Link from './Link';
 
 const getLinks = ({ pathname, section }) => {
   return getPagesInSection(section).map(({ group, component, path }, index) => {
@@ -13,7 +14,7 @@ const getLinks = ({ pathname, section }) => {
     if (group) {
       return {
         content: (
-          <li className="Nav__Group m-t-2" key={key}>
+          <li key={key} className="Nav__Group m-t-2">
             {group}
           </li>
         ),
@@ -48,8 +49,8 @@ const Sidebar = ({ router: { pathname }, section }) => {
   const [filteredLinks, updateFilteredLinks] = useState(links.map(({ content }) => content));
 
   const [searchInput, updateSearchInput] = useState('');
-  const searchEl = useRef(null);
-  const scrollableNavEl = useRef(null);
+  const searchElement = useRef(null);
+  const scrollableNavElement = useRef(null);
 
   useEffect(() => {
     // @TODO
@@ -74,7 +75,7 @@ const Sidebar = ({ router: { pathname }, section }) => {
       const searchString = searchInput.toLowerCase();
       updateFilteredLinks(
         links
-          .filter(({ name }) => typeof name !== 'string' || name.indexOf(searchString) !== -1)
+          .filter(({ name }) => typeof name !== 'string' || name.includes(searchString))
           .map(({ content }) => content),
       );
     } else {
@@ -96,8 +97,8 @@ const Sidebar = ({ router: { pathname }, section }) => {
     if (event.target.className !== 'npm__react-simple-code-editor__textarea') {
       if (event.code === 'Slash' || event.keyCode === 191) {
         event.preventDefault();
-        if (searchEl && searchEl.current) {
-          searchEl.current.focus();
+        if (searchElement && searchElement.current) {
+          searchElement.current.focus();
         }
       }
     }
@@ -110,16 +111,16 @@ const Sidebar = ({ router: { pathname }, section }) => {
       </div>
       {section.searchable && (
         <input
+          ref={searchElement}
           className="Sidebar__Search"
           type="text"
           placeholder="Search..."
           value={searchInput}
-          onChange={(e) => updateSearchInput(e.target.value)}
-          ref={searchEl}
+          onChange={(event) => updateSearchInput(event.target.value)}
         />
       )}
       <div className="Sidebar__Inner">
-        <ul className="Nav" ref={scrollableNavEl}>
+        <ul ref={scrollableNavElement} className="Nav">
           {filteredLinks}
         </ul>
       </div>

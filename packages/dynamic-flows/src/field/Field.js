@@ -1,13 +1,12 @@
-import { Component } from 'react';
-import Types from 'prop-types';
-import classNames from 'classnames';
-
 import { InlineAlert, InstructionsList } from '@transferwise/components';
-import FormControl from '../formControl';
-import { FormControlType, Size } from '../common';
+import classNames from 'classnames';
+import Types from 'prop-types';
+import { Component } from 'react';
 
+import { FormControlType, Size } from '../common';
 import { getControlType } from '../common/requirements';
 import { getValidationFailures } from '../common/validation/validation-failures';
+import FormControl from '../formControl';
 
 export const FieldTypes = {
   STRING: 'string',
@@ -44,7 +43,6 @@ export default class Field extends Component {
     };
   }
 
-  // eslint-disable-next-line
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errorMessage !== this.props.errorMessage) {
       this.setState({ error: nextProps.errorMessage });
@@ -91,7 +89,7 @@ export default class Field extends Component {
     return validationFailures;
   }
 
-  objectSizeOf = (obj) => (obj ? Object.keys(obj).length : 0);
+  objectSizeOf = (object) => (object ? Object.keys(object).length : 0);
 
   updateAlert(control) {
     const { value, field, errorMessage, warningMessage } = this.props;

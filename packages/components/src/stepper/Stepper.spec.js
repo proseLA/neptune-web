@@ -1,7 +1,8 @@
 import { shallow } from 'enzyme';
 
-import Stepper from '.';
 import Tooltip from '../tooltip';
+
+import Stepper from '.';
 
 jest.mock('./deviceDetection', () => ({
   isTouchDevice: jest.fn(() => false),
@@ -13,7 +14,6 @@ describe('Stepper', () => {
   let fakeDeviceDetection;
 
   beforeEach(() => {
-    // eslint-disable-next-line global-require
     fakeDeviceDetection = require('./deviceDetection');
     props = {
       activeStep: 0,
@@ -25,7 +25,7 @@ describe('Stepper', () => {
   const activeStep = (step) => component.setProps({ activeStep: step });
   const steps = (howMany) =>
     component.setProps({
-      steps: Array(...Array(howMany)).map((_, index) => ({ label: index.toString() })),
+      steps: new Array(...new Array(howMany)).map((_, index) => ({ label: index.toString() })),
     });
 
   describe('progress bar', () => {
@@ -46,35 +46,35 @@ describe('Stepper', () => {
     });
 
     it('renders an ending bit for the step from last to current step', () => {
-      expect(progressBarEndingWidth()).toEqual('0%');
+      expect(progressBarEndingWidth()).toStrictEqual('0%');
       activeStep(1);
-      expect(progressBarEndingWidth()).toEqual('50%');
+      expect(progressBarEndingWidth()).toStrictEqual('50%');
       steps(5);
-      expect(progressBarEndingWidth()).toEqual('25%');
+      expect(progressBarEndingWidth()).toStrictEqual('25%');
     });
 
     it('renders a filler bit up to the step where the ending bit begins', () => {
-      expect(progressBarFillerWidth()).toEqual('0%');
+      expect(progressBarFillerWidth()).toStrictEqual('0%');
       activeStep(1);
-      expect(progressBarFillerWidth()).toEqual('0%');
+      expect(progressBarFillerWidth()).toStrictEqual('0%');
       activeStep(2);
-      expect(progressBarFillerWidth()).toEqual('50%');
+      expect(progressBarFillerWidth()).toStrictEqual('50%');
       steps(5);
-      expect(progressBarFillerWidth()).toEqual('25%');
+      expect(progressBarFillerWidth()).toStrictEqual('25%');
       activeStep(3);
-      expect(progressBarFillerWidth()).toEqual('50%');
+      expect(progressBarFillerWidth()).toStrictEqual('50%');
     });
 
     it('sets the widths of the filler and end bits to match where you are in the flow', () => {
-      expect(totalWidth()).toEqual('0%');
+      expect(totalWidth()).toStrictEqual('0%');
       activeStep(2);
-      expect(totalWidth()).toEqual('100%');
+      expect(totalWidth()).toStrictEqual('100%');
       steps(5);
-      expect(totalWidth()).toEqual('50%');
+      expect(totalWidth()).toStrictEqual('50%');
       activeStep(10000);
-      expect(totalWidth()).toEqual('100%');
+      expect(totalWidth()).toStrictEqual('100%');
       activeStep(-10);
-      expect(totalWidth()).toEqual('0%');
+      expect(totalWidth()).toStrictEqual('0%');
     });
   });
 
@@ -82,7 +82,7 @@ describe('Stepper', () => {
     it('have rendered labels', () => {
       steps(5);
       [0, 1, 2, 3, 4].forEach((label, index) => {
-        expect(component.find('.tw-stepper__step').at(index).text()).toEqual(`${label}`);
+        expect(component.find('.tw-stepper__step').at(index).text()).toStrictEqual(`${label}`);
       });
     });
 
@@ -152,13 +152,13 @@ describe('Stepper', () => {
 
     it('are marked as visited when active index is less than or equals to current index', () => {
       const step = (index) => {
-        const btnStates = ['tw-stepper__step--active', 'tw-stepper__step--clickable'];
-        const stepEl = component.find('.tw-stepper__step').at(index);
+        const buttonStates = ['tw-stepper__step--active', 'tw-stepper__step--clickable'];
+        const stepElement = component.find('.tw-stepper__step').at(index);
         return {
-          active: stepEl.hasClass(btnStates[0]),
-          clickable: stepEl.hasClass(btnStates[1]),
-          clickableAndActive: btnStates.every((c) => stepEl.hasClass(c)),
-          disabled: stepEl.find('button').prop('disabled'),
+          active: stepElement.hasClass(buttonStates[0]),
+          clickable: stepElement.hasClass(buttonStates[1]),
+          clickableAndActive: buttonStates.every((c) => stepElement.hasClass(c)),
+          disabled: stepElement.find('button').prop('disabled'),
         };
       };
 
@@ -192,8 +192,8 @@ describe('Stepper', () => {
       });
       const firstStepHoverLabel = step(0).children();
       expect(firstStepHoverLabel.type()).toBe(Tooltip);
-      expect(firstStepHoverLabel.children().render().text()).toEqual('label');
-      expect(step(1).text()).toEqual('label 2');
+      expect(firstStepHoverLabel.children().render().text()).toStrictEqual('label');
+      expect(step(1).text()).toStrictEqual('label 2');
     });
 
     it('renders jsx', () => {
@@ -210,7 +210,7 @@ describe('Stepper', () => {
         ],
       });
 
-      expect(step(0).children().prop('label')).toEqual(
+      expect(step(0).children().prop('label')).toStrictEqual(
         <>
           hover <p>label</p>
         </>,
@@ -218,14 +218,14 @@ describe('Stepper', () => {
     });
 
     it('will not be rendered if the user is on a touch device', () => {
-      fakeDeviceDetection.isTouchDevice = jest.fn(() => true);
+      jest.spyOn(fakeDeviceDetection, 'isTouchDevice').mockImplementation(() => true);
       component.setProps({
         steps: [{ hoverLabel: 'hover', label: 'label' }, { label: 'label 2' }],
       });
       const firstStepHoverLabel = step(0).children();
       expect(firstStepHoverLabel.type()).toBe('button');
-      expect(firstStepHoverLabel.text()).toEqual('label');
-      expect(step(1).text()).toEqual('label 2');
+      expect(firstStepHoverLabel.text()).toStrictEqual('label');
+      expect(step(1).text()).toStrictEqual('label 2');
     });
   });
 });

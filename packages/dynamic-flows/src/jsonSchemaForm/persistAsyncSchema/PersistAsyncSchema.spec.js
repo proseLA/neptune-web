@@ -1,7 +1,8 @@
-import PersistAsyncSchema from './PersistAsyncSchema';
+import { getMockFetchPromise, mount, wait } from '../../test-utils';
 import BasicTypeSchema from '../basicTypeSchema';
 import SchemaFormControl from '../schemaFormControl';
-import { getMockFetchPromise, mount, wait } from '../../test-utils';
+
+import PersistAsyncSchema from './PersistAsyncSchema';
 
 describe('Given a component for rendering persist async schemas', () => {
   let onChange;
@@ -29,9 +30,10 @@ describe('Given a component for rendering persist async schemas', () => {
   const translations = {};
   const submitted = false;
 
-  global.fetch = jest.fn((input, init) => {
+  jest.spyOn(global, 'fetch').mockImplementation((input, init) => {
     let response;
 
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(input).toBe('https://test-url/v1/foobar');
 
     switch (JSON.parse(init.body)[param]) {
@@ -99,7 +101,7 @@ describe('Given a component for rendering persist async schemas', () => {
   describe('when the supplied props are valid', () => {
     let component;
 
-    function getComponentErrorsProp() {
+    function getComponentErrorsProperty() {
       const basicTypeSchema = component.update().find(PersistAsyncSchema).find(BasicTypeSchema);
       return basicTypeSchema.prop('errors');
     }
@@ -157,8 +159,8 @@ describe('Given a component for rendering persist async schemas', () => {
 
           it('should trigger onPersistAsync correctly', () => {
             expect(onPersistAsync).toHaveBeenCalledTimes(1);
-            const firstArgOfFirstCall = onPersistAsync.mock.calls[0][0];
-            expect(firstArgOfFirstCall.isPending()).toBe(true);
+            const firstArgumentOfFirstCall = onPersistAsync.mock.calls[0][0];
+            expect(firstArgumentOfFirstCall.isPending()).toBe(true);
           });
 
           it('should broadcast the persist async response value', async () => {
@@ -179,7 +181,7 @@ describe('Given a component for rendering persist async schemas', () => {
 
           it('should pass down the error', async () => {
             await wait(1);
-            expect(getComponentErrorsProp()).toEqual('Invalid param! (422)');
+            expect(getComponentErrorsProperty()).toStrictEqual('Invalid param! (422)');
           });
 
           it('should broadcast null value', async () => {
@@ -193,7 +195,7 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should render fallback error message', async () => {
             enterValueAndBlur('500--no-body');
             await wait(1);
-            expect(getComponentErrorsProp()).toEqual(
+            expect(getComponentErrorsProperty()).toStrictEqual(
               'Something went wrong, please try again later!',
             );
           });
@@ -203,7 +205,7 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should render fallback error message', async () => {
             enterValueAndBlur('499--json-body');
             await wait(1);
-            expect(getComponentErrorsProp()).toEqual(
+            expect(getComponentErrorsProperty()).toStrictEqual(
               'Something went wrong, please try again later!',
             );
           });
@@ -213,7 +215,7 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should render fallback error message', async () => {
             enterValueAndBlur('499--no-body');
             await wait(1);
-            expect(getComponentErrorsProp()).toEqual(
+            expect(getComponentErrorsProperty()).toStrictEqual(
               'Something went wrong, please try again later!',
             );
           });

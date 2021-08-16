@@ -8,7 +8,7 @@ export type CommonProps = {
   className?: string;
 };
 
-export type AriaLabelProp = {
+export type AriaLabelProperty = {
   'aria-label'?: string;
 };
 

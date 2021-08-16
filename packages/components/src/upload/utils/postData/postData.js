@@ -13,6 +13,6 @@ export const postData = (httpOptions, data = {}) =>
       }
       return response;
     })
-    .catch((e) => {
-      throw e;
+    .catch((error) => {
+      throw error;
     });

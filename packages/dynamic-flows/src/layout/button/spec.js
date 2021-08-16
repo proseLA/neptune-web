@@ -1,6 +1,5 @@
-import { shallow } from 'enzyme';
-
 import { Button } from '@transferwise/components';
+import { shallow } from 'enzyme';
 
 import DynamicButton from '.';
 

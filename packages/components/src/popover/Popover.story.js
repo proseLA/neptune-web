@@ -1,18 +1,17 @@
-import { select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-
-import Popover from './Popover';
+import { select } from '@storybook/addon-knobs';
 
 import Button from '../button';
-
 import { Position } from '../common';
+
+import Popover from './Popover';
 
 export default {
   component: Popover,
   title: 'Popover',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const preferredPlacement = select(
     'preferredPlacement',
     [
@@ -33,9 +32,15 @@ export const basic = () => {
       content={
         <>
           You’ll get this rate as long as we receive your 10 EUR within the next 51 hours.
-          <a href="test1">Test 1</a>
-          <a href="test1">Test 2</a>
-          <a href="test1">Test 3</a>
+          <div>
+            <a href="test1">Test 1</a>
+          </div>
+          <div>
+            <a href="test1">Test 2</a>
+          </div>
+          <div>
+            <a href="test1">Test 3</a>
+          </div>
         </>
       }
       preferredPlacement={preferredPlacement}

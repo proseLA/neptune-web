@@ -1,7 +1,7 @@
+import NavigationOption from '../navigationOption';
 import { render } from '../test-utils';
 
 import NavigationOptionsList from '.';
-import NavigationOption from '../navigationOption';
 
 describe('NavigationOptionsList', () => {
   it('renders the children in a list', () => {

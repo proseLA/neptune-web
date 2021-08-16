@@ -1,8 +1,8 @@
-import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
-
-import { render, cleanup, waitFor, screen, userEvent } from '../test-utils';
-import { Dimmer } from './Dimmer';
 import { Button } from '..';
+import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
+import { render, cleanup, waitFor, screen, userEvent } from '../test-utils';
+
+import { Dimmer } from './Dimmer';
 
 jest.mock('../common');
 
@@ -38,7 +38,7 @@ describe('Dimmer', () => {
 
     it('does not call onClose when clicked if disableClickToClose is true', () => {
       const onClose = jest.fn();
-      render(<Dimmer {...props} onClose={onClose} disableClickToClose />);
+      render(<Dimmer {...props} disableClickToClose onClose={onClose} />);
       userEvent.click(screen.getByRole('presentation'));
       expect(onClose).toHaveBeenCalledTimes(0);
     });
@@ -52,7 +52,7 @@ describe('Dimmer', () => {
 
     it('does not call onClose if the escape key is pressed when disableClickToClose is true', () => {
       const onClose = jest.fn();
-      render(<Dimmer {...props} onClose={onClose} disableClickToClose />);
+      render(<Dimmer {...props} disableClickToClose onClose={onClose} />);
       userEvent.keyboard('{esc}');
       expect(onClose).toHaveBeenCalledTimes(1);
     });
@@ -82,7 +82,7 @@ describe('Dimmer', () => {
 
       render(<Dimmer {...props} />);
 
-      expect(addNoScrollBodyClass).toHaveBeenCalled();
+      expect(addNoScrollBodyClass).toHaveBeenCalledTimes(1);
     });
 
     it('calls removeNoScrollBodyClass on unmount', async () => {

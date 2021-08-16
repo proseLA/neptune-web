@@ -1,6 +1,6 @@
+import { InlineAlert } from '@transferwise/components';
 import { mount } from 'enzyme';
 
-import { InlineAlert } from '@transferwise/components';
 import DynamicLayout from '.';
 
 describe('E2E: Given a component for rendering a dynamic layout', () => {
@@ -37,12 +37,12 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
     component = mount(
       <DynamicLayout
         components={[box]}
-        onAction={onAction}
-        onModelChange={onModelChange}
         submitted
         errors={errors}
-        onPersistAsync={onPersistAsync}
         baseUrl="dynamic-layout-base-url"
+        onAction={onAction}
+        onModelChange={onModelChange}
+        onPersistAsync={onPersistAsync}
       />,
     );
   });
@@ -55,7 +55,7 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
     expect(component.find('button')).toBeTruthy();
   });
 
-  it('should show the supplied error message ', () => {
+  it('should show the supplied error message', () => {
     expect(component.find(InlineAlert).contains(errors.an)).toBe(true);
   });
 

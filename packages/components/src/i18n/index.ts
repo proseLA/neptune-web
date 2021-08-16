@@ -1,5 +1,5 @@
-import en from './en.json';
 import de from './de.json';
+import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
 import hu from './hu.json';

@@ -8,8 +8,8 @@ describe('findCountryByCode', () => {
       name: 'Australian Antarctic Territory',
       phone: '+672',
     };
-    expect(findCountryByCode('AQ')).toEqual(testCountry);
-    expect(findCountryByCode('aq')).toEqual(testCountry);
+    expect(findCountryByCode('AQ')).toStrictEqual(testCountry);
+    expect(findCountryByCode('aq')).toStrictEqual(testCountry);
   });
 
   it('should return null for invalid code', () => {

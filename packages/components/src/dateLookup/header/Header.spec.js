@@ -1,4 +1,5 @@
 import { shallow } from 'enzyme';
+
 import Chevron from '../../chevron';
 
 import Header from '.';
@@ -27,12 +28,12 @@ describe('Header', () => {
 
   it('calls previous button handler on previous click', () => {
     component.find('button').at(0).simulate('click');
-    expect(props.onPreviousClick).toBeCalled();
+    expect(props.onPreviousClick).toHaveBeenCalledTimes(1);
   });
 
   it('calls next button handler on next click', () => {
     component.find('button').at(1).simulate('click');
-    expect(props.onNextClick).toBeCalled();
+    expect(props.onNextClick).toHaveBeenCalledTimes(1);
   });
 
   describe('when label is provided', () => {
@@ -49,7 +50,7 @@ describe('Header', () => {
       const onLabelClick = jest.fn();
       component.setProps({ onLabelClick });
       component.find('.tw-date-lookup-header-current').simulate('click');
-      expect(onLabelClick).toBeCalled();
+      expect(onLabelClick).toHaveBeenCalledTimes(1);
     });
   });
 });

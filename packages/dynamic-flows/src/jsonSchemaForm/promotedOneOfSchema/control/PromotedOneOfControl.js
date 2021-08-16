@@ -1,7 +1,7 @@
 import Types from 'prop-types';
 
-import PromotedOneOfRadioControl from './PromotedOneOfRadioControl';
 import PromotedOneOfCheckboxControl from './PromotedOneOfCheckboxControl';
+import PromotedOneOfRadioControl from './PromotedOneOfRadioControl';
 
 const PromotedOneOfControl = (props) => {
   const controlType = props.promotion.control || 'radio';

@@ -1,5 +1,6 @@
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { select, text } from '@storybook/addon-knobs';
+
 import Upload from '.';
 
 const IMAGES = [
@@ -30,7 +31,7 @@ export default {
   title: 'Upload',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const size = select('size', ['sm', 'md', 'lg'], 'md');
   const usAccept = text('accepted format', '*');
 
@@ -65,7 +66,7 @@ export const basic = () => {
   );
 };
 
-export const withCustomImage = () => {
+export const WithCustomImage = () => {
   const size = select('size', ['sm', 'md', 'lg'], 'md');
   const usAccept = text('accepted format', '*');
 

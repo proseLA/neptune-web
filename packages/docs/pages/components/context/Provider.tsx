@@ -1,5 +1,3 @@
-import { ReactElement } from 'react';
-import { FormattedMessage } from 'react-intl';
 import {
   Provider as ProviderComponent,
   Money,
@@ -7,17 +5,18 @@ import {
   getLangFromLocale,
   translations as supportedLanguages,
 } from '@transferwise/components';
-
-// @ts-expect-error
+// @ts-expect-error messages
 import messages from '@transferwise/components/build/es/no-polyfill/common/closeButton/CloseButton.messages';
-import { DocLink } from '../../../utils/pageUtils';
+import { ReactElement } from 'react';
+import { FormattedMessage } from 'react-intl';
+
+// @ts-expect-error liveEditorCode
+import code from '../../../liveEditorCode/provider.code';
 import { LiveEditorBlock, GeneratePropsTable, PolyfillsNote } from '../../../utils';
+import { DocumentLink } from '../../../utils/pageUtils';
 import { Meta } from '../../../utils/sections';
 
-// @ts-expect-error
-import code from '../../../liveEditorCode/provider.code';
-
-const defaultLocale: string = 'en-GB';
+const defaultLocale = 'en-GB';
 const localeOptions: { value: string; label: string }[] = [
   defaultLocale,
   'en-US',
@@ -33,21 +32,23 @@ const localeOptions: { value: string; label: string }[] = [
   label: locale,
 }));
 
-export default function PageContent(): ReactElement {
+const PageContent = (): ReactElement => {
   return (
     <>
       Provides contextual data such as translations to components. See the{' '}
-      <DocLink href="/about/Setup#translations-and-the-provider">Provider usage guide</DocLink> for
-      more.
+      <DocumentLink href="/about/Setup#translations-and-the-provider">
+        Provider usage guide
+      </DocumentLink>{' '}
+      for more.
       <LiveEditorBlock
-        code={code}
+        code={code as string}
         scope={{
           getLangFromLocale,
           Provider: ProviderComponent,
           Select,
           Money,
           FormattedMessage,
-          messages,
+          messages: messages as string,
           supportedLanguages,
           localeOptions,
           defaultLocale,
@@ -57,8 +58,10 @@ export default function PageContent(): ReactElement {
       <GeneratePropsTable componentName="Provider" />
     </>
   );
-}
+};
 
 export const meta: Meta = {
   name: 'Provider',
 };
+
+export default PageContent;

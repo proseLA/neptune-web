@@ -1,13 +1,13 @@
-import { ReactElement, useState } from 'react';
-import { Card, PinCode, FastFlag, Menu } from '@transferwise/icons';
 import { BottomSheet, Button, NavigationOption, Size } from '@transferwise/components';
-import { Meta } from '../../../utils/sections';
-// @ts-expect-error
+import { Card, PinCode, FastFlag, Menu } from '@transferwise/icons';
+import { ReactElement, useState } from 'react';
+
+// @ts-expect-error liveEditorCode
 import code from '../../../liveEditorCode/bottomSheet.code';
-
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { Meta } from '../../../utils/sections';
 
-export default function PageContent(): ReactElement {
+const PageContent = (): ReactElement => {
   const [openVarientOne, setOpenVarientOne] = useState(false);
   const [openVarientTwo, setOpenVarientTwo] = useState(false);
   return (
@@ -99,7 +99,7 @@ export default function PageContent(): ReactElement {
         </BottomSheet>
       </ul>
       <LiveEditorBlock
-        code={code}
+        code={code as string}
         scope={{ BottomSheet, Button, NavigationOption, Size, PinCode, Card, Menu }}
       />
       <GeneratePropsTable componentName="BottomSheet" />
@@ -107,7 +107,7 @@ export default function PageContent(): ReactElement {
       <br />
     </div>
   );
-}
+};
 
 export const meta: Meta = {
   name: 'BottomSheet',
@@ -116,3 +116,5 @@ export const meta: Meta = {
     type: 'new',
   },
 };
+
+export default PageContent;

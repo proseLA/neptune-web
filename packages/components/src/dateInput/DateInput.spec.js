@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl';
 import { shallow, mount } from 'enzyme';
+import { useIntl } from 'react-intl';
+
+import { fakeEvent } from '../common/fakeEvents';
 import { useDirection } from '../common/hooks';
 
 import DateInput from '.';
-
-import { fakeEvent } from '../common/fakeEvents';
 
 const MONTHS_FR = [
   'janvier',
@@ -36,14 +36,12 @@ const MONTHS_EN = [
   'December',
 ];
 
-export const LOCALES = {
-  en: 'en-GB',
+const LOCALES = {
   fr: 'fr-FR',
-  us: 'en-US',
   jp: 'ja-JP',
 };
 
-export const DEFAULT_LOCALE = 'en-GB';
+const DEFAULT_LOCALE = 'en-GB';
 
 const FEBRUARY_OPTION = { value: 1, label: MONTHS_EN[1] };
 
@@ -119,7 +117,7 @@ describe('Date Input Component', () => {
         inputYear = component.find(YEAR_SELECTOR);
 
         expect(inputDay.prop('value')).toBe(1);
-        expect(selectMonth.prop('selected')).toEqual(FEBRUARY_OPTION);
+        expect(selectMonth.prop('selected')).toStrictEqual(FEBRUARY_OPTION);
         expect(inputYear.prop('value')).toBe(1971);
       });
     });
@@ -133,7 +131,7 @@ describe('Date Input Component', () => {
         inputYear = component.find(YEAR_SELECTOR);
 
         expect(inputDay.prop('value')).toBe(22);
-        expect(selectMonth.prop('selected')).toEqual({ label: MONTHS_EN[7], value: 7 });
+        expect(selectMonth.prop('selected')).toStrictEqual({ label: MONTHS_EN[7], value: 7 });
         expect(inputYear.prop('value')).toBe(1990);
       });
     });
@@ -147,7 +145,7 @@ describe('Date Input Component', () => {
         inputYear = component.find(YEAR_SELECTOR);
 
         expect(inputDay.prop('value')).toBe('');
-        expect(selectMonth.prop('selected')).toEqual({ label: MONTHS_EN[7], value: 7 });
+        expect(selectMonth.prop('selected')).toStrictEqual({ label: MONTHS_EN[7], value: 7 });
         expect(inputYear.prop('value')).toBe(1990);
       });
     });
@@ -161,7 +159,7 @@ describe('Date Input Component', () => {
         inputYear = component.find(YEAR_SELECTOR);
 
         expect(inputDay.prop('value')).toBe(28);
-        expect(selectMonth.prop('selected')).toEqual(FEBRUARY_OPTION);
+        expect(selectMonth.prop('selected')).toStrictEqual(FEBRUARY_OPTION);
         expect(inputYear.prop('value')).toBe(1990);
       });
     });
@@ -201,7 +199,7 @@ describe('Date Input Component', () => {
       component = shallow(<DateInput {...props} />);
       selectMonth = component.find(MONTH_SELECTOR);
 
-      expect(selectMonth.props().options[0].label).toEqual(MONTHS_FR[0]);
+      expect(selectMonth.props().options[0].label).toStrictEqual(MONTHS_FR[0]);
     });
 
     it('shows day before month if locale not US', () => {
@@ -217,15 +215,15 @@ describe('Date Input Component', () => {
 
     it('applies correct rtl css classes when isRTL is true', () => {
       component = shallow(<DateInput {...props} />);
-      expect(component.find('.col-sm-3').hasClass('pull-right')).toEqual(true);
-      expect(component.find('.col-sm-5').hasClass('pull-right')).toEqual(true);
+      expect(component.find('.col-sm-3').hasClass('pull-right')).toStrictEqual(true);
+      expect(component.find('.col-sm-5').hasClass('pull-right')).toStrictEqual(true);
     });
 
     it('applies correct rtl css classes when isRTL is false', () => {
       useDirection.mockImplementation(() => ({ isRTL: false }));
       component = shallow(<DateInput {...props} />);
-      expect(component.find('.col-sm-3').hasClass('pull-right')).toEqual(false);
-      expect(component.find('.col-sm-5').hasClass('pull-right')).toEqual(false);
+      expect(component.find('.col-sm-3').hasClass('pull-right')).toStrictEqual(false);
+      expect(component.find('.col-sm-5').hasClass('pull-right')).toStrictEqual(false);
     });
   });
 

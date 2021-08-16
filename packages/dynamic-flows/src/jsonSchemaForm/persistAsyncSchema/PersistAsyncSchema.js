@@ -1,21 +1,31 @@
-import { useState } from 'react';
-import Types from 'prop-types';
 import { isNull } from '@transferwise/neptune-validation';
-import { useIntl } from 'react-intl';
 import isEqual from 'lodash.isequal';
-import BasicTypeSchema from '../basicTypeSchema';
+import Types from 'prop-types';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+
 import { isStatus2xx, isStatus422, QueryablePromise } from '../../common/api/utils';
-import messages from './PersistAsyncSchema.messages';
-import { isValidSchema } from '../../common/validation/schema-validators';
-import usePrev from '../../common/hooks/usePrev';
-import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
 import { getAsyncUrl } from '../../common/async/url';
+import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import usePrevious from '../../common/hooks/usePrevious';
+import { isValidSchema } from '../../common/validation/schema-validators';
+import BasicTypeSchema from '../basicTypeSchema';
+
+import messages from './PersistAsyncSchema.messages';
+
+const getIdFromResponse = (idProperty, response) => {
+  return response[idProperty];
+};
+
+const getErrorFromResponse = (errorProperty, response) => {
+  return response.validation?.[errorProperty];
+};
 
 const PersistAsyncSchema = (props) => {
   const intl = useIntl();
 
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
-  const prevPersistAsyncModel = usePrev(persistAsyncModel);
+  const previousPersistAsyncModel = usePrevious(persistAsyncModel);
   const [persistAsyncError, setPersistAsyncError] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
   const [abortController, setAbortController] = useState(null);
@@ -74,17 +84,13 @@ const PersistAsyncSchema = (props) => {
       } else {
         setGenericPersistAsyncError();
       }
-    } catch (e) {
+    } catch {
       setGenericPersistAsyncError();
     }
   };
 
-  const getIdFromResponse = (idProperty, response) => response[idProperty];
-
-  const getErrorFromResponse = (errorProperty, response) => response.validation?.[errorProperty];
-
   const onBlur = () => {
-    if (!isNull(persistAsyncModel) && !isEqual(persistAsyncModel, prevPersistAsyncModel)) {
+    if (!isNull(persistAsyncModel) && !isEqual(persistAsyncModel, previousPersistAsyncModel)) {
       getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
     }
   };
@@ -102,10 +108,10 @@ const PersistAsyncSchema = (props) => {
     <>
       <BasicTypeSchema
         required={props.required}
-        onChange={persistAsyncOnChange}
         submitted={props.submitted || fieldSubmitted}
         schema={props.schema.persistAsync.schema}
         errors={persistAsyncError || props.errors}
+        onChange={persistAsyncOnChange}
         onBlur={onBlur}
       />
     </>

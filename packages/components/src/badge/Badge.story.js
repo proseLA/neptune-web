@@ -1,7 +1,9 @@
 import { text, select } from '@storybook/addon-knobs';
+
 import Avatar, { AvatarType } from '../avatar';
-import Badge from './Badge';
 import { Size, Theme } from '../common';
+
+import Badge from './Badge';
 
 export default {
   component: Badge,
@@ -20,7 +22,7 @@ export const ExampleBadgeCss = {
   alignItems: 'center',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const BadgeInnerText = text('Badge Inner Text', 'Content');
   const BadgeText = text('BadgeText', 'B');
   const border = select('Border', [null, Theme.LIGHT, Theme.DARK]);

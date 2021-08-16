@@ -1,5 +1,5 @@
+import { Alert, Image, Sentiment, Link } from '@transferwise/components';
 import { ReactElement } from 'react';
-import { Alert, Image, Sentiment } from '@transferwise/components';
 
 import button1 from '../../public/static/assets/blog/button-release-mar-2021_1.png';
 import button2 from '../../public/static/assets/blog/button-release-mar-2021_2.png';
@@ -16,7 +16,7 @@ export const meta = {
   hidden: true,
 };
 
-export default function PageContent(): ReactElement {
+const PageContent = (): ReactElement => {
   return (
     <div className="d-flex flex-column">
       <Alert
@@ -33,7 +33,7 @@ export default function PageContent(): ReactElement {
         changes - however you will see deprecation warnings asking you to update prop usage.
       </p>
       <p>
-        <a href="#steps-to-upgrade">Skip to the upgrade steps.</a>
+        <Link href="#steps-to-upgrade">Skip to the upgrade steps.</Link>
       </p>
       <h2>Changes</h2>
       <h3 className="m-t-4 m-b-1">Type has been split into Type + Priority</h3>
@@ -179,4 +179,6 @@ export default function PageContent(): ReactElement {
       </pre>
     </div>
   );
-}
+};
+
+export default PageContent;

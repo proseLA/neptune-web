@@ -1,6 +1,5 @@
-import { shallow } from 'enzyme';
-
 import { Image } from '@transferwise/components';
+import { shallow } from 'enzyme';
 
 import DynamicImage from '.';
 

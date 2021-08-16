@@ -1,15 +1,13 @@
+import { Breakpoint, Position } from '..';
 import { render, waitFor } from '../../test-utils';
 
 import ResponsivePanel from './ResponsivePanel';
-import { Breakpoint, Position } from '..';
 
 jest.mock('../bottomSheet', () => {
-  // eslint-disable-next-line
   const { forwardRef } = require('react');
-  // eslint-disable-next-line react/prop-types
-  return forwardRef(({ open, children }, ref) =>
+  return forwardRef(({ open, children }, reference) =>
     open ? (
-      <div ref={ref} className="np-bottom-sheet">
+      <div ref={reference} className="np-bottom-sheet">
         {children}
       </div>
     ) : null,
@@ -17,12 +15,10 @@ jest.mock('../bottomSheet', () => {
 });
 
 jest.mock('../panel', () => {
-  // eslint-disable-next-line
   const { forwardRef } = require('react');
-  // eslint-disable-next-line react/prop-types
-  return forwardRef(({ open, children }, ref) =>
+  return forwardRef(({ open, children }, reference) =>
     open ? (
-      <div ref={ref} className="np-panel np-panel--open">
+      <div ref={reference} className="np-panel np-panel--open">
         {children}
       </div>
     ) : null,

@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 
+import PromotedOneOfCheckboxControl from './PromotedOneOfCheckboxControl';
 import PromotedOneOfControl from './PromotedOneOfControl';
 import PromotedOneOfRadioControl from './PromotedOneOfRadioControl';
-import PromotedOneOfCheckboxControl from './PromotedOneOfCheckboxControl';
 
 describe('Given a PromotedOneOfControl component', () => {
   let component;
@@ -38,6 +38,7 @@ describe('Given a PromotedOneOfControl component', () => {
       promotion,
       selection,
       setSelection,
+      title: undefined,
     };
   });
 
@@ -53,7 +54,7 @@ describe('Given a PromotedOneOfControl component', () => {
     });
 
     it('should pass down all props', () => {
-      expect(component.find(PromotedOneOfRadioControl).props()).toEqual({
+      expect(component.find(PromotedOneOfRadioControl).props()).toStrictEqual({
         ...props,
         promotion: promotionWithRadioControl,
       });
@@ -80,7 +81,7 @@ describe('Given a PromotedOneOfControl component', () => {
     });
 
     it('should should pass down all props', () => {
-      expect(component.find(PromotedOneOfCheckboxControl).props()).toEqual({
+      expect(component.find(PromotedOneOfCheckboxControl).props()).toStrictEqual({
         ...props,
         promotion: promotionWithCheckboxControl,
       });

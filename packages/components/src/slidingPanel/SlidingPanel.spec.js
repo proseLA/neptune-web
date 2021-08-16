@@ -1,4 +1,5 @@
 import { shallow, mount } from 'enzyme';
+
 import SlidingPanel, { EXIT_ANIMATION } from './SlidingPanel';
 
 describe('SlidingPanel', () => {
@@ -7,6 +8,7 @@ describe('SlidingPanel', () => {
     open: true,
     position: 'left',
     children: null,
+    className: undefined,
     slidingPanelPositionFixed: false,
     showSlidingPanelBorder: false,
   };
@@ -14,7 +16,7 @@ describe('SlidingPanel', () => {
   it('renders with right props', () => {
     component = mount(<SlidingPanel {...props} />);
     expect(component.find(SlidingPanel)).toHaveLength(1);
-    expect(component.find(SlidingPanel).props()).toEqual({ ...props });
+    expect(component.find(SlidingPanel).props()).toStrictEqual({ ...props });
   });
 
   it('renders CSSTransition with right props', () => {
@@ -22,7 +24,7 @@ describe('SlidingPanel', () => {
 
     expect(cssTransition()).toHaveLength(1);
 
-    expect(cssTransition().props()).toEqual({
+    expect(cssTransition().props()).toStrictEqual({
       in: true,
       appear: true,
       timeout: {
@@ -31,7 +33,7 @@ describe('SlidingPanel', () => {
       },
       classNames: 'sliding-panel--open-left sliding-panel',
       unmountOnExit: true,
-      children: <div className="sliding-panel" children={null} />, // eslint-disable-line react/no-children-prop
+      children: <div children={null} className="sliding-panel" />, // eslint-disable-line react/no-children-prop
     });
   });
 

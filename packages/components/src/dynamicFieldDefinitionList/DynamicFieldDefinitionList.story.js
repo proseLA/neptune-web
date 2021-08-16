@@ -1,13 +1,15 @@
 import { select, text, number, date } from '@storybook/addon-knobs';
-import DynamicFieldDefinitionList from './DynamicFieldDefinitionList';
+
 import { Layout } from '../common';
+
+import DynamicFieldDefinitionList from './DynamicFieldDefinitionList';
 
 export default {
   component: DynamicFieldDefinitionList,
   title: 'DynamicFieldDefinitionList',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const textDF = text('textDF', 'helloworld');
   const numberDF = number('numberDF', 123456);
   const dateDF = date('dateDF', new Date('01-01-2000'));

@@ -1,8 +1,7 @@
+import { text, boolean, select } from '@storybook/addon-knobs';
+import { Profile as ProfileIcon, Globe as GlobeIcon } from '@transferwise/icons';
 import { useState } from 'react';
 
-import { Profile as ProfileIcon, Globe as GlobeIcon } from '@transferwise/icons';
-
-import { text, boolean, select } from '@storybook/addon-knobs';
 import Select from './Select';
 
 export default {
@@ -10,7 +9,7 @@ export default {
   title: 'Select',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [selected, setSelected] = useState({
     value: 0,
     label: 'A thing',
@@ -40,7 +39,6 @@ export const basic = () => {
       selected={selected}
       disabled={disabled}
       search={search}
-      onChange={(v) => setSelected(v)}
       required={required}
       searchPlaceholder="Search placeholder"
       dropdownUp={dropdownUp}
@@ -64,11 +62,12 @@ export const basic = () => {
           searchStrings: ['abbreviation', 'acronym', 'nickname'],
         },
       ]}
+      onChange={(v) => setSelected(v)}
     />
   );
 };
 
-export const customSearchFunction = () => {
+export const CustomSearchFunction = () => {
   const [selected, setSelected] = useState({
     value: 1,
     label: 'EUR',
@@ -103,7 +102,6 @@ export const customSearchFunction = () => {
               option.countries && option.countries.toLowerCase().includes(keyword.toLowerCase())
           : false
       }
-      onChange={(v) => setSelected(v)}
       required={required}
       searchPlaceholder="Search placeholder"
       dropdownUp={dropdownUp}
@@ -176,11 +174,12 @@ export const customSearchFunction = () => {
           selected: false,
         },
       ]}
+      onChange={(v) => setSelected(v)}
     />
   );
 };
 
-export const advancedSearch = () => {
+export const AdvancedSearch = () => {
   const [searchValue, setSearchValue] = useState('');
   const [selected, setSelected] = useState({
     value: 0,
@@ -209,11 +208,9 @@ export const advancedSearch = () => {
       block={block}
       selected={selected}
       disabled={disabled}
-      onChange={(v) => setSelected(v)}
       required={required}
       searchValue={searchValue}
       searchPlaceholder="searchplaceholder"
-      onSearchChange={(v) => setSearchValue(v)}
       dropdownUp={dropdownUp}
       options={[
         { header: 'Basic' },
@@ -228,7 +225,9 @@ export const advancedSearch = () => {
         { value: 6, label: 'Euro', currency: 'eur' },
         { separator: true },
         { value: 7, label: 'Something else' },
-      ].filter((option) => option.label && option.label.toLowerCase().indexOf(searchValue) !== -1)}
+      ].filter((option) => option.label && option.label.toLowerCase().includes(searchValue))}
+      onChange={(v) => setSelected(v)}
+      onSearchChange={(v) => setSearchValue(v)}
     />
   );
 };

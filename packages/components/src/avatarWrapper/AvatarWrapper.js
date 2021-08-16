@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Profile as ProfileIcon, Briefcase as BriefcaseIcon } from '@transferwise/icons';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+
 import Avatar, { AvatarType } from '../avatar';
 import Badge from '../badge';
 import { ProfileType, Size } from '../common';

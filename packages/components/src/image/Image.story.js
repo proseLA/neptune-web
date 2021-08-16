@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
-
 import { text, select, boolean } from '@storybook/addon-knobs';
+
 import Image from './Image';
 
 export default {
@@ -8,8 +8,8 @@ export default {
   title: 'Image',
 };
 
-export const basic = () => {
-  const src = text('src', 'https://placeholder.pics/svg/300');
+export const Basic = () => {
+  const source = text('src', 'https://placeholder.pics/svg/300');
   const shrink = boolean('shrink', true);
   const stretch = boolean('stretch', true);
   const loading = select(
@@ -26,36 +26,36 @@ export const basic = () => {
     <>
       <Image
         alt="test"
-        src={src}
+        src={source}
         id="id1"
+        loading={loading}
+        className="m-t-5"
+        shrink={shrink}
+        stretch={stretch}
         onLoad={action('load 1')}
-        onError={(e) => action(e)}
-        loading={loading}
-        className="m-t-5"
-        shrink={shrink}
-        stretch={stretch}
+        onError={(error) => action(error)}
       />
       <Image
         alt="test"
-        src={src}
+        src={source}
         id="id2"
-        onLoad={action('load 2')}
-        onError={(e) => action(e)}
         loading={loading}
         className="m-t-5"
         shrink={shrink}
         stretch={stretch}
+        onLoad={action('load 2')}
+        onError={(error) => action(error)}
       />
       <Image
         alt="test"
-        src={src}
+        src={source}
         id="id3"
-        onLoad={action('load 3')}
-        onError={(e) => action(e)}
         loading={loading}
         className="m-t-5"
         shrink={shrink}
         stretch={stretch}
+        onLoad={action('load 3')}
+        onError={(error) => action(error)}
       />
     </>
   );

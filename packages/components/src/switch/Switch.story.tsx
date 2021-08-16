@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import Switch from './Switch';
 
 export default {
@@ -6,7 +7,7 @@ export default {
   title: 'Switch',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [checked, setCheck] = useState(false);
 
   return (
@@ -17,16 +18,16 @@ export const basic = () => {
       <Switch
         checked={checked}
         className="a-class-name"
-        onClick={() => setCheck(!checked)}
         aria-labelledby="labelID"
         id="switchId"
+        onClick={() => setCheck(!checked)}
       />
 
       <Switch
         checked={checked}
         className="a-class-name m-t-4"
-        onClick={() => setCheck(!checked)}
         aria-label="I'm a switch without label"
+        onClick={() => setCheck(!checked)}
       />
     </div>
   );

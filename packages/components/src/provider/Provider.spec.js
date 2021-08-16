@@ -1,16 +1,15 @@
 import '@testing-library/jest-dom';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { render, waitFor, cleanup, screen } from '@testing-library/react';
+import { FormattedMessage, useIntl } from 'react-intl';
+
+import closeButtonMessages from '../common/closeButton/CloseButton.messages';
 
 import Provider from '.';
-import closeButtonMessages from '../common/closeButton/CloseButton.messages';
 
 describe('Provider', () => {
   beforeAll(() => {
-    // eslint-disable-next-line no-console
-    console.error = jest.fn();
+    jest.spyOn(console, 'error').mockImplementation();
     jest.spyOn(console, 'error').mockImplementation(() => {});
-    // eslint-disable-next-line no-console
     jest.spyOn(console, 'warn').mockImplementation(() => {});
   });
   afterAll(() => {
@@ -26,7 +25,7 @@ describe('Provider', () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  test.each([
+  it.each([
     ['zh-HK', 'zh-HK'],
     ['ru', 'ru'],
     ['en-GB', 'en-GB'],
@@ -54,7 +53,7 @@ describe('Provider', () => {
     expect(container).toHaveTextContent(`locale: ${expectedValue}`);
   });
 
-  test.each([
+  it.each([
     ['ru', 'Закрыть'],
     ['en', 'Close'],
   ])('switching locale (%s)', async (locale, expectedMessage) => {

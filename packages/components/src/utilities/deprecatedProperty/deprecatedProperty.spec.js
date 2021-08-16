@@ -24,8 +24,8 @@ describe('deprecated', () => {
   describe('if prop has been listed as deprecated', () => {
     it('calls console.warn with the correct message', () => {
       const component = 'Test';
-      const newProp = 'newProp';
-      const propName = 'prop1';
+      const newProperty = 'newProp';
+      const propertyName = 'prop1';
 
       const expiryDate = new Date('01-01-2000');
       const expiryDateString = expiryDate.toLocaleString('en-GB', {
@@ -34,17 +34,17 @@ describe('deprecated', () => {
         day: 'numeric',
       });
 
-      deprecated(validator, { component, newProp, expiryDate })(props, propName);
+      deprecated(validator, { component, newProp: newProperty, expiryDate })(props, propertyName);
 
       expect(console.warn).toHaveBeenCalledWith(
-        `${component} has deprecated the use of ${propName}. Please use ${newProp} instead. ${propName} will be removed on or after ${expiryDateString}`,
+        `${component} has deprecated the use of ${propertyName}. Please use ${newProperty} instead. ${propertyName} will be removed on or after ${expiryDateString}`,
       );
     });
 
     it('calls console.warn with correct message if newProp is not provided', () => {
       const component = 'Test';
 
-      const propName = 'prop1';
+      const propertyName = 'prop1';
 
       const expiryDate = new Date('01-01-2000');
       const expiryDateString = expiryDate.toLocaleString('en-GB', {
@@ -53,36 +53,36 @@ describe('deprecated', () => {
         day: 'numeric',
       });
 
-      deprecated(validator, { component, expiryDate })(props, propName);
+      deprecated(validator, { component, expiryDate })(props, propertyName);
 
       expect(console.warn).toHaveBeenCalledWith(
-        `${component} has deprecated the use of ${propName}. ${propName} will be removed on or after ${expiryDateString}`,
+        `${component} has deprecated the use of ${propertyName}. ${propertyName} will be removed on or after ${expiryDateString}`,
       );
     });
 
     it('calls console.warn with correct message if message is provided', () => {
       const component = 'Test';
-      const propName = 'prop1';
+      const propertyName = 'prop1';
       const message = 'Some custom message.';
 
-      deprecated(validator, { component, message })(props, propName);
+      deprecated(validator, { component, message })(props, propertyName);
 
       expect(console.warn).toHaveBeenCalledWith(
-        `${component} has deprecated the use of ${propName}. ${message}`,
+        `${component} has deprecated the use of ${propertyName}. ${message}`,
       );
     });
   });
 
   describe('if prop has not been listed as deprecated', () => {
     it('calls validator with props', () => {
-      const propName = 'prop3';
-      deprecated(validator, {})(props, propName);
+      const propertyName = 'prop3';
+      deprecated(validator, {})(props, propertyName);
       expect(console.warn).not.toHaveBeenCalled();
     });
 
     it('calls validator with expected args', () => {
-      const propName = 'prop3';
-      deprecated(validator, {})(props, propName);
+      const propertyName = 'prop3';
+      deprecated(validator, {})(props, propertyName);
       expect(validator).toHaveBeenCalledWith({ prop1: 'prop1', prop2: 'prop2' }, 'prop3');
     });
   });

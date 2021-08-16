@@ -1,6 +1,6 @@
 import { formatUsingPattern } from './text-format';
 
-describe('TextFormat, ', () => {
+describe('TextFormat,', () => {
   let pattern;
   let value;
 

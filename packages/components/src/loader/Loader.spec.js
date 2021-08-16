@@ -1,4 +1,4 @@
-import { render, cleanup } from '../test-utils';
+import { render, cleanup, screen } from '../test-utils';
 
 import Loader from '.';
 
@@ -8,13 +8,13 @@ describe('Loader', () => {
   it('tests default state', () => {
     const { container } = render(<Loader />);
     expect(container.querySelectorAll('div.tw-loader--xl')).toHaveLength(1);
-    expect(container.querySelector('div[data-testid]')).toBe(null);
+    expect(container.querySelector('div[data-testid]')).toBeNull();
   });
 
   it('has data-testid prop', () => {
     const dataTestId = 'test-loader';
-    const { getByTestId } = render(<Loader data-testid={dataTestId} />);
-    expect(getByTestId(dataTestId)).not.toBe(null);
+    render(<Loader data-testid={dataTestId} />);
+    expect(screen.getByTestId(dataTestId)).toBeInTheDocument();
   });
 
   it('shows a small loader if that property is set', () => {

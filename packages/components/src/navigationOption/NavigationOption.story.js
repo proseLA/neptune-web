@@ -1,6 +1,7 @@
-import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { text, boolean } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
+
 import NavigationOption from './NavigationOption';
 
 export default {
@@ -8,7 +9,7 @@ export default {
   title: 'NavigationOption',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const href = text('href', 'http://www.wise.com');
   const title = text('title', 'Navigation option');
   const content = text('content', 'Button and icon are vertically centered.');
@@ -27,11 +28,11 @@ export const basic = () => {
       href={href}
       title={title}
       content={content}
-      onClick={action('clicked')}
       media={<FastFlagIcon />}
       showMediaAtAllSizes={showMediaAtAllSizes}
       showMediaCircle={showMediaCircle}
       className={className}
+      onClick={action('clicked')}
     />
   );
 };
@@ -53,11 +54,11 @@ export const illustration = () => {
       href={href}
       title={title}
       content={content}
-      onClick={action('clicked')}
       className={className}
       media={<ExampleIllustration />}
       showMediaAtAllSizes={showMediaAtAllSizes}
       showMediaCircle={showMediaCircle}
+      onClick={action('clicked')}
     />
   );
 };

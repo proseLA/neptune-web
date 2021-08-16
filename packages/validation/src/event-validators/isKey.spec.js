@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import isKey from '.';
 import { keyMap } from '../common/keyMap';
+
+import isKey from '.';
 
 const { TAB, ESCAPE } = keyMap;
 
@@ -10,17 +11,17 @@ describe('isKey', () => {
     expect(isKey({ keyType: TAB.key, event })).toBe(true);
   });
 
-  it('returns true if eventKey is equal to key', () => {
+  it('returns true if eventKey is equal to empty key', () => {
     const event = { key: ' ' };
     expect(isKey({ keyType: 'Space', event })).toBe(true);
   });
 
-  it('returns true if eventKey is equal to key', () => {
+  it('returns true if eventKey is equal to Spacebar', () => {
     const event = { key: 'Spacebar' };
     expect(isKey({ keyType: 'Space', event })).toBe(true);
   });
 
-  it('returns true if eventKey is equal to key', () => {
+  it('returns true if eventKey is equal to Tab', () => {
     const event = { key: 'Tab' };
     expect(isKey({ keyType: TAB.key, event })).toBe(true);
   });

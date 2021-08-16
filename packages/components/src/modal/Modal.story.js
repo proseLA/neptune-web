@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
-import { useState } from 'react';
 import { select, text } from '@storybook/addon-knobs';
+import { useState } from 'react';
+
 import { Button, Modal, DateInput } from '..';
 import { Size, Scroll, Position } from '../common';
 
@@ -10,7 +9,7 @@ export default {
   title: 'Modal',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const size = select('size', Object.values(Size), Size.MEDIUM);
   const [open, setOpen] = useState(false);
   const title = text('title', 'title');
@@ -23,7 +22,7 @@ export const basic = () => {
       <Modal
         body={
           <>
-            <DateInput onChange={console && console.log} value={new Date()} />
+            <DateInput value={new Date()} onChange={console && console.log} />
             <p className="m-t-4">
               I am baby actually poke kickstarter, street art jean shorts bespoke chambray activated
               charcoal ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft
@@ -39,7 +38,6 @@ export const basic = () => {
         open={open}
         scroll={scroll}
         position={position}
-        onClose={() => setOpen(false)}
         size={size}
         title={title}
         className=""
@@ -49,6 +47,7 @@ export const basic = () => {
           </Button>
         }
         closeOnClick
+        onClose={() => setOpen(false)}
       />
     </>
   );

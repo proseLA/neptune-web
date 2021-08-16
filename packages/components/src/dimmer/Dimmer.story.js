@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
+import { useState } from 'react';
+
 import { Button, Dimmer } from '..';
 
 export default {
@@ -8,7 +9,7 @@ export default {
   title: 'Dimmer',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const [open, setOpen] = useState(false);
 
   const fadeContentOnExit = boolean('fadeContentOnExit', false);
@@ -24,9 +25,9 @@ export const basic = () => {
       <Button onClick={() => setOpen((isOpen) => !isOpen)}>Toggle dimmer</Button>
       <Dimmer
         open={open}
-        onClose={handleClose}
         fadeContentOnExit={fadeContentOnExit}
         fadeContentOnEnter={fadeContentOnEnter}
+        onClose={handleClose}
       />
     </>
   );

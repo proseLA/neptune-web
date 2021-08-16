@@ -6,6 +6,9 @@ const methodsToExtend = ['onChange', 'onBlur', 'onFocus', 'onSuccess', 'onFailur
 /**
  *
  * This function is a temporary function used to normalize the returned values from our form related components. Please DO NOT USE THIS COMPONENT.
+ *
+ * @param root0
+ * @param root0.children
  */
 const WithNormaliser = ({ children }) => {
   const handleChildEvent = (childHandler) => (event) => {

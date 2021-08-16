@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
 import { LogoType } from './logoTypes';
 
 const baseUrl = 'https://wise.com/public-resources/assets/logos/wise/';

@@ -1,13 +1,15 @@
 import { select, text, boolean } from '@storybook/addon-knobs';
-import DefinitionList from './DefinitionList';
+
 import { Layout } from '../common';
+
+import DefinitionList from './DefinitionList';
 
 export default {
   component: DefinitionList,
   title: 'DefinitionList',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const muted = boolean('muted', false);
   const layout = select('layout', Object.values(Layout), Layout.HORIZONTAL_LEFT_ALIGNED);
 

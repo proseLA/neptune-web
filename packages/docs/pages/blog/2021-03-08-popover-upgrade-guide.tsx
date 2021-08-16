@@ -1,5 +1,6 @@
+import { Alert, Image, Link } from '@transferwise/components';
 import { ReactElement } from 'react';
-import { Alert, Image } from '@transferwise/components';
+
 import popover1 from '../../public/static/assets/blog/popover-release-mar-2021_1.png';
 import popover2 from '../../public/static/assets/blog/popover-release-mar-2021_2.png';
 import popover3 from '../../public/static/assets/blog/popover-release-mar-2021_3.png';
@@ -16,16 +17,16 @@ export const meta = {
   hidden: true,
 };
 
-export default function PageContent(): ReactElement {
+const PageContent = (): ReactElement => {
   return (
     <div>
       <Alert message="These changes will be released in components v35. See the Popover designs, the PR for these changes, play with a demo or try the beta release in your own repository by updating to @transferwise/components@34.2.16-beta.48" />
       <p>
         We refactored Popover to make it more robust and accessible. The positioning engine has also
         been replaced with a more sophisticated tool called{' '}
-        <a href="https://popper.js.org/" rel="noreferrer" target="_blank">
+        <Link href="https://popper.js.org/" target="_blank">
           Popper
-        </a>
+        </Link>
         .
       </p>
       <h2>Changes</h2>
@@ -132,9 +133,12 @@ export default function PageContent(): ReactElement {
       <Alert type="warning" message="Breaking change" />
       <p>
         containsFocusableElement was introduced in this{' '}
-        <a href="https://github.com/transferwise/neptune-web/commit/e0787fe3ed0dc1af48a3296129cda4f479219da6#diff-d4f3b771644287c2d339aea614ebe1e12841586ca1d3c421e21d98f2bb7f877a">
+        <Link
+          href="https://github.com/transferwise/neptune-web/commit/e0787fe3ed0dc1af48a3296129cda4f479219da6#diff-d4f3b771644287c2d339aea614ebe1e12841586ca1d3c421e21d98f2bb7f877a"
+          target="_blank"
+        >
           PR
-        </a>{' '}
+        </Link>{' '}
         to allow Popover to be opened by multiple triggers and attach focus props.
       </p>
       <p>Example: Avatar + choose an icons</p>
@@ -289,4 +293,6 @@ const simulateTriggerClick = () => {
       </pre>
     </div>
   );
-}
+};
+
+export default PageContent;

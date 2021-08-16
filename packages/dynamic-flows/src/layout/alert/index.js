@@ -1,6 +1,6 @@
+import { Alert } from '@transferwise/components';
 import Types from 'prop-types';
 
-import { Alert } from '@transferwise/components';
 import { marginModel, contextModel } from '../models';
 import { getMarginBottom } from '../utils';
 

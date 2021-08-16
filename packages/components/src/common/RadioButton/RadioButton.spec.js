@@ -25,7 +25,7 @@ describe('Radio button', () => {
     const onChange = jest.fn();
     render(
       <label htmlFor="an-id">
-        <RadioButton onChange={onChange} id="an-id" name="a-name" value="a-value" />A radio
+        <RadioButton id="an-id" name="a-name" value="a-value" onChange={onChange} />A radio
       </label>,
     );
 

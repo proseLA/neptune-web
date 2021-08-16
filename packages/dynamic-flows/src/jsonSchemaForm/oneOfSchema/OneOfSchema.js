@@ -1,46 +1,67 @@
-import { useEffect, useState } from 'react';
-import Types from 'prop-types';
-import classNames from 'classnames';
-
 import { isArray, isEmpty } from '@transferwise/neptune-validation';
-import GenericSchema from '../genericSchema';
-import SchemaFormControl from '../schemaFormControl';
-import ControlFeedback from '../controlFeedback';
+import classNames from 'classnames';
+import Types from 'prop-types';
+import { useEffect, useState } from 'react';
 
+import { isValidSchema } from '../../common/validation/schema-validators';
 import { getValidModelParts } from '../../common/validation/valid-model';
 import { getValidationFailures } from '../../common/validation/validation-failures';
-import { isValidSchema } from '../../common/validation/schema-validators';
-
 import DynamicAlert from '../../layout/alert';
+import ControlFeedback from '../controlFeedback';
+import GenericSchema from '../genericSchema';
 import Help from '../help';
+import SchemaFormControl from '../schemaFormControl';
+
 import {
   getBestMatchingSchemaIndexForModel,
   isConstSchema,
   isNoNConstSchema,
 } from './OneOfSchemaModelMatcher';
 
-const OneOfSchema = (props) => {
-  const [changed, setChanged] = useState(false);
-  const [focused, setFocused] = useState(false);
-  const [blurred, setBlurred] = useState(false);
-  const [validations, setValidations] = useState(
-    getValidationFailures(props.model, props.schema, props.required),
-  );
+const getModelPartsForSchemas = (model, schemas) => {
+  return schemas.map((schema) => getValidModelParts(model, schema));
+};
 
-  if (!isArray(props.schema.oneOf)) {
-    console.error('Incorrect format', props.schema); // eslint-disable-line
-    return '';
+const getValidIndexFromModel = (schema, model) => {
+  return schema.oneOf.findIndex((childSchema) => isValidSchema(model, childSchema));
+};
+
+const getValidIndexFromDefault = (schema) => {
+  return schema.oneOf.findIndex((childSchema) => isValidSchema(schema.default, childSchema));
+};
+
+const generateId = () => {
+  return String(Math.floor(100000000 * Math.random()));
+};
+
+// We want our model to be the index, so alter the oneOf schemas to be a const
+const mapOneOfToConst = (schema, index) => {
+  return {
+    title: schema.title,
+    description: schema.description,
+    const: index,
+    disabled: schema.disabled,
+    icon: schema.icon,
+    image: schema.image,
+  };
+};
+
+const mapSchemas = (schema) => {
+  return {
+    ...schema,
+    oneOf: schema.oneOf.map(mapOneOfToConst),
+  };
+};
+
+const errorsToString = (errors) => {
+  // When oneOf represents a select, errors should be of type string
+  if (typeof errors === 'string') {
+    return errors;
   }
+  return null;
+};
 
-  const getModelPartsForSchemas = (model, schemas) =>
-    schemas.map((schema) => getValidModelParts(model, schema));
-
-  const getValidIndexFromModel = (schema, model) =>
-    schema.oneOf.findIndex((childSchema) => isValidSchema(model, childSchema));
-
-  const getValidIndexFromDefault = (schema) =>
-    schema.oneOf.findIndex((childSchema) => isValidSchema(schema.default, childSchema));
-
+const OneOfSchema = (props) => {
   const getActiveSchemaIndex = (schema, model) => {
     const indexFromModel = getValidIndexFromModel(schema, model);
     // If our model satisfies one of the schemas, use that schema.
@@ -69,6 +90,33 @@ const OneOfSchema = (props) => {
     // Otherwise do not default
     return null;
   };
+
+  const [changed, setChanged] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [blurred, setBlurred] = useState(false);
+  const [validations, setValidations] = useState(
+    getValidationFailures(props.model, props.schema, props.required),
+  );
+  const [id, setId] = useState('');
+  const [schemaIndex, setSchemaIndex] = useState(getActiveSchemaIndex(props.schema, props.model));
+  const [models, setModels] = useState(getModelPartsForSchemas(props.model, props.schema.oneOf));
+
+  // When the schema we receive from parent changes
+  useEffect(() => {
+    const modelIndex = getValidIndexFromModel(props.schema, props.model);
+    const defaultIndex = getValidIndexFromDefault(props.schema);
+    if (modelIndex === -1 && defaultIndex >= 0) {
+      onChooseNewSchema(defaultIndex);
+    }
+
+    setId(generateId());
+  }, [props.schema]);
+
+  if (!isArray(props.schema.oneOf)) {
+    // eslint-disable-next-line no-console
+    console.error('Incorrect format', props.schema);
+    return '';
+  }
 
   const onChildModelChange = (index, model, triggerSchema, triggerModel, lastTriggerModel) => {
     models[index] = model;
@@ -103,42 +151,6 @@ const OneOfSchema = (props) => {
     }
   };
 
-  const [id, setId] = useState('');
-  const [schemaIndex, setSchemaIndex] = useState(getActiveSchemaIndex(props.schema, props.model));
-  const [models, setModels] = useState(getModelPartsForSchemas(props.model, props.schema.oneOf));
-
-  const generateId = () => String(Math.floor(100000000 * Math.random()));
-
-  // When the schema we receive from parent changes
-  useEffect(() => {
-    const modelIndex = getValidIndexFromModel(props.schema, props.model);
-    const defaultIndex = getValidIndexFromDefault(props.schema);
-    if (modelIndex === -1 && defaultIndex >= 0) {
-      onChooseNewSchema(defaultIndex);
-    }
-
-    setId(generateId());
-  }, [props.schema]);
-
-  // We want our model to be the index, so alter the oneOf schemas to be a const
-  const mapOneOfToConst = (schema, index) => {
-    return {
-      title: schema.title,
-      description: schema.description,
-      const: index,
-      disabled: schema.disabled,
-      icon: schema.icon,
-      image: schema.image,
-    };
-  };
-
-  const mapSchemas = (schema) => {
-    return {
-      ...schema,
-      oneOf: schema.oneOf.map(mapOneOfToConst),
-    };
-  };
-
   const schemaForSelect = mapSchemas(props.schema);
 
   const formGroupClasses = {
@@ -146,14 +158,6 @@ const OneOfSchema = (props) => {
     'has-error':
       (!changed && props.errors && !isEmpty(props.errors)) ||
       ((props.submitted || (changed && blurred)) && validations.length),
-  };
-
-  const errorsToString = (errors) => {
-    // When oneOf represents a select, errors should be of type string
-    if (typeof errors === 'string') {
-      return errors;
-    }
-    return null;
   };
 
   const hasHelp = !!props.schema.help;
@@ -175,13 +179,13 @@ const OneOfSchema = (props) => {
             <SchemaFormControl
               id={id}
               schema={schemaForSelect}
-              onChange={onChooseNewSchema}
-              onFocus={onFocus}
-              onBlur={onBlur}
               value={schemaIndex}
               translations={props.translations}
               locale={props.locale}
               disabled={props.disabled}
+              onChange={onChooseNewSchema}
+              onFocus={onFocus}
+              onBlur={onBlur}
             />
             <ControlFeedback
               changed={changed}
@@ -204,12 +208,12 @@ const OneOfSchema = (props) => {
           errors={props.errors}
           locale={props.locale}
           translations={props.translations}
-          onChange={(model, triggerSchema, triggerModel, lastTriggerModel) =>
-            onChildModelChange(schemaIndex, model, triggerSchema, triggerModel, lastTriggerModel)
-          }
           submitted={props.submitted}
           hideTitle
           disabled={props.disabled}
+          onChange={(model, triggerSchema, triggerModel, lastTriggerModel) =>
+            onChildModelChange(schemaIndex, model, triggerSchema, triggerModel, lastTriggerModel)
+          }
           onPersistAsync={props.onPersistAsync}
         />
       )}

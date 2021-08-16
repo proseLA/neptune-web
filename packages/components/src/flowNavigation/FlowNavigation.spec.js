@@ -1,25 +1,26 @@
 import '@testing-library/jest-dom';
 
+import Avatar, { AvatarType } from '../avatar';
+import { Breakpoint, Size } from '../common';
 import { render, screen } from '../test-utils';
 
 import FlowNavigation from '.';
-import { Breakpoint, Size } from '../common';
-
-import Avatar, { AvatarType } from '../avatar';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
 
 jest.mock('./animatedLabel', () => {
-  // eslint-disable-next-line react/prop-types
-  return ({ className, activeLabel }) => (
-    <div className={className} data-testid={`activeLabel-${activeLabel}`}>
-      AnimatedLabel
-    </div>
-  );
+  return function ({ className, activeLabel }) {
+    return (
+      <div className={className} data-testid={`activeLabel-${activeLabel}`}>
+        AnimatedLabel
+      </div>
+    );
+  };
 });
 jest.mock('./backButton', () => {
-  // eslint-disable-next-line react/prop-types
-  return ({ className, label }) => <div className={className}>BackButton{label}</div>;
+  return function ({ className, label }) {
+    return <div className={className}>BackButton{label}</div>;
+  };
 });
 
 describe('FlowNavigation', () => {
@@ -75,7 +76,7 @@ describe('FlowNavigation', () => {
     expect(container.querySelector('.separator')).toBeInTheDocument();
   });
 
-  it(`doesn't render separator if avatar or onClose are not provided `, () => {
+  it(`doesn't render separator if avatar or onClose are not provided`, () => {
     const { container, rerender } = render(<FlowNavigation {...props} onClose={null} />);
 
     expect(container.querySelector('.separator')).not.toBeInTheDocument();
@@ -85,7 +86,7 @@ describe('FlowNavigation', () => {
     expect(container.querySelector('.separator')).not.toBeInTheDocument();
   });
 
-  it(`doesn't render separator if done is true `, () => {
+  it(`doesn't render separator if done is true`, () => {
     const { container, rerender } = render(<FlowNavigation {...props} onClose={null} />);
 
     expect(container.querySelector('.separator')).not.toBeInTheDocument();
@@ -95,7 +96,7 @@ describe('FlowNavigation', () => {
     expect(container.querySelector('.separator')).not.toBeInTheDocument();
   });
 
-  it(`renders border based on done `, () => {
+  it(`renders border based on done`, () => {
     const { container, rerender } = render(<FlowNavigation {...props} onClose={null} />);
 
     expect(container.querySelector('.np-flow-navigation--border-bottom')).toBeInTheDocument();
@@ -170,7 +171,7 @@ describe('FlowNavigation', () => {
 
       expect(flag).toHaveClass('np-flow-navigation--flag__display');
 
-      rerender(<FlowNavigation {...props} onGoBack={jest.fn()} activeStep={1} />);
+      rerender(<FlowNavigation {...props} activeStep={1} onGoBack={jest.fn()} />);
 
       expect(flag).toHaveClass('np-flow-navigation--flag__hidden');
     });
@@ -178,12 +179,12 @@ describe('FlowNavigation', () => {
     it('renders BackButton with AnimatedLabel if onGoBack is provided and activeStep > 0', () => {
       const { rerender } = render(<FlowNavigation {...props} onGoBack={jest.fn()} />);
 
-      expect(screen.queryByText('BackButton')).toBeNull();
+      expect(screen.queryByText('BackButton')).not.toBeInTheDocument();
 
       rerender(<FlowNavigation {...props} activeStep={1} />);
-      expect(screen.queryByText('BackButton')).toBeNull();
+      expect(screen.queryByText('BackButton')).not.toBeInTheDocument();
 
-      rerender(<FlowNavigation {...props} onGoBack={jest.fn()} activeStep={1} />);
+      rerender(<FlowNavigation {...props} activeStep={1} onGoBack={jest.fn()} />);
 
       expect(screen.getByText('BackButton')).toBeInTheDocument();
       expect(screen.getByText('AnimatedLabel')).toBeInTheDocument();
@@ -191,12 +192,12 @@ describe('FlowNavigation', () => {
 
     it('renders correct AnimatedLabel', () => {
       const { rerender } = render(
-        <FlowNavigation {...props} onGoBack={jest.fn()} activeStep={1} />,
+        <FlowNavigation {...props} activeStep={1} onGoBack={jest.fn()} />,
       );
 
       expect(screen.getByTestId('activeLabel-0')).toBeInTheDocument();
 
-      rerender(<FlowNavigation {...props} onGoBack={jest.fn()} activeStep={2} />);
+      rerender(<FlowNavigation {...props} activeStep={2} onGoBack={jest.fn()} />);
 
       expect(screen.getByTestId('activeLabel-1')).toBeInTheDocument();
     });

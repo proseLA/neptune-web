@@ -1,6 +1,8 @@
 import { Info } from '@transferwise/components';
-import Help from './Help';
+
 import { mount, wait } from '../../test-utils';
+
+import Help from './Help';
 
 describe('Given a Help component renders from a help schema', () => {
   const help = {

@@ -1,17 +1,29 @@
-import { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import withNextPortal from '../withNextPortal/withNextPortal';
-import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
 
-import FocusBoundary from '../common/focusBoundary';
-import DimmerManager from './dimmerManager';
+import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
 import { isIosDevice } from '../common/deviceDetection';
+import FocusBoundary from '../common/focusBoundary';
+import withNextPortal from '../withNextPortal/withNextPortal';
+
+import DimmerManager from './dimmerManager';
 
 export const EXIT_ANIMATION = 350;
 
 const dimmerManager = new DimmerManager();
+
+const handleTouchMove = (event) => {
+  const isTouchedElementDimmer = event.target.className.startsWith('dimmer');
+  // disable scroll on iOS devices for Dimmer area
+  // this is because of bug in WebKit https://bugs.webkit.org/show_bug.cgi?id=220908
+  // note: scrolling still works for children(s) as expected
+  if (isIosDevice() && isTouchedElementDimmer) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+};
 
 const Dimmer = ({
   children,
@@ -24,10 +36,10 @@ const Dimmer = ({
   open,
   scrollable,
 }) => {
-  const dimmerRef = useRef();
-  const closeOnClick = (e) => {
-    if (e.target === dimmerRef.current) {
-      onClose(e);
+  const dimmerReference = useRef();
+  const closeOnClick = (event) => {
+    if (event.target === dimmerReference.current) {
+      onClose(event);
     }
   };
   const handleClick = !disableClickToClose && onClose ? closeOnClick : undefined;
@@ -38,30 +50,19 @@ const Dimmer = ({
     }
     event.stopPropagation();
 
-    if (onClose && dimmerManager.isTop(dimmerRef)) {
+    if (onClose && dimmerManager.isTop(dimmerReference)) {
       onClose(event);
     }
   };
 
-  const handleTouchMove = (event) => {
-    const isTouchedElementDimmer = event.target.className.startsWith('dimmer');
-    // disable scroll on iOS devices for Dimmer area
-    // this is because of bug in WebKit https://bugs.webkit.org/show_bug.cgi?id=220908
-    // note: scrolling still works for children(s) as expected
-    if (isIosDevice() && isTouchedElementDimmer) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  };
-
-  const onEnter = () => dimmerManager.add(dimmerRef);
-  const onExited = () => dimmerManager.remove(dimmerRef);
+  const onEnter = () => dimmerManager.add(dimmerReference);
+  const onExited = () => dimmerManager.remove(dimmerReference);
 
   useEffect(() => {
     if (open) {
       document.addEventListener('keydown', handleKeyDown);
-      if (dimmerRef.current) {
-        dimmerRef.current.addEventListener('touchmove', handleTouchMove);
+      if (dimmerReference.current) {
+        dimmerReference.current.addEventListener('touchmove', handleTouchMove);
       }
       if (!transparent) {
         addNoScrollBodyClass();
@@ -69,8 +70,8 @@ const Dimmer = ({
     }
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      if (dimmerRef.current) {
-        dimmerRef.current.removeEventListener('touchmove', handleTouchMove);
+      if (dimmerReference.current) {
+        dimmerReference.current.removeEventListener('touchmove', handleTouchMove);
       }
       removeNoScrollBodyClass();
     };
@@ -87,19 +88,19 @@ const Dimmer = ({
         enterDone: classNames('dimmer--enter-done', { 'dimmer--enter-fade': fadeContentOnEnter }),
         exit: classNames('dimmer--exit', { 'dimmer--exit-fade': fadeContentOnExit }),
       }}
+      unmountOnExit
       onEnter={onEnter}
       onExited={onExited}
-      unmountOnExit
     >
       <div
+        ref={dimmerReference}
         className={classNames(
           'dimmer',
           { 'dimmer--scrollable': scrollable, 'dimmer--transparent': transparent },
           className,
         )}
-        onClick={handleClick}
-        ref={dimmerRef}
         role="presentation"
+        onClick={handleClick}
       >
         <FocusBoundary>{children}</FocusBoundary>
       </div>

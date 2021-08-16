@@ -1,27 +1,26 @@
-import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
 import { Search as SearchIcon } from '@transferwise/icons';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
-const SearchBox = forwardRef(({ classNames, onChange, onClick, placeholder, value }, ref) => {
+const SearchBox = forwardRef(({ classNames, onChange, onClick, placeholder, value }, reference) => {
   const style = (className) => classNames[className] || className;
   return (
     <li className={style('tw-dropdown-item--divider')}>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a className={`${style('tw-select-filter-link')} ${style('p-a-0')}`}>
         <div className={style('input-group')}>
           <span className={style('input-group-addon')}>
             <SearchIcon className={classnames(style('tw-icon'), style('tw-icon-search'))} />
           </span>
           <input
+            ref={reference}
             type="text"
             className={classnames(style('tw-select-filter'), style('form-control'))}
             placeholder={placeholder}
+            value={value}
+            spellCheck="false"
             onChange={onChange}
             onClick={onClick}
-            value={value}
-            ref={ref}
-            spellCheck="false"
           />
         </div>
       </a>

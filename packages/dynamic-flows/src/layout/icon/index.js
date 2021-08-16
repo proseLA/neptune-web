@@ -1,6 +1,5 @@
-import Types from 'prop-types';
-
 import { Profile as ProfileIcon, Bank as BankIcon } from '@transferwise/icons';
+import Types from 'prop-types';
 
 const DynamicIcon = (props) => {
   const getIcon = (type) => {

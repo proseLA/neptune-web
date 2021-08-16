@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
 import { Size, Position, Scroll } from '../common';
-import Dimmer from '../dimmer';
 import CloseButton from '../common/closeButton';
+import Dimmer from '../dimmer';
 
 const TRANSITION_DURATION_IN_MILLISECONDS = 150;
 
@@ -21,7 +21,7 @@ const Modal = ({
   position,
   ...otherProps
 }) => {
-  const checkSpecialClasses = (classToCheck) => className.split(' ').indexOf(classToCheck) !== -1;
+  const checkSpecialClasses = (classToCheck) => className.split(' ').includes(classToCheck);
 
   // These should be replaced with props in breaking change.
   const isCompact = checkSpecialClasses('compact');
@@ -31,8 +31,8 @@ const Modal = ({
     <Dimmer
       open={open}
       scrollable={scroll === Scroll.CONTENT}
-      onClose={onClose}
       className={classNames('d-flex', 'justify-content-center')}
+      onClose={onClose}
     >
       <CSSTransition
         appear

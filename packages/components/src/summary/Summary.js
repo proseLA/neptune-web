@@ -1,20 +1,19 @@
-import classNames from 'classnames';
-import { cloneElement } from 'react';
-import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
 import {
   CheckCircle as CheckCircleIcon,
   PendingCircle as PendingCircleIcon,
 } from '@transferwise/icons';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { cloneElement } from 'react';
+import { useIntl } from 'react-intl';
 import requiredIf from 'react-required-if';
+
+import { Status, Size } from '../common';
+import { useDirection } from '../common/hooks';
+import Info from '../info';
 import { deprecated } from '../utilities';
 
-import Info from '../info';
-import { Status, Size } from '../common';
-
 import messages from './Summary.messages';
-
-import { useDirection } from '../common/hooks';
 
 const BadgeIcons = {
   done: CheckCircleIcon,
@@ -69,9 +68,9 @@ const Summary = ({
               aria-label={info['aria-label']}
               className={classNames({ 'm-l-1': !isRTL, 'm-r-1': isRTL }, 'hidden-xs')}
               content={info.content}
-              onClick={info.onClick}
               presentation={info.presentation}
               title={info.title}
+              onClick={info.onClick}
             />
           )}
         </div>
@@ -81,9 +80,9 @@ const Summary = ({
           <a
             href={action.href}
             target={action.target}
-            onClick={action.onClick}
             className="np-summary__action"
             aria-label={action['aria-label']}
+            onClick={action.onClick}
           >
             {action.text}
           </a>
@@ -94,10 +93,10 @@ const Summary = ({
           aria-label={info['aria-label']}
           className="m-l-2 hidden-sm hidden-md hidden-lg hidden-xl"
           content={info.content}
-          onClick={info.onClick}
           presentation={info.presentation}
           size={Size.LARGE}
           title={info.title}
+          onClick={info.onClick}
         />
       )}
     </Element>
@@ -124,7 +123,6 @@ Summary.propTypes = {
     expiryDate,
   }),
   /** Summary description */
-  // eslint-disable-next-line
   description: PropTypes.node,
   /** @deprecated please use info instead */
   help: deprecated(
@@ -139,7 +137,6 @@ Summary.propTypes = {
     },
   ),
   /** Infos displayed on help Icon click inside Popover or Modal */
-  // eslint-disable-next-line
   info: PropTypes.shape({
     'aria-label': PropTypes.string.isRequired,
     content: PropTypes.node.isRequired,
@@ -154,7 +151,6 @@ Summary.propTypes = {
     expiryDate,
   }),
   /** Main Summary Icon */
-  // eslint-disable-next-line
   icon: requiredIf(PropTypes.node, ({ illustration }) => !illustration),
   /** Decides the badge applied to Icon */
   status: PropTypes.oneOf(['notDone', 'done', 'pending']),

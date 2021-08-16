@@ -1,4 +1,5 @@
 import { shallow } from 'enzyme';
+
 import TypeaheadInput from './TypeaheadInput';
 
 describe('Typeahead input', () => {
@@ -30,7 +31,7 @@ describe('Typeahead input', () => {
     expect(component.is('input')).toBe(true);
   });
 
-  it('renders chips when provided ', () => {
+  it('renders chips when provided', () => {
     const selected = [{ label: 'test1' }, { label: 'test2' }];
     component.setProps({
       multiple: true,
@@ -57,8 +58,8 @@ describe('Typeahead input', () => {
     input().simulate('paste', event);
     input().simulate('keyDown', event);
     const inputProps = input().props();
-    expect(inputProps.onKeyDown).toBeCalledWith(event);
-    expect(inputProps.onFocus).toBeCalledWith(event);
-    expect(inputProps.onPaste).toBeCalledWith(event);
+    expect(inputProps.onKeyDown).toHaveBeenCalledWith(event);
+    expect(inputProps.onFocus).toHaveBeenCalledWith(event);
+    expect(inputProps.onPaste).toHaveBeenCalledWith(event);
   });
 });

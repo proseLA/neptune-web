@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Alert, Sentiment } from '@transferwise/components';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 import { injectIntl } from 'react-intl';
 
 import messages from './ErrorBoundary.messages';
@@ -39,9 +39,9 @@ const withErrorBoundary = (WrappedComponent) => {
                 href: window.location.href,
               }}
               message={intl.formatMessage(messages.errorAlert)}
-              onDismiss={this.handleErrorReset}
               type={Sentiment.NEGATIVE}
               className="m-a-3"
+              onDismiss={this.handleErrorReset}
             />
           )}
 

@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react';
+
 import { useDirection } from '../../common/hooks';
 
 import { DirectionProvider } from '.';
 
 describe('DirectionProvider', () => {
-  test.each([
+  it.each([
     ['ru', 'ltr'],
     ['he-IL', 'rtl'],
   ])('returns correct direction for %s', (locale, expectedValue) => {
@@ -16,7 +17,7 @@ describe('DirectionProvider', () => {
     );
 
     expect(
-      screen.queryByText(`{"direction":"${expectedValue}","isRTL":${expectedValue === 'rtl'}}`),
+      screen.getByText(`{"direction":"${expectedValue}","isRTL":${expectedValue === 'rtl'}}`),
     ).toBeInTheDocument();
   });
 });

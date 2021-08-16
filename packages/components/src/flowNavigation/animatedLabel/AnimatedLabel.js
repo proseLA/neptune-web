@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const AnimatedLabel = ({ activeLabel, className, labels }) => {
-  const numLabels = labels.length - 1;
+  const numberLabels = labels.length - 1;
 
   return (
     <div className={classNames('np-animated-label', className)}>
@@ -10,11 +10,10 @@ const AnimatedLabel = ({ activeLabel, className, labels }) => {
         const nextLabel = index - 1;
         return (
           <div
-            // eslint-disable-next-line
-            key={index}
+            key={nextLabel}
             className={classNames('text-xs-left', {
               'np-animated-label--in': index === activeLabel,
-              'np-animated-label--out': nextLabel === activeLabel && nextLabel !== numLabels,
+              'np-animated-label--out': nextLabel === activeLabel && nextLabel !== numberLabels,
             })}
           >
             {label}

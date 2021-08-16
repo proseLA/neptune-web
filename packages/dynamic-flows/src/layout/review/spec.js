@@ -1,6 +1,5 @@
-import { shallow } from 'enzyme';
-
 import { DefinitionList } from '@transferwise/components';
+import { shallow } from 'enzyme';
 
 import DynamicReview from '.';
 
@@ -32,7 +31,7 @@ describe('Given a component for dynamically rendering reviews', () => {
   });
 
   it('should format the items and pass to the DefinitionList', () => {
-    expect(component.find(DefinitionList).prop('definitions')).toEqual([
+    expect(component.find(DefinitionList).prop('definitions')).toStrictEqual([
       {
         key: '0',
         title: 'a',

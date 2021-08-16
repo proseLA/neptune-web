@@ -1,4 +1,4 @@
-import { render, fireEvent, cleanup } from '../../../test-utils';
+import { render, fireEvent, screen } from '../../../test-utils';
 
 import MediaUploadStep from '.';
 
@@ -33,16 +33,12 @@ describe('mediaUploadStep', () => {
     window.microapps = originalMicroApps;
   });
 
-  afterEach(() => {
-    cleanup();
-  });
-
   it('renders help image passed as url string', () => {
-    const { getByAltText } = renderMediaUploadStep({
+    renderMediaUploadStep({
       usHelpImage: 'usHelpImage',
       usLabel: 'usLabel',
     });
-    expect(getByAltText('usLabel')).toBeInTheDocument();
+    expect(screen.getByAltText('usLabel')).toBeInTheDocument();
   });
 
   it('renders help images passed as image node', () => {
@@ -52,30 +48,30 @@ describe('mediaUploadStep', () => {
       </span>
     );
 
-    const { getByLabelText } = renderMediaUploadStep({ usHelpImage });
-    expect(getByLabelText('rocket')).toBeInTheDocument();
+    renderMediaUploadStep({ usHelpImage });
+    expect(screen.getByLabelText('rocket')).toBeInTheDocument();
   });
 
   it('renders label', () => {
-    const { getByText } = renderMediaUploadStep({ usLabel: 'usLabel' });
-    expect(getByText('usLabel')).toBeInTheDocument();
+    renderMediaUploadStep({ usLabel: 'usLabel' });
+    expect(screen.getByText('usLabel')).toBeInTheDocument();
   });
 
   it('renders placeholder', () => {
-    const { getByText } = renderMediaUploadStep({ usPlaceholder: 'usPlaceholder' });
-    expect(getByText('usPlaceholder')).toBeInTheDocument();
+    renderMediaUploadStep({ usPlaceholder: 'usPlaceholder' });
+    expect(screen.getByText('usPlaceholder')).toBeInTheDocument();
   });
 
   it('renders buttonText', () => {
-    const { getByText } = renderMediaUploadStep({ usButtonText: 'usButtonText' });
-    expect(getByText('usButtonText')).toBeInTheDocument();
+    renderMediaUploadStep({ usButtonText: 'usButtonText' });
+    expect(screen.getByText('usButtonText')).toBeInTheDocument();
   });
 
   it(`calls microapps' requestMedia API to get file while upload button is clicked`, () => {
     const allowedMimeTypes = ['image/jpeg', 'video/*', 'application/pdf'];
-    const { getByText } = renderMediaUploadStep({ usButtonText: 'usButtonText' });
+    renderMediaUploadStep({ usButtonText: 'usButtonText' });
     expect(requestMedia).not.toHaveBeenCalled();
-    fireEvent.click(getByText('usButtonText'));
+    fireEvent.click(screen.getByText('usButtonText'));
     expect(requestMedia).toHaveBeenCalledWith({ allowedMimeTypes });
   });
 });

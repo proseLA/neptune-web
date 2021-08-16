@@ -1,16 +1,16 @@
-import { useRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Header from '../header';
-import Stepper from '../stepper';
-import AnimatedLabel from './animatedLabel';
-import BackButton from './backButton';
-import CloseButton from '../common/closeButton';
+import PropTypes from 'prop-types';
+import { useRef } from 'react';
 
 import { Breakpoint, Layout } from '../common';
+import CloseButton from '../common/closeButton';
 import { useClientWidth } from '../common/hooks';
-
+import Header from '../header';
 import Logo from '../logo';
+import Stepper from '../stepper';
+
+import AnimatedLabel from './animatedLabel';
+import BackButton from './backButton';
 
 // Size switches on parent container which may or may not have the same size as the window.
 const containerBreakpoints = {
@@ -19,9 +19,9 @@ const containerBreakpoints = {
 };
 
 const FlowNavigation = ({ activeStep, avatar, logo, onClose, onGoBack, done, steps }) => {
-  const ref = useRef(null);
+  const reference = useRef(null);
 
-  const [clientWidth] = useClientWidth({ ref });
+  const [clientWidth] = useClientWidth({ ref: reference });
   const closeButton = onClose && <CloseButton onClick={onClose} />;
   const isSmall = clientWidth < Breakpoint.SMALL;
 
@@ -55,7 +55,7 @@ const FlowNavigation = ({ activeStep, avatar, logo, onClose, onGoBack, done, ste
 
   return (
     <div
-      ref={ref}
+      ref={reference}
       className={classNames(
         'np-flow-navigation d-flex align-items-center justify-content-center p-y-3',
         { 'np-flow-navigation--border-bottom': !done },

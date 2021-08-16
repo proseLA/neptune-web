@@ -6,8 +6,10 @@ describe('requestMedia', () => {
   describe('when microapps is not available in windows', () => {
     it('rejects with an error', () => {
       expect.assertions(1);
-      return requestMedia(mediaRequest).catch((e) =>
-        expect(e).toEqual(`microapps must be available in window to use Spot Platform's Media API`),
+      return requestMedia(mediaRequest).catch((error) =>
+        expect(error).toStrictEqual(
+          `microapps must be available in window to use Spot Platform's Media API`,
+        ),
       );
     });
   });
@@ -29,7 +31,7 @@ describe('requestMedia', () => {
       window.microapps = originalMicroApps;
     });
 
-    it(`it calls microapps' requestMedia API when it's available in windows`, () => {
+    it(`calls microapps' requestMedia API when it's available in windows`, () => {
       requestMedia(mediaRequest);
       expect(microappsRequestMedia).toHaveBeenCalledWith(mediaRequest);
     });

@@ -15,7 +15,7 @@ describe('Link', () => {
     const link = screen.getByText('link text');
 
     expect(link).toHaveAttribute('href', props.href);
-    expect(link).toHaveAttribute('class', expect.stringContaining(props.className));
+    expect(link).toHaveClass(props.className);
     expect(link).not.toHaveAttribute('target');
     expect(link).not.toHaveAttribute('rel');
   });

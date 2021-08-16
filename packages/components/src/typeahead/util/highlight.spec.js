@@ -1,4 +1,5 @@
 import { mount } from 'enzyme';
+
 import highlight from './highlight';
 
 describe('Typeahead input', () => {
@@ -10,7 +11,7 @@ describe('Typeahead input', () => {
     const label = `this is a ${query} label`;
     const result = mount(highlight(label, query));
 
-    expect(highlighted(result).text()).toEqual(query);
+    expect(highlighted(result).text()).toStrictEqual(query);
 
     expect(getTextFromNodes(result)).toBe(label);
   });
@@ -28,6 +29,6 @@ describe('Typeahead input', () => {
     const label = query;
     const result = mount(highlight(label, query));
 
-    expect(highlighted(result).text()).toEqual(query);
+    expect(highlighted(result).text()).toStrictEqual(query);
   });
 });

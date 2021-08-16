@@ -2,8 +2,9 @@
 import { select, text, boolean } from '@storybook/addon-knobs';
 import { Emoji } from '@transferwise/icons';
 
-import Alert from './Alert';
 import { Sentiment } from '../common';
+
+import Alert from './Alert';
 import { AlertArrowPosition } from './withArrow';
 
 export default {
@@ -11,7 +12,7 @@ export default {
   title: 'Alert',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const action = text('action', 'Read more');
   const onDismiss = boolean('onDismiss', true);
   const icon = boolean('custom icon', false);
@@ -30,13 +31,13 @@ export const basic = () => {
       action={action ? { text: action, href: 'https://www.wise.com' } : null}
       icon={icon ? <Emoji /> : null}
       message={message}
-      onDismiss={onDismiss ? () => alert('dismissed') : null}
       type={type}
+      onDismiss={onDismiss ? () => alert('dismissed') : null}
     />
   );
 };
 
-export const withArrow = () => {
+export const WithArrow = () => {
   const arrow = select('Arrow', Object.values(AlertArrowPosition), AlertArrowPosition.TOP_LEFT);
   const action = text('action', 'Read more');
   const onDismiss = boolean('onDismiss', true);
@@ -57,8 +58,8 @@ export const withArrow = () => {
       action={action ? { text: action, href: 'https://www.wise.com' } : null}
       icon={icon ? <Emoji /> : null}
       message={message}
-      onDismiss={onDismiss ? () => alert('dismissed') : null}
       type={type}
+      onDismiss={onDismiss ? () => alert('dismissed') : null}
     />
   );
 };
@@ -72,7 +73,7 @@ export const deprecatedOptions = () => {
   );
 
   return (
-    <Alert onDismiss={onDismiss ? () => alert('dismissed') : null} type={type}>
+    <Alert type={type} onDismiss={onDismiss ? () => alert('dismissed') : null}>
       Payments sent to your bank details <strong>today</strong> might not arrive in time for the
       holidays.
       <div>

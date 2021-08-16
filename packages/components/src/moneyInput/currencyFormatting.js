@@ -47,7 +47,7 @@ function getValidLocale(locale) {
 
     Intl.NumberFormat(noUnderscoreLocale);
     return noUnderscoreLocale;
-  } catch (e) {
+  } catch {
     return 'en-GB';
   }
 }

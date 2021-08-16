@@ -62,6 +62,6 @@ const groupedCountries = [
 
 describe('groupCountriesByPrefix', () => {
   it('groups countries by prefix', () => {
-    expect(groupCountriesByPrefix(countries)).toEqual(groupedCountries);
+    expect(groupCountriesByPrefix(countries)).toStrictEqual(groupedCountries);
   });
 });

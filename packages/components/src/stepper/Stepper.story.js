@@ -1,5 +1,6 @@
-import { select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { select } from '@storybook/addon-knobs';
+
 import Stepper from './Stepper';
 
 export default {
@@ -7,7 +8,7 @@ export default {
   title: 'Stepper',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const activeStep = select('activeStep', [0, 1, 2, 3, 4], 0);
   return (
     <Stepper

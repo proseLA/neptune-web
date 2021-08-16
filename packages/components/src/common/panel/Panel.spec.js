@@ -1,9 +1,13 @@
 import { render } from '../../test-utils';
+
 import Panel from './Panel';
 
 jest.mock(
   'react-transition-group/CSSTransition',
-  () => (props) => (props.in ? <div className="np-panel--open">{props.children}</div> : null), // eslint-disable-line
+  () =>
+    function (props) {
+      return props.in ? <div className="np-panel--open">{props.children}</div> : null;
+    },
 );
 
 describe('Panel', () => {

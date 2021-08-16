@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
-import Header from './Header';
 import { Layout } from '../common';
+
+import Header from './Header';
 
 describe('Header', () => {
   const props = {

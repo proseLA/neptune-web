@@ -16,6 +16,16 @@ type Props = {
   'aria-label': string;
 };
 
+const stopPropagation = (event?: MouseEvent<HTMLSpanElement>) => {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+    if (event.nativeEvent && event.nativeEvent.stopImmediatePropagation) {
+      event.nativeEvent.stopImmediatePropagation();
+    }
+  }
+};
+
 const SwitchOption = ({
   checked,
   complex,
@@ -29,17 +39,6 @@ const SwitchOption = ({
   'aria-label': ariaLabel,
 }: Props): ReactElement => {
   const sharedProps = { media, title, content, complex, disabled, showMediaAtAllSizes };
-
-  const stopPropagation = (event?: MouseEvent<HTMLSpanElement>) => {
-    if (event) {
-      event.stopPropagation();
-      event.preventDefault();
-      if (event.nativeEvent && event.nativeEvent.stopImmediatePropagation) {
-        event.nativeEvent.stopImmediatePropagation();
-      }
-    }
-  };
-
   const toggle = (event?: MouseEvent<HTMLSpanElement>) => {
     stopPropagation(event);
     if (disabled) {
@@ -52,16 +51,16 @@ const SwitchOption = ({
   return (
     <Option
       {...sharedProps}
-      onClick={toggle}
       button={
         <Switch
           id={id}
           checked={checked}
-          onClick={toggle}
           disabled={disabled}
           aria-label={ariaLabel}
+          onClick={toggle}
         />
       }
+      onClick={toggle}
     />
   );
 };

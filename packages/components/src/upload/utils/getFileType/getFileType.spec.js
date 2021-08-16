@@ -11,7 +11,7 @@ describe('getFileType', () => {
     it(`when both file and file64 haven't been provided`, () => {
       expect(getFileType('', '')).toBe('');
     });
-    it(`when file has no type and file64 hasn't been provided `, () => {
+    it(`when file has no type and file64 hasn't been provided`, () => {
       expect(getFileType({}, '')).toBe('');
     });
     it(`when file has empty type and file64 hasn't been provided`, () => {

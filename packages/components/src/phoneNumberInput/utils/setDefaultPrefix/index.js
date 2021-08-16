@@ -8,7 +8,9 @@ const DEFAULT_PHONE_CODE = '+44';
 
 /**
  * Given a valid locale it returns the correspondent prefix if found or +44 otherwise.
+ *
  * @param {string} locale - a string that represent the locale ex:'es-ES'
+ * @param countryCode
  * @returns {string}
  */
 export const setDefaultPrefix = (locale, countryCode) => {

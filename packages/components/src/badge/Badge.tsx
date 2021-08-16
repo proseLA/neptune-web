@@ -1,5 +1,6 @@
-import { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
+import { ReactElement, ReactNode } from 'react';
+
 import {
   Size,
   Theme,
@@ -18,13 +19,13 @@ type Props = {
   border?: ThemeDark | ThemeLight;
 } & CommonProps;
 
-function Badge({
+const Badge = ({
   badge,
   className = undefined,
   size = Size.SMALL,
   border = Theme.LIGHT,
   children,
-}: Props): ReactElement {
+}: Props): ReactElement => {
   const classes: string = classNames(
     'tw-badge',
     {
@@ -40,6 +41,6 @@ function Badge({
       <div className="tw-badge__content">{badge}</div>
     </div>
   );
-}
+};
 
 export default Badge;

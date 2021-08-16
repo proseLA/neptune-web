@@ -1,8 +1,10 @@
-import { shallow } from 'enzyme';
 import { InlineAlert } from '@transferwise/components';
-import Field, { FieldTypes, FieldFormats } from './Field';
-import FormControl from '../formControl/FormControl';
+import { shallow } from 'enzyme';
+
 import { FormControlType } from '../common';
+import FormControl from '../formControl/FormControl';
+
+import Field, { FieldTypes, FieldFormats } from './Field';
 
 describe('Field', () => {
   let component;
@@ -300,7 +302,7 @@ describe('Field', () => {
         component.find(FormControl).simulate('change');
       });
 
-      it('it should not remove the error message', () => {
+      it('should not remove the error message', () => {
         const alert = component.find(InlineAlert);
         expect(alert).toHaveLength(1);
       });
@@ -312,7 +314,7 @@ describe('Field', () => {
     });
 
     describe('when the error message changes', () => {
-      it('it should show the new error message', () => {
+      it('should show the new error message', () => {
         component.find(FormControl).simulate('change');
         let alert = component.find(InlineAlert);
 
@@ -347,7 +349,7 @@ describe('Field', () => {
       });
 
       it('should invoke on focus handler', () => {
-        expect(props.onFocus).toHaveBeenCalled();
+        expect(props.onFocus).toHaveBeenCalledTimes(1);
       });
 
       it('should be in focused and not be in blur state', () => {
@@ -384,7 +386,7 @@ describe('Field', () => {
       });
 
       it('should invoke on blur handler', () => {
-        expect(props.onBlur).toHaveBeenCalled();
+        expect(props.onBlur).toHaveBeenCalledTimes(1);
       });
 
       it('should not be in focused state', () => {
@@ -463,12 +465,14 @@ describe('Field', () => {
     });
 
     it('should trigger the onFocus handler', () => {
-      expect(props.onFocus).toHaveBeenCalled();
+      expect(props.onFocus).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('when the control value changes', () => {
     beforeEach(() => {
+      jest.clearAllMocks();
+
       props = {
         field: {
           label: 'Some label',
@@ -486,7 +490,7 @@ describe('Field', () => {
     });
 
     it('should trigger the onChange handler', () => {
-      expect(defaultProps.onChange).toHaveBeenCalled();
+      expect(defaultProps.onChange).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -505,7 +509,7 @@ describe('Field', () => {
     });
 
     it('should trigger the onBlur handler', () => {
-      expect(props.onBlur).toHaveBeenCalled();
+      expect(props.onBlur).toHaveBeenCalledTimes(1);
     });
 
     it('should not hide the custom error message', () => {

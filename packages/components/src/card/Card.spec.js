@@ -1,4 +1,4 @@
-import { render, fireEvent, cleanup } from '../test-utils';
+import { render, fireEvent, cleanup, screen } from '../test-utils';
 
 import Card from '.';
 
@@ -17,30 +17,30 @@ describe('Card', () => {
   };
 
   it('renders as a div by default', () => {
-    const { getByTestId } = renderCard({ 'data-testid': dataTestId });
-    expect(getByTestId(dataTestId).tagName).toBe('DIV');
+    renderCard({ 'data-testid': dataTestId });
+    expect(screen.getByTestId(dataTestId).tagName).toBe('DIV');
   });
 
   it('renders as a tag passed to it', () => {
-    const { getByTestId } = renderCard({ as: 'li', 'data-testid': dataTestId });
-    expect(getByTestId(dataTestId).tagName).toBe('LI');
+    renderCard({ as: 'li', 'data-testid': dataTestId });
+    expect(screen.getByTestId(dataTestId).tagName).toBe('LI');
   });
 
   it('adds the passed id to the card element', () => {
     const id = 'card-id';
-    const { getByTestId } = renderCard({ id, 'data-testid': dataTestId });
-    expect(getByTestId(dataTestId).id).toBe(id);
+    renderCard({ id, 'data-testid': dataTestId });
+    expect(screen.getByTestId(dataTestId).id).toBe(id);
   });
 
   it('adds the passed className to the card element', () => {
     const className = 'card-class';
-    const { getByTestId } = renderCard({ className, 'data-testid': dataTestId });
-    expect(getByTestId(dataTestId).className.includes(className)).toBe(true);
+    renderCard({ className, 'data-testid': dataTestId });
+    expect(screen.getByTestId(dataTestId)).toHaveClass(className);
   });
 
   it('renders the card title', () => {
-    const { getByText } = renderCard();
-    expect(getByText(defaultProps.title)).not.toBe(null);
+    renderCard();
+    expect(screen.getByText(defaultProps.title)).toBeInTheDocument();
   });
 
   it('renders the card details', () => {
@@ -48,7 +48,7 @@ describe('Card', () => {
     const panelBody = container.querySelector('.tw-card__panel .media-body');
     const { container: renderedCardDetails } = render(defaultProps.details);
 
-    expect(panelBody.innerHTML.includes(renderedCardDetails.innerHTML)).toBe(true);
+    expect(panelBody.innerHTML).toContain(renderedCardDetails.innerHTML);
   });
 
   it('renders the card icon', () => {
@@ -56,100 +56,100 @@ describe('Card', () => {
     const iconWrapper = container.querySelector('.tw-card__panel .circle');
     const { container: renderedIcon } = render(defaultProps.icon);
 
-    expect(iconWrapper.innerHTML).toEqual(renderedIcon.innerHTML);
+    expect(iconWrapper.innerHTML).toStrictEqual(renderedIcon.innerHTML);
   });
 
   describe('when there is no children prop', () => {
     it("doesn't have active class irrespective of isExpanded prop", () => {
-      expect(activeClassCard()).toBe(null);
+      expect(activeClassCard()).toBeNull();
       cleanup();
 
       const expandedProps = { isExpanded: true };
-      expect(activeClassCard(expandedProps)).toBe(null);
+      expect(activeClassCard(expandedProps)).toBeNull();
     });
 
     it('has an inactive toggle panel', () => {
       const { container } = renderCard();
-      expect(container.querySelector('.tw-card__panel--inactive')).not.toBe(null);
+      expect(container.querySelector('.tw-card__panel--inactive')).not.toBeNull();
     });
 
     it("doesn't call onClick when the toggle panel is clicked", () => {
       clickTogglePanel();
-      expect(defaultProps.onClick).not.toBeCalled();
+      expect(defaultProps.onClick).not.toHaveBeenCalled();
     });
 
     it("doesn't render a chevron", () => {
-      expect(chevron()).toBe(null);
+      expect(chevron()).toBeNull();
     });
 
     it("doesn't render content panel irrespective of isExpanded prop", () => {
-      expect(contentPanel()).toBe(null);
+      expect(contentPanel()).toBeNull();
       cleanup();
 
       const expandedProps = { isExpanded: true };
-      expect(contentPanel(expandedProps)).toBe(null);
+      expect(contentPanel(expandedProps)).toBeNull();
     });
   });
 
   describe('when there is children prop', () => {
     it('has active class when expanded', () => {
       const closedProps = { children };
-      expect(activeClassCard(closedProps)).toBe(null);
+      expect(activeClassCard(closedProps)).toBeNull();
       cleanup();
 
       const expandedProps = { children, isExpanded: true };
-      expect(activeClassCard(expandedProps)).not.toBe(null);
+      expect(activeClassCard(expandedProps)).not.toBeNull();
     });
 
     it('calls on onClick with inverse of current isExpanded value when the toggle panel is clicked', () => {
       clickTogglePanel(true);
-      expect(defaultProps.onClick).toBeCalledWith(!defaultProps.isExpanded);
+      expect(defaultProps.onClick).toHaveBeenCalledWith(!defaultProps.isExpanded);
     });
 
     it('calls onClick with inverse of current isExpanded value when toggle panel is toggled with keyboard', () => {
       keyboardTogglePanel(true);
-      expect(defaultProps.onClick).toBeCalledWith(!defaultProps.isExpanded);
+      expect(defaultProps.onClick).toHaveBeenCalledWith(!defaultProps.isExpanded);
     });
 
     it('renders a chevron', () => {
-      expect(chevron({ children })).not.toBe(null);
+      expect(chevron({ children })).not.toBeNull();
     });
 
     it('flips chevron when expanded', () => {
       const closedProps = { children };
-      expect(flippedChevron(closedProps)).toBe(null);
+      expect(flippedChevron(closedProps)).toBeNull();
       cleanup();
 
       const expandedProps = { children, isExpanded: true };
-      expect(flippedChevron(expandedProps)).not.toBe(null);
+      expect(flippedChevron(expandedProps)).not.toBeNull();
     });
 
     it('inverses media circle when expanded', () => {
       const closedProps = { children };
-      expect(inversedMediaCircle(closedProps)).toBe(null);
+      expect(inversedMediaCircle(closedProps)).toBeNull();
       cleanup();
 
       const expandedProps = { children, isExpanded: true };
-      expect(inversedMediaCircle(expandedProps)).not.toBe(null);
+      expect(inversedMediaCircle(expandedProps)).not.toBeNull();
     });
 
     it('renders content panel when expanded', () => {
       const closedProps = { children };
-      expect(contentPanel(closedProps)).toBe(null);
+      expect(contentPanel(closedProps)).toBeNull();
       cleanup();
 
       const expandedProps = { children, isExpanded: true };
-      expect(contentPanel(expandedProps)).not.toBe(null);
+      expect(contentPanel(expandedProps)).not.toBeNull();
     });
 
     it('renders children when expanded', () => {
-      const { getByText, rerender } = render(
+      const { rerender } = render(
         <Card {...defaultProps} isExpanded={false}>
           Children
         </Card>,
       );
 
-      expect(() => getByText('Children')).toThrow();
+      expect(screen.queryByText('Children')).not.toBeInTheDocument();
 
       rerender(
         <Card {...defaultProps} isExpanded>
@@ -157,7 +157,7 @@ describe('Card', () => {
         </Card>,
       );
 
-      expect(() => getByText('Children')).not.toThrow();
+      expect(screen.getByText('Children')).toBeInTheDocument();
     });
   });
 

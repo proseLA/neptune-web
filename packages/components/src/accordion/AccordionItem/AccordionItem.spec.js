@@ -1,9 +1,9 @@
 import { Freeze } from '@transferwise/icons';
 
-import { render, userEvent } from '../../test-utils';
-import AccordionItem from './AccordionItem';
-
 import { useDirection } from '../../common/hooks';
+import { render, userEvent, screen } from '../../test-utils';
+
+import AccordionItem from './AccordionItem';
 
 jest.mock('../../common/hooks');
 
@@ -47,9 +47,9 @@ describe('AccordionItem', () => {
     it('calls onClick when item is clicked', () => {
       const onClick = jest.fn();
 
-      const { getByRole } = render(<AccordionItem {...props} onClick={onClick} />);
+      render(<AccordionItem {...props} onClick={onClick} />);
 
-      userEvent.click(getByRole('button'));
+      userEvent.click(screen.getByRole('button'));
 
       expect(onClick).toHaveBeenCalledTimes(1);
     });

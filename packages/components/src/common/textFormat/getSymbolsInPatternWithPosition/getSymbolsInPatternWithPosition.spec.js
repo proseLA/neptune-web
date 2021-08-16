@@ -8,6 +8,6 @@ describe('getPatternWitPosition', () => {
       { index: 5, symbol: ' ' },
       { index: 8, symbol: '@' },
     ];
-    expect(getSymbolsInPatternWithPosition(pattern)).toEqual(expectedPatternSymbolsPosition);
+    expect(getSymbolsInPatternWithPosition(pattern)).toStrictEqual(expectedPatternSymbolsPosition);
   });
 });

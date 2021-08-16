@@ -1,17 +1,17 @@
 import { text } from '@storybook/addon-knobs';
-
 import { Home as HomeIcon } from '@transferwise/icons';
 
-import Summary from './Summary';
-import { InfoPresentation } from '../info';
 import { Status } from '../common';
+import { InfoPresentation } from '../info';
+
+import Summary from './Summary';
 
 export default {
   component: Summary,
   title: 'Summary',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const actionText = text('ActionText', 'Change address');
 
   const title = text('Title', 'Verify your address');

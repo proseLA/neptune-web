@@ -13,7 +13,10 @@ export const Basic = () => {
 
   return (
     <div style={{ background: '#253655', color: '#fff', width: '120px' }} className="p-a-1">
-      <AnimatedLabel labels={labels.map((el) => `label-${el}`)} activeLabel={activeLabel} />
+      <AnimatedLabel
+        labels={labels.map((element) => `label-${element}`)}
+        activeLabel={activeLabel}
+      />
     </div>
   );
 };

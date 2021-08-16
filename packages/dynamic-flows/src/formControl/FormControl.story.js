@@ -1,5 +1,6 @@
-import { select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import { select, text } from '@storybook/addon-knobs';
+
 import FormControl from './FormControl';
 
 export default {
@@ -39,9 +40,6 @@ export const basic = () => {
       disabled={false}
       readOnly={false}
       required={false}
-      onChange={(val) => action(val)}
-      onBlur={(val) => action(val)}
-      onFocus={(val) => action(val)}
       minLength={null}
       maxLength={null}
       min={null}
@@ -54,6 +52,9 @@ export const basic = () => {
       searchPlaceholder="placeholder"
       size={size}
       uploadProps={{ usDisabled: false, size: 'md' }}
+      onChange={(value_) => action(value_)}
+      onBlur={(value_) => action(value_)}
+      onFocus={(value_) => action(value_)}
     />
   );
 };

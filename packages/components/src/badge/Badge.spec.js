@@ -1,4 +1,4 @@
-import { render, cleanup } from '../test-utils';
+import { render, cleanup, screen } from '../test-utils';
 
 import Badge from '.';
 
@@ -23,14 +23,14 @@ describe('Badge', () => {
     const badgeText = 'badge-text';
     const badge = <div>{badgeText}</div>;
 
-    const { getByText } = renderBadge({ badge });
+    renderBadge({ badge });
 
-    expect(getByText(badgeText).parentElement).toHaveClass('tw-badge__content');
+    expect(screen.getByText(badgeText).parentElement).toHaveClass('tw-badge__content');
   });
 
   it('renders badge children', () => {
     const { getByText } = renderBadge();
 
-    expect(getByText(childText).parentElement).toHaveClass('tw-badge__children');
+    expect(screen.getByText(childText).parentElement).toHaveClass('tw-badge__children');
   });
 });

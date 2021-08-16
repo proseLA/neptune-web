@@ -1,7 +1,8 @@
-import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
 
 import Header from '../header';
+
 import YearCalendarTable from './table';
 
 class YearCalendar extends PureComponent {

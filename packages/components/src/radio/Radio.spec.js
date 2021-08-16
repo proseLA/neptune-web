@@ -1,9 +1,9 @@
 import { shallow } from 'enzyme';
 
-import Radio from '.';
 import RadioButton from '../common/RadioButton';
-
 import { useDirection } from '../common/hooks';
+
+import Radio from '.';
 
 jest.mock('../common/hooks');
 

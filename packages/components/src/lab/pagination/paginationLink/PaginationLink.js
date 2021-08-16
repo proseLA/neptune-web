@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
 import messages from './PaginationLink.messages';
@@ -7,16 +7,16 @@ import messages from './PaginationLink.messages';
 const PaginationLink = ({ disabled, active, pageNumber, onClick, children }) => {
   const intl = useIntl();
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = (event) => {
+    event.preventDefault();
     if (!disabled && !active) {
       onClick(pageNumber);
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleClick(e);
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleClick(event);
     }
   };
 
@@ -28,11 +28,11 @@ const PaginationLink = ({ disabled, active, pageNumber, onClick, children }) => 
     <li>
       <a
         href="/"
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
         aria-label={ariaLabel}
         aria-current={active}
         className={classNames({ disabled, active })}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
       >
         {children}
       </a>

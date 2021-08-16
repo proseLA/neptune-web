@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
 import { Plus } from '@transferwise/icons';
-import { render, screen, userEvent } from '../test-utils';
+
 import { ControlType, Priority } from '../common';
+import { render, screen, userEvent } from '../test-utils';
 
 import CircularButton from './CircularButton';
 
@@ -21,7 +22,7 @@ describe('CircularButton', () => {
     });
 
     it('renders the text', () => {
-      screen.getByText('Add money');
+      expect(screen.getByText('Add money')).toBeInTheDocument();
     });
 
     it('renders the provided icon', () => {
@@ -30,7 +31,7 @@ describe('CircularButton', () => {
     });
 
     it('is not disabled', () => {
-      expect(screen.getByRole('button')).not.toBeDisabled();
+      expect(screen.getByRole('button')).toBeEnabled();
     });
 
     it('renders a button of type accent and priority primary', () => {
@@ -62,7 +63,7 @@ describe('CircularButton', () => {
 
     it('does not call onClick when clicked if disabled', () => {
       const onClick = jest.fn();
-      render(<CircularButton {...props} onClick={onClick} disabled />);
+      render(<CircularButton {...props} disabled onClick={onClick} />);
       userEvent.click(screen.getByRole('button'));
       expect(onClick).toHaveBeenCalledTimes(0);
     });

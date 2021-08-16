@@ -1,4 +1,5 @@
 import MobileNav from './MobileNav';
+// eslint-disable-next-line jest/no-mocks-import
 import { Items } from './__mocks__/items';
 
 export default {
@@ -6,6 +7,6 @@ export default {
   title: 'MobileNav',
 };
 
-export const basic = () => {
+export const Basic = () => {
   return <MobileNav items={Items} activeItemPath={Items[0].path} />;
 };

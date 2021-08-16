@@ -1,14 +1,17 @@
-import { shallow } from 'enzyme';
 import * as formatting from '@transferwise/formatting';
+import { shallow } from 'enzyme';
 
 import * as dateUtils from '../../../common/dateUtils';
+import TableLink from '../../tableLink';
 
 import DayCalendarTable from '.';
-import TableLink from '../../tableLink';
 
 const locale = 'en-GB';
 jest.mock('react-intl', () => ({
-  injectIntl: (Component) => (props) => <Component {...props} intl={{ locale }} />,
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale }} />;
+    },
 }));
 
 jest.mock('@transferwise/formatting', () => ({
@@ -110,7 +113,7 @@ describe('DayCalendarTable', () => {
 
   it('calls onSelect when day gets selected', () => {
     component.instance().selectDay(1);
-    expect(props.onSelect).toBeCalledWith(new Date(2018, 11, 1));
+    expect(props.onSelect).toHaveBeenCalledWith(new Date(2018, 11, 1));
   });
 
   const getTableLinkAt = (i) => component.find(TableLink).at(i);

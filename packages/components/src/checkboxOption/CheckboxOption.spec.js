@@ -1,11 +1,11 @@
+/* eslint-disable jest/expect-expect */
 import '@testing-library/jest-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '../test-utils';
 
 import CheckboxOption from '.';
 
 describe('Checkbox option', () => {
   let container;
-  let getByRole;
   let rerender;
 
   const defaultProps = {
@@ -17,25 +17,25 @@ describe('Checkbox option', () => {
 
   describe('by default', () => {
     beforeEach(() => {
-      ({ container, getByRole } = render(<CheckboxOption {...defaultProps} />));
+      ({ container } = render(<CheckboxOption {...defaultProps} />));
     });
     it('is not checked', () => {
-      getByRole('checkbox', { checked: false });
+      expect(screen.getByRole('checkbox', { checked: false })).toBeInTheDocument();
     });
 
     it('is not disabled', () => {
-      getByRole('checkbox', { disabled: false });
+      expect(screen.getByRole('checkbox', { disabled: false })).toBeInTheDocument();
     });
   });
 
   it('is checked when checked prop is true', () => {
-    ({ getByRole } = render(<CheckboxOption {...defaultProps} checked />));
-    getByRole('checkbox', { checked: true });
+    render(<CheckboxOption {...defaultProps} checked />);
+    expect(screen.getByRole('checkbox', { checked: true })).toBeInTheDocument();
   });
 
   it('is disabled when disabled prop is true', () => {
-    ({ getByRole } = render(<CheckboxOption {...defaultProps} disabled />));
-    getByRole('checkbox', { disabled: true });
+    render(<CheckboxOption {...defaultProps} disabled />);
+    expect(screen.getByRole('checkbox', { disabled: true })).toBeInTheDocument();
   });
 
   describe('onChange', () => {
@@ -45,24 +45,24 @@ describe('Checkbox option', () => {
 
       const label = container.querySelector('label');
 
-      expect(onChange).not.toBeCalled();
+      expect(onChange).not.toHaveBeenCalled();
       fireEvent.click(label);
-      expect(onChange).toBeCalledWith(true);
+      expect(onChange).toHaveBeenCalledWith(true);
 
-      rerender(<CheckboxOption {...defaultProps} onChange={onChange} checked />);
+      rerender(<CheckboxOption {...defaultProps} checked onChange={onChange} />);
       fireEvent.click(label);
-      expect(onChange).toBeCalledWith(false);
+      expect(onChange).toHaveBeenCalledWith(false);
     });
 
     it('is not called if the option is disabled', () => {
       const onChange = jest.fn();
-      ({ container } = render(<CheckboxOption {...defaultProps} onChange={onChange} disabled />));
+      ({ container } = render(<CheckboxOption {...defaultProps} disabled onChange={onChange} />));
 
       const label = container.querySelector('label');
 
-      expect(onChange).not.toBeCalled();
+      expect(onChange).not.toHaveBeenCalled();
       fireEvent.click(label);
-      expect(onChange).not.toBeCalled();
+      expect(onChange).not.toHaveBeenCalled();
     });
   });
 });

@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { withRouter } from 'next/router';
 import { parseISO } from 'date-fns';
-import Link from './Link';
-import Badge from './Badge';
-import Meta from './Meta';
+import { withRouter } from 'next/router';
+import PropTypes from 'prop-types';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
 
+import Badge from './Badge';
+import Link from './Link';
+import Meta from './Meta';
 import Sidebar from './Sidebar';
 import ThreeColumnLayout from './layout/threeColumnLayout';
 
@@ -15,7 +15,7 @@ const githubURL = `https://github.com/transferwise/neptune-web/edit/main/package
 
 const Layout = ({ children, router: { pathname } }) => {
   const pathParts = pathname.split('/');
-  const rootDir = pathParts[1];
+  const rootDirectory = pathParts[1];
   const page = getPageFromPath(pathname);
   const editPath = `${githubURL}${pathname}.mdx`;
 
@@ -39,7 +39,7 @@ const Layout = ({ children, router: { pathname } }) => {
           .map((section) => (
             <li key={section.title}>
               <Link href={getFirstPageInSection(section).path}>
-                <a className={`Nav__Link ${rootDir === section.dir ? 'active' : ''}`}>
+                <a className={`Nav__Link ${rootDirectory === section.dir ? 'active' : ''}`}>
                   {section.title}
                   {section.badge ? (
                     <Badge expiryDate={parseISO(section.badge.expiryDate)} className="m-l-1">
@@ -56,7 +56,7 @@ const Layout = ({ children, router: { pathname } }) => {
 
   let secondContent = null;
   if (page) {
-    const section = sections.find(({ dir }) => dir === rootDir);
+    const section = sections.find(({ dir }) => dir === rootDirectory);
     if (section.sidebar !== false) {
       secondContent = <Sidebar {...{ section }} />;
     }

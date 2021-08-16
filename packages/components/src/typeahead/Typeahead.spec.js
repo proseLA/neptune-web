@@ -1,11 +1,12 @@
 import { mount } from 'enzyme';
 import doTimes from 'lodash.times';
 
-import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
-import Typeahead from './Typeahead';
-import KeyCodes from '../common/keyCodes';
-import { Sentiment } from '../common';
 import { InlineAlert } from '..';
+import { Sentiment } from '../common';
+import { fakeEvent, fakeKeyDownEventForKey } from '../common/fakeEvents';
+import KeyCodes from '../common/keyCodes';
+
+import Typeahead from './Typeahead';
 
 describe('Typeahead', () => {
   let component;
@@ -76,7 +77,7 @@ describe('Typeahead', () => {
 
     expect(renderedChips.every((label, idx) => chips[idx] === label)).toBe(true);
     expect(renderedChips).toHaveLength(chips.length);
-    expect(event.preventDefault).toBeCalled();
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
   it('removes last selected value when backspace clicked on empty input', () => {
@@ -141,8 +142,8 @@ describe('Typeahead', () => {
     input().simulate('change', { target: { value: text } });
     input().simulate('keyDown', event);
 
-    expect(chip().text()).toEqual(text);
-    expect(event.preventDefault).toBeCalled();
+    expect(chip().text()).toStrictEqual(text);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
   it('adds new value as selected and clears the input when Enter is pressed', () => {
@@ -162,8 +163,8 @@ describe('Typeahead', () => {
     input().simulate('change', { target: { value: text } });
     input().simulate('keyDown', event);
 
-    expect(chip().text()).toEqual(text);
-    expect(event.preventDefault).toBeCalled();
+    expect(chip().text()).toStrictEqual(text);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
   it('adds new value as selected and clears the input when Tab is pressed', () => {
@@ -183,8 +184,8 @@ describe('Typeahead', () => {
     input().simulate('change', { target: { value: text } });
     input().simulate('keyDown', event);
 
-    expect(chip().text()).toEqual(text);
-    expect(event.preventDefault).toBeCalled();
+    expect(chip().text()).toStrictEqual(text);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
   it('clears typeahead when clear button is clicked', () => {
@@ -244,8 +245,8 @@ describe('Typeahead', () => {
     input().simulate('change', { target: { value: text } });
     input().simulate('keyDown', event);
 
-    expect(chip().text()).toEqual(text);
-    expect(event.preventDefault).toBeCalled();
+    expect(chip().text()).toStrictEqual(text);
+    expect(event.preventDefault).toHaveBeenCalledTimes(1);
   });
 
   it('displays alert when alert is provided and chips are valid or alert type is error', () => {

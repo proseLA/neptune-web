@@ -1,15 +1,17 @@
-import { useLayoutEffect, useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, date, text } from '@storybook/addon-knobs';
-import DateInput from './DateInput';
+import { useLayoutEffect, useState } from 'react';
+
 import { Size, MonthFormat, DateMode } from '../common';
+
+import DateInput from './DateInput';
 
 export default {
   component: DateInput,
   title: 'DateInput',
 };
 
-export const basic = () => {
+export const Basic = () => {
   const disabled = boolean('disabled', false);
   const size = select('size', Object.values(Size), Size.MEDIUM);
   const monthFormat = select('monthFormat', Object.values(MonthFormat), MonthFormat.LONG);
@@ -29,10 +31,6 @@ export const basic = () => {
   return (
     <>
       <DateInput
-        onChange={(val) => {
-          appendToLog(` onChange: ${val}`);
-          return action(val);
-        }}
         dayLabel="Day input"
         monthLabel="Month Select"
         yearLabel="Year input"
@@ -41,42 +39,46 @@ export const basic = () => {
         value={value}
         monthFormat={monthFormat}
         mode={mode}
-        onFocus={() => {
-          appendToLog(` onFocus`);
-        }}
-        onBlur={() => {
-          appendToLog(` onBlur`);
-        }}
         placeholders={{
           day,
           month,
           year,
         }}
         id="date-input-1"
-      />
-      <br />
-      <DateInput
-        onChange={(val) => {
-          appendToLog(` onChange: ${val}`);
-          return action(val);
+        onChange={(value_) => {
+          appendToLog(` onChange: ${value_}`);
+          return action(value_);
         }}
-        disabled={disabled}
-        size={size}
-        value={value}
-        monthFormat={monthFormat}
-        mode={mode}
         onFocus={() => {
           appendToLog(` onFocus`);
         }}
         onBlur={() => {
           appendToLog(` onBlur`);
         }}
+      />
+      <br />
+      <DateInput
+        disabled={disabled}
+        size={size}
+        value={value}
+        monthFormat={monthFormat}
+        mode={mode}
         placeholders={{
           day,
           month,
           year,
         }}
         id="date-input-2"
+        onChange={(value_) => {
+          appendToLog(` onChange: ${value_}`);
+          return action(value_);
+        }}
+        onFocus={() => {
+          appendToLog(` onFocus`);
+        }}
+        onBlur={() => {
+          appendToLog(` onBlur`);
+        }}
       />
       <br />
       <pre>{changeLog}</pre>

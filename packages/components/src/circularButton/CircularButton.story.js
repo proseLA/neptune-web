@@ -1,8 +1,10 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { Freeze, Plus, Whatsapp } from '@transferwise/icons';
-import CircularButton from './CircularButton';
+
 import { Priority, ControlType } from '../common';
+
+import CircularButton from './CircularButton';
 
 export default {
   component: CircularButton,
@@ -15,7 +17,7 @@ const icons = {
   whatsapp: <Whatsapp />,
 };
 
-export const basic = () => {
+export const Basic = () => {
   const icon = select('icon', ['freeze', 'plus', 'whatsapp'], 'freeze');
   const priority = select('priority', Object.values(Priority));
   const type = select('type', Object.values(ControlType), ControlType.PRIMARY);

@@ -2,17 +2,21 @@ import { getSupportedSpotMimeTypes } from '.';
 
 describe(getSupportedSpotMimeTypes, () => {
   it('returns all supported mime types when * is passed', () => {
-    expect(getSupportedSpotMimeTypes('*')).toEqual(['image/jpeg', 'video/*', 'application/pdf']);
+    expect(getSupportedSpotMimeTypes('*')).toStrictEqual([
+      'image/jpeg',
+      'video/*',
+      'application/pdf',
+    ]);
   });
 
-  it('it maps image/* and application/* according to the supported', () => {
-    expect(getSupportedSpotMimeTypes('image/*,application/*')).toEqual([
+  it('maps image/* and application/* according to the supported', () => {
+    expect(getSupportedSpotMimeTypes('image/*,application/*')).toStrictEqual([
       'image/jpeg',
       'application/pdf',
     ]);
   });
 
-  it('it filters out unsupported mime types', () => {
-    expect(getSupportedSpotMimeTypes('image/jpeg,text/csv')).toEqual(['image/jpeg']);
+  it('filters out unsupported mime types', () => {
+    expect(getSupportedSpotMimeTypes('image/jpeg,text/csv')).toStrictEqual(['image/jpeg']);
   });
 });

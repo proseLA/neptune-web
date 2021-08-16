@@ -1,8 +1,10 @@
 import { shallow } from 'enzyme';
 
-import YearCalendar from '.';
 import Header from '../header';
+
 import YearCalendarTable from './table';
+
+import YearCalendar from '.';
 
 describe('YearCalendar', () => {
   const selectedDate = new Date(2018, 11, 27);
@@ -38,12 +40,12 @@ describe('YearCalendar', () => {
 
   it('calls onViewDateUpdate on previous years select', () => {
     component.instance().selectPreviousYears();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 1998 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 1998 });
   });
 
   it('calls onViewDateUpdate on next years select', () => {
     component.instance().selectNextYears();
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 2038 });
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 2038 });
   });
 
   it('shows year calendar table', () => {
@@ -64,8 +66,8 @@ describe('YearCalendar', () => {
 
   it('calls onViewDateUpdate and onSelect on year select', () => {
     component.instance().onYearSelect(1990);
-    expect(props.onViewDateUpdate).toBeCalledWith({ year: 1990 });
-    expect(props.onSelect).toBeCalled();
+    expect(props.onViewDateUpdate).toHaveBeenCalledWith({ year: 1990 });
+    expect(props.onSelect).toHaveBeenCalledTimes(1);
   });
 
   const header = () => component.find(Header);

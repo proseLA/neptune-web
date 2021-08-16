@@ -1,12 +1,12 @@
+import { within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { within } from '@testing-library/dom';
-import { render, screen, waitFor, waitForElementToBeRemoved, act } from '../test-utils';
+
+import { Status } from '../common';
+import { render, screen, waitFor, waitForElementToBeRemoved } from '../test-utils';
 
 import UploadInput, { UploadInputProps } from './UploadInput';
-
 import { TEST_IDS as UPLOAD_BUTTON_TEST_IDS } from './uploadButton/UploadButton';
 import { TEST_IDS as UPLOAD_ITEM_TEST_IDS } from './uploadItem/UploadItem';
-import { Status } from '../common';
 
 describe('UploadInput', () => {
   const pngFile = new File(['foo'], 'foo.png', { type: 'image/png' });
@@ -64,7 +64,7 @@ describe('UploadInput', () => {
       renderComponent({ ...props, files, multiple: true });
 
       files.forEach((file) => {
-        expect(screen.queryByText(file.filename)).toBeInTheDocument();
+        expect(screen.getByText(file.filename)).toBeInTheDocument();
       });
     });
 
@@ -84,11 +84,9 @@ describe('UploadInput', () => {
       const input = screen.getByTestId(UPLOAD_BUTTON_TEST_IDS.uploadInput);
       userEvent.upload(input, [pngFile, jpgFile]);
 
-      expect(props.onUploadFile).toHaveBeenCalledTimes(2);
-      expect((props.onUploadFile as jest.Mock).mock.calls[0][0].has('file')).toBeTruthy();
-      expect((props.onUploadFile as jest.Mock).mock.calls[1][0].has('file')).toBeTruthy();
-
-      await act(() => Promise.resolve());
+      await waitFor(() => {
+        expect(props.onUploadFile).toHaveBeenCalledTimes(2);
+      });
     });
   });
 
@@ -108,7 +106,7 @@ describe('UploadInput', () => {
       expect(props.onDeleteFile).toHaveBeenCalledWith(files[0].id);
     });
 
-    it('should delete file with failed state without modal confirmation', async () => {
+    it('should delete file with failed state without modal confirmation', () => {
       const files = [
         {
           id: 1,
@@ -137,7 +135,7 @@ describe('UploadInput', () => {
         onDeleteFile: undefined,
       });
 
-      expect(screen.queryAllByLabelText('Remove file ', { exact: false })).toHaveLength(0);
+      expect(screen.queryByLabelText('Remove file ', { exact: false })).not.toBeInTheDocument();
     });
   });
 });

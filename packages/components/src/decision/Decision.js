@@ -1,14 +1,14 @@
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
-import classNames from 'classnames';
 
-import SizeSwapper from '../sizeSwapper';
+import { Size, Breakpoint } from '../common';
+import { useDirection } from '../common/hooks';
 import NavigationOption from '../navigationOption';
+import SizeSwapper from '../sizeSwapper';
 import Tile from '../tile';
 
 import { Presentation, Type } from './decisionEnums';
-import { Size, Breakpoint } from '../common';
-import { useDirection } from '../common/hooks';
 
 const Decision = ({ options, presentation, type, size }) => {
   const { isRTL } = useDirection();
@@ -33,20 +33,23 @@ const Decision = ({ options, presentation, type, size }) => {
         ({ description, disabled, href, target, media: { block, list }, onClick, title }, key) => {
           items[0].items.push(
             <NavigationOption
+              // eslint-disable-next-line react/no-array-index-key
+              key={`nav-${key}`}
               complex={false}
               content={description}
               disabled={disabled}
               href={href}
               target={target}
-              key={`nav-${key}`} // eslint-disable-line react/no-array-index-key
               media={list}
-              onClick={onClick}
               showMediaAtAllSizes
               title={title}
+              onClick={onClick}
             />,
           );
           items[1].items.push(
             <Tile
+              // eslint-disable-next-line react/no-array-index-key
+              key={`tile-${key}`}
               className={classNames(`np-decision__tile${isSmall ? '--small' : ''}`, {
                 'np-decision__tile--fixed-width': isGrid,
               })}
@@ -54,11 +57,10 @@ const Decision = ({ options, presentation, type, size }) => {
               disabled={disabled}
               href={href}
               target={target}
-              key={`tile-${key}`} // eslint-disable-line react/no-array-index-key
               media={block}
-              onClick={onClick}
               size={isSmall ? Size.SMALL : Size.MEDIUM}
               title={title}
+              onClick={onClick}
             />,
           );
         },
@@ -80,16 +82,17 @@ const Decision = ({ options, presentation, type, size }) => {
     return options.map(
       ({ title, description, disabled, href, target, media: { list }, onClick }, key) => (
         <NavigationOption
+          // eslint-disable-next-line react/no-array-index-key
+          key={`nav-${key}`}
           complex={false}
           content={description}
           disabled={disabled}
           href={href}
           target={target}
-          key={`nav-${key}`} // eslint-disable-line react/no-array-index-key
           media={list}
-          onClick={onClick}
           showMediaAtAllSizes
           title={title}
+          onClick={onClick}
         />
       ),
     );

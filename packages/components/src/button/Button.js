@@ -1,24 +1,15 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 
 import { Size, ControlType, Priority } from '../common';
-import { establishNewPriority, establishNewType, logDeprecationNotices } from './legacyUtils';
+
 import { typeClassMap, priorityClassMap } from './classMap';
+import { establishNewPriority, establishNewType, logDeprecationNotices } from './legacyUtils';
 
 const Button = (props) => {
-  const {
-    block,
-    children,
-    className,
-    disabled,
-    htmlType,
-    loading,
-    priority,
-    size,
-    type,
-    ...rest
-  } = props;
+  const { block, children, className, disabled, htmlType, loading, priority, size, type, ...rest } =
+    props;
 
   logDeprecationNotices(props);
 
@@ -53,7 +44,6 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   htmlType: PropTypes.oneOf(['submit', 'reset', 'button']),
   loading: PropTypes.bool,
-  // eslint-disable-next-line
   onClick: requiredIf(PropTypes.func, (props) => props.htmlType !== 'submit'),
   priority: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   /** @deprecated `primary`, `pay`, `secondary`, `danger`, `link` */

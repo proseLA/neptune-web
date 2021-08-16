@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const CheckboxButton = ({ checked, className, disabled, onChange, ...rest }) => (
   <span className={classNames('np-checkbox-button', className)}>

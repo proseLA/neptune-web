@@ -1,7 +1,8 @@
-import { useIntl } from 'react-intl';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { formatDate, formatNumber } from '@transferwise/formatting';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+
 import { formatUsingPattern } from '../utils/text-format';
 
 /**
@@ -64,10 +65,8 @@ FormattedValue.propTypes = {
     tagClassName: PropTypes.shape({
       h3: PropTypes.bool,
     }),
-    // eslint-disable-next-line react/forbid-prop-types
     values: PropTypes.arrayOf(PropTypes.shape({ value: PropTypes.any })),
   }).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
   value: PropTypes.any.isRequired,
 };
 

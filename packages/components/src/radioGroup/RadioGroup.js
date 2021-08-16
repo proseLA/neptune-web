@@ -1,5 +1,6 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
+
 import Radio from '../radio';
 
 class RadioGroup extends Component {
@@ -22,18 +23,18 @@ class RadioGroup extends Component {
       <>
         {radios.map(({ id, avatar, value, label, disabled, secondary, readOnly }, index) => (
           <Radio
-            id={id}
-            value={value}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
+            id={id}
+            value={value}
             label={label}
             name={name}
             disabled={disabled}
             checked={selectedValue === value}
             secondary={secondary}
-            onChange={(val) => this.handleOnChange(val)}
             readOnly={readOnly}
             avatar={avatar}
+            onChange={(value_) => this.handleOnChange(value_)}
           />
         ))}
       </>

@@ -1,6 +1,7 @@
 import { cleanup, render, screen, userEvent } from '../../../test-utils';
-import { resetFocus } from './resetFocus';
 import { fakeKeyDownEvent } from '../../fakeEvents';
+
+import { resetFocus } from './resetFocus';
 
 describe('resetFocus', () => {
   beforeEach(() => {

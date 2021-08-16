@@ -1,11 +1,11 @@
 import { isArray } from '@transferwise/neptune-validation';
 
 export const groupCountriesByPrefix = (countries) => {
-  const groupedArray = countries.reduce((acc, country) => {
+  const groupedArray = countries.reduce((accumulator, country) => {
     const { name, iso2, iso3, phone } = country;
-    if (acc[phone]) {
-      const previousValue = acc[phone];
-      acc[phone] = {
+    if (accumulator[phone]) {
+      const previousValue = accumulator[phone];
+      accumulator[phone] = {
         ...previousValue,
         name: isArray(previousValue.name)
           ? [...previousValue.name, name]
@@ -18,9 +18,9 @@ export const groupCountriesByPrefix = (countries) => {
           : [previousValue.iso3, iso3],
       };
     } else {
-      acc[phone] = country;
+      accumulator[phone] = country;
     }
-    return acc;
+    return accumulator;
   }, {});
   return Object.values(groupedArray);
 };

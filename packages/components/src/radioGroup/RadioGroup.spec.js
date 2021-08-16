@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { shallow } from 'enzyme';
+
 import { Radio, RadioGroup } from '..';
 import Avatar, { AvatarType } from '../avatar';
 
@@ -38,8 +39,8 @@ describe('RadioGroup', () => {
 
   it('renders radio options', () => {
     const component = shallow(<RadioGroup radios={RADIOS} {...props} />);
-    expect(component.find(Radio).length).toBe(RADIOS.length);
-    expect(JSON.stringify(component.find(Radio).at(0).props())).toEqual(
+    expect(component.find(Radio)).toHaveLength(RADIOS.length);
+    expect(JSON.stringify(component.find(Radio).at(0).props())).toStrictEqual(
       JSON.stringify({
         id: 'id-test-0',
         value: 'value-test0',
@@ -58,7 +59,7 @@ describe('RadioGroup', () => {
     const component = shallow(
       <RadioGroup radios={RADIOS} selectedValue="value-test2" {...props} />,
     );
-    expect(component.find(Radio).length).toBe(RADIOS.length);
+    expect(component.find(Radio)).toHaveLength(RADIOS.length);
     expect(component.find(Radio).at(2).props().checked).toBeTruthy();
 
     expect(component.find(Radio).at(0).props().checked).toBeFalsy();

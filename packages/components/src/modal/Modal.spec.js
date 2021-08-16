@@ -15,7 +15,7 @@ jest.mock('react-intl', () => ({
 describe('Modal', () => {
   let component;
   beforeEach(() => {
-    component = mount(<Modal body="Some body" onClose={jest.fn()} open />);
+    component = mount(<Modal body="Some body" open onClose={jest.fn()} />);
 
     jest.clearAllMocks();
   });
@@ -117,8 +117,8 @@ describe('Modal', () => {
     beforeEach(() => {
       originalAddEventListener = global.document.addEventListener;
       documentEventCallbacks = {};
-      global.document.addEventListener = jest.fn((name, cb) => {
-        documentEventCallbacks[name] = cb;
+      jest.spyOn(global.document, 'addEventListener').mockImplementation((name, callback) => {
+        documentEventCallbacks[name] = callback;
       });
     });
 
@@ -130,7 +130,7 @@ describe('Modal', () => {
       const onClose = jest.fn();
       component.setProps({ onClose });
 
-      expect(onClose).not.toBeCalled();
+      expect(onClose).not.toHaveBeenCalled();
       clickCloseButton();
       expect(onClose).toHaveBeenCalledTimes(1);
     });

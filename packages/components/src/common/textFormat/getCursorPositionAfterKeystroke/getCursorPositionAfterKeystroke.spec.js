@@ -128,7 +128,7 @@ describe('pushValueToStack', () => {
       it(`${testMessage}`, () => {
         expect(
           getCursorPositionAfterKeystroke(key, selectionStart, selectionEnd, pattern, pastedLength),
-        ).toEqual(expectedValue);
+        ).toStrictEqual(expectedValue);
       });
     });
 });

@@ -37,11 +37,11 @@ describe('Checkbox', () => {
 
     const { rerender } = render(<Checkbox {...props} onChange={onChange} />);
 
-    expect(onChange).not.toBeCalled();
+    expect(onChange).not.toHaveBeenCalled();
     fireEvent.click(getLabel());
     expect(onChange).toHaveBeenCalledWith(true);
 
-    rerender(<Checkbox {...props} onChange={onChange} checked />);
+    rerender(<Checkbox {...props} checked onChange={onChange} />);
 
     fireEvent.click(getLabel());
     expect(onChange).toHaveBeenCalledWith(false);
@@ -50,19 +50,19 @@ describe('Checkbox', () => {
   it('does not call change handler on checkbox button click when disabled', () => {
     const onChange = jest.fn();
 
-    render(<Checkbox {...props} onChange={onChange} disabled />);
+    render(<Checkbox {...props} disabled onChange={onChange} />);
 
     fireEvent.click(getLabel());
-    expect(onChange).not.toBeCalled();
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   it('does not call change handler on checkbox button click when readOnly', () => {
     const onChange = jest.fn();
 
-    render(<Checkbox {...props} onChange={onChange} readOnly />);
+    render(<Checkbox {...props} readOnly onChange={onChange} />);
 
     fireEvent.click(getLabel());
-    expect(onChange).not.toBeCalled();
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   it('has disabled class when the disabled prop is true', () => {
@@ -95,7 +95,7 @@ describe('Checkbox', () => {
 
   it(`doesn't passes checked to checkbox button`, () => {
     render(<Checkbox {...props} />);
-    expect(getCheckbox()).not.toHaveAttribute('checked');
+    expect(getCheckbox()).not.toBeChecked();
   });
 
   it('passes checked to checkbox button', () => {
@@ -105,7 +105,7 @@ describe('Checkbox', () => {
 
   it('passes disabled to checkbox button', () => {
     const { rerender } = render(<Checkbox {...props} />);
-    expect(getCheckbox()).not.toHaveAttribute('disabled');
+    expect(getCheckbox()).toBeEnabled();
 
     rerender(<Checkbox {...props} disabled />);
     expect(getCheckbox()).toHaveAttribute('disabled');
@@ -114,7 +114,7 @@ describe('Checkbox', () => {
   it('disables checkbox button if readOnly', () => {
     const { rerender } = render(<Checkbox {...props} />);
 
-    expect(getCheckbox()).not.toHaveAttribute('disabled');
+    expect(getCheckbox()).toBeEnabled();
 
     rerender(<Checkbox {...props} readOnly />);
     expect(getCheckbox()).toHaveAttribute('disabled');

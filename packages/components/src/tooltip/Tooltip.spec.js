@@ -39,14 +39,14 @@ describe('Tooltip', () => {
   }
 
   it('renders the children given to it', () => {
-    expect(component.find('button').length).toBe(1);
+    expect(component.find('button')).toHaveLength(1);
   });
 
   it('renders a label when hovered on', () => {
     expect(labelVisible()).toBe(false);
     hover();
     expect(labelVisible()).toBe(true);
-    expect(component.find('#label').length).toBe(1);
+    expect(component.find('#label')).toHaveLength(1);
     stopHover();
     expect(labelVisible()).toBe(false);
   });
@@ -55,7 +55,7 @@ describe('Tooltip', () => {
     expect(labelVisible()).toBe(false);
     focus();
     expect(labelVisible()).toBe(true);
-    expect(component.find('#label').length).toBe(1);
+    expect(component.find('#label')).toHaveLength(1);
     blur();
     expect(labelVisible()).toBe(false);
   });
@@ -68,10 +68,10 @@ describe('Tooltip', () => {
 
   it('is accessible', () => {
     expect(component.prop('aria-describedby')).toBeTruthy();
-    expect(component.prop('aria-describedby')).toEqual(component.find('.tooltip').prop('id'));
+    expect(component.prop('aria-describedby')).toStrictEqual(component.find('.tooltip').prop('id'));
   });
 
   it('has a tooltipId', () => {
-    expect(tooltipId()).toEqual(expect.any(String));
+    expect(tooltipId()).toStrictEqual(expect.any(String));
   });
 });

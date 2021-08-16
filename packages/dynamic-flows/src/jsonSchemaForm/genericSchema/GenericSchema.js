@@ -1,13 +1,13 @@
 import Types from 'prop-types';
 
+import { getSchemaType, schemaType } from '../../common/schemaTypes/schemaTypes';
+import AllOfSchema from '../allOfSchema';
 import BasicTypeSchema from '../basicTypeSchema';
 import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
-import AllOfSchema from '../allOfSchema';
 import PersistAsyncSchema from '../persistAsyncSchema';
-import ValidationAsyncSchema from '../validationAsyncSchema';
-import { getSchemaType, schemaType } from '../../common/schemaTypes/schemaTypes';
 import PromotedOneOfSchema from '../promotedOneOfSchema';
+import ValidationAsyncSchema from '../validationAsyncSchema';
 
 const GenericSchemaForm = (props) => {
   const { schema } = props;
