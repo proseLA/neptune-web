@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { Status } from '../common';
 
 import UploadInput, { UploadInputProps } from './UploadInput';
-import { UploadResponse } from './types';
+import { UploadedFile, UploadResponse } from './types';
 
 export default {
   title: 'UploadInput',
@@ -122,5 +122,14 @@ CustomConfirmMessage.args = {
         src="https://wise.com/public-resources/assets/logos/wise/brand_logo.svg"
       />
     ),
+  },
+};
+
+export const withManualDownloadHandler = Template.bind({});
+withManualDownloadHandler.args = {
+  ...props,
+  files,
+  onDownload: (file: UploadedFile) => {
+    alert(`Manual download handler triggered for: ${JSON.stringify(file)}`);
   },
 };

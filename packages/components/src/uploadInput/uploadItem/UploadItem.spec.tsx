@@ -1,3 +1,5 @@
+import userEvent from '@testing-library/user-event';
+
 import { Status } from '../../common';
 import { render, screen } from '../../test-utils';
 
@@ -9,6 +11,7 @@ describe('UploadItem', () => {
       id: 1,
       filename: 'purchase-receipt.pdf',
       status: Status.SUCCEEDED,
+      url: 'https://wise.com',
     },
     canDelete: true,
     onDelete: jest.fn(),
@@ -103,6 +106,16 @@ describe('UploadItem', () => {
     it('should not render the remove file button when canDelete prop is false', () => {
       renderComponent({ ...props, canDelete: false });
       expect(screen.queryByLabelText('Remove file ', { exact: false })).not.toBeInTheDocument();
+    });
+  });
+
+  describe('manual file download handler', () => {
+    it('calls onDownload handler provided through props', () => {
+      const onDownload = jest.fn();
+      renderComponent({ ...props, onDownload });
+      userEvent.click(screen.getAllByRole('link')[0]);
+      expect(onDownload).toHaveBeenCalledTimes(1);
+      expect(onDownload).toHaveBeenCalledWith(props.file);
     });
   });
 });

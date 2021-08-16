@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { ReactElement, useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '../button';
@@ -12,7 +12,7 @@ import MESSAGES from './UploadInput.messages';
 import { UploadedFile, UploadError, UploadResponse } from './types';
 import UploadButton, { UploadButtonProps } from './uploadButton/UploadButton';
 import { DEFAULT_SIZE_LIMIT, imageFileTypes } from './uploadButton/defaults';
-import UploadItem from './uploadItem/UploadItem';
+import UploadItem, { UploadItemProps } from './uploadItem/UploadItem';
 
 export type UploadInputProps = {
   /**
@@ -72,6 +72,7 @@ export type UploadInputProps = {
     cancelText?: string;
   };
 } & Pick<UploadButtonProps, 'disabled' | 'multiple' | 'fileTypes' | 'sizeLimit'> &
+  Pick<UploadItemProps, 'onDownload'> &
   CommonProps;
 
 const UploadInput = ({
@@ -86,6 +87,7 @@ const UploadInput = ({
   onUploadFile,
   onDeleteFile,
   onValidationError,
+  onDownload,
 }: UploadInputProps): ReactElement => {
   const [markedFileForDelete, setMarkedFileForDelete] = useState<UploadedFile | null>(null);
   const { formatMessage } = useIntl();
@@ -223,6 +225,7 @@ const UploadInput = ({
                 ? () => removeFile(file)
                 : () => setMarkedFileForDelete(file)
             }
+            onDownload={onDownload}
           />
         ))}
         {(multiple || (!multiple && !uploadedFiles.length)) && (

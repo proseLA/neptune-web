@@ -8,6 +8,8 @@ Actual network request can be performed by the API library of your choice (e.g. 
 
 Deletion is performed via `onDeleteFile(id)`, that receives the `id` of the file and can perform the API request, as long as it returns a `Promise<void>`.
 
+If you need to override the default link behaviour for existing files, provide an `onDownload(file: UploadedFile)` callback.
+
 <LiveEditorBlock code={code} scope={{ UploadInput, Status }} display="vertical" />
 
 An example for an actual `onUploadFile()` callback:

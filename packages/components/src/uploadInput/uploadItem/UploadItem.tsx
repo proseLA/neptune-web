@@ -1,6 +1,6 @@
 import { AlertCircle, CrossCircle } from '@transferwise/icons';
 import classNames from 'classnames';
-import { ReactElement } from 'react';
+import { ReactElement, MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
 
 import { Size, Status } from '../../common';
@@ -15,6 +15,14 @@ export type UploadItemProps = JSX.IntrinsicAttributes & {
   file: UploadedFile;
   canDelete: boolean;
   onDelete: () => void;
+
+  /**
+   * Callback to be called when the file link is clicked.
+   * When provided, you need to manually trigger actions to load/download the file.
+   *
+   * @param file
+   */
+  onDownload?: (file: UploadedFile) => void;
 };
 
 export enum TEST_IDS {
@@ -22,7 +30,7 @@ export enum TEST_IDS {
   mediaBody = 'mediaBody',
 }
 
-const UploadItem = ({ file, canDelete, onDelete }: UploadItemProps) => {
+const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) => {
   const { isRTL } = useDirection();
   const { formatMessage } = useIntl();
   const { status, filename, error, url } = file;
@@ -76,13 +84,20 @@ const UploadItem = ({ file, canDelete, onDelete }: UploadItemProps) => {
     return filename || formatMessage(MESSAGES.uploadedFile);
   };
 
+  const onDownloadFile = (event: MouseEvent): void => {
+    if (onDownload) {
+      event.preventDefault();
+      onDownload(file);
+    }
+  };
+
   return (
     <div
       className={classNames('np-upload-item', { 'np-upload-item__link': isSucceeded })}
       data-testid={TEST_IDS.uploadItem}
     >
       <div className="np-upload-item__body">
-        <UploadItemBody url={isSucceeded ? url : undefined}>
+        <UploadItemBody url={isSucceeded ? url : undefined} onDownload={onDownloadFile}>
           <div className="np-upload-button">
             <div className="media">
               <div

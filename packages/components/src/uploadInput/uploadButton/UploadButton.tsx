@@ -1,6 +1,6 @@
 import { Upload as UploadIcon, PlusCircle as PlusIcon } from '@transferwise/icons';
 import classNames from 'classnames';
-import React, { useState, useRef, DragEvent, ChangeEvent } from 'react';
+import { useState, useRef, DragEvent, ChangeEvent } from 'react';
 import { useIntl } from 'react-intl';
 
 import { FileType } from '../../common';
