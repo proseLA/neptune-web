@@ -342,9 +342,37 @@ describe('Select', () => {
 
     callSearchChangeWith('yo');
 
-    //
-
     expect(focusedOptionIndex()).toBe(1); // ignore search bar
+  });
+
+  describe('given a large set of options', () => {
+    beforeEach(async () => {
+      component.setProps({
+        options: new Array(101).fill().map((x, index) => ({
+          value: `option${index}`,
+          label: `Option ${index}`,
+        })),
+      });
+      await openSelect();
+    });
+
+    it('should limit the number of options initially shown', async () => {
+      expect(element(Option)).toHaveLength(50);
+    });
+
+    it('should show a "..." option at the end to load more options', async () => {
+      expect(element('.show-more')).toHaveLength(1);
+    });
+
+    it('should load more options when "..." is clicked', async () => {
+      element('.show-more').simulate('click', fakeEvent());
+      expect(element(Option)).toHaveLength(100);
+      expect(element('.show-more')).toHaveLength(1);
+
+      element('.show-more').simulate('click', fakeEvent());
+      expect(element(Option)).toHaveLength(101); // exhausted
+      expect(element('.show-more')).toHaveLength(0);
+    });
   });
 
   it('handles hitting enter after options are filtered', async () => {

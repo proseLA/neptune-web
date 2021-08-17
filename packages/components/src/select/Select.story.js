@@ -231,3 +231,45 @@ export const AdvancedSearch = () => {
     />
   );
 };
+
+export const SearchingLargeLists = () => {
+  const [selected, setSelected] = useState({
+    value: 'option1',
+    label: 'Option 1',
+    secondary: 'Here we have a description describing option 1',
+  });
+
+  const size = select('size', ['sm', 'md', 'lg'], 'md');
+  const dropdownRight = select('dropdownRight', ['xs', 'sm', 'md', 'lg', 'xl'], 'md');
+  const dropdownWidth = select('dropdownWidth', ['sm', 'md', 'lg'], 'md');
+
+  const placeholder = text('placeholder', 'Placeholder text');
+  const inverse = boolean('inverse', false);
+  const block = boolean('block', true);
+  const required = boolean('required', false);
+  const dropdownUp = boolean('dropdownUp', false);
+  const disabled = boolean('disabled', false);
+
+  return (
+    <Select
+      size={size}
+      placeholder={placeholder}
+      dropdownRight={dropdownRight}
+      dropdownWidth={dropdownWidth}
+      inverse={inverse}
+      block={block}
+      selected={selected}
+      disabled={disabled}
+      search
+      required={required}
+      searchPlaceholder="Search placeholder"
+      dropdownUp={dropdownUp}
+      options={new Array(1500).fill().map((x, index) => ({
+        value: `option${index + 1}`,
+        label: `Option ${index + 1}`,
+        secondary: `Here we have a description describing option ${index + 1}`,
+      }))}
+      onChange={(v) => setSelected(v)}
+    />
+  );
+};

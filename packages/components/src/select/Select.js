@@ -46,6 +46,8 @@ function getShouldRenderWithPortal() {
   );
 }
 
+const OPTIONS_PAGE_SIZE = 50;
+
 const BOOTSTRAP_DROPDOWN_ANIMATION_TIME = 200;
 
 const defer = (fn) => setTimeout(fn, 0);
@@ -88,6 +90,7 @@ export default class Select extends Component {
       open: false,
       searchValue: '',
       keyboardFocusedOptionIndex: null,
+      numberOfOptionsShown: OPTIONS_PAGE_SIZE,
     };
     this.searchBoxRef = createRef();
     this.dropdownMenuRef = createRef();
@@ -151,6 +154,7 @@ export default class Select extends Component {
   };
 
   handleSearchChange = (event) => {
+    this.setState({ numberOfOptionsShown: OPTIONS_PAGE_SIZE }); // Reset.
     if (this.props.onSearchChange) {
       this.props.onSearchChange(event.target.value);
     } else {
@@ -345,12 +349,38 @@ export default class Select extends Component {
           />
         )}
         {this.renderOptions()}
+        {this.state.numberOfOptionsShown < this.getOptions().length ? this.renderShowMore() : ''}
       </ul>
     );
   }
 
   renderOptions() {
-    return this.getOptions().map(this.renderOption);
+    return this.getOptions().slice(0, this.state.numberOfOptionsShown).map(this.renderOption);
+  }
+
+  renderShowMore() {
+    return (
+      /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
+      <li
+        className={classNames(
+          this.style('tw-dropdown-item--clickable'),
+          this.style('tw-dropdown-item--divider'),
+          this.style('show-more'),
+        )}
+        onClick={this.showMore.bind(this)}
+        onKeyPress={this.showMore.bind(this)}
+      >
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a>...</a>
+      </li>
+    );
+  }
+
+  showMore(event) {
+    stopPropagation(event);
+    this.setState((previousState) => ({
+      numberOfOptionsShown: previousState.numberOfOptionsShown + OPTIONS_PAGE_SIZE,
+    }));
   }
 
   renderPlaceHolderOption() {

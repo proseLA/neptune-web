@@ -213,7 +213,7 @@ describe('Select', () => {
       const input = screen.getByPlaceholderText('Search...');
       userEvent.type(input, 'o');
 
-      expect(searchFunction).toHaveBeenCalledTimes(3);
+      expect(searchFunction).toHaveBeenCalledTimes(6);
     });
 
     it('should filter the options with a custom search function with 3 results', async () => {
