@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.1.1...@transferwise/components@37.2.0) (2021-08-17)
+
+
+### Features
+
+* **select:** incremental results when searching large Select lists for better performance  ([#1084](https://github.com/transferwise/neptune-web/issues/1084)) ([238cb0a](https://github.com/transferwise/neptune-web/commit/238cb0a336e3b0bfd2c1ace8fac50b5188f1e663))
+
+
+
+
+
 ## [37.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.1.0...@transferwise/components@37.1.1) (2021-08-16)
 
 **Note:** Version bump only for package @transferwise/components
