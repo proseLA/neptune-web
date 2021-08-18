@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.0.9...@transferwise/dynamic-flows@15.1.0) (2021-08-18)
+
+
+### Features
+
+* ReadOnlySchema ([#1083](https://github.com/transferwise/neptune-web/issues/1083)) ([1446391](https://github.com/transferwise/neptune-web/commit/14463919c4d87b71e2a9f2b169db364285b347d6))
+* ReadOnlySchema ([#1083](https://github.com/transferwise/neptune-web/issues/1083)) ([d95ed71](https://github.com/transferwise/neptune-web/commit/d95ed71ac004125b1d6646f08bace7d488098e96))
+
+
+
+
+
 ## [15.0.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.0.8...@transferwise/dynamic-flows@15.0.9) (2021-08-17)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
