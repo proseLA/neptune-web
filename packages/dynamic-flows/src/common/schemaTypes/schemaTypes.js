@@ -1,6 +1,7 @@
 const basicTypes = new Set(['string', 'number', 'integer', 'boolean']);
 
 export const schemaType = {
+  READ_ONLY: 'readOnly',
   PERSIST_ASYNC: 'persistAsync',
   VALIDATION_ASYNC: 'validationAsync',
   OBJECT: 'object',
@@ -9,6 +10,8 @@ export const schemaType = {
   ALL_OF: 'allOf',
   BASIC: 'basic',
 };
+
+export const isReadOnlySchema = (schema) => !!schema.readOnly && isBasicSchema(schema);
 
 export const isPersistAsyncSchema = (schema) => !!schema.persistAsync;
 
@@ -27,6 +30,9 @@ export const isBasicSchema = (schema) =>
 
 export const getSchemaType = (schema) => {
   // Order of application is important here
+  if (isReadOnlySchema(schema)) {
+    return schemaType.READ_ONLY;
+  }
   if (isPersistAsyncSchema(schema)) {
     return schemaType.PERSIST_ASYNC;
   }

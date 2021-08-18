@@ -5,6 +5,7 @@ import BasicTypeSchema from '../basicTypeSchema';
 import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
 import PersistAsyncSchema from '../persistAsyncSchema';
+import ReadOnlySchema from '../readOnlySchema';
 
 import GenericSchema from '.';
 
@@ -352,6 +353,35 @@ describe('Given a component for rendering any generic schema', () => {
 
     it('should not render basic type schema', () => {
       expect(component.find(BasicTypeSchema)).toHaveLength(0);
+    });
+  });
+
+  describe('when supplied schema is readOnly', () => {
+    describe('when supplied schema is basic (string, number, boolean)', () => {
+      it('renders a ReadOnlySchema', () => {
+        const shallowWrapper = shallow(
+          <GenericSchema
+            {...sharedProps}
+            model={null}
+            schema={{ type: 'string', readOnly: true }}
+          />,
+        );
+        expect(shallowWrapper.find(ReadOnlySchema)).toHaveLength(1);
+      });
+    });
+
+    describe('when supplied schema is allOf', () => {
+      it('renders an AllOfSchema, ignoring the "readOnly" property', () => {
+        const shallowWrapper = shallow(
+          <GenericSchema
+            {...sharedProps}
+            model={null}
+            schema={{ readOnly: true, allOf: [{ type: 'string' }, { type: 'number' }] }}
+          />,
+        );
+        expect(shallowWrapper.find(AllOfSchema)).toHaveLength(1);
+        expect(shallowWrapper.find(ReadOnlySchema)).toHaveLength(0);
+      });
     });
   });
 });

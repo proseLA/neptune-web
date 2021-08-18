@@ -7,6 +7,7 @@ import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
 import PersistAsyncSchema from '../persistAsyncSchema';
 import PromotedOneOfSchema from '../promotedOneOfSchema';
+import ReadOnlySchema from '../readOnlySchema';
 import ValidationAsyncSchema from '../validationAsyncSchema';
 
 const GenericSchemaForm = (props) => {
@@ -15,6 +16,8 @@ const GenericSchemaForm = (props) => {
   const type = getSchemaType(schema);
 
   switch (type) {
+    case schemaType.READ_ONLY:
+      return <ReadOnlySchema {...props} />;
     case schemaType.PERSIST_ASYNC:
       return <PersistAsyncSchema {...props} />;
     case schemaType.VALIDATION_ASYNC:
