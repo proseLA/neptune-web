@@ -2,5 +2,7 @@
   "dynamicFlows.ErrorBoundary.errorAlert": "Oops. Something went wrong...",
   "dynamicFlows.ErrorBoundary.retry": "Retry",
   "dynamicFlows.Help.ariaLabel": "Click here for more info.",
-  "dynamicFlows.PersistAsyncSchema.genericError": "Something went wrong, please try again later!"
+  "dynamicFlows.PersistAsyncSchema.genericError": "Something went wrong, please try again later!",
+  "dynamicFlows.ReadOnlySchema.no": "No",
+  "dynamicFlows.ReadOnlySchema.yes": "Yes"
 }
