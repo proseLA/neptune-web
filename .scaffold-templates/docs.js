@@ -17,5 +17,6 @@ import code from '../../liveEditorCode/${name}.code';
 
 export const meta = {
   name: '${capitalizeFirstLetter(name)}',
-};`,
+};
+`,
 };

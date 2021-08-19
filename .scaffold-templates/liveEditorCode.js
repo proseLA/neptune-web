@@ -8,6 +8,6 @@ module.exports = {
   ext: 'code.js',
   createDir: false,
   name: (name) => name,
-  template: (name) => `<${capitalizeFirstLetter(name)}/>;
+  template: (name) => `<${capitalizeFirstLetter(name)} />;
 `,
 };

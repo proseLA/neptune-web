@@ -8,15 +8,16 @@ module.exports = {
   ext: 'story.js',
   createDir: true,
   name: (name) => capitalizeFirstLetter(name),
-  template: (name) => `import React from 'react';
-import ${capitalizeFirstLetter(name)} from './${capitalizeFirstLetter(name)}';
+  template: (name) => `import ${capitalizeFirstLetter(name)} from './${capitalizeFirstLetter(
+    name,
+  )}';
 
 export default {
   component: ${capitalizeFirstLetter(name)},
   title: '${capitalizeFirstLetter(name)}',
 };
 
-export const basic = () => {
+export const Basic = () => {
   return <${capitalizeFirstLetter(name)} />;
 };
 `,

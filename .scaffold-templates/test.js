@@ -5,18 +5,18 @@ const { capitalizeFirstLetter } = require('@transferwise/files-scaffold/utils/in
 module.exports = {
   type: 'jest',
   path: 'packages/components/src',
-  ext: 'spec.js',
+  ext: 'spec.tsx',
   createDir: true,
   name: (name) => capitalizeFirstLetter(name),
-  template: (name) => `import React from 'react';
-import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
-import { render } from '../common/test';
+  template: (name) => `import { render, screen } from '../test-utils';
 
-import ${capitalizeFirstLetter(name)} from './';
+import ${capitalizeFirstLetter(name)} from '.';
 
 describe('${capitalizeFirstLetter(name)}', () => {
-  it('your test here', () => {});
+  it('can render component', () => {
+    render(<${capitalizeFirstLetter(name)} />);
+    expect(screen.getByText('${capitalizeFirstLetter(name)}')).toBeInTheDocument();
+  });
 });
 `,
 };

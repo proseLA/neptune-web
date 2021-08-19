@@ -18,10 +18,14 @@ Once this is done, when working inside a package, we recommend running all comma
 
 To get started, run `dev`. This will launch the development tool we use ([Storybook](https://storybook.js.org/)). You'll likely also want to run `test:watch` in a separate terminal to run your tests and re-run on change.
 
+```shell
+$ yarn dev
 ```
-yarn dev
-// And in a separate terminal..
-yarn test:watch
+
+In a separate terminal run the test watcher.
+
+```shell
+$ yarn test:watch
 ```
 
 ## All available commands
@@ -34,6 +38,16 @@ yarn test:watch
 - `lint:fix` - lints components and fixes any errors that can be automatically fixed
 
 As a reminder: to load the docs, run `docs` **from the root of the monorepo**, not from here.
+
+## Creating a new component
+
+To create a new component and all the files necessary for testing and documenting its functionality, you can use the [@transferwise/files-scaffold](https://github.com/transferwise/files-scaffold) library by executing the `create-component` script.
+
+```shell
+$ yarn create-component
+$ files-scaffold
+$ prompt: name: NewComponent
+```
 
 # Accessibility
 
@@ -60,30 +74,34 @@ Note: Please try to follow these rules for both exposed and internal components 
 export default injectIntl(SomeComponent);
 export default withSomeHoC(SomeComponent);
 
-// do 
+// do
 export default SomeComponent;
 ```
+
 - pass raw values into `PropTypes.oneOf` at `propTypes`
+
 ```javascript
 // don't
 SomeComponent.propTypes = {
   status: PropTypes.oneOf([Size.EXTRA_SMALL, Size.SMALL, Size.MEDIUM]),
   position: PropTypes.oneOf(Object.values(Position)),
-}
+};
 SomeComponent.defaultProps = {
   size: Size.SMALL,
-}
+};
 
 // do
 SomeComponent.propTypes = {
   size: PropTypes.oneOf(['xs', 'sm', 'md']),
   position: PropTypes.oneOf(['top', 'left', 'right', 'bottom']),
-}
+};
 SomeComponent.defaultProps = {
   size: Size.SMALL,
-}
+};
 ```
+
 - there is no need to create static properties as they won't work in TypeScript consumer apps
+
 ```javascript
 // inside Component.js
 
@@ -91,7 +109,9 @@ SomeComponent.defaultProps = {
 Component.Size = Size;
 Component.Position = Position;
 ```
+
 - define `prop-types` as `PropTypes`
+
 ```javascript
 // don't
 import Types from 'prop-types';
@@ -99,17 +119,21 @@ import Types from 'prop-types';
 // do
 import PropTypes from 'prop-types';
 ```
+
 - avoid using custom validator in prop-types, this will lead to type `any` for those props
+
 ```javascript
 // don't
 onClick: requiredIf(PropTypes.func, ...),
 content: deprecated(PropTypes.node, ...),
 ```
+
 - Ultimately, always check the generated types:
-   - run `yarn build` inside `packages/components` folder
-   - head to `/build/types/index.d.ts` file,
-   - from there, navigate to your component's `.d.ts` file
-   - if types aren't the expected ones please tweak the prop-types in the component and repeat these steps again.
+
+  - run `yarn build` inside `packages/components` folder
+  - head to `/build/types/index.d.ts` file,
+  - from there, navigate to your component's `.d.ts` file
+  - if types aren't the expected ones please tweak the prop-types in the component and repeat these steps again.
 
 - Avoid using `PropTypes.elementType`, use `PropTypes.string` instead
 
@@ -127,7 +151,7 @@ This package has support for internationalisation, and all messages inside compo
 Define messages using the [`defineMessages`](https://formatjs.io/docs/react-intl/api/#definemessagesdefinemessage) function in a file named `[ComponentName].message.js` next to the component file. You can then import and use them in the component.
 
 Once you have defined the messages and agreed on copy, they must be sent to the translations vendor (Crowdin). To do this:
- 
+
 1. Run `yarn build` (it will regenerate a main source file (`en.json`) out of all `*.message.js` files)
 2. Push changes (or only `en.json`) to your remote branch (this will make Crowdin notice new messages)
 3. Right after that Crowdin will create a PR (where the base branch is your feature branch) with placeholders (English messages) in other translation files. It will commit into same PR (or a new PR in case you have merged the first one) with translated messages, as soon as translators translate them.
@@ -167,7 +191,7 @@ As per [Babel docs](https://babeljs.io/docs/en/babel-preset-env) - "We take adva
 
 **Original file:**
 
-```
+```javascript
 class Checkbox {
   a = new Promise();
 }
@@ -177,14 +201,14 @@ export default Checkbox;
 
 **Without Polyfill:**
 
-```
-import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
-import _defineProperty from "@babel/runtime/helpers/defineProperty";
+```javascript
+import _classCallCheck from '@babel/runtime/helpers/classCallCheck';
+import _defineProperty from '@babel/runtime/helpers/defineProperty';
 
 var Checkbox = function Checkbox() {
   _classCallCheck(this, Checkbox);
 
-  _defineProperty(this, "a", new Promise());
+  _defineProperty(this, 'a', new Promise());
 };
 
 export default Checkbox;
@@ -192,16 +216,16 @@ export default Checkbox;
 
 **With Polyfill:**
 
-```
-import "core-js/modules/es.object.to-string";
-import "core-js/modules/es.promise";
-import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
-import _defineProperty from "@babel/runtime/helpers/defineProperty";
+```javascript
+import 'core-js/modules/es.object.to-string';
+import 'core-js/modules/es.promise';
+import _classCallCheck from '@babel/runtime/helpers/classCallCheck';
+import _defineProperty from '@babel/runtime/helpers/defineProperty';
 
 var Checkbox = function Checkbox() {
   _classCallCheck(this, Checkbox);
 
-  _defineProperty(this, "a", new Promise());
+  _defineProperty(this, 'a', new Promise());
 };
 
 export default Checkbox;
