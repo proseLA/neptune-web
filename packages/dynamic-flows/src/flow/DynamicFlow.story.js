@@ -22,7 +22,7 @@ export const basic = () => {
     recipient_details: '/recipient_details',
   };
 
-  const flowUrl = select('step', steps, '/decision');
+  // const flowUrl = select('step', steps, '/decision');
 
   const onClose = (...args) => {
     console.log('onClose', ...args); // eslint-disable-line
@@ -39,13 +39,14 @@ export const basic = () => {
     action('onError');
   };
 
-  const baseUrl = '';
+  const baseUrl = 'http://localhost:12345';
+  const flowUrl = '/v3/kyc-checks/123/flow';
 
   return (
     <DynamicFlow
       flowUrl={flowUrl}
       baseUrl={baseUrl}
-      httpClient={mockClient}
+      // httpClient={mockClient}
       onClose={onClose}
       onStepChange={onStepChange}
       onError={onError}
