@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.1.4...@transferwise/neptune-docs@13.2.0) (2021-08-24)
+
+
+### Features
+
+* **docs:** drop less support and migrate to css variables ([#1109](https://github.com/transferwise/neptune-web/issues/1109)) ([4199022](https://github.com/transferwise/neptune-web/commit/419902203f275e86c2f6d8abf36cf155d128a1c2))
+
+
+
+
+
 ## [13.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.1.3...@transferwise/neptune-docs@13.1.4) (2021-08-18)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
