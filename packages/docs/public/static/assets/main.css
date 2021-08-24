@@ -1,11 +1,8 @@
-@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
-@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
-
 /* Typography */
 
 h1[id] + p,
 h1.colored-dot + p {
-  font-size: @font-size-large;
+  font-size: var(--font-size-20);
 }
 
 h2[id],
@@ -70,7 +67,7 @@ p + h2[id] {
   color: #37517e;
   border: none;
   border-top: 1px solid #e2e6e8;
-  font-size: @font-size-small;
+  font-size: var(--font-size-14);
 }
 
 .Nav {
@@ -80,7 +77,7 @@ p + h2[id] {
   padding: 0;
   list-style: none;
   border-top: 1px solid #e2e6e8;
-  font-size: @font-size-small;
+  font-size: var(--font-size-14);
 }
 
 .Nav__Link {
@@ -90,7 +87,7 @@ p + h2[id] {
   text-decoration: none;
   color: #37517e;
   outline: 0 !important;
-  font-weight: @font-weight-base;
+  font-weight: var(--font-weight-regular);
 }
 
 .Nav__Link:hover,
@@ -101,7 +98,7 @@ p + h2[id] {
 .Nav__Link.active {
   color: var(--color-text-link-active);
   background: var(--color-background-screen);
-  font-weight: @font-weight-bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .Nav--dark {
@@ -127,7 +124,7 @@ p + h2[id] {
 .Nav--dark .Nav__Link {
   color: #fff;
   border-bottom: 0;
-  font-weight: @font-weight-bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .Nav--dark .Nav__Link.active {
@@ -165,9 +162,9 @@ img {
 }
 
 .live-editor {
-  border: 1px solid @color-base-smoke-mid;
+  border: 1px solid var(--color-interactive-secondary);
   border-radius: 3px;
-  background: @color-base-smoke-fade;
+  background: var(--color-background-neutral);
 }
 
 @media (min-width: 1200px) {
@@ -188,7 +185,7 @@ img {
 
 .docs-table {
   overflow: hidden;
-  border: 1px solid @color-base-smoke-fade;
+  border: 1px solid var(--color-base-smoke-fade);
   border-radius: 3px 3px 0 0;
 }
 
@@ -209,12 +206,12 @@ img {
 
 .docs-table > thead {
   color: white;
-  background-color: @color-base-navy-light;
+  background-color: var(--color-base-navy-light);
 }
 
 .docs-table > tbody > tr > th {
   padding-left: 5px;
-  color: @color-base-navy-light;
+  color: var(--color-base-navy-light);
 }
 
 .docs-table ul {

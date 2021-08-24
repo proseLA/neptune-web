@@ -1,4 +1,4 @@
-/** @jsxImportSource @emotion/react */
+/** eslint-disable-next-line jsdoc/check-tag-names @jsxImportSource @emotion/react */
 // eslint-disable-next-line no-unused-vars
 import { jsx } from '@emotion/react';
 import Types from 'prop-types';

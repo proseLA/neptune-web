@@ -4121,6 +4121,11 @@
   resolved "https://registry.yarnpkg.com/@transferwise/neptune-tokens/-/neptune-tokens-1.2.0.tgz#a62d4f4eff77aaf222678276a98c7e683b7af4a0"
   integrity sha512-/nye3zrz/fYNxbHQkeVSMxNqPixhOxKxNKw7xInXH+nSzFyMnox8e+WoKx78LnCV0j18Y5AoHtXJ5P0DAlXFSw==
 
+"@transferwise/neptune-tokens@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@transferwise/neptune-tokens/-/neptune-tokens-4.1.0.tgz#4f9e119c57517eea6e05824e5ef1bb4b8ca9cc25"
+  integrity sha512-8lnMammfR7/lQDWm8XeNXmEfw+D8x+ERcPVOaXQejzRInxvixbt7Jk+394sF1LcyWCW1Z2T72yMnHNihbEMOtQ==
+
 "@trysound/sax@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
