@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.2.1...@transferwise/components@37.3.0) (2021-08-25)
+
+
+### Features
+
+* add onClick to the Nudge ([#1108](https://github.com/transferwise/neptune-web/issues/1108)) ([265021c](https://github.com/transferwise/neptune-web/commit/265021cb9a060ccfd40458f4c065e87e3c5b0276))
+
+
+
+
+
 ## [37.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.2.0...@transferwise/components@37.2.1) (2021-08-18)
 
 **Note:** Version bump only for package @transferwise/components
