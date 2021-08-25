@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { useDirection } from '../common/hooks';
 
-const Nudge = ({ media, title, link, href, onDismiss, id, className }) => {
+const Nudge = ({ media, title, link, href, onClick, onDismiss, id, className }) => {
   const { isRTL } = useDirection();
 
   return (
@@ -12,7 +12,7 @@ const Nudge = ({ media, title, link, href, onDismiss, id, className }) => {
       <div className={classNames({ 'media-left': !isRTL, 'media-right': isRTL })}>{media}</div>
       <div className="media-body">
         <div className="tw-nudge__title media-heading h5">{title}</div>
-        <a href={href} className="tw-nudge__link">
+        <a href={href} className="tw-nudge__link" onClick={onClick}>
           {link}
         </a>
       </div>
@@ -30,6 +30,7 @@ Nudge.propTypes = {
   title: PropTypes.node.isRequired,
   link: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   onDismiss: PropTypes.func.isRequired,
   id: PropTypes.string,
   className: PropTypes.string,
@@ -38,6 +39,7 @@ Nudge.propTypes = {
 Nudge.defaultProps = {
   id: null,
   className: null,
+  onClick: undefined,
 };
 
 export default Nudge;

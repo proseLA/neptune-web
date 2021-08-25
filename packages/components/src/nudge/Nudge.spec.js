@@ -15,6 +15,7 @@ describe('Nudge', () => {
     title: 'A nudge title',
     link: 'CTA',
     href: '#',
+    onClick: jest.fn(),
     onDismiss: jest.fn(),
   };
 
@@ -41,6 +42,13 @@ describe('Nudge', () => {
     const link = screen.getByText('CTA');
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', defaultProps.href);
+  });
+
+  it('calls onClick prop when the link is clicked', () => {
+    render(<Nudge {...defaultProps} />);
+    const link = screen.getByText('CTA');
+    fireEvent.click(link);
+    expect(defaultProps.onClick).toHaveBeenCalledTimes(1);
   });
 
   it('calls onDismiss prop when close button is clicked', () => {

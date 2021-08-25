@@ -19,6 +19,7 @@ export const Basic = () => {
       title={title}
       link={link}
       href="#"
+      onClick={action('action clicked')}
       onDismiss={action('dismissed')}
     />
   );
