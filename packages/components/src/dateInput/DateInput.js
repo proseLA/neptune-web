@@ -8,6 +8,7 @@ import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/date
 import { useDirection } from '../common/hooks';
 import Select from '../select';
 
+import messages from './DateInput.messages';
 import { explodeDate, convertToLocalMidnight } from './utils';
 
 const MonthBeforeDay = new Set(['en-US', 'ja-JP']);
@@ -29,7 +30,7 @@ const DateInput = ({
   id,
 }) => {
   const { isRTL } = useDirection();
-  const { locale } = useIntl();
+  const { locale, formatMessage } = useIntl();
   const getDateObject = () => {
     if (value && isDateValid(value)) {
       return typeof value === 'string' ? convertToLocalMidnight(value) : value;
@@ -55,6 +56,15 @@ const DateInput = ({
   const [month, setMonth] = useState(() => getExplodedDate('month'));
   const [year, setYear] = useState(() => getExplodedDate('year'));
   const [lastBroadcastedValue, setLastBroadcastedValue] = useState(getDateObject);
+
+  dayLabel = dayLabel || formatMessage(messages.dayLabel);
+  monthLabel = monthLabel || formatMessage(messages.monthLabel);
+  yearLabel = yearLabel || formatMessage(messages.yearLabel);
+  placeholders = {
+    day: placeholders?.day || 'DD',
+    month: placeholders?.month || formatMessage(messages.monthLabel),
+    year: placeholders?.year || 'YYYY',
+  };
 
   const getDateAsString = (date) => {
     if (!isDateValid(date)) {
@@ -312,16 +322,8 @@ DateInput.defaultProps = {
   value: null,
   onFocus: null,
   onBlur: null,
-  dayLabel: 'Day',
-  monthLabel: 'Month',
-  yearLabel: 'Year',
   monthFormat: MonthFormat.LONG,
   mode: DateMode.DAY_MONTH_YEAR,
-  placeholders: {
-    day: 'DD',
-    month: 'Month',
-    year: 'YYYY',
-  },
   id: '',
 };
 

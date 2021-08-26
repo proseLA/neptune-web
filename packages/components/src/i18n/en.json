@@ -1,6 +1,9 @@
 {
   "neptune.ClearButton.ariaLabel": "Clear",
   "neptune.CloseButton.ariaLabel": "Close",
+  "neptune.DateInput.day.label": "Day",
+  "neptune.DateInput.month.label": "Month",
+  "neptune.DateInput.year.label": "Year",
   "neptune.Link.ariaLabel": "Open link",
   "neptune.Link.ariaLabelNewTab": "Open link in a new tab",
   "neptune.MoneyInput.Select.placeholder": "Select an option...",

@@ -50,6 +50,21 @@ const MONTH_SELECTOR = 'Select';
 const YEAR_SELECTOR = 'input[name="year"]';
 
 jest.mock('../common/hooks/useDirection');
+jest.mock('./DateInput.messages', () => ({
+  monthLabel: {
+    id: 'neptune.DateInput.month.label',
+    defaultMessage: 'Month',
+  },
+  dayLabel: {
+    id: 'neptune.DateInput.day.label',
+    defaultMessage: 'Day',
+  },
+  yearLabel: {
+    id: 'neptune.DateInput.year.label',
+    defaultMessage: 'Year',
+  },
+}));
+
 jest.mock('react-intl');
 jest.mock('@transferwise/formatting', () => {
   return {
@@ -67,7 +82,10 @@ describe('Date Input Component', () => {
 
   beforeEach(() => {
     useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
-    useIntl.mockReturnValue({ locale: DEFAULT_LOCALE });
+    useIntl.mockReturnValue({
+      locale: DEFAULT_LOCALE,
+      formatMessage: (message) => message.defaultMessage,
+    });
     component = shallow(<DateInput {...props} />);
 
     selectMonth = component.find(MONTH_SELECTOR);
@@ -195,7 +213,10 @@ describe('Date Input Component', () => {
 
   describe('when locale is provided', () => {
     it('updates selectMonth based on locale', () => {
-      useIntl.mockReturnValue({ locale: LOCALES.fr });
+      useIntl.mockReturnValue({
+        locale: LOCALES.fr,
+        formatMessage: (message) => message.defaultMessage,
+      });
       component = shallow(<DateInput {...props} />);
       selectMonth = component.find(MONTH_SELECTOR);
 
@@ -207,7 +228,10 @@ describe('Date Input Component', () => {
     });
 
     it('shows day before month if locale is JP', () => {
-      useIntl.mockReturnValue({ locale: LOCALES.jp });
+      useIntl.mockReturnValue({
+        locale: LOCALES.jp,
+        formatMessage: (message) => message.defaultMessage,
+      });
       component = shallow(<DateInput {...props} />);
 
       expect(component.find('.form-control').at(0).type()).toBeInstanceOf(Function);
@@ -241,6 +265,60 @@ describe('Date Input Component', () => {
         component = mount(<DateInput {...props} value="1990-08" />);
 
         expect(props.onChange).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('with placeholders set', () => {
+      it(`doesn't override placeholders`, () => {
+        const placeholders = {
+          day: 'DayPlaceholder',
+          month: 'MonthPlaceholder',
+          year: 'YearPlaceholder',
+        };
+        component = mount(<DateInput {...props} placeholders={placeholders} />);
+
+        expect(component.find(DAY_SELECTOR).props().placeholder).toStrictEqual('DayPlaceholder');
+        expect(component.find(MONTH_SELECTOR).props().placeholder).toStrictEqual(
+          'MonthPlaceholder',
+        );
+        expect(component.find(YEAR_SELECTOR).props().placeholder).toStrictEqual('YearPlaceholder');
+      });
+    });
+
+    describe('with placeholders not set', () => {
+      it('uses localized defaults', () => {
+        component = mount(<DateInput {...props} />);
+
+        expect(component.find(DAY_SELECTOR).props().placeholder).toStrictEqual('DD');
+        expect(component.find(MONTH_SELECTOR).props().placeholder).toStrictEqual('Month');
+        expect(component.find(YEAR_SELECTOR).props().placeholder).toStrictEqual('YYYY');
+      });
+    });
+
+    describe('with labels set', () => {
+      it(`doesn't override placeholders`, () => {
+        component = mount(
+          <DateInput
+            {...props}
+            dayLabel="dayLabel"
+            monthLabel="monthLabel"
+            yearLabel="yearLabel"
+          />,
+        );
+
+        expect(component.find({ children: 'dayLabel', type: 'span' })).toBeTruthy();
+        expect(component.find({ children: 'monthLabel', type: 'span' })).toBeTruthy();
+        expect(component.find({ children: 'yearLabel', type: 'span' })).toBeTruthy();
+      });
+    });
+
+    describe('with labels not set', () => {
+      it('uses localized defaults', () => {
+        component = mount(<DateInput {...props} />);
+
+        expect(component.find({ children: 'Day', type: 'span' })).toBeTruthy();
+        expect(component.find({ children: 'Month', type: 'span' })).toBeTruthy();
+        expect(component.find({ children: 'Year', type: 'span' })).toBeTruthy();
       });
     });
   });
