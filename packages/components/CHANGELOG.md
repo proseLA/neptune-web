@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.0...@transferwise/components@37.3.1) (2021-08-26)
+
+
+### Bug Fixes
+
+* localize placeholders and labels in DateInput ([#1110](https://github.com/transferwise/neptune-web/issues/1110)) ([0338ad6](https://github.com/transferwise/neptune-web/commit/0338ad64bba0dffd653196d8804fff34d432601b))
+
+
+
+
+
 # [37.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.2.1...@transferwise/components@37.3.0) (2021-08-25)
 
 
