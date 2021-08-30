@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Types from 'prop-types';
 import { isNull } from '@transferwise/neptune-validation';
 import { useIntl } from 'react-intl';
@@ -10,6 +10,38 @@ import { isValidSchema } from '../../common/validation/schema-validators';
 import usePrev from '../../common/hooks/usePrev';
 import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
 import { getAsyncUrl } from '../../common/async/url';
+import { FormControlType } from '../../common';
+import { getControlType } from '../../common/requirements';
+import { b64ToBlob } from '../../common/general/base64';
+
+const isPersistAsyncSchemaBlobType = (persistAsyncSchema) => persistAsyncSchema.type === 'blob';
+
+const mapPersistAsyncSchemaToBasicSchema = (persistAsyncSchema) => {
+  const isBlobType = isPersistAsyncSchemaBlobType(persistAsyncSchema);
+
+  if (isBlobType) {
+    return {
+      ...persistAsyncSchema,
+      type: 'string',
+      format: 'base64url',
+    };
+  }
+
+  return persistAsyncSchema;
+};
+
+const supportedControlTypes = [
+  FormControlType.CHECKBOX,
+  FormControlType.FILE,
+  FormControlType.DATE,
+  FormControlType.DATETIME,
+  FormControlType.TEL,
+  FormControlType.NUMBER,
+  FormControlType.PASSWORD,
+  FormControlType.TEXT,
+  FormControlType.TEXTAREA,
+  FormControlType.UPLOAD,
+];
 
 const PersistAsyncSchema = (props) => {
   const intl = useIntl();
@@ -21,30 +53,62 @@ const PersistAsyncSchema = (props) => {
   const [abortController, setAbortController] = useState(null);
   const baseUrl = useBaseUrl();
 
-  if (props.schema.persistAsync.schema.format === 'base64url') {
-    // TODO: Add support for base64url format
+  const mappedPersistAsyncSchema = mapPersistAsyncSchemaToBasicSchema(
+    props.schema.persistAsync.schema,
+  );
+
+  if (!supportedControlTypes.includes(getControlType(mappedPersistAsyncSchema))) {
     throw new Error('Not implemented');
   }
+
+  useEffect(() => {
+    if (
+      [FormControlType.FILE, FormControlType.UPLOAD].indexOf(
+        getControlType(mappedPersistAsyncSchema),
+      ) >= 0
+    ) {
+      doPersistAsyncIfValid(persistAsyncModel, prevPersistAsyncModel);
+    }
+  }, [persistAsyncModel]);
 
   const setGenericPersistAsyncError = () =>
     setPersistAsyncError(intl.formatMessage(messages.genericError));
 
-  const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
+  const getPersistAsyncFetch = async (currentPersistAsyncModel, persistAsyncSpec) => {
     const signal = abortCurrentRequestAndGetNewAbortSignal();
+    const isBlobType = isPersistAsyncSchemaBlobType(persistAsyncSpec.schema);
 
-    const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
-    setFieldSubmitted(true); // persist async initiated implied the field has been submitted
+    let fetchOptions;
+    if (isBlobType) {
+      const formData = new FormData();
+      formData.append(persistAsyncSpec.param, b64ToBlob(currentPersistAsyncModel));
 
-    const persistAsyncFetch = new QueryablePromise(
-      fetch(getAsyncUrl(persistAsyncSpec.url, baseUrl), {
+      fetchOptions = {
+        method: persistAsyncSpec.method,
+        body: formData,
+        signal,
+      };
+    } else {
+      const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
+
+      fetchOptions = {
         method: persistAsyncSpec.method,
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestBody),
         signal,
-      }),
-    );
+      };
+    }
+
+    return new QueryablePromise(fetch(getAsyncUrl(persistAsyncSpec.url, baseUrl), fetchOptions));
+  };
+
+  const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
+    setFieldSubmitted(true); // persist async initiated implied the field has been submitted
+
+    const persistAsyncFetch = getPersistAsyncFetch(currentPersistAsyncModel, persistAsyncSpec);
+
     props.onPersistAsync(persistAsyncFetch);
     const response = await persistAsyncFetch;
 
@@ -83,17 +147,20 @@ const PersistAsyncSchema = (props) => {
 
   const getErrorFromResponse = (errorProperty, response) => response.validation?.[errorProperty];
 
-  const onBlur = () => {
-    if (!isNull(persistAsyncModel) && !isEqual(persistAsyncModel, prevPersistAsyncModel)) {
-      getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
+  const doPersistAsyncIfValid = (model, prevModel) => {
+    if (!isNull(model) && !isEqual(model, prevModel)) {
+      getPersistAsyncResponse(model, props.schema.persistAsync);
     }
   };
 
-  const persistAsyncOnChange = (newPersistAsyncModel) => {
-    // TODO: Add different handling for file upload, do persist async on change instead of onblur
+  const onBlur = () => {
+    doPersistAsyncIfValid(persistAsyncModel, prevPersistAsyncModel);
+  };
+
+  const persistAsyncOnChange = (newPersistAsyncModel, schema) => {
     setPersistAsyncError(null);
 
-    if (isValidSchema(newPersistAsyncModel, props.schema)) {
+    if (isValidSchema(newPersistAsyncModel, schema)) {
       setPersistAsyncModel(newPersistAsyncModel);
     }
   };
@@ -104,7 +171,7 @@ const PersistAsyncSchema = (props) => {
         required={props.required}
         onChange={persistAsyncOnChange}
         submitted={props.submitted || fieldSubmitted}
-        schema={props.schema.persistAsync.schema}
+        schema={mappedPersistAsyncSchema}
         errors={persistAsyncError || props.errors}
         onBlur={onBlur}
       />
@@ -125,6 +192,7 @@ PersistAsyncSchema.propTypes = {
       param: Types.string,
       idProperty: Types.string,
       schema: Types.shape({
+        type: Types.oneOf(['string', 'number', 'integer', 'boolean', 'blob']),
         format: Types.string,
       }),
     }),

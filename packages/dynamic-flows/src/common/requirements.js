@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 
+import { isOneOfSchema } from './schemaTypes/schemaTypes';
+import { FormControlType } from './propsValues/formControlType';
+
 const prepRequirements = (alternatives) => {
   if (!alternatives || !alternatives.length) {
     return [];
@@ -360,64 +363,42 @@ const prepValidationMessages = (field, validationMessages) => {
   }
 };
 
-const getControlType = (field) => {
-  if (field.control) {
-    return field.control.toLowerCase();
-  }
-  if (field.hidden) {
-    return 'hidden';
-  }
-  if (field.values && field.values.length) {
-    return getSelectionType(field);
+const getControlType = (schema) => {
+  if (schema.control) {
+    if (isOneOfSchema(schema) && schema.oneOf.length > 3) {
+      return FormControlType.SELECT;
+    }
+    return schema.control.toLowerCase();
   }
 
-  switch (field.type) {
-    case 'string':
-      return getControlForStringFormat(field.format);
-    case 'number':
-    case 'integer':
-      return 'number';
-    case 'boolean':
-      return 'checkbox';
-    default:
-      return 'text';
-  }
-};
-
-const getControlForStringFormat = (format) => {
-  switch (format) {
-    case 'date':
-      return 'date';
-    case 'base64url':
-      return 'file';
-    case 'password':
-      return 'password';
-    case 'uri':
-      return 'text'; // 'url'; - not implemented
-    case 'email':
-      return 'text'; // 'email'; - not implemented
-    case 'phone':
-      return 'tel';
-    default:
-      return 'text';
-  }
-};
-
-const getSelectionType = (field) => {
-  if (field.control) {
-    return field.control;
-  }
-  if (field.type === 'select') {
-    return 'select';
-  }
-  if (field.type === 'radio') {
-    return 'radio';
+  if (schema.enum) {
+    return schema.enum.length >= 3 ? 'select' : 'radio';
   }
 
-  if (field.values) {
-    return field.values.length > 3 ? 'select' : 'radio';
+  if (schema.oneOf) {
+    return schema.oneOf.length === 1 || schema.oneOf.length >= 3 ? 'select' : 'radio';
   }
-  return 'select';
+
+  if (schema.type === 'string') {
+    switch (schema.format) {
+      case 'date':
+        return 'date';
+      case 'phone':
+        return 'tel';
+      case 'base64url':
+        return 'file';
+      default:
+        return 'text';
+    }
+  }
+  if (schema.type === 'boolean') {
+    return 'checkbox';
+  }
+  if (schema.type === 'integer') {
+    return 'number';
+  }
+
+  return schema.type;
 };
 
 const copyOf = (obj) => JSON.parse(JSON.stringify(obj));
