@@ -10,10 +10,9 @@ describe('Given a component for rendering persist async schemas', () => {
   let props;
 
   const param = 'aParam';
-  const schema = {
+  const stringSchema = {
     type: 'string',
     title: 'Text input',
-    pattern: '\\b(?!client_validation_failure\\b)\\w+',
     persistAsync: {
       method: 'GET',
       url: '/v1/foobar',
@@ -22,6 +21,22 @@ describe('Given a component for rendering persist async schemas', () => {
       schema: {
         title: 'A title',
         type: 'string',
+        pattern: '\\b(?!client_validation_failure\\b)\\w+',
+      },
+    },
+  };
+  const blobSchema = {
+    type: 'string',
+    title: 'Text input',
+    persistAsync: {
+      method: 'GET',
+      url: '/v1/foobar',
+      param,
+      idProperty: 'anIdProperty',
+      schema: {
+        title: 'File upload',
+        type: 'blob',
+        maxSize: 50000
       },
     },
   };
@@ -88,7 +103,7 @@ describe('Given a component for rendering persist async schemas', () => {
     fetch.mockClear();
 
     props = {
-      schema,
+      schema: stringSchema,
       onChange,
       onPersistAsync,
       translations,
@@ -120,11 +135,11 @@ describe('Given a component for rendering persist async schemas', () => {
       component = mount(<PersistAsyncSchema {...props} />);
     });
 
-    it('should render the persist async schema', () => {
+    it('should render the persist async stringSchema', () => {
       expect(component.find(PersistAsyncSchema)).toHaveLength(1);
     });
 
-    it('should render the schema inside of the persist async object', () => {
+    it('should render the stringSchema inside of the persist async object', () => {
       const basic = component.find(PersistAsyncSchema).find(BasicTypeSchema);
       expect(basic).toHaveLength(1);
       expect(basic.prop('schema').title).toBe('A title');
@@ -168,7 +183,7 @@ describe('Given a component for rendering persist async schemas', () => {
             expect(onChange).toHaveBeenCalledTimes(1);
             expect(onChange).toHaveBeenCalledWith(
               'response-from-200-fast',
-              schema,
+              stringSchema,
               'response-from-200-fast',
             );
           });
@@ -187,7 +202,7 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should broadcast null value', async () => {
             await wait(1);
             expect(onChange).toHaveBeenCalledTimes(1);
-            expect(onChange).toHaveBeenCalledWith(null, schema, null);
+            expect(onChange).toHaveBeenCalledWith(null, stringSchema, null);
           });
         });
 
@@ -235,7 +250,7 @@ describe('Given a component for rendering persist async schemas', () => {
 
               expect(onChange).toHaveBeenCalledWith(
                 'response-from-200-fast',
-                schema,
+                stringSchema,
                 'response-from-200-fast',
               );
             });

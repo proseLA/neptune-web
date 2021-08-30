@@ -10,12 +10,11 @@ import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext'
 import usePrevious from '../../common/hooks/usePrevious';
 import { isValidSchema } from '../../common/validation/schema-validators';
 import BasicTypeSchema from '../basicTypeSchema';
-
-import messages from './PersistAsyncSchema.messages';
-
 import { FormControlType } from '../../common';
 import { getControlType } from '../../common/requirements';
 import { b64ToBlob } from '../../common/general/base64';
+
+import messages from './PersistAsyncSchema.messages';
 
 const getIdFromResponse = (idProperty, response) => {
   return response[idProperty];
@@ -85,7 +84,7 @@ const PersistAsyncSchema = (props) => {
   const setGenericPersistAsyncError = () =>
     setPersistAsyncError(intl.formatMessage(messages.genericError));
 
-  const getPersistAsyncFetch = async (currentPersistAsyncModel, persistAsyncSpec) => {
+  const getPersistAsyncFetch = (currentPersistAsyncModel, persistAsyncSpec) => {
     const signal = abortCurrentRequestAndGetNewAbortSignal();
     const isBlobType = isPersistAsyncSchemaBlobType(persistAsyncSpec.schema);
 
