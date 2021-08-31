@@ -2,7 +2,7 @@
  * This defines the layout of the docs page, which has two columns and a content panel.
  *
  * Items at the top level will appear in the first, leftmost column. They must have a title and
- * provide dir - the directory where content files live.
+ * provide the directory where content files live.
  *
  * If you want to group content, you can specify groups by providing a children property. This
  * should be an array of groups, each with a title and dir.
@@ -50,7 +50,7 @@ export type Meta = {
 
 interface SubSection {
   title: string;
-  dir: string;
+  directory: string;
   fileOrder?: string[];
   badge?: Badge;
 }
@@ -65,93 +65,93 @@ interface MainSection extends SubSection {
 const sections: MainSection[] = [
   {
     title: 'Getting started',
-    dir: 'about',
+    directory: 'about',
     fileOrder: ['Home', 'Setup', 'Styles', 'BrowserSupport', 'Versioning', 'Contributing'],
   },
   {
     title: 'Styles',
-    dir: 'styles',
+    directory: 'styles',
     children: [
       {
         title: 'Core',
-        dir: 'styles/core',
+        directory: 'styles/core',
         fileOrder: ['Typography'],
       },
       {
         title: 'Addons',
-        dir: 'styles/addons',
+        directory: 'styles/addons',
         fileOrder: ['BackgroundUtilities', 'DisplayUtilities', 'SpacingUtilities'],
       },
       {
         title: 'Tokens',
-        dir: 'styles/tokens',
+        directory: 'styles/tokens',
         fileOrder: ['Colors', 'Sizes', 'Breakpoints'],
       },
       {
         title: 'Extras',
-        dir: 'styles/extras',
+        directory: 'styles/extras',
       },
     ],
   },
   {
     title: 'Components',
-    dir: 'components',
+    directory: 'components',
     children: [
       {
         title: 'Inputs',
-        dir: 'components/inputs',
+        directory: 'components/inputs',
       },
       {
         title: 'Content',
-        dir: 'components/content',
+        directory: 'components/content',
       },
       {
         title: 'Options',
-        dir: 'components/options',
+        directory: 'components/options',
       },
       {
         title: 'Alerts / Info',
-        dir: 'components/alerts',
+        directory: 'components/alerts',
       },
       {
         title: 'Navigation',
-        dir: 'components/navigation',
+        directory: 'components/navigation',
       },
       {
         title: 'Progress',
-        dir: 'components/progress',
+        directory: 'components/progress',
       },
       {
         title: 'Overlays',
-        dir: 'components/overlays',
+        directory: 'components/overlays',
       },
       {
         title: 'Context',
-        dir: 'components/context',
+        directory: 'components/context',
       },
       {
         title: 'Dynamic Forms',
-        dir: 'components/dynamicForms',
+        directory: 'components/dynamicForms',
       },
       {
         title: 'Internal Components',
-        dir: 'components/internal',
+        directory: 'components/internal',
       },
     ],
     searchable: true,
   },
   {
     title: 'Devs',
-    dir: 'devs',
+    directory: 'devs',
     hidden: true,
   },
   {
     title: 'Lab',
-    dir: 'lab',
+    directory: 'lab',
   },
   {
     title: 'Blog',
-    dir: 'blog',
+    directory: 'blog',
     fileOrder: ['Home'],
     sidebar: false,
   },

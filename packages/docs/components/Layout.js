@@ -39,7 +39,7 @@ const Layout = ({ children, router: { pathname } }) => {
           .map((section) => (
             <li key={section.title}>
               <Link href={getFirstPageInSection(section).path}>
-                <a className={`Nav__Link ${rootDirectory === section.dir ? 'active' : ''}`}>
+                <a className={`Nav__Link ${rootDirectory === section.directory ? 'active' : ''}`}>
                   {section.title}
                   {section.badge ? (
                     <Badge expiryDate={parseISO(section.badge.expiryDate)} className="m-l-1">
@@ -56,7 +56,7 @@ const Layout = ({ children, router: { pathname } }) => {
 
   let secondContent = null;
   if (page) {
-    const section = sections.find(({ dir }) => dir === rootDirectory);
+    const section = sections.find(({ directory }) => directory === rootDirectory);
     if (section.sidebar !== false) {
       secondContent = <Sidebar {...{ section }} />;
     }

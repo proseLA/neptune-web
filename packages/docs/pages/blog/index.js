@@ -6,7 +6,7 @@ import { DocumentLink, getPagesInSection } from '../../utils/pageUtils';
 const isBlogPost = (page) => !page?.linkText;
 
 const Home = () => {
-  const posts = getPagesInSection({ dir: 'blog' })
+  const posts = getPagesInSection({ directory: 'blog' })
     .map(({ component: { meta } }) => meta)
     .filter(isBlogPost)
     .filter((sec) => !sec.hidden)

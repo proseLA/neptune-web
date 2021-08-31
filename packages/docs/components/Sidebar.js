@@ -133,7 +133,10 @@ Sidebar.propTypes = {
   section: PropTypes.shape({
     title: PropTypes.string.isRequired,
     children: PropTypes.arrayOf(
-      PropTypes.shape({ title: PropTypes.string.isRequired, dir: PropTypes.string.isRequired }),
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        directory: PropTypes.string.isRequired,
+      }),
     ),
     searchable: PropTypes.bool,
   }).isRequired,

@@ -28,7 +28,7 @@ const getPages = () => {
     const slug = pathParts.pop();
 
     return {
-      rootDir: pathParts[0],
+      rootDirectory: pathParts[0],
       component: req(filePath),
       slug,
       path,
@@ -64,22 +64,22 @@ export const getPageFromPath = (pathname) => pagesByPath[pathname];
 export const getPagesInSection = (section) => {
   if (section.children) {
     const links = [];
-    section.children.forEach(({ dir, title, fileOrder }) => {
+    section.children.forEach(({ directory, title, fileOrder }) => {
       links.push({ group: title });
 
       if (fileOrder) {
-        links.push(...getPagesInOrder(dir, fileOrder));
+        links.push(...getPagesInOrder(directory, fileOrder));
       } else {
-        links.push(...pages.filter((page) => pageInSection(page, dir)));
+        links.push(...pages.filter((page) => pageInSection(page, directory)));
       }
     });
     return links;
   }
 
   if (section.fileOrder) {
-    return getPagesInOrder(section.dir, section.fileOrder);
+    return getPagesInOrder(section.directory, section.fileOrder);
   }
-  return pages.filter((page) => pageInSection(page, section.dir));
+  return pages.filter((page) => pageInSection(page, section.directory));
 };
 
 /**
@@ -89,20 +89,20 @@ export const getPagesInSection = (section) => {
  */
 export const getFirstPageInSection = (section) => {
   if (section.fileOrder) {
-    return pagesByPath[`/${section.dir}/${section.fileOrder[0]}`];
+    return pagesByPath[`/${section.directory}/${section.fileOrder[0]}`];
   }
 
-  let { dir } = section;
+  let { directory } = section;
 
   if (section.children) {
     const firstChild = section.children[0];
     if (firstChild.fileOrder) {
-      return pagesByPath[`/${firstChild.dir}/${firstChild.fileOrder[0]}`];
+      return pagesByPath[`/${firstChild.directory}/${firstChild.fileOrder[0]}`];
     }
-    dir = firstChild.dir;
+    directory = firstChild.directory;
   }
 
-  return pages.find((p) => p.path.indexOf(dir) === 1);
+  return pages.find((page) => page.path.indexOf(directory) === 1);
 };
 
 /**

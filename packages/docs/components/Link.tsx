@@ -7,8 +7,10 @@ type LinkProps = {
 };
 
 const Link = ({ href, children }: LinkProps): ReactElement => {
+  const to = `${process.env.ASSET_PREFIX || ''}${href}`;
+
   return (
-    <NextLink href={process.env.ASSET_PREFIX || '' + href} prefetch={false}>
+    <NextLink href={to} prefetch={false}>
       {children}
     </NextLink>
   );
