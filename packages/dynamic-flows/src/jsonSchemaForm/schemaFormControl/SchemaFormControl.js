@@ -66,6 +66,10 @@ const getOptions = (schema) => {
   return null;
 };
 
+const getUploadProps = ({ accepts }) => ({
+  ...(accepts && { usAccept: accepts }),
+});
+
 const SchemaFormControl = (props) => {
   const getSanitisedValue = (value) =>
     isNativeInput(props.schema.type) && (isNull(value) || isUndefined(value)) ? '' : value;
@@ -96,6 +100,7 @@ const SchemaFormControl = (props) => {
     autoComplete: !props.schema.help,
     disabled: props.disabled || props.schema.disabled,
     displayPattern: props.schema.displayFormat,
+    uploadProps: getUploadProps(props.schema),
   };
 
   return <FormControl type={controlType} value={safeValue} {...events} {...controlProps} />;
