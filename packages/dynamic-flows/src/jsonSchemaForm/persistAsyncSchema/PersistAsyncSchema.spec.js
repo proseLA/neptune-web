@@ -36,7 +36,7 @@ describe('Given a component for rendering persist async schemas', () => {
       schema: {
         title: 'File upload',
         type: 'blob',
-        maxSize: 50000
+        maxSize: 50000,
       },
     },
   };

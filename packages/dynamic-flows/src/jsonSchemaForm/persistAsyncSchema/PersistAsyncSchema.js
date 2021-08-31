@@ -1,18 +1,18 @@
 import { isNull } from '@transferwise/neptune-validation';
-import React, { useEffect, useState } from 'react';
 import isEqual from 'lodash.isequal';
 import Types from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
+import { FormControlType } from '../../common';
 import { isStatus2xx, isStatus422, QueryablePromise } from '../../common/api/utils';
 import { getAsyncUrl } from '../../common/async/url';
 import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import { b64ToBlob } from '../../common/general/base64';
 import usePrevious from '../../common/hooks/usePrevious';
+import { getControlType } from '../../common/requirements';
 import { isValidSchema } from '../../common/validation/schema-validators';
 import BasicTypeSchema from '../basicTypeSchema';
-import { FormControlType } from '../../common';
-import { getControlType } from '../../common/requirements';
-import { b64ToBlob } from '../../common/general/base64';
 
 import messages from './PersistAsyncSchema.messages';
 
@@ -40,7 +40,7 @@ const mapPersistAsyncSchemaToBasicSchema = (persistAsyncSchema) => {
   return persistAsyncSchema;
 };
 
-const supportedControlTypes = [
+const supportedControlTypes = new Set([
   FormControlType.CHECKBOX,
   FormControlType.FILE,
   FormControlType.DATE,
@@ -51,7 +51,7 @@ const supportedControlTypes = [
   FormControlType.TEXT,
   FormControlType.TEXTAREA,
   FormControlType.UPLOAD,
-];
+]);
 
 const PersistAsyncSchema = (props) => {
   const intl = useIntl();
@@ -67,15 +67,15 @@ const PersistAsyncSchema = (props) => {
     props.schema.persistAsync.schema,
   );
 
-  if (!supportedControlTypes.includes(getControlType(mappedPersistAsyncSchema))) {
+  if (!supportedControlTypes.has(getControlType(mappedPersistAsyncSchema))) {
     throw new Error('Not implemented');
   }
 
   useEffect(() => {
     if (
-      [FormControlType.FILE, FormControlType.UPLOAD].indexOf(
+      [FormControlType.FILE, FormControlType.UPLOAD].includes(
         getControlType(mappedPersistAsyncSchema),
-      ) >= 0
+      )
     ) {
       doPersistAsyncIfValid(persistAsyncModel, previousPersistAsyncModel);
     }
@@ -153,8 +153,8 @@ const PersistAsyncSchema = (props) => {
     }
   };
 
-  const doPersistAsyncIfValid = (model, prevModel) => {
-    if (!isNull(model) && !isEqual(model, prevModel)) {
+  const doPersistAsyncIfValid = (model, previousModel) => {
+    if (!isNull(model) && !isEqual(model, previousModel)) {
       getPersistAsyncResponse(model, props.schema.persistAsync);
     }
   };
