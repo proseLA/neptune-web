@@ -1,4 +1,4 @@
-import { isNull, isUndefined } from '@transferwise/neptune-validation';
+import { isArray, isNull, isUndefined } from '@transferwise/neptune-validation';
 import Types from 'prop-types';
 
 import { FormControlType } from '../../common';
@@ -67,7 +67,7 @@ const getOptions = (schema) => {
 };
 
 const getUploadProps = ({ accepts }) => ({
-  ...(accepts && { usAccept: accepts }),
+  ...(isArray(accepts) && { usAccept: accepts.join(',') }),
 });
 
 const SchemaFormControl = (props) => {
