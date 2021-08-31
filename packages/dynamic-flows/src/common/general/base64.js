@@ -1,6 +1,10 @@
 /**
  * Convert the contents of a file to a Blob.
  * Original source: https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
+ *
+ * @param b64Data
+ * @param contentType
+ * @param sliceSize
  */
 export function b64DataToBlob(b64Data, contentType = '', sliceSize = 512) {
   const byteCharacters = atob(b64Data);
