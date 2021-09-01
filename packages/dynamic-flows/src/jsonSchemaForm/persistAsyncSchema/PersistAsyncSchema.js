@@ -8,7 +8,7 @@ import { FormControlType } from '../../common';
 import { isStatus2xx, isStatus422, QueryablePromise } from '../../common/api/utils';
 import { getAsyncUrl } from '../../common/async/url';
 import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
-import { b64ToBlob } from '../../common/general/base64';
+import { b64ToBlob, parseFileName } from '../../common/general/base64';
 import usePrevious from '../../common/hooks/usePrevious';
 import { getControlType } from '../../common/requirements';
 import { isValidSchema } from '../../common/validation/schema-validators';
@@ -91,7 +91,7 @@ const PersistAsyncSchema = (props) => {
     let fetchOptions;
     if (isBlobType) {
       const formData = new FormData();
-      formData.append(persistAsyncSpec.param, b64ToBlob(currentPersistAsyncModel));
+      formData.append(persistAsyncSpec.param, b64ToBlob(currentPersistAsyncModel), parseFileName(currentPersistAsyncModel));
 
       fetchOptions = {
         method: persistAsyncSpec.method,
