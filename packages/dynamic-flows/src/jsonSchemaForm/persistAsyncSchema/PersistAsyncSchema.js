@@ -95,6 +95,9 @@ const PersistAsyncSchema = (props) => {
 
       fetchOptions = {
         method: persistAsyncSpec.method,
+        headers: {
+          'X-Access-Token': 'Tr4n5f3rw153',
+        },
         body: formData,
         signal,
       };
