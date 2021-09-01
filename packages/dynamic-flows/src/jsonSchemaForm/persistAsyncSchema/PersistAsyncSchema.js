@@ -105,6 +105,7 @@ const PersistAsyncSchema = (props) => {
         method: persistAsyncSpec.method,
         headers: {
           'Content-Type': 'application/json',
+          'X-Access-Token': 'Tr4n5f3rw153',
         },
         body: JSON.stringify(requestBody),
         signal,
