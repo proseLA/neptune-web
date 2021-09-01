@@ -28,3 +28,9 @@ export function b64ToBlob(b64String) {
   const realData = block[1].split(',')[1];
   return b64DataToBlob(realData, contentType);
 }
+
+export function parseFileName(b64String) {
+  const match = b64String.match(/^data:[^/]+\/([^;]+);base64,/);
+
+  return match ? `file.${match[1]}` : undefined;
+}
