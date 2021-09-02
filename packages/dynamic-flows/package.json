@@ -39,11 +39,10 @@
     "lintless:fix": "yarn lintless --fix"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.8",
-    "@babel/core": "7.14.6",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "7.15.0",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "@formatjs/cli": "^4.2.31",
     "@transferwise/components": "^37.3.4",
@@ -52,7 +51,7 @@
     "@transferwise/neptune-css": "^10.0.3",
     "@transferwise/neptune-tokens": "^1.0.0",
     "@transferwise/test-config": "^4.0.1",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.2",
     "babel-preset-minify": "^0.5.1",
     "react-intl": "^5.10.0"
   },
@@ -67,8 +66,7 @@
     "react-intl": "^5.10.0"
   },
   "dependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.14.2",
-    "@babel/runtime": "^7.12.5",
+    "@babel/runtime": "^7.15.3",
     "classnames": "^2.2.6",
     "core-js": "^3.8.0",
     "lodash.isequal": "^4.5.0"
