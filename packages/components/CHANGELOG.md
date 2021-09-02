@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.4...@transferwise/components@37.3.5) (2021-09-02)
+
+
+### Bug Fixes
+
+* fixing incorrect title text wrapping in drawer ([#1126](https://github.com/transferwise/neptune-web/issues/1126)) ([c91ecd7](https://github.com/transferwise/neptune-web/commit/c91ecd79a0dfe0986f725a3d7ec3e6812b2807c6))
+
+
+
+
+
 ## [37.3.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.3...@transferwise/components@37.3.4) (2021-09-02)
 
 **Note:** Version bump only for package @transferwise/components
