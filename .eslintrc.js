@@ -1,5 +1,11 @@
 module.exports = {
-  extends: ['@transferwise', 'plugin:jsdoc/recommended'],
+  extends: ['@transferwise', 'plugin:jsdoc/recommended', 'plugin:compat/recommended'],
+  env: {
+    browser: true,
+  },
+  settings: {
+    polyfills: ['Promise', 'fetch'],
+  },
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: ['./packages/components/tsconfig.json', './packages/docs/tsconfig.json'],
@@ -99,8 +105,15 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['packages/dynamic-flows/**/*'],
+      rules: {
+        'compat/compat': 0,
+      },
+    },
+    {
       files: ['*{spec,test}.{js,jsx,ts,tsx}'],
       rules: {
+        'compat/compat': 0,
         'jest/unbound-method': 2,
         'react/prop-types': 0,
         'sonarjs/no-identical-functions': 0,

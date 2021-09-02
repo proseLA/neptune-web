@@ -1,5 +1,6 @@
 function supportsTouchEvents() {
   const onTouchStartIsDefined = typeof window !== 'undefined' && window.ontouchstart !== undefined;
+  // eslint-disable-next-line compat/compat
   const maxTouchPointsIsDefined = typeof navigator !== 'undefined' && navigator.maxTouchPoints;
   const documentTouchIsDefined =
     typeof window !== 'undefined' &&
