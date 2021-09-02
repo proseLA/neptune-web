@@ -75,10 +75,4 @@ describe('Drawer', () => {
     component.setProps({ footerContent: 'SomeContent' });
     expect(component.find('.np-drawer-footer')).toHaveLength(1);
   });
-
-  it('adds padding', () => {
-    component.setProps({ children: 'content', footerContent: 'content' });
-    expect(component.find('.np-drawer-p-x')).toHaveLength(3);
-    expect(component.find('.np-drawer-p-y')).toHaveLength(1);
-  });
 });

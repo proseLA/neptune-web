@@ -18,25 +18,15 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
       <SlidingPanel open={open} position={position}>
         <div className="np-drawer">
           <div
-            className={classNames('np-drawer-header', 'np-drawer-p-x', {
+            className={classNames('np-drawer-header', {
               'np-drawer-header--withborder': headerTitle,
             })}
           >
-            <CloseButton className="np-drawer-header" onClick={onClose} />
-            {headerTitle && (
-              <div className="align-heading m-l-2">
-                <div className="np-drawer-header--title h3">{headerTitle}</div>
-              </div>
-            )}
+            <CloseButton onClick={onClose} />
+            {headerTitle && <div className="np-drawer-header--title h3">{headerTitle}</div>}
           </div>
-          {children && (
-            <div className={classNames('np-drawer-content', 'np-drawer-p-x', 'np-drawer-p-y')}>
-              {children}
-            </div>
-          )}
-          {footerContent && (
-            <div className={classNames('np-drawer-footer', 'np-drawer-p-x')}>{footerContent}</div>
-          )}
+          {children && <div className={classNames('np-drawer-content')}>{children}</div>}
+          {footerContent && <div className={classNames('np-drawer-footer')}>{footerContent}</div>}
         </div>
       </SlidingPanel>
     </Dimmer>

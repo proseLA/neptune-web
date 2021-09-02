@@ -14,11 +14,11 @@ exports[`Drawer renders content when open 1`] = `
         class="np-drawer"
       >
         <div
-          class="np-drawer-header np-drawer-p-x"
+          class="np-drawer-header"
         >
           <button
             aria-label="Close"
-            class="np-close-button close btn-link text-no-decoration np-close-button--large np-drawer-header"
+            class="np-close-button close btn-link text-no-decoration np-close-button--large"
             type="button"
           >
             <span
@@ -40,7 +40,7 @@ exports[`Drawer renders content when open 1`] = `
           </button>
         </div>
         <div
-          class="np-drawer-content np-drawer-p-x np-drawer-p-y"
+          class="np-drawer-content"
         >
           content
         </div>

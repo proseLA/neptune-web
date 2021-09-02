@@ -36,7 +36,14 @@ export const Basic = () => {
       <Drawer
         open={openDrawer}
         position={position}
-        headerTitle="A title"
+        headerTitle="This is the title of the drawer"
+        footerContent={
+          <>
+            <Button block onClick={() => {}}>
+              Action
+            </Button>
+          </>
+        }
         onClose={handleDrawerClose}
       >
         <input type="text" className="form-control" />
