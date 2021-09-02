@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.1...@transferwise/components@37.3.2) (2021-09-02)
+
+
+### Bug Fixes
+
+* remove unused closeOnClick prop from Modal ([#1117](https://github.com/transferwise/neptune-web/issues/1117)) ([3b6cc4b](https://github.com/transferwise/neptune-web/commit/3b6cc4b6d7c1eb8cd536c02254e051d4beb0fa2e))
+
+
+
+
+
 ## [37.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.0...@transferwise/components@37.3.1) (2021-08-26)
 
 
