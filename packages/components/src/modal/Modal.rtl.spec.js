@@ -29,16 +29,8 @@ describe('Modal', () => {
     expect(props.onClose).not.toHaveBeenCalled();
   });
 
-  it(`doesn't calls onClose if click outside the content and closeOnClick is false`, () => {
-    render(<Modal {...props} open closeOnClick={false} />);
-    expect(props.onClose).not.toHaveBeenCalled();
-
-    fireEvent.click(document);
-    expect(props.onClose).not.toHaveBeenCalled();
-  });
-
-  it('calls onClose if click outside the content and closeOnClick is true', () => {
-    render(<Modal {...props} open closeOnClick />);
+  it('calls onClose if click outside the content', () => {
+    render(<Modal {...props} open />);
     expect(props.onClose).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByRole('presentation'));

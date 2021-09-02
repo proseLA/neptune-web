@@ -60,7 +60,6 @@ export const Basic = () => {
           }
           open={openModal}
           title="Title"
-          closeOnClick
           onClose={handleModalClose}
         />
       </Drawer>

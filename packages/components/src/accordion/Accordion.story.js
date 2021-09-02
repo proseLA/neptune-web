@@ -104,7 +104,6 @@ export const inModal = () => {
           <Accordion items={items} indexOpen={indexOpen} />
         </div>
       }
-      closeOnClick
       scroll={Scroll.CONTENT}
       size={Size.LARGE}
       open

@@ -16,7 +16,6 @@ const Modal = ({
   className,
   open,
   size,
-  closeOnClick,
   scroll,
   position,
   ...otherProps
@@ -120,7 +119,6 @@ Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   className: PropTypes.string,
   open: PropTypes.bool.isRequired,
-  closeOnClick: PropTypes.bool,
   scroll: PropTypes.oneOf(['content', 'viewport']),
   position: PropTypes.oneOf(['top', 'center']),
 };
@@ -130,7 +128,6 @@ Modal.defaultProps = {
   footer: null,
   size: Size.MEDIUM,
   className: '',
-  closeOnClick: true,
   scroll: Scroll.VIEWPORT,
   position: Position.CENTER,
 };

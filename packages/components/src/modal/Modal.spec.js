@@ -139,7 +139,7 @@ describe('Modal', () => {
       const onClose = jest.fn(() => {
         component.setProps({ open: false });
       });
-      component.setProps({ onClose, closeOnClick: true });
+      component.setProps({ onClose });
       expect(onClose).not.toHaveBeenCalled();
       clickCloseButton();
       jest.runAllTimers();

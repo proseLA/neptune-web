@@ -46,7 +46,6 @@ export const Basic = () => {
             Action
           </Button>
         }
-        closeOnClick
         onClose={() => setOpen(false)}
       />
     </>

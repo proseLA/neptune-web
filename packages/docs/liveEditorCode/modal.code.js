@@ -28,7 +28,6 @@
             Action
           </Button>
         }
-        closeOnClick
       />
     </>
   );
