@@ -5,6 +5,7 @@ import Popover from './Popover';
 
 jest.mock(
   'react-transition-group/CSSTransition',
+  // eslint-disable-next-line react/function-component-definition
   () => (props) => props.in ? props.children : null,
 );
 
