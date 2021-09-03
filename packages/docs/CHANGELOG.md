@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.9](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.2.8...@transferwise/neptune-docs@13.2.9) (2021-09-03)
+
+
+### Bug Fixes
+
+* **docs:** update table colors ([#1129](https://github.com/transferwise/neptune-web/issues/1129)) ([932e396](https://github.com/transferwise/neptune-web/commit/932e39628b74bf790d6b8db044eca19abc6ea7f9))
+
+
+
+
+
 ## [13.2.8](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.2.7...@transferwise/neptune-docs@13.2.8) (2021-09-02)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
