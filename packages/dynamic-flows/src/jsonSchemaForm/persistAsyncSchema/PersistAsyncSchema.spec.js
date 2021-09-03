@@ -1,8 +1,19 @@
+import { act } from 'react-dom/test-utils';
+
+import { b64ToBlob, parseFileName } from '../../common/general/base64';
 import { getMockFetchPromise, mount, wait } from '../../test-utils';
 import BasicTypeSchema from '../basicTypeSchema';
 import SchemaFormControl from '../schemaFormControl';
 
 import PersistAsyncSchema from './PersistAsyncSchema';
+
+jest.mock('../../common/general/base64', () => ({
+  b64ToBlob: jest.fn(),
+  parseFileName: jest.fn(),
+}));
+
+b64ToBlob.mockImplementation((string) => new File([], string));
+parseFileName.mockImplementation((string) => string);
 
 describe('Given a component for rendering persist async schemas', () => {
   let onChange;
@@ -51,7 +62,12 @@ describe('Given a component for rendering persist async schemas', () => {
     // eslint-disable-next-line jest/no-standalone-expect
     expect(input).toBe('https://test-url/v1/foobar');
 
-    switch (JSON.parse(init.body)[param]) {
+    const requestType =
+      init.body instanceof FormData
+        ? init.body.getAll(param)[0].name
+        : JSON.parse(init.body)[param];
+
+    switch (requestType) {
       case '200--ok--fast-5ms':
         response = getMockFetchPromise(
           200,
@@ -101,19 +117,31 @@ describe('Given a component for rendering persist async schemas', () => {
     onPersistAsync = jest.fn();
 
     fetch.mockClear();
-
-    props = {
-      schema: stringSchema,
-      onChange,
-      onPersistAsync,
-      translations,
-      submitted,
-      errors,
-      required,
-    };
   });
 
-  describe('when the supplied props are valid', () => {
+  async function enterValueAndBlur(value, component) {
+    const formControl = component
+      .find(PersistAsyncSchema)
+      .find(BasicTypeSchema)
+      .find(SchemaFormControl);
+    formControl.simulate('change', { target: { value } });
+    formControl.simulate('blur');
+    return formControl;
+  }
+
+  async function enterValue(value, component) {
+    const formControl = component
+      .find(PersistAsyncSchema)
+      .find(BasicTypeSchema)
+      .find(SchemaFormControl);
+    act(() => formControl.prop('onChange')(value));
+    return formControl;
+  }
+
+  describe.each([
+    { schema: stringSchema, action: enterValueAndBlur },
+    { schema: blobSchema, action: enterValue },
+  ])('when the supplied props are valid for schema type: $schema.type', ({ schema, action }) => {
     let component;
 
     function getComponentErrorsProperty() {
@@ -121,17 +149,17 @@ describe('Given a component for rendering persist async schemas', () => {
       return basicTypeSchema.prop('errors');
     }
 
-    function enterValueAndBlur(value) {
-      const formControl = component
-        .find(PersistAsyncSchema)
-        .find(BasicTypeSchema)
-        .find(SchemaFormControl);
-      formControl.simulate('change', { target: { value } });
-      formControl.simulate('blur');
-      return formControl;
-    }
-
     beforeEach(() => {
+      props = {
+        schema,
+        onChange,
+        onPersistAsync,
+        translations,
+        submitted,
+        errors,
+        required,
+      };
+
       component = mount(<PersistAsyncSchema {...props} />);
     });
 
@@ -142,34 +170,36 @@ describe('Given a component for rendering persist async schemas', () => {
     it('should render the stringSchema inside of the persist async object', () => {
       const basic = component.find(PersistAsyncSchema).find(BasicTypeSchema);
       expect(basic).toHaveLength(1);
-      expect(basic.prop('schema').title).toBe('A title');
+      expect(basic.prop('schema').title).toBe(schema.persistAsync.schema.title);
       expect(basic.prop('errors')).toBe('some error');
       expect(basic.prop('required')).toBe(true);
     });
 
     describe('when the field value is null', () => {
-      it('should not trigger persist async on blur', () => {
-        enterValueAndBlur(null);
+      it('should not trigger persist async on blur', async () => {
+        await action(null, component);
 
         expect(global.fetch).toHaveBeenCalledTimes(0);
         expect(onPersistAsync).toHaveBeenCalledTimes(0);
       });
     });
 
-    describe('when the field value is invalid', () => {
-      it('should not trigger persist async', () => {
-        enterValueAndBlur('client_validation_failure');
+    if (schema.persistAsync.type === 'string') {
+      describe('when the field value is invalid', () => {
+        it('should not trigger persist async', async () => {
+          await action('client_validation_failure', component);
 
-        expect(global.fetch).toHaveBeenCalledTimes(0);
-        expect(onPersistAsync).toHaveBeenCalledTimes(0);
+          expect(global.fetch).toHaveBeenCalledTimes(0);
+          expect(onPersistAsync).toHaveBeenCalledTimes(0);
+        });
       });
-    });
+    }
 
     describe('when the field value is valid', () => {
       describe('when a persist async is triggered', () => {
         describe('when the request is successful', () => {
-          beforeEach(() => {
-            enterValueAndBlur('200--ok--fast-5ms');
+          beforeEach(async () => {
+            await action('200--ok--fast-5ms', component);
           });
 
           it('should trigger onPersistAsync correctly', () => {
@@ -183,15 +213,15 @@ describe('Given a component for rendering persist async schemas', () => {
             expect(onChange).toHaveBeenCalledTimes(1);
             expect(onChange).toHaveBeenCalledWith(
               'response-from-200-fast',
-              stringSchema,
+              schema,
               'response-from-200-fast',
             );
           });
         });
 
         describe('when the request fails with 422 error', () => {
-          beforeEach(() => {
-            enterValueAndBlur('422--error');
+          beforeEach(async () => {
+            await action('422--error', component);
           });
 
           it('should pass down the error', async () => {
@@ -202,13 +232,13 @@ describe('Given a component for rendering persist async schemas', () => {
           it('should broadcast null value', async () => {
             await wait(1);
             expect(onChange).toHaveBeenCalledTimes(1);
-            expect(onChange).toHaveBeenCalledWith(null, stringSchema, null);
+            expect(onChange).toHaveBeenCalledWith(null, schema, null);
           });
         });
 
         describe('when the request fails with status 500 and no body', () => {
           it('should render fallback error message', async () => {
-            enterValueAndBlur('500--no-body');
+            await action('500--no-body', component);
             await wait(1);
             expect(getComponentErrorsProperty()).toStrictEqual(
               'Something went wrong, please try again later!',
@@ -218,7 +248,7 @@ describe('Given a component for rendering persist async schemas', () => {
 
         describe('when the request fails with status 499 and some json body', () => {
           it('should render fallback error message', async () => {
-            enterValueAndBlur('499--json-body');
+            await action('499--json-body', component);
             await wait(1);
             expect(getComponentErrorsProperty()).toStrictEqual(
               'Something went wrong, please try again later!',
@@ -228,7 +258,7 @@ describe('Given a component for rendering persist async schemas', () => {
 
         describe('when the request fails with status 499 and no body', () => {
           it('should render fallback error message', async () => {
-            enterValueAndBlur('499--no-body');
+            await action('499--no-body', component);
             await wait(1);
             expect(getComponentErrorsProperty()).toStrictEqual(
               'Something went wrong, please try again later!',
@@ -238,9 +268,9 @@ describe('Given a component for rendering persist async schemas', () => {
 
         describe('when a second request is triggered', () => {
           beforeEach(async () => {
-            enterValueAndBlur('200--ok--slow-100ms');
+            await action('200--ok--slow-100ms', component);
             await wait(1);
-            enterValueAndBlur('200--ok--fast-5ms');
+            await action('200--ok--fast-5ms', component);
           });
 
           describe('when the first request returns slower than the second request', () => {
@@ -250,7 +280,7 @@ describe('Given a component for rendering persist async schemas', () => {
 
               expect(onChange).toHaveBeenCalledWith(
                 'response-from-200-fast',
-                stringSchema,
+                schema,
                 'response-from-200-fast',
               );
             });
@@ -259,10 +289,10 @@ describe('Given a component for rendering persist async schemas', () => {
 
         describe('when the field is blurred again but value did not change', () => {
           it('should not trigger another persist async', async () => {
-            enterValueAndBlur('200--ok--fast-5ms');
+            await action('200--ok--fast-5ms', component);
             await wait(5);
 
-            enterValueAndBlur('200--ok--fast-5ms');
+            await action('200--ok--fast-5ms', component);
 
             expect(global.fetch).toHaveBeenCalledTimes(1);
           });

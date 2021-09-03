@@ -28,8 +28,8 @@ export function b64DataToBlob(b64Data, contentType = '', sliceSize = 512) {
 
 export function b64ToBlob(b64String) {
   const block = b64String.split(';');
-  const contentType = block[0].split(':')[1];
-  const realData = block[1].split(',')[1];
+  const contentType = block[0]?.split(':')[1];
+  const realData = block[1]?.split(',')[1];
   return b64DataToBlob(realData, contentType);
 }
 
