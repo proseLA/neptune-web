@@ -162,7 +162,7 @@ img {
 }
 
 .live-editor {
-  border: 1px solid var(--color-interactive-secondary);
+  border: 1px solid var(--color-border-neutral);
   border-radius: 3px;
   background: var(--color-background-neutral);
 }
@@ -185,7 +185,7 @@ img {
 
 .docs-table {
   overflow: hidden;
-  border: 1px solid var(--color-base-smoke-fade);
+  border: 1px solid var(--color-border-neutral);
   border-radius: 3px 3px 0 0;
 }
 
@@ -206,12 +206,12 @@ img {
 
 .docs-table > thead {
   color: white;
-  background-color: var(--color-base-navy-light);
+  background-color: var(--color-primary);
 }
 
 .docs-table > tbody > tr > th {
   padding-left: 5px;
-  color: var(--color-base-navy-light);
+  color: var(--color-primary);
 }
 
 .docs-table ul {
