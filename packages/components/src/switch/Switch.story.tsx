@@ -32,3 +32,29 @@ export const Basic = () => {
     </div>
   );
 };
+
+export const Disabled = () => {
+  const [checked, setCheck] = useState(false);
+
+  return (
+    <div className="d-flex flex-column">
+      <Switch
+        checked={checked}
+        disabled
+        className="a-class-name"
+        aria-labelledby="labelID"
+        id="switchId"
+        onClick={() => setCheck(!checked)}
+      />
+
+      <Switch
+        checked={!checked}
+        disabled
+        className="a-class-name"
+        aria-labelledby="labelID"
+        id="switchId"
+        onClick={() => setCheck(!checked)}
+      />
+    </div>
+  );
+};

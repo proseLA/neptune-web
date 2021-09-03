@@ -49,6 +49,7 @@ const Switch = (props: Props): ReactElement => {
           'np-switch--rtl': isRTL,
           'np-switch--unchecked': !checked,
           'np-switch--checked': checked,
+          'np-switch--disabled': disabled,
         },
         className,
       )}
@@ -59,8 +60,8 @@ const Switch = (props: Props): ReactElement => {
       aria-labelledby={ariaLabelledby}
       id={id}
       aria-disabled={disabled}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
+      onClick={!disabled ? onClick : undefined}
+      onKeyDown={!disabled ? handleKeyDown : undefined}
     >
       <span className="np-switch--thumb">
         {checked ? <CheckCircle filled size={24} /> : <CrossCircle filled size={24} />}

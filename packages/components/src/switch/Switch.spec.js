@@ -86,4 +86,12 @@ describe('Switch', () => {
     render(<Switch {...props} checked />);
     expect(screen.getByRole('switch')).toHaveClass('np-switch--rtl');
   });
+
+  it('should not call onClick if disabled', () => {
+    const mockCallback = jest.fn();
+    render(<Switch {...props} disabled onClick={mockCallback} />);
+    const input = screen.getByRole('switch');
+    fireEvent.click(input);
+    expect(mockCallback).not.toHaveBeenCalled();
+  });
 });
