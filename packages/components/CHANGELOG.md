@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.5...@transferwise/components@37.3.6) (2021-09-03)
+
+
+### Bug Fixes
+
+* Switch disabled state ([#1124](https://github.com/transferwise/neptune-web/issues/1124)) ([556f1dd](https://github.com/transferwise/neptune-web/commit/556f1dda5667f2d6bc8ff95f4c39c6de5185f4bb))
+
+
+
+
+
 ## [37.3.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.4...@transferwise/components@37.3.5) (2021-09-02)
 
 
