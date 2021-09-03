@@ -91,7 +91,11 @@ const PersistAsyncSchema = (props) => {
     let fetchOptions;
     if (isBlobType) {
       const formData = new FormData();
-      formData.append(persistAsyncSpec.param, b64ToBlob(currentPersistAsyncModel), parseFileName(currentPersistAsyncModel));
+      formData.append(
+        persistAsyncSpec.param,
+        b64ToBlob(currentPersistAsyncModel),
+        parseFileName(currentPersistAsyncModel),
+      );
 
       fetchOptions = {
         method: persistAsyncSpec.method,
