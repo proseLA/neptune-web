@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@10.0.3...@transferwise/neptune-css@10.0.4) (2021-09-06)
+
+
+### Bug Fixes
+
+* update legacy-variables from BT ([#1132](https://github.com/transferwise/neptune-web/issues/1132)) ([2c0ee1e](https://github.com/transferwise/neptune-web/commit/2c0ee1e1ef9243a9f8a877b4f6b68a4e37e88eec))
+
+
+
+
+
 ## [10.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@10.0.2...@transferwise/neptune-css@10.0.3) (2021-09-02)
 
 **Note:** Version bump only for package @transferwise/neptune-css
