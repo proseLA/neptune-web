@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.1.10](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.9...@transferwise/dynamic-flows@15.1.10) (2021-09-06)
+
+
+### Bug Fixes
+
+* convertFinalStepToDynamicLayout to conform to specification ([#1128](https://github.com/transferwise/neptune-web/issues/1128)) ([8ccdb6c](https://github.com/transferwise/neptune-web/commit/8ccdb6c7ab2dccbc04b621c3a372a70923a4c24f))
+
+
+
+
+
 ## [15.1.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.8...@transferwise/dynamic-flows@15.1.9) (2021-09-03)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
