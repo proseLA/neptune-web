@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.7](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.6...@transferwise/components@37.3.7) (2021-09-06)
+
+
+### Bug Fixes
+
+* add background color to keyline ([#1133](https://github.com/transferwise/neptune-web/issues/1133)) ([f170263](https://github.com/transferwise/neptune-web/commit/f170263e6f62d715077787b694977c4b0ab63e36))
+
+
+
+
+
 ## [37.3.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.5...@transferwise/components@37.3.6) (2021-09-03)
 
 
