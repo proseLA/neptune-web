@@ -3,10 +3,7 @@
   "type": "final",
   "success": true,
   "details": {
-    "image": {
-      "url": "https://wise.com/help/_next/static/images/help-banner-47a63032e31a1611470a42f871f654ee.svg",
-      "text": "alt text"
-    },
+    "image": "https://wise.com/public-resources/assets/spot-illustrations/dedicated_fraud_team.png",
     "title": "Details verified *",
     "description": "We do this extra check to make sure your money goes to the right place...."
   },

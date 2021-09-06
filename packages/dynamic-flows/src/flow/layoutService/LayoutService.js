@@ -52,7 +52,20 @@ function convertFormStepToDynamicLayout(step) {
 }
 
 function convertFinalStepToDynamicLayout(step) {
-  const layout = step.details ? convertCommonComponents(step.details) : [];
+  const layout = [];
+
+  if (step.details) {
+    if (step.details.title) {
+      layout.push(convertStepTitleToDynamicHeading(step.details.title));
+    }
+    if (step.details.image) {
+      const image = convertFinalStepImageToDynamicImage(step.details.image);
+      layout.push(dynamicBox([image], 'sm'));
+    }
+    if (step.details.description) {
+      layout.push(convertStepDescriptionToDynamicParagraph(step.details.description));
+    }
+  }
 
   if (step.actions) {
     const actions = step.actions.map(convertStepActionToDynamicAction);
@@ -130,6 +143,15 @@ function convertStepImageToDynamicImage(image) {
     type: 'image',
     url: image.url,
     text: image.text,
+    margin: 'lg',
+  };
+}
+
+function convertFinalStepImageToDynamicImage(image) {
+  return {
+    type: 'image',
+    url: image,
+    text: undefined,
     margin: 'lg',
   };
 }

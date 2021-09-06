@@ -80,9 +80,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         details: {
           title: 'We create the thing!',
           description: 'You now do stuff with the thing',
-          image: {
-            url: '/images/1234.png',
-          },
+          image: '/images/1234.png',
         },
         actions: [exitAction],
         success: true,
@@ -91,7 +89,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
       const finalLayout = [
         {
           type: 'heading',
-          text: finalStep.details.title,
+          text: 'We create the thing!',
           size: 'lg',
           margin: 'lg',
           align: 'center',
@@ -102,7 +100,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
           components: [
             {
               type: 'image',
-              url: finalStep.details.image.url,
+              url: '/images/1234.png',
               margin: 'lg',
               text: undefined,
             },
@@ -110,7 +108,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
         },
         {
           type: 'paragraph',
-          text: finalStep.details.description,
+          text: 'You now do stuff with the thing',
           align: 'center',
         },
         {
@@ -119,7 +117,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
           components: [
             {
               type: 'button',
-              context: exitAction.type,
+              context: 'success',
               action: { ...exitAction, type: 'success' },
             },
           ],
