@@ -22,38 +22,32 @@ const getButtonSize = (size) => {
   }
 };
 
-const getButtonType = (action) => {
+const getButtonTypeAndPriority = (action) => {
   switch (action.type) {
+    case 'link':
+      return { type: 'accent', priority: 'tertiary' };
     case 'primary':
-      return 'accent';
-    case 'success':
-      return 'positive';
-    case 'failure':
-    case 'warning':
-      return 'negative';
+      return { type: 'accent', priority: 'primary' };
+    case 'secondary':
+      return { type: 'accent', priority: 'secondary' };
+    case 'positive':
+      return { type: 'positive', priority: 'primary' };
+    case 'negative':
+      return { type: 'negative', priority: 'primary' };
     default:
-      return 'accent';
-  }
-};
-
-const getButtonPriority = (action) => {
-  switch (action.type) {
-    case 'primary':
-    case 'success':
-      return 'primary';
-    default:
-      return 'secondary';
+      return { type: 'accent', priority: 'secondary' };
   }
 };
 
 const DynamicButton = (props) => {
   const { component, onAction } = props;
+  const { type, priority } = getButtonTypeAndPriority(component.action);
 
   return (
     <Button
       size={getButtonSize(component.size)}
-      type={getButtonType(component.action)}
-      priority={getButtonPriority(component.action)}
+      type={type}
+      priority={priority}
       block
       className={getActionClasses(component.action)}
       disabled={component.action.disabled}
