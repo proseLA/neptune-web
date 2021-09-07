@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.1.13](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.12...@transferwise/dynamic-flows@15.1.13) (2021-09-07)
+
+
+### Bug Fixes
+
+* Align web implementation to iOS implementation ([#1134](https://github.com/transferwise/neptune-web/issues/1134)) ([9c92d85](https://github.com/transferwise/neptune-web/commit/9c92d85e8d639a7730826ddf29c10f75ad6b8485)), closes [/github.com/transferwise/transferwise-ios/blob/dev/DynamicFlow/DynamicFlowUI/Step/BasicFormStepViewController.swift#L174-L185](https://github.com//github.com/transferwise/transferwise-ios/blob/dev/DynamicFlow/DynamicFlowUI/Step/BasicFormStepViewController.swift/issues/L174-L185) [/github.com/transferwise/transferwise-ios/blob/dev/Wise/Wise/Recipients/RecipientCreationFlow/RecipientCreationFlowImpl.swift#L108-L119](https://github.com//github.com/transferwise/transferwise-ios/blob/dev/Wise/Wise/Recipients/RecipientCreationFlow/RecipientCreationFlowImpl.swift/issues/L108-L119)
+
+
+
+
+
 ## [15.1.12](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.11...@transferwise/dynamic-flows@15.1.12) (2021-09-06)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
