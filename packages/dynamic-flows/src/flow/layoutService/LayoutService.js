@@ -3,6 +3,11 @@ function convertStepToLayout(step) {
     throw new Error('Missing step type');
   }
 
+  // This condition is meant as a temporary hack until mobile platforms will be refactored to fully support the layout property
+  if (step.layout) {
+    return addMissingTitleToStep(step);
+  }
+
   switch (step.type) {
     case 'final':
       return convertFinalStepToDynamicLayout(step);
@@ -274,6 +279,13 @@ function getSchemaById(schemas, id) {
 
 function getActionById(actions, id) {
   return actions.find((action) => action.$id === id);
+}
+
+function addMissingTitleToStep(step) {
+  if (step.title) {
+    return [convertStepTitleToDynamicHeading(step.title), ...step.layout];
+  }
+  return step.layout;
 }
 
 export { convertStepToLayout, inlineReferences };

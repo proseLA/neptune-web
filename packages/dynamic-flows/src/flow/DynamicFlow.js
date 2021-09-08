@@ -40,7 +40,7 @@ const getComponents = (step) => {
     return [];
   }
 
-  const layout = step.layout ? step.layout : convertStepToLayout(step);
+  const layout = convertStepToLayout(step);
 
   return inlineReferences(layout, step.schemas, step.actions);
 };
@@ -52,6 +52,8 @@ const getComponents = (step) => {
  * within a dynamic flow, managing transitions between steps as well as refreshing
  * requirements.  It doesn't control any view logic, but takes the step definition
  * and reformats it to use a DynamicLayout for presentation.
+ *
+ * @param props
  */
 const DynamicFlow = (props) => {
   const { baseUrl, flowUrl, onClose, onStepChange, onError, httpClient: propsHttpClient } = props;
