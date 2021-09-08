@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.1.14](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.13...@transferwise/dynamic-flows@15.1.14) (2021-09-08)
+
+
+### Bug Fixes
+
+* [VUX-976] missing step title when there is a layout ([#1136](https://github.com/transferwise/neptune-web/issues/1136)) ([edacfdd](https://github.com/transferwise/neptune-web/commit/edacfdd1baec7b833da779105c13e9239b34788b))
+
+
+
+
+
 ## [15.1.13](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.12...@transferwise/dynamic-flows@15.1.13) (2021-09-07)
 
 
