@@ -43,7 +43,6 @@
     "@transferwise/icons": "^2.14.0",
     "@transferwise/neptune-css": "^10.0.4",
     "@transferwise/neptune-tokens": "^4.1.0",
-    "bootstrap": "github:transferwise/bootstrap#semver:^5.20.0",
     "classnames": "^2.3.1",
     "currency-flags": "^3.2.1",
     "date-fns": "^2.23.0",

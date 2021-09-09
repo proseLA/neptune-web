@@ -64,16 +64,12 @@ const Dimmer = ({
       if (dimmerReference.current) {
         dimmerReference.current.addEventListener('touchmove', handleTouchMove);
       }
-      if (!transparent) {
-        addNoScrollBodyClass();
-      }
     }
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       if (dimmerReference.current) {
         dimmerReference.current.removeEventListener('touchmove', handleTouchMove);
       }
-      removeNoScrollBodyClass();
     };
   }, [open]);
 
@@ -92,20 +88,38 @@ const Dimmer = ({
       onEnter={onEnter}
       onExited={onExited}
     >
-      <div
-        ref={dimmerReference}
-        className={classNames(
-          'dimmer',
-          { 'dimmer--scrollable': scrollable, 'dimmer--transparent': transparent },
-          className,
-        )}
-        role="presentation"
-        onClick={handleClick}
-      >
-        <FocusBoundary>{children}</FocusBoundary>
-      </div>
+      <DimmerContentWrapper scrollBody={!transparent}>
+        <div
+          ref={dimmerReference}
+          className={classNames(
+            'dimmer',
+            { 'dimmer--scrollable': scrollable, 'dimmer--transparent': transparent },
+            className,
+          )}
+          role="presentation"
+          onClick={handleClick}
+        >
+          <FocusBoundary>{children}</FocusBoundary>
+        </div>
+      </DimmerContentWrapper>
     </CSSTransition>
   );
+};
+
+export const DimmerContentWrapper = ({ children, scrollBody }) => {
+  useEffect(() => {
+    if (scrollBody) {
+      addNoScrollBodyClass();
+    }
+
+    return () => {
+      if (scrollBody) {
+        removeNoScrollBodyClass();
+      }
+    };
+  }, []);
+
+  return children;
 };
 
 Dimmer.propTypes = {

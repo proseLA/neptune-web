@@ -110,7 +110,7 @@ describe('Dimmer', () => {
       unmount();
 
       await waitFor(() => {
-        expect(removeNoScrollBodyClass).toHaveBeenCalledTimes(2);
+        expect(removeNoScrollBodyClass).toHaveBeenCalledTimes(1);
       });
     });
   });
