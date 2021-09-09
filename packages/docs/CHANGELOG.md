@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.16](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.2.15...@transferwise/neptune-docs@13.2.16) (2021-09-09)
+
+
+### Bug Fixes
+
+* dimmer color for Angular comp and fix .on-scroll on unmount and update BT ([#1140](https://github.com/transferwise/neptune-web/issues/1140)) ([b146e9d](https://github.com/transferwise/neptune-web/commit/b146e9d9169660666c3f4bd564834965069427ed))
+
+
+
+
+
 ## [13.2.15](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.2.14...@transferwise/neptune-docs@13.2.15) (2021-09-08)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
