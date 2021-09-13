@@ -4,8 +4,6 @@
   "neptune.DateInput.day.label": "Day",
   "neptune.DateInput.month.label": "Month",
   "neptune.DateInput.year.label": "Year",
-  "neptune.Link.ariaLabel": "Open link",
-  "neptune.Link.ariaLabelNewTab": "Open link in a new tab",
   "neptune.MoneyInput.Select.placeholder": "Select an option...",
   "neptune.Pagination.ariaLabel": "Pagination navigation",
   "neptune.PaginationLink.ariaLabel.active": "Go to page {pageNumber}",

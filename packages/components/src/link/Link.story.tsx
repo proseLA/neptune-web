@@ -1,4 +1,11 @@
-() => {
+import Link from '.';
+
+export default {
+  component: Link,
+  title: 'Link',
+};
+
+export const Basic = () => {
   return (
     <>
       <p>

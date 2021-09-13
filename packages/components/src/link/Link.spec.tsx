@@ -12,7 +12,7 @@ describe('Link', () => {
   it('renders Link component', () => {
     render(<Link {...props}>link text</Link>);
 
-    const link = screen.getByText('link text');
+    const link = screen.getByRole('link', { name: 'link text' });
 
     expect(link).toHaveAttribute('href', props.href);
     expect(link).toHaveClass(props.className);
@@ -44,19 +44,4 @@ describe('Link', () => {
 
     expect(link).toHaveAttribute('aria-label', 'make me accessible');
   });
-
-  it.each([null, false, '', NaN, undefined])(
-    'it renders the default aria label for invalid value "%s"',
-    (value) => {
-      render(
-        <Link {...props} aria-label={value}>
-          link text
-        </Link>,
-      );
-
-      const link = screen.getByText('link text');
-
-      expect(link).toHaveAttribute('aria-label', 'Open link');
-    },
-  );
 });
