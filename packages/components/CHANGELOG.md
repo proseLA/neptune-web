@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.11](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.10...@transferwise/components@37.3.11) (2021-09-13)
+
+
+### Bug Fixes
+
+* adjusting padding for tabs with auto width ([#1139](https://github.com/transferwise/neptune-web/issues/1139)) ([168a9e0](https://github.com/transferwise/neptune-web/commit/168a9e0cd23687b5e1cd2a26d4c70bf795cb7189))
+
+
+
+
+
 ## [37.3.10](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.9...@transferwise/components@37.3.10) (2021-09-13)
 
 **Note:** Version bump only for package @transferwise/components
