@@ -1,5 +1,6 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
+@import (reference) '@transferwise/neptune-css/src/variables/legacy-variables.less';
 
 @transition-timing-function: ease-in-out;
 @short-transition-duration: 0.15s;
@@ -93,5 +94,13 @@
 
   &--inverse &__tab:not(.tabs__tab--selected) {
     color: #fff;
+  }
+
+  &.tabs--auto-width .tabs__tab {
+    display: inline-flex;
+    height: var(--size-40);
+    padding: 0 var(--size-24);
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -398,7 +398,8 @@ class Tabs extends Component {
   };
 
   render() {
-    const { tabs, changeTabOnSwipe, name, selected, className, transitionSpacing } = this.props;
+    const { tabs, changeTabOnSwipe, name, selected, className, transitionSpacing, headerWidth } =
+      this.props;
     const {
       isSwiping,
       translateLineX,
@@ -441,7 +442,9 @@ class Tabs extends Component {
 
     return (
       <div
-        className={classNames('tabs', className)}
+        className={classNames('tabs', className, {
+          'tabs--auto-width': headerWidth === Width.AUTO,
+        })}
         onTouchStart={changeTabOnSwipe ? this.handleTouchStart : undefined}
         onTouchEnd={changeTabOnSwipe ? this.handleTouchEnd : undefined}
         onTouchMove={changeTabOnSwipe ? this.handleTouchMove : undefined}

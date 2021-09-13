@@ -49,7 +49,7 @@ export const Basic = () => {
   );
 };
 
-export const BlockTabHeaderWidth = () => {
+export const AutoTabHeaderWidth = () => {
   const [selected, setSelected] = useState(0);
   return (
     <Tabs
