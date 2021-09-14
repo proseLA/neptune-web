@@ -13,7 +13,10 @@ import { httpClient as defaultHttpClient } from './client';
 import { withErrorBoundary } from './errorBoundary';
 import { convertStepToLayout, inlineReferences } from './layoutService';
 
-const validateExitResult = ({ data: json }) => {
+const EXIT_HEADER = 'X-Df-Exit';
+
+const validateExitResult = async (response) => {
+  const json = await response.json();
   return new Promise((resolve, reject) => {
     if (!isObject(json)) {
       reject('Incorrect response when submitting an exit action. Expected an object');
@@ -44,6 +47,8 @@ const getComponents = (step) => {
 
   return inlineReferences(layout, step.schemas, step.actions);
 };
+
+const isExitResponse = (response) => response.headers?.has(EXIT_HEADER);
 
 /**
  * ## DynamicFlow
@@ -91,13 +96,17 @@ const DynamicFlow = (props) => {
 
     return httpClient
       .request({ action, data })
-      .then(checkForExitCondition)
-      .then(({ data: nextStep }) => {
-        setStepSpecification(nextStep);
-
-        onStepChange(nextStep, previousStep);
-
-        setSubmitted(false);
+      .then(async (response) => {
+        if (isExitResponse(response)) {
+          const result = await response.json().catch(() => undefined);
+          setStepSpecification({});
+          onClose(result);
+        } else {
+          const json = await response.json();
+          setStepSpecification(json);
+          onStepChange(json, previousStep);
+          setSubmitted(false);
+        }
       })
       .catch(handleFetchValidationError)
       .catch((error) => {
@@ -110,7 +119,8 @@ const DynamicFlow = (props) => {
   const fetchRefresh = (action, data) => {
     return httpClient
       .request({ action, data })
-      .then(({ data: json }) => {
+      .then(async (response) => {
+        const json = await response.json();
         setStepSpecification(json);
       })
       .catch(handleFetchValidationError)
@@ -140,20 +150,6 @@ const DynamicFlow = (props) => {
       throw error;
     }
   };
-
-  const checkForExitCondition = (response) =>
-    new Promise((resolve) => {
-      const { data, headers } = response;
-
-      const exitHeader = 'X-DF-Exit';
-
-      if (headers && headers.get(exitHeader)) {
-        onClose(data);
-        return;
-      }
-
-      resolve(response);
-    });
 
   const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
     const { $id } = formSchema;

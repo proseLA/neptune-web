@@ -165,7 +165,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   const resolve = (response, init = {}) => {
     return new Promise((promiseResolve) => {
       setTimeout(async () => {
-        promiseResolve({ data: response, ...init });
+        promiseResolve(new Response(JSON.stringify(response), init));
       }, 0);
     });
   };

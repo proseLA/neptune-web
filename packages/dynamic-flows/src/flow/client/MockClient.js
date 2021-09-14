@@ -12,6 +12,8 @@ const reviewStep = {
   layout: reviewLayout,
 };
 
+const createResponse = (body) => new Response(JSON.stringify(body));
+
 function init() {}
 
 async function request({ action, data }) {
@@ -20,19 +22,19 @@ async function request({ action, data }) {
 
   switch (action.url) {
     case '/decision':
-      return Promise.resolve({ data: decisionStep });
+      return Promise.resolve(createResponse(decisionStep));
     case '/recipient':
-      return Promise.resolve({ data: formStep });
+      return Promise.resolve(createResponse(formStep));
     case '/recipient_details':
-      return Promise.resolve({ data: receiveStep });
+      return Promise.resolve(createResponse(receiveStep));
     case '/layout':
-      return Promise.resolve({ data: layoutStep });
+      return Promise.resolve(createResponse(layoutStep));
     case '/review':
-      return Promise.resolve({ data: review });
+      return Promise.resolve(createResponse(review));
     case '/confirm':
-      return Promise.resolve({ data: reviewStep });
+      return Promise.resolve(createResponse(reviewStep));
     case '/final':
-      return Promise.resolve({ data: finalStep });
+      return Promise.resolve(createResponse(finalStep));
     case '/error':
       return Promise.reject({
         error: 'Something went wrong',

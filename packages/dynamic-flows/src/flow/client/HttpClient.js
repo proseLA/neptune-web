@@ -24,10 +24,7 @@ class HttpClient {
           throw error;
         });
       }
-      return Promise.resolve({
-        data: await response.json(),
-        headers: response.headers,
-      });
+      return response;
     });
   }
 }
