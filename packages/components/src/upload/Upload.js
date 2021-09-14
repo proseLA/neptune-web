@@ -1,7 +1,7 @@
 import { Plus as PlusIcon } from '@transferwise/icons';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { injectIntl } from 'react-intl';
 
 import { Status } from '../common';
@@ -9,14 +9,7 @@ import { Status } from '../common';
 import messages from './Upload.messages';
 import { UploadImageStep, MediaUploadStep, ProcessingStep, CompleteStep } from './steps';
 import { UploadStep } from './uploadSteps';
-import {
-  postData,
-  asyncFileRead,
-  isSizeValid,
-  generateErrorMessage,
-  isTypeValid,
-  getFileType,
-} from './utils';
+import { postData, asyncFileRead, isSizeValid, isTypeValid, getFileType } from './utils';
 
 const PROCESS_STATE = ['error', 'success'];
 
@@ -31,20 +24,13 @@ const UPLOAD_STEP_COMPONENTS = {
   [UploadStep.MEDIA_UPLOAD_STEP]: MediaUploadStep,
 };
 
-class Upload extends PureComponent {
+class Upload extends Component {
   constructor(props) {
     super(props);
-    this.formatMessage = this.props.intl.formatMessage;
     this.dragCounter = 0;
-    this.errorMessage = {
-      413: props.csTooLargeMessage || this.formatMessage(messages.csTooLargeMessage),
-      415: props.csWrongTypeMessage || this.formatMessage(messages.csWrongTypeMessage),
-      unknownError: props.csFailureText || this.formatMessage(messages.csFailureText),
-    };
     this.timeouts = null;
 
     this.state = {
-      errorMessage: '',
       fileName: '',
       isComplete: false,
       isError: false,
@@ -54,6 +40,22 @@ class Upload extends PureComponent {
       response: null,
       uploadedImage: null,
     };
+  }
+
+  getErrorMessage(status) {
+    switch (status) {
+      case 413:
+        return (
+          this.props.csTooLargeMessage || this.props.intl.formatMessage(messages.csTooLargeMessage)
+        );
+      case 415:
+        return (
+          this.props.csWrongTypeMessage ||
+          this.props.intl.formatMessage(messages.csWrongTypeMessage)
+        );
+      default:
+        return this.props.csFailureText || this.props.intl.formatMessage(messages.csFailureText);
+    }
   }
 
   onDragLeave(event) {
@@ -103,7 +105,6 @@ class Upload extends PureComponent {
       this.timeouts = setTimeout(() => {
         this.setState(
           {
-            errorMessage: generateErrorMessage(response.status, this.errorMessage),
             isProcessing: false,
             isComplete: true,
           },
@@ -260,10 +261,11 @@ class Upload extends PureComponent {
       csSuccessText,
       size,
       uploadStep,
+      intl,
     } = this.props;
 
     const {
-      errorMessage,
+      response,
       fileName,
       isComplete,
       isDroppable,
@@ -297,11 +299,11 @@ class Upload extends PureComponent {
             fileDropped={(file) => this.fileDropped(file)}
             isComplete={isComplete}
             usAccept={usAccept}
-            usButtonText={usButtonText || this.formatMessage(messages.usButtonText)}
+            usButtonText={usButtonText || intl.formatMessage(messages.usButtonText)}
             usDisabled={usDisabled}
             usHelpImage={usHelpImage}
             usLabel={usLabel}
-            usPlaceholder={usPlaceholder || this.formatMessage(messages.usPlaceholder)}
+            usPlaceholder={usPlaceholder || intl.formatMessage(messages.usPlaceholder)}
           />
         )}
 
@@ -310,8 +312,8 @@ class Upload extends PureComponent {
             isComplete={isComplete}
             isError={isError}
             isSuccess={isSuccess}
-            psButtonText={psButtonText || this.formatMessage(messages.psButtonText)}
-            psProcessingText={psProcessingText || this.formatMessage(messages.psProcessingText)}
+            psButtonText={psButtonText || intl.formatMessage(messages.psButtonText)}
+            psProcessingText={psProcessingText || intl.formatMessage(messages.psProcessingText)}
             onAnimationCompleted={(status) => this.onAnimationCompleted(status)}
             onClear={(event) => this.handleOnClear(event)}
           />
@@ -324,9 +326,9 @@ class Upload extends PureComponent {
             isComplete={isComplete}
             isError={isError}
             isImage={isImage}
-            csButtonText={csButtonText || this.formatMessage(messages.csButtonText)}
-            csFailureText={errorMessage}
-            csSuccessText={csSuccessText || this.formatMessage(messages.csSuccessText)}
+            csButtonText={csButtonText || intl.formatMessage(messages.csButtonText)}
+            csFailureText={this.getErrorMessage(response?.status)}
+            csSuccessText={csSuccessText || intl.formatMessage(messages.csSuccessText)}
             uploadedImage={uploadedImage}
             onClear={(event) => this.handleOnClear(event)}
           />
@@ -338,7 +340,7 @@ class Upload extends PureComponent {
                 <PlusIcon />
               </div>
               <h4 className="m-t-3">
-                {usDropMessage || this.formatMessage(messages.usDropMessage)}
+                {usDropMessage || intl.formatMessage(messages.usDropMessage)}
               </h4>
             </div>
           </div>
