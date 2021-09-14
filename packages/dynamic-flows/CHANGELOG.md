@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.2.0...@transferwise/dynamic-flows@15.2.1) (2021-09-14)
+
+
+### Bug Fixes
+
+* update peerdependencies to support latest neptune-css and components ([#1143](https://github.com/transferwise/neptune-web/issues/1143)) ([3b59c71](https://github.com/transferwise/neptune-web/commit/3b59c71c4da291acb1d95b8dc5e07d01b415b96b))
+
+
+
+
+
 # [15.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.19...@transferwise/dynamic-flows@15.2.0) (2021-09-14)
 
 

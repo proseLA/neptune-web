@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.4.0...@transferwise/components@37.4.1) (2021-09-14)
+
+
+### Bug Fixes
+
+* update peerdependencies to support latest neptune-css and components ([#1143](https://github.com/transferwise/neptune-web/issues/1143)) ([3b59c71](https://github.com/transferwise/neptune-web/commit/3b59c71c4da291acb1d95b8dc5e07d01b415b96b))
+
+
+
+
+
 # [37.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.13...@transferwise/components@37.4.0) (2021-09-14)
 
 
