@@ -87,7 +87,7 @@
   },
   "peerDependencies": {
     "@transferwise/icons": "^2.12.0",
-    "@transferwise/neptune-css": "^9.2.0",
+    "@transferwise/neptune-css": "^9.2.0 <=10",
     "currency-flags": "^2.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.14 || ^17",
