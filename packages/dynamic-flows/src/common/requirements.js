@@ -68,6 +68,8 @@ const prepField = (field, model, validationMessages) => {
  * In an older format we had an extra fieldGroup level, here we flatten that out
  * So the inner arrays of fields within the different field groups are flattened
  * to a single array, which is returned.
+ *
+ * @param fields
  */
 const flattenFieldsWithGroups = (fields) => {
   if (Array.isArray(fields)) {
@@ -218,7 +220,7 @@ const prepType = (field) => {
   }
 
   if (!field.control && field.type !== 'object') {
-    field.control = getControlType(field);
+    field.control = getControlType_Legacy(field);
   }
 };
 
@@ -360,7 +362,7 @@ const prepValidationMessages = (field, validationMessages) => {
   }
 };
 
-const getControlType = (field) => {
+const getControlType_Legacy = (field) => {
   if (field.control) {
     return field.control.toLowerCase();
   }
@@ -424,6 +426,8 @@ const copyOf = (object) => JSON.parse(JSON.stringify(object));
 
 /**
  * Some older requirments formats do not include a label for alternatives
+ *
+ * @param tabType
  */
 const getNameFromType = (tabType) => {
   if (tabType && tabType.length > 0) {
@@ -433,4 +437,4 @@ const getNameFromType = (tabType) => {
   return '';
 };
 
-export { prepFields, getControlType };
+export { prepFields, getControlType_Legacy };

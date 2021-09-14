@@ -6,14 +6,15 @@ import {
   PhoneNumberInput,
   RadioGroup,
   Select,
+  Tabs,
   TextareaWithDisplayFormat,
   Upload,
-  Tabs,
 } from '@transferwise/components';
 import Types from 'prop-types';
 import { PureComponent } from 'react';
 
-import { Size, MonthFormat, DateMode, FormControlType } from '../common';
+import { DateMode, FormControlType, MonthFormat, Size } from '../common';
+import { dateStringToDate, dateToDateString } from '../common/general';
 
 const ACCEPTED_FORMAT = ['*', 'image/*', 'application/*'];
 
@@ -266,14 +267,13 @@ export default class FormControl extends PureComponent {
       case FormControlType.DATELOOKUP:
         return (
           <DateLookup
-            value={value}
+            value={dateStringToDate(value)}
             min={minDate}
             max={maxDate}
             placeholder={placeholder}
-            label={label}
             monthFormat={monthFormat}
             disabled={disabled}
-            onChange={this.handleOnChange}
+            onChange={(date) => this.handleOnChange(dateToDateString(date))}
             onBlur={this.handleOnBlur}
             onFocus={this.handleOnFocus}
           />

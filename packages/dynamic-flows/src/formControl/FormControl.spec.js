@@ -400,7 +400,7 @@ describe('FormControl', () => {
 
       PASSED_DOWN_PROPS.forEach((key) => {
         it(`should pass the ${key} prop to the child component`, () => {
-          expect(custom.prop(key)).toBe(props[key]);
+          expect(custom.prop(key)).toStrictEqual(props[key]);
         });
       });
       if (controlType === 'upload') {

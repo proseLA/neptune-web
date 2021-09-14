@@ -6,13 +6,13 @@ import { isOneOfSchema } from '../../common/schemaTypes/schemaTypes';
 import { getValidModelParts } from '../../common/validation/valid-model';
 import FormControl from '../../formControl';
 
-import { mapConstSchemaToOption } from './optionMapper';
+import { mapConstSchemaToOption, mapSchemaToUploadOptions } from './optionMapper';
 
 const isNativeInput = (propsSchemaType) => {
   return propsSchemaType === 'string' || propsSchemaType === 'number';
 };
 
-const getControlType = (schema) => {
+export const getControlType = (schema) => {
   if (schema.control) {
     if (isOneOfSchema(schema) && schema.oneOf.length > 3) {
       return FormControlType.SELECT;
@@ -32,6 +32,8 @@ const getControlType = (schema) => {
     switch (schema.format) {
       case 'date':
         return 'date';
+      case 'password':
+        return 'password';
       case 'phone':
         return 'tel';
       case 'base64url':
@@ -96,6 +98,7 @@ const SchemaFormControl = (props) => {
     autoComplete: !props.schema.help,
     disabled: props.disabled || props.schema.disabled,
     displayPattern: props.schema.displayFormat,
+    uploadProps: mapSchemaToUploadOptions(props.schema),
   };
 
   return <FormControl type={controlType} value={safeValue} {...events} {...controlProps} />;

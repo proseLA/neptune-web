@@ -1,4 +1,4 @@
-import { Provider } from '@transferwise/components';
+import { Provider, translations as componentTranslations } from '@transferwise/components';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
@@ -31,7 +31,8 @@ const wait = (t) => {
 function mountWithProviders(
   component,
   locale = 'en-GB',
-  messages = {},
+  // eslint-disable-next-line unicorn/no-object-as-default-parameter
+  messages = { ...componentTranslations['en'] },
   baseUrl = 'https://test-url',
 ) {
   return mount(

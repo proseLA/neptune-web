@@ -1,6 +1,6 @@
 import { Avatar, AvatarType } from '@transferwise/components';
 import { Bank } from '@transferwise/icons';
-import { isNull, isUndefined } from '@transferwise/neptune-validation';
+import { isArray, isNull, isUndefined } from '@transferwise/neptune-validation';
 
 import { getCurrencyFlag } from './availableCurrencyFlags';
 
@@ -42,6 +42,10 @@ export const mapAvatar = (image) => {
       }
     : null;
 };
+
+export const mapSchemaToUploadOptions = ({ accepts }) => ({
+  ...(isArray(accepts) && { usAccept: accepts.join(',') }),
+});
 
 const getOptionDescription = (title, description) => {
   if (title && description) {

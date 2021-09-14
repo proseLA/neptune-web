@@ -1,121 +1,18 @@
-import { isNull } from '@transferwise/neptune-validation';
-import isEqual from 'lodash.isequal';
 import Types from 'prop-types';
-import { useState } from 'react';
-import { useIntl } from 'react-intl';
 
-import { isStatus2xx, isStatus422, QueryablePromise } from '../../common/api/utils';
-import { getAsyncUrl } from '../../common/async/url';
-import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
-import usePrevious from '../../common/hooks/usePrevious';
-import { isValidSchema } from '../../common/validation/schema-validators';
-import BasicTypeSchema from '../basicTypeSchema';
-
-import messages from './PersistAsyncSchema.messages';
-
-const getIdFromResponse = (idProperty, response) => {
-  return response[idProperty];
-};
-
-const getErrorFromResponse = (errorProperty, response) => {
-  return response.validation?.[errorProperty];
-};
+import PersistAsyncBasicSchema from './basic';
+import PersistAsyncBlobSchema from './blob';
 
 const PersistAsyncSchema = (props) => {
-  const intl = useIntl();
+  const persistAsyncSchemaType = props.schema.persistAsync.schema.type;
 
-  const [persistAsyncModel, setPersistAsyncModel] = useState(null);
-  const previousPersistAsyncModel = usePrevious(persistAsyncModel);
-  const [persistAsyncError, setPersistAsyncError] = useState(null);
-  const [fieldSubmitted, setFieldSubmitted] = useState(false);
-  const [abortController, setAbortController] = useState(null);
-  const baseUrl = useBaseUrl();
-
-  if (props.schema.persistAsync.schema.format === 'base64url') {
-    // TODO: Add support for base64url format
-    throw new Error('Not implemented');
+  // eslint-disable-next-line sonarjs/no-small-switch
+  switch (persistAsyncSchemaType) {
+    case 'blob':
+      return <PersistAsyncBlobSchema {...props} />;
+    default:
+      return <PersistAsyncBasicSchema {...props} />;
   }
-
-  const setGenericPersistAsyncError = () =>
-    setPersistAsyncError(intl.formatMessage(messages.genericError));
-
-  const getPersistAsyncResponse = async (currentPersistAsyncModel, persistAsyncSpec) => {
-    const signal = abortCurrentRequestAndGetNewAbortSignal();
-
-    const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
-    setFieldSubmitted(true); // persist async initiated implied the field has been submitted
-
-    const persistAsyncFetch = new QueryablePromise(
-      fetch(getAsyncUrl(persistAsyncSpec.url, baseUrl), {
-        method: persistAsyncSpec.method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-        signal,
-      }),
-    );
-    props.onPersistAsync(persistAsyncFetch);
-    const response = await persistAsyncFetch;
-
-    broadcast(response);
-  };
-
-  const abortCurrentRequestAndGetNewAbortSignal = () => {
-    if (abortController) {
-      abortController.abort();
-    }
-    const newAbortController = new AbortController();
-    setAbortController(newAbortController);
-    return newAbortController.signal;
-  };
-
-  const broadcast = async (response) => {
-    try {
-      const jsonResponse = await response.json();
-      const { idProperty, param } = props.schema.persistAsync;
-      if (isStatus2xx(response.status)) {
-        const id = getIdFromResponse(idProperty, jsonResponse);
-        props.onChange(id, props.schema, id);
-      } else if (isStatus422(response.status)) {
-        const error = getErrorFromResponse(param, jsonResponse);
-        props.onChange(null, props.schema, null);
-        setPersistAsyncError(error);
-      } else {
-        setGenericPersistAsyncError();
-      }
-    } catch {
-      setGenericPersistAsyncError();
-    }
-  };
-
-  const onBlur = () => {
-    if (!isNull(persistAsyncModel) && !isEqual(persistAsyncModel, previousPersistAsyncModel)) {
-      getPersistAsyncResponse(persistAsyncModel, props.schema.persistAsync);
-    }
-  };
-
-  const persistAsyncOnChange = (newPersistAsyncModel) => {
-    // TODO: Add different handling for file upload, do persist async on change instead of onblur
-    setPersistAsyncError(null);
-
-    if (isValidSchema(newPersistAsyncModel, props.schema)) {
-      setPersistAsyncModel(newPersistAsyncModel);
-    }
-  };
-
-  return (
-    <>
-      <BasicTypeSchema
-        required={props.required}
-        submitted={props.submitted || fieldSubmitted}
-        schema={props.schema.persistAsync.schema}
-        errors={persistAsyncError || props.errors}
-        onChange={persistAsyncOnChange}
-        onBlur={onBlur}
-      />
-    </>
-  );
 };
 
 PersistAsyncSchema.propTypes = {
@@ -132,6 +29,7 @@ PersistAsyncSchema.propTypes = {
       idProperty: Types.string,
       schema: Types.shape({
         format: Types.string,
+        type: Types.string,
       }),
     }),
     enum: Types.arrayOf(Types.oneOfType([Types.string, Types.number, Types.bool])),
@@ -145,6 +43,7 @@ PersistAsyncSchema.propTypes = {
     help: Types.shape({}),
   }).isRequired,
   translations: Types.shape({}),
+  model: Types.oneOfType([Types.string, Types.number, Types.bool]),
   errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
   onChange: Types.func.isRequired,
   submitted: Types.bool.isRequired,

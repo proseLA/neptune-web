@@ -4,7 +4,7 @@ import Types from 'prop-types';
 import { Component } from 'react';
 
 import { FormControlType, Size } from '../common';
-import { getControlType } from '../common/requirements';
+import { getControlType_Legacy } from '../common/requirements';
 import { getValidationFailures } from '../common/validation/validation-failures';
 import FormControl from '../formControl';
 
@@ -162,7 +162,7 @@ export default class Field extends Component {
   render() {
     const { name, field, value, locale, label } = this.props;
 
-    const control = field.control || getControlType(field);
+    const control = field.control || getControlType_Legacy(field);
     const alert = this.updateAlert(control);
 
     const showAlert = !!alert.content;

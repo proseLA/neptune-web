@@ -229,7 +229,7 @@ class Upload extends Component {
 
     if (httpOptions) {
       // Post the file to provided endpoint
-      this.asyncPost(file)
+      return await this.asyncPost(file)
         .then((response) => this.asyncResponse(response, 'success'))
         .then(() => {
           this.showDataImage(file64);

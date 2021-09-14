@@ -4,6 +4,73 @@ import FormControl from '../../formControl';
 
 import SchemaFormControl from '.';
 
+// prettier-ignore
+const data = [
+  ['text', { type: 'string' }],
+  ['text', { type: 'string', format: 'uri' }],
+  ['text', { type: 'string', format: 'email' }],
+  ['file', { type: 'string', format: 'base64url' }],
+  ['radio', { oneOf: [{ const: 1, title: '1' }, { const: 2, title: '2' }] }],
+  ['radio', { oneOf: [{ const: 1, title: '1' }, { const: 2, title: '2' }, { const: 3, title: '3' }], control: 'radio' }],
+  ['radio', { enum: ['1', '2'] }],
+  ['select', { oneOf: [{ const: 1, title: '1' }] }],
+  ['select', { oneOf: [{ const: 1, title: '1' }, { const: 2, title: '2' }, { const: 3, title: '3' }] }],
+  ['select', { enum: ['1', '2', '3'] }],
+  ['select', { oneOf: [{ const: 1, title: '1' }, { const: 2, title: '2' }, { const: 3, title: '3' }, { const: 4, title: '4' }], control: 'radio' }],
+  ['checkbox', { type: 'boolean' }],
+  ['date', { type: 'string', format: 'date' }],
+  ['date', { type: 'string', control: 'date' }],
+  ['date-time', { type: 'string', control: 'date-time' }],
+  ['date-lookup', { type: 'string', control: 'date-lookup' }],
+  ['tel', { type: 'string', format: 'phone' }],
+  ['number', { type: 'number' }],
+  ['number', { type: 'integer' }],
+  ['password', { type: 'string', format: 'password' }],
+  ['textarea', { type: 'string', control: 'textarea' }],
+  ['tab', { oneOf: [], control: 'tab' }],
+];
+
+describe.each(data)(
+  'Given a component for rendering a form control based on schema: %o and control type: %s',
+  (controlType, schema) => {
+    let component;
+    let props;
+    let events;
+    let sharedProps;
+
+    let onChange;
+    let onFocus;
+    let onBlur;
+
+    let value;
+
+    let formControlComponent;
+
+    const id = 'id';
+    const locale = 'en-GB';
+    const translations = {
+      translationKey: 'example',
+    };
+
+    beforeEach(() => {
+      onChange = jest.fn();
+      onFocus = jest.fn();
+      onBlur = jest.fn();
+      events = { onChange, onFocus, onBlur };
+      sharedProps = { id, locale, translations };
+
+      props = { ...events, ...sharedProps, value, schema };
+
+      component = shallow(<SchemaFormControl {...props} />);
+      formControlComponent = component.find(FormControl);
+    });
+
+    it('should pass down correct control type', () => {
+      expect(formControlComponent.props().type).toBe(controlType);
+    });
+  },
+);
+
 describe('Given a component for rendering a form control based on a schema', () => {
   let component;
   let props;
