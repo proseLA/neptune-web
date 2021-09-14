@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.12](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.11...@transferwise/components@37.3.12) (2021-09-14)
+
+
+### Bug Fixes
+
+* update drawer padding ([#1130](https://github.com/transferwise/neptune-web/issues/1130)) ([fc50a09](https://github.com/transferwise/neptune-web/commit/fc50a09a03c11258f3c73639230a325d3d165f01))
+
+
+
+
+
 ## [37.3.11](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.10...@transferwise/components@37.3.11) (2021-09-13)
 
 
