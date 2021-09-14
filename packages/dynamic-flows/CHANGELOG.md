@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.2.1...@transferwise/dynamic-flows@15.2.2) (2021-09-14)
+
+
+### Bug Fixes
+
+* Fix end condition logic ([#1142](https://github.com/transferwise/neptune-web/issues/1142)) ([fd37948](https://github.com/transferwise/neptune-web/commit/fd379480d5ea049c7bb3741d20570f2a2120b450))
+
+
+
+
+
 ## [15.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.2.0...@transferwise/dynamic-flows@15.2.1) (2021-09-14)
 
 
