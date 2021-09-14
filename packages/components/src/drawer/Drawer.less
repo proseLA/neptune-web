@@ -10,12 +10,6 @@
   max-height: 100vh;
 
   .np-drawer-header,
-  .np-drawer-footer,
-  .np-drawer-content {
-    padding: var(--size-16);
-  }
-
-  .np-drawer-header,
   .np-drawer-footer {
     display: flex;
     align-items: center;
@@ -29,6 +23,7 @@
 
   .np-drawer-header {
     min-height: var(--size-56);
+    padding: var(--size-24) var(--size-16);
 
     &.np-drawer-header--withborder {
       box-shadow: inset 0 -1px 0 0 rgb(226, 230, 232);
@@ -39,6 +34,11 @@
       cursor: pointer;
       fill: rgb(0, 185, 255);
     }
+  }
+
+  .np-drawer-footer,
+  .np-drawer-content {
+    padding: var(--size-16);
   }
 
   .np-drawer-footer {
@@ -58,7 +58,10 @@
 
 @media (--screen-md) {
   .np-drawer {
-    .np-drawer-header,
+    .np-drawer-header {
+      padding: var(--size-32) var(--size-24);
+    }
+
     .np-drawer-footer,
     .np-drawer-content {
       padding: var(--size-24);
