@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.3.13](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.12...@transferwise/components@37.3.13) (2021-09-14)
+
+
+### Bug Fixes
+
+* **Upload:** re-render translated messages on language change ([#1135](https://github.com/transferwise/neptune-web/issues/1135)) ([e375eaa](https://github.com/transferwise/neptune-web/commit/e375eaa3279dbb88cd8d8411c9477caa89aa45db))
+
+
+
+
+
 ## [37.3.12](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.11...@transferwise/components@37.3.12) (2021-09-14)
 
 
