@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.19...@transferwise/dynamic-flows@15.2.0) (2021-09-14)
+
+
+### Features
+
+* [VUX-950] Update persist async to work with `blob` type ([6f958f6](https://github.com/transferwise/neptune-web/commit/6f958f69ea88bfcecf1cedf85600b2bd5eb71151))
+
+
+
+
+
 ## [15.1.19](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.1.18...@transferwise/dynamic-flows@15.1.19) (2021-09-14)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

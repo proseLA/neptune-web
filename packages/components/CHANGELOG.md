@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.13...@transferwise/components@37.4.0) (2021-09-14)
+
+
+### Features
+
+* [VUX-950] Update persist async to work with `blob` type ([6f958f6](https://github.com/transferwise/neptune-web/commit/6f958f69ea88bfcecf1cedf85600b2bd5eb71151))
+
+
+
+
+
 ## [37.3.13](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.3.12...@transferwise/components@37.3.13) (2021-09-14)
 
 
