@@ -19,7 +19,7 @@ describe('creates safe, enphasised html', () => {
         '<script>something malicious</script><positive>hello</positive><negative>world</negative><positive>!</positive>',
       ),
     ).toStrictEqual(
-      '&lt;script&gt;something malicious&lt;/script&gt;<span class="emphasis emphasis--positive">hello</span><span class="emphasis emphasis--negative">world</span><span class="emphasis emphasis--positive">!</span>',
+      '&lt;script&gt;something malicious&lt;/script&gt;<em class="emphasis emphasis--positive">hello</em><em class="emphasis emphasis--negative">world</em><em class="emphasis emphasis--positive">!</em>',
     );
   });
 

@@ -19,8 +19,8 @@ class EmphasisHtmlTransformer {
     this.tags = (whitelistedTags || []).map((tag) => {
       return {
         transformed: {
-          opening: `<span class="emphasis emphasis--${tag}">`,
-          closing: '</span>',
+          opening: `<em class="emphasis emphasis--${tag}">`,
+          closing: '</em>',
         },
         escapedRegex: {
           opening: new RegExp(`${ESCAPED_OPENING_CHEVRON}${tag}${ESCAPED_CLOSING_CHEVRON}`, 'g'),

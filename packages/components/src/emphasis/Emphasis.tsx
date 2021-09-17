@@ -16,7 +16,7 @@ const Emphasis = ({ text = undefined }: EmphasisProps): ReactElement | null => {
 
   const transformedText = emphasisHtmlTransformer.transform(text);
   // eslint-disable-next-line react/no-danger
-  return transformedText ? <em dangerouslySetInnerHTML={{ __html: transformedText }} /> : null;
+  return transformedText ? <span dangerouslySetInnerHTML={{ __html: transformedText }} /> : null;
 };
 
 export default Emphasis;

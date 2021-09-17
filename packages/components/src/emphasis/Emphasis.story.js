@@ -1,5 +1,3 @@
-import { text } from '@storybook/addon-knobs';
-
 import Emphasis from './Emphasis';
 
 export default {
@@ -15,15 +13,13 @@ export default {
 export const Basic = () => {
   return (
     <Emphasis
-      text={text(
-        'text',
-        '' +
-          '<important>important</important>\\n' +
-          '<positive>positive</positive>\\n' +
-          '<negative>negative</negative>\\n' +
-          '<warning>warning</warning>\\n' +
-          '<script>alert("nice try!")</script>',
-      )}
+      text={
+        'This is <important>important</important>.\\n' +
+        'This is <positive>positive</positive>.\\n' +
+        'This is <negative>negative</negative>.\\n' +
+        'This is a <warning>warning</warning>.\\n' +
+        '<script>alert("nice try!")</script>'
+      }
     />
   );
 };
