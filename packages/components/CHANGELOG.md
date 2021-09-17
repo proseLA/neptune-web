@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.4.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.4.2...@transferwise/components@37.4.3) (2021-09-17)
+
+
+### Bug Fixes
+
+* **Emphasis:** emphasise only important bit ([#1146](https://github.com/transferwise/neptune-web/issues/1146)) ([7df9c29](https://github.com/transferwise/neptune-web/commit/7df9c2951cb7df8006a1018b439e29ac58271a09))
+* height in IOS safari and word-break in modal ([#1145](https://github.com/transferwise/neptune-web/issues/1145)) ([1c128e5](https://github.com/transferwise/neptune-web/commit/1c128e584ec384190cc33f1d33979bf44f2a79c1))
+
+
+
+
+
 ## [37.4.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.4.1...@transferwise/components@37.4.2) (2021-09-15)
 
 
