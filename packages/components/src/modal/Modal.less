@@ -18,17 +18,24 @@
   }
 
   .tw-modal-content {
-    max-height: 100vh;
+    height: calc(100vh - 88px); // 88 = Android bottom nav menu height (56px) + viewport top padding (16px) + viewport bottom padding (16px)
+    // stylelint-disable-next-line value-no-vendor-prefix
+    max-height: -webkit-fill-available;
     overflow: hidden;
     background: var(--color-background-elevated);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
+
+    @media (--screen-sm) {
+      height: initial;
+    }
 
     .tw-modal-body {
       // prevents overflowing content to show below modal footer
       z-index: 1;
       flex: 1;
       overflow-y: auto;
+      word-break: break-word;
     }
 
     .tw-modal-header {
