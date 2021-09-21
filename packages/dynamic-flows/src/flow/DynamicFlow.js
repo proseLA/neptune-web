@@ -50,6 +50,16 @@ const getComponents = (step) => {
 
 const isExitResponse = (response) => response.headers?.has(EXIT_HEADER);
 
+const buildInitialModels = (model, schemas) => {
+  const schemaIdToModelMap = {};
+
+  schemas.forEach((schema) => {
+    schemaIdToModelMap[schema.$id] = getValidModelParts(model, schema);
+  });
+
+  return schemaIdToModelMap;
+};
+
 /**
  * ## DynamicFlow
  *
@@ -74,16 +84,23 @@ const DynamicFlow = (props) => {
 
   const httpClient = propsHttpClient || defaultHttpClient.init({ baseUrl });
 
+  const onNewStep = () => {
+    if (stepSpecification?.model) {
+      setModels(buildInitialModels(stepSpecification.model, stepSpecification.schemas));
+    }
+    if (stepSpecification?.errors?.validation) {
+      setValidations(stepSpecification.errors.validation);
+    } else {
+      setValidations({});
+    }
+  };
+
   useEffect(() => {
     const action = { url: flowUrl, method: 'GET' };
     fetchStep(action);
   }, [baseUrl, flowUrl, propsHttpClient]);
 
-  useEffect(() => {
-    if (stepSpecification?.model) {
-      setModels(buildInitialModels(stepSpecification.model, stepSpecification.schemas));
-    }
-  }, [stepSpecification]);
+  useEffect(onNewStep, [stepSpecification]);
 
   useEffect(() => {
     setModelIsValid(areModelsValid(models, stepSpecification.schemas));
@@ -205,16 +222,6 @@ const DynamicFlow = (props) => {
     }
 
     fetchStep(action);
-  };
-
-  const buildInitialModels = (model, schemas) => {
-    const schemaIdToModelMap = {};
-
-    schemas.forEach((schema) => {
-      schemaIdToModelMap[schema.$id] = getValidModelParts(stepSpecification.model, schema);
-    });
-
-    return schemaIdToModelMap;
   };
 
   const components = getComponents(stepSpecification);

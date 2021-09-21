@@ -106,6 +106,16 @@ describe('Given a component for rendering a dynamic flow', () => {
   const formStepNoLayout = { ...formStep };
   delete formStepNoLayout.layout;
 
+  const formStepWithErrors = {
+    ...formStep,
+    errors: { validation: { a: 'Step validation error' } },
+  };
+  formStepWithErrors.schemas[0].properties.a = {
+    ...formStepWithErrors.schemas[0].properties.a,
+    refreshFormOnChange: true,
+    refreshFormUrl: '/formNoLayout',
+  };
+
   const decisionStep = {
     type: 'decision',
     key: 'decide-thing-type',
@@ -143,6 +153,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   const baseUrl = '';
   const formUrl = '/form';
   const formNoLayoutUrl = '/formNoLayout';
+  const formWithErrorsUrl = '/formWithErrors';
   const decisionUrl = '/decision';
   const finalUrl = '/final';
 
@@ -188,6 +199,8 @@ describe('Given a component for rendering a dynamic flow', () => {
         return resolve(formStep);
       case '/formNoLayout':
         return resolve(formStepNoLayout);
+      case '/formWithErrors':
+        return resolve(formStepWithErrors);
       case '/decision':
         return resolve(decisionStep);
       case '/final':
@@ -308,6 +321,47 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     it('should inline any schemas referenced by id using the layout service', () => {
       expect(inlineReferences).toHaveBeenCalledTimes(3);
+    });
+  });
+
+  describe('when there is a form step with errors', () => {
+    async function mountDynamicFlow() {
+      const component = mount(
+        <DynamicFlow
+          baseUrl={baseUrl}
+          flowUrl={formWithErrorsUrl}
+          httpClient={mockClient}
+          onClose={onClose}
+          onStepChange={onStepChange}
+        />,
+      );
+      await wait(0);
+      component.update();
+      return component;
+    }
+
+    it('should pass the validation errors to the DynamicLayout component', async () => {
+      const component = await mountDynamicFlow();
+
+      expect(component.find(DynamicLayout).props().errors).toMatchObject({
+        a: 'Step validation error',
+      });
+    });
+
+    it('should clear the validation errors when refreshing to a step without errors', async () => {
+      const component = await mountDynamicFlow();
+
+      component.find(DynamicLayout).invoke('onModelChange')(
+        { a: 'changed value' },
+        formStepWithErrors.schemas[0],
+        'changed value',
+        formStepWithErrors.schemas[0].properties.a,
+      );
+
+      await wait(0);
+      component.update();
+
+      expect(component.find(DynamicLayout).props().errors).toStrictEqual({});
     });
   });
 

@@ -3,6 +3,11 @@
   "key": "create-thing",
   "title": "Create Recipient",
   "description": "Please enter all the information",
+  "errors": {
+    "validation": {
+      "name": "This value failed server-side validation."
+    }
+  },
   "schemas": [
     {
       "$id": "#gbp-recipient",
