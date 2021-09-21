@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.2.4...@transferwise/dynamic-flows@15.3.0) (2021-09-21)
+
+
+### Features
+
+* add support for step errors ([#1149](https://github.com/transferwise/neptune-web/issues/1149)) ([c777936](https://github.com/transferwise/neptune-web/commit/c777936b32399359acc70eeb2f5a2bdffee15d5a))
+
+
+
+
+
 ## [15.2.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.2.3...@transferwise/dynamic-flows@15.2.4) (2021-09-17)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
