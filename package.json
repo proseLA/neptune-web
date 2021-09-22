@@ -93,14 +93,15 @@
     "test": "lerna run test --parallel --no-prefix",
     "bundlesize": "bundlesize",
     "clean": "npm-run-all clean:*",
-    "clean:modules": " lerna exec -- rm -rf ./node_modules && rm -rf node_modules  && rm -rf .next",
+    "clean:modules": "lerna exec -- rm -rf ./node_modules && rm -rf node_modules  && rm -rf .next",
     "clean:lock": "find . -name '*.lock' -or -name '*-lock.json' -type f -delete",
     "lint": "lerna run lint --parallel --since main --no-prefix",
     "preinstall": "node enforce-yarn.js",
     "create-component": "files-scaffold",
     "test:visual": "lerna run test:visual --stream",
-    "gh-pages-cleanup": " node ./bin/gh-page-cleanup.js",
-    "yarn-lock-cleanup": "yarn-deduplicate"
+    "gh-pages-cleanup": "node ./scripts/gh-page-cleanup.js",
+    "yarn-lock-cleanup": "yarn-deduplicate",
+    "postversion": "node ./scripts/updatePeerDependencies.js"
   },
   "husky": {
     "hooks": {

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
 
-const inquirer = require('inquirer');
-const inquirerFileTreeSelection = require('inquirer-file-tree-selection-prompt');
 const { exec } = require('child_process');
 const path = require('path');
+
+const inquirer = require('inquirer');
+const inquirerFileTreeSelection = require('inquirer-file-tree-selection-prompt');
 
 inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection);
 
@@ -82,8 +83,8 @@ const run = async () => {
 
   const options = `${dry ? '-d' : ''} ${verbose ? '-v=2' : ''}`;
 
-  const handleOutput = (err, stdout, stderr) => {
-    if (err) {
+  const handleOutput = (error, stdout, stderr) => {
+    if (error) {
       console.log(stderr);
       return;
     }

@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 const { generateFromFile } = require('react-to-typescript-definitions');
 
 /**
@@ -75,10 +76,10 @@ jsFiles.forEach(({ filename, folder }) => {
     fileTypeDeclrationContent = generateFromFile(null, `src/${filePath}.js`, {
       babylonPlugins: ['optionalChaining', 'nullishCoalescingOperator'],
     });
-  } catch (e) {
+  } catch (error) {
     /* eslint-disable no-console */
     console.log(`Error while generating types for '${filePath}'`);
-    throw e;
+    throw error;
   }
 
   // write content into .d.ts files

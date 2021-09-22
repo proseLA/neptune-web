@@ -7,14 +7,14 @@ Steps:
  - Delete folder(s) if creation date is bigger than threshold date
  - Then Commit & Push those changes
  - Checkout to original branch
-*/
+ */
 
 const { execSync } = require('child_process');
-const glob = require('glob');
-const shell = require('shelljs');
 const path = require('path');
 
+const glob = require('glob');
 const inquirer = require('inquirer');
+const shell = require('shelljs');
 
 const fetchSettings = () => {
   const questions = [
@@ -42,9 +42,9 @@ const resume = (removed) => {
 };
 
 const execSyncWithMessage = ({ command, message }) => {
-  execSync(command, (err, output, stderr) => {
-    if (err) {
-      console.log(`error: ${err.message}`);
+  execSync(command, (error, output, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`);
       return;
     }
     if (stderr) {
@@ -78,7 +78,7 @@ const run = async () => {
       }),
     );
 
-    if (removed.length) {
+    if (removed.length > 0) {
       const { confirm } = await resume(removed);
       if (confirm) {
         execSyncWithMessage({
@@ -96,8 +96,8 @@ const run = async () => {
     }
 
     execSync(`git checkout ${currentBranch}`);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 

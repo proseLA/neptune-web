@@ -47,7 +47,7 @@
     "lintless:fix": "yarn lintless --fix"
   },
   "bin": {
-    "neptune-upgrade-util": "bin/neptune-upgrader.js"
+    "neptune-upgrade-util": "scripts/neptune-upgrader.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
