@@ -1,7 +1,7 @@
 {
   "command": {
     "publish": {
-      "allowBranch": ["main"],
+      "allowBranch": ["DS-881-2"],
       "conventionalCommits": true,
       "verifyAccess": false,
       "ignoreChanges": [

@@ -30,7 +30,7 @@ aliases:
 
   - &lerna-publish
     name: Publish packages
-    command: npx lerna publish -m "[skip ci] Release" --yes
+    command: npx lerna publish -m "[skip ci] Release" --yes --dist-tag beta
 
   - &lerna-publish-beta
     name: Publish package(s) as beta changes
@@ -262,7 +262,7 @@ workflows:
             - test
           filters:
             branches:
-              only: main
+              only: DS-881-2
 
       - hold-beta-release:
           type: approval
