@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.4.3...@transferwise/components@37.5.0) (2021-09-22)
+
+
+### Features
+
+* add updatePeerDependencies script on npm postversion ([#1094](https://github.com/transferwise/neptune-web/issues/1094)) ([1793a61](https://github.com/transferwise/neptune-web/commit/1793a616b917fc1895689c8dcc64ab6905a084c3))
+
+
+
+
+
 ## [37.4.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.4.2...@transferwise/components@37.4.3) (2021-09-17)
 
 
