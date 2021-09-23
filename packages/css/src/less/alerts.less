@@ -6,7 +6,7 @@
 .alert {
   padding: var(--size-16);
   border-radius: var(--radius-medium);
-  color: var(--color-text-primary);
+  color: var(--color-content-primary);
   background-color: var(--color-background-neutral);
   min-width: 200px;
   font-size: @font-size-base;
@@ -76,35 +76,35 @@
 .alert-success,
 .alert-positive {
   .alert-variant(
-    @color-background-positive;
-    @color-base-green-dark;
-    darken(@color-base-green-dark, 10%);
+    var(--color-background-positive);
+    var(--color-content-positive);
+    var(--color-content-positive-hover);
   );
 }
 
 .alert-info,
 .alert-neutral {
   .alert-variant(
-    @color-background-neutral;
-    @color-text-primary;
-    darken(@color-text-primary, 10%);
+    var(--color-background-neutral);
+    var(--color-content-primary);
+    var(--color-content-primary);
   );
 }
 
 .alert-warning {
   .alert-variant(
-    @color-background-warning;
-    @color-base-orange-dark;
-    darken(@color-base-orange-dark, 10%);
+    var(--color-background-warning);
+    var(--color-content-warning);
+    var(--color-content-warning-hover);
   );
 }
 
 .alert-danger,
 .alert-negative {
   .alert-variant(
-    @color-background-negative;
-    @color-base-red-dark;
-    darken(@color-base-red-dark, 10%);
+    var(--color-background-negative);
+    var(--color-content-negative);
+    var(--color-content-negative-hover);
   );
 }
 

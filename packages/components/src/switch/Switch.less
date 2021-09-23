@@ -1,11 +1,8 @@
-@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
-
 .np-switch {
   display: inline-flex;
   overflow: hidden;
   width: 50px;
   padding: 2px;
-  border: 1px solid @color-base-smoke-mid;
   border-radius: 16px;
 
   &--thumb {
@@ -13,12 +10,12 @@
     transition: transform cubic-bezier(0, 0.94, 0.62, 1) 350ms;
 
     .tw-icon {
-      color: var(--color-text-control);
+      color: var(--color-base-white-light);
     }
   }
 
   &--unchecked {
-    background: @color-base-smoke-mid;
+    background: var(--color-interactive-secondary);
 
     .switch--thumb {
       transform: translateX(0);
@@ -26,8 +23,7 @@
   }
 
   &--checked {
-    border: 1px solid var(--color-control-accent);
-    background: var(--color-control-accent);
+    background: var(--color-interactive-accent);
 
     .np-switch--thumb {
       transform: translateX(20px);
@@ -43,9 +39,9 @@
   }
 
   &--disabled {
-    background: var(--color-text-inactive);
+    background: var(--color-interactive-disabled);
     cursor: not-allowed;
-    border-color: var(--color-text-inactive);
+    border-color: var(--color-interactive-disabled);
   }
 
   input {

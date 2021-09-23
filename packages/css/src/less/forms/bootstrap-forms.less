@@ -1,6 +1,5 @@
 @import (reference) '../../variables/legacy-variables.less';
 @import (reference) '../../variables/neptune-tokens.less';
-
 @import (reference) '../mixins/_arrows.less';
 @import (reference) '../mixins/_grid.less';
 @import (reference) '../mixins/_forms.less';
@@ -49,9 +48,13 @@ label {
 label,
 .secondary {
   font-size: @control-label-font-size;
-  color: @control-label-color;
+  color: var(--color-content-secondary);
   line-height: 20px;
   transition: color ease-in-out 0.15s;
+}
+
+.disabled > label {
+  color: var(--color-content-disabled);
 }
 
 // Normalize form controls
@@ -112,7 +115,7 @@ output {
   padding-top: (@padding-base-vertical + 1);
   font-size: @font-size-base;
   line-height: @line-height-base;
-  color: @input-color;
+  color: var(--color-content-primary);
 }
 
 // Common form controls
@@ -140,10 +143,10 @@ output {
 .form-control {
   display: block;
   width: 100%;
-  color: @input-color;
-  background-color: @input-bg;
+  color: var(--color-content-primary);
+  background-color: var(--color-background-screen);
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-  border: 1px solid @input-border;
+  border: 1px solid var(--color-interactive-secondary);
   transition: border-color ease-in-out 0.15s;
 
   .input-size(
@@ -158,14 +161,14 @@ output {
   background-clip: padding-box;
 
   &:hover {
-    border-color: @input-border-hover;
+    border-color: var(--color-interactive-secondary-hover);
   }
 
   // Customize the `:focus` state to imitate native WebKit styles.
   .form-control-focus();
 
   &::placeholder {
-    color: @input-color-placeholder;
+    color: var(--color-content-secondary);
   }
 
   // Disabled and read-only inputs
@@ -176,12 +179,12 @@ output {
   &[disabled],
   &[readonly],
   fieldset[disabled] & {
-    background-color: @input-bg-disabled;
-    color: @input-color-disabled;
-    border-color: @input-border-disabled;
+    background-color: var(--color-background-neutral);
+    color: var(--color-content-disabled);
+    border-color: var(--color-interactive-disabled);
 
     &::placeholder {
-      color: @input-color-disabled;
+      color: var(--color-content-disabled);
     }
 
     // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
@@ -212,7 +215,7 @@ output {
   font-weight: @font-weight-normal;
 
   &:focus {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-secondary-hover);
   }
 }
 
@@ -369,9 +372,9 @@ input[type='checkbox'] {
   line-height: @line-height-computed;
   min-height: (@line-height-computed * 2);
   font-size: @input-font-size;
-  color: @input-color-disabled;
-  background-color: @input-bg-disabled;
-  border: 1px solid @input-border-disabled;
+  color: var(--color-content-disabled);
+  background-color: var(--color-background-neutral);
+  border: 1px solid var(--color-interactive-disabled);
   border-radius: @input-border-radius;
   padding: @input-padding;
 
@@ -530,10 +533,10 @@ input[type='checkbox'] {
   }
 
   .input-group-addon {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-secondary);
 
-    &:hover {
-      border-color: @input-border-focus;
+    &:active {
+      border-color: var(--color-interactive-secondary-active);
     }
   }
 }
@@ -561,9 +564,9 @@ input[type='checkbox'] {
 }
 
 .help-block {
-  color: @brand-grey-plus-10;
-  border-color: @input-border;
-  background-color: @brand-smoke-plus-20;
+  color: var(--color-content-secondary);
+  border-color: var(--color-interactive-secondary);
+  background-color: var(--color-background-neutral);
   display: block;
 
   .arrow(10px);
@@ -579,37 +582,33 @@ input[type='checkbox'] {
 // Feedback states
 .has-success {
   .form-control-validation(
-    @state-success-text;
-    @state-success-border;
-    @state-success-border-hover;
-    @state-success-bg
+    var(--color-content-positive);
+    var(--color-interactive-secondary);
+    var(--color-interactive-secondary-hover);
   );
 }
 
 .has-info {
   .form-control-validation(
-    @brand-light-blue-minus-20;
-    @brand-light-blue;
-    @brand-light-blue-minus-10;
-    @brand-smoke-plus-20
+    var(--color-content-accent);
+    var(--color-interactive-secondary);
+    var(--color-interactive-secondary-hover);
   );
 }
 
 .has-warning {
   .form-control-validation(
-    @state-warning-text;
-    @state-warning-border;
-    @state-warning-border-hover;
-    @state-warning-bg
+    var(--color-content-warning);
+    var(--color-interactive-secondary);
+    var(--color-interactive-secondary-hover);
   );
 }
 
 .has-error {
   .form-control-validation(
-    @state-danger-text;
-    @state-danger-border;
-    @state-danger-border-hover;
-    @state-danger-bg
+    var(--color-content-negative);
+    var(--color-interactive-negative);
+    var(--color-interactive-negative-hover);
   );
 }
 
@@ -782,7 +781,7 @@ input[type='checkbox'] {
 }
 
 .input-group-addon {
-  color: @gray-light;
+  color: var(--color-content-secondary);
   transition: border-color ease-in-out 0.15s;
 }
 
@@ -798,8 +797,8 @@ input[type='checkbox'] {
   top: -3px;
 
   .label-default {
-    color: @gray-light;
-    background-color: @brand-smoke-plus-10;
+    color: var(--color-content-secondary);
+    background-color: var(--color-background-neutral);
   }
 }
 
@@ -885,14 +884,14 @@ input[type='checkbox'] {
     padding-top: 12px;
     padding-bottom: 10px;
     padding-right: 16px;
-    color: @input-color;
-    background-color: @brand-white;
-    border: 1px solid @brand-smoke;
+    color: var(--color-content-primary);
+    background-color: var(--color-background-screen);
+    border: 1px solid var(--color-interactive-secondary);
     border-radius: @border-radius-base;
     transition: border 0.15s ease-in-out, background-color 0.15s ease-in-out;
 
     &:hover {
-      border-color: @input-border-hover;
+      border-color: var(--color-interactive-accent-hover);
     }
 
     &.focus,
@@ -900,7 +899,7 @@ input[type='checkbox'] {
     &.has-focus,
     &.has-focus:hover,
     &:focus-within {
-      border-color: @input-border-focus;
+      border-color: var(--color-interactive-accent-active);
     }
   }
 
@@ -910,9 +909,9 @@ input[type='checkbox'] {
   &.disabled,
   &.readonly {
     label {
-      color: @input-color-disabled;
-      border-color: @input-border-disabled;
-      background-color: @input-bg-disabled;
+      color: var(--color-content-disabled);
+      border-color: var(--color-interactive-disabled);
+      background-color: var(--color-background-neutral);
     }
   }
 
@@ -925,7 +924,7 @@ input[type='checkbox'] {
       .small {
         display: block;
         font-size: @font-size-small;
-        color: @text-secondary-color;
+        color: var(--color-content-secondary);
       }
     }
   }
@@ -937,12 +936,12 @@ input[type='checkbox'] {
 .radio.disabled {
   > label,
   > label:hover {
-    border-color: @input-border-disabled;
-    color: @color-text-inactive;
+    border-color: var(--color-interactive-disabled);
+    color: var(--color-content-disabled);
 
     small,
     .small {
-      color: @color-text-inactive;
+      color: var(--color-content-disabled);
     }
   }
 }
@@ -950,7 +949,7 @@ input[type='checkbox'] {
 .error-messages {
   display: none;
   color: @state-danger-text;
-  background-color: @state-danger-bg;
+  background-color: var(--color-background-negative);
   font-size: @font-size-small;
   line-height: 24px;
   position: relative;
@@ -1034,5 +1033,5 @@ input[type='checkbox'] {
 }
 
 .form-control-placeholder {
-  color: @input-color-placeholder;
+  color: var(--color-content-secondary);
 }

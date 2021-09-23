@@ -53,7 +53,7 @@ describe('Nudge', () => {
 
   it('calls onDismiss prop when close button is clicked', () => {
     render(<Nudge {...defaultProps} />);
-    const closeButton = screen.getByLabelText('close');
+    const closeButton = screen.getByLabelText('Close');
     fireEvent.click(closeButton);
     expect(defaultProps.onDismiss).toHaveBeenCalledTimes(1);
   });

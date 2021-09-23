@@ -12,11 +12,7 @@ export default {
 
 export const Basic = () => {
   const size = select('size', Object.values(Size), Size.SMALL);
-  const type = select(
-    'type',
-    ['accent', 'positive', 'negative', 'primary', 'pay', 'secondary', 'danger', 'link'],
-    'primary',
-  );
+  const type = select('type', ['accent', 'positive', 'negative'], 'positive');
   const priority = select('priority', Object.values(Priority), Priority.PRIMARY);
   const htmlType = select('htmlType', ['button', 'submit', 'reset'], 'button');
   const disabled = boolean('disabled', false);

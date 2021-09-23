@@ -73,7 +73,7 @@
   background: var(--color-background-screen);
 
   &.mobileNavItem--active .mobileNavItem__link {
-    color: var(--color-accent);
+    color: var(--color-content-accent);
   }
 
   &.mobileNavItem--call-to-action {
@@ -115,7 +115,7 @@
 
       &::before {
         content: '';
-        background: var(--color-positive);
+        background: var(--color-interactive-positive);
         display: block;
         height: 40px;
         width: 40px;
@@ -129,7 +129,7 @@
 
     &:hover {
       .mobileNavItem__icon::before {
-        background: var(--color-control-positive-hover);
+        background: var(--color-interactive-positive-hover);
       }
     }
   }
@@ -156,13 +156,7 @@
   flex: 0 0 100%;
   padding-top: 5px;
   text-decoration: none;
-  color: var(--color-primary);
-
-  &:hover,
-  &:active {
-    color: var(--color-accent);
-    text-decoration: none;
-  }
+  color: var(--color-content-primary);
 }
 
 .mobileNavItem__label {

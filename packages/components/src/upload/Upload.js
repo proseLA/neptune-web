@@ -342,7 +342,7 @@ class Upload extends Component {
         {!isProcessing && (
           <div className="droppable-dropping-card droppable-card">
             <div className="droppable-card-content">
-              <div className="circle circle-sm p-t-1 text-info">
+              <div className="circle circle-sm p-t-1 text-primary">
                 <PlusIcon />
               </div>
               <h4 className="m-t-3">

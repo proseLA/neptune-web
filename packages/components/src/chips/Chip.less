@@ -1,10 +1,11 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 
 .np-chip {
-  color: var(--color-text-secondary);
+  color: var(--color-content-secondary);
   background-color: transparent;
   height: var(--size-32);
-  margin-right: var(--size-8);
+  .margin(right, var(--size-8));
+
   padding: 0 var(--size-12);
   border-radius: var(--size-16);
   border: 1px solid var(--color-border-neutral);
@@ -19,7 +20,7 @@
     opacity: 1;
     transition: opacity 0.15s ease-in-out;
     pointer-events: auto;
-    color: @color-base-navy-fade;
+    color: var(--color-content-secondary);
 
     &:hover,
     &:focus {
@@ -29,7 +30,7 @@
   }
 
   &:last-child {
-    margin-right: 0;
+    .margin(right, 0);
   }
 
   &:hover {
@@ -37,22 +38,22 @@
   }
 
   &:active {
-    color: var(--color-text-control);
-    background-color: var(--color-control-accent-active);
-    border-color: var(--color-control-accent-active);
+    color: var(--color-base-white-light);
+    background-color: var(--color-interactive-accent-active);
+    border-color: var(--color-interactive-accent-active);
   }
 
   &--selected {
-    color: var(--color-text-control);
-    background-color: var(--color-control-accent);
-    border-color: var(--color-control-accent);
+    color: var(--color-base-white-light);
+    background-color: var(--color-interactive-accent);
+    border-color: var(--color-interactive-accent);
     pointer-events: none;
 
     &:hover,
     &:active {
-      color: var(--color-text-control);
-      background-color: var(--color-control-accent);
-      border-color: var(--color-control-accent);
+      color: var(--color-base-white-light);
+      background-color: var(--color-interactive-accent-hover);
+      border-color: var(--color-interactive-accent-hover);
     }
 
     .np-close-button {
@@ -61,8 +62,8 @@
   }
 
   &.has-error {
-    background: var(--color-control-negative);
-    color: var(--color-text-control);
+    background: var(--color-interactive-negative);
+    color: var(--color-base-white-light);
 
     .np-close-button {
       color: white;

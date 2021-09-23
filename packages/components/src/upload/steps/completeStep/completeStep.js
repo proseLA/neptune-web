@@ -1,6 +1,9 @@
 import { AlertCircle as AlertCircleIcon, Document as DocumentIcon } from '@transferwise/icons';
 import PropTypes from 'prop-types';
 
+import { Priority, Size } from '../../..';
+import Button from '../../../button';
+
 const CompleteStep = (props) => {
   const {
     csButtonText,
@@ -44,13 +47,14 @@ const CompleteStep = (props) => {
           )}
         </div>
         {csButtonText && (
-          <button
-            type="button"
-            className="btn btn-default btn-sm m-t-3"
+          <Button
+            size={Size.SMALL}
+            priority={Priority.SECONDARY}
+            className="m-t-3"
             onClick={(event) => onClear(event)}
           >
             {csButtonText}
-          </button>
+          </Button>
         )}
       </div>
     </div>

@@ -44,14 +44,15 @@
       border-right: 0;
     }
 
-    border-color: @input-border;
+    border-color: var(--color-interactive-secondary);
 
     :hover& {
-      border-color: @input-border-hover;
+      border-color: var(--color-interactive-secondary-hover);
     }
 
+    &:active,
     &:focus {
-      border-color: @input-border-focus;
+      border-color: var(--color-interactive-accent-active);
     }
   }
 
@@ -63,32 +64,25 @@
     padding-left: 0;
   }
 
-  &:hover {
-    .input-group-addon,
-    .form-control,
-    .btn-input,
-    .bootstrap-select .btn-default {
-      border-color: @input-border-hover;
-    }
-  }
-
+  &:active,
+  &:focus,
   .focus & {
     .input-group-addon,
     .form-control,
     .btn-input,
     .bootstrap-select .btn-default {
-      border-color: @input-border-focus;
+      border-color: var(--color-interactive-accent-active);
     }
   }
 
   &.disabled {
     .input-group-addon {
-      background-color: @input-bg-disabled;
-      border-color: @input-border-disabled;
+      background-color: var(--color-background-neutral);
+      border-color: var(--color-interactive-disabled);
     }
 
-    &:hover .input-group-addon {
-      border-color: @input-border-hover;
+    &:active .input-group-addon {
+      border-color: var(--color-interactive-secondary-active);
     }
   }
 }
@@ -144,10 +138,10 @@
   padding: @input-group-addon-padding;
   font-size: @input-group-addon-font-size;
   line-height: @input-line-height;
-  color: @input-group-color;
+  color: var(--color-content-secondary);
   text-align: center;
-  background-color: @input-group-addon-bg;
-  border: 1px solid @input-group-addon-border-color;
+  background-color: var(--color-background-screen);
+  border: 1px solid var(--color-interactive-secondary);
 
   // Sizing - over rule spacing from .input-group-sm/lg
   &.input-sm {
@@ -259,14 +253,13 @@
 
 // TODO deprecate
 .focus .input-group,
-.has-focus .input-group,
-.input-group:focus-within {
+.has-focus .input-group {
   .form-control,
   .input-group-addon {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-secondary);
 
-    :hover& {
-      border-color: @input-border-focus;
+    &:hover {
+      border-color: var(--color-interactive-secondary-hover);
     }
   }
 }
@@ -274,10 +267,10 @@
 .has-error .input-group {
   .form-control,
   .input-group-addon {
-    border-color: @state-danger-text;
+    border-color: var(--color-interactive-negative);
 
-    :hover& {
-      border-color: @state-danger-text;
+    &:hover {
+      border-color: var(--color-interactive-negative-hover);
     }
   }
 }
@@ -285,6 +278,5 @@
 .dropdown-menu {
   .input-group-addon {
     border: 0;
-    color: @input-group-color;
   }
 }

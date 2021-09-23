@@ -14,19 +14,14 @@
     list-style-type: none;
 
     &--active .tw-stepper__step-label {
-      color: @color-base-navy-mid;
+      color: var(--color-content-primary);
       font-weight: @font-weight-semi-bold;
     }
 
     &--clickable .tw-stepper__step-label {
-      color: @color-base-blue-light;
+      color: var(--color-content-accent);
       font-weight: @font-weight-semi-bold;
       transition: color 0.15s ease-in-out;
-
-      &:hover,
-      &:focus {
-        color: @color-base-blue-mid;
-      }
     }
 
     @media screen and (--screen-sm) and (--screen-md-max) {
@@ -45,7 +40,7 @@
   }
 
   &__step-label {
-    color: @color-base-smoke-dark;
+    color: var(--color-content-secondary);
     transition: color 0.6s ease-in-out;
     position: absolute;
     white-space: nowrap;
@@ -73,7 +68,7 @@
 .progress-bar-ending {
   float: left;
   height: 100%;
-  background: linear-gradient(to right, @color-base-blue-light, @color-base-navy-mid);
+  background: linear-gradient(to right, var(--color-interactive-accent), var(--color-base-navy-light));
   transition: width 0.6s ease-in-out;
 
   &::after {
@@ -83,7 +78,7 @@
     margin-top: -3px;
     margin-right: -4px;
     content: '';
-    background-color: @color-base-navy-mid;
+    background-color: var(--color-base-navy-light);
     border-radius: 4px;
   }
 }
@@ -91,7 +86,7 @@
 .progress-bar-filler {
   float: left;
   height: 100%;
-  background-color: @color-base-blue-light;
+  background-color: var(--color-interactive-accent);
   border-top-left-radius: 1px;
   border-bottom-left-radius: 1px;
   transition: width 0.6s ease-in-out;

@@ -2,7 +2,7 @@
 @import (reference) './variables/_typography.less';
 
 .footer {
-  background-color: @color-base-smoke-fade;
+  background-color: var(--color-background-neutral);
   font-size: @font-size-small;
   line-height: @line-height-small;
   padding-top: calc(var(--size-8) * 10);
@@ -20,29 +20,29 @@
 
   .footer-link,
   .link-icon {
-    color: @color-base-smoke-fade;
+    color: var(--color-content-secondary);
     font-weight: normal;
     text-decoration: underline;
 
     &:hover,
     &:active,
     &:focus {
-      color: #384347;
+      color: var(--color-content-secondary);
     }
   }
 
   .footer-title {
     font-size: @font-size-small;
-    color: var(--color-text-primary);
+    color: var(--color-content-primary);
 
     .footer-link {
-      color: var(--color-text-primary);
+      color: var(--color-content-primary);
       font-weight: bold;
 
       &:hover,
       &:active,
       &:focus {
-        color: @color-base-grey-mid;
+        color: var(--color-content-primary);
       }
     }
   }
@@ -61,42 +61,42 @@
     text-decoration: none;
 
     svg {
-      fill: @color-base-grey-mid;
+      fill: var(--color-interactive-secondary);
 
       &:hover,
       &:active,
       &:focus {
-        fill: #384347;
+        fill: var(--color-interactive-secondary-hover);
       }
     }
   }
 
   &.footer-inverse {
-    background: @color-base-navy-light;
+    background: var(--color-base-navy-light);
 
     .footer-link,
     .link-icon {
-      color: @color-base-smoke-fade;
+      color: var(--color-content-secondary);
 
       &:hover,
       &:active,
       &:focus {
-        color: @color-base-smoke-dark;
+        color: var(--color-content-secondary);
       }
 
       svg {
-        fill: @color-base-smoke-fade;
+        fill: var(--color-content-secondary);
 
         &:hover,
         &:active,
         &:focus {
-          fill: @color-base-smoke-dark;
+          fill: var(--color-content-secondary);
         }
       }
     }
 
     .footer-title {
-      color: @color-base-smoke-fade;
+      color: var(--color-content-secondary);
     }
 
     hr {
@@ -104,7 +104,7 @@
     }
 
     .tiny {
-      color: @color-base-white;
+      color: var(--color-base-white-light);
     }
   }
 

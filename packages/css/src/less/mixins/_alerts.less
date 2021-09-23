@@ -37,6 +37,7 @@
     left: (2 * @size);
     top: (@size / -2);
     transform: rotate(45deg);
+    clip-path: polygon(0% 0%, 0 100%, 100% 0);
     background-color: inherit;
   }
 }
@@ -65,5 +66,6 @@
   &.arrow-bottom::before {
     top: auto;
     bottom: (@size / -2);
+    transform: rotate(225deg);
   }
 }

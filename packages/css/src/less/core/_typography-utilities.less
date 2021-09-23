@@ -164,55 +164,58 @@
 
 // Contextual colors `.text-*`
 .text-primary {
-  .text-emphasis-variant(@color-base-navy-light, @color-base-navy-light, @color-base-navy-mid);
+  .text-emphasis-variant(var(--color-content-primary), var(--color-content-primary), var(--color-content-primary));
 
   .bg-primary & {
-    color: @color-base-white !important;
+    color: var(--color-base-white-light) !important;
   }
 }
 
+.text-positive,
 .text-success {
-  .text-emphasis-variant(@color-base-green-dark, @color-base-green-light, @color-base-green-dark);
+  .text-emphasis-variant(var(--color-content-positive), var(--color-content-positive), var(--color-content-positive-hover));
 
   .bg-primary & {
-    color: @color-base-green-light !important;
+    color: var(--color-content-positive) !important;
   }
 }
 
+.text-accent,
 .text-info {
-  .text-emphasis-variant(@color-base-blue-dark, @color-base-blue-light, @color-base-blue-dark);
+  .text-emphasis-variant(var(--color-content-accent), var(--color-content-accent), var(--color-content-accent-hover));
 
   .bg-primary & {
-    color: @color-base-blue-light !important;
+    color: var(--color-content-accent) !important;
   }
 }
 
 .text-warning {
   .text-emphasis-variant(
-    @color-base-orange-dark,
-    @color-base-orange-light,
-    @color-base-orange-dark
+    var(--color-content-accent),
+    var(--color-content-accent),
+    var(--color-content-accent-hover),
   );
 
   .bg-primary & {
-    color: @color-base-orange-light !important;
+    color: var(--color-content-warning) !important;
   }
 }
 
+.text-negative,
 .text-danger {
-  .text-emphasis-variant(@color-base-red-dark, @color-base-red-light, @color-base-red-dark);
+  .text-emphasis-variant(var(--color-content-negative), var(--color-content-negative), var(--color-content-negative-hover));
 
   .bg-primary & {
-    color: @color-base-red-light !important;
+    color: var(--color-content-negative) !important;
   }
 }
 
 .text-inverse {
-  .text-emphasis-variant(@color-base-white, @color-base-white, @color-base-smoke-fade);
+  .text-emphasis-variant(var(--color-base-white-light), var(--color-base-white-light), @color-base-smoke-fade);
 }
 
 .text-muted {
-  color: var(--color-text-inactive) !important;
+  color: var(--color-content-disabled) !important;
 }
 
 .display-1,
@@ -273,12 +276,12 @@
 .colored-dot {
   &::after {
     content: '.';
-    color: var(--color-accent);
+    color: var(--color-content-accent);
   }
 
   &--green {
     &::after {
-      color: var(--color-positive);
+      color: var(--color-content-positive);
     }
   }
 }
