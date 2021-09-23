@@ -71,6 +71,7 @@ const sections: MainSection[] = [
   {
     title: 'Styles',
     directory: 'styles',
+    badge: { type: 'new', expiryDate: '2021-11-15' },
     children: [
       {
         title: 'Core',

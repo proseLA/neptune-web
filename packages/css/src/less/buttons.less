@@ -38,7 +38,7 @@
   &:hover,
   &:focus,
   &.focus {
-    color: @btn-default-color;
+    color: var(--color-interactive-accent-hover);
     text-decoration: none;
   }
 
@@ -79,28 +79,28 @@
 .btn-accent,
 .btn-primary {
   .button-variant(
-    @color-text-control;
-    @color-text-control;
-    @color-control-accent;
-    @color-control-accent-hover;
-    @color-control-accent-active;
-    @color-control-accent;
-    @color-control-accent-hover;
-    @color-control-accent-active;
+    var(--color-base-white-light);
+    var(--color-base-white-light);
+    var(--color-interactive-accent);
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
+    var(--color-interactive-accent);
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
   );
 
   &.btn-priority-2 {
     .button-variant(
-      @color-control-accent;
-      @color-text-control;
+      var(--color-interactive-accent);
+      var(--color-base-white-light);
       transparent;
-      @color-control-accent-hover;
-      @color-control-accent-active;
-      @color-control-accent;
-      @color-control-accent-hover;
-      @color-control-accent-active;
-      @color-background-screen;
-      @color-text-control;
+      var(--color-interactive-accent-hover);
+      var(--color-interactive-accent-active);
+      var(--color-interactive-accent);
+      var(--color-interactive-accent-hover);
+      var(--color-interactive-accent-active);
+      var(--color-background-screen);
+      var(--color-base-white-light);
     );
   }
 }
@@ -108,7 +108,7 @@
 // @DEPRECATED:.btn-link (use Button component with type Accent / priority Tertiary)
 .btn-link,
 .btn-accent.btn-priority-3 {
-  color: @link-color;
+  color: var(--color-content-accent);
   text-decoration: @link-decoration;
   border-color: transparent;
 
@@ -122,22 +122,22 @@
 
   &:hover,
   &:focus {
-    color: @link-hover-color;
+    color: var(--color-content-accent-hover);
     text-decoration: @link-decoration;
     border-color: transparent;
   }
 
   &:active {
-    color: @link-active-color;
+    color: var(--color-content-accent-active);
   }
 
   &[disabled],
   fieldset[disabled] & {
-    color: @link-disabled-color;
+    color: var(--color-content-disabled);
 
     &:hover,
     &:focus {
-      color: @link-disabled-color;
+      color: var(--color-content-disabled);
     }
   }
 }
@@ -146,28 +146,28 @@
 .btn-positive,
 .btn-success {
   .button-variant(
-    @color-text-control;
-    @color-text-control;
-    @color-control-positive;
-    @color-control-positive-hover;
-    @color-control-positive-active;
-    @color-control-positive;
-    @color-control-positive-hover;
-    @color-control-positive-active;
+    var(--color-base-white-light);
+    var(--color-base-white-light);
+    var(--color-interactive-positive);
+    var(--color-interactive-positive-hover);
+    var(--color-interactive-positive-active);
+    var(--color-interactive-positive);
+    var(--color-interactive-positive-hover);
+    var(--color-interactive-positive-active);
   );
 
   &.btn-priority-2 {
     .button-variant(
-      @color-control-positive;
-      @color-text-control;
+      var(--color-interactive-positive);
+      var(--color-base-white-light);
       transparent;
-      @color-control-positive-hover;
-      @color-control-positive-active;
-      @color-control-positive;
-      @color-control-positive-hover;
-      @color-control-positive-active;
-      @color-background-screen;
-      @color-text-control;
+      var(--color-interactive-positive-hover);
+      var(--color-interactive-positive-active);
+      var(--color-interactive-positive);
+      var(--color-interactive-positive-hover);
+      var(--color-interactive-positive-active);
+      var(--color-background-screen);
+      var(--color-base-white-light);
     );
   }
 }
@@ -202,61 +202,48 @@
   );
 }
 
+// @DEPRECATED: .btn-danger (use Button component with type Negative)
+.btn-danger,
 .btn-negative {
   .button-variant(
-    @color-text-control;
-    @color-text-control;
-    @color-control-negative;
-    @color-control-negative-hover;
-    @color-control-negative-active;
-    @color-control-negative;
-    @color-control-negative-hover;
-    @color-control-negative-active;
+    var(--color-base-white-light);
+    var(--color-base-white-light);
+    var(--color-interactive-negative);
+    var(--color-interactive-negative-hover);
+    var(--color-interactive-negative-active);
+    var(--color-interactive-negative);
+    var(--color-interactive-negative-hover);
+    var(--color-interactive-negative-active);
   );
 
   &.btn-priority-2 {
     .button-variant(
-      @color-control-negative;
-      @color-text-control;
+      var(--color-interactive-negative);
+      var(--color-base-white-light);
       transparent;
-      @color-control-negative-hover;
-      @color-control-negative-active;
-      @color-control-negative;
-      @color-control-negative-hover;
-      @color-control-negative-active;
-      @color-background-screen;
-      @color-text-control;
+      var(--color-interactive-negative-hover);
+      var(--color-interactive-negative-active);
+      var(--color-interactive-negative);
+      var(--color-interactive-negative-hover);
+      var(--color-interactive-negative-active);
+      var(--color-background-screen);
+      var(--color-base-white-light);
     );
   }
-}
-
-// @DEPRECATED: .btn-danger (use Button component with type Negative)
-.btn-danger {
-  .button-variant(
-    @btn-danger-color;
-    #FFF;
-    @btn-danger-bg;
-    @btn-danger-bg-hover;
-    @btn-danger-bg-active;
-    @btn-danger-border;
-    @btn-danger-border-hover;
-    @btn-danger-border-active;
-    #FFF
-  );
 }
 
 // @TODO Deprecate / Remove
 .bootstrap-select .btn-default,
 .btn-input {
   .button-variant(
-    @input-color;
-    @input-color;
-    @input-bg;
-    @input-bg;
-    @input-bg;
-    @input-border;
-    @input-border;
-    @input-border-focus
+    var(--color-content-primary);
+    var(--color-content-primary);
+    var(--color-background-screen);
+    var(--color-background-screen);
+    var(--color-background-screen);
+    var(--color-interactive-secondary);
+    var(--color-interactive-secondary-hover);
+    var(--color-interactive-secondary-active);
   );
 }
 
@@ -364,35 +351,26 @@ input[type="button"] {
   padding-right: @padding-base-horizontal;
 
   &:hover {
-    border-color: @input-border-hover;
+    border-color: var(--color-interactive-secondary-hover);
   }
 
   &.active,
   &:active,
   &.focus,
   &:focus {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-accent-active);
     outline: 0 none !important;
   }
 
   // stylelint-disable-next-line no-duplicate-selectors
   .caret {
-    color: @brand-light-blue;
+    color: var(--color-content-accent);
   }
 
   &[disabled] {
-    background-color: @input-bg-disabled;
-    color: @input-color-disabled;
-
-    .caret {
-      color: @input-color-disabled;
-    }
-
-    &:hover,
-    &:focus {
-      background-color: @input-bg-disabled;
-      color: @input-color-disabled;
-    }
+    background-color: var(--color-background-neutral);
+    border-color: var(--color-interactive-disabled);
+    color: var(--color-content-disabled);
   }
 
   .form-control-placeholder {
@@ -453,9 +431,9 @@ input[type="button"] {
 }
 // @TODO Deprecate / Remove
 .bootstrap-select.open > .dropdown-toggle.btn-default {
-  border-color: @input-border-focus;
-  background-color: @input-bg;
-  color: @input-color;
+  border-color: var(--color-interactive-accent);
+  background-color: var(--color-background-screen);
+  color: var(--color-content-primary);
 }
 
 .btn-loader {

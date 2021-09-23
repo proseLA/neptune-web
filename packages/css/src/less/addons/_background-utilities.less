@@ -2,25 +2,32 @@
 
 // Contextual backgrounds
 
+// @DEPRECATED: .bg-default use .bg-neutral instead
+.bg-neutral,
 .bg-default {
   background-color: var(--color-background-neutral) !important;
-  color: @color-base-grey-dark;
+  color: var(--color-content-secondary);
 }
 
+// @DEPRECATED: .bg-info use .bg-accent instead
+.bg-accent,
 .bg-info {
-  background-color: @color-base-blue-light !important;
-  color: @color-base-smoke-fade;
+  background-color: var(--color-background-accent) !important;
 }
 
 .bg-primary {
   background-color: @color-base-navy-light !important;
-  color: @color-base-smoke-fade;
+  color: @color-base-white-light;
 }
 
+// @DEPRECATED: .bg-success use .bg-positive instead
+.bg-positive,
 .bg-success {
   background-color: var(--color-background-positive) !important;
 }
 
+// @DEPRECATED: .bg-danger use .bg-negative instead
+.bg-negative,
 .bg-danger {
   background-color: var(--color-background-negative) !important;
 }
@@ -29,8 +36,21 @@
   background-color: var(--color-background-warning) !important;
 }
 
+.bg-elevated {
+  background-color: var(--color-background-elevated) !important;
+}
+
+.bg-screen {
+  background-color: var(--color-background-screen) !important;
+}
+
+.bg-overlay {
+  background-color: var(--color-background-overlay) !important;
+}
+
 .bg-primary,
-.bg-info {
+.bg-info,
+.bg-accent {
   h1,
   h2,
   h3,
@@ -44,6 +64,6 @@
   .h5,
   .h6,
   strong {
-    color: @color-base-white;
+    color: var(--color-base-white-light);
   }
 }

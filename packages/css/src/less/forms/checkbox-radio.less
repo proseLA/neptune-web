@@ -3,22 +3,11 @@
 
 .radio,
 .checkbox {
-  border-color: @input-border;
+  border-color: var(--color-interactive-secondary);
 
   > label {
     position: relative;
     padding-left: 48px;
-
-    &:active:hover {
-      border-color: @input-border-focus;
-
-      input[type='radio'],
-      input[type='checkbox'] {
-        + .input-replacement {
-          border-color: @input-border-focus;
-        }
-      }
-    }
 
     input[type='radio'],
     input[type='checkbox'] {
@@ -31,7 +20,7 @@
 }
 
 .tw-checkbox-button {
-  border: 1px solid @color-base-smoke-mid;
+  border: 1px solid var(--color-interactive-secondary);
   background: var(--color-background-screen);
   width: 22px;
   height: 22px;
@@ -54,7 +43,7 @@
   &:hover,
   input[type='checkbox']:hover + &,
   .checkbox:hover & {
-    border-color: @color-base-grey-light;
+    border-color: var(--color-interactive-secondary);
   }
 
   &:focus,
@@ -65,15 +54,15 @@
   &:active,
   &.active,
   input[type='checkbox']:active + & {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-secondary);
     outline: none;
   }
 
   &[checked],
   &.checked,
   input[type='checkbox']:checked + & {
-    border-color: var(--color-control-accent) !important;
-    background-color: var(--color-control-accent);
+    border-color: var(--color-interactive-accent) !important;
+    background-color: var(--color-interactive-accent);
 
     .tw-checkbox-check {
       display: inline-block;
@@ -83,55 +72,55 @@
   &[checked]:hover,
   &.checked:hover,
   input[type='checkbox']:not(:disabled):checked:hover + & {
-    border-color: var(--color-control-accent-hover) !important;
-    background-color: var(--color-control-accent-hover);
+    border-color: var(--color-interactive-accent-hover) !important;
+    background-color: var(--color-interactive-accent-hover);
   }
 
   &[checked]:active,
   &.checked:active,
   input[type='checkbox']:not(:disabled):checked:active + & {
-    border-color: var(--color-control-accent-active) !important;
-    background-color: var(--color-control-accent-active);
+    border-color: var(--color-interactive-accent-active) !important;
+    background-color: var(--color-interactive-accent-active);
   }
 
   &[disabled],
   input[type='checkbox']:disabled + & {
-    background-color: @color-base-smoke-fade;
-    border-color: @color-base-smoke-mid !important;
+    background-color: var(--color-background-neutral);
+    border-color: var(--color-interactive-disabled) !important;
     cursor: @cursor-disabled;
 
     .tw-checkbox-check {
-      color: var(--color-text-inactive);
+      color: var(--color-content-disabled);
     }
   }
 
   .checkbox.has-error &,
   &.has-error {
-    border-color: var(--color-control-negative) !important;
+    border-color: var(--color-interactive-negative) !important;
 
     &[checked],
     &.checked {
-      background-color: var(--color-control-negative);
+      background-color: var(--color-interactive-negative);
     }
 
     &[disabled] {
-      background-color: @color-base-smoke-fade;
+      background-color: var(--color-background-neutral);
     }
   }
 
   .checkbox.has-error input[type='checkbox']:checked + & {
-    border-color: var(--color-control-negative) !important;
-    background-color: var(--color-control-negative);
+    border-color: var(--color-interactive-negative) !important;
+    background-color: var(--color-interactive-negative);
   }
 
   .checkbox.has-error input[type='checkbox']:checked:hover + & {
-    border-color: var(--color-control-negative-hover) !important;
-    background-color: var(--color-control-negative-hover);
+    border-color: var(--color-interactive-negative-hover) !important;
+    background-color: var(--color-interactive-negative-hover);
   }
 
   .checkbox.has-error input[type='checkbox']:checked:active + & {
-    border-color: var(--color-control-negative-active) !important;
-    background-color: var(--color-control-negative-active);
+    border-color: var(--color-interactive-negative-active) !important;
+    background-color: var(--color-interactive-negative-active);
   }
 }
 
@@ -139,8 +128,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 1px solid @input-border;
-  background: @input-bg;
+  border: 1px solid var(--color-interactive-secondary);
+  background: var(--color-background-screen);
   display: inline-block;
   padding: 0;
   vertical-align: middle;
@@ -157,52 +146,52 @@
 
   .radio:hover &,
   &:hover {
-    border-color: @input-border-hover;
+    border-color: var(--color-interactive-secondary-hover);
   }
 
   &:focus,
   &.focus,
   &:active,
   &.active {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-secondary-active);
     outline: none;
   }
 
   &[checked],
   &.checked {
-    border-color: @input-border-focus !important;
+    border-color: var(--color-interactive-accent) !important;
 
     .tw-radio-check {
       width: 12px;
       height: 12px;
       margin: 5px;
       display: block;
-      background-color: @input-border-focus;
+      background-color: var(--color-interactive-accent);
     }
   }
 
   &[disabled],
   &.disabled {
-    background-color: @input-bg-disabled;
-    border-color: @input-border-disabled !important;
+    background-color: var(--color-background-neutral);
+    border-color: var(--color-interactive-disabled) !important;
     cursor: @cursor-disabled;
 
     .tw-radio-check {
-      background-color: @input-border-disabled;
+      background-color: var(--color-interactive-disabled);
     }
   }
 
   .radio.has-error &,
   &.has-error {
-    border-color: @brand-red !important;
+    border-color: var(--color-interactive-negative) !important;
 
     &[checked] .tw-radio-check,
     &.checked .tw-radio-check {
-      background-color: @brand-red;
+      background-color: var(--color-interactive-negative);
     }
 
     &[disabled] .tw-radio-check {
-      background-color: @input-border-disabled;
+      background-color: var(--color-interactive-disabled);
     }
   }
 }
@@ -210,8 +199,8 @@
 .checkbox {
   &.disabled label,
   &.disabled label:hover {
-    border-color: @input-border-disabled;
-    color: @color-text-inactive !important;
+    border-color: var(--color-interactive-disabled);
+    color: var(--color-content-disabled) !important;
   }
 }
 

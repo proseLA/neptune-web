@@ -8,7 +8,7 @@
 }
 
 html {
-  color: var(--color-text-secondary);
+  color: var(--color-content-secondary);
   font-size: @font-size-base;
   line-height: @line-height-base;
   font-family: @font-family-base;
@@ -48,7 +48,7 @@ pre {
 
 a,
 .anchor {
-  color: var(--color-text-link);
+  color: var(--color-content-accent);
   font-weight: 600;
   letter-spacing: 0;
   text-decoration: underline;
@@ -56,12 +56,12 @@ a,
 
   &:hover,
   &:focus {
-    color: var(--color-text-link-hover);
+    color: var(--color-content-accent-hover);
     text-decoration: underline;
   }
 
   &:active {
-    color: var(--color-text-link-active);
+    color: var(--color-content-accent-active);
   }
 
   &:focus {
@@ -75,11 +75,11 @@ a,
 
     &:hover,
     &:focus {
-      color: var(--color-text-link-hover);
+      color: var(--color-content-accent-hover);
     }
 
     &:active {
-      color: var(--color-text-link-active);
+      color: var(--color-content-accent-active);
     }
   }
 
@@ -198,7 +198,7 @@ textarea {
   // stylelint-disable-next-line selector-pseudo-class-no-unknown
   &:input-placeholder,
   &::placeholder {
-    color: var(--color-text-inactive);
+    color: var(--color-content-disabled);
   }
 }
 
@@ -250,7 +250,7 @@ dt {
 
 dd {
   margin-bottom: var(--size-16);
-  color: var(--color-text-primary);
+  color: var(--color-content-primary);
 
   @media (--screen-sm) {
     margin-bottom: var(--size-24);

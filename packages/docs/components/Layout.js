@@ -1,3 +1,4 @@
+import { Button, Priority } from '@transferwise/components';
 import { parseISO } from 'date-fns';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -78,9 +79,15 @@ const Layout = ({ children, router: { pathname } }) => {
         </>
       ) : null}
       {children}
-      <a className="btn btn-default m-t-4" href={editPath}>
+      <Button
+        className="m-t-4"
+        priority={Priority.SECONDARY}
+        onClick={() => {
+          window.location.href = editPath;
+        }}
+      >
         Edit these docs on Github
-      </a>
+      </Button>
     </div>
   );
 

@@ -14,13 +14,11 @@ p + h2[id] {
 
 /* Layout  */
 
-.PageLayout__Inner {
-  background: var(--color-background-neutral);
-}
-
 .Header {
   min-height: 100vh;
-  background: var(--color-primary);
+
+  /* TODO: fix this while theming project */
+  background: var(--color-base-navy-light);
 }
 
 .Header__Fixed {
@@ -64,9 +62,9 @@ p + h2[id] {
 
 .Sidebar__Search {
   padding: var(--size-8) var(--size-16);
-  color: #37517e;
+  color: var(--color-content-primary);
   border: none;
-  border-top: 1px solid #e2e6e8;
+  border-top: 1px solid var(--color-border-neutral);
   font-size: var(--font-size-14);
 }
 
@@ -76,7 +74,7 @@ p + h2[id] {
   margin-bottom: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid #e2e6e8;
+  border-top: 1px solid var(--color-border-neutral);
   font-size: var(--font-size-14);
 }
 
@@ -96,7 +94,7 @@ p + h2[id] {
 }
 
 .Nav__Link.active {
-  color: var(--color-text-link-active);
+  color: var(--color-content-accent-active);
   background: var(--color-background-screen);
   font-weight: var(--font-weight-bold);
 }
@@ -108,7 +106,7 @@ p + h2[id] {
 .Nav__Group {
   padding: var(--size-16) var(--size-16) var(--size-8);
   text-transform: uppercase;
-  color: @color-base-grey-light;
+  color: var(--color-base-smoke-mid);
   font-size: @font-size-x-small;
   font-weight: 600;
 }
@@ -127,6 +125,7 @@ p + h2[id] {
   font-weight: var(--font-weight-bold);
 }
 
+/* TODO fix this while theming project */
 .Nav--dark .Nav__Link.active {
   background: #2e4369;
 }
@@ -136,7 +135,7 @@ p + h2[id] {
   width: 100%;
   min-height: 100vh;
   padding: var(--size-32);
-  background: #fff;
+  background: var(--color-background-screen);
 }
 
 @media (min-width: 767px) {
@@ -205,13 +204,13 @@ img {
 }
 
 .docs-table > thead {
-  color: white;
-  background-color: var(--color-primary);
+  color: var(--color-content-primary);
+  background-color: var(--color-background-accent);
 }
 
 .docs-table > tbody > tr > th {
   padding-left: 5px;
-  color: var(--color-primary);
+  color: var(--color-content-primary);
 }
 
 .docs-table ul {
@@ -224,8 +223,8 @@ img {
 }
 
 .docs-is-visible {
-  color: #468847;
-  background-color: #dff0d8 !important;
+  color: var(--color-content-positive);
+  background-color: var(--color-background-positive) !important;
 }
 
 .clickable-heading {

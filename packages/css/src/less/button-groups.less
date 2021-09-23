@@ -314,11 +314,11 @@
 
 .btn-group .btn {
   + .btn-success {
-    border-left: 1px solid @brand-green-minus-10;
+    border-left: 1px solid var(--color-content-positive);
   }
 
   + .btn-primary {
-    border-left: 1px solid @brand-light-blue-minus-10;
+    border-left: 1px solid var(--color-content-accent);
   }
 }
 
@@ -396,7 +396,7 @@
   }
 
   .small {
-    color: @text-secondary-color;
+    color: var(--color-content-secondary);
     line-height: (@line-height-computed - 1px);
 
     &.text-ellipsis {
@@ -413,6 +413,6 @@
 
 .btn-group .secondary {
   font-size: @font-size-small;
-  color: @text-secondary-color;
+  color: var(--color-content-secondary);
   line-height: 24px;
 }

@@ -4601,12 +4601,7 @@
   resolved "https://registry.yarnpkg.com/@transferwise/icons/-/icons-2.14.0.tgz#61a7ba1bc0b150bb1332af1e7022faf8557f4678"
   integrity sha512-2ZGU2wbDdBO8ms7tguuaA23NK5e9PLOpU47f7tAFqR08adnWbEDbjzqbpm+XtYo2pTpOr2e7ED5E6fqsGIqjKg==
 
-"@transferwise/neptune-tokens@^1.0.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@transferwise/neptune-tokens/-/neptune-tokens-1.2.0.tgz#a62d4f4eff77aaf222678276a98c7e683b7af4a0"
-  integrity sha512-/nye3zrz/fYNxbHQkeVSMxNqPixhOxKxNKw7xInXH+nSzFyMnox8e+WoKx78LnCV0j18Y5AoHtXJ5P0DAlXFSw==
-
-"@transferwise/neptune-tokens@^4.1.0":
+"@transferwise/neptune-tokens@^4.0.0", "@transferwise/neptune-tokens@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@transferwise/neptune-tokens/-/neptune-tokens-4.1.0.tgz#4f9e119c57517eea6e05824e5ef1bb4b8ca9cc25"
   integrity sha512-8lnMammfR7/lQDWm8XeNXmEfw+D8x+ERcPVOaXQejzRInxvixbt7Jk+394sF1LcyWCW1Z2T72yMnHNihbEMOtQ==

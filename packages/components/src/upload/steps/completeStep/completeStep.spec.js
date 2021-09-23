@@ -1,6 +1,8 @@
 import { AlertCircle as AlertCircleIcon, Document as DocumentIcon } from '@transferwise/icons';
 import { shallow } from 'enzyme';
 
+import Button from '../../../button';
+
 import CompleteStep from '.';
 
 describe('CompleteStep', () => {
@@ -46,11 +48,11 @@ describe('CompleteStep', () => {
   });
 
   it('renders button when csButtonText is set up', () => {
-    expect(component.find('button.btn-default')).toHaveLength(1);
+    expect(component.find(Button)).toHaveLength(1);
   });
 
   it('calls onClear when button is clicked', () => {
-    component.find('button.btn-default').simulate('click', {});
+    component.find(Button).simulate('click', {});
     expect(COMPLETED_STEP_PROPS.onClear).toHaveBeenCalledTimes(1);
   });
 });
