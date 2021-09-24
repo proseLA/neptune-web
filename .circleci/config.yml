@@ -37,10 +37,6 @@ aliases:
     command: |
       npx lerna publish --canary --preid beta --dist-tag beta --yes
 
-  - &conventional-commit
-    name: Conventional Commits check
-    command: npx commitlint -f $(git log --author=CircleCI -1 --format=format:"%H") -V
-
   - &test
     name: Run tests across all packages
     command: yarn test
@@ -136,13 +132,6 @@ jobs:
       - run: *set-github-credentials
       - run: *deploy-docs
 
-  conventional-commit:
-    <<: *container
-    resource_class: small
-    steps:
-      - *attach-workspace
-      - run: *conventional-commit
-
   publish:
     <<: *container
     steps:
@@ -168,15 +157,6 @@ workflows:
           filters:
             branches:
               ignore: gh-pages
-
-      - conventional-commit:
-          context: frontend-build
-          requires:
-            - setup
-          filters:
-            branches:
-              ignore:
-                - gh-pages
 
       - test:
           context: frontend-build
@@ -246,7 +226,6 @@ workflows:
       - deploy-docs:
           context: frontend-build
           requires:
-            - conventional-commit
             - lint
             - test
           filters:
@@ -257,7 +236,6 @@ workflows:
       - publish:
           context: frontend-publish
           requires:
-            - conventional-commit
             - lint
             - test
           filters:
@@ -267,7 +245,6 @@ workflows:
       - hold-beta-release:
           type: approval
           requires:
-            - conventional-commit
             - test
           filters:
             branches:
