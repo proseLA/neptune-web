@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.5.0...@transferwise/components@37.6.0) (2021-09-24)
+
+
+### Bug Fixes
+
+* **DefinitionList:** use break-word for definition list text ([#1157](https://github.com/transferwise/neptune-web/issues/1157)) ([d72d039](https://github.com/transferwise/neptune-web/commit/d72d0391884e54936a0e2d1b688da19a8e287a4f))
+
+
+### Features
+
+* force minor version bump in all affected packages ([#1160](https://github.com/transferwise/neptune-web/issues/1160)) ([f306c76](https://github.com/transferwise/neptune-web/commit/f306c7618c43a5f868c63c60c281428cd9a94411))
+* force version bump to fix npm publish ([#1159](https://github.com/transferwise/neptune-web/issues/1159)) ([e1209a5](https://github.com/transferwise/neptune-web/commit/e1209a5e13269bd510d32cad5b8db253d337bb16))
+
+
+
+
+
 # [37.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.4.3...@transferwise/components@37.5.0) (2021-09-22)
 
 

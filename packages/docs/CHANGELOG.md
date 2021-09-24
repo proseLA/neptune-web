@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.2.27...@transferwise/neptune-docs@13.3.0) (2021-09-24)
+
+
+### Features
+
+* force minor version bump in all affected packages ([#1160](https://github.com/transferwise/neptune-web/issues/1160)) ([f306c76](https://github.com/transferwise/neptune-web/commit/f306c7618c43a5f868c63c60c281428cd9a94411))
+
+
+
+
+
 ## [13.2.27](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.2.26...@transferwise/neptune-docs@13.2.27) (2021-09-22)
 
 **Note:** Version bump only for package @transferwise/neptune-docs

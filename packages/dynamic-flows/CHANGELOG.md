@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.3.1...@transferwise/dynamic-flows@15.4.0) (2021-09-24)
+
+
+### Bug Fixes
+
+* Render oneOf title with H4 when options are non-const ([#1155](https://github.com/transferwise/neptune-web/issues/1155)) ([fa6dbfd](https://github.com/transferwise/neptune-web/commit/fa6dbfdb9f6b42ec4102502bfe1c7892c9ca0963))
+
+
+### Features
+
+* force minor version bump in all affected packages ([#1160](https://github.com/transferwise/neptune-web/issues/1160)) ([f306c76](https://github.com/transferwise/neptune-web/commit/f306c7618c43a5f868c63c60c281428cd9a94411))
+
+
+
+
+
 ## [15.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.3.0...@transferwise/dynamic-flows@15.3.1) (2021-09-22)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
