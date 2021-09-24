@@ -148,32 +148,31 @@ describe('FlowNavigation', () => {
       ).toMatchSnapshot();
     });
 
-    it(`doesn not render Logo`, () => {
+    it('renders Logo', () => {
       render(<FlowNavigation {...props} />);
-      expect(screen.queryByAltText(`logo`)).not.toBeInTheDocument();
+      expect(screen.getByAltText('logo')).toBeInTheDocument();
     });
 
-    it(`renders flag if activeStep <= 0 onGoBack or is not provided`, () => {
-      const { container, rerender } = render(
+    it('renders flag if activeStep <= 0 onGoBack or is not provided', () => {
+      const { rerender } = render(
         <FlowNavigation {...props} activeStep={0} onGoBack={undefined} />,
       );
 
-      const flag = container.querySelector('.np-flow-navigation--flag');
+      const flag = screen.queryByAltText('logo');
 
       expect(flag).toBeInTheDocument();
-      expect(flag).toHaveClass('np-flow-navigation--flag__display');
 
       rerender(<FlowNavigation {...props} activeStep={1} onGoBack={undefined} />);
 
-      expect(flag).toHaveClass('np-flow-navigation--flag__display');
+      expect(flag).toBeInTheDocument();
 
       rerender(<FlowNavigation {...props} activeStep={0} onGoBack={jest.fn()} />);
 
-      expect(flag).toHaveClass('np-flow-navigation--flag__display');
+      expect(flag).toBeInTheDocument();
 
       rerender(<FlowNavigation {...props} activeStep={1} onGoBack={jest.fn()} />);
 
-      expect(flag).toHaveClass('np-flow-navigation--flag__hidden');
+      expect(flag).not.toBeInTheDocument();
     });
 
     it('renders BackButton with AnimatedLabel if onGoBack is provided and activeStep > 0', () => {

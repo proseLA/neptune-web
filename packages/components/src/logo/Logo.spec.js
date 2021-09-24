@@ -28,4 +28,14 @@ describe('Logo', () => {
       render(<Logo className="class" type={LogoType.WISE_BUSINESS} inverse />).container,
     ).toMatchSnapshot();
   });
+
+  describe('on mobile', () => {
+    beforeEach(() => {
+      window.innerWidth = 500;
+    });
+
+    it('renders only fast flag', () => {
+      expect(render(<Logo className="class" type={LogoType.WISE} />).container).toMatchSnapshot();
+    });
+  });
 });

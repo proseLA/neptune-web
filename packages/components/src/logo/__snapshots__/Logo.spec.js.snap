@@ -49,3 +49,13 @@ exports[`Logo renders wise logo inversed 1`] = `
   />
 </div>
 `;
+
+exports[`Logo on mobile renders only fast flag 1`] = `
+<div>
+  <img
+    alt="Wise"
+    class="np-logo class"
+    src="https://wise.com/public-resources/assets/logos/wise/brand_flag.svg"
+  />
+</div>
+`;

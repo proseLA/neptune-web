@@ -70,26 +70,4 @@
   &--hidden {
     visibility: hidden;
   }
-
-  &--flag {
-    width: var(--size-24);
-    height: var(--size-32);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-image: url("https://wise.com/public-resources/assets/logos/wise/brand_flag.svg");
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-
-    &__hidden {
-      position: absolute;
-      opacity: 0;
-      transform: rotate(90deg);
-      margin-top: -24px;
-      z-index: -1;
-    }
-
-    &__display {
-      opacity: 1;
-      transform: rotate(0deg);
-    }
-  }
 }

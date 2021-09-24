@@ -31,7 +31,7 @@ const FlowNavigation = ({ activeStep, avatar, logo, onClose, onGoBack, done, ste
     const displayGoBack = onGoBack && activeStep > 0;
     return (
       <>
-        {displayGoBack && (
+        {displayGoBack ? (
           <BackButton
             label={
               <AnimatedLabel
@@ -42,13 +42,9 @@ const FlowNavigation = ({ activeStep, avatar, logo, onClose, onGoBack, done, ste
             }
             onClick={onGoBack}
           />
+        ) : (
+          logo
         )}
-        <div
-          className={classNames('np-flow-navigation--flag', {
-            'np-flow-navigation--flag__hidden': displayGoBack,
-            'np-flow-navigation--flag__display': !displayGoBack,
-          })}
-        />
       </>
     );
   };

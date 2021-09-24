@@ -20,9 +20,6 @@ exports[`FlowNavigation on mobile renders as expected 1`] = `
             AnimatedLabel
           </div>
         </div>
-        <div
-          class="np-flow-navigation--flag np-flow-navigation--flag__hidden"
-        />
       </div>
       <div
         class="align-items-center d-flex np-header__right justify-content-end flex__item--4 "
