@@ -86,8 +86,8 @@ describe('Given a oneOfSchema component', () => {
       schemaFormControl = component.find(SchemaFormControl);
     });
 
-    it('should render the schema title in a label', () => {
-      expect(component.find('.control-label').text()).toContain(schema.title);
+    it('should render the schema title in a h4', () => {
+      expect(component.find('h4').text()).toContain(schema.title);
     });
 
     it('should use a SchemaFormControl to choose between schemas', () => {
@@ -409,6 +409,10 @@ describe('Given a oneOfSchema component', () => {
       genericSchema = component.find(GenericSchema);
       schemaFormControl = component.find(SchemaFormControl);
       controlFeedback = component.find(ControlFeedback);
+    });
+
+    it('should render the schema title in a label', () => {
+      expect(component.find('.control-label').text()).toContain(schema.title);
     });
 
     it('should not render a generic schema', () => {

@@ -160,22 +160,12 @@ const OneOfSchema = (props) => {
       ((props.submitted || (changed && blurred)) && validations.length),
   };
 
-  const hasHelp = !!props.schema.help;
-
   return (
     <>
       {(props.schema.oneOf.length > 1 || isConstSchema(props.schema.oneOf[0])) && (
         <>
           <div className={classNames(formGroupClasses)}>
-            {props.schema.title && (
-              <div className="d-inline-block">
-                <label className="control-label d-inline" htmlFor={id}>
-                  {props.schema.title}
-                </label>
-                {hasHelp && <Help help={props.schema.help} />}
-              </div>
-            )}
-            {!props.schema.title && hasHelp && <Help help={props.schema.help} />}
+            {getTitleAndHelp(props.schema, id)}
             <SchemaFormControl
               id={id}
               schema={schemaForSelect}
@@ -220,6 +210,21 @@ const OneOfSchema = (props) => {
     </>
   );
 };
+
+function getTitleAndHelp(schema, id) {
+  const helpElement = schema.help ? <Help help={schema.help} /> : null;
+  const titleElement = isConstSchema(schema.oneOf[0]) ? (
+    <label className="control-label d-inline" htmlFor={id}>
+      {schema.title} {helpElement}
+    </label>
+  ) : (
+    <h4 className="m-b-2">
+      {schema.title} {helpElement}
+    </h4>
+  );
+
+  return schema.title ? titleElement : helpElement;
+}
 
 OneOfSchema.propTypes = {
   schema: Types.shape({
