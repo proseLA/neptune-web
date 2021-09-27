@@ -19,7 +19,6 @@ const jsFiles = [
   { filename: 'Radio', folder: 'radio' },
   { filename: 'Select', folder: 'select' },
   { filename: 'MoneyInput', folder: 'moneyInput' },
-  { filename: 'Tooltip', folder: 'tooltip' },
   { filename: 'Stepper', folder: 'stepper' },
   { filename: 'FlowNavigation', folder: 'flowNavigation' },
   { filename: 'Popover', folder: 'popover' },

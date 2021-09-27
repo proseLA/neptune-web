@@ -15,7 +15,6 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-docs',
     '@storybook/addon-viewport',
-    '@pxblue/storybook-rtl-addon/register',
   ],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({

@@ -2,12 +2,10 @@ import { shallow, mount } from 'enzyme';
 import { useIntl } from 'react-intl';
 
 import { fakeEvent } from '../common/fakeEvents';
-import { useDirection } from '../common/hooks';
 
 import PhoneNumberInput from '.';
 
 jest.mock('react-intl');
-jest.mock('../common/hooks/useDirection');
 
 const simulatePaste = (element, value) =>
   element.simulate('paste', { nativeEvent: { clipboardData: { getData: () => value } } });
@@ -22,7 +20,6 @@ describe('Given a telephone number component', () => {
 
   beforeEach(() => {
     useIntl.mockReturnValue({ locale: 'en-GB' });
-    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
   });
 
   afterEach(() => {
@@ -307,13 +304,6 @@ describe('Given a telephone number component', () => {
       component.find('.tw-select-filter').simulate('change', { target: { value: '+124' } });
       select = component.find(PREFIX_SELECT_SELECTOR);
       expect(+select.prop('options')[0].value).toBeLessThan(+select.prop('options')[1].value);
-    });
-  });
-
-  describe('RTL locale is active', () => {
-    it('should apply correct rtl classes', () => {
-      component = shallow(<PhoneNumberInput {...props} />);
-      expect(component.find('.tw-telephone--rtl')).toHaveLength(1);
     });
   });
 

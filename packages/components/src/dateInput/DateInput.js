@@ -5,7 +5,6 @@ import { useIntl } from 'react-intl';
 
 import { Size, DateMode, MonthFormat } from '../common';
 import { getMonthNames, isDateValid, isMonthAndYearFormat } from '../common/dateUtils';
-import { useDirection } from '../common/hooks';
 import Select from '../select';
 
 import messages from './DateInput.messages';
@@ -29,7 +28,6 @@ const DateInput = ({
   placeholders,
   id,
 }) => {
-  const { isRTL } = useDirection();
   const { locale, formatMessage } = useIntl();
   const getDateObject = () => {
     if (value && isDateValid(value)) {
@@ -214,7 +212,6 @@ const DateInput = ({
   const monthWidth = classNames({
     'col-sm-8': monthYearOnly,
     'col-sm-5': !monthYearOnly,
-    'pull-right': isRTL,
   });
 
   const monthBeforeDay = MonthBeforeDay.has(locale);
@@ -233,7 +230,7 @@ const DateInput = ({
       <div className="row">
         {monthBeforeDay && <div className={monthWidth}>{getSelectElement()}</div>}
         {!monthYearOnly && (
-          <div className={classNames('col-sm-3', { 'pull-right': isRTL })}>
+          <div className="col-sm-3">
             <div className={`input-group-${size}`}>
               <label>
                 <span className="sr-only">{dayLabel}</span>

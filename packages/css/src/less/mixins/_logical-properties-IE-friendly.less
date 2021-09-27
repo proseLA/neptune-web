@@ -1,0 +1,329 @@
+// Mixin to support Logical properties/values for IE
+
+// CSS property: float: Flow-relative values inline-start and inline-end: https://caniuse.com/mdn-css_properties_float_flow_relative_values
+
+.float(@direction) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      float: right;
+    }
+
+    float: @direction;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      float: left;
+    }
+
+    float: @direction;
+  }
+}
+
+// CSS property: clear: Flow-relative values inline-start and inline-end: https://caniuse.com/mdn-css_properties_clear_flow_relative_values
+
+.clear(@direction) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      clear: right;
+    }
+
+    clear: @direction;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      clear: left;
+    }
+
+    clear: @direction;
+  }
+}
+
+// CSS property: text-align: Flow-relative values start and end: https://caniuse.com/mdn-css_properties_text-align_flow_relative_values_start_and_end
+
+.text-align(@direction) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      text-align: right;
+    }
+
+    text-align: left;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      text-align: left;
+    }
+
+    text-align: right;
+  }
+}
+
+// CSS Logical Properties: https://caniuse.com/css-logical-props
+
+.padding(@direction, @value) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      padding-right: @value;
+    }
+
+    html:not([dir="rtl"]) & {
+      padding-@{direction}: @value;
+    }
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      padding-left: @value;
+    }
+
+    html:not([dir="rtl"]) & {
+      padding-@{direction}: @value;
+    }
+  }
+}
+
+// Use only if the right and left values are different or you have to step up specificity of the padding.
+// Use for single value shorthand 'padding: var(--foo);' -> '.padding-shorthand(var(--foo))'
+// Use for multiple value shorthand 'padding: var(--foo1) var(--foo2) var(--foo3) var(--foo4);' -> '.padding-shorthand(var(--foo1), var(--foo2), var(--foo3), var(--foo4))'
+
+.padding-shorthand(@value1, @value2: ~'', @value3: ~'', @value4: ~'') {
+  [dir="rtl"] & {
+    padding: @value1 @value4 @value3 @value2;
+  }
+
+  html:not([dir="rtl"]) & {
+    padding: @value1 @value2 @value3 @value4;
+  }
+}
+
+// CSS Logical Properties: https://caniuse.com/css-logical-props
+
+.margin(@direction, @value) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      margin-right: @value;
+    }
+
+    html:not([dir="rtl"]) & {
+      margin-@{direction}: @value;
+    }
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      margin-left: @value;
+    }
+
+    html:not([dir="rtl"]) & {
+      margin-@{direction}: @value;
+    }
+  }
+}
+
+// Use only if the right and left values are different or you have to step up specificity of the margin.
+// Use for single value shorthand 'margin: var(--foo);' -> '.margin-shorthand(var(--foo))'
+// Use for multiple value shorthand 'margin: var(--foo1) var(--foo2) var(--foo3) var(--foo4);' -> '.margin-shorthand(var(--foo1), var(--foo2), var(--foo3), var(--foo4))'
+
+.margin-shorthand(@value1, @value2: ~'', @value3: ~'', @value4: ~'') {
+  [dir="rtl"] & {
+    margin: @value1 @value4 @value3 @value2;
+  }
+
+  html:not([dir="rtl"]) & {
+    margin: @value1 @value2 @value3 @value4;
+  }
+}
+
+// CSS property: inset-inline (positions): https://caniuse.com/mdn-css_properties_inset-inline
+
+.left(@value) {
+  [dir="rtl"] & {
+    right: @value;
+  }
+
+  html:not([dir="rtl"]) & {
+    left: @value;
+  }
+}
+
+.right(@value) {
+  [dir="rtl"] & {
+    left: @value;
+  }
+
+  html:not([dir="rtl"]) & {
+    right: @value;
+  }
+}
+
+// CSS property: border-inline-start https://caniuse.com/mdn-css_properties_border-inline-start
+
+.border(@direction, @size, @style: ~'', @color: ~'') {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      border-right: @size @style @color;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-@{direction}: @size @style @color;
+    }
+  }
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      border-left: @size @style @color;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-@{direction}: @size @style @color;
+    }
+  }
+}
+
+.border-width(@direction, @size) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      border-right-width: @size;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-@{direction}-width: @size;
+    }
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      border-left-width: @size;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-@{direction}-width: @size;
+    }
+  }
+}
+
+// CSS property: border-start-start-radius: https://caniuse.com/mdn-css_properties_border-start-start-radius
+
+//  | top-left      | top-right      |
+//  | bottom-left   | bottom-right   |
+
+.border-radius(@direction, @radius) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      border-bottom-right-radius: @radius;
+      border-top-right-radius: @radius;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-bottom-@{direction}-radius: @radius;
+      border-top-@{direction}-radius: @radius;
+    }
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      border-bottom-left-radius: @radius;
+      border-top-left-radius: @radius;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-bottom-@{direction}-radius: @radius;
+      border-top-@{direction}-radius: @radius;
+    }
+  }
+}
+
+.border-top-dir-radius(@direction, @radius) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      border-top-right-radius: @radius;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-top-@{direction}-radius: @radius;
+    }
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      border-top-left-radius: @radius;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-top-@{direction}-radius: @radius;
+    }
+  }
+}
+
+.border-bottom-dir-radius(@direction, @radius) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      border-bottom-right-radius: @radius;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-bottom-@{direction}-radius: @radius;
+    }
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      border-bottom-left-radius: @radius;
+    }
+
+    html:not([dir="rtl"]) & {
+      border-bottom-@{direction}-radius: @radius;
+    }
+  }
+}
+
+// Background position
+
+.background-position(@direction, @vertical-direction: ~'') {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      background-position: right @vertical-direction;
+    }
+
+    background-position: left @vertical-direction;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      background-position: left @vertical-direction;
+    }
+
+    background-position: right @vertical-direction;
+  }
+}
+
+// Horizontal linear gradient
+
+.background-linear-gradient(@direction, @color1, @color2) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      background: linear-gradient(to right, @color1, @color2);
+    }
+
+    background: linear-gradient(to left, @color1, @color2);
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      background: linear-gradient(to left, @color1, @color2);
+    }
+
+    background: linear-gradient(to right, @color1, @color2);
+  }
+}
+
+// Horizontal translations
+
+.translateX(@value, @transform2: ~'', @transform3: ~'') {
+  [dir="rtl"] & {
+    transform: translateX(@value * -1) @transform2 @transform3;
+  }
+
+  transform: translateX(@value) @transform2 @transform3;
+}

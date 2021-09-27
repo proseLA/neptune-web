@@ -1,3 +1,6 @@
+@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+
 .np-switch {
   display: inline-flex;
   overflow: hidden;
@@ -26,15 +29,7 @@
     background: var(--color-interactive-accent);
 
     .np-switch--thumb {
-      transform: translateX(20px);
-    }
-  }
-
-  &--rtl {
-    &.np-switch--checked {
-      .np-switch--thumb {
-        transform: translateX(-20px);
-      }
+      .translateX(20px);
     }
   }
 
@@ -46,7 +41,8 @@
 
   input {
     position: absolute;
-    left: -100%;
+    .left(-100%);
+
     display: none;
     width: 0;
     height: 0;

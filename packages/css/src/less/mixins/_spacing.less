@@ -1,3 +1,5 @@
+@import (reference) "_logical-properties.less";
+
 .spacing(@postfix, @spacer) {
   .spacing-global(@postfix, @spacer);
   .spacing-vertical(@postfix, @spacer);
@@ -6,11 +8,19 @@
 
 .spacing-global(@postfix, @spacer) {
   .m-a-@{postfix} {
-    margin: @spacer !important;
+    margin-top: @spacer !important;
+    .margin(right, @spacer) !important;
+
+    margin-bottom: @spacer !important;
+    .margin(left, @spacer) !important;
   }
 
   .p-a-@{postfix} {
-    padding: @spacer !important;
+    padding-top: @spacer !important;
+    .padding(right, @spacer) !important;
+
+    padding-bottom: @spacer !important;
+    .padding(left, @spacer) !important;
   }
 }
 
@@ -44,29 +54,29 @@
 
 .spacing-horizontal(@postfix, @spacer) {
   .m-l-@{postfix} {
-    margin-left: @spacer !important;
+    .margin(left, @spacer) !important;
   }
 
   .m-r-@{postfix} {
-    margin-right: @spacer !important;
+    .margin(right, @spacer) !important;
   }
 
   .m-x-@{postfix} {
-    margin-left: @spacer !important;
-    margin-right: @spacer !important;
+    .margin(left, @spacer) !important;
+    .margin(right, @spacer) !important;
   }
 
   .p-l-@{postfix} {
-    padding-left: @spacer !important;
+    .padding(left, @spacer) !important;
   }
 
   .p-r-@{postfix} {
-    padding-right: @spacer !important;
+    .padding(right, @spacer) !important;
   }
 
   .p-x-@{postfix} {
-    padding-left: @spacer !important;
-    padding-right: @spacer !important;
+    .padding(left, @spacer) !important;
+    .padding(right, @spacer) !important;
   }
 }
 

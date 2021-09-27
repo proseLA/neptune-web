@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { KeyboardEventHandler, MouseEvent, ReactElement } from 'react';
 
 import { CommonProps } from '../common';
-import { useDirection } from '../common/hooks';
 import KeyCodes from '../common/keyCodes';
 import { logActionRequiredIf } from '../utilities';
 
@@ -22,7 +21,6 @@ type Props = CommonProps & {
 };
 
 const Switch = (props: Props): ReactElement => {
-  const { isRTL } = useDirection();
   const { checked, className, id, onClick, disabled } = props;
 
   const handleKeyDown: KeyboardEventHandler = (event) => {
@@ -46,7 +44,6 @@ const Switch = (props: Props): ReactElement => {
         'np-switch',
 
         {
-          'np-switch--rtl': isRTL,
           'np-switch--unchecked': !checked,
           'np-switch--checked': checked,
           'np-switch--disabled': disabled,

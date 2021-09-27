@@ -1,4 +1,5 @@
 @import (reference) '../variables/legacy-variables.less';
+@import (reference) './mixins/_logical-properties.less';
 
 @process-xl-radius: 64px;
 @process-xl-stroke: 3px;
@@ -307,9 +308,11 @@
 }
 
 .btn .process:first-child {
-  margin-left: -12px;
-  margin-right: 12px;
-  float: left;
+  .margin(left, -12px);
+
+  .margin(right, 12px);
+
+  .float(left);
 }
 
 .btn-block .process:first-child {

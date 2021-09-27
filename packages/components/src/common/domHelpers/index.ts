@@ -1,5 +1,9 @@
-export function isServerSideRendering(): boolean {
+export function isServerSide(): boolean {
   return typeof window === 'undefined';
+}
+
+export function isBrowser(): boolean {
+  return !isServerSide();
 }
 
 export {

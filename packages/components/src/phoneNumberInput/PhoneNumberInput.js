@@ -1,11 +1,9 @@
 import { isArray } from '@transferwise/neptune-validation';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import { Size } from '../common';
-import { useDirection } from '../common/hooks';
 import Select from '../select';
 
 import countries from './data/countries';
@@ -35,7 +33,6 @@ const PhoneNumberInput = (props) => {
     countryCode,
   } = props;
   const { locale } = useIntl();
-  const { isRTL } = useDirection();
 
   const getInitialValue = () => {
     const { initialValue } = props;
@@ -123,7 +120,7 @@ const PhoneNumberInput = (props) => {
   const { prefix, suffix } = getSuffixPrefix(internalValue);
 
   return (
-    <div className={classNames('tw-telephone', { 'tw-telephone--rtl': isRTL })}>
+    <div className="tw-telephone">
       <div className="tw-telephone__country-select">
         <Select
           options={options}

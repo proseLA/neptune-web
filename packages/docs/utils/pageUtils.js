@@ -1,4 +1,5 @@
 import { formatDistance } from 'date-fns';
+import NextLink from 'next/link';
 import PropTypes from 'prop-types';
 
 /**
@@ -111,7 +112,11 @@ export const getFirstPageInSection = (section) => {
 export const addBasePath = (url) =>
   `${process.env.ASSET_PREFIX}/${url.indexOf('/') === 0 ? url.slice(1) : url}`;
 
-export const DocumentLink = ({ href, children }) => <a href={addBasePath(href)}>{children}</a>;
+export const DocumentLink = ({ href, children }) => (
+  <NextLink href={addBasePath(href)}>
+    <a>{children}</a>
+  </NextLink>
+);
 
 DocumentLink.propTypes = {
   href: PropTypes.string.isRequired,

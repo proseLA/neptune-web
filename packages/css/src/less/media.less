@@ -1,3 +1,5 @@
+@import (reference) './mixins/_logical-properties.less';
+
 .media {
   display: flex;
   align-items: center;
@@ -28,11 +30,11 @@
 /* Alignment */
 
 .media-right {
-  padding-left: var(--size-16);
+  .padding(left, var(--size-16));
 }
 
 .media-left {
-  padding-right: var(--size-16);
+  .padding(right, var(--size-16));
 }
 
 /* Headings */
@@ -45,7 +47,8 @@
 /* Media list variation */
 
 .media-list {
-  padding-left: 0;
+  .padding(left, 0);
+
   list-style: none;
 }
 

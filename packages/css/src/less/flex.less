@@ -1,5 +1,6 @@
 // mixins
 @import (reference) './mixins/_flex.less';
+@import (reference) './mixins/_logical-properties.less';
 
 .flex-properties(~'');
 
@@ -24,42 +25,42 @@
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  margin-right: calc(-1 * var(--size-16));
-  margin-left: calc(-1 * var(--size-16));
+  .margin(right, calc(-1 * var(--size-16)));
+  .margin(left, calc(-1 * var(--size-16)));
 
   @media (--screen-sm) {
-    margin-right: calc(-1 * var(--size-24));
-    margin-left: calc(-1 * var(--size-24));
+    .margin(right, calc(-1 * var(--size-24)));
+    .margin(left, calc(-1 * var(--size-24)));
   }
 
   @media (--screen-md) {
-    margin-right: calc(-1 * var(--size-32));
-    margin-left: calc(-1 * var(--size-32));
+    .margin(right, calc(-1 * var(--size-32)));
+    .margin(left, calc(-1 * var(--size-32)));
   }
 
   @media (--screen-lg) {
-    margin-right: calc(-1 * var(--size-48));
-    margin-left: calc(-1 * var(--size-48));
+    .margin(right, calc(-1 * var(--size-48)));
+    .margin(left, calc(-1 * var(--size-48)));
   }
 }
 
 .flex__item {
-  padding-right: var(--size-16);
-  padding-left: var(--size-16);
+  .padding(right, var(--size-16));
+  .padding(left, var(--size-16));
 
   @media (--screen-sm) {
-    padding-right: var(--size-24);
-    padding-left: var(--size-24);
+    .padding(right, var(--size-24));
+    .padding(left, var(--size-24));
   }
 
   @media (--screen-md) {
-    padding-right: var(--size-32);
-    padding-left: var(--size-32);
+    .padding(right, var(--size-32));
+    .padding(left, var(--size-32));
   }
 
   @media (--screen-lg) {
-    padding-right: var(--size-48);
-    padding-left: var(--size-48);
+    .padding(right, var(--size-48));
+    .padding(left, var(--size-48));
   }
 }
 

@@ -1,6 +1,9 @@
+@import (reference) './mixins/_logical-properties.less';
+
 .link-callout > .tw-icon-chevron-up {
   display: inline-block;
-  margin-left: 8px;
+  .margin(left, var(--size-8));
+
   pointer-events: none;
   transition: transform 0.2s ease-in-out;
   transform: rotate(+90deg);

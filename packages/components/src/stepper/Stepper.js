@@ -39,7 +39,6 @@ const Stepper = ({ steps, activeStep, className }) => {
     return (
       <li
         key={index}
-        style={{ left: `${index * stepPercentage * 100}%` }}
         className={`
           hidden-xs
           tw-stepper__step

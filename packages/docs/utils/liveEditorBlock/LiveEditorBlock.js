@@ -31,7 +31,13 @@ const LiveEditorBlock = ({ code, scope, display }) => {
   );
 
   return (
-    <div className="row live-provider">
+    <div
+      // react-live is broken at RTL mode
+      // and it doesn't have support for this feature (e.g can't be configured via some prop) either
+      // so enforcing LTR mode in any case
+      dir="ltr"
+      className="row live-provider"
+    >
       <LiveProvider code={code} scope={scope}>
         {display === 'vertical' ? (
           <>

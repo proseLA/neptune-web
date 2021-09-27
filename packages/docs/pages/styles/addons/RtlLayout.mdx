@@ -1,0 +1,131 @@
+import { DocLink } from '../../../utils/pageUtils';
+
+Neptune-css and Neptune-components are ready to use in RTL (Right to Left) direction languages. 
+
+## The basics
+
+Get <code>dir</code> attribute in HTML element depending the language.
+
+LTR laguages:
+```
+<html dir="ltr" >
+```
+
+RTL laguages:
+```
+<html dir="rtl" >
+```
+
+- <code>dir</code> attribute has implicit the direction CSS property natively, so using the attribute is enough to make the layout switch.
+- Default alignment, tables, flex and grid elements work really nice with the direction property and the browser creates natively the expected layout, except when the code uses a "left" or a "right" value.
+- W3C specification is working on [logical properties and values](https://drafts.csswg.org/css-logical/) to solve the horizontal physical direction but the support is being uneven yet.
+- To solve the horizontal properties and values we are going to use the RTL mixin. Neptune code is prepared with the RTL mixin already, but you may add it to your custom CSS in your project, to have the total experience.
+
+## The RTL mixin
+There is Less [a mixin](https://github.com/transferwise/neptune-web/blob/rtl-with-css-logical-properties/packages/css/src/less/mixins/_logical-properties-IE-friendly.less) to control the direction of the physical horizontal properties and values in Neptune. With this mixin we are going to be able to control and scale the support in browsers of logical properties. Right now it’s prepared to output the IE11 friendly version.
+
+### Usage
+
+Add the import reference at the top of the .less file:
+
+```
+@import (reference)
+  "@transferwise/neptune-css/src/less/mixins/_logical-properties.less";
+```
+
+Update all the horizontal properties (left, right) with a mixin call in your custom .less file:
+
+💡 Tip: If left and right values are equal in the same selector we can keep them as they are without having to update to the mixin syntax. 
+Keep the code as it is when:
+```
+padding-left: var(--foo1);
+padding-right: var(--foo1);
+```
+```
+padding: 0 var(--foo);
+```
+```
+padding: 0 var(--foo) 0;
+```
+
+May occur the case that you need to force specificity to your custom CSS even when the left/right are equal. In this case, go to use the mixin:
+
+New syntax:
+
+#### Spacing:
+
+```
+margin-left: var(--foo); → .margin(left, var(--foo));
+```
+```
+padding-left: var(--foo); → .padding(left, var(--foo));
+```
+Shorthands (only when left != right or you need more specificity):
+```
+margin: 0 0 0 var(--foo); → .margin-shorthand(0, 0, 0, var(--foo));
+```
+```
+padding: 0 0 0 var(--foo); → .padding-shorthand(0, 0, 0, var(--foo));
+```
+
+#### Alignment:
+
+```
+text-align: left; → .text-align(left);
+```
+
+#### Positions: 
+
+```
+left: var(foo);. → .left(var(--foo));
+```
+
+#### Floats:
+
+```
+float: left;. → .float(left);
+```
+
+#### Clear:
+
+```
+clear: left → .clear(left);
+```
+
+#### Border: 
+
+```
+border-left: 1px solid pink; → .border(left, 1px, solid, pink);
+```
+```
+border-left-width: 1px; → .border-width(left, 1px);
+```
+```
+border-top-left-radius: 3px; → .border-top-dir-radius(left, 3px);
+```
+```
+border-bottom-left-radius: 3px; → .border-bottom-dir-radius(left, 3px);
+```
+```
+border-bottom-left-radius: 3px;
+border-top-left-radius: 3px; (both top and bottom) → .border-radius(left, 3px); 
+```
+
+#### Background position: 
+
+```
+background-position: left; →  .background-position(left);
+```
+```
+background-position: left bottom; →  .background-position(left, bottom);
+```
+
+#### Background linear gradient: 
+
+```
+background: linear-gradient(to left, var(--color1) var(--color2)) → .background-linear-gradient(left, var(--color1), var(--color2));
+```
+
+export const meta = {
+  name: 'RTL layout',
+};

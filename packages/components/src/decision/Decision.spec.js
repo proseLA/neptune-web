@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 
 import Avatar from '../avatar';
 import { Breakpoint, Size } from '../common';
-import { useDirection } from '../common/hooks';
 import { render, fireEvent } from '../test-utils';
 
 import { Presentation, Type } from './decisionEnums';
@@ -11,7 +10,6 @@ import { Presentation, Type } from './decisionEnums';
 import Decision from '.';
 
 jest.mock('lodash.throttle', () => jest.fn((fn) => fn));
-jest.mock('../common/hooks/useDirection');
 
 describe('Decision', () => {
   const props = {
@@ -50,7 +48,6 @@ describe('Decision', () => {
   let container;
   beforeEach(() => {
     resetClientWidth(Breakpoint.EXTRA_SMALL - 1);
-    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
   });
 
   describe(`when presentation is ${Presentation.LIST_BLOCK}`, () => {
@@ -131,16 +128,6 @@ describe('Decision', () => {
     it('renders Navigation Option before breakpoint', () => {
       expect(getNavigationOption()).toBeInTheDocument();
       expect(getTile()).not.toBeInTheDocument();
-    });
-  });
-
-  describe('rtl support', () => {
-    beforeEach(() => {
-      ({ container } = render(<Decision {...props} presentation={Presentation.LIST_BLOCK} />));
-    });
-
-    it('should apply correct css classes when isRTL is true', () => {
-      expect(container.querySelector('.np-decision')).toHaveClass('np-decision--rtl');
     });
   });
 

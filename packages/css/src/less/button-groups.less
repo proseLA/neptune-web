@@ -1,7 +1,8 @@
 @import (reference) '../variables/legacy-variables.less';
-@import './mixins/_border-radius.less';
-@import './mixins/_clearfix.less';
-@import './mixins/_tab-focus.less';
+@import (reference) './mixins/_logical-properties.less';
+@import (reference) './mixins/_border-radius.less';
+@import (reference) './mixins/_clearfix.less';
+@import (reference) './mixins/_tab-focus.less';
 
 // Make the div behave like a button
 .btn-group,
@@ -12,7 +13,7 @@
 
   > .btn {
     position: relative;
-    float: left;
+    .float(left);
   }
 }
 
@@ -22,22 +23,23 @@
   .btn + .btn-group,
   .btn-group + .btn,
   .btn-group + .btn-group {
-    margin-left: -1px;
+    .margin(left, -1px);
   }
 }
 
 .expand-toolbar() {
-  margin-left: -4px; // Offset the first child's margin
-  margin-right: -4px; // Offset the first child's margin
-
+  .margin(left, -4px;) // Offset the first child's margin
+  .margin(right, -4px;) // Offset the first child's margin
   .btn,
   .btn-group,
   .input-group {
     width: auto;
     margin-bottom: 0;
-    float: left;
-    margin-left: 4px;
-    margin-right: 4px;
+    .float(left);
+
+    .margin(left, 4px);
+
+    .margin(right, 4px);
   }
 }
 
@@ -55,7 +57,8 @@
   .btn-group .btn,
   .input-group .btn {
     width: auto;
-    margin: 0 0 0 -1px;
+    margin: 0;
+    .margin(left, -1);
   }
 
   @media (min-width: @screen-lg-min) {
@@ -100,21 +103,21 @@
 
 // Set corners individual because sometimes a single button can be in a .btn-group and we need :first-child and :last-child to both match
 .btn-group > .btn:first-child {
-  margin-left: 0;
+  .margin(left, 0);
 
   &:not(:last-child):not(.dropdown-toggle) {
-    .border-right-radius(0);
+    .border-radius(right, 0);
   }
 }
 // Need .dropdown-toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
 .btn-group > .btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
-  .border-left-radius(0);
+  .border-radius(left, 0);
 }
 
 // Custom edits for including btn-groups within btn-groups (useful for including dropdown buttons within a btn-group)
 .btn-group > .btn-group {
-  float: left;
+  .float(left);
 }
 
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {
@@ -124,12 +127,12 @@
 .btn-group > .btn-group:first-child:not(:last-child) {
   > .btn:last-child,
   > .dropdown-toggle {
-    .border-right-radius(0);
+    .border-radius(right, 0);
   }
 }
 
 .btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
-  .border-left-radius(0);
+  .border-radius(left, 0);
 }
 
 // On active and open, don't show outline
@@ -159,13 +162,15 @@
 
 // Give the line between buttons some depth
 .btn-group > .btn + .dropdown-toggle {
-  padding-left: 12px;
-  padding-right: 12px;
+  .padding(left, 12px);
+
+  .padding(right, 12px);
 }
 
 .btn-group > .btn-lg + .dropdown-toggle {
-  padding-left: 12px;
-  padding-right: 12px;
+  .padding(left, 12px);
+
+  .padding(right, 12px);
 }
 
 // The clickable button for toggling the menu
@@ -227,7 +232,7 @@
   > .btn-group + .btn,
   > .btn-group + .btn-group {
     margin-top: -1px;
-    margin-left: 0;
+    .margin(left, 0);
   }
 }
 
@@ -284,7 +289,7 @@
   }
 
   > .btn-group .dropdown-menu {
-    left: auto;
+    .left(auto);
   }
 }
 
@@ -314,11 +319,11 @@
 
 .btn-group .btn {
   + .btn-success {
-    border-left: 1px solid var(--color-content-positive);
+    .border(left, 1px, solid, var(--color-content-positive));
   }
 
   + .btn-primary {
-    border-left: 1px solid var(--color-content-accent);
+    .border(left, 1px, solid, var(--color-content-accent));
   }
 }
 
@@ -332,30 +337,32 @@
   }
 
   .btn-input.btn {
-    text-align: left;
+    .text-align(left);
 
     .caret {
       position: absolute;
-      right: 16px;
+      .right(16px);
+
       top: 16px;
     }
 
     &.btn-sm .caret {
-      right: 8px;
+      .right(8px);
     }
 
     &.dropdown-toggle {
-      padding-right: 40px;
+      .padding(right, 40px);
+
       overflow: hidden;
       text-overflow: ellipsis;
 
       @media (min-width: @screen-sm-min) {
-        padding-right: 48px;
+        .padding(right, 48px);
       }
     }
 
     &.btn-sm.dropdown-toggle {
-      padding-right: 33px;
+      .padding(right, 33px);
     }
   }
 
@@ -365,7 +372,7 @@
     .caret {
       position: relative;
       top: 0;
-      right: 0;
+      .right(0);
     }
   }
 }

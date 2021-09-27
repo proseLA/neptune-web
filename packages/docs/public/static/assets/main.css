@@ -72,10 +72,14 @@ p + h2[id] {
   scroll-behavior: smooth;
   overflow-y: auto;
   margin-bottom: 0;
-  padding: 0;
   list-style: none;
   border-top: 1px solid var(--color-border-neutral);
   font-size: var(--font-size-14);
+}
+
+html:not([dir="rtl"]) .Nav,
+[dir="rtl"] .Nav {
+  padding: 0;
 }
 
 .Nav__Link {
@@ -168,7 +172,7 @@ img {
 
 @media (min-width: 1200px) {
   .live-preview {
-    padding-left: var(--size-32);
+    padding-inline-start: var(--size-32);
   }
 }
 
@@ -211,6 +215,14 @@ img {
 .docs-table > tbody > tr > th {
   padding-left: 5px;
   color: var(--color-content-primary);
+}
+
+[dir="rtl"] .docs-table > tbody > tr > th {
+  padding-right: 5px;
+}
+
+:not([dir="rtl"]) .docs-table > tbody > tr > th {
+  padding-left: 5px;
 }
 
 .docs-table ul {

@@ -1,8 +1,9 @@
-// TODO: remove bootstrap dependencies
-
 @import (reference) '../variables/legacy-variables.less';
-@import 'bootstrap/less/mixins/vendor-prefixes.less';
-@import 'bootstrap/less/mixins/opacity.less';
+@import (reference) './mixins/_logical-properties.less';
+
+//
+// Modals
+// --------------------------------------------------
 
 //
 // Styles for Angular UI modal
@@ -32,14 +33,16 @@
 
   // Prevent Chrome on Windows from adding a focus outline. For details, see
   // https://github.com/twbs/bootstrap/pull/10951.
+
   outline: 0;
 
   // When fading in the modal, animate it to slide down
+
   &.fade .modal-dialog {
-    .translate(0, -25%);
-    .transition-transform(~"0.3s ease-out");
+    transform: translate(0, -25%);
+    transition: transform (~"0.3s ease-out");
   }
-  &.in .modal-dialog { .translate(0, 0); }
+  &.in .modal-dialog { transform: translate(0, 0); }
 }
 
 .modal-open .modal {
@@ -48,23 +51,25 @@
 }
 
 // Shell div to position the modal with bottom padding
+
 .modal-dialog {
   position: relative;
   width: auto;
-  margin: 16px;
+  margin: var(--size-16);
 }
 
 // Actual modal
+
 .modal-content {
   position: relative;
   background-color: @modal-content-bg;
-  border: 1px solid @modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
   border: 1px solid @modal-content-border-color;
   border-radius: @border-radius-large;
-  .box-shadow(0 3px 9px rgba(0,0,0,0.5));
-
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
+
   // Remove focus outline from opened modal
+
   outline: 0;
 }
 
@@ -76,23 +81,36 @@
   bottom: 0;
   left: 0;
   z-index: @zindex-modal-background;
-  // dimmer color
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: @modal-backdrop-bg;
+
+  // Fade for backdrop
+
+  &.fade {
+    opacity: 0;
+  }
+
+  &.in {
+    opacity: @modal-backdrop-opacity;
+  }
 }
 
 // Modal header
 // Top section of the modal w/ title and dismiss
+
 .modal-header {
   padding: @modal-inner-padding-collapse;
   border-bottom: 1px solid @modal-header-border-color;
   min-height: (@modal-inner-padding-collapse + @modal-title-line-height);
 }
+
 // Close icon
+
 .modal-header .close {
   margin-top: -2px;
 }
 
 // Title text within header
+
 .modal-title {
   margin: 0;
   line-height: @modal-title-line-height;
@@ -100,30 +118,39 @@
 
 // Modal body
 // Where all modal content resides (sibling of .modal-header and .modal-footer)
+
 .modal-body {
   position: relative;
   padding: @modal-inner-padding-collapse;
 }
 
 // Footer (for actions)
+
 .modal-footer {
-  padding: 16px @modal-inner-padding-collapse;
-  text-align: right; // right align buttons
+  padding: var(--size-16) @modal-inner-padding-collapse;
+  .text-align(right); // right align buttons
+
   border-top: 1px solid @modal-footer-border-color;
   &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
 
   // Properly space out buttons
+
   .btn + .btn {
-    margin-left: 8px;
+    .margin(left, var(--size-8));
+
     margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
   }
+
   // but override that for button groups
+
   .btn-group .btn + .btn {
-    margin-left: -1px;
+    .margin(left, -1px);
   }
+
   // and override it for block buttons as well
+
   .btn-block + .btn-block {
-    margin-left: 0;
+    .margin(left, 0);
   }
 }
 
@@ -137,15 +164,17 @@
 }
 
 // Scale up the modal
-@media (min-width: @screen-sm-min) {
+
+@media (--screen-sm) {
   // Automatically set modal's width for larger viewports
+
   .modal-dialog {
     width: @modal-md;
     margin: (@padding-base-vertical * 4) auto;
   }
 
   .modal-content {
-    .box-shadow(0 5px 15px rgba(0,0,0,0.5));
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   }
 
   .modal-header {
@@ -158,12 +187,13 @@
   }
 
   .modal-footer {
-    padding: 16px @modal-inner-padding;
+    padding: var(--size-16) @modal-inner-padding;
   }
 }
 
 // Modal sizes
-@media (min-width: @screen-sm-min) {
+
+@media (--screen-sm) {
   .modal-sm,
   .modal-lg {
     width: auto;
@@ -178,7 +208,7 @@
   }
 }
 
-@media (min-width: @screen-md-min) {
+@media (--screen-md) {
   .modal-lg {
     width: @modal-lg;
     margin: (@padding-base-vertical * 4) auto;

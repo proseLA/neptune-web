@@ -1,10 +1,11 @@
 @import (reference) '../variables/legacy-variables.less';
+@import (reference) './mixins/_logical-properties.less';
 
 // Base class
 .badge {
   display: inline-block;
-  min-width: 16px;
-  padding: 5px 8px;
+  min-width: var(--size-16);
+  padding: 5px var(--size-8);
   font-size: @badge-font-size;
   font-weight: @badge-font-weight;
   color: var(--color-base-white-light);
@@ -17,7 +18,8 @@
   top: -1px;
   position: relative;
 
-  // Empty badges collapse automatically (not available in IE8)
+  // Empty badges collapse automatically
+
   &:empty {
     display: none;
   }
@@ -26,11 +28,6 @@
   .btn & {
     position: relative;
     top: -1px;
-  }
-
-  .glyphicon & {
-    top: -20px;
-    left: -5px;
   }
 
   .btn-xs &,
@@ -50,27 +47,19 @@
 
   // Account for badges in navs
 
-  /*
-    .list-group-item.active > &,
-    .nav-pills > .active > a > & {
-      color: @badge-active-color;
-      background-color: @badge-active-bg;
-    }
-    */
-
   .list-group-item > & {
-    float: right;
+    .float(right);
   }
 
   .list-group-item > & + & {
-    margin-right: 5px;
+    .margin(right, 5px);
   }
 
   .nav-pills > li > a > &,
   .nav-stacked > li > a > & {
-    margin-left: 19px;
+    .margin(left, 19px);
   }
-  //Color modifier
+
   &-success {
     background: var(--color-interactive-positive);
   }

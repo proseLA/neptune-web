@@ -12,7 +12,12 @@ export const DEFAULT_LANG = 'en';
  */
 export const DEFAULT_LOCALE = 'en-GB';
 
-export const SUPPORTED_RTL = ['he-IL'];
+/**
+ * Array of languages that are written from the right to the left
+ *
+ * @type {string[]}
+ */
+export const RTL_LANGUAGES = ['ar', 'iw'];
 
 export const SUPPORTED_LANGUAGES = [
   DEFAULT_LANG,

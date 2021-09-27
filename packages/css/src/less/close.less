@@ -1,16 +1,10 @@
-// TODO: remove bootstrap dependencies
-
-// variables
 @import (reference) '../variables/legacy-variables.less';
+@import (reference) './mixins/_tab-focus.less';
+@import (reference) './mixins/_logical-properties.less';
 
-// mixins
-@import (reference) 'bootstrap/less/mixins/tab-focus.less';
-
-//
-// Close icons
-// --------------------------------------------------
 .close {
-  float: right;
+  .float(right);
+
   font-size: (@font-size-base * 2);
   font-weight: @close-font-weight;
   line-height: @line-height-computed;

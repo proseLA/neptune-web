@@ -5,7 +5,7 @@ import Dimmer from '../../dimmer';
 import SlidingPanel from '../../slidingPanel';
 import CloseButton from '../closeButton';
 import { CommonProps } from '../commonProps';
-import { isServerSideRendering } from '../domHelpers';
+import { isServerSide } from '../domHelpers';
 import { useConditionalListener } from '../hooks';
 import { Position } from '../propsValues/position';
 
@@ -48,7 +48,7 @@ const BottomSheet = (props: Props): ReactElement => {
 
   // apply shadow to the bottom of top-bar when scroll over content
   useConditionalListener({
-    attachListener: props.open && !isServerSideRendering(),
+    attachListener: props.open && !isServerSide(),
     callback: () => {
       if (topBarReference.current !== null) {
         const { classList } = topBarReference.current;
@@ -60,7 +60,7 @@ const BottomSheet = (props: Props): ReactElement => {
       }
     },
     eventType: 'scroll',
-    parent: isServerSideRendering() ? undefined : document,
+    parent: isServerSide() ? undefined : document,
   });
 
   function move(newHeight: number): void {
@@ -146,7 +146,7 @@ const BottomSheet = (props: Props): ReactElement => {
   function setContentMaxHeight(): CSSProperties {
     const safeZoneHeight = '64px';
     const topbarHeight = '32px';
-    const windowHight: number = isServerSideRendering() ? 0 : window.innerHeight;
+    const windowHight: number = isServerSide() ? 0 : window.innerHeight;
     /**
      * Calculate _real_ height of the screen (taking into account parts of browser interface).
      *

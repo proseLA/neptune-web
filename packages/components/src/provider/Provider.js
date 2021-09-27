@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 
-import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
+import { DEFAULT_LOCALE, RTL_LANGUAGES, adjustLocale, Direction } from '../common';
 import en from '../i18n/en.json';
 
 import { DirectionProvider } from './direction';
@@ -20,8 +20,9 @@ const Provider = ({ i18n, children }) => {
     intlConfig = { locale: adjustedLocale, messages };
   }
 
+  const direction = RTL_LANGUAGES.includes(intlConfig.locale) ? Direction.RTL : Direction.LTR;
   return (
-    <DirectionProvider locale={intlConfig.locale}>
+    <DirectionProvider direction={direction}>
       <IntlProvider
         defaultLocale={DEFAULT_LOCALE}
         locale={intlConfig.locale}

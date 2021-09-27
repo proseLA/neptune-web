@@ -158,6 +158,9 @@ function getArrayValidationFailures(value, schema) {
 /**
  * When validating an object we only checking that it is an object and that it
  * has the required properties, we do not check if the properties are valid.
+ *
+ * @param value
+ * @param schema
  */
 function getObjectValidationFailures(value, schema) {
   if (!isObject(value) && !isNull(value)) {

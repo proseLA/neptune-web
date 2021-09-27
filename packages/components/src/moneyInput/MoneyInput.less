@@ -1,16 +1,20 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .tw-money-input {
   .tw-money-input__fixed-currency {
-    padding-left: 0 !important;
+    .padding(left, 0) !important;
   }
 
   &__keyline {
     width: 2px;
     border: solid 1px @color-base-smoke-mid;
+    height: var(--size-24);
     background-color: @color-base-smoke-mid;
     height: 24px;
-    margin-right: 24px;
+    display: inline-block;
+    .margin(right, var(--size-24));
+
     transform: translateY(4px);
   }
 
@@ -43,7 +47,7 @@
 }
 
 .tw-money-input .amount-currency-select-btn > .tw-select > .btn-addon.dropdown-toggle {
-  padding-right: calc(var(--size-8) * 2);
+  .padding(right, var(--size-16));
 }
 
 .tw-money-input .amount-currency-select-btn > .tw-select > .btn-lg > span {
@@ -56,5 +60,5 @@
 
 .tw-money-input .amount-currency-select-btn > .tw-select > .btn > span.tw-icon {
   position: static;
-  padding-right: calc(var(--size-8) * 2);
+  .padding(right, var(--size-16));
 }

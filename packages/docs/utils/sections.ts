@@ -81,7 +81,7 @@ const sections: MainSection[] = [
       {
         title: 'Addons',
         directory: 'styles/addons',
-        fileOrder: ['BackgroundUtilities', 'DisplayUtilities', 'SpacingUtilities'],
+        fileOrder: ['BackgroundUtilities', 'DisplayUtilities', 'RtlLayout', 'SpacingUtilities'],
       },
       {
         title: 'Tokens',

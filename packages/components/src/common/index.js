@@ -1,6 +1,8 @@
 export { default as HistoryNavigator } from './historyNavigator';
+export { isServerSide, isBrowser } from './domHelpers';
 export { addNoScrollBodyClass, removeNoScrollBodyClass } from './DOMOperations';
 export * from './theme';
+export * from './direction';
 // Props
 export { Priority, ControlType } from './propsValues/control';
 export { Breakpoint } from './propsValues/breakpoint';

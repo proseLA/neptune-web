@@ -1,13 +1,14 @@
 @import (reference) '../../variables/neptune-tokens.less';
 @import (reference) '../variables/_typography.less';
+@import (reference) '../mixins/_logical-properties.less';
 @import '../mixins/_text-emphasis.less';
 
 .text-xs-left {
-  text-align: left;
+  .text-align(left);
 }
 
 .text-xs-right {
-  text-align: right;
+  .text-align(right);
 }
 
 .text-xs-center {
@@ -24,11 +25,11 @@
 
 @media (--screen-sm) {
   .text-sm-left {
-    text-align: left;
+    .text-align(left);
   }
 
   .text-sm-right {
-    text-align: right;
+    .text-align(right);
   }
 
   .text-sm-center {
@@ -46,11 +47,11 @@
 
 @media (--screen-md) {
   .text-md-left {
-    text-align: left;
+    .text-align(left);
   }
 
   .text-md-right {
-    text-align: right;
+    .text-align(right);
   }
 
   .text-md-center {
@@ -68,11 +69,11 @@
 
 @media (--screen-lg) {
   .text-lg-left {
-    text-align: left;
+    .text-align(left);
   }
 
   .text-lg-right {
-    text-align: right;
+    .text-align(right);
   }
 
   .text-lg-center {
@@ -90,11 +91,11 @@
 
 @media (--screen-xl) {
   .text-xl-left {
-    text-align: left;
+    .text-align(left);
   }
 
   .text-xl-right {
-    text-align: right;
+    .text-align(right);
   }
 
   .text-xl-center {

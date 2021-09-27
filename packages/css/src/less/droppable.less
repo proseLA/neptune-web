@@ -1,4 +1,5 @@
 @import (reference) '../variables/legacy-variables.less';
+@import (reference) './mixins/_logical-properties.less';
 
 .droppable {
   position: relative;
@@ -17,7 +18,7 @@
     border-color: var(--color-interactive-secondary-active);
   }
 
-  @media (min-width: @screen-md-min) {
+  @media (--screen-md) {
     border-style: dashed;
   }
 }
@@ -26,7 +27,8 @@
   background-color: var(--color-background-screen);
   position: absolute;
   top: 0;
-  left: 0;
+  .left(0);
+
   display: none;
   width: 100%;
   height: 100%;
@@ -57,7 +59,7 @@
   max-width: 96px;
   margin: 0 auto;
 
-  @media (min-width: 768px) {
+  @media (--screen-md) {
     max-height: 128px;
     max-width: 128px;
   }
@@ -87,7 +89,9 @@
     opacity: 1;
   }
 }
+
 // Processing shown when correct state, any transform cancelled
+
 .droppable-processing .droppable-processing-card {
   display: flex;
   transform: translateX(0);
@@ -148,7 +152,7 @@
   display: none;
 }
 
-@media (min-width: @screen-md-min) {
+@media (--screen-md) {
   .droppable-mobile {
     display: none;
   }
@@ -158,56 +162,27 @@
   }
 }
 
-/**** DEPRECATED ****/
-.droppable-active-cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-
-  .droppable-active & {
-    display: flex;
-    background-color: var(--color-base-white-light);
-  }
-
-  .droppable-dropping & {
-    color: var(--color-content-accent) !important;
-    // TODO fix with some non-semitransparent color
-    background-color: #505050;
-  }
-}
-
 .droppable-active {
   border-style: solid;
-}
 
-.droppable-active.droppable-dropping {
-  border-style: dashed;
+  &.droppable-dropping {
+    border-style: dashed;
+  }
 }
-
-/**** END DEPRECATED ****/
 
 .droppable-size(@size, @padding-mobile, @padding-tablet, @padding-desktop) {
-  // .droppable-active-cover is DEPRECATED
-  .droppable-@{size},
-  .droppable-@{size} .droppable-active-cover {
+  .droppable-@{size} {
     padding: @padding-mobile @padding-mobile;
   }
-  // .droppable-active-cover is DEPRECATED
-  @media (min-width: @screen-sm-min) {
-    .droppable-@{size},
-    .droppable-@{size} .droppable-active-cover {
+
+  @media (--screen-sm) {
+    .droppable-@{size} {
       padding: @padding-tablet @padding-mobile;
     }
   }
-  // .droppable-active-cover is DEPRECATED
-  @media (min-width: @screen-lg-min) {
-    .droppable-@{size},
-    .droppable-@{size} .droppable-active-cover {
+
+  @media (--screen-lg) {
+    .droppable-@{size} {
       padding: @padding-desktop @padding-tablet;
     }
   }

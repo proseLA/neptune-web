@@ -29,7 +29,7 @@ describe('Badge', () => {
   });
 
   it('renders badge children', () => {
-    const { getByText } = renderBadge();
+    renderBadge();
 
     expect(screen.getByText(childText).parentElement).toHaveClass('tw-badge__children');
   });

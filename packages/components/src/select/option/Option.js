@@ -13,7 +13,7 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
     : null;
 
   return (
-    <span>
+    <span className="d-flex align-items-center">
       {currency ? (
         <i className={currencyClassNames} />
       ) : (

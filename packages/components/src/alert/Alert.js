@@ -6,7 +6,6 @@ import requiredIf from 'react-required-if';
 
 import { Sentiment } from '../common';
 import CloseButton from '../common/closeButton';
-import { useDirection } from '../common/hooks';
 import { logActionRequiredIf, deprecated } from '../utilities';
 
 import InlineMarkdown from './inlineMarkdown';
@@ -29,7 +28,6 @@ const Alert = (props) => {
   const [shouldFire, setShouldFire] = useState(false);
   const { arrow, action, children, className, icon, onDismiss, message, type } = props;
   const closeButtonReference = useRef(null);
-  const { isRTL } = useDirection();
 
   if (arrow) {
     const AlertWithArrow = withArrow(Alert, arrow);
@@ -70,9 +68,7 @@ const Alert = (props) => {
       onTouchMove={handleTouchMove}
     >
       {iconElement}
-      <div
-        className={classNames('alert__message flex-grow-1', { 'p-l-2': !isRTL, 'p-r-2': isRTL })}
-      >
+      <div className="alert__message flex-grow-1 p-l-2">
         <div>{children || <InlineMarkdown>{message}</InlineMarkdown>}</div>
         {action && (
           <a
@@ -86,12 +82,7 @@ const Alert = (props) => {
         )}
       </div>
       {onDismiss && (
-        <CloseButton
-          ref={closeButtonReference}
-          size={16}
-          className={classNames({ 'm-l-2': !isRTL, 'm-r-2': isRTL })}
-          onClick={onDismiss}
-        />
+        <CloseButton ref={closeButtonReference} size={16} className="m-l-2" onClick={onDismiss} />
       )}
     </div>
   );

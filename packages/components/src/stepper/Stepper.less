@@ -1,5 +1,6 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .tw-stepper {
   padding-bottom: 24px;
@@ -10,8 +11,10 @@
   }
 
   &__step {
-    position: absolute;
     list-style-type: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 
     &--active .tw-stepper__step-label {
       color: var(--color-content-primary);
@@ -42,9 +45,7 @@
   &__step-label {
     color: var(--color-content-secondary);
     transition: color 0.6s ease-in-out;
-    position: absolute;
     white-space: nowrap;
-    transform: translateX(-50%);
   }
 
   & .tooltip {
@@ -63,20 +64,30 @@
 
 .tw-stepper-steps {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 125%;
+  .margin(left, -12.5%);
+
+  .padding-shorthand(0);
 }
 
 .progress-bar-ending {
-  float: left;
+  .float(left);
+
   height: 100%;
-  background: linear-gradient(to right, var(--color-interactive-accent), var(--color-base-navy-light));
+  .background-linear-gradient(right, var(--color-interactive-accent), var(--color-base-navy-light));
+
   transition: width 0.6s ease-in-out;
 
   &::after {
-    float: right;
+    .float(right);
+
     width: 8px;
     height: 8px;
     margin-top: -3px;
-    margin-right: -4px;
+    .margin(right, -4px);
+
     content: '';
     background-color: var(--color-base-navy-light);
     border-radius: 4px;
@@ -84,7 +95,8 @@
 }
 
 .progress-bar-filler {
-  float: left;
+  .float(left);
+
   height: 100%;
   background-color: var(--color-interactive-accent);
   border-top-left-radius: 1px;

@@ -1,5 +1,4 @@
 import Avatar, { AvatarType } from '../avatar';
-import { useDirection } from '../common/hooks';
 import { render } from '../test-utils';
 
 import Radio from '.';
@@ -15,10 +14,6 @@ describe('Radio', () => {
     disabled: false,
     secondary: '',
   };
-
-  beforeEach(() => {
-    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
-  });
 
   it('shows the avatar when supplied', () => {
     expect(

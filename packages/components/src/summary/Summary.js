@@ -9,7 +9,6 @@ import { useIntl } from 'react-intl';
 import requiredIf from 'react-required-if';
 
 import { Status, Size } from '../common';
-import { useDirection } from '../common/hooks';
 import Info from '../info';
 import { deprecated } from '../utilities';
 
@@ -42,7 +41,6 @@ const Summary = ({
   title,
 }) => {
   const intl = useIntl();
-  const { isRTL } = useDirection();
 
   let media = illustration;
   if (icon) {
@@ -60,13 +58,13 @@ const Summary = ({
         {media}
         {Badge && <Badge size={16} filled className={`np-summary-icon__${status}`} />}
       </div>
-      <div className={classNames('np-summary__body', { 'm-l-2': !isRTL, 'm-r-2': isRTL })}>
+      <div className="np-summary__body m-l-2">
         <div className="np-summary__title d-flex">
           <strong>{title}</strong>
           {info && (
             <Info
               aria-label={info['aria-label']}
-              className={classNames({ 'm-l-1': !isRTL, 'm-r-1': isRTL }, 'hidden-xs')}
+              className="m-l-1 hidden-xs"
               content={info.content}
               presentation={info.presentation}
               title={info.title}

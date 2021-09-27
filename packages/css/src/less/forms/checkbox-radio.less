@@ -1,5 +1,6 @@
 @import (reference) '../../variables/legacy-variables.less';
 @import (reference) '../../variables/neptune-tokens.less';
+@import (reference) '../mixins/_logical-properties.less';
 
 .radio,
 .checkbox {
@@ -14,7 +15,7 @@
       display: block;
       position: absolute;
       top: 13px;
-      left: 40px;
+      .left(40px);
     }
   }
 }
@@ -140,7 +141,9 @@
     text-align: center;
     width: 0;
     height: 0;
-    margin: 0 0 0 11px;
+    margin: 0;
+    .margin(left, 11px);
+
     transition: all 0.15s ease-in-out;
   }
 
@@ -164,7 +167,12 @@
     .tw-radio-check {
       width: 12px;
       height: 12px;
-      margin: 5px;
+      margin-top: 5px;
+      .margin(right, 5px);
+
+      .margin(left, 5px);
+
+      margin-bottom: 5px;
       display: block;
       background-color: var(--color-interactive-accent);
     }
@@ -206,13 +214,15 @@
 
 .radio .tw-radio-button {
   position: absolute;
-  left: 13px;
+  .left(13px);
+
   top: 11px;
 }
 
 .checkbox .tw-checkbox-button {
   position: absolute;
-  left: 14px;
+  .left(14px);
+
   top: 12px;
 }
 

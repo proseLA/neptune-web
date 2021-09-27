@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/less/addons/_spacing-utilities.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .np-drawer {
   display: flex;
@@ -49,7 +50,7 @@
     // TODO - remove when typography styles get updated (#942)
     font-size: 20px;
     line-height: var(--size-24);
-    margin-left: var(--size-16);
+    .margin(left, var(--size-16));
 
     // Fix font alignment issue
     margin-bottom: -2px;

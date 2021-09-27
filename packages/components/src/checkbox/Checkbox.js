@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import CheckboxButton from '../checkboxButton';
-import { useDirection } from '../common/hooks';
 
 const Checkbox = ({
   id,
@@ -16,7 +15,6 @@ const Checkbox = ({
   onFocus,
   onBlur,
 }) => {
-  const { isRTL } = useDirection();
   const hasError = required && !disabled && !readOnly && !checked;
 
   const classList = classNames('np-checkbox', {
@@ -31,7 +29,7 @@ const Checkbox = ({
       {/* eslint-disable jsx-a11y/label-has-for */}
       <label>
         <CheckboxButton
-          className={classNames({ 'has-error': hasError, 'p-r-2': !isRTL, 'p-l-2': isRTL })}
+          className={classNames('p-r-2', { 'has-error': hasError })}
           checked={checked}
           disabled={disabled || readOnly}
           onFocus={onFocus}
