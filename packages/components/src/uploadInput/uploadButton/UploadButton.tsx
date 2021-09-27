@@ -149,21 +149,10 @@ const UploadButton = ({
         })}
       >
         <div className="media">
-          <div
-            className={classNames('np-upload-icon', {
-              'media-right': isRTL,
-              'media-left': !isRTL,
-            })}
-          >
+          <div className="np-upload-icon media-left">
             <UploadIcon size={24} className="text-link" />
           </div>
-          <div
-            className={classNames('media-body', {
-              'text-xs-right': isRTL,
-              'text-xs-left': !isRTL,
-            })}
-            data-testid={TEST_IDS.mediaBody}
-          >
+          <div className="media-body text-xs-left" data-testid={TEST_IDS.mediaBody}>
             <div>{formatMessage(multiple ? MESSAGES.uploadFiles : MESSAGES.uploadFile)}</div>
             <small className={classNames('np-upload-description', { 'text-primary': !disabled })}>
               {formatMessage(MESSAGES.instructions, {

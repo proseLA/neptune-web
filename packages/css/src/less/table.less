@@ -3,6 +3,7 @@
 
 // mixins
 @import './mixins/_table-row.less';
+@import (reference) './mixins/_logical-properties.less';
 
 //
 // Tables
@@ -26,11 +27,11 @@ caption {
   padding-top: @table-cell-padding;
   padding-bottom: @table-cell-padding;
   color: var(--color-content-disabled);
-  text-align: left;
+  .text-align(left);
 }
 
 th {
-  text-align: left;
+  .text-align(left);
 }
 
 // Baseline styles

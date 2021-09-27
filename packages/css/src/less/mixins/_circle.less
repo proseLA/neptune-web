@@ -1,0 +1,11 @@
+.circle-variant(@diameter; @font-size; @icon-size) {
+  font-size: @font-size;
+  width: @diameter;
+  height: @diameter;
+  line-height: @diameter;
+
+  .icon {
+    font-size: @icon-size;
+    line-height: (@diameter - 2px);
+  }
+}

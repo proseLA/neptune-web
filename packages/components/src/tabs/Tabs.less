@@ -1,6 +1,7 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
 @import (reference) '@transferwise/neptune-css/src/variables/legacy-variables.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 @transition-timing-function: ease-in-out;
 @short-transition-duration: 0.15s;
@@ -51,6 +52,8 @@
   &__tab-list {
     list-style: none;
     padding: 0;
+    .padding(left, 0);
+
     margin: 0;
     border-bottom: 1px solid var(--color-border-neutral);
   }

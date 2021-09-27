@@ -9,3 +9,8 @@ export enum Position {
   RIGHT_TOP = 'right-top',
   TOP = 'top',
 }
+
+export type PositionTop = 'top';
+export type PositionRight = 'right';
+export type PositionBottom = 'bottom';
+export type PositionLeft = 'left';

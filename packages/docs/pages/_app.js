@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 import { MDXProvider } from '@mdx-js/react';
-import { Provider, getLangFromLocale, DEFAULT_LOCALE } from '@transferwise/components';
+import { Provider, getLangFromLocale, DEFAULT_LOCALE, Direction } from '@transferwise/components';
 import App from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
@@ -37,6 +37,11 @@ class MyApp extends App {
     if (pathname === '/' || pathname === '/_error') {
       Router.push(addBasePath('about/Home'));
     }
+
+    const localDirection = JSON.parse(localStorage.getItem('isRTL'))
+      ? Direction.RTL
+      : Direction.LTR;
+    document.documentElement.dir = localDirection;
 
     // @TODO
     // We need to show the user a cookie banner before we do this. Because it's used solely for the purposes

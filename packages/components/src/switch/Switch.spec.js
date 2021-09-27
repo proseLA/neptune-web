@@ -1,10 +1,7 @@
-import { useDirection } from '../common/hooks';
 import KeyCodes from '../common/keyCodes';
 import { render, fireEvent, screen } from '../test-utils';
 
 import Switch from './Switch';
-
-jest.mock('../common/hooks/useDirection');
 
 const props = {
   'aria-label': 'a label',
@@ -15,9 +12,6 @@ const props = {
 };
 
 describe('Switch', () => {
-  beforeEach(() => {
-    useDirection.mockImplementation(() => ({ direction: 'ltr', isRTL: false }));
-  });
   it('renders component when checked', () => {
     const { container } = render(
       <Switch
@@ -79,12 +73,6 @@ describe('Switch', () => {
     expect(props.onClick).not.toHaveBeenCalled();
     fireEvent.keyDown(input, { key: '32', keyCode: KeyCodes.SPACE });
     expect(props.onClick).toHaveBeenCalledTimes(1);
-  });
-
-  it('should apply correct css classes when isRTL is true', () => {
-    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
-    render(<Switch {...props} checked />);
-    expect(screen.getByRole('switch')).toHaveClass('np-switch--rtl');
   });
 
   it('should not call onClick if disabled', () => {

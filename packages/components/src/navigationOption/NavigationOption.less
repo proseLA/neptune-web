@@ -1,12 +1,16 @@
 @import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .np-navigation-option {
   text-decoration: none;
-  border-left: 0;
-  border-right: 0;
+  .border(left, 0);
+
+  .border(right, 0);
+
   background-color: transparent;
-  text-align: left;
+  .text-align(left);
+
   width: 100%;
 
   &:hover,

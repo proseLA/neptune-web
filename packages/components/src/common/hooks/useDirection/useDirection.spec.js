@@ -13,7 +13,7 @@ describe('useDirection', () => {
   it(`rtl locale case`, () => {
     const {
       result: { current },
-    } = renderHook(() => useDirection(), { locale: 'he-IL' });
+    } = renderHook(() => useDirection(), { locale: 'ar' });
 
     expect(current).toStrictEqual({ direction: 'rtl', isRTL: true });
   });

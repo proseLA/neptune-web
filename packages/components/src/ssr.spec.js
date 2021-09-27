@@ -40,19 +40,24 @@ const excluded = new Set([
   'AlertArrowPosition',
   'LogoType',
   'FileType',
+  'Direction',
 
   // types
   'UploadedFile',
   'UploadError',
   'UploadResponse',
+  'LayoutDirection',
 
   // utils
   'SUPPORTED_LANGUAGES',
+  'RTL_LANGUAGES',
   'DEFAULT_LANG',
   'DEFAULT_LOCALE',
   'adjustLocale',
   'getLangFromLocale',
   'getCountryFromLocale',
+  'isServerSide',
+  'isBrowser',
 
   // other
   'translations',
@@ -176,6 +181,7 @@ describe('Server side rendering', () => {
       ActionOption: { action: 'hello' },
       DateLookup: { value: new Date() },
       Link: { size: 16 },
+      Tooltip: { children: <>yo</> },
     };
 
     const { Provider } = exposedLibraryItems;

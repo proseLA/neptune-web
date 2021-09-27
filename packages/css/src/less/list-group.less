@@ -1,30 +1,6 @@
-// TODO: remove bootstrap dependencies
-
 @import (reference) '../variables/legacy-variables.less';
-
-// List Groups
-
-.list-group-item-variant(@state; @background; @color) {
-  .list-group-item-@{state} {
-    border-left: 3px solid @color;
-
-    .list-group-item& {
-      background-color: var(--color-background-screen);
-    }
-
-    .list-group-item-text {
-      color: @color;
-    }
-
-    a& {
-      color: @color;
-
-      &:hover {
-        color: @color;
-      }
-    }
-  }
-}
+@import (reference) './mixins/_list-group.less';
+@import (reference) './mixins/_logical-properties.less';
 
 //
 // List groups
@@ -36,8 +12,10 @@
 
 .list-group {
   // No need to set list-style: none; since .list-group-item is block level
+
   margin-bottom: 20px;
-  padding-left: 0; // reset padding because ul and ol
+  .padding(left, 0); // reset padding because ul and ol
+
   border-left: 1px solid var(--color-border-neutral);
   border-right: 1px solid var(--color-border-neutral);
   border-bottom: 1px solid var(--color-border-neutral);
@@ -49,10 +27,13 @@
 
 .list-group-item {
   display: block;
-  padding: @spacing-1-mobile @spacing-1-mobile @spacing-1-mobile (@spacing-1-mobile - 2px);
+  .padding-shorthand(@spacing-1-mobile, @spacing-1-mobile, @spacing-1-mobile, (@spacing-1-mobile - 2px));
+
   // Place the border on the list items and negative margin up for better styling
+
   background-color: var(--color-background-screen);
-  border-left: 2px solid transparent;
+  .border(left, 2px, solid, transparent);
+
   margin-top: 1px;
   line-height: @line-height-computed;
   transition: all ease @panel-focus-transtion;
@@ -63,15 +44,15 @@
   }
 }
 
-@media (min-width: @screen-sm-min) {
+@media (--screen-sm) {
   .list-group-item {
-    padding: @spacing-1-tablet @spacing-1-tablet @spacing-1-tablet (@spacing-1-tablet - 2px);
+    .padding-shorthand(@spacing-1-tablet, @spacing-1-tablet, @spacing-1-tablet, (@spacing-1-tablet - 2px));
   }
 }
 
-@media (min-width: @screen-lg-min) {
+@media (--screen-lg) {
   .list-group-item {
-    padding: @spacing-1-desktop @spacing-1-desktop @spacing-1-desktop (@spacing-1-desktop - 2px);
+    .padding-shorthand(@spacing-1-desktop, @spacing-1-desktop, @spacing-1-desktop, (@spacing-1-desktop - 2px));
   }
 }
 
@@ -184,7 +165,7 @@ a.list-group-item {
     &.active {
       background-color: var(--color-background-screen);
 
-      @media (min-width: @screen-sm-min) {
+      @media (--screen-sm) {
         .circle {
           background-color: var(--color-background-neutral);
         }
@@ -248,7 +229,8 @@ a.list-group-item {
       .collapse {
         position: fixed;
         top: 0;
-        left: 0;
+        .left(0);
+
         width: 100vw;
         height: 100vh;
         margin: 0;
@@ -283,12 +265,16 @@ a.list-group-item {
     .list-group-item.active .collapse {
       height: 100vh;
       overflow-y: auto;
+
       // Annoying but makes sure the last content is visible in iOS safari
+
       padding-bottom: 72px;
     }
 
     .list-group-item.active .collapse .well {
+
       // Annoying but makes sure the last content is visible in iOS safari
+
       padding-bottom: 72px;
       margin-bottom: -72px;
     }

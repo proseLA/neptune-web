@@ -1,5 +1,6 @@
 .tw-tooltip-container {
   display: inline-block;
+  background-color: yellow;
 
   & .tooltip {
     visibility: visible;
@@ -26,5 +27,25 @@
 
   to {
     visibility: hidden;
+  }
+}
+
+.np-panel[data-popper-placement^='right'] > .np-panel__content.tooltip-inner {
+  .np-panel__arrow {
+    left: -14px;
+
+    [dir="rtl"] & {
+      left: 0;
+    }
+  }
+}
+
+.np-panel[data-popper-placement^='left'] > .np-panel__content.tooltip-inner {
+  .np-panel__arrow {
+    right: 0;
+
+    [dir="rtl"] & {
+      right: -14px;
+    }
   }
 }

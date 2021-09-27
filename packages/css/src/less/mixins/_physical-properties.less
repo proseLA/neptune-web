@@ -1,0 +1,111 @@
+
+// Mixin to add physical properties/values without RTL support for a lighter bundle.
+
+// Float left/right
+
+.float(@direction) {
+  & when (@direction = left) {
+    float: @direction;
+  }
+
+  & when (@direction = right) {
+    float: @direction;
+  }
+}
+
+// Clear left/right
+
+.clear(@direction) {
+  & when (@direction = left) {
+    clear: @direction;
+  }
+
+  & when (@direction = right) {
+    clear: @direction;
+  }
+}
+
+// text-align: left/right
+
+.text-align(@direction) {
+  & when (@direction = left) {
+    text-align: left;
+  }
+
+  & when (@direction = right) {
+    text-align: right;
+  }
+}
+
+// padding-left / padding-right
+
+.padding(@direction, @value) {
+  & when (@direction = left) {
+    padding-left: @value;
+  }
+
+  & when (@direction = right) {
+    padding-right: @value;
+  }
+}
+
+// margin-left / margin-right
+
+.margin(@direction, @value) {
+  & when (@direction = left) {
+    margin-left: @value;
+  }
+
+  & when (@direction = right) {
+    padding-left: @value;
+  }
+}
+
+// left / right (positions)
+
+.left(@value) {
+  left: @value;
+}
+
+.right(@value) {
+  right: @value;
+}
+
+// border-left / border-right
+
+.border(@direction, @size, @style: ~'', @color: ~'') {
+  & when (@direction = left) {
+    border-left: @size @style @color;
+  }
+
+  & when (@direction = right) {
+    border-right: @size @style @color;
+  }
+}
+
+.border-width(@direction, @size) {
+  & when (@direction = left) {
+    border-left-width: @size;
+  }
+
+  & when (@direction = right) {
+    border-right-width: @size;
+  }
+}
+
+// Border radius
+
+//  | top-left      | top-right |
+//  | bottom-left   | bottom-right   |
+
+.border-radius(@direction, @radius) {
+  & when (@direction = left) {
+    border-top-left-radius: @radius;
+    border-bottom-left-radius: @radius;
+  }
+
+  & when (@direction = right) {
+    border-top-right-radius: @radius;
+    border-bottom-right-radius: @radius;
+  }
+}

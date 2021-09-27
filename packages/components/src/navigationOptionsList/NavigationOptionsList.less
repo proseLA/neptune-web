@@ -1,6 +1,9 @@
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+
 .np-navigation-options-list {
   list-style-type: none;
-  padding-left: 0;
+  .padding(left, 0);
+
   margin-bottom: 0;
 
   &__item + &__item {

@@ -1,7 +1,6 @@
 import React, { StrictMode } from 'react';
-import { select } from '@storybook/addon-knobs';
-
-import { Provider } from '../src';
+import { select, boolean } from '@storybook/addon-knobs';
+import { Provider, DirectionProvider } from '../src';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
@@ -36,6 +35,19 @@ export const parameters = {
   viewport: {
     viewports: MINIMAL_VIEWPORTS,
   },
+  /**
+   * For more info https://docs.percy.io/docs/storybook#configuration
+   */
+  percy: {
+    // tell percy to take an additional set of snapshots
+    additionalSnapshots: [
+      // for RTL mode
+      {
+        suffix: ' [RTL]',
+        queryParams: { direction: 'rtl' },
+      },
+    ],
+  },
 };
 
 const StrictModeDecorator = (storyFn) => <StrictMode>{storyFn()}</StrictMode>;
@@ -55,18 +67,33 @@ const severalExamplesOfSupportedLocales = [
   'ru',
   'de',
   'tr',
-  'he-IL',
 ];
+
+/**
+ * Decorator that changes components states (e.g theming, direction, locale)
+ * based on percy config (see {@link parameters.percy}) for visual tests
+ */
+const VisualTestDecorator = (storyFn) => {
+  const urlParams = new URLSearchParams(document.location.search.substring(1));
+  const direction = urlParams.get('direction') || 'ltr';
+  return <DirectionProvider direction={direction}>{storyFn()}</DirectionProvider>;
+};
 
 const ProviderDecorator = (storyFn) => {
   const locale = select('locale (global)', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
+  const isRTL = boolean('force RTL (global)', false);
   const lang = getLangFromLocale(locale);
   const messages = supportedLangs[lang];
-  const props = {
-    i18n: { locale, messages },
-    children: storyFn(),
-  };
-  return <Provider {...props} />;
+  return (
+    <Provider i18n={{ locale, messages }}>
+      <DirectionProvider direction={isRTL ? 'rtl' : 'ltr'}>{storyFn()}</DirectionProvider>
+    </Provider>
+  );
 };
 
-export const decorators = [StrictModeDecorator, CenterDecorator, ProviderDecorator];
+export const decorators = [
+  StrictModeDecorator,
+  CenterDecorator,
+  ProviderDecorator,
+  VisualTestDecorator,
+];

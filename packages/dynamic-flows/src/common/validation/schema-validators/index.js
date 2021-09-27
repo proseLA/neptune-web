@@ -86,6 +86,9 @@ function isValidAllOfSchema(value, schema) {
 
 /**
  * Validate any value against a given schema
+ *
+ * @param value
+ * @param schema
  */
 function isValidSchema(value, schema) {
   if (schema.oneOf) {

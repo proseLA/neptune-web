@@ -1,3 +1,5 @@
+@import (reference) '../mixins/_logical-properties.less';
+
 .arrow(@size: 10px) {
   position: relative;
   .arrow-pointer(@size);
@@ -11,7 +13,8 @@
     display: block;
     width: @size;
     height: @size;
-    left: (2 * @size);
+    .left((2 * @size));
+
     top: (@size / -2);
     transform: rotate(45deg);
     background-color: inherit;
@@ -20,8 +23,9 @@
 
 .arrow-positions(@size: 10px) {
   &.arrow-center::before {
-    left: 50%;
-    margin-left: (@size / -2);
+    .left(50%);
+
+    .margin(left, (@size / -2));
   }
 
   &.arrow-top::before {
@@ -30,13 +34,15 @@
   }
 
   &.arrow-left::before {
-    left: (2 * @size);
-    right: auto;
+    .left((2 * @size));
+
+    .right(auto);
   }
 
   &.arrow-right::before {
-    left: auto;
-    right: (2 * @size);
+    .left(auto);
+
+    .right((2 * @size));
   }
 
   &.arrow-bottom::before {

@@ -1,8 +1,7 @@
 @import (reference) '../variables/legacy-variables.less';
-@import (reference) 'bootstrap/less/mixins/vendor-prefixes.less';
+@import (reference) './mixins/_border-radius.less';
+@import (reference) './mixins/_logical-properties.less';
 @import (reference) 'bootstrap/less/mixins/nav-divider.less';
-@import (reference) 'bootstrap/less/mixins/border-radius.less';
-@import (reference) 'bootstrap/less/mixins/reset-filter.less';
 
 //
 // Dropdown menus
@@ -18,19 +17,22 @@
 .dropdown-menu {
   position: absolute;
   top: 0; //100%;
-  left: 0;
+  .left(0);
+
   z-index: @zindex-dropdown;
-  float: left;
-  padding: @padding-base-vertical;
+  .float(left);
+
+  .padding-shorthand(@padding-base-vertical);
+
   margin: 0; // override default ul
   list-style: none;
   font-size: @font-size-base;
-  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  .text-align(left); // Ensures proper alignment if parent has it changed (e.g., modal footer)
+
   background-color: var(--color-background-screen);
   border: 0 solid var(--color-border-neutral);
   border-radius: @border-radius-base;
-  .box-shadow(0 20px 66px 0 rgba(34, 48, 73, 0.2));
-
+  box-shadow: 0 20px 66px 0 rgba(34, 48, 73, 0.2);
   background-clip: padding-box;
 
   // Bit of a hack for our calculators to make the two controls the same width.
@@ -179,8 +181,6 @@
     text-decoration: none;
     background-color: transparent;
     background-image: none; // Remove CSS gradient
-    .reset-filter();
-
     cursor: @cursor-disabled;
   }
 
@@ -205,7 +205,8 @@
     > .dropdown-menu-overlay {
       position: fixed;
       top: 0;
-      left: 0;
+      .left(0);
+
       width: 100vw;
       height: 100vh;
       border: 0;
@@ -234,61 +235,71 @@
 // menu with the parent.
 .dropdown-menu-right,
 .dropdown-menu-xs-right {
-  left: auto;
-  right: 0;
+  .left(auto);
+
+  .right(0);
 }
 
 .dropdown-menu-left,
 .dropdown-menu-xs-left {
-  left: 0;
-  right: auto;
+  .left(0);
+
+  .right(auto);
 }
 
 @media (min-width: @screen-sm-min) {
   .dropdown-menu-sm-right {
-    left: auto;
-    right: 0;
+    .left(auto);
+
+    .right(0);
   }
 
   .dropdown-menu-sm-left {
-    left: 0;
-    right: auto;
+    .left(0);
+
+    .right(auto);
   }
 }
 
 @media (min-width: @screen-md-min) {
   .dropdown-menu-md-right {
-    left: auto;
-    right: 0;
+    .left(auto);
+
+    .right(0);
   }
 
   .dropdown-menu-md-left {
-    left: 0;
-    right: auto;
+    .left(0);
+
+    .right(auto);
   }
 }
 
 @media (min-width: @screen-lg-min) {
   .dropdown-menu-lg-right {
-    left: auto;
-    right: 0;
+    .left(auto);
+
+    .right(0);
   }
 
   .dropdown-menu-lg-left {
-    left: 0;
-    right: auto;
+    .left(0);
+
+    .right(auto);
   }
 }
 
 @media (min-width: @screen-xl-min) {
   .dropdown-menu-xl-right {
-    left: auto; // Reset the default from `.dropdown-menu`
-    right: 0;
+    .left(auto); // Reset the default from `.dropdown-menu`
+
+    .right(0);
   }
 
   .dropdown-menu-xl-left {
-    left: 0;
-    right: auto;
+    .left(0);
+
+    .right(auto);
   }
 }
 
@@ -305,8 +316,10 @@
 // Backdrop to catch body clicks on mobile, etc.
 .dropdown-backdrop {
   position: fixed;
-  left: 0;
-  right: 0;
+  .left(0);
+
+  .right(0);
+
   bottom: 0;
   top: 0;
   z-index: (@zindex-dropdown - 10);
@@ -319,12 +332,6 @@
 
 .dropup,
 .navbar-fixed-bottom .dropdown {
-  // Reverse the caret
-  .caret {
-    //border-top: 0;
-    // border-bottom: @caret-width-base solid;
-    // content: "";
-  }
   // Different positioning for bottom up menu
   .dropdown-menu {
     top: auto;

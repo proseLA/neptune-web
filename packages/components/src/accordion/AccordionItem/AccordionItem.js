@@ -1,4 +1,3 @@
-import { isString } from '@transferwise/neptune-validation';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { cloneElement } from 'react';
@@ -6,11 +5,9 @@ import { cloneElement } from 'react';
 import Chevron from '../../chevron';
 import { Position, Theme } from '../../common';
 import Option from '../../common/Option';
-import { useDirection } from '../../common/hooks';
 
 const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
   const iconElement = icon ? cloneElement(icon, { size: 24 }) : null;
-  const { isRTL } = useDirection();
 
   return (
     <div
@@ -30,8 +27,7 @@ const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
       {open && (
         <div
           className={classNames('np-accordion-item__content', {
-            'icon-right': icon && isRTL,
-            'icon-left': icon,
+            'has-icon': icon,
           })}
         >
           {content}

@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 @avatar-diameter-lg: 72px;
 @avatar-diameter-md: 48px;
@@ -103,8 +104,10 @@
 
     &.tw-avatar--thumbnail::after {
       top: @mask-size;
-      left: @mask-size;
-      right: @mask-size;
+      .left(@mask-size);
+
+      .right(@mask-size);
+
       bottom: @mask-size;
     }
   }
@@ -112,8 +115,10 @@
   &.tw-avatar--thumbnail::after {
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    .left(0);
+
+    .right(0);
+
     bottom: 0;
     border: 1px solid var(--color-border-overlay);
     content: '';

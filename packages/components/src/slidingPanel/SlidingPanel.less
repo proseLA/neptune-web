@@ -1,7 +1,9 @@
 @import (reference) '@transferwise/neptune-css/src/variables/zindex.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .sliding-panel {
-  transform: translateX(-100%);
+  .translateX(-100%);
+
   transition: transform cubic-bezier(0, 0.94, 0.62, 1) 350ms;
   background: var(--color-background-elevated);
   z-index: @zindex-navbar-fixed;
@@ -18,13 +20,15 @@
   }
 
   &.sliding-panel--open-right {
-    transform: translateX(100%);
-    right: 0;
+    .translateX(100%);
+
+    .right(0);
   }
 
   &.sliding-panel--open-left {
-    transform: translateX(-100%);
-    left: 0;
+    .translateX(-100%);
+
+    .left(0);
   }
 
   &.sliding-panel-enter-done {
@@ -41,8 +45,10 @@
 
   &.sliding-panel--open-top,
   &.sliding-panel--open-bottom {
-    right: 0;
-    left: 0;
+    .right(0);
+
+    .left(0);
+
     width: 100%;
   }
 

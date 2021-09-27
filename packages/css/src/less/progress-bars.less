@@ -1,5 +1,6 @@
 @import (reference) '../variables/neptune-tokens.less';
 @import (reference) './variables/_typography.less';
+@import (reference) './mixins/_logical-properties.less';
 
 @progress-height: 2px;
 @progress-pip-size: 8px;
@@ -13,21 +14,25 @@
 }
 
 .progress-bar {
-  float: left;
+  .float(left);
+
   width: 0%;
   height: 100%;
   font-size: @font-size-base;
   font-weight: bold;
   color: var(--color-base-white-light);
-  text-align: right;
+  .text-align(right);
+
   background-color: @color-base-blue-light;
   transition: width 0.6s ease;
 
   &::after {
     content: '';
-    float: right;
+    .float(right);
+
     margin-top: @progress-pip-size / 2 + 1;
-    margin-right: @progress-pip-size / 2;
+    .margin(right, @progress-pip-size / 2);
+
     width: @progress-pip-size;
     height: @progress-pip-size;
     background-color: inherit;

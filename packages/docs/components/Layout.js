@@ -1,7 +1,8 @@
-import { Button, Priority } from '@transferwise/components';
+import { Switch, isBrowser, Direction, Button, Priority } from '@transferwise/components';
 import { parseISO } from 'date-fns';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
@@ -19,6 +20,19 @@ const Layout = ({ children, router: { pathname } }) => {
   const rootDirectory = pathParts[1];
   const page = getPageFromPath(pathname);
   const editPath = `${githubURL}${pathname}.mdx`;
+
+  let directionDefaultState = false;
+
+  if (isBrowser()) {
+    directionDefaultState = JSON.parse(localStorage.getItem('isRTL')) || false;
+  }
+  const [directionState, setDirectionState] = useState(directionDefaultState);
+
+  function toggleDirection(newStatus) {
+    document.documentElement.dir = newStatus ? Direction.RTL : Direction.LTR;
+    localStorage.setItem('isRTL', newStatus);
+    setDirectionState(newStatus);
+  }
 
   const firstContent = (
     <div className="Header__Fixed" role="navigation" aria-label="Primary navigation">
@@ -51,6 +65,20 @@ const Layout = ({ children, router: { pathname } }) => {
               </Link>
             </li>
           ))}
+        <li className="d-flex align-items-center">
+          <label id="direction-label" htmlFor="switchId" className="Nav__Link">
+            Enable RTL mode
+          </label>
+          <div>
+            <Switch
+              checked={directionState}
+              className="m-x-2"
+              aria-labelledby="direction-label"
+              id="switchId"
+              onClick={() => toggleDirection(!directionState)}
+            />
+          </div>
+        </li>
       </ul>
     </div>
   );

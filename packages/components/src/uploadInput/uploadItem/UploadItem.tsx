@@ -31,7 +31,6 @@ export enum TEST_IDS {
 }
 
 const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) => {
-  const { isRTL } = useDirection();
   const { formatMessage } = useIntl();
   const { status, filename, error, url } = file;
 
@@ -100,21 +99,8 @@ const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) 
         <UploadItemBody url={isSucceeded ? url : undefined} onDownload={onDownloadFile}>
           <div className="np-upload-button">
             <div className="media">
-              <div
-                className={classNames('np-upload-icon', {
-                  'media-right': isRTL,
-                  'media-left': !isRTL,
-                })}
-              >
-                {getIcon()}
-              </div>
-              <div
-                className={classNames('media-body', {
-                  'text-xs-right': isRTL,
-                  'text-xs-left': !isRTL,
-                })}
-                data-testid={TEST_IDS.mediaBody}
-              >
+              <div className="np-upload-icon media-left">{getIcon()}</div>
+              <div className="media-body text-xs-left" data-testid={TEST_IDS.mediaBody}>
                 <div className="text-word-break text-primary">{getTitle()}</div>
                 <small className="np-upload-description text-primary">{getDescription()}</small>
               </div>
@@ -124,10 +110,7 @@ const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) 
         {canDelete && (
           <button
             aria-label={formatMessage(MESSAGES.removeFile, { filename })}
-            className={classNames('btn np-upload-item__remove-button', {
-              'media-right': !isRTL,
-              'media-left': isRTL,
-            })}
+            className="btn np-upload-item__remove-button media-left"
             type="button"
             onClick={() => onDelete()}
           >

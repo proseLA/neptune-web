@@ -1,25 +1,21 @@
 // TODO: remove bootstrap dependencies
 
-// variables
 @import (reference) '../variables/legacy-variables.less';
-
-// mixins
 @import (reference) 'bootstrap/less/mixins/nav-vertical-align.less';
 @import (reference) 'bootstrap/less/mixins/nav-divider.less';
-@import (reference) 'bootstrap/less/mixins/vendor-prefixes.less';
-@import (reference) 'bootstrap/less/mixins/arrows.less';
-@import (reference) 'bootstrap/less/mixins/border-radius.less';
-@import (reference) 'bootstrap/less/mixins/clearfix.less';
-@import (reference) 'bootstrap/less/mixins/reset-filter.less';
-@import (reference) 'bootstrap/less/mixins/center-block.less';
-@import (reference) 'bootstrap/less/mixins/hide-text.less';
-@import (reference) 'bootstrap/less/mixins/grid.less';
-@import (reference) 'bootstrap/less/mixins/tab-focus.less';
-@import 'bootstrap/less/utilities.less';
+@import (reference) './mixins/_arrows.less';
+@import (reference) './mixins/_border-radius.less';
+@import (reference) './mixins/_clearfix.less';
+@import (reference) './mixins/_center-block.less';
+@import (reference) './mixins/_hide-text.less';
+@import (reference) './mixins/_grid.less';
+@import (reference) './mixins/_tab-focus.less';
+@import (reference) './mixins/_logical-properties.less';
+@import './addons/_utilities.less';
 @import 'dropdowns.less';
-@import 'bootstrap/less/navs.less';
-@import 'bootstrap/less/navbar.less';
-@import 'bootstrap/less/close.less';
+@import 'navs.less';
+@import 'navbar-base.less';
+@import 'close.less';
 
 // Extracted form 'forms.less'
 
@@ -76,14 +72,14 @@
       vertical-align: middle;
 
       label {
-        padding-left: 0;
+        .padding(left, 0);
       }
     }
 
     .radio input[type='radio'],
     .checkbox input[type='checkbox'] {
       position: relative;
-      margin-left: 0;
+      .margin(left, 0);
     }
 
     // Re-override the feedback icon.

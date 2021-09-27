@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
@@ -71,12 +70,11 @@ export class Snackbar extends Component {
   }
 
   render() {
-    const isRTL = this.context === 'rtl';
     const { action, text, theme, visible } = this.state;
     const { timeout } = this.props;
 
     return (
-      <div className={classNames('snackbar', { 'snackbar--rtl': isRTL })}>
+      <div className="snackbar">
         <CSSTransition
           in={visible}
           classNames="snackbar__text-container"

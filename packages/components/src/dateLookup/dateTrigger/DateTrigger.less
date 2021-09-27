@@ -1,8 +1,13 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .np-date-trigger {
   &.dropdown-toggle {
     overflow: visible !important;
+
+    &.btn {
+      display: flex;
+    }
   }
 
   .clear-btn {
@@ -11,7 +16,8 @@
     height: 100%;
     position: absolute;
     top: 0;
-    right: 0;
+    .right(0);
+
     padding: 0 var(--size-16);
 
     &:hover,
