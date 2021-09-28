@@ -32,9 +32,9 @@ legend {
   width: 100%;
   padding: 32px 0 16px 0;
   margin-bottom: 32px;
-  font-size: @font-size-h4;
+  font-size: var(--font-size-16);
   font-weight: @headings-font-weight;
-  line-height: @line-height-h4;
+  line-height: var(--line-height-title);
   color: @legend-color;
   border: 0;
   border-bottom: 1px solid @legend-border-color;
@@ -114,8 +114,8 @@ input[type='checkbox']:focus {
 output {
   display: block;
   padding-top: (@padding-base-vertical + 1);
-  font-size: @font-size-base;
-  line-height: @line-height-base;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-control);
   color: var(--color-content-primary);
 }
 
@@ -205,8 +205,10 @@ output {
   + .text-muted,
   + .text-primary,
   + .text-success,
+  + .text-positive,
   + .text-info,
   + .text-warning,
+  + .text-negative,
   + .text-danger {
     margin-top: @padding-base-vertical;
     font-size: 12px;
@@ -252,7 +254,7 @@ input[type='search'] {
 
     &.input-lg,
     .input-group-lg & {
-      line-height: (@input-height-large - @line-height-computed);
+      line-height: calc(@input-height-large - var(--line-height-body));
     }
   }
 }
@@ -293,7 +295,7 @@ input[type='search'] {
   // margin-bottom: (@padding-base-vertical * 1.5);
 
   label {
-    min-height: (@line-height-computed * 2); // Ensure the input doesn't jump when there is no text
+    min-height: calc(var(--line-height-control) * 2); // Ensure the input doesn't jump when there is no text
     margin-bottom: 0;
     font-weight: normal;
     cursor: pointer;
@@ -371,8 +373,8 @@ input[type='checkbox'] {
 .form-control-static {
   // Remove default margin from `p`
   margin-bottom: 0;
-  line-height: @line-height-computed;
-  min-height: (@line-height-computed * 2);
+  line-height: var(--line-height-control);
+  min-height: calc(var(--line-height-control) * 2);
   font-size: @input-font-size;
   color: var(--color-content-disabled);
   background-color: var(--color-background-neutral);
@@ -428,7 +430,7 @@ input[type='checkbox'] {
 
   .form-control-static {
     height: @input-height-small;
-    min-height: (@line-height-computed + @input-font-size-small);
+    min-height: calc(var(--line-height-control) + @input-font-size-small);
     padding: @input-padding-small;
     font-size: @input-font-size-small;
     line-height: @input-line-height-small;
@@ -470,7 +472,7 @@ input[type='checkbox'] {
 
   .form-control-static {
     height: @input-height-large;
-    min-height: (@line-height-computed + @input-font-size-large);
+    min-height: calc(var(--line-height-control) + @input-font-size-large);
     padding: @input-padding-large;
     font-size: @input-font-size-large;
     line-height: @input-line-height-large;
@@ -559,8 +561,8 @@ input[type='checkbox'] {
   border-style: solid;
   border-radius: 3px;
   padding: 4px 16px 3px;
-  font-size: @font-size-small;
-  line-height: @line-height-computed;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-control);
   transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 
   a {
@@ -620,7 +622,7 @@ input[type='checkbox'] {
 // Reposition feedback icon if input has visible label above
 .has-feedback label {
   & ~ .form-control-feedback {
-    top: @line-height-computed; // Height of the `label` and its margin
+    top: var(--line-height-control); // Height of the `label` and its margin
   }
 
   &.sr-only ~ .form-control-feedback {
@@ -730,7 +732,7 @@ input[type='checkbox'] {
   // and other content below items
   .radio,
   .checkbox {
-    min-height: (@line-height-computed + (@padding-base-vertical + 1));
+    min-height: calc(var(--line-height-control) + (@padding-base-vertical + 1));
   }
 
   // Make form groups behave like rows
@@ -765,7 +767,7 @@ input[type='checkbox'] {
     @media (min-width: @screen-sm-min) {
       .control-label {
         padding-top: 17px;
-        font-size: @font-size-large;
+        font-size: var(font-size-20);
       }
     }
   }
@@ -774,7 +776,7 @@ input[type='checkbox'] {
     @media (min-width: @screen-sm-min) {
       .control-label {
         padding-top: 8px;
-        font-size: @font-size-small;
+        font-size: var(--font-size-14);
       }
     }
   }
@@ -817,7 +819,7 @@ input[type='checkbox'] {
 
 .form-group {
   position: relative;
-  font-size: @font-size-small;
+  font-size: var(--font-size-14);
 }
 
 .form-group .row {
@@ -885,7 +887,7 @@ input[type='checkbox'] {
 .checkbox,
 .radio {
   > label {
-    font-size: @font-size-base;
+    font-size: var(--font-size-16);
     display: block;
     cursor: pointer;
     line-height: 24px;
@@ -932,7 +934,7 @@ input[type='checkbox'] {
       small,
       .small {
         display: block;
-        font-size: @font-size-small;
+        font-size: var(--font-size-14);
         color: var(--color-content-secondary);
       }
     }
@@ -958,8 +960,8 @@ input[type='checkbox'] {
 .error-messages {
   display: none;
   color: @state-danger-text;
+  font-size: var(--font-size-14);
   background-color: var(--color-background-negative);
-  font-size: @font-size-small;
   line-height: 24px;
   position: relative;
   .arrow-pointer(@alert-arrow-width);

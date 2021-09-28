@@ -22,7 +22,7 @@ const CompleteStep = (props) => {
         <div className="droppable-card-content d-flex flex-column align-items-center">
           {isError ? (
             <>
-              <AlertCircleIcon size={24} className="text-danger" />
+              <AlertCircleIcon size={24} className="text-negative" />
               {csFailureText && <p className="m-t-2">{csFailureText}</p>}
             </>
           ) : (

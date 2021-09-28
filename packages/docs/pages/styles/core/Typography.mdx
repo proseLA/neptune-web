@@ -6,132 +6,74 @@ Base styles to style text in your application.
 
 ## Headings
 
-The HTML <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code> section headings. Also available as <code>.h1</code>–<code>.h6</code> for inline styling.
+Use <code>.title-1</code> , <code>.title-2</code> ... font styling classes for the headings. Avoid using heading elements (<code>h1</code>–<code>h6</code>) without any class.
+
+Heading properties are the same for mobile and desktop.
+
+If a bigger size is needed, for a <code>h1</code> in a hero component in marketing pages, for example, you can use <code>.display-5</code>, instead of <code>.title-1</code>.
+E.g. <code><h1 className="display-5"</code>
 
 <table className="table">
   <tbody>
     <tr>
       <td>
-        <h1>h1. Money without borders</h1>
-        {/* MOBILE */}
-        <span className="visible-xs visible-sm">
-          <code>bold 28px</code>
-          <br />
-          <code>line-height 32px</code>
-          <br />
-          <code>margin-bottom 4px</code>
-        </span>
+        <h1>Title 1. Money without borders</h1>
+        <code>.title-1</code>
       </td>
       <td>
-        {/* DESKTOP */}
-        <span className="hidden-xs hidden-sm">
-          <code>bold 42px</code>
-          <br />
-          <code>line-height 48px</code>
-          <br />
-          <code>margin-bottom 8px</code>
-        </span>
+        <code>bold 32px</code>
+        <br />
+        <code>line-height 1.2</code>
+        <br />
+        <code>margin-bottom 8px</code>
       </td>
     </tr>
     <tr>
       <td>
-        <h2>h2. Money without borders</h2>
-        {/* MOBILE */}
-        <span className="visible-xs visible-sm">
-          <code>semi-bold 22px</code>
-          <br />
-          <code>line-height 30px</code>
-          <br />
-          <code>margin-bottom 2px</code>
-        </span>
+        <h2>Title 2. Money without borders</h2>
+        <code>.title-2</code>
       </td>
       <td>
-        {/* DESKTOP */}
-        <span className="hidden-xs hidden-sm">
-          <code>bold 28px</code>
-          <br />
-          <code>line-height 32px</code>
-          <br />
-          <code>margin-bottom 4px</code>
-        </span>
+        <code>bold 26px</code>
+        <br />
+        <code>line-height 1.2</code>
+        <br />
+        <code>margin-bottom 4px</code>
       </td>
     </tr>
     <tr>
       <td>
-        <h3>h3. Money without borders</h3>
-        {/* MOBILE */}
-        <span className="visible-xs visible-sm">
-          <code>semi-bold 18px</code>
-          <br />
-          <code>line-height 24px</code>
-        </span>
+        <h3>Title 3. Money without borders</h3>
+        <code>.title-3</code>
       </td>
       <td>
-        {/* DESKTOP */}
-        <span className="hidden-xs hidden-sm">
-          <code>semi-bold 22px</code>
-          <br />
-          <code>line-height 30px</code>
-          <br />
-          <code>margin-bottom 2px</code>
-        </span>
+        <code>semi-bold 20px</code>
+        <br />
+        <code>line-height 1.2</code>
+        <br />
+        <code>margin-bottom 2px</code>
       </td>
     </tr>
     <tr>
       <td>
-        <h4>h4. Money without borders</h4>
-        {/* MOBILE */}
-        <span className="visible-xs visible-sm">
-          <code>semi-bold 16px</code>
-          <br />
-          <code>line-height 24px</code>
-        </span>
+        <h4>Title 4. Money without borders</h4>
+        <code>.title-4</code>
       </td>
       <td>
-        {/* DESKTOP */}
-        <span className="hidden-xs hidden-sm">
-          <code>semi-bold 18px</code>
-          <br />
-          <code>line-height 24px</code>
-        </span>
+        <code>semi-bold 16px</code>
+        <br />
+        <code>line-height 1.2</code>
       </td>
     </tr>
     <tr>
       <td>
-        <h5>h5. Money without borders</h5>
-        {/* MOBILE */}
-        <span className="visible-xs visible-sm">
-          <code>semi-bold 16px</code>
-          <br />
-          <code>line-height 24px</code>
-        </span>
+        <h5>Title 5. Money without borders</h5>
+        <code>.title-5</code>
       </td>
       <td>
-        {/* DESKTOP */}
-        <span className="hidden-xs hidden-sm">
-          <code>semi-bold 16px</code>
-          <br />
-          <code>line-height 24px</code>
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h6>h6. Money without borders</h6>
-        {/* MOBILE */}
-        <span className="visible-xs visible-sm">
-          <code>semi-bold 14px</code>
-          <br />
-          <code>line-height 24px</code>
-        </span>
-      </td>
-      <td>
-        {/* DESKTOP */}
-        <span className="hidden-xs hidden-sm">
-          <code>semi-bold 14px</code>
-          <br />
-          <code>line-height 24px</code>
-        </span>
+        <code>semi-bold 14px</code>
+        <br />
+        <code>line-height 1.2</code>
       </td>
     </tr>
   </tbody>
@@ -139,13 +81,14 @@ The HTML <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code> section headings. Als
 
 ## Display headings
 
-Use display headings <code>.display-1</code>–<code>.display-4</code> to stand out from traditional section headers.
+Use display headings <code>.display-1</code>–<code>.display-5</code> to stand out from traditional section headers.
 
 <table className="table">
   <tbody>
     <tr>
       <td>
-        <Heading as="h1" className="display-1">Display 1</Heading>
+        <h1 className="display-1">Display 1</h1>
+        <code>.display-1</code>
         {/* MOBILE */}
         <span className="visible-xs visible-sm">
           <code>bold 56px</code>
@@ -168,7 +111,8 @@ Use display headings <code>.display-1</code>–<code>.display-4</code> to stand 
     </tr>
     <tr>
       <td>
-        <Heading as="h1" className="display-2">Display 2</Heading>
+        <h1 className="display-2">Display 2</h1>
+        <code>.display-2</code>
         {/* MOBILE */}
         <span className="visible-xs visible-sm">
           <code>bold 56px</code>
@@ -191,7 +135,8 @@ Use display headings <code>.display-1</code>–<code>.display-4</code> to stand 
     </tr>
     <tr>
       <td>
-        <Heading as="h1" className="display-3">Display 3</Heading>
+        <h1 className="display-3">Display 3</h1>
+        <code>.display-3</code>
         {/* MOBILE */}
         <span className="visible-xs visible-sm">
           <code>bold 42px</code>
@@ -214,7 +159,8 @@ Use display headings <code>.display-1</code>–<code>.display-4</code> to stand 
     </tr>
     <tr>
       <td>
-        <Headings as="h1" className="display-4">Display 4</Headings>
+        <h1 className="display-4">Display 4</h1>
+        <code>.display-4</code>
         {/* MOBILE */}
         <span className="visible-xs visible-sm">
           <code>bold 28px</code>
@@ -235,60 +181,272 @@ Use display headings <code>.display-1</code>–<code>.display-4</code> to stand 
         </span>
       </td>
     </tr>
+    <tr>
+      <td>
+        <h1 className="display-5">Display 5</h1>
+        <code>.display-5</code>
+        {/* MOBILE */}
+        <span className="visible-xs visible-sm">
+          <code>bold 28px</code>
+          <br />
+          <code>line-height 32px</code>
+          <br />
+          <code>margin-bottom 4px</code>
+        </span>
+      </td>
+      <td>
+        {/* DESKTOP */}
+        <span className="hidden-xs hidden-sm">
+          <code>bold 42px</code>
+          <br />
+          <code>line-height 72px</code>
+          <br />
+          <code>margin-bottom 8px</code>
+        </span>
+      </td>
+    </tr>
   </tbody>
 </table>
 
 ## Body copy
 
-<p>
-  We’re on a mission to bring transparency to finance, for people without borders. We charge as
-  little as possible, and we always show you upfront. No hidden fees. No bad exchange rates. No
-  surprises.
-</p>
+<table className="table table-bordered">
+  <thead>
+    <tr>
+      <th>Style</th>
+      <th>Properties</th>
+      <th>How to use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p className="body-1">
+          Body 1
+          <br />
+          We’re on a mission to bring transparency to finance, for people without borders. We charge
+          as little as possible, and we always show you upfront. No hidden fees. No bad exchange
+          rates. No surprises.
+        </p>
+        <code>.body-1</code>
+      </td>
+      <td>
+        <code className="text-xs-nowrap">regular 16px</code>
+        <br />
+        <code className="text-xs-nowrap">line-height 1.5</code>
+      </td>
+      <td>Our default style for content in paragraphs and longer form copy.</td>
+    </tr>
+    <tr>
+      <td>
+        <p className="body-2">
+          Body 2
+          <br />
+          We’re on a mission to bring transparency to finance, for people without borders. We charge
+          as little as possible, and we always show you upfront. No hidden fees. No bad exchange
+          rates. No surprises.
+        </p>
+        <code>.body-2</code>
+      </td>
+      <td>
+        <code className="text-xs-nowrap">regular 14px</code>
+        <br />
+        <code className="text-xs-nowrap">line-height 1.5</code>
+      </td>
+      <td>Use for secondary information related to another piece of copy set in Body 1.</td>
+    </tr>
+    <tr>
+      <td>
+        <p className="body-3">
+          Body 3
+          <br />
+          We’re on a mission to bring transparency to finance, for people without borders. We charge
+          as little as possible, and we always show you upfront. No hidden fees. No bad exchange
+          rates. No surprises.
+        </p>
+        <code>.body-3</code>
+      </td>
+      <td>
+        <code className="text-xs-nowrap">regular 12px</code>
+        <br />
+        <code className="text-xs-nowrap">line-height 1.5</code>
+      </td>
+      <td>Should be avoided. Use only when the information is not critical to the user.</td>
+    </tr>
+    <tr>
+      <td>
+        <p className="control-1">Control 1</p>
+        <code>.control-1</code>
+      </td>
+      <td>
+        <code className="text-xs-nowrap">semibold 16px</code>
+        <br />
+        <code className="text-xs-nowrap">line-height 1.2</code>
+      </td>
+      <td rowSpan="2">Use inside interactive components, such as buttons, dropdowns, tabs.</td>
+    </tr>
+    <tr>
+      <td>
+        <p className="control-2">Control 2</p>
+        <code>.control-2</code>
+      </td>
+      <td>
+        <code className="text-xs-nowrap">semibold 14px</code>
+        <br />
+        <code className="text-xs-nowrap">line-height 1.2</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p className="label">Label</p>
+        <code>.label</code>
+      </td>
+      <td>
+        <code className="text-xs-nowrap">regular 14px</code>
+        <br />
+        <code className="text-xs-nowrap">line-height 1.5</code>
+      </td>
+      <td rowSpan="2">Use for labelling inputs and values.</td>
+    </tr>
+    <tr>
+      <td>
+        <p className="value">Value</p>
+        <code>.value</code>
+      </td>
+      <td>
+        <code className="text-xs-nowrap">regular 16px</code>
+        <br />
+        <code className="text-xs-nowrap">line-height 1.5</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-### Lead body copy
+### Emphasis styles
 
-`.lead`
+Text styles can also be emphasised with a stronger priority or a different purpose.
 
-<p className="lead">
-  We’re on a mission to bring transparency to finance, for people without borders. We charge as
-  little as possible, and we always show you upfront. No hidden fees. No bad exchange rates. No
-  surprises.
-</p>
+If the style's weight is <strong>regular</strong>, then its emphasised counterpart changes to <strong>semibold</strong>. Otherwise there's no change.
 
-## Inline text elements
+<table className="table table-bordered">
+  <thead>
+    <tr>
+      <th>Font weights</th>
+      <th>Properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p>
+          {' '}
+          I am a <span class="font-weight-regular">regular</span> text
+        </p>
+        <code>.font-weight-regular</code>
+      </td>
+      <td>font-weight: 500</td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          {' '}
+          I am a <span class="font-weight-semi-bold">semi bold</span> text
+        </p>
+        <code>.font-weight-semi-bold</code>
+      </td>
+      <td>font-weight: 600</td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          {' '}
+          I am a <span class="font-weight-bold">bold</span> text
+        </p>
+        <code>.font-weight-bold</code>
+      </td>
+      <td>font-weight: 800</td>
+    </tr>
+  </tbody>
+</table>
 
-### Small text
+<table className="table table-bordered">
+  <thead>
+    <tr>
+      <th>Emphasis colour</th>
+      <th>Default</th>
+      <th>Inverse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>.text-primary</code>
+      </td>
+      <td>
+        <span className="text-primary">Primary</span>
+      </td>
+      <td className="bg-primary">
+        <span className="text-primary">Primary</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>.text-positive</code>
+      </td>
+      <td>
+        <span className="text-positive">Positive</span>
+      </td>
+      <td className="bg-primary">
+        <span className="text-positive">Positive</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>.text-negative</code>
+      </td>
+      <td>
+        <span className="text-negative">Negative</span>
+      </td>
+      <td className="bg-primary">
+        <span className="text-negative">Negative</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>.text-warning</code>
+      </td>
+      <td>
+        <span className="text-warning">Warning</span>
+      </td>
+      <td className="bg-primary">
+        <span className="text-warning">Warning</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>.text-info</code>
+      </td>
+      <td>
+        <span className="text-info">Info</span>
+      </td>
+      <td className="bg-primary">
+        <span className="text-info">Info</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-`<small>`, `.small`
+### Utility styles
 
-<p>
-  <small>
-    We’re on a mission to bring transparency to finance, for people without borders. We charge as
-    little as possible, and we always show you upfront. No hidden fees. No bad exchange rates. No
-    surprises.
-  </small>
-</p>
+#### Inverse
 
-### Tiny text
+<p className="bg-primary text-inverse p-a-2">Text inverse</p>
+<code>.text-inverse</code>
 
-`.tiny`
+#### Muted
 
-<p className="tiny">
-  We’re on a mission to bring transparency to finance, for people without borders. We charge as
-  little as possible, and we always show you upfront. No hidden fees. No bad exchange rates. No
-  surprises.
-</p>
-
-### Bold text
-
-`<strong>` `<b>`
-
-<p>
-  We’re on a mission to bring transparency to finance, <strong>for people without borders</strong>.
-  We charge as little as possible, and we always show you upfront. No hidden fees. No bad exchange
-  rates. No surprises.
-</p>
+<p className="text-muted">Text muted</p>
+<code>.text-muted</code>
 
 ### Alignment classes
 
@@ -357,16 +515,6 @@ Use display headings <code>.display-1</code>–<code>.display-4</code> to stand 
 `.text-uppercase`
 
 <p className="text-uppercase">
-  We’re on a mission to bring transparency to finance, for people without borders. We charge as
-  little as possible, and we always show you upfront. No hidden fees. No bad exchange rates. No
-  surprises.
-</p>
-
-#### Lowercase
-
-`.text-lowercase`
-
-<p className="text-lowercase">
   We’re on a mission to bring transparency to finance, for people without borders. We charge as
   little as possible, and we always show you upfront. No hidden fees. No bad exchange rates. No
   surprises.
@@ -454,4 +602,8 @@ Unstyled list can be achieved using `.list-unstyled` class.
 
 export const meta = {
   name: 'Typography',
+  badge: {
+    type: 'new',
+    expiryDate: '2021-11-15',
+  },
 };

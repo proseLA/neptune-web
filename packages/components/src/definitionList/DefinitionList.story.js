@@ -21,7 +21,7 @@ export const Basic = () => {
     },
     {
       title: 'Use wrapper elements to style',
-      value: <span className="h3">89.45GBP</span>,
+      value: <span className="title-3">89.45GBP</span>,
       key: 'second',
     },
     {

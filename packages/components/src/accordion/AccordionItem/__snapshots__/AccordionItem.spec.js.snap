@@ -16,7 +16,7 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
           class="media-body"
         >
           <div
-            class="h5"
+            class="title-4"
           >
             This is title number one
           </div>
@@ -65,7 +65,7 @@ exports[`AccordionItem open / close renders an item open 1`] = `
           class="media-body"
         >
           <div
-            class="h5"
+            class="title-4"
           >
             This is title number one
           </div>

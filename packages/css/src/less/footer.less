@@ -1,10 +1,9 @@
 @import (reference) '../variables/neptune-tokens.less';
-@import (reference) './variables/_typography.less';
 
 .footer {
   background-color: var(--color-background-neutral);
-  font-size: @font-size-small;
-  line-height: @line-height-small;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
   padding-top: calc(var(--size-8) * 10);
   padding-bottom: calc(var(--size-8) * 10);
 
@@ -32,7 +31,7 @@
   }
 
   .footer-title {
-    font-size: @font-size-small;
+    font-size: var(--font-size-14);
     color: var(--color-content-primary);
 
     .footer-link {

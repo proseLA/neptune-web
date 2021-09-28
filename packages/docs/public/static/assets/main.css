@@ -110,8 +110,8 @@ html:not([dir="rtl"]) .Nav,
 .Nav__Group {
   padding: var(--size-16) var(--size-16) var(--size-8);
   text-transform: uppercase;
+  font-size: var(--font-size-12);
   color: var(--color-base-smoke-mid);
-  font-size: @font-size-x-small;
   font-weight: 600;
 }
 
