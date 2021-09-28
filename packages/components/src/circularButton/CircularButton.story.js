@@ -56,7 +56,7 @@ export const variants = () => {
   return (
     <div className={background === 'blue' ? 'bg--dark p-a-3' : ''}>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Accent</div>
+        <div className="title-4 m-b-1">Accent</div>
         <CircularButton priority={Priority.PRIMARY} type={ControlType.ACCENT} {...commonProps}>
           {label}
         </CircularButton>
@@ -65,7 +65,7 @@ export const variants = () => {
         </CircularButton>
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Positive</div>
+        <div className="title-4 m-b-1">Positive</div>
         <CircularButton priority={Priority.PRIMARY} type={ControlType.POSITIVE} {...commonProps}>
           {label}
         </CircularButton>
@@ -75,7 +75,7 @@ export const variants = () => {
         </CircularButton>
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Negative</div>
+        <div className="title-4 m-b-1">Negative</div>
         <CircularButton priority={Priority.PRIMARY} type={ControlType.NEGATIVE} {...commonProps}>
           {label}
         </CircularButton>
@@ -84,7 +84,7 @@ export const variants = () => {
         </CircularButton>
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Disabled</div>
+        <div className="title-4 m-b-1">Disabled</div>
         <CircularButton {...commonProps} disabled>
           {label}
         </CircularButton>

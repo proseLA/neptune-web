@@ -10,9 +10,9 @@
 
 html {
   color: var(--color-content-secondary);
-  font-size: @font-size-base;
-  line-height: @line-height-base;
-  font-family: @font-family-base;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-body);
+  font-family: 'Averta', 'Avenir W02', 'Avenir', Helvetica, Arial, sans-serif;
   letter-spacing: 0.016em;
   background-color: var(--color-background-screen);
   -webkit-font-smoothing: antialiased;
@@ -72,7 +72,7 @@ a,
 
   &.secondary {
     color: @color-base-navy-light;
-    font-weight: @font-weight-base;
+    font-weight: var(--font-weight-regular);
 
     &:hover,
     &:focus {
@@ -247,11 +247,11 @@ ul {
 
 dt,
 dd {
-  line-height: @line-height-base;
+  line-height: var(--line-height-body);
 }
 
 dt {
-  font-size: @font-size-small;
+  font-size: var(--font-size-14);
 }
 
 dd {

@@ -3,6 +3,11 @@
 @import (reference) '../mixins/_logical-properties.less';
 @import '../mixins/_text-emphasis.less';
 
+// Deprecated classes in next iterations.
+
+//.text-danger (Replaced by .text-negative)
+//.text-success( Replaced by .text-positive)
+
 .text-xs-left {
   .text-align(left);
 }
@@ -148,15 +153,15 @@
 }
 
 .font-weight-bold {
-  font-weight: @font-weight-bold !important;
+  font-weight: var(--font-weight-bold) !important;
 }
 
 .font-weight-semi-bold {
-  font-weight: @font-weight-semi-bold !important;
+  font-weight: var(--font-weight-semi-bold) !important;
 }
 
 .font-weight-normal {
-  font-weight: @font-weight-base !important;
+  font-weight: var(--font-weight-regular) !important;
 }
 
 .font-italic {
@@ -164,6 +169,7 @@
 }
 
 // Contextual colors `.text-*`
+
 .text-primary {
   .text-emphasis-variant(var(--color-content-primary), var(--color-content-primary), var(--color-content-primary));
 
@@ -222,55 +228,59 @@
 .display-1,
 .display-2,
 .display-3,
-.display-4 {
-  font-weight: @font-weight-bold;
+.display-4,
+.display-5 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
 }
 
 .display-1 {
   margin-bottom: var(--size-24);
-  font-size: 3.7333333333rem; // 56/15px
-  line-height: 4.8rem; // 72/15px
+  font-size: 3.7333333333rem;
 
   @media (--screen-md) {
     margin-bottom: var(--size-8);
-    font-size: 6.5rem; // 104px
-    line-height: 8rem; // 128px
+    font-size: 6.5rem;
   }
 }
 
 .display-2 {
   margin-bottom: var(--size-24);
-  font-size: 3.7333333333rem; // 56/15px
-  line-height: 4.8rem; // 72/15px
+  font-size: 3.7333333333rem;
 
   @media (--screen-md) {
     margin-bottom: var(--size-16);
-    font-size: 5.5rem; // 88px
-    line-height: 7rem; // 112px
+    font-size: 5.5rem;
   }
 }
 
 .display-3 {
   margin-bottom: var(--size-8);
-  font-size: 2.8rem; // 42/15px
-  line-height: 3.2rem; // 48/15px
+  font-size: 2.8rem;
 
   @media (--screen-md) {
     margin-bottom: var(--size-24);
-    font-size: 4.5rem; // 72px
-    line-height: 5.5rem; // 88px
+    font-size: 4.5rem;
   }
 }
 
 .display-4 {
   margin-bottom: var(--size-4);
   font-size: 1.8666666667rem; // 28/15px
-  line-height: 2.1333333333rem; // 32/15px
 
   @media (--screen-md) {
     margin-bottom: var(--size-24);
     font-size: 3.5rem; // 56px
-    line-height: 4.5rem; // 72px
+  }
+}
+
+.display-5 {
+  margin-bottom: var(--size-4);
+  font-size: 1.8666666667rem; // 28/15px
+
+  @media (--screen-md) {
+    margin-bottom: var(--size-8);
+    font-size: 2.625rem; // 42px
   }
 }
 

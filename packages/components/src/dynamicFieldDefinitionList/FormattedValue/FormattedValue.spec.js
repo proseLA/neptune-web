@@ -38,7 +38,7 @@ describe('FormattedValue', () => {
     });
 
     it('has h3 styling added when provided', () => {
-      expect(item.find('.h3')).toHaveLength(1);
+      expect(item.find('.title-3')).toHaveLength(1);
     });
   });
 

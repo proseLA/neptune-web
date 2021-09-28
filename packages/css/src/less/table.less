@@ -39,15 +39,16 @@ th {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: @line-height-computed;
+  margin-bottom: var(--size-24);
+
   // Cells
   > thead,
   > tbody,
   > tfoot {
     > tr > th,
     > tr > td {
-      padding: @line-height-computed @table-cell-padding;
-      line-height: @line-height-base;
+      padding: var(--size-24) @table-cell-padding;
+      line-height: var(--line-height-body);
       vertical-align: top;
       border-top: 1px solid var(--color-background-neutral);
       border-bottom: 0;
@@ -58,8 +59,8 @@ th {
   > .thead > ol > li,
   > .tbody > dl > dd,
   > .tfoot > ol > li {
-    padding: @line-height-computed @table-cell-padding;
-    line-height: @line-height-base;
+    padding: var(--size-24) @table-cell-padding;
+    line-height: var(--line-height-body);
     vertical-align: top;
     border-top: 1px solid var(--color-background-neutral);
     border-bottom: 0;
@@ -112,13 +113,13 @@ th {
   > tfoot,
   > .thead,
   > .tfoot {
-    font-size: @font-size-small;
+    font-size: var(--font-size-14);
     color: var(--color-content-primary);
   }
 
   > tbody,
   > .tbody {
-    font-size: @font-size-small;
+    font-size: var(--font-size-14);
   }
 
   > tbody > tr > th,
@@ -223,7 +224,7 @@ table col[class*='col-'] {
 
   @media screen and (max-width: @screen-sm-max) {
     width: 100%;
-    margin-bottom: @line-height-computed;
+    margin-bottom: var(--size-24);
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 
@@ -284,7 +285,7 @@ table col[class*='col-'] {
 
         > li {
           display: table-cell;
-          font-weight: @font-weight-bold;
+          font-weight: var(--font-weight-bold);
           color: var(--color-content-primary);
         }
       }
@@ -302,7 +303,7 @@ table col[class*='col-'] {
 
         > dd {
           display: table-cell;
-          font-size: @font-size-small;
+          font-size: var(--font-size-14);
           color: var(--color-content-secondary);
         }
       }
@@ -324,8 +325,8 @@ table col[class*='col-'] {
       > dl {
         border: 1px var(--color-interactive-secondary) solid;
         border-radius: @border-radius-base;
-        margin-bottom: @line-height-computed;
-        padding: @line-height-computed @line-height-computed 0;
+        margin-bottom: var(--size-24);
+        padding: var(--size-24) var(--line-height-body) 0;
 
         > dd {
           padding: 0;

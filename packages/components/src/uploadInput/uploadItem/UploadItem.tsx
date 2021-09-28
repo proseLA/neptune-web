@@ -38,7 +38,7 @@ const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) 
 
   const getIcon = (): ReactElement => {
     if (error || status === Status.FAILED) {
-      return <AlertCircle size={24} className="text-danger" />;
+      return <AlertCircle size={24} className="text-negative" />;
     }
 
     let processIndicator: ReactElement;
@@ -64,7 +64,7 @@ const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) 
 
   const getDescription = () => {
     if (error || status === Status.FAILED) {
-      return <span className="text-danger">{getErrorMessage()}</span>;
+      return <span className="text-negative">{getErrorMessage()}</span>;
     }
 
     switch (status) {
@@ -75,7 +75,7 @@ const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) 
       case Status.SUCCEEDED:
       case Status.DONE:
       default:
-        return <span className="text-success">{formatMessage(MESSAGES.uploaded)}</span>;
+        return <span className="text-positive">{formatMessage(MESSAGES.uploaded)}</span>;
     }
   };
 

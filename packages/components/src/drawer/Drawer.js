@@ -23,7 +23,7 @@ const Drawer = ({ children, className, footerContent, headerTitle, onClose, open
             })}
           >
             <CloseButton onClick={onClose} />
-            {headerTitle && <div className="np-drawer-header--title h3">{headerTitle}</div>}
+            {headerTitle && <div className="np-drawer-header--title title-3">{headerTitle}</div>}
           </div>
           {children && <div className={classNames('np-drawer-content')}>{children}</div>}
           {footerContent && <div className={classNames('np-drawer-footer')}>{footerContent}</div>}

@@ -403,11 +403,11 @@
   }
 
   .small {
+    line-height: calc(var(--line-height-control) - 1px);
     color: var(--color-content-secondary);
-    line-height: (@line-height-computed - 1px);
 
     &.text-ellipsis {
-      line-height: @line-height-computed;
+      line-height: var(--line-height-control);
     }
   }
 }
@@ -419,7 +419,7 @@
 }
 
 .btn-group .secondary {
-  font-size: @font-size-small;
+  font-size: var(--font-size-14);
   color: var(--color-content-secondary);
   line-height: 24px;
 }

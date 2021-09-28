@@ -25,7 +25,7 @@ const FormattedValue = ({ field, value }) => {
   const { locale } = useIntl();
   const style = [];
   if (field.tagClassName && field.tagClassName.h3) {
-    style.push('h3');
+    style.push('title-3');
     style.push('formatted-value__h3-custom-alignment');
   }
 
