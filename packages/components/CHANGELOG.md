@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.6.0...@transferwise/components@37.7.0) (2021-09-29)
+
+
+### Features
+
+* updated Chip and new Chips components ([#1113](https://github.com/transferwise/neptune-web/issues/1113)) ([58ad438](https://github.com/transferwise/neptune-web/commit/58ad438f2ad007f8eeadf4069a1455920b8bb954))
+
+
+
+
+
 # [37.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.5.0...@transferwise/components@37.6.0) (2021-09-24)
 
 

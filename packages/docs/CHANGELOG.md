@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.3.0...@transferwise/neptune-docs@13.4.0) (2021-09-29)
+
+
+### Features
+
+* updated Chip and new Chips components ([#1113](https://github.com/transferwise/neptune-web/issues/1113)) ([58ad438](https://github.com/transferwise/neptune-web/commit/58ad438f2ad007f8eeadf4069a1455920b8bb954))
+
+
+
+
+
 # [13.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.2.27...@transferwise/neptune-docs@13.3.0) (2021-09-24)
 
 
