@@ -111,21 +111,21 @@ describe('DateTrigger', () => {
   it('calls onClear when user press Space', () => {
     const onClear = jest.fn();
     component.setProps({ onClear });
-    clearButton().simulate('keydown', fakeKeyDownEventForKey(32));
+    clearButton().simulate('keypress', fakeKeyDownEventForKey(32));
     expect(onClear).toHaveBeenCalledTimes(1);
   });
 
   it('calls onClear when user press Enter', () => {
     const onClear = jest.fn();
     component.setProps({ onClear });
-    clearButton().simulate('keydown', fakeKeyDownEventForKey(13));
+    clearButton().simulate('keypress', fakeKeyDownEventForKey(13));
     expect(onClear).toHaveBeenCalledTimes(1);
   });
 
   it(`doesn't call onClear when user press a random key`, () => {
     const onClear = jest.fn();
     component.setProps({ onClear });
-    clearButton().simulate('keydown', fakeKeyDownEventForKey(6));
+    clearButton().simulate('keypress', fakeKeyDownEventForKey(6));
     expect(onClear).not.toHaveBeenCalled();
   });
 

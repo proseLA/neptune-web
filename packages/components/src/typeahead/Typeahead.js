@@ -9,7 +9,7 @@ import debounce from 'lodash.debounce';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 
-import Chip from '../chip';
+import Chip from '../chips/Chip';
 import { Size, Sentiment } from '../common';
 import {
   addClickClassToDocumentOnIos,
@@ -281,8 +281,10 @@ export default class Typeahead extends Component {
     return (
       <Chip
         key={idx}
-        hasError={!valid}
         label={option.label}
+        className={classNames('m-t-1', {
+          'has-error': !valid,
+        })}
         onRemove={() => this.removeChip(option)}
       />
     );

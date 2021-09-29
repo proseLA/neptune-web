@@ -1,0 +1,76 @@
+@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+
+.np-chip {
+  color: var(--color-text-secondary);
+  background-color: transparent;
+  height: var(--size-32);
+  margin-right: var(--size-8);
+  padding: 0 var(--size-12);
+  border-radius: var(--size-16);
+  border: 1px solid var(--color-border-neutral);
+  transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+  .np-chip-label {
+    // TODO: we need this to offset text alignment vertically, revisit if this gets fixed
+    padding-top: 2px;
+  }
+
+  .np-close-button {
+    opacity: 1;
+    transition: opacity 0.15s ease-in-out;
+    pointer-events: auto;
+    color: @color-base-navy-fade;
+
+    &:hover,
+    &:focus {
+      color: #707b8f;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    color: var(--color-text-control);
+    background-color: var(--color-control-accent-hover);
+    border-color: var(--color-control-accent-hover);
+
+    .np-close-button {
+      color: white;
+    }
+  }
+
+  &:active {
+    color: var(--color-text-control);
+    background-color: var(--color-control-accent-active);
+    border-color: var(--color-control-accent-active);
+  }
+
+  &--selected {
+    color: var(--color-text-control);
+    background-color: var(--color-control-accent);
+    border-color: var(--color-control-accent);
+    pointer-events: none;
+
+    &:hover,
+    &:active {
+      color: var(--color-text-control);
+      background-color: var(--color-control-accent);
+      border-color: var(--color-control-accent);
+    }
+
+    .np-close-button {
+      color: white;
+    }
+  }
+
+  &.has-error {
+    background: var(--color-control-negative);
+    color: var(--color-text-control);
+
+    .np-close-button {
+      color: white;
+    }
+  }
+}

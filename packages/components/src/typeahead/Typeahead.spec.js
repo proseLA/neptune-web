@@ -8,13 +8,24 @@ import KeyCodes from '../common/keyCodes';
 
 import Typeahead from './Typeahead';
 
+const defaultLocale = 'en-GB';
+
+jest.mock('react-intl', () => ({
+  injectIntl: (Component) =>
+    function (props) {
+      return <Component {...props} intl={{ locale: defaultLocale }} />;
+    },
+  useIntl: () => ({ locale: defaultLocale, formatMessage: (id) => `${id}` }),
+  defineMessages: (translations) => translations,
+}));
+
 describe('Typeahead', () => {
   let component;
   let props;
   const closeButton = () => component.find('.input-group-addon button');
   const formGroup = () => component.find('.form-group');
   const input = () => component.find('input');
-  const chip = () => component.find('.chip');
+  const chip = () => component.find('.np-chip');
   const option = () => component.find('.dropdown-item');
   const menu = () => component.find('.dropdown');
 

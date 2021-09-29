@@ -127,6 +127,16 @@ describe('Server side rendering', () => {
       description: 'description',
       'aria-label': 'a label',
       logo: <svg />,
+      chips: [
+        {
+          value: 1,
+          label: 'One',
+        },
+        {
+          value: 2,
+          label: 'Two',
+        },
+      ],
     };
 
     // Override props in case of name collision.

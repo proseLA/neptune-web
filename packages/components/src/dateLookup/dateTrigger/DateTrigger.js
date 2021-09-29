@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 
 import Chevron from '../../chevron';
 import { Size, Position } from '../../common';
+import CloseButton from '../../common/closeButton/CloseButton';
 
 import messages from './DateTrigger.messages';
 
@@ -56,20 +57,18 @@ const DateTrigger = ({
       {!onClear ? (
         <Chevron orientation={Position.BOTTOM} disabled={disabled} />
       ) : (
-        <span
-          role="button"
-          tabIndex={0}
+        <CloseButton
           className="clear-btn d-flex align-items-center"
           aria-label={formatMessage(messages.ariaLabel)}
+          size={size === Size.SMALL ? 16 : 24}
+          filled
           onClick={(event) => {
             event.stopPropagation();
             event.preventDefault();
             onClear();
           }}
-          onKeyDown={handleKeyDown}
-        >
-          <CrossCircle filled size={size === Size.SMALL ? 16 : 24} />
-        </span>
+          onKeyPress={handleKeyDown}
+        />
       )}
     </button>
   );

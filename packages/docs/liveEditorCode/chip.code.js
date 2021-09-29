@@ -1,5 +1,6 @@
-<Chip
-  label="I'm a beautiful chip"
-  hasError={false}
-  onRemove={() => alert('I have been removed!!!')}
-/>;
+<div className="d-flex">
+  <Chip label="Chip" />
+  <Chip label="Chip" onRemove={() => alert('I have been removed')} />
+  <Chip label="Chip" className="has-error" />
+  <Chip label="Chip" className="has-error" onRemove={() => alert('I have been removed')} />
+</div>;

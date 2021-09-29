@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chips Choice Chips renders as expected 1`] = `
+<div>
+  <div
+    aria-label="Please select a category"
+    class="np-chips d-flex"
+    role="radiogroup"
+  >
+    <div
+      aria-checked="false"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap"
+      role="radio"
+      tabindex="0"
+    >
+      <span
+        aria-hidden="false"
+        class="np-chip-label"
+      >
+        Accounting
+      </span>
+    </div>
+    <div
+      aria-checked="true"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap np-chip--selected"
+      role="radio"
+      tabindex="0"
+    >
+      <span
+        aria-hidden="false"
+        class="np-chip-label"
+      >
+        Payroll
+      </span>
+    </div>
+    <div
+      aria-checked="false"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap"
+      role="radio"
+      tabindex="0"
+    >
+      <span
+        aria-hidden="false"
+        class="np-chip-label"
+      >
+        Reporting
+      </span>
+    </div>
+    <div
+      aria-checked="false"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap"
+      role="radio"
+      tabindex="0"
+    >
+      <span
+        aria-hidden="false"
+        class="np-chip-label"
+      >
+        Payments
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Chips Filter Chips renders as expected 1`] = `
+<div>
+  <div
+    aria-label="Filter by categories"
+    class="np-chips d-flex"
+  >
+    <div
+      aria-checked="false"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap"
+      role="button"
+      tabindex="0"
+    >
+      <span
+        aria-hidden="false"
+        class="np-chip-label"
+      >
+        Accounting
+      </span>
+    </div>
+    <div
+      aria-checked="false"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap"
+      role="button"
+      tabindex="0"
+    >
+      <span
+        aria-hidden="false"
+        class="np-chip-label"
+      >
+        Payroll
+      </span>
+    </div>
+    <div
+      aria-checked="false"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap"
+      role="button"
+      tabindex="0"
+    >
+      <span
+        aria-hidden="false"
+        class="np-chip-label"
+      >
+        Reporting
+      </span>
+    </div>
+    <div
+      aria-label="Payments"
+      class="np-chip d-flex align-items-center justify-content-between text-xs-nowrap np-chip--selected p-r-1"
+      tabindex="-1"
+    >
+      <span
+        aria-hidden="true"
+        class="np-chip-label"
+      >
+        Payments
+      </span>
+      <button
+        aria-label="Clear Payments"
+        class="np-close-button close btn-link text-no-decoration btn-unstyled m-l-1"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="tw-icon tw-icon-cross-circle "
+          role="presentation"
+        >
+          <svg
+            fill="currentColor"
+            focusable="false"
+            height="16"
+            width="16"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M8 16A8 8 0 108 0a8 8 0 000 16zm2.434-4.434L8 9.13l-2.434 2.435-1.132-1.132L6.87 8 4.434 5.566l1.132-1.132L8 6.87l2.434-2.435 1.132 1.132L9.13 8l2.435 2.434-1.132 1.132z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

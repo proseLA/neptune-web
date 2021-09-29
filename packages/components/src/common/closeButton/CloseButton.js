@@ -1,4 +1,4 @@
-import { Cross as CrossIcon } from '@transferwise/icons';
+import { Cross as CrossIcon, CrossCircle as CrossCircleIcon } from '@transferwise/icons';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
@@ -8,7 +8,8 @@ import messages from './CloseButton.messages';
 
 export const CloseButton = forwardRef((props, reference) => {
   const intl = useIntl();
-  const { onClick, className, size } = props;
+  const { onClick, className, size, filled } = props;
+  const ariaLabel = props['aria-label'] || intl.formatMessage(messages.ariaLabel);
   return (
     <button
       ref={reference}
@@ -18,10 +19,10 @@ export const CloseButton = forwardRef((props, reference) => {
         { 'np-close-button--large': size === CloseButton.Size.LARGE },
         className,
       )}
-      aria-label={intl.formatMessage(messages.ariaLabel)}
+      aria-label={ariaLabel}
       onClick={onClick}
     >
-      <CrossIcon size={size} />
+      {filled ? <CrossCircleIcon size={size} filled /> : <CrossIcon size={size} />}
     </button>
   );
 });
@@ -35,11 +36,15 @@ CloseButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
   size: PropTypes.oneOf(Object.values(CloseButton.Size)),
+  filled: PropTypes.bool,
+  'aria-label': PropTypes.string,
 };
 
 CloseButton.defaultProps = {
   className: null,
   size: CloseButton.Size.LARGE,
+  filled: false,
+  'aria-label': undefined,
 };
 
 export default CloseButton;

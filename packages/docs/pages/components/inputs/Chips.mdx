@@ -1,0 +1,31 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { Chips } from '@transferwise/components';
+import choiceCode from '../../../liveEditorCode/chips.choice.code';
+import filterCode from '../../../liveEditorCode/chips.filter.code';
+
+The `Chips` component can be used for making a **choice**, or as a **filter** with multiple options.
+
+## Choice
+
+The user can only select one chip with the `selected` prop as a single value.
+
+<LiveEditorBlock code={choiceCode} scope={{ Chips }} />
+
+---
+
+## Filter
+
+The user can select any number of chips with the `selected` prop as an array.
+
+<LiveEditorBlock code={filterCode} scope={{ Chips }} />
+<GeneratePropsTable componentName="Chips" />
+
+---
+
+export const meta = {
+  name: 'Chips',
+  badge: {
+    type: 'new',
+    expiryDate: '2021-11-01',
+  },
+};
