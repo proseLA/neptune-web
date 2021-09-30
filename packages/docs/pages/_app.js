@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+import { MDXProvider } from '@mdx-js/react';
 import { Provider, getLangFromLocale, DEFAULT_LOCALE } from '@transferwise/components';
 import App from 'next/app';
 import Head from 'next/head';
@@ -12,6 +13,7 @@ import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
 import '@transferwise/components/build/main.css';
 
+import Heading from '../components/Heading';
 import Layout from '../components/Layout';
 import { addBasePath } from '../utils/pageUtils';
 
@@ -49,6 +51,14 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, locale, messages } = this.props;
+    const customComponents = {
+      h1: ({ children }) => <Heading as="h1">{children}</Heading>,
+      h2: ({ children }) => <Heading as="h2">{children}</Heading>,
+      h3: ({ children }) => <Heading as="h3">{children}</Heading>,
+      h4: ({ children }) => <Heading as="h4">{children}</Heading>,
+      h5: ({ children }) => <Heading as="h5">{children}</Heading>,
+      h6: ({ children }) => <Heading as="h6">{children}</Heading>,
+    };
 
     /**
      * NextJS provides polyfills out of the box (https://nextjs.org/docs/basic-features/supported-browsers-features) using core-js,
@@ -65,11 +75,13 @@ class MyApp extends App {
           <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
           <script src={`https://polyfill.io/v3/polyfill.min.js?features=${polyfills}`} />
         </Head>
-        <Provider i18n={{ locale, messages }}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </Provider>
+        <MDXProvider components={customComponents}>
+          <Provider i18n={{ locale, messages }}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </Provider>
+        </MDXProvider>
       </>
     );
   }

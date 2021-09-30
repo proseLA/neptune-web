@@ -1,6 +1,7 @@
 import { Alert, Image, Sentiment, Link } from '@transferwise/components';
 import { ReactElement } from 'react';
 
+import Heading from '../../components/Heading';
 import button1 from '../../public/static/assets/blog/button-release-mar-2021_1.png';
 import button2 from '../../public/static/assets/blog/button-release-mar-2021_2.png';
 
@@ -35,8 +36,10 @@ const PageContent = (): ReactElement => {
       <p>
         <Link href="#steps-to-upgrade">Skip to the upgrade steps.</Link>
       </p>
-      <h2>Changes</h2>
-      <h3 className="m-t-4 m-b-1">Type has been split into Type + Priority</h3>
+      <Heading as="h2">Changes</Heading>
+      <Heading as="h3" className="m-t-4 m-b-1">
+        Type has been split into Type + Priority
+      </Heading>
       <p>
         Our old types:
         <ul className="m-t-1">
@@ -66,7 +69,9 @@ const PageContent = (): ReactElement => {
       <div style={{ maxWidth: '500px' }} className="align-self-center m-y-2">
         <Image src={button1} loading="lazy" stretch={false} alt="button types" />
       </div>
-      <h3 className="m-t-4 m-b-1">Negative (a.k.a danger) buttons are now always red</h3>
+      <Heading as="h3" className="m-t-4 m-b-1">
+        Negative (a.k.a danger) buttons are now always red
+      </Heading>
       <Alert className="m-y-2" type="warning" message="**VISUAL CHANGE**" />
       <p>
         We have updated the secondary negative button (previously the danger button) to have a red
@@ -77,24 +82,28 @@ const PageContent = (): ReactElement => {
       <div style={{ maxWidth: '300px' }} className="align-self-center m-y-2">
         <Image src={button2} loading="lazy" stretch={false} alt="secondary negative button" />
       </div>
-      <h3 className="m-t-4 m-b-1">
+      <Heading as="h3" className="m-t-4 m-b-1">
         Moved social media button classes out of the Neptune CSS bundle
-      </h3>
+      </Heading>
       <Alert className="m-y-2" type={Sentiment.NEGATIVE} message="Breaking change" />
       <p>
         Neptune CSS contains the Google and Facebook logos. These are used very rarely, and add
         unnecessary weight to most people’s bundles. We have separated these into a new, optional
         file: <code>neptune-social-media.css</code>.
       </p>
-      <h3 className="m-t-4 m-b-1">Removed the .btn-download class from Neptune CSS</h3>
+      <Heading as="h3" className="m-t-4 m-b-1">
+        Removed the .btn-download class from Neptune CSS
+      </Heading>
       <Alert className="m-y-2" type={Sentiment.NEGATIVE} message="Breaking change" />
       We have removed styling for an unused button type - the download button
       <code>.btn-download</code>
       <br /> <strong>We don’t believe anyone is using this</strong>.
-      <h2 className="m-t-4 m-b-1" id="steps-to-upgrade">
+      <Heading as="h2" className="m-t-4 m-b-1">
         Steps to upgrade
-      </h2>
-      <h3 className="m-t-4 m-b-1">1: Import social-media css if required</h3>
+      </Heading>
+      <Heading as="h3" className="m-t-4 m-b-1">
+        1: Import social-media css if required
+      </Heading>
       <Alert className="m-y-2" message="Most people will not need to follow this step." />
       If you have social media buttons that use either of the{' '}
       <ul>
@@ -112,7 +121,9 @@ const PageContent = (): ReactElement => {
         <br />
         import &apos;@transferwise/neptune-css/dist/css/neptune-social-media.css&apos;;
       </pre>
-      <h3 className="m-t-4 m-b-1">2: Update prop usage for Buttons</h3>
+      <Heading as="h3" className="m-t-4 m-b-1">
+        2: Update prop usage for Buttons
+      </Heading>
       <strong>Note:</strong> Buttons will continue to work without this step, but you will see
       deprecation warnings being logged if you are still using old types. If you are using any of
       the old types listed below, you will need to update the type and add the new priority. Buttons
@@ -171,7 +182,7 @@ const PageContent = (): ReactElement => {
         <br />
         {`<Button type={Button.Type.POSITIVE}>Pay</Button>`}
       </pre>
-      <h2>Dependency requirements</h2>
+      <Heading as="h2">Dependency requirements</Heading>
       <pre>
         {'@transferwise/components >= 35.x.x'}
         <br />

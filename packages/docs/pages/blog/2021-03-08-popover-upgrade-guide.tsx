@@ -1,6 +1,7 @@
 import { Alert, Image, Link } from '@transferwise/components';
 import { ReactElement } from 'react';
 
+import Heading from '../../components/Heading';
 import popover1 from '../../public/static/assets/blog/popover-release-mar-2021_1.png';
 import popover2 from '../../public/static/assets/blog/popover-release-mar-2021_2.png';
 import popover3 from '../../public/static/assets/blog/popover-release-mar-2021_3.png';
@@ -29,7 +30,7 @@ const PageContent = (): ReactElement => {
         </Link>
         .
       </p>
-      <h2>Changes</h2>
+      <Heading as="h2">Changes</Heading>
       <table className="docs-table table">
         <thead>
           <tr>
@@ -241,8 +242,8 @@ const simulateTriggerClick = () => {
         Although we don’t provide official support for user relying on html and css internal
         implementation, it’s worth mention that the both html structure and css have changed.
       </p>
-      <h2>Migration Example</h2>
-      <h3>Old API</h3>
+      <Heading as="h2">Migration Example</Heading>
+      <Heading as="h3">Old API</Heading>
       <pre>
         {`<Popover
   containsFocusableElement={containsFocusableElement}
@@ -253,7 +254,7 @@ const simulateTriggerClick = () => {
   <Icon> / <span> / string
 </Popover>`}
       </pre>
-      <h3>New API</h3>
+      <Heading as="h3">New API</Heading>
       <pre>
         {`<Popover
   content={You’ll get this rate as long...}
@@ -265,7 +266,7 @@ const simulateTriggerClick = () => {
   </button>
 </Popover>`}
       </pre>
-      <h2>Adaptive Positioning</h2>
+      <Heading as="h2">Adaptive Positioning</Heading>
       <Alert type="warning" message="**VISUAL CHANGE**" />
       <p>
         At the moment Popover doesn’t change its placements when reaching the windows boundaries.
@@ -273,7 +274,7 @@ const simulateTriggerClick = () => {
         and calculates automatically the best placement on screen for both content and arrow
       </p>
       <Image src={popover2} alt="Popover Adaptive Positioning" loading="lazy" stretch={false} />
-      <h2>Mobile Behaviour</h2>
+      <Heading as="h2">Mobile Behaviour</Heading>
       <Alert type="warning" message="**VISUAL CHANGE**" />
       <p>
         In order to align mobile web with mobile behaviour, Popover will now open in a bottomSheet
@@ -285,7 +286,7 @@ const simulateTriggerClick = () => {
         loading="lazy"
         stretch={false}
       />
-      <h2>Dependency requirements</h2>
+      <Heading as="h2">Dependency requirements</Heading>
       <pre>
         {'@transferwise/components >= 35.x.x'}
         <br />

@@ -2,6 +2,7 @@ import { BottomSheet, Button, NavigationOption, Size } from '@transferwise/compo
 import { Card, PinCode, FastFlag, Menu } from '@transferwise/icons';
 import { ReactElement, useState } from 'react';
 
+import Heading from '../../../components/Heading';
 // @ts-expect-error liveEditorCode
 import code from '../../../liveEditorCode/bottomSheet.code';
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
@@ -25,7 +26,7 @@ const PageContent = (): ReactElement => {
         </a>{' '}
         for more info.
       </p>
-      <h2 className="docs-heading">Variants</h2>
+      <Heading as="h2">Variants</Heading>
       <ul>
         <li>
           Hugs Content{' '}
@@ -39,7 +40,9 @@ const PageContent = (): ReactElement => {
           </Button>
         </li>
         <BottomSheet open={openVarientOne} onClose={() => setOpenVarientOne(false)}>
-          <h2 className="p-x-2">Settings</h2>
+          <Heading as="h2" className="p-x-2">
+            Settings
+          </Heading>
           <NavigationOption
             title="Show me insights for"
             content="All activity"
@@ -66,7 +69,9 @@ const PageContent = (): ReactElement => {
           </Button>
         </li>
         <BottomSheet open={openVarientTwo} onClose={() => setOpenVarientTwo(false)}>
-          <h2 className="p-x-2">Money without borders</h2>
+          <Heading as="h2" className="p-x-2">
+            Money without borders
+          </Heading>
           <div className="p-x-2">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic modi sed possimus, minima
             dolorem qui suscipit omnis commodi accusamus soluta exercitationem iste reprehenderit

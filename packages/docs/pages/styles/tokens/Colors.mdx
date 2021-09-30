@@ -1,3 +1,4 @@
+import Heading from '../../../components/Heading';
 import { DocumentLink } from '../../../utils/pageUtils';
 
 export function ColorToken(props) {
@@ -26,7 +27,7 @@ Semantic colours as custom properties for you to use in your application.
 Neptune uses semantic colors, and distributes them as custom properties.
 
 <div className="m-b-4">
-  <h3>Basic colors</h3>
+  <Heading as="h3">Basic colors</Heading>
   <ColorToken token="--color-primary" textColor="#fff" />
   <ColorToken token="--color-secondary" textColor="#fff" />
   <ColorToken token="--color-accent" textColor="#fff" />
@@ -36,7 +37,7 @@ Neptune uses semantic colors, and distributes them as custom properties.
 </div>
 
 <div className="m-b-4">
-  <h3>Text colors</h3>
+  <Heading as="h3">Text colors</Heading>
   <ColorToken token="--color-text-primary" textColor="#fff" />
   <ColorToken token="--color-text-secondary" textColor="#fff" />
   <ColorToken token="--color-text-inactive" textColor="#fff" />
@@ -51,7 +52,7 @@ Neptune uses semantic colors, and distributes them as custom properties.
 </div>
 
 <div className="m-b-4">
-  <h3>Control colors</h3>
+  <Heading as="h3">Control colors</Heading>
   <p>
     Control tokens should be used to paint interactive areas in components, such as buttons, the
     background of a checkbox, or a switch.
@@ -71,7 +72,7 @@ Neptune uses semantic colors, and distributes them as custom properties.
 </div>
 
 <div className="m-b-4">
-  <h3>Border colors</h3>
+  <Heading as="h3">Border colors</Heading>
   <p>We use border tokens for component borders and individual lines.</p>
   <ColorToken token="--color-border-neutral" />
   <ColorToken token="--color-border-focus" textColor="#fff" />
@@ -81,7 +82,7 @@ Neptune uses semantic colors, and distributes them as custom properties.
 </div>
 
 <div className="m-b-4">
-  <h3>Background colors</h3>
+  <Heading as="h3">Background colors</Heading>
   <ColorToken token="--color-background-screen" />
   <ColorToken token="--color-background-elevated" />
   <ColorToken token="--color-background-accent" />

@@ -1,6 +1,7 @@
 import { Alert, Image, Sentiment, Link } from '@transferwise/components';
 import { ReactElement } from 'react';
 
+import Heading from '../../components/Heading';
 import buttonPriorityMap from '../../public/static/assets/blog/button-release-mar-2021_1.png';
 import circularButtons from '../../public/static/assets/blog/button-release-mar-2021_3.png';
 import infoButton from '../../public/static/assets/blog/info-button-release-march-2021.png';
@@ -28,7 +29,9 @@ export const meta: Meta = {
 const PageContent = (): ReactElement => {
   return (
     <div className="d-flex flex-column">
-      <h2 className="m-t-4 m-b-1">Popover</h2>
+      <Heading as="h2" className="m-t-4 m-b-1">
+        Popover
+      </Heading>
       <DocumentLink href="/blog/2021-03-08-popover-upgrade-guide">Upgrade guide</DocumentLink>
       <DocumentLink href="/components/alerts/Popover">Component docs</DocumentLink>
       <p className="m-t-3">
@@ -47,7 +50,9 @@ const PageContent = (): ReactElement => {
         <DocumentLink href="/blog/2021-03-08-popover-upgrade-guide">upgrade guide</DocumentLink> to
         upgrade instances of Popover in your application.
       </p>
-      <h2 className="m-t-4 m-b-1">Button</h2>
+      <Heading as="h2" className="m-t-4 m-b-1">
+        Button
+      </Heading>
       <DocumentLink href="/blog/2021-03-09-button-upgrade-guide">Upgrade guide</DocumentLink>
       <DocumentLink href="/components/inputs/Button">Component docs</DocumentLink>
       <p className="m-t-3">
@@ -80,7 +85,7 @@ const PageContent = (): ReactElement => {
         <DocumentLink href="/blog/2021-03-09-button-upgrade-guide">upgrade guide</DocumentLink> for
         an in-depth guide to the changes and instructions on how to use the tool.
       </p>
-      <h2>CircularButton</h2>
+      <Heading as="h2">CircularButton</Heading>
       <DocumentLink href="/components/inputs/CircularButton">Component docs</DocumentLink>
       <p className="m-t-3">
         We have introduced circular buttons on web. These use the same types as the above, and there
@@ -94,7 +99,7 @@ const PageContent = (): ReactElement => {
           stretch={false}
         />
       </div>
-      <h2>Info</h2>
+      <Heading as="h2">Info</Heading>
       <DocumentLink href="/components/content/Info">Component docs</DocumentLink>
       <p className="m-t-3">
         We have exposed the info component, which previously was in use in Summary. You can launch
@@ -105,7 +110,7 @@ const PageContent = (): ReactElement => {
       <div style={{ maxWidth: '100px' }} className="align-self-center m-y-4">
         <Image src={infoButton} alt="Info button" loading="lazy" stretch={false} />
       </div>
-      <h2>InlineAlert</h2>
+      <Heading as="h2">InlineAlert</Heading>
       <DocumentLink href="/components/alerts/InlineAlert">Component docs</DocumentLink>
       <div style={{ maxWidth: '500px' }} className="align-self-center m-y-4">
         <Image src={inlineAlert} alt="Inline alert" loading="lazy" stretch={false} />
@@ -119,8 +124,10 @@ const PageContent = (): ReactElement => {
         the most custom use cases you would not need to use this component directly. But for now -
         here you go!
       </p>
-      <h1>Breaking Changes and Deprecations</h1>
-      <h2 className="m-t-3">Popover</h2>
+      <Heading as="h1">Breaking Changes and Deprecations</Heading>
+      <Heading as="h2" className="m-t-3">
+        Popover
+      </Heading>
       <Alert className="m-y-2" message="Breaking change" type={Sentiment.NEGATIVE} />
       <p>
         <strong>Relevant for you</strong>: If you use Popovers.
@@ -131,7 +138,7 @@ const PageContent = (): ReactElement => {
         <DocumentLink href="/blog/2021-03-08-popover-upgrade-guide">upgrade guide</DocumentLink> for
         details of the changes and steps you can take to update.
       </p>
-      <h2>Button types have been replaced</h2>
+      <Heading as="h2">Button types have been replaced</Heading>
       <Alert className="m-y-2" message="Deprecation" type={Sentiment.WARNING} />
       <p>
         <strong>Relevant for you</strong>: If you use Buttons passing a type prop.
@@ -142,7 +149,7 @@ const PageContent = (): ReactElement => {
         <DocumentLink href="/blog/2021-03-09-button-upgrade-guide">upgrade guide</DocumentLink> for
         an in depth guide to the changes and instructions on how to use the tool.
       </p>
-      <h2>Social button styles have been removed from Neptune CSS</h2>
+      <Heading as="h2">Social button styles have been removed from Neptune CSS</Heading>
       <Alert className="m-y-2" message="Breaking change" type={Sentiment.NEGATIVE} />
       <p>
         <strong>Relevant for you</strong>: If you use the Google or Facebook button or styles. We
@@ -162,7 +169,7 @@ const PageContent = (): ReactElement => {
         <DocumentLink href="/blog/2021-03-09-button-upgrade-guide">upgrade guide</DocumentLink> for
         details.
       </p>
-      <h2>Summary now requires an aria-label for info</h2>
+      <Heading as="h2">Summary now requires an aria-label for info</Heading>
       <Alert className="m-y-2" message="Breaking change" type={Sentiment.NEGATIVE} />
       <p>
         <strong>Relevant for you</strong>: If you use Summary with an info.
@@ -172,7 +179,7 @@ const PageContent = (): ReactElement => {
         the outer label, we require an aria-label to be attached to the info button. It should
         describe what the user will find in the info.
       </p>
-      <h2>Tabs will now not animate by default</h2>
+      <Heading as="h2">Tabs will now not animate by default</Heading>
       <Alert className="m-y-2" message="Breaking change" type={Sentiment.NEGATIVE} />
       <p>
         <strong>Relevant for you</strong>: If you use Tabs (particularly if you’re Send)

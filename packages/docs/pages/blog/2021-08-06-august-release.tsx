@@ -1,6 +1,7 @@
 import { Alert, Link, Sentiment } from '@transferwise/components';
 import { ReactElement } from 'react';
 
+import Heading from '../../components/Heading';
 import { DocumentLink } from '../../utils/pageUtils';
 import { Meta } from '../../utils/sections';
 
@@ -36,16 +37,20 @@ const PageContent = (): ReactElement => {
     <div className="m-t-2">
       This release introduces several new components, compatibility with React 17 & Next.js 11 and
       drop of polyfills for Web API.
-      <h2 id="new-components" className="m-t-3 m-b-1">
+      <Heading as="h2" id="new-components" className="m-t-3 m-b-1">
         New Components
-      </h2>
-      <h4 className="m-b-1">Upload Input</h4>
+      </Heading>
+      <Heading as="h4" className="m-b-1">
+        Upload Input
+      </Heading>
       <p>
         An <DocumentLink href="components/inputs/UploadInput">upload input component</DocumentLink>{' '}
         that allows users upload a single file, or multiple files, which is meant to be use in
         forms.
       </p>
-      <h4 className="m-b-1">Bottom Sheet</h4>
+      <Heading as="h4" className="m-b-1">
+        Bottom Sheet
+      </Heading>
       <p>
         A bottom sheet is a container you can use to display supporting content or a short,
         supplementary task on <b>mobile experiences</b>. Here is the{' '}
@@ -55,18 +60,20 @@ const PageContent = (): ReactElement => {
         <DocumentLink href="components/inputs/DateLookup">DateLookup</DocumentLink> (later,
         potentially it will be integrated in Select).
       </p>
-      <h4 className="m-b-1">Link</h4>
+      <Heading as="h4" className="m-b-1">
+        Link
+      </Heading>
       <p>
         Introducing a <DocumentLink href="components/content/Link">link component</DocumentLink>, it
         encapsulates good a11y and security practices, adds Neptune specific styles, and most
         importantly attaches the navigate away icon for <code>target="_blank"</code>. The main
         purpose of this component is to enforce consistency for links across product.
       </p>
-      <h2 id="react-nextjs" className="m-t-3 m-b-1">
+      <Heading as="h2" id="react-nextjs" className="m-t-3 m-b-1">
         Compatibility with React 17 & Next.js 11
-      </h2>
+      </Heading>
       <Alert className="m-y-2" message="Breaking change" type={Sentiment.NEGATIVE} />
-      <h3>React 17</h3>
+      <Heading as="h3">React 17</Heading>
       <p>
         Prior this release it was not recommended to use Neptune components with React 17 as some of
         components were broken. But not anymore. We fixed them and introduced support for React
@@ -93,7 +100,7 @@ const PageContent = (): ReactElement => {
         </Link>
         .
       </p>
-      <h3>Next.js</h3>
+      <Heading as="h3">Next.js</Heading>
       <p>
         Since version 9.2{' '}
         <Link
@@ -116,7 +123,7 @@ const PageContent = (): ReactElement => {
         <code>@transferwise/components</code> and <code>@transferwise/dynamic-flows</code> which has
         to be imported in the root of the host application (see Upgrade Guide for more info).
       </p>
-      <h2>No Polyfills for Web API</h2>
+      <Heading as="h2">No Polyfills for Web API</Heading>
       <Alert className="m-y-2" message="Breaking change" type={Sentiment.NEGATIVE} />
       <p>
         Historically, sometimes we have been providing polyfills for Web API at{' '}
@@ -138,9 +145,9 @@ const PageContent = (): ReactElement => {
         <DocumentLink href="components/content/Image#polyfills">Image</DocumentLink>,{' '}
         <DocumentLink href="components/inputs/DateInput#polyfills">DateInput</DocumentLink>);
       </p>
-      <h2 id="upgrade-guide" className="m-t-3 m-b-1">
+      <Heading as="h2" id="upgrade-guide" className="m-t-3 m-b-1">
         Upgrade Guide
-      </h2>
+      </Heading>
       <ol>
         <li>
           Update <code>@transferwise/components</code> (and <code>@transferwise/dynamic-flows</code>{' '}
@@ -168,7 +175,7 @@ import '@transferwise/dynamic-flows/build/main.css';`}
           <pre>yarn list react react-dom</pre>
         </li>
         <li>
-          <DocumentLink href="about/Setup#polyfills-for-web-browser-api">
+          <DocumentLink href="about/Setup#polyfills-for-web-/-browser-api">
             Check whether you need to provide polyfills
           </DocumentLink>{' '}
           of JavaScript Web API for some components. (<b>Note:</b> This is only necessary for

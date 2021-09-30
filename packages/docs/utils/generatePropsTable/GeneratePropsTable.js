@@ -1,5 +1,6 @@
 import Types from 'prop-types';
 
+import Heading from '../../components/Heading';
 import propsData from '../../temp-tabular-props';
 import { parsePropsForTable } from '../parsePropsForTable';
 
@@ -14,7 +15,7 @@ const GeneratePropsTable = ({ componentName }) => {
 
   return data?.length > 0 ? (
     <div className="scroll-table">
-      <h2 className="docs-heading">Props</h2>
+      <Heading as="h2">Props</Heading>
       <table id="props" className="table table-condensed docs-table">
         <thead>
           <tr>
