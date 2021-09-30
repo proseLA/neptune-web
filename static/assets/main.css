@@ -227,3 +227,8 @@ img {
   color: #468847;
   background-color: #dff0d8 !important;
 }
+
+.clickable-heading {
+  cursor: pointer;
+  text-decoration: none;
+}
