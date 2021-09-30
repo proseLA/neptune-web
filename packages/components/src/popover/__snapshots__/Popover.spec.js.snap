@@ -48,62 +48,57 @@ exports[`Popover on mobile renders when is open 1`] = `
       </button>
     </span>
     <div
-      class="np-size-swapper d-inline-flex"
-      style="visibility: visible;"
+      class="dimmer"
     >
       <div
-        class="dimmer"
+        class="sliding-panel np-bottom-sheet np-popover__container"
       >
         <div
-          class="sliding-panel np-bottom-sheet np-popover__container"
+          class="np-bottom-sheet--top-bar"
         >
           <div
-            class="np-bottom-sheet--top-bar"
+            class="np-bottom-sheet--handler"
+          />
+          <button
+            aria-label="Close"
+            class="np-close-button close btn-link text-no-decoration sr-only np-bottom-sheet--close-btn"
+            type="button"
           >
-            <div
-              class="np-bottom-sheet--handler"
-            />
-            <button
-              aria-label="Close"
-              class="np-close-button close btn-link text-no-decoration sr-only np-bottom-sheet--close-btn"
-              type="button"
+            <span
+              aria-hidden="true"
+              class="tw-icon tw-icon-cross "
+              role="presentation"
             >
-              <span
-                aria-hidden="true"
-                class="tw-icon tw-icon-cross "
-                role="presentation"
+              <svg
+                fill="currentColor"
+                focusable="false"
+                height="16"
+                width="16"
               >
-                <svg
-                  fill="currentColor"
-                  focusable="false"
-                  height="16"
-                  width="16"
-                >
-                  <path
-                    d="M9.131 8l5.435-5.434-1.132-1.132L8 6.87 2.566 1.434 1.434 2.566 6.87 8l-5.435 5.434 1.132 1.132L8 9.13l5.434 5.435 1.132-1.132L9.13 8z"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
+                <path
+                  d="M9.131 8l5.435-5.434-1.132-1.132L8 6.87 2.566 1.434 1.434 2.566 6.87 8l-5.435 5.434 1.132 1.132L8 9.13l5.434 5.435 1.132-1.132L9.13 8z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div
+          class="np-bottom-sheet--content"
+          style="max-height: calc(768px - 64px - 32px);"
+        >
           <div
-            class="np-bottom-sheet--content"
-            style="max-height: calc(768px - 64px - 32px);"
+            aria-hidden="false"
+            class="np-popover__content"
+            role="tooltip"
           >
             <div
-              aria-hidden="false"
-              class="np-popover__content"
-              role="tooltip"
+              aria-level="1"
+              class="np-popover__title m-b-1"
+              role="heading"
             >
-              <div
-                aria-level="1"
-                class="np-popover__title m-b-1"
-                role="heading"
-              >
-                title
-              </div>
-              content
+              title
             </div>
+            content
           </div>
         </div>
       </div>

@@ -79,10 +79,6 @@ exports[`Summary renders full component 1`] = `
                 </span>
               </button>
             </span>
-            <div
-              class="np-size-swapper d-inline-flex"
-              style="visibility: visible;"
-            />
           </span>
         </span>
       </div>
@@ -136,10 +132,6 @@ exports[`Summary renders full component 1`] = `
             </span>
           </button>
         </span>
-        <div
-          class="np-size-swapper d-inline-flex"
-          style="visibility: visible;"
-        />
       </span>
     </span>
   </div>

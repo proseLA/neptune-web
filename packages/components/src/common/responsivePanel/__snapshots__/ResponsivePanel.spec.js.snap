@@ -3,14 +3,9 @@
 exports[`ResponsivePanel on desktop renders Panel 1`] = `
 <div>
   <div
-    class="np-size-swapper d-inline-flex"
-    style="visibility: visible;"
+    class="np-panel np-panel--open"
   >
-    <div
-      class="np-panel np-panel--open"
-    >
-      children
-    </div>
+    children
   </div>
 </div>
 `;
@@ -18,14 +13,9 @@ exports[`ResponsivePanel on desktop renders Panel 1`] = `
 exports[`ResponsivePanel on mobile renders bottomSheet 1`] = `
 <div>
   <div
-    class="np-size-swapper d-inline-flex"
-    style="visibility: visible;"
+    class="np-bottom-sheet"
   >
-    <div
-      class="np-bottom-sheet"
-    >
-      children
-    </div>
+    children
   </div>
 </div>
 `;

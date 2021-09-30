@@ -19,13 +19,16 @@ export const Basic = () => {
   const size = select('Size', [Size.SMALL, Size.LARGE]);
 
   return (
-    <Info
-      aria-label="Click here for more details"
-      content={content}
-      presentation={presentation}
-      size={size}
-      title={title}
-      onClick={() => console.log('Info clicked')}
-    />
+    <p>
+      <span>Fast transfer</span>{' '}
+      <Info
+        aria-label="Click here for more details"
+        content={content}
+        presentation={presentation}
+        size={size}
+        title={title}
+        onClick={() => console.log('Info clicked')}
+      />
+    </p>
   );
 };

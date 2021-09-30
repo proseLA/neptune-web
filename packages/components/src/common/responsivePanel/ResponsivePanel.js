@@ -1,39 +1,35 @@
 import PropTypes from 'prop-types';
 
 import { Position, Breakpoint } from '..';
-import SizeSwapper from '../../sizeSwapper';
+import { useClientWidth } from '../../common/hooks';
 import BottomSheet from '../bottomSheet';
 import Panel from '../panel';
 
 const ResponsivePanel = ({ anchorRef, arrow, children, className, onClose, open, position }) => {
   const windowReference = typeof window === 'undefined' ? undefined : window;
 
-  const items = [
-    {
-      items: [
-        <BottomSheet key="bottomSheet" open={open} className={className} onClose={onClose}>
-          {children}
-        </BottomSheet>,
-      ],
-    },
-    {
-      items: [
-        <Panel
-          key="panel"
-          arrow={arrow}
-          open={open}
-          position={position}
-          anchorRef={anchorRef}
-          className={className}
-          onClose={onClose}
-        >
-          {children}
-        </Panel>,
-      ],
-      breakpoint: Breakpoint.SMALL,
-    },
-  ];
-  return <SizeSwapper ref={windowReference} items={items} inline />;
+  const [clientWidth] = useClientWidth({ ref: windowReference });
+
+  if (clientWidth >= Breakpoint.SMALL) {
+    return (
+      <Panel
+        key="panel"
+        arrow={arrow}
+        open={open}
+        position={position}
+        anchorRef={anchorRef}
+        className={className}
+        onClose={onClose}
+      >
+        {children}
+      </Panel>
+    );
+  }
+  return (
+    <BottomSheet key="bottomSheet" open={open} className={className} onClose={onClose}>
+      {children}
+    </BottomSheet>
+  );
 };
 
 ResponsivePanel.defaultProps = {
