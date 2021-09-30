@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.4.0...@transferwise/neptune-docs@13.5.0) (2021-09-30)
+
+
+### Features
+
+* add linkable Neptune docs headers ([#1162](https://github.com/transferwise/neptune-web/issues/1162)) ([24f66e3](https://github.com/transferwise/neptune-web/commit/24f66e34eda71573b5d000d7f8c18619708baea6))
+
+
+
+
+
 # [13.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.3.0...@transferwise/neptune-docs@13.4.0) (2021-09-29)
 
 
