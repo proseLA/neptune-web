@@ -1,6 +1,6 @@
 # Wise Dynamic Flows
 
-[![CircleCI](https://circleci.com/gh/transferwise/neptune-web.svg?style=shield)](https://circleci.com/gh/transferwise/neptune-web) [![NPM](https://badge.fury.io/js/%40transferwise%2Fcomponents.svg)](https://www.npmjs.com/package/@transferwise/dynamic-flows)
+[![ci-cd](https://github.com/transferwise/neptune-web/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/transferwise/neptune-web/actions) [![NPM](https://badge.fury.io/js/%40transferwise%2Fcomponents.svg)](https://www.npmjs.com/package/@transferwise/dynamic-flows)
 
 Neptune is the Design System built by and used at Wise. Neptune Web is the Neptune framework for Web. Neptune Web provides a way to build high quality, consistent user experiences on the web with ease.
 

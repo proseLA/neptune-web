@@ -1,0 +1,367 @@
+name: 'CI/CD'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  setup:
+    name: Setup packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Extract branch name
+        id: extract-branch-name
+        run: echo "::set-output name=branch::$([[ -z "${GITHUB_HEAD_REF}" ]] && echo ${GITHUB_REF#refs/heads/} || echo ${GITHUB_HEAD_REF})"
+
+      - name: Use cache for yarn
+        id: yarn-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Setup packages
+        env:
+          BRANCH_NAME: ${{ steps.extract-branch-name.outputs.branch }}
+        run: yarn setup
+
+  bundlesizes:
+    name: Check bundlesizes
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Check bundlesizes
+        run: yarn bundlesize
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Lint packages
+        run: yarn lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Run tests
+        run: yarn test
+
+  deploy-docs-branch:
+    name: Deploy docs for branch
+    if: ${{ github.ref != 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: setup
+    environment:
+      name: gh-pages
+      url: https://transferwise.github.io/neptune-web/branch/${{ github.head_ref }}/
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Export docs
+        env:
+          BRANCH_NAME: ${{ github.head_ref }}
+        run: yarn --cwd packages/docs deploy:export
+
+      - name: Deploy docs for branch
+        id: deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: packages/docs/out
+          target-folder: branch/${{ github.head_ref }}
+
+  visual-test-branch:
+    name: Visual testing for branch
+    if: ${{ github.ref != 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: [bundlesizes, lint, test]
+    environment: visual-test-branch
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Run visual regression tests
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        run: yarn test:visual
+
+  deploy-docs:
+    name: Deploy docs for main
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: [bundlesizes, lint, test]
+    environment:
+      name: gh-pages
+      url: https://transferwise.github.io/neptune-web/
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Export docs
+        env:
+          GITHUB_BRANCH: main
+        run: yarn --cwd packages/docs deploy:export
+
+      - name: Deploy docs
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: packages/docs/out
+
+  visual-test:
+    name: Visual testing for main
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: [bundlesizes, lint, test]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Run visual regression tests
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        run: yarn test:visual
+
+  publish-beta:
+    name: Publish beta packages
+    if: ${{ github.ref != 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: test
+    environment: beta
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Extract branch information
+        id: extract-branch-information
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Set npm token
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+      - name: Publish beta packages
+        run: npx lerna publish --canary --preid beta-${{ steps.extract-branch-information.outputs.sha_short }} --dist-tag beta --yes
+
+  publish:
+    name: Publish packages
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: [bundlesizes, lint, test]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use cache for modules
+        id: modules-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: modules-cache-${{ github.sha }}
+
+      - name: Use cache for packages
+        id: packages-cache
+        uses: actions/cache@v2
+        with:
+          path: packages
+          key: packages-cache-${{ github.sha }}
+
+      - name: Set npm token
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+      - name: Set GitHub credentials
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Publish packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx lerna publish -m "[skip ci] Release" --yes

@@ -1,4 +1,5 @@
 const rehypePrism = require('@mapbox/rehype-prism');
+// eslint-disable-next-line import/order
 const rehypeSlug = require('rehype-slug');
 const withMDX = require('@next/mdx')({
   options: {
@@ -6,7 +7,6 @@ const withMDX = require('@next/mdx')({
   },
 });
 const withImages = require('next-images');
-
 const withTM = require('next-transpile-modules')([
   '@transferwise/dynamic-flows',
   // Required for labs which is only exported as es version.
@@ -20,11 +20,12 @@ const withTM = require('next-transpile-modules')([
 
 const pageExtensions = ['js', 'mdx', 'tsx'];
 
-const branch = process.env.CIRCLE_BRANCH;
-const assetPrefix =
-  process.env.NODE_ENV === 'production'
-    ? `/neptune-web${branch === 'main' ? '' : `/branch/${branch}`}`
-    : '';
+let assetPrefix = '';
+const branch = process.env.BRANCH_NAME;
+
+if (process.env.NODE_ENV === 'production') {
+  assetPrefix = branch === 'main' ? '/neptune-web' : `/neptune-web/branch/${branch}`;
+}
 
 module.exports = withTM(
   withImages(

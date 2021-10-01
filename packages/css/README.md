@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/transferwise/neptune-web.svg?style=shield)](https://circleci.com/gh/transferwise/neptune-web) [![NPM](https://badge.fury.io/js/%40transferwise%2Fneptune-css.svg)](https://www.npmjs.com/package/@transferwise/neptune-css)
+[![ci-cd](https://github.com/transferwise/neptune-web/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/transferwise/neptune-web/actions) [![NPM](https://badge.fury.io/js/%40transferwise%2Fneptune-css.svg)](https://www.npmjs.com/package/@transferwise/neptune-css)
 
 # Neptune Web CSS
 

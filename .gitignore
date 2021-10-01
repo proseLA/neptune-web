@@ -1,20 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-
 node_modules
-# testing
 
+# testing
 /coverage
 
 # production
-
 /build
-/docs-build
 /dist
 
 # misc
-
 .DS_Store
 .env.local
 .env.development.local
@@ -37,8 +33,10 @@ packages/css/pages/styles
 !storybook.css
 
 # docs
-.next
-!packages/css/pages/app.css
+packages/docs/.next
+packages/docs/out
+packages/docs/temp-bundle-sizes.js
+packages/docs/temp-tabular-props.js
 
 # lock
 package-lock.json
@@ -47,18 +45,13 @@ yarn-error.log
 # COMPONENTS
 lib
 build
-docs-build
 stats.html
 build-storybook.log
 storybook-static
 
 
 # editors
-
 .idea
 *.iws
 *.iml
 .history
-
-temp-bundle-sizes.js
-temp-tabular-props.js

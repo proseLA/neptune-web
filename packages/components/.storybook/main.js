@@ -2,7 +2,7 @@ const path = require('path');
 
 const stories = ['../src/**/*.story.@(js|tsx)'];
 
-if (process.env.STORYBOOK_CIRCLECI) {
+if (process.env.STORYBOOK_TEST) {
   stories.push('../test/**/*.story.js');
 }
 

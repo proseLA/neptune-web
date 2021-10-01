@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/transferwise/neptune-web.svg?style=shield)](https://circleci.com/gh/transferwise/neptune-web)
+[![ci-cd](https://github.com/transferwise/neptune-web/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/transferwise/neptune-web/actions)
 
 # Neptune Web
 

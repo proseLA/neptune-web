@@ -6,7 +6,7 @@ This repository provides a set of tools to help us meet these standards. We try 
 
 ## Automated tests
 
-The Neptune Web repository is configured to run Eslint checks using the `eslint-plugin-jsx-a11y` plugin and rules configured in `@transferwise/eslint-config`. Eslint checks will run automatically on all staged files, when tests are run, and on CircleCI jobs.
+The Neptune Web repository is configured to run Eslint checks using the `eslint-plugin-jsx-a11y` plugin and rules configured in `@transferwise/eslint-config`. Eslint checks will run automatically on all staged files, when tests are run, and on CI jobs.
 
 All our React environments spin up with `react-axe` integrated so it's possible to check for violations in the browser console. If you're running Storybook it's also possible to access axe violations in the accessibility tab on the right-hand side. Although these console messages are helpful they won't fail the build, so please ensure there are no violations before committing.
 
