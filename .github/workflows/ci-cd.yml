@@ -242,7 +242,7 @@ jobs:
 
       - name: Export docs
         env:
-          GITHUB_BRANCH: main
+          BRANCH_NAME: main
         run: yarn --cwd packages/docs deploy:export
 
       - name: Deploy docs
@@ -250,6 +250,9 @@ jobs:
         with:
           branch: gh-pages
           folder: packages/docs/out
+          clean: true
+          clean-exclude: |
+            branch
 
   visual-test:
     name: Visual testing for main
