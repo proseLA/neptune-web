@@ -359,11 +359,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 
-      - name: Set GitHub credentials
-        run: |
-          git config --global user.name "$GITHUB_ACTOR"
-          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
       - name: Publish packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
