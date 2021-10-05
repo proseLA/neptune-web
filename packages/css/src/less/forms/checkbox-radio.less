@@ -261,7 +261,8 @@
   > label {
     display: flex;
     align-items: center;
-    padding: var(--size-8) var(--size-16);
+    // Added rtl mixing even the horizontal values are equal, to increase specificity created in line 11
+    .padding-shorthand(var(--size-8) var(--size-16));
   }
 
   .np-checkbox__text,

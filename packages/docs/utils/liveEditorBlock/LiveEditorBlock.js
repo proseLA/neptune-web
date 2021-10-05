@@ -31,27 +31,27 @@ const LiveEditorBlock = ({ code, scope, display }) => {
   );
 
   return (
-    <div
-      // react-live is broken at RTL mode
-      // and it doesn't have support for this feature (e.g can't be configured via some prop) either
-      // so enforcing LTR mode in any case
-      dir="ltr"
-      className="row live-provider"
-    >
+    <div className="row live-provider">
       <LiveProvider code={code} scope={scope}>
         {display === 'vertical' ? (
           <>
             <div className="col-xs-12 live-preview m-b-5 p-x-0">
               <LivePreview />
             </div>
-            <div className="col-xs-12 live-editor m-b-5">
+            <div
+              // react-live is broken at RTL mode
+              // and it doesn't have support for this feature (e.g can't be configured via some prop) either
+              // so enforcing LTR mode in any case
+              dir="ltr"
+              className="col-xs-12 live-editor m-b-5"
+            >
               <LiveEditor theme={theme} onKeyDown={handleKeyDown} />
               {checkbox}
             </div>
           </>
         ) : (
           <>
-            <div className="col-xl-6 live-editor">
+            <div dir="ltr" className="col-xl-6 live-editor">
               <LiveEditor theme={theme} onKeyDown={handleKeyDown} />
               {checkbox}
             </div>
