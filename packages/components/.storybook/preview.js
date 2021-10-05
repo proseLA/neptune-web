@@ -38,22 +38,9 @@ export const parameters = {
   },
 };
 
-const style = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '80px',
-  minHeight: '100vh',
-  width: '100vw',
-};
-
 const StrictModeDecorator = (storyFn) => <StrictMode>{storyFn()}</StrictMode>;
 
-const CenterDecorator = (storyFn) => (
-  <div style={style}>
-    <div style={{ width: '100%' }}>{storyFn()}</div>
-  </div>
-);
+const CenterDecorator = (storyFn) => <div style={{ width: '100%' }}>{storyFn()}</div>;
 
 // list is not exhaustive but should enough for testing diff edge cases
 // feel free to add more during development

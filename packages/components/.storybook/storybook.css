@@ -1,3 +1,22 @@
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  #root {
+    padding: 80px;
+  }
+}
+
 .simplebar-content pre {
   background-color: #333;
 }
