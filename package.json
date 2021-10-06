@@ -100,8 +100,7 @@
     "create-component": "files-scaffold",
     "test:visual": "lerna run test:visual --stream",
     "gh-pages-cleanup": "node ./scripts/gh-page-cleanup.js",
-    "yarn-lock-cleanup": "yarn-deduplicate",
-    "postversion": "node ./scripts/updatePeerDependencies.js"
+    "yarn-lock-cleanup": "yarn-deduplicate"
   },
   "husky": {
     "hooks": {
