@@ -337,6 +337,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
 
       - name: Use cache for modules
         id: modules-cache
@@ -354,6 +355,11 @@ jobs:
           path: packages
           key: packages-cache-${{ github.sha }}
 
+      - name: Set GitHub credentials
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Set npm token
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -361,5 +367,5 @@ jobs:
 
       - name: Publish packages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
         run: npx lerna publish -m "[skip ci] Release" --yes
