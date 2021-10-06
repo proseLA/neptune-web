@@ -1,3 +1,5 @@
+/* eslint-disable no-throw-literal */
+
 class HttpClient {
   init(params = {}) {
     this.baseUrl = params.baseUrl;
@@ -20,9 +22,14 @@ class HttpClient {
       body,
     }).then(async (response) => {
       if (response.status >= 400 && response.status < 600) {
-        return response.json().then((error) => {
-          throw error;
-        });
+        return response
+          .json()
+          .then((error) => {
+            throw { error, status: response.status };
+          })
+          .catch((jsonParsingError) => {
+            throw { error: jsonParsingError, status: response.status };
+          });
       }
       return response;
     });
