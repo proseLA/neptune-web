@@ -115,7 +115,7 @@ const UploadItem = ({ file, canDelete, onDelete, onDownload }: UploadItemProps) 
                 })}
                 data-testid={TEST_IDS.mediaBody}
               >
-                <div className="text-primary">{getTitle()}</div>
+                <div className="text-word-break text-primary">{getTitle()}</div>
                 <small className="np-upload-description text-primary">{getDescription()}</small>
               </div>
             </div>
