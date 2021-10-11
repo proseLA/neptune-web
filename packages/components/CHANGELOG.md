@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.7.2...@transferwise/components@37.8.0) (2021-10-11)
+
+
+### Features
+
+* adding classname prop to Drawer ([#1185](https://github.com/transferwise/neptune-web/issues/1185)) ([9b240ee](https://github.com/transferwise/neptune-web/commit/9b240eea4dfad302deb2e3029d57869f42f3f42f))
+
+
+
+
+
 ## [37.7.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.7.1...@transferwise/components@37.7.2) (2021-10-08)
 
 
