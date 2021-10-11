@@ -7,7 +7,7 @@ import Dimmer from '../dimmer';
 import SlidingPanel from '../slidingPanel';
 import { logActionRequiredIf } from '../utilities';
 
-const Drawer = ({ children, footerContent, headerTitle, onClose, open, position }) => {
+const Drawer = ({ children, className, footerContent, headerTitle, onClose, open, position }) => {
   logActionRequiredIf(
     'Drawer now expects `onClose`, and will soon make this prop required. Please update your usage to provide it.',
     !onClose,
@@ -16,7 +16,7 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
   return (
     <Dimmer open={open} onClose={onClose}>
       <SlidingPanel open={open} position={position}>
-        <div className="np-drawer">
+        <div className={classNames('np-drawer', className)}>
           <div
             className={classNames('np-drawer-header', {
               'np-drawer-header--withborder': headerTitle,
@@ -36,6 +36,7 @@ const Drawer = ({ children, footerContent, headerTitle, onClose, open, position 
 Drawer.propTypes = {
   /** The content to appear in the drawer body. */
   children: PropTypes.node,
+  className: PropTypes.string,
   /** The content to appear in the drawer footer. */
   footerContent: PropTypes.node,
   /** The content to appear in the drawer header. */
@@ -50,6 +51,7 @@ Drawer.propTypes = {
 
 Drawer.defaultProps = {
   children: null,
+  className: undefined,
   footerContent: null,
   headerTitle: null,
   onClose: null,
