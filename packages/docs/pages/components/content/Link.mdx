@@ -3,13 +3,14 @@ import { Link } from '@transferwise/components';
 
 import code from '../../../liveEditorCode/link.code';
 
+<span>
+  Links are used across the UI to go to different content, usually to display more information about a specific topic.
+  See <Link href="https://neptune.wise.com/components/link" target="_blank">usage guidelines</Link> for more info.
+</span>
+
 <LiveEditorBlock code={code} scope={{ Link }} />
 <GeneratePropsTable componentName="Link" />
 
 export const meta = {
   name: 'Link',
-  badge: {
-    type: 'new',
-    expiryDate: '2021-09-30',
-  },
 };

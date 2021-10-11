@@ -1,4 +1,4 @@
-import { BottomSheet, Button, NavigationOption, Size } from '@transferwise/components';
+import { BottomSheet, Button, NavigationOption, Link, Size } from '@transferwise/components';
 import { Card, PinCode, FastFlag, Menu } from '@transferwise/icons';
 import { ReactElement, useState } from 'react';
 
@@ -16,14 +16,9 @@ const PageContent = (): ReactElement => {
       <p>
         A bottom sheet is a container you can use to display supporting content or a short,
         supplementary task on <b>mobile experiences</b>. See{' '}
-        {/* TODO replace with Link component from `@transferwise/components` */}
-        <a
-          href="https://transferwise.github.io/neptune/components/bottom-sheet/"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <Link href="https://neptune.wise.com/components/bottom-sheet" target="_blank">
           usage guidelines
-        </a>{' '}
+        </Link>{' '}
         for more info.
       </p>
       <Heading as="h2">Variants</Heading>
@@ -116,10 +111,6 @@ const PageContent = (): ReactElement => {
 
 export const meta: Meta = {
   name: 'BottomSheet',
-  badge: {
-    expiryDate: '2021-09-30',
-    type: 'new',
-  },
 };
 
 export default PageContent;

@@ -1,9 +1,17 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
 import { DocumentLink } from '../../../utils/pageUtils';
-import { Chip } from '@transferwise/components';
+import { Chip, Link } from '@transferwise/components';
 import code from '../../../liveEditorCode/chip.code';
 
-See this component used in components such as <DocumentLink href="components/inputs/Typeahead">Typeahead</DocumentLink> and <DocumentLink href="components/inputs/Chips">Chips</DocumentLink>.
+<span>
+  See this component used in components such as{' '}
+  <DocumentLink href="components/inputs/Typeahead">Typeahead</DocumentLink> and{' '}
+  <DocumentLink href="components/inputs/Chips">Chips</DocumentLink>. Check{' '}
+  <Link href="https://neptune.wise.com/components/chip" target="_blank">
+    usage guidelines
+  </Link>{' '}
+  for design info.
+</span>
 
 <LiveEditorBlock code={code} scope={{ Chip }} />
 <GeneratePropsTable componentName="Chip" />
