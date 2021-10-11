@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.4.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.4.3...@transferwise/dynamic-flows@15.4.4) (2021-10-11)
+
+
+### Bug Fixes
+
+* inlining-action-buttons ([1ab2d7b](https://github.com/transferwise/neptune-web/commit/1ab2d7b5cc00682df66dae86179c4cebdb11e69d))
+
+
+
+
+
 ## [15.4.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.4.2...@transferwise/dynamic-flows@15.4.3) (2021-10-08)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
