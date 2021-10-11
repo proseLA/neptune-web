@@ -91,7 +91,7 @@ const DynamicFlow = (props) => {
     if (stepSpecification?.errors?.validation) {
       setValidations(stepSpecification.errors.validation);
     } else {
-      setValidations({});
+      setValidations(null);
     }
   };
 

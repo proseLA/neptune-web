@@ -117,7 +117,6 @@ describe('Given a utility service for handling dynamic layouts', () => {
           components: [
             {
               type: 'button',
-              context: 'success',
               action: { ...exitAction, type: 'success' },
             },
           ],
@@ -217,7 +216,6 @@ describe('Given a utility service for handling dynamic layouts', () => {
           components: [
             {
               type: 'button',
-              context: submitAction.type,
               action: {
                 ...submitAction,
                 title: submitAction.title,
@@ -226,7 +224,6 @@ describe('Given a utility service for handling dynamic layouts', () => {
             },
             {
               type: 'button',
-              context: cancelAction.type,
               action: {
                 ...cancelAction,
                 title: cancelAction.title,

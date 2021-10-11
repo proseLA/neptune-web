@@ -1,12 +1,13 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
 
-import { convertStepToLayout } from '../flow/layoutService';
+import { convertStepToLayout, inlineReferences } from '../flow/layoutService';
 
 import DynamicLayout from './DynamicLayout';
 import allComponentsLayout from './layouts/all.json';
 import finalStepLayout from './layouts/final-step-layout.json';
 import finalStep from './layouts/finalStep.json';
+import payInStep from './layouts/pay-in.json';
 import reviewStepLayout from './layouts/review.json';
 import successStepLayout from './layouts/success.json';
 
@@ -27,6 +28,9 @@ const onAction = (actionObject) => {
   action('onAction')(actionObject);
 };
 
+const payInLayout = convertStepToLayout(payInStep);
+const payInLayoutInline = inlineReferences(payInLayout, payInStep.schemas, payInStep.actions, '');
+
 export const basic = () => {
   const layouts = {
     'All components layout': allComponentsLayout,
@@ -34,6 +38,7 @@ export const basic = () => {
     'Success step layout': successStepLayout,
     'Final step layout': finalStepLayout,
     'Final step (converted)': convertStepToLayout(finalStep),
+    'Pay in': payInLayoutInline,
   };
 
   const components = select('layout', layouts, allComponentsLayout);
@@ -43,7 +48,7 @@ export const basic = () => {
     <DynamicLayout
       components={components}
       submitted={submitted}
-      errors={{ lastname: 'Last name is required' }}
+      errors={null}
       baseUrl=""
       onAction={onAction}
       onModelChange={onModelChange}

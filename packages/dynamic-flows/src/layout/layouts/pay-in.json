@@ -1,0 +1,96 @@
+{
+  "key": "PAY_ID",
+  "type": "form",
+  "title": "Pay Using PayID",
+  "actions": [
+    {
+      "title": "I have paid",
+      "type": "primary",
+      "exit": true,
+      "result": {
+        "paid": "POTENTIALLY_PAID"
+      },
+      "$id": "#payNow"
+    },
+    {
+      "title": "I'll transfer my money later",
+      "type": "secondary",
+      "exit": true,
+      "result": {
+        "paid": "NOT_PAID"
+      },
+      "$id": "#payLater"
+    }
+  ],
+  "schemas": [
+    {
+      "title": "Pay Using PayID",
+      "type": "string",
+      "hidden": true,
+      "default": "PayId"
+    }
+  ],
+  "layout": [
+    {
+      "type": "info",
+      "markdown": "Go to your online banking and transfer **50.25 AUD** to our account using the email below."
+    },
+    {
+      "components": [
+        {
+          "context": "info",
+          "markdown": "We've updated our PayID email and no longer require you to enter any reference numbers. Use this PayID going forward.",
+          "type": "alert"
+        },
+        {
+          "type": "review",
+          "title": "Our Bank Details",
+          "fields": [
+            {
+              "label": "Email",
+              "value": "rahul@wise.com"
+            }
+          ]
+        },
+        {
+          "left": [
+            {
+              "type": "review",
+              "fields": [
+                {
+                  "label": "Account Name",
+                  "value": "Wise Australia Pty Ltd"
+                }
+              ]
+            }
+          ],
+          "right": [
+            {
+              "type": "review",
+              "fields": [
+                {
+                  "label": "Amount",
+                  "value": "50.25 AUD"
+                }
+              ]
+            }
+          ],
+          "type": "columns"
+        }
+      ],
+      "type": "box"
+    },
+    {
+      "type": "button",
+      "action": {
+        "$ref": "#payNow"
+      }
+    },
+    {
+      "type": "button",
+      "action": {
+        "$ref": "#payLater"
+      }
+    }
+  ]
+}

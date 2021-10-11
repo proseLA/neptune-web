@@ -18,7 +18,7 @@ const getReviewLayout = (orientation) => {
 const DynamicReview = (props) => {
   const review = props.component;
 
-  const margin = getMarginBottom(review.margin || 'lg');
+  const margin = getMarginBottom(review.margin || 'xs');
 
   const onActionClick = (event) => {
     event.preventDefault();
@@ -35,10 +35,12 @@ const DynamicReview = (props) => {
 
   return (
     <>
-      <h6 className="m-b-2">
-        {review.title}
-        {review.action && getReviewAction(review.action)}
-      </h6>
+      {review.title && (
+        <h6 className="m-b-2">
+          {review.title}
+          {review.action && getReviewAction(review.action)}
+        </h6>
+      )}
       <div className={margin}>
         <DefinitionList
           layout={getReviewLayout(review.orientation)}

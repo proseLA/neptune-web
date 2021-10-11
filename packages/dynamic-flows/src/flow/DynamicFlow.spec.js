@@ -361,7 +361,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       await wait(0);
       component.update();
 
-      expect(component.find(DynamicLayout).props().errors).toStrictEqual({});
+      expect(component.find(DynamicLayout).props().errors).toBeNull();
     });
   });
 

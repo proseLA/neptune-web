@@ -165,7 +165,6 @@ function convertStepActionToDynamicAction(action) {
   const newAction = { ...action, title: action.title };
   return {
     type: 'button',
-    context: action.type,
     action: newAction,
   };
 }

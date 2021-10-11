@@ -20,8 +20,8 @@ const DynamicColumns = (props) => {
   }
 
   return (
-    <div className={`${getMarginBottom(columns.margin || 'lg')} row`}>
-      <div className={leftWidth}>
+    <div className={`${getMarginBottom(columns.margin || 'xs')} row`}>
+      <div className={`${leftWidth} m-b-0`}>
         <DynamicLayout
           components={columns.left}
           model={props.model}
@@ -33,7 +33,7 @@ const DynamicColumns = (props) => {
           onPersistAsync={props.onPersistAsync}
         />
       </div>
-      <div className={rightWidth}>
+      <div className={`${rightWidth} m-b-0`}>
         <DynamicLayout
           components={columns.right}
           model={props.model}

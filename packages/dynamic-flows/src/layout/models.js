@@ -2,14 +2,19 @@ import Types from 'prop-types';
 
 const contextModel = Types.oneOf(['success', 'failure', 'warning', 'info', 'primary']);
 
+// TODO need to update these
+const buttonTypes = Types.oneOf(['primary', 'secondary', 'positive', 'negative', 'link']);
+
 const actionModel = Types.shape({
   title: Types.string.isRequired,
-  url: Types.string.isRequired,
-  method: Types.oneOf(['GET', 'POST', 'PUT', 'PATCH']).isRequired,
+  url: Types.string,
+  method: Types.oneOf(['GET', 'POST', 'PUT', 'PATCH']),
   disabled: Types.boolean,
-  type: contextModel,
+  type: buttonTypes,
   // eslint-disable-next-line react/forbid-prop-types
-  data: Types.object,
+  result: Types.object,
+  exit: Types.boolean,
+  $id: Types.string,
 });
 
 const optionModel = Types.shape({

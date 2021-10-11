@@ -26,10 +26,11 @@ const getBoxWidthClasses = (component) => {
 
 const DynamicBox = (props) => {
   const box = props.component;
+  const margin = getMarginBottom(box.margin || box.border ? 'lg' : 'xs');
 
   if (!box.width || box.width === 'xl') {
     return (
-      <div className={getMarginBottom(box.margin || 'lg') + getBorderClass(box.border)}>
+      <div className={margin + getBorderClass(box.border)}>
         <DynamicLayout
           components={box.components}
           model={props.model}
@@ -46,7 +47,7 @@ const DynamicBox = (props) => {
 
   return (
     <div className="row">
-      <div className={getMarginBottom(box.margin || 'lg') + getBoxWidthClasses(box)}>
+      <div className={margin + getBoxWidthClasses(box)}>
         <div className={getBorderClass(box.border)}>
           <DynamicLayout
             components={box.components}
