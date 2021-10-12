@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.4.5...@transferwise/dynamic-flows@15.5.0) (2021-10-12)
+
+
+### Features
+
+* **dynamic-flows:** Add status code to onError callback in DynamicFlow component. ([#1180](https://github.com/transferwise/neptune-web/issues/1180)) ([93029f6](https://github.com/transferwise/neptune-web/commit/93029f659f1f072054cb702b1f8cdb8e1d118290))
+
+
+
+
+
 ## [15.4.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.4.4...@transferwise/dynamic-flows@15.4.5) (2021-10-11)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
