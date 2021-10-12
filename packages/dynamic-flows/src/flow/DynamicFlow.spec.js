@@ -181,11 +181,17 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
   };
 
-  const reject = (response) => {
-    return new Promise((promiseResolve, promiseReject) => {
+  const rejectWithJsonResponse = (response, init = {}) => {
+    return new Promise((_, promiseReject) => {
       setTimeout(() => {
-        promiseReject(response);
+        promiseReject(new Response(JSON.stringify(response), init));
       }, 0);
+    });
+  };
+
+  const rejectWith = (response) => {
+    return new Promise((_, promiseReject) => {
+      setTimeout(() => promiseReject(response), 0);
     });
   };
 
@@ -218,15 +224,19 @@ describe('Given a component for rendering a dynamic flow', () => {
       case '/refresh':
       case '/refreshFromTrigger':
         if (data.failure) {
-          return reject(validationErrorResponse);
+          return rejectWithJsonResponse(validationErrorResponse);
         }
         return resolve(newStep);
       case '/failure':
-        return reject(errorResponse);
+        return rejectWithJsonResponse(errorResponse);
+      case '/failedStep':
+        return rejectWithJsonResponse({ arbitraryKey: 'Not Authorized' }, { status: 401 });
+      case '/failedStepNoJson':
+        return rejectWith(new Response('some error string', { status: 500 }));
       case '/validationFailure':
-        return reject(validationErrorResponse);
+        return rejectWithJsonResponse(validationErrorResponse);
       default:
-        return reject(validationErrorResponse);
+        return rejectWithJsonResponse(validationErrorResponse);
     }
   };
 
@@ -278,6 +288,49 @@ describe('Given a component for rendering a dynamic flow', () => {
 
   describe('when there is JS step', () => {
     it.todo('should use the DynamicJS component');
+  });
+
+  describe('when there is an error fetching a step', () => {
+    describe('and the response is valid JSON', () => {
+      beforeEach(() => {
+        component = mount(
+          <DynamicFlow
+            baseUrl={baseUrl}
+            flowUrl="/failedStep"
+            httpClient={mockClient}
+            onError={onError}
+          />,
+        );
+      });
+
+      waitBeforeEach();
+
+      it('should trigger onError callback with the status code', () => {
+        expect(onError).toHaveBeenCalledWith(
+          expect.objectContaining({ arbitraryKey: 'Not Authorized' }),
+          401,
+        );
+      });
+    });
+
+    describe('but the response is not JSON', () => {
+      beforeEach(() => {
+        component = mount(
+          <DynamicFlow
+            baseUrl={baseUrl}
+            flowUrl="/failedStepNoJson"
+            httpClient={mockClient}
+            onError={onError}
+          />,
+        );
+      });
+
+      waitBeforeEach();
+
+      it('should still trigger onError callback with the status code', () => {
+        expect(onError).toHaveBeenCalledWith(expect.anything(), 500);
+      });
+    });
   });
 
   describe('when there is a decision step with no step layout', () => {
@@ -571,7 +624,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should pass those errors to the layout', () => {
-        expect(getLayout().prop('errors')).toBe(validationErrorResponse.validation);
+        expect(getLayout().prop('errors')).toMatchObject(validationErrorResponse.validation);
         // TODO deal with global errors
       });
 

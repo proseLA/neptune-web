@@ -18,11 +18,9 @@ class HttpClient {
         'X-Access-Token': 'Tr4n5f3rw153',
       },
       body,
-    }).then(async (response) => {
+    }).then((response) => {
       if (response.status >= 400 && response.status < 600) {
-        return response.json().then((error) => {
-          throw error;
-        });
+        throw response;
       }
       return response;
     });

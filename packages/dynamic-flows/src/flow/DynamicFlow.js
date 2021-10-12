@@ -125,11 +125,7 @@ const DynamicFlow = (props) => {
           setSubmitted(false);
         }
       })
-      .catch(handleFetchValidationError)
-      .catch((error) => {
-        onError(error);
-        throw error;
-      })
+      .catch(handleFetchError)
       .finally(() => setLoading(false));
   };
 
@@ -140,31 +136,23 @@ const DynamicFlow = (props) => {
         const json = await response.json();
         setStepSpecification(json);
       })
-      .catch(handleFetchValidationError)
-      .catch((error) => {
-        onError(error);
-        throw error;
-      });
+      .catch(handleFetchError);
   };
 
   const fetchExitResult = (action, data) => {
-    return httpClient
-      .request({ action, data })
-      .then(validateExitResult)
-      .catch(handleFetchValidationError)
-      .catch((error) => {
-        onError(error);
-        throw error;
-      });
+    return httpClient.request({ action, data }).then(validateExitResult).catch(handleFetchError);
   };
 
-  const handleFetchValidationError = (error) => {
-    const { validation } = error;
-
-    if (validation) {
-      setValidations(validation);
-    } else {
-      throw error;
+  const handleFetchError = async (response) => {
+    try {
+      const errorBody = await response.json();
+      if (errorBody.validation) {
+        setValidations(errorBody.validation);
+      } else {
+        onError(errorBody, response.status);
+      }
+    } catch (jsonParsingError) {
+      onError(jsonParsingError, response.status);
     }
   };
 
