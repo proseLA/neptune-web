@@ -98,7 +98,7 @@
   > .input-group-btn .btn {
     .input-lg();
 
-    font-size: @btn-lg-font-size;
+    font-size: var(--font-size-20);
     margin-bottom: 0;
   }
 }
@@ -108,7 +108,7 @@
   .input-sm();
 
   .icon {
-    font-size: 20px;
+    font-size: var(--font-size-20);
   }
 }
 
@@ -139,8 +139,8 @@
 // -------------------------
 .input-group-addon {
   padding: @input-group-addon-padding;
-  font-size: @input-group-addon-font-size;
-  line-height: @input-line-height;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-body);
   color: var(--color-content-secondary);
   text-align: center;
   background-color: var(--color-background-screen);
@@ -260,13 +260,14 @@
 
 // TODO deprecate
 .focus .input-group,
-.has-focus .input-group {
+.has-focus .input-group,
+.input-group:focus-within {
   .form-control,
   .input-group-addon {
-    border-color: var(--color-interactive-secondary);
+    border-color: var(--color-interactive-accent);
 
     &:hover {
-      border-color: var(--color-interactive-secondary-hover);
+      border-color: var(--color-interactive-accent-hover);
     }
   }
 }

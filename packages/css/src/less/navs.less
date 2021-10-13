@@ -30,45 +30,44 @@
       display: block;
       outline-offset: -1px;
       padding: @nav-link-padding;
-      font-weight: @font-weight-normal;
-      font-size: @font-size-base;
-      color: @nav-link-color;
+      color: var(--color-content-primary);
+      font-weight: var(--font-weight-regular);
+      font-size: var(--font-size-16);
 
       &:hover,
       &:focus {
         text-decoration: none;
-        color: @nav-link-hover-color;
+        color: var(--color-content-accent-hover);
       }
 
       &:active {
-        color: @nav-link-active-color;
+        color: var(--color-content-accent-active);
       }
     }
   }
 
   > .active > a {
-    font-weight: @font-weight-semi-bold;
-    color: @nav-active-link-color;
+    color: var(--color-content-accent);
+    font-weight: var(--font-weight-semi-bold);
 
     &:hover,
     &:focus {
-      color: @nav-active-link-hover-color;
+      color: var(--color-content-accent-hover);
     }
 
     &:active {
-      color: @nav-active-link-active-color;
+      color: var(--color-content-accent-active);
     }
   }
 
   // Disabled state sets text to gray and nukes hover/tab effects
 
   > .disabled > a {
-    color: @nav-disabled-link-color;
+    color: var(--color-content-disabled);
 
     &:hover,
     &:focus,
     &:active {
-      color: @nav-disabled-link-hover-color;
       text-decoration: none;
       background-color: transparent;
       cursor: @cursor-default;
@@ -81,7 +80,7 @@
     &,
     &:hover,
     &:focus {
-      background-color: @nav-link-hover-bg;
+      background-color: var(--color-background-neutral);
     }
   }
 
@@ -106,20 +105,11 @@
 
 .nav-inverse {
   > li > a {
-    color: @nav-inverse-link-color;
-
-    &:hover,
-    &:focus {
-      color: @nav-inverse-link-hover-color;
-    }
-
-    &:active {
-      color: @nav-inverse-link-active-color;
-    }
+    color: var(--color-base-white-light);
   }
 
   > li.active > a {
-    background-color: @nav-inverse-link-active-bg;
+    background-color: var(--color-base-navy-mid);
   }
 }
 
@@ -129,7 +119,7 @@
 // Give the tabs something to sit on
 
 .nav-tabs {
-  border-bottom: 1px solid @nav-tabs-border-color;
+  border-bottom: 1px solid var(--color-border-neutral);
 
   > li {
     .float(left);
@@ -142,20 +132,20 @@
     > a {
       .margin(right, 2px);
 
-      line-height: @line-height-base;
+      line-height: var(--line-height-body);
       //border: 1px solid transparent;
       //border-radius: @border-radius-base @border-radius-base 0 0;
       border-bottom: 3px solid transparent;
-      font-size: @nav-tabs-font-size;
+      font-size: var(--font-size-16);
     }
   }
 
   > .active > a {
-    border-bottom: 3px solid @nav-tabs-active-hover-border-color;
+    border-bottom: 3px solid var(--color-border-neutral);
 
     &:hover,
     &:focus {
-      color: @link-color;
+      color: var(--color-content-accent);
       cursor: default;
     }
   }
@@ -168,11 +158,11 @@
   > li {
     .float(left);
 
-    font-size: @nav-pills-font-size;
+    font-size: var(--font-size-14);
 
     // Links rendered as pills
     > a {
-      font-size: @nav-pills-font-size;
+      font-size: var(--font-size-14);
     }
   }
 }
@@ -211,7 +201,7 @@
       &,
       &:hover,
       &:focus {
-        .border(left, 3px, solid, @brand-light-blue);
+        .border(left, 3px, solid, var(--color-interactive-accent));
         .padding(left, 21px);
       }
     }
@@ -246,7 +236,7 @@
 
   &.nav-pills > li > a {
     padding: 0 var(--size-4);
-    line-height: 20px;
+    line-height: var(--line-height-body);
   }
 }
 
@@ -307,7 +297,7 @@
       // Override margin from .nav-tabs
 
       margin-right: 0;
-      border-bottom: 1px solid @nav-tabs-justified-link-border-color;
+      border-bottom: 1px solid var(--color-border-neutral);
       border-radius: @border-radius-base;
     }
   }
@@ -316,7 +306,7 @@
     &,
     &:hover,
     &:focus {
-      border: 1px solid @nav-tabs-justified-link-border-color;
+      border: 1px solid var(--color-border-neutral);
       border-bottom: 0;
     }
   }
