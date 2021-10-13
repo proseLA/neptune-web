@@ -35,12 +35,15 @@
     border-color: @border-color;
   }
 
-  &:active {
+  &:active,
+  &:focus,
+  &:focus-within {
     .form-control,
     &.radio label,
     &.checkbox label,
     .btn-input,
     .input-group-addon,
+    .input-group .form-control:focus,
     .alert {
       border-color: @border-active !important;
     }
@@ -50,7 +53,6 @@
     &.radio label,
     &.checkbox label,
     .btn-input,
-    .input-group-addon,
     .alert {
       border-color: @border-hover !important;
     }

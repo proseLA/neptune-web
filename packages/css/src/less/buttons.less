@@ -64,14 +64,14 @@
 // @TODO Deprecate / Remove
 .btn-default {
   .button-variant(
-    @btn-default-color;
+    var(--color-content-accent);
     #FFF;
-    @btn-default-bg;
-    @btn-default-bg-hover;
-    @btn-default-bg-active;
-    @btn-default-border;
-    @btn-default-border-hover;
-    @btn-default-border-active;
+    transparent;
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
+    var(--color-interactive-accent);
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
     #FFF
   );
 }
@@ -389,7 +389,7 @@ input[type="button"] {
   }
 
   &.btn-lg {
-    font-size: @input-font-size-large;
+    font-size: var(--font-size-20);
 
     &.btn-addon,
     &.btn-input-inverse {

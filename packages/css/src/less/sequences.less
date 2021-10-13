@@ -36,13 +36,13 @@
 
   margin-top: 0;
   margin-bottom: 0;
-  font-size: @font-size-small;
+  font-size: var(--font-size-14);
   border-color: var(--color-border-neutral);
 
   @media (min-width: @screen-md-min) {
     .padding(right, @sequence-spacing-horizontal);
 
-    font-size: @font-size-base;
+    font-size: var(--font-size-16);
   }
 
   > li {
@@ -129,7 +129,7 @@
     > a {
       text-decoration: none;
       color: var(--color-content-primary);
-      font-weight: @font-weight-semi-bold;
+      font-weight: var(--font-weight-semi-bold);
 
       &:hover,
       &:focus {
@@ -247,10 +247,10 @@
   border-style: solid;
   border-color: var(--color-border-neutral);
   top: @sequence-item-spacing-md;
-  font-size: var(--size-12);
+  font-size: var(--font-size-12);
 
   .icon {
-    font-size: 16px;
+    font-size: var(--font-size-16);
     line-height: (@sequence-icon-size - 1px);
   }
 
@@ -368,7 +368,7 @@
   height: @sequence-icon-size-md;
   line-height: (@sequence-icon-size-md - 2px);
   margin-top: -6px;
-  font-size: 14px;
+  font-size: var(--font-size-14);
 }
 
 .sequence-icon-lg {
@@ -376,7 +376,7 @@
   height: @sequence-icon-size-lg;
   line-height: (@sequence-icon-size-lg - 2px);
   margin-top: -6px;
-  font-size: 16px;
+  font-size: var(--font-size-16);
 
   .icon {
     font-size: 22px;
