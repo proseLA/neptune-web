@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.5.0...@transferwise/dynamic-flows@15.6.0) (2021-10-15)
+
+
+### Features
+
+* crowdin updates ([#1085](https://github.com/transferwise/neptune-web/issues/1085)) ([e66b150](https://github.com/transferwise/neptune-web/commit/e66b1504019803ffbdfc652f3ec211ec097e7cb0))
+
+
+
+
+
 # [15.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.4.5...@transferwise/dynamic-flows@15.5.0) (2021-10-12)
 
 
