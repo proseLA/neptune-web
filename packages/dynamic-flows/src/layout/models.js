@@ -1,6 +1,6 @@
 import Types from 'prop-types';
 
-const contextModel = Types.oneOf(['success', 'failure', 'warning', 'info', 'primary']);
+const contextModel = Types.oneOf(['neutral', 'warning', 'negative', 'positive']);
 
 // TODO need to update these
 const buttonTypes = Types.oneOf(['primary', 'secondary', 'positive', 'negative', 'link']);

@@ -2,16 +2,40 @@ import { render, screen } from '@testing-library/react';
 
 import DynamicAlert from '.';
 
-describe('Given a component for dynamically rendering alert', () => {
-  let spec;
+const specs = [
+  {
+    component: 'alert',
+    markdown: '**This is a bold title** and some normal text',
+    context: 'neutral',
+  },
+  {
+    component: 'alert',
+    markdown: '**This is a bold title** and some normal text',
+    context: 'warning',
+  },
+  {
+    component: 'alert',
+    markdown: '**This is a bold title** and some normal text',
+    context: 'negative',
+  },
+  {
+    component: 'alert',
+    markdown: '**This is a bold title** and some normal text',
+    context: 'positive',
+  },
+  {
+    component: 'alert',
+    markdown: '**This is a bold title** and some normal text',
+    context: '',
+  },
+  {
+    component: 'alert',
+    markdown: '**This is a bold title** and some normal text',
+    context: 'failure',
+  },
+];
 
-  beforeEach(() => {
-    spec = {
-      component: 'alert',
-      markdown: '**This is a bold title** and some normal text',
-    };
-  });
-
+describe.each(specs)('Given a component for dynamically rendering alert', (spec) => {
   it('should render the markdown in an alert component', () => {
     const { container } = render(<DynamicAlert component={spec} />);
 
