@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Ceva nu a mers bine. Te rugăm să încerci din nou mai târziu!"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Ups! Ceva nu a mers bine...",
+  "dynamicFlows.ErrorBoundary.retry": "Încearcă din nou",
+  "dynamicFlows.Help.ariaLabel": "Dă click aici pentru mai multe informații.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Ceva nu a mers bine. Te rugăm să încerci din nou mai târziu!",
+  "dynamicFlows.ReadOnlySchema.no": "Nu",
+  "dynamicFlows.ReadOnlySchema.yes": "Da"
 }

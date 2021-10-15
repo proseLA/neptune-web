@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "問題が発生しました。再度お試し下さい。"
+  "dynamicFlows.ErrorBoundary.errorAlert": "エラーが発生しました...",
+  "dynamicFlows.ErrorBoundary.retry": "再試行",
+  "dynamicFlows.Help.ariaLabel": "詳細はこちら。",
+  "dynamicFlows.PersistAsyncSchema.genericError": "問題が発生しました。再度お試し下さい。",
+  "dynamicFlows.ReadOnlySchema.no": "いいえ",
+  "dynamicFlows.ReadOnlySchema.yes": "はい"
 }

@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Něco se pokazilo, zkuste to, prosím, později!"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Ups! Něco se pokazilo...",
+  "dynamicFlows.ErrorBoundary.retry": "Zkusit znovu",
+  "dynamicFlows.Help.ariaLabel": "Pro více informací klikněte sem.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Něco se pokazilo, zkuste to prosím později!",
+  "dynamicFlows.ReadOnlySchema.no": "Ne",
+  "dynamicFlows.ReadOnlySchema.yes": "Ano"
 }

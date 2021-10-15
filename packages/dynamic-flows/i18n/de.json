@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Da ist etwas schief gegangen, probier es bitte später noch einmal!"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Hoppla – da ist was schiefgelaufen...",
+  "dynamicFlows.ErrorBoundary.retry": "Erneut versuchen",
+  "dynamicFlows.Help.ariaLabel": "Klicke hier für mehr Informationen.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Da ist etwas schief gegangen, probier es bitte später noch einmal!",
+  "dynamicFlows.ReadOnlySchema.no": "Nein",
+  "dynamicFlows.ReadOnlySchema.yes": "Ja"
 }

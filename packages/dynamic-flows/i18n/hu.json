@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Valami hiba történt. Kérünk, próbáld újra később!"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Hoppá! Valami hiba történt...",
+  "dynamicFlows.ErrorBoundary.retry": "Újra",
+  "dynamicFlows.Help.ariaLabel": "Kattints ide további információért.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Valami hiba történt. Kérünk, próbáld újra később!",
+  "dynamicFlows.ReadOnlySchema.no": "Nem",
+  "dynamicFlows.ReadOnlySchema.yes": "Igen"
 }

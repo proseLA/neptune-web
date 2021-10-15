@@ -2,5 +2,7 @@
   "dynamicFlows.ErrorBoundary.errorAlert": "Vaya. Algo ha salido mal...",
   "dynamicFlows.ErrorBoundary.retry": "Reintentar",
   "dynamicFlows.Help.ariaLabel": "Haz clic aquí para más información.",
-  "dynamicFlows.PersistAsyncSchema.genericError": "Algo ha ido mal, por favor, vuelve a intentarlo más tarde."
+  "dynamicFlows.PersistAsyncSchema.genericError": "Algo ha ido mal, por favor, vuelve a intentarlo más tarde.",
+  "dynamicFlows.ReadOnlySchema.no": "No",
+  "dynamicFlows.ReadOnlySchema.yes": "Sí"
 }

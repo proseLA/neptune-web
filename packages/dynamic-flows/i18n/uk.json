@@ -1,4 +1,8 @@
 {
+  "dynamicFlows.ErrorBoundary.errorAlert": "Ой! Щось сталося…",
+  "dynamicFlows.ErrorBoundary.retry": "Повторити спробу",
   "dynamicFlows.Help.ariaLabel": "Натисніть тут, щоб дізнатися більше.",
-  "dynamicFlows.PersistAsyncSchema.genericError": "Щось сталося. Спробуйте пізніше!"
+  "dynamicFlows.PersistAsyncSchema.genericError": "Щось сталося. Спробуйте пізніше!",
+  "dynamicFlows.ReadOnlySchema.no": "Ні",
+  "dynamicFlows.ReadOnlySchema.yes": "Так"
 }

@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Что-то пошло не так, пожалуйста, повторите попытку позже!"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Ой! Что-то пошло не так...",
+  "dynamicFlows.ErrorBoundary.retry": "Повторить попытку",
+  "dynamicFlows.Help.ariaLabel": "Нажмите здесь для получения дополнительной информации.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Что-то пошло не так, пожалуйста, повторите попытку позже!",
+  "dynamicFlows.ReadOnlySchema.no": "Нет",
+  "dynamicFlows.ReadOnlySchema.yes": "Да"
 }
