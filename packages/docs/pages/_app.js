@@ -57,12 +57,12 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, locale, messages } = this.props;
     const customComponents = {
-      h1: ({ children }) => <Heading as="h1">{children}</Heading>,
-      h2: ({ children }) => <Heading as="h2">{children}</Heading>,
-      h3: ({ children }) => <Heading as="h3">{children}</Heading>,
-      h4: ({ children }) => <Heading as="h4">{children}</Heading>,
-      h5: ({ children }) => <Heading as="h5">{children}</Heading>,
-      h6: ({ children }) => <Heading as="h6">{children}</Heading>,
+      h1: (props) => <Heading as="h1" {...props} />,
+      h2: (props) => <Heading as="h2" {...props} />,
+      h3: (props) => <Heading as="h3" {...props} />,
+      h4: (props) => <Heading as="h4" {...props} />,
+      h5: (props) => <Heading as="h5" {...props} />,
+      h6: (props) => <Heading as="h6" {...props} />,
     };
 
     /**
