@@ -7,26 +7,38 @@ type HeadingProps = {
   children: string;
   as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   className?: string;
+  preventBookmark?: boolean;
 };
 
-const Heading = ({ id, as, children, className }: HeadingProps): ReactElement => {
+const Heading = ({ as, preventBookmark, ...props }: HeadingProps): ReactElement => {
   const [hover, setHover] = useState(false);
+  const HeaderTag = `${as}` as keyof JSX.IntrinsicElements;
+
+  if (preventBookmark) {
+    return <HeaderTag {...props} />;
+  }
+
+  const { id, children, className } = props;
 
   const headerId = id || `${children.toLowerCase().split(' ').join('-')}`;
-  const HeaderTag = `${as}` as keyof JSX.IntrinsicElements;
 
   return (
     <a
       href={`#${headerId}`}
-      className={classNames('clickable-heading', className)}
+      className={classNames('clickable-heading')}
       onMouseEnter={() => setHover(true)}
       onFocus={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onBlur={() => setHover(false)}
     >
-      <HeaderTag id={headerId}>
-        {children}{' '}
-        {hover && <Link className="d-inline-block" size={parseInt(as[1]) < 3 ? 24 : 16} />}
+      <HeaderTag id={headerId} className={classNames(className, 'd-flex')}>
+        {children}
+        {hover && (
+          <>
+            {' '}
+            <Link size={parseInt(as[1]) < 3 ? 24 : 16} />
+          </>
+        )}
       </HeaderTag>
     </a>
   );
