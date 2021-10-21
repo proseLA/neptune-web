@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.9.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.0...@transferwise/components@37.9.1) (2021-10-21)
+
+
+### Bug Fixes
+
+* **components:** set max-height on Modal viewport ([#1193](https://github.com/transferwise/neptune-web/issues/1193)) ([bdb2e30](https://github.com/transferwise/neptune-web/commit/bdb2e308c3fdba12291d736adcb352f32c3cfd3a))
+
+
+
+
+
 # [37.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.8.0...@transferwise/components@37.9.0) (2021-10-15)
 
 
