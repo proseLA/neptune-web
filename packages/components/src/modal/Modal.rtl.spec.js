@@ -14,12 +14,10 @@ describe('Modal', () => {
     jest.clearAllMocks();
   });
 
-  it('with correct scroll class', () => {
-    const { rerender } = render(<Modal {...props} open />);
-    expect(getModal()).not.toHaveClass('tw-modal--content');
+  it('renders with viewport scroll class', () => {
+    render(<Modal {...props} open scroll={Scroll.VIEWPORT} />);
 
-    rerender(<Modal {...props} open scroll={Scroll.CONTENT} />);
-    expect(getModal()).toHaveClass('tw-modal--content');
+    expect(getModal()).toHaveClass('tw-modal--viewport');
   });
 
   it(`doesn't calls onClose when click is inside modal`, () => {

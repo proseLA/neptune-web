@@ -44,8 +44,8 @@ const Modal = ({
           className={classNames(
             'tw-modal',
             {
-              'tw-modal--content': scroll === Scroll.CONTENT,
               'align-self-center': position === Position.CENTER,
+              'tw-modal--viewport': scroll === Scroll.VIEWPORT,
             },
             'fade',
             'outline-none',
