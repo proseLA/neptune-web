@@ -197,7 +197,7 @@
   padding: @navbar-padding-vertical @navbar-padding-horizontal
     (@navbar-padding-vertical - 3px);
   font-size: var(--size-16); // Was 18px
-  line-height: var(--line-height-body);
+  line-height: @navbar-line-height;
   margin-top: 12px;
   .margin(right, 10px);
 
@@ -286,7 +286,7 @@
     > a,
     > button {
       padding: @navbar-padding;
-      line-height: var(--line-height-body);
+      line-height: @navbar-line-height;
       outline-offset: -1px;
       transition: color ease @transition-duration;
 
@@ -297,10 +297,10 @@
       }
 
       &.dropdown-toggle {
-        height: calc(var(--line-height-body) + (2 * @navbar-padding-vertical));
+        height: (@navbar-line-height + (2 * @navbar-padding-vertical));
         border: 0;
         background: none;
-        line-height: var(--line-height-body);
+        line-height: @navbar-line-height;
         width: 100%;
         .text-align(left);
 
@@ -1062,7 +1062,7 @@
 
   .caret {
     vertical-align: top;
-    line-height: var(--line-height-body);
+    line-height: @navbar-line-height;
   }
 
   .text-ellipses,
