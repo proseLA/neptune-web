@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.9.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.1...@transferwise/components@37.9.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* use classList instead of className for dimmer check ([#1197](https://github.com/transferwise/neptune-web/issues/1197)) ([11cadb3](https://github.com/transferwise/neptune-web/commit/11cadb33c461e6713effd3ec36be052664f83cb3))
+
+
+
+
+
 ## [37.9.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.0...@transferwise/components@37.9.1) (2021-10-21)
 
 
