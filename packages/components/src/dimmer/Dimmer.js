@@ -14,8 +14,9 @@ export const EXIT_ANIMATION = 350;
 
 const dimmerManager = new DimmerManager();
 
-const handleTouchMove = (event) => {
-  const isTouchedElementDimmer = event.target.className.startsWith('dimmer');
+export const handleTouchMove = (event) => {
+  const isTouchedElementDimmer = event.target.classList.contains('dimmer');
+
   // disable scroll on iOS devices for Dimmer area
   // this is because of bug in WebKit https://bugs.webkit.org/show_bug.cgi?id=220908
   // note: scrolling still works for children(s) as expected
