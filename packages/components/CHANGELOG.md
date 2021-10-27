@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.9.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.3...@transferwise/components@37.9.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **components:** disable drag & drop in Upload component while upload is in progress ([#1194](https://github.com/transferwise/neptune-web/issues/1194)) ([52acdf0](https://github.com/transferwise/neptune-web/commit/52acdf05b0b2c997b169ed8faa3e15191412fad2))
+
+
+
+
+
 ## [37.9.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.2...@transferwise/components@37.9.3) (2021-10-27)
 
 
