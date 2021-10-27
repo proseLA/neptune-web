@@ -9,9 +9,9 @@
   "neptune.Pagination.ariaLabel": "Постраничная навигация",
   "neptune.PaginationLink.ariaLabel.active": "Перейти на страницу {pageNumber}",
   "neptune.PaginationLink.ariaLabel.inactive": "Текущая страница, страница {pageNumber}",
-  "neptune.Summary.statusDone": "Это готово",
-  "neptune.Summary.statusNotDone": "Это нужно сделать",
-  "neptune.Summary.statusPending": "Находится на рассмотрении",
+  "neptune.Summary.statusDone": "Этап завершен",
+  "neptune.Summary.statusNotDone": "Этап к выполнению",
+  "neptune.Summary.statusPending": "Этап в процессе",
   "neptune.Upload.csButtonText": "Загрузить другой файл?",
   "neptune.Upload.csFailureText": "Загрузка не удалась. Пожалуйста, попробуйте снова",
   "neptune.Upload.csSuccessText": "Загрузка завершена!",
@@ -24,7 +24,7 @@
   "neptune.Upload.usPlaceholder": "Перетащите файл не больше 5MB",
   "neptune.UploadButton.allFileTypes": "Все типы файлов",
   "neptune.UploadButton.dropFiles": "Перетащите файл, чтобы начать загрузку",
-  "neptune.UploadButton.instructions": "{fileTypes}, менее чем {size}MB",
+  "neptune.UploadButton.instructions": "{fileTypes}, не превышающий {size} MB",
   "neptune.UploadButton.uploadFile": "Загрузить файл",
   "neptune.UploadButton.uploadFiles": "Загрузить файлы",
   "neptune.UploadInput.deleteModalBody": "Удаление этого файла приведет к его удалению из нашей системы.",
@@ -38,5 +38,5 @@
   "neptune.UploadItem.uploaded": "Завершено",
   "neptune.UploadItem.uploadedFile": "Загруженный файл",
   "neptune.UploadItem.uploading": "Загрузка...",
-  "neptune.UploadItem.uploadingFailed": "Не удалось загрузить"
+  "neptune.UploadItem.uploadingFailed": "Загрузка не удалась"
 }

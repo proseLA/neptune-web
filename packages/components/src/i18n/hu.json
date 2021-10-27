@@ -10,7 +10,7 @@
   "neptune.PaginationLink.ariaLabel.active": "Ugrás a(z) {pageNumber}. oldalra",
   "neptune.PaginationLink.ariaLabel.inactive": "Jelenlegi oldal, {pageNumber}. oldal",
   "neptune.Summary.statusDone": "Kész",
-  "neptune.Summary.statusNotDone": "Hátralévő feladat",
+  "neptune.Summary.statusNotDone": "Hátravan",
   "neptune.Summary.statusPending": "Függőben",
   "neptune.Upload.csButtonText": "Másik fájl feltöltése?",
   "neptune.Upload.csFailureText": "Feltöltés sikertelen. Kérünk, próbáld újra",

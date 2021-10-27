@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Un problème est survenu, veuillez réessayer plus tard !"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Oups ! Quelque chose n'a pas fonctionné...",
+  "dynamicFlows.ErrorBoundary.retry": "Réessayer",
+  "dynamicFlows.Help.ariaLabel": "Cliquez ici pour plus d'informations.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Un problème est survenu, veuillez réessayer plus tard !",
+  "dynamicFlows.ReadOnlySchema.no": "Non",
+  "dynamicFlows.ReadOnlySchema.yes": "Oui"
 }

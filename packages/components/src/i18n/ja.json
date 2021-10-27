@@ -1,4 +1,5 @@
 {
+  "neptune.Chips.ariaLabel": "{choice} をクリア",
   "neptune.ClearButton.ariaLabel": "消去",
   "neptune.CloseButton.ariaLabel": "閉じる",
   "neptune.DateInput.day.label": "日",
@@ -9,8 +10,8 @@
   "neptune.PaginationLink.ariaLabel.active": "{pageNumber}のページへ移動します",
   "neptune.PaginationLink.ariaLabel.inactive": "現在のページ、{pageNumber}ページ",
   "neptune.Summary.statusDone": "完了",
-  "neptune.Summary.statusNotDone": "対応すべきこと",
-  "neptune.Summary.statusPending": "保留中のもの",
+  "neptune.Summary.statusNotDone": "未対応",
+  "neptune.Summary.statusPending": "保留中",
   "neptune.Upload.csButtonText": "別のファイルをアップロードしますか？",
   "neptune.Upload.csFailureText": "アップロードに失敗しました。もう一度やり直してください。",
   "neptune.Upload.csSuccessText": "アップロードが完了しました。",

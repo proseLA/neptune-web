@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Wystąpił błąd, spróbuj ponownie później!"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Ups! Wystąpił błąd...",
+  "dynamicFlows.ErrorBoundary.retry": "Spróbuj ponownie",
+  "dynamicFlows.Help.ariaLabel": "Kliknij tutaj, żeby uzyskać więcej informacji.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Wystąpił błąd, spróbuj ponownie później!",
+  "dynamicFlows.ReadOnlySchema.no": "Nie",
+  "dynamicFlows.ReadOnlySchema.yes": "Tak"
 }

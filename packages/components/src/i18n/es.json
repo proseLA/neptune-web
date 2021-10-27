@@ -1,4 +1,5 @@
 {
+  "neptune.Chips.ariaLabel": "Descartar {choice}",
   "neptune.ClearButton.ariaLabel": "Borrar",
   "neptune.CloseButton.ariaLabel": "Cerrar",
   "neptune.DateInput.day.label": "Día",
@@ -24,8 +25,8 @@
   "neptune.UploadButton.allFileTypes": "Todos los tipos de archivos",
   "neptune.UploadButton.dropFiles": "Arrastra un archivo para subirlo",
   "neptune.UploadButton.instructions": "{fileTypes}, menor que {size}MB",
-  "neptune.UploadButton.uploadFile": "Subir archivo",
-  "neptune.UploadButton.uploadFiles": "Subir archivos",
+  "neptune.UploadButton.uploadFile": "Cargar archivo",
+  "neptune.UploadButton.uploadFiles": "Cargar archivos",
   "neptune.UploadInput.deleteModalBody": "La eliminación de este archivo lo borrará de nuestro sistema.",
   "neptune.UploadInput.deleteModalCancelButtonText": "Cancelar",
   "neptune.UploadInput.deleteModalConfirmButtonText": "Eliminar",

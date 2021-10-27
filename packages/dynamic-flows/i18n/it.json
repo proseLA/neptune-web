@@ -1,3 +1,8 @@
 {
-  "dynamicFlows.PersistAsyncSchema.genericError": "Qualcosa è andato storto. Riprova più tardi!"
+  "dynamicFlows.ErrorBoundary.errorAlert": "Ops! Qualcosa è andato storto...",
+  "dynamicFlows.ErrorBoundary.retry": "Riprova",
+  "dynamicFlows.Help.ariaLabel": "Clicca qui per maggiori informazioni.",
+  "dynamicFlows.PersistAsyncSchema.genericError": "Qualcosa è andato storto. Riprova più tardi!",
+  "dynamicFlows.ReadOnlySchema.no": "No",
+  "dynamicFlows.ReadOnlySchema.yes": "Sì"
 }
