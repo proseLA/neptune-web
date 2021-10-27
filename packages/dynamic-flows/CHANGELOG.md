@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.6.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.6.5...@transferwise/dynamic-flows@15.6.6) (2021-10-27)
+
+
+### Bug Fixes
+
+* adding new Crowdin updates ([#1190](https://github.com/transferwise/neptune-web/issues/1190)) ([190831c](https://github.com/transferwise/neptune-web/commit/190831ca46047a3e83b3747ccf9e25bd0e6e2c42))
+
+
+
+
+
 ## [15.6.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.6.4...@transferwise/dynamic-flows@15.6.5) (2021-10-27)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

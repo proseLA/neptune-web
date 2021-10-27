@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.9.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.4...@transferwise/components@37.9.5) (2021-10-27)
+
+
+### Bug Fixes
+
+* adding new Crowdin updates ([#1190](https://github.com/transferwise/neptune-web/issues/1190)) ([190831c](https://github.com/transferwise/neptune-web/commit/190831ca46047a3e83b3747ccf9e25bd0e6e2c42))
+
+
+
+
+
 ## [37.9.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.3...@transferwise/components@37.9.4) (2021-10-27)
 
 
