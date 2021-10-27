@@ -70,14 +70,19 @@ class Upload extends Component {
     event.preventDefault();
     this.dragCounter += 1;
     const { usDisabled } = this.props;
-    if (this.dragCounter === 1 && !usDisabled) {
+    const { isProcessing } = this.state;
+    if (this.dragCounter === 1 && !usDisabled && !isProcessing) {
       this.setState({ isDroppable: true });
     }
   }
 
   onDrop(event) {
+    const { isProcessing } = this.state;
     event.preventDefault();
-    this.reset();
+    if (!isProcessing) {
+      this.reset();
+    }
+
     if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0]) {
       this.fileDropped(event.dataTransfer.files[0]);
     }
@@ -174,8 +179,9 @@ class Upload extends Component {
 
   fileDropped = async (file) => {
     const { httpOptions, maxSize, onStart, usDisabled, usAccept } = this.props;
+    const { isProcessing } = this.state;
 
-    if (usDisabled) {
+    if (usDisabled || isProcessing) {
       return false;
     }
 

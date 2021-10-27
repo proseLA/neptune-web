@@ -236,5 +236,16 @@ describe('Upload', () => {
 
       expect(props.onSuccess).toHaveBeenCalledWith('ServerResponse', TEST_FILE.name);
     });
+
+    it('wont process new file while current process is in progress', async () => {
+      component = mount(<Upload {...props} httpOptions={{ url: 'a-url' }} />).children();
+
+      await component.instance().fileDropped(TEST_FILE);
+      const result = await component.instance().fileDropped(TEST_FILE);
+      jest.advanceTimersByTime(props.animationDelay + ANIMATION_DELAY);
+
+      expect(result).toBe(false);
+      expect(props.onSuccess).toHaveBeenCalledTimes(1);
+    });
   });
 });
