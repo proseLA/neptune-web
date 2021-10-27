@@ -10,6 +10,7 @@ import * as exposedLibraryItems from '.';
 const excluded = new Set([
   // hooks
   'useSnackbar',
+  'useDirection',
 
   // specific components
   'Provider',
@@ -57,6 +58,7 @@ const excluded = new Set([
   'adjustLocale',
   'getLangFromLocale',
   'getCountryFromLocale',
+  'getDirectionFromLocale',
   'isServerSide',
   'isBrowser',
 

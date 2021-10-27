@@ -53,20 +53,16 @@ const Sidebar = ({ router: { pathname }, section }) => {
   const scrollableNavElement = useRef(null);
 
   useEffect(() => {
-    // @TODO
-    // We need to show the user a cookie banner before we do this. Because it's used solely for the purposes
-    // of making the site run well, we don't need to ask for consent, but we do need to inform them.
-    // const top = localStorage.getItem('sidebar-scroll');
-    // if (top !== null) {
-    //   scrollableNavEl.current.scrollTop = parseInt(top, 10);
-    // }
-    if (window) {
-      window.addEventListener('keydown', handleKeyDown);
+    const top = localStorage.getItem('sidebar-scroll');
+
+    if (top) {
+      scrollableNavElement.current.scrollTop = parseInt(top, 10);
     }
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
-      if (window) {
-        window.removeEventListener('keydown', handleKeyDown);
-      }
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -94,12 +90,13 @@ const Sidebar = ({ router: { pathname }, section }) => {
 
   const handleKeyDown = (event) => {
     // Allow user to type slash into liveEditor.
-    if (event.target.className !== 'npm__react-simple-code-editor__textarea') {
-      if (event.code === 'Slash' || event.keyCode === 191) {
-        event.preventDefault();
-        if (searchElement && searchElement.current) {
-          searchElement.current.focus();
-        }
+    if (
+      event.target.className !== 'npm__react-simple-code-editor__textarea' &&
+      (event.code === 'Slash' || event.keyCode === 191)
+    ) {
+      event.preventDefault();
+      if (searchElement.current !== null) {
+        searchElement.current.focus();
       }
     }
   };

@@ -1,6 +1,12 @@
 import translationFiles from '../../i18n';
 
-import { getLangFromLocale, adjustLocale, getCountryFromLocale, SUPPORTED_LANGUAGES } from '.';
+import {
+  getLangFromLocale,
+  adjustLocale,
+  getCountryFromLocale,
+  SUPPORTED_LANGUAGES,
+  getDirectionFromLocale,
+} from '.';
 
 describe('locale utils', () => {
   beforeAll(() => {
@@ -104,6 +110,18 @@ describe('locale utils', () => {
       ['es-E', null],
     ])('given an "%s" as a locale value it should return "%s"', (locale, expectedValue) => {
       expect(getCountryFromLocale(locale)).toBe(expectedValue);
+    });
+  });
+
+  describe('getDirectionFromLocale', () => {
+    it.each([
+      ['en', 'ltr'],
+      ['ar', 'rtl'],
+      ['ar-AE', 'rtl'],
+      ['ar_AE', 'rtl'],
+      ['he', 'rtl'],
+    ])('given an "%s" as a locale value it should return "%s"', (locale, expectedValue) => {
+      expect(getDirectionFromLocale(locale)).toBe(expectedValue);
     });
   });
 });

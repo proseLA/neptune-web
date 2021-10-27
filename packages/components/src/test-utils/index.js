@@ -10,15 +10,18 @@ import en from '../i18n/en.json';
  * Custom `render` function which wraps passed elements in Provider component
  * Source: https://testing-library.com/docs/example-react-intl/#creating-a-custom-render-function
  *
- * @param ui
- * @param root0
- * @param root0.locale
- * @param root0.messages
  */
-function customRender(ui, { locale = DEFAULT_LOCALE, messages = en, ...renderOptions } = {}) {
+function customRender(
+  ui,
+  { locale = DEFAULT_LOCALE, messages = en, direction, ...renderOptions } = {},
+) {
   // eslint-disable-next-line react/prop-types
   var Wrapper = ({ children }) => {
-    return <Provider i18n={{ locale, messages }}>{children}</Provider>;
+    return (
+      <Provider i18n={{ locale, messages }} direction={direction}>
+        {children}
+      </Provider>
+    );
   };
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 }
@@ -27,15 +30,15 @@ function customRender(ui, { locale = DEFAULT_LOCALE, messages = en, ...renderOpt
  * Custom `renderHook` function which wraps passed elements in Provider component
  * For more info: https://react-hooks-testing-library.com/usage/advanced-hooks#context
  *
- * @param callback
- * @param root0
- * @param root0.locale
- * @param root0.messages
  */
-function customRenderHook(callback, { locale = DEFAULT_LOCALE, messages = en } = {}) {
+function customRenderHook(callback, { locale = DEFAULT_LOCALE, messages = en, direction } = {}) {
   return renderHook(callback, {
     // eslint-disable-next-line react/prop-types
-    wrapper: ({ children }) => <Provider i18n={{ locale, messages }}>{children}</Provider>,
+    wrapper: ({ children }) => (
+      <Provider i18n={{ locale, messages }} direction={direction}>
+        {children}
+      </Provider>
+    ),
   });
 }
 

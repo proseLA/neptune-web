@@ -1,9 +1,9 @@
-import { Switch, isBrowser, Direction, Button, Priority } from '@transferwise/components';
+import { Switch, Direction, Button, Priority } from '@transferwise/components';
 import { parseISO } from 'date-fns';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
+import { useDirection } from '../hooks/useDirection';
 import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
 import sections from '../utils/sections';
 
@@ -21,18 +21,7 @@ const Layout = ({ children, router: { pathname } }) => {
   const page = getPageFromPath(pathname);
   const editPath = `${githubURL}${pathname}.mdx`;
 
-  let directionDefaultState = false;
-
-  if (isBrowser()) {
-    directionDefaultState = JSON.parse(localStorage.getItem('isRTL')) || false;
-  }
-  const [directionState, setDirectionState] = useState(directionDefaultState);
-
-  function toggleDirection(newStatus) {
-    document.documentElement.dir = newStatus ? Direction.RTL : Direction.LTR;
-    localStorage.setItem('isRTL', newStatus);
-    setDirectionState(newStatus);
-  }
+  const [direction, setDirection] = useDirection();
 
   const firstContent = (
     <div className="Header__Fixed" role="navigation" aria-label="Primary navigation">
@@ -67,15 +56,17 @@ const Layout = ({ children, router: { pathname } }) => {
           ))}
         <li className="d-flex align-items-center">
           <label id="direction-label" htmlFor="switchId" className="Nav__Link">
-            Enable RTL mode
+            Force RTL layout
           </label>
           <div>
             <Switch
-              checked={directionState}
+              checked={direction === Direction.RTL}
               className="m-x-2"
               aria-labelledby="direction-label"
               id="switchId"
-              onClick={() => toggleDirection(!directionState)}
+              onClick={() =>
+                setDirection(direction === Direction.LTR ? Direction.RTL : Direction.LTR)
+              }
             />
           </div>
         </li>
