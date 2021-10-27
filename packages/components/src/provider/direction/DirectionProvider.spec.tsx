@@ -28,14 +28,4 @@ describe('DirectionProvider', () => {
     expect(directionContext).toHaveProperty('direction', direction);
     expect(directionContext).toHaveProperty('isRTL', isRTL);
   });
-
-  it('attaches `dir` attribute to `html` tag', () => {
-    expect(document.documentElement).not.toHaveAttribute('dir');
-
-    render(<DirectionProvider />);
-    expect(document.documentElement).toHaveAttribute('dir', 'ltr');
-
-    render(<DirectionProvider direction="rtl" />);
-    expect(document.documentElement).toHaveAttribute('dir', 'rtl');
-  });
 });

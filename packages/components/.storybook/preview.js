@@ -1,6 +1,6 @@
-import React, { StrictMode } from 'react';
-import { select, boolean } from '@storybook/addon-knobs';
-import { Provider, DirectionProvider } from '../src';
+import React, { StrictMode, useEffect } from 'react';
+import { select } from '@storybook/addon-knobs';
+import { DirectionProvider, Provider } from '../src';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
@@ -69,31 +69,30 @@ const severalExamplesOfSupportedLocales = [
   'tr',
 ];
 
-/**
- * Decorator that changes components states (e.g theming, direction, locale)
- * based on percy config (see {@link parameters.percy}) for visual tests
- */
-const VisualTestDecorator = (storyFn) => {
-  const urlParams = new URLSearchParams(document.location.search.substring(1));
-  const direction = urlParams.get('direction') || 'ltr';
+const DirectionDecorator = (storyFn) => {
+  const urlParams = new URLSearchParams(document.location.search);
+  const direction = select('direction', ['ltr', 'rtl'], urlParams.get('direction') || 'ltr');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('dir', direction);
+  }, [direction]);
+
+  document.documentElement.setAttribute('dir', direction);
+
   return <DirectionProvider direction={direction}>{storyFn()}</DirectionProvider>;
 };
 
 const ProviderDecorator = (storyFn) => {
-  const locale = select('locale (global)', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
-  const isRTL = boolean('force RTL (global)', false);
+  const locale = select('locale', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
   const lang = getLangFromLocale(locale);
   const messages = supportedLangs[lang];
-  return (
-    <Provider i18n={{ locale, messages }}>
-      <DirectionProvider direction={isRTL ? 'rtl' : 'ltr'}>{storyFn()}</DirectionProvider>
-    </Provider>
-  );
+
+  return <Provider i18n={{ locale, messages }}>{storyFn()}</Provider>;
 };
 
 export const decorators = [
   StrictModeDecorator,
   CenterDecorator,
+  DirectionDecorator,
   ProviderDecorator,
-  VisualTestDecorator,
 ];
