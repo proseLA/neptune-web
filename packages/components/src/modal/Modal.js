@@ -43,6 +43,7 @@ const Modal = ({
         <div
           className={classNames(
             'tw-modal',
+            'd-flex',
             {
               'align-self-center': position === Position.CENTER,
               'tw-modal--viewport': scroll === Scroll.VIEWPORT,

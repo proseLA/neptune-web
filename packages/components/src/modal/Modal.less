@@ -1,6 +1,6 @@
 .tw-modal {
   &.tw-modal--viewport {
-    height: 100vh;
+    max-height: 100%;
 
     /* mobile viewport bug fix */
     // stylelint-disable-next-line value-no-vendor-prefix
@@ -10,8 +10,6 @@
   .tw-modal-dialog {
     transition: transform 0.3s ease-out;
     transform: translateY(-25%);
-    height: 100%;
-    width: 100%;
   }
 
   &.in {

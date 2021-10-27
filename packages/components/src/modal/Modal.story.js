@@ -9,7 +9,7 @@ export default {
   title: 'Modal',
 };
 
-export const Basic = () => {
+const Template = (props) => {
   const size = select('size', Object.values(Size), Size.MEDIUM);
   const [open, setOpen] = useState(false);
   const title = text('title', 'title');
@@ -23,16 +23,7 @@ export const Basic = () => {
         body={
           <>
             <DateInput value={new Date()} onChange={console && console.log} />
-            <p className="m-t-4">
-              I am baby actually poke kickstarter, street art jean shorts bespoke chambray activated
-              charcoal ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft
-              marfa ethical waistcoat poke jean shorts. Scenester readymade selvage disrupt pok pok.
-              La croix stumptown try-hard chartreuse. I am baby actually poke kickstarter, street
-              art jean shorts bespoke chambray activated charcoal ramps marfa shoreditch tumeric, I
-              am baby actually poke kickstarter, street art jean shorts bespoke chambray activated
-              charcoal ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft
-              marfa ethical waistcoat poke jean shorts. Scenester readymade selvage disrupt pok pok.
-            </p>
+            <p className="m-t-4">{props.children}</p>
           </>
         }
         open={open}
@@ -47,7 +38,49 @@ export const Basic = () => {
           </Button>
         }
         onClose={() => setOpen(false)}
+        {...props}
       />
     </>
   );
 };
+
+export const Basic = () => (
+  <Template>
+    I am baby actually poke kickstarter, street art jean shorts bespoke chambray activated charcoal
+    ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft marfa ethical
+    waistcoat poke jean shorts. Scenester readymade selvage disrupt pok pok. La croix stumptown
+    try-hard chartreuse. I am baby actually poke kickstarter, street art jean shorts bespoke
+    chambray activated charcoal ramps marfa shoreditch tumeric, I am baby actually poke kickstarter,
+    street art jean shorts bespoke chambray activated charcoal ramps marfa shoreditch tumeric
+    tumblr. Mixtape cred palo santo, cliche lyft marfa ethical waistcoat poke jean shorts. Scenester
+    readymade selvage disrupt pok pok.
+  </Template>
+);
+
+export const WithLongText = () => (
+  <Template>
+    I am baby actually poke kickstarter, street art jean shorts bespoke chambray activated charcoal
+    ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft marfa ethical
+    waistcoat poke jean shorts. Scenester readymade selvage disrupt pok pok. La croix stumptown
+    try-hard chartreuse. I am baby actually poke kickstarter, street art jean shorts bespoke
+    chambray activated charcoal ramps marfa shoreditch tumeric, I am baby actually poke kickstarter,
+    street art jean shorts bespoke chambray activated charcoal ramps marfa shoreditch tumeric
+    tumblr. Mixtape cred palo santo, cliche lyft marfa ethical waistcoat poke jean shorts. Scenester
+    readymade selvage disrupt pok pok. I am baby actually poke kickstarter, street art jean shorts
+    bespoke chambray activated charcoal ramps marfa shoreditch tumeric tumblr. Mixtape cred palo
+    santo, cliche lyft marfa ethical waistcoat poke jean shorts. Scenester readymade selvage disrupt
+    pok pok. La croix stumptown try-hard chartreuse. I am baby actually poke kickstarter, street art
+    jean shorts bespoke chambray activated charcoal ramps marfa shoreditch tumeric, I am baby
+    actually poke kickstarter, street art jean shorts bespoke chambray activated charcoal ramps
+    marfa shoreditch tumeric tumblr. Mixtape cred palo santo, cliche lyft marfa ethical waistcoat
+    poke jean shorts. Scenester readymade selvage disrupt pok pok. I am baby actually poke
+    kickstarter, street art jean shorts bespoke chambray activated charcoal ramps marfa shoreditch
+    tumeric tumblr. Mixtape cred palo santo, cliche lyft marfa ethical waistcoat poke jean shorts.
+    Scenester readymade selvage disrupt pok pok. La croix stumptown try-hard chartreuse. I am baby
+    actually poke kickstarter, street art jean shorts bespoke chambray activated charcoal ramps
+    marfa shoreditch tumeric, I am baby actually poke kickstarter, street art jean shorts bespoke
+    chambray activated charcoal ramps marfa shoreditch tumeric tumblr. Mixtape cred palo santo,
+    cliche lyft marfa ethical waistcoat poke jean shorts. Scenester readymade selvage disrupt pok
+    pok.
+  </Template>
+);
