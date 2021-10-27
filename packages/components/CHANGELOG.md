@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.9.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.2...@transferwise/components@37.9.3) (2021-10-27)
+
+
+### Bug Fixes
+
+* **components:** set max-height on Modal when scroll is set to viewport ([#1198](https://github.com/transferwise/neptune-web/issues/1198)) ([fa9f130](https://github.com/transferwise/neptune-web/commit/fa9f1309e40ffbb20ada3c3e6aaf0ffa81f780f7))
+
+
+
+
+
 ## [37.9.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.1...@transferwise/components@37.9.2) (2021-10-26)
 
 
