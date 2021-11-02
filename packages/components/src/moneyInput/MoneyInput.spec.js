@@ -381,23 +381,23 @@ describe('Money Input', () => {
     expect(fixedCurrencyDisplay()).toHaveLength(1);
   });
 
-  it('shows fixed currency keyline and flag if large input only', () => {
+  it('does not shows fixed currency keyline and flag if small input', () => {
     const EEK = { value: 'EEK', currency: 'EEK' };
     component.setProps({
       currencies: [EEK],
       selectedCurrency: EEK,
-      size: 'md',
+      size: 'sm',
     });
 
-    ['md', 'sm'].forEach((size) => {
+    ['md', 'lg'].forEach((size) => {
       component.setProps({ size });
-      expect(component.find('.tw-money-input__keyline')).toHaveLength(0);
-      expect(component.find('.currency-flag')).toHaveLength(0);
+      expect(component.find('.tw-money-input__keyline')).toHaveLength(1);
+      expect(component.find('.currency-flag')).toHaveLength(1);
     });
 
-    component.setProps({ size: 'lg' });
-    expect(component.find('.tw-money-input__keyline')).toHaveLength(1);
-    expect(component.find('.currency-flag')).toHaveLength(1);
+    component.setProps({ size: 'sm' });
+    expect(component.find('.tw-money-input__keyline')).toHaveLength(0);
+    expect(component.find('.currency-flag')).toHaveLength(0);
   });
 
   it('amount input will be disabled when there is no onAmountChange prop', () => {

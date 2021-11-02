@@ -237,7 +237,7 @@ class MoneyInput extends Component {
               disabled ? this.style('tw-money-input--disabled') : '',
             )}
           >
-            {size === 'lg' && (
+            {(size === 'lg' || size === 'md') && (
               <>
                 <i className={classNames(this.style('tw-money-input__keyline'))} />
                 <i
