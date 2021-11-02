@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.10.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.5...@transferwise/components@37.10.0) (2021-11-02)
+
+
+### Features
+
+* **MoneyInput:** display currency flag on md size when currency change is disabled ([#1204](https://github.com/transferwise/neptune-web/issues/1204)) ([5f1c3ef](https://github.com/transferwise/neptune-web/commit/5f1c3efe68659089a44b34783e91e3311abbf2c7))
+
+
+
+
+
 ## [37.9.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.9.4...@transferwise/components@37.9.5) (2021-10-27)
 
 
