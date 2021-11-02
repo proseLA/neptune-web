@@ -57,21 +57,17 @@ As said above, we recommend running most commands from within the package you're
 If you wish to test your changes in some consumer codebase and `yarn link` is not so sufficient or/and convenient approach, then you can easily publish beta version(s) on NPM registry and use it in any NPM repository.
 
 Steps:
+
 1. Push changes into your feature/fix branch
 2. Find your workflow run in [GitHub Actions](https://github.com/transferwise/neptune-web/actions)
-3. approve `beta` deployment
+3. Approve `beta` deployment
 4. Lerna will [publish](https://github.com/lerna/lerna/blob/main/commands/publish/README.md#--canary) affected packages [tagged as beta](https://docs.npmjs.com/adding-dist-tags-to-packages)
 
----
-
-Note: set the exact beta version without any [update types or version ranges](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#dependencies) (e.g `^`, `~`) as usually NPM clients tend to opt-out installing beta (unstable) versions, correct example:
+> Set the exact beta version without any [update types or version ranges](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#dependencies) (e.g `^`, `~`) as usually NPM clients tend to opt-out installing beta (unstable) versions, correct example:
 
 ```js
-// in package.json
-"@transferwise/neptune-css": "4.0.4-beta.7",
-
-// or just `beta`, NPM client will pick up latest beta version
-"@transferwise/components": "beta",
+// package.json
+"@transferwise/neptune-css": "10.0.6-beta-2ffb6cde65.61",
 ```
 
 ### Visual Testing
@@ -80,7 +76,7 @@ We have visual tests running on [percy.io & Storybook](https://docs.percy.io/doc
 
 To run the visual tests, go to [GitHub Actions](https://github.com/transferwise/neptune-web/actions), find your workflow run and approve `visual-test` deployment. Find the link for the results in the job output.
 
-Note: The job will be marked as passed/green even if the visual tests are failed.
+> The job will be marked as passed/green even if the visual tests are failed.
 
 ## Versioning and commit lint
 
@@ -94,8 +90,9 @@ The rules are simple:
 - The type must be one of the following: [`fix`, `feat`, `refactor`, `build`, `chore`, `docs`, `perf`, `test`]
 - If you are fixing something, use `fix`. This will bump the patch version.
 - If you are adding a new feature, use `feat`. This will bump the minor version.
-- Breaking changes must have the words `BREAKING CHANGE:` as the first two words in the commit description. We also add a `!` after the type to make it obvious in the commit log.<sup>*</sup>
-For example:
+- Breaking changes must have the words `BREAKING CHANGE:` as the first two words in the commit description. We also add a `!` after the type to make it obvious in the commit log.<sup>\*</sup>
+  For example:
+
 ```
 feat!: Some feature
 
@@ -104,20 +101,20 @@ BREAKING CHANGE: Description of breaking changes
 
 Using anything other than `fix` or `feat` without a `!` will not trigger a version bump. This is useful for changes to CI config, documentation or tests. Feel free to choose the type that best reflects the work you're doing.
 
-You can optionally use a scope to describe where in the code you're working: e.g. `feat(accordion): adding new functionality to the accordion`.
+You can optionally use a scope to describe where in the code you're working: e.g. `feat(components): adding new functionality to Accordion`.
 
 Some examples:
 
 ```
-fix: fixing a minor bug in some widget
-feat: adding a new feature to a component
-feat!: refactoring the API of some component
-docs: updating the docs
-refactor(button): refactoring the button implementation
-chore: updating the ci build config
+fix: fix a bug
+feat: add a new feature or component
+feat!: modify the API of an existing component
+docs: update the docs
+refactor(components): refactor the implementation of an existing component
+chore: update
 ```
 
-<sup>*</sup> Generally the core design system team will handle breaking change releases. If you are planning a breaking change, please talk to us.
+> Generally the core design system team will handle breaking change releases. If you are planning a breaking change, please talk to us.
 
 ## Releasing
 
