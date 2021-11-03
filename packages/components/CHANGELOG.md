@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [37.11.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.10.1...@transferwise/components@37.11.0) (2021-11-03)
+
+
+### Features
+
+* **Select:** bump select truncation limit to 100 ([#1207](https://github.com/transferwise/neptune-web/issues/1207)) ([3818c6d](https://github.com/transferwise/neptune-web/commit/3818c6d8d7e1ec4336b1baeef00760d10de83cc1))
+
+
+
+
+
 ## [37.10.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.10.0...@transferwise/components@37.10.1) (2021-11-03)
 
 
