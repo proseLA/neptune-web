@@ -348,7 +348,7 @@ describe('Select', () => {
   describe('given a large set of options', () => {
     beforeEach(async () => {
       component.setProps({
-        options: new Array(101).fill().map((x, index) => ({
+        options: new Array(250).fill().map((x, index) => ({
           value: `option${index}`,
           label: `Option ${index}`,
         })),
@@ -357,7 +357,7 @@ describe('Select', () => {
     });
 
     it('should limit the number of options initially shown', async () => {
-      expect(element(Option)).toHaveLength(50);
+      expect(element(Option)).toHaveLength(100);
     });
 
     it('should show a "..." option at the end to load more options', async () => {
@@ -366,11 +366,11 @@ describe('Select', () => {
 
     it('should load more options when "..." is clicked', async () => {
       element('.show-more').simulate('click', fakeEvent());
-      expect(element(Option)).toHaveLength(100);
+      expect(element(Option)).toHaveLength(200);
       expect(element('.show-more')).toHaveLength(1);
 
       element('.show-more').simulate('click', fakeEvent());
-      expect(element(Option)).toHaveLength(101); // exhausted
+      expect(element(Option)).toHaveLength(250); // exhausted
       expect(element('.show-more')).toHaveLength(0);
     });
   });

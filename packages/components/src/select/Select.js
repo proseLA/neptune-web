@@ -46,7 +46,7 @@ function getShouldRenderWithPortal() {
   );
 }
 
-const OPTIONS_PAGE_SIZE = 50;
+const OPTIONS_PAGE_SIZE = 100;
 
 const BOOTSTRAP_DROPDOWN_ANIMATION_TIME = 200;
 
