@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.5.18](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.5.17...@transferwise/neptune-docs@13.5.18) (2021-11-03)
+
+
+### Bug Fixes
+
+* **Modal:** allow content to overflow when viewport is scrollable ([#1205](https://github.com/transferwise/neptune-web/issues/1205)) ([bca60e0](https://github.com/transferwise/neptune-web/commit/bca60e0f79f95d482554cce3074d2e4d6c15fdf7))
+
+
+
+
+
 ## [13.5.17](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.5.16...@transferwise/neptune-docs@13.5.17) (2021-11-03)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
