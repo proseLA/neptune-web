@@ -1,10 +1,14 @@
 .tw-modal {
-  &.tw-modal--viewport {
+  &.tw-modal--content {
     max-height: 100%;
 
     /* mobile viewport bug fix */
     // stylelint-disable-next-line value-no-vendor-prefix
     max-height: -webkit-fill-available;
+
+    .tw-modal-body {
+      overflow-y: auto;
+    }
   }
 
   .tw-modal-dialog {
@@ -24,10 +28,7 @@
     width: 100%;
 
     .tw-modal-body {
-      // prevents overflowing content to show below modal footer
-      z-index: 1;
       flex: 1;
-      overflow-y: auto;
       word-break: break-word;
     }
 

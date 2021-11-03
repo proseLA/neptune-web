@@ -29,7 +29,7 @@ const Modal = ({
   return (
     <Dimmer
       open={open}
-      scrollable={scroll === Scroll.CONTENT}
+      scrollable={scroll === Scroll.VIEWPORT}
       className={classNames('d-flex', 'justify-content-center')}
       onClose={onClose}
     >
@@ -46,7 +46,7 @@ const Modal = ({
             'd-flex',
             {
               'align-self-center': position === Position.CENTER,
-              'tw-modal--viewport': scroll === Scroll.VIEWPORT,
+              'tw-modal--content': scroll === Scroll.CONTENT,
             },
             'fade',
             'outline-none',
