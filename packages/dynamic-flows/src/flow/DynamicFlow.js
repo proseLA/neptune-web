@@ -71,7 +71,15 @@ const buildInitialModels = (model, schemas) => {
  * @param props
  */
 const DynamicFlow = (props) => {
-  const { baseUrl, flowUrl, onClose, onStepChange, onError, httpClient: propsHttpClient } = props;
+  const {
+    baseUrl,
+    flowUrl,
+    onClose,
+    onStepChange,
+    onError,
+    httpClient: propsHttpClient,
+    loaderSize,
+  } = props;
 
   const { locale } = useIntl();
 
@@ -216,9 +224,9 @@ const DynamicFlow = (props) => {
 
   return (
     components && (
-      <div className="m-a-3 m-t-5">
+      <>
         {loading ? (
-          <Loader size={Size.EXTRA_LARGE} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+          <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
         ) : (
           <DynamicLayout
             components={components}
@@ -231,7 +239,7 @@ const DynamicFlow = (props) => {
             onModelChange={onModelChange}
           />
         )}
-      </div>
+      </>
     )
   );
 };
@@ -245,6 +253,7 @@ DynamicFlow.propTypes = {
   httpClient: Types.shape({
     request: Types.func,
   }),
+  loaderSize: Types.string,
 };
 
 DynamicFlow.defaultProps = {
@@ -253,6 +262,7 @@ DynamicFlow.defaultProps = {
   onStepChange: () => {},
   onError: () => {},
   httpClient: undefined,
+  loaderSize: Size.EXTRA_LARGE,
 };
 
 export default withErrorBoundary(DynamicFlow);
