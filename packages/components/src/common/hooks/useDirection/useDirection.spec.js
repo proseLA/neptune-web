@@ -18,12 +18,4 @@ describe('useDirection', () => {
 
     expect(current).toStrictEqual({ direction: 'rtl', isRTL: true });
   });
-
-  it('returns direction provided', () => {
-    const {
-      result: { current },
-    } = renderHook(() => useDirection(), { direction: 'auto' });
-
-    expect(current).toStrictEqual({ direction: 'auto', isRTL: false });
-  });
 });

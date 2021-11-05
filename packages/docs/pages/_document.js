@@ -12,6 +12,10 @@ class MyDocument extends Document {
         <Head />
         <body>
           <script
+            /**
+             * Adding an inline script to read the layout direction from local storage.
+             * This is neccessary to append the correct "dir" value to the root html tag before the first render.
+             */
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
@@ -44,6 +48,10 @@ class MyDocument extends Document {
           />
           <Main />
           <NextScript />
+          <script type="text/javascript">
+            {/* The below is necessary to stop animations running on page load in Chrome
+          (https://bugs.chromium.org/p/chromium/issues/detail?id=332189) */}{' '}
+          </script>
         </body>
       </Html>
     );
