@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [37.11.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.11.0...@transferwise/components@37.11.1) (2021-11-08)
+
+
+### Bug Fixes
+
+* **components:** update unselected Chip hover color to match Option ([#1211](https://github.com/transferwise/neptune-web/issues/1211)) ([41759fb](https://github.com/transferwise/neptune-web/commit/41759fba86a7f9d40f553b36dbad2496e1fddac8))
+
+
+
+
+
 # [37.11.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.10.1...@transferwise/components@37.11.0) (2021-11-03)
 
 
