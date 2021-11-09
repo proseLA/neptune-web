@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { Component, Fragment } from 'react';
 import { Spring } from 'react-spring/renderprops.cjs';
 
-import { Size, Width } from '../common';
+import { Size, Width, Direction } from '../common';
 import KeyCodes from '../common/keyCodes';
+import { DirectionContext } from '../provider/direction';
 
 import Tab from './Tab';
 import TabList from './TabList';
@@ -441,107 +442,118 @@ class Tabs extends Component {
       );
 
     return (
-      <div
-        className={classNames('tabs', className, {
-          'tabs--auto-width': headerWidth === Width.AUTO,
-        })}
-        onTouchStart={changeTabOnSwipe ? this.handleTouchStart : undefined}
-        onTouchEnd={changeTabOnSwipe ? this.handleTouchEnd : undefined}
-        onTouchMove={changeTabOnSwipe ? this.handleTouchMove : undefined}
-      >
-        <TabList>
-          {tabs.map(({ title, disabled }, index) => {
-            return (
-              <Tab
-                key={title}
-                ref={(node) => {
-                  this.tabRefs[index] = node;
-                }}
-                id={`${name}-tab-${index}`}
-                panelId={`${name}-panel-${index}`}
-                selected={selected === index}
-                disabled={disabled}
-                focusTab={() => {
-                  this.tabRefs[index].focus();
-                }}
-                onClick={disabled ? null : this.handleTabClick(index)}
-                onKeyDown={this.onKeyDown(index)}
-                {...(fullWidthTabs ? { style: { width: `${(1 / tabs.length) * 100}%` } } : {})}
-              >
-                {title}
-              </Tab>
-            );
-          })}
-          {translateLineX ? (
+      <DirectionContext.Consumer>
+        {(direction) => {
+          const isRTL = direction === Direction.RTL;
+          return (
             <div
-              className={classNames('tabs__line')}
-              style={{
-                width: this.getTabLineWidth(),
-                transform: `translateX(${translateLineX})`,
-              }}
-            />
-          ) : null}
-        </TabList>
-        <div
-          ref={this.setContainerRefAndWidth}
-          className="tabs__panel-container"
-          style={{
-            overflow: hidePanelOverflow ? 'hidden' : 'visible',
-          }}
-        >
-          <Spring
-            from={{
-              transform: `translateX(${translateFrom - spacer}px)`,
-            }}
-            to={{
-              transform: `translateX(${translateTo - spacer}px)`,
-            }}
-            config={{
-              precision: isSwiping ? 1 : 0.01,
-              velocity: !isSwiping ? restrictedVelocity : 0,
-              clamp: true,
-            }}
-            onRest={() => {
-              if (isAnimating) {
-                this.setState({
-                  isAnimating: false,
-                  lastSwipeVelocity: 0,
-                });
-              }
-            }}
-          >
-            {(props) => (
+              className={classNames('tabs', className, {
+                'tabs--auto-width': headerWidth === Width.AUTO,
+              })}
+              onTouchStart={changeTabOnSwipe ? this.handleTouchStart : undefined}
+              onTouchEnd={changeTabOnSwipe ? this.handleTouchEnd : undefined}
+              onTouchMove={changeTabOnSwipe ? this.handleTouchMove : undefined}
+            >
+              <TabList>
+                {tabs.map(({ title, disabled }, index) => {
+                  return (
+                    <Tab
+                      key={title}
+                      ref={(node) => {
+                        this.tabRefs[index] = node;
+                      }}
+                      id={`${name}-tab-${index}`}
+                      panelId={`${name}-panel-${index}`}
+                      selected={selected === index}
+                      disabled={disabled}
+                      focusTab={() => {
+                        this.tabRefs[index].focus();
+                      }}
+                      onClick={disabled ? null : this.handleTabClick(index)}
+                      onKeyDown={this.onKeyDown(index)}
+                      {...(fullWidthTabs
+                        ? { style: { width: `${(1 / tabs.length) * 100}%` } }
+                        : {})}
+                    >
+                      {title}
+                    </Tab>
+                  );
+                })}
+                {translateLineX ? (
+                  <div
+                    className={classNames('tabs__line')}
+                    style={{
+                      width: this.getTabLineWidth(),
+                      transform: isRTL
+                        ? `translateX(-${translateLineX})`
+                        : `translateX(${translateLineX})`,
+                    }}
+                  />
+                ) : null}
+              </TabList>
               <div
-                className="tabs__slider"
+                ref={this.setContainerRefAndWidth}
+                className="tabs__panel-container"
                 style={{
-                  width: hidePanelOverflow ? `${sliderWidth}px` : '100%',
-                  transform: hidePanelOverflow ? props.transform : 'translateX(0px)',
+                  overflow: hidePanelOverflow ? 'hidden' : 'visible',
                 }}
               >
-                {tabs.map(({ content, disabled }, index) =>
-                  !disabled ? (
-                    <Fragment key={`${tabs[index].title}-fragment`}>
-                      {index === selected && <Spacer id="left-spacer" />}
-                      <TabPanel
-                        key={tabs[index].title}
-                        tabId={`${name}-tab-${index}`}
-                        id={`${name}-panel-${index}`}
-                        style={{
-                          width: hidePanelOverflow ? `${this.containerWidth}px` : '100%',
-                          display: hidePanelOverflow || index === selected ? 'block' : 'none',
-                        }}
-                      >
-                        {content}
-                      </TabPanel>
-                      {index === selected && <Spacer id="right-spacer" />}
-                    </Fragment>
-                  ) : null,
-                )}
+                <Spring
+                  from={{
+                    transform: `translateX(${translateFrom - spacer}px)`,
+                  }}
+                  to={{
+                    transform: `translateX(${translateTo - spacer}px)`,
+                  }}
+                  config={{
+                    precision: isSwiping ? 1 : 0.01,
+                    velocity: !isSwiping ? restrictedVelocity : 0,
+                    clamp: true,
+                  }}
+                  onRest={() => {
+                    if (isAnimating) {
+                      this.setState({
+                        isAnimating: false,
+                        lastSwipeVelocity: 0,
+                      });
+                    }
+                  }}
+                >
+                  {(props) => (
+                    <div
+                      className="tabs__slider"
+                      style={{
+                        width: hidePanelOverflow ? `${sliderWidth}px` : '100%',
+                        transform: hidePanelOverflow ? props.transform : 'translateX(0px)',
+                      }}
+                    >
+                      {tabs.map(({ content, disabled }, index) =>
+                        !disabled ? (
+                          <Fragment key={`${tabs[index].title}-fragment`}>
+                            {index === selected && <Spacer id="left-spacer" />}
+                            <TabPanel
+                              key={tabs[index].title}
+                              tabId={`${name}-tab-${index}`}
+                              id={`${name}-panel-${index}`}
+                              style={{
+                                width: hidePanelOverflow ? `${this.containerWidth}px` : '100%',
+                                display: hidePanelOverflow || index === selected ? 'block' : 'none',
+                              }}
+                            >
+                              {content}
+                            </TabPanel>
+                            {index === selected && <Spacer id="right-spacer" />}
+                          </Fragment>
+                        ) : null,
+                      )}
+                    </div>
+                  )}
+                </Spring>
               </div>
-            )}
-          </Spring>
-        </div>
-      </div>
+            </div>
+          );
+        }}
+      </DirectionContext.Consumer>
     );
   }
 }
