@@ -62,7 +62,27 @@
 
 // CSS Logical Properties: https://caniuse.com/css-logical-props
 
-.padding(@direction, @value) {
+.padding(@direction, @currentDirectionPaddingValue, @oppositeDirectionPaddingValue: ~'') {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      padding-right: @currentDirectionPaddingValue;
+      padding-@{direction}: @oppositeDirectionPaddingValue;
+    }
+
+    padding-@{direction}: @currentDirectionPaddingValue;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      padding-left: @currentDirectionPaddingValue;
+      padding-@{direction}: @oppositeDirectionPaddingValue;
+    }
+
+    padding-@{direction}: @currentDirectionPaddingValue;
+  }
+}
+
+.padding-for-spacing(@direction, @value) {
   & when (@direction = left) {
     [dir="rtl"] & {
       padding-right: @value;
@@ -93,14 +113,32 @@
     padding: @value1 @value4 @value3 @value2;
   }
 
-  html:not([dir="rtl"]) & {
-    padding: @value1 @value2 @value3 @value4;
-  }
+  padding: @value1 @value2 @value3 @value4;
 }
 
 // CSS Logical Properties: https://caniuse.com/css-logical-props
 
-.margin(@direction, @value) {
+.margin(@direction, @currentDirectionMarginValue, @oppositeDirectionMarginValue: ~'') {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      margin-right: @currentDirectionMarginValue;
+      margin-@{direction}: @oppositeDirectionMarginValue;
+    }
+
+    margin-@{direction}: @currentDirectionMarginValue;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      margin-left: @currentDirectionMarginValue;
+      margin-@{direction}: @oppositeDirectionMarginValue;
+    }
+
+    margin-@{direction}: @currentDirectionMarginValue;
+  }
+}
+
+.margin-for-spacing(@direction, @value) {
   & when (@direction = left) {
     [dir="rtl"] & {
       margin-right: @value;
@@ -131,9 +169,7 @@
     margin: @value1 @value4 @value3 @value2;
   }
 
-  html:not([dir="rtl"]) & {
-    margin: @value1 @value2 @value3 @value4;
-  }
+  margin: @value1 @value2 @value3 @value4;
 }
 
 // CSS property: inset-inline (positions): https://caniuse.com/mdn-css_properties_inset-inline
