@@ -69,13 +69,13 @@ p + h2[id] {
 .Nav {
   overflow-y: auto;
   margin-bottom: 0;
+  padding: 0;
   list-style: none;
   border-top: 1px solid var(--color-border-neutral);
   font-size: var(--font-size-14);
 }
 
-html:not([dir='rtl']) .Nav,
-[dir='rtl'] .Nav {
+[dir="rtl"] .Nav {
   padding: 0;
 }
 
@@ -169,7 +169,11 @@ img {
 
 @media (min-width: 1200px) {
   .live-preview {
-    padding-inline-start: var(--size-32);
+    padding-left: var(--size-32);
+  }
+
+  [dir="rtl"] .live-preview {
+    padding-right: var(--size-32);
   }
 }
 
