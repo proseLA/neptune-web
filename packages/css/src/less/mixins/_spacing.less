@@ -9,18 +9,18 @@
 .spacing-global(@postfix, @spacer) {
   .m-a-@{postfix} {
     margin-top: @spacer !important;
-    .margin(right, @spacer) !important;
+    .margin-for-spacing(right, @spacer) !important;
 
     margin-bottom: @spacer !important;
-    .margin(left, @spacer) !important;
+    .margin-for-spacing(left, @spacer) !important;
   }
 
   .p-a-@{postfix} {
     padding-top: @spacer !important;
-    .padding(right, @spacer) !important;
+    .padding-for-spacing(right, @spacer) !important;
 
     padding-bottom: @spacer !important;
-    .padding(left, @spacer) !important;
+    .padding-for-spacing(left, @spacer) !important;
   }
 }
 
@@ -54,29 +54,29 @@
 
 .spacing-horizontal(@postfix, @spacer) {
   .m-l-@{postfix} {
-    .margin(left, @spacer) !important;
+    .margin-for-spacing(left, @spacer) !important;
   }
 
   .m-r-@{postfix} {
-    .margin(right, @spacer) !important;
+    .margin-for-spacing(right, @spacer) !important;
   }
 
   .m-x-@{postfix} {
-    .margin(left, @spacer) !important;
-    .margin(right, @spacer) !important;
+    .margin-for-spacing(left, @spacer) !important;
+    .margin-for-spacing(right, @spacer) !important;
   }
 
   .p-l-@{postfix} {
-    .padding(left, @spacer) !important;
+    .padding-for-spacing(left, @spacer) !important;
   }
 
   .p-r-@{postfix} {
-    .padding(right, @spacer) !important;
+    .padding-for-spacing(right, @spacer) !important;
   }
 
   .p-x-@{postfix} {
-    .padding(left, @spacer) !important;
-    .padding(right, @spacer) !important;
+    .padding-for-spacing(left, @spacer) !important;
+    .padding-for-spacing(right, @spacer) !important;
   }
 }
 

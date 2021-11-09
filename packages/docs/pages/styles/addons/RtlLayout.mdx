@@ -48,18 +48,26 @@ padding: 0 var(--foo);
 padding: 0 var(--foo) 0;
 ```
 
-May occur the case that you need to force specificity to your custom CSS even when the left/right are equal. In this case, go to use the mixin:
-
-New syntax:
+### New syntax:
 
 #### Spacing:
 
 ```
 margin-left: var(--foo); → .margin(left, var(--foo));
 ```
+There is a second optional value for the mixin `.margin(direction, value1, value2)`, if you need to specify/reset the oposite direction value.
+
+By instance, let's imagin that we have a `margin-left: 8px`. The mixin for it would be `.margin(left, 8px)` and on RTL cases would be transformed to `margin-right: 8px`.
+By default, it also maintains the property `margin-left`, because the mixin doesn't have the information of its value. We may want to reset it to `0` or add another value depending the case. We have this `value2` option to do that.
+
+This is because we want to keep the default property with not conditional selectors which could add specificity value to the property and create collateral cascale collisions.
+
+
 ```
 padding-left: var(--foo); → .padding(left, var(--foo));
 ```
+Same as in magin cases, in padding also we do have this second value to reset the default direction if needed `.padding(direction, value1, value2)`
+
 Shorthands (only when left != right or you need more specificity):
 ```
 margin: 0 0 0 var(--foo); → .margin-shorthand(0, 0, 0, var(--foo));
