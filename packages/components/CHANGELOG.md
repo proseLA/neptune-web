@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [38.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.11.1...@transferwise/components@38.0.0) (2021-11-10)
+
+
+* feat!: add Section and Header components (#1111) ([92e91aa](https://github.com/transferwise/neptune-web/commit/92e91aa87596f9de1b767d8c7ffa5352be6ddda3)), closes [#1111](https://github.com/transferwise/neptune-web/issues/1111)
+
+
+### BREAKING CHANGES
+
+* Update Option component paddings which visually affects their layout
+
+
+
+
+
 ## [37.11.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@37.11.0...@transferwise/components@37.11.1) (2021-11-08)
 
 
