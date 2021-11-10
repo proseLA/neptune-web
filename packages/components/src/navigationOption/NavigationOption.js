@@ -32,7 +32,7 @@ const NavigationOption = ({
     disabled,
     showMediaAtAllSizes,
     showMediaCircle,
-    className: classNames('tw-navigation-option', className),
+    className: classNames('np-navigation-option', className),
   };
 
   if (href) {
@@ -44,9 +44,12 @@ const NavigationOption = ({
       {...sharedProps}
       button={<Chevron orientation={Position.RIGHT} disabled={disabled} className="d-block" />}
       onClick={(event) => {
-        if (!disabled) {
-          onClick(event);
+        if (disabled) {
+          event.preventDefault();
+          return;
         }
+
+        onClick(event);
       }}
     />
   );

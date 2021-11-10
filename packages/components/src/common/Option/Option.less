@@ -1,13 +1,31 @@
-.tw-option__sm-media.decision .media-left {
+.np-option {
+  .circle-sm {
+    width: var(--size-40);
+    height: var(--size-40);
+    line-height: var(--size-40);
+  }
+}
+
+button.np-option {
+  background-color: transparent;
+  text-align: left;
+  width: 100%;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.np-option__sm-media.decision .media-left {
   display: block;
 }
 
-.tw-option__no-media-circle {
-  width: 48px;
+.np-option__no-media-circle {
+  width: var(--size-40);
   display: flex;
   justify-content: center;
 }
 
-.tw-option__no-media-circle > * {
+.np-option__no-media-circle > * {
   max-height: 76px;
 }

@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header renders as expected 1`] = `
+exports[`FlowHeader renders as expected 1`] = `
 <div>
   <div
-    class="np-header d-flex flex-wrap className"
+    class="np-flow-header d-flex flex-wrap className"
   >
     <div
-      class="align-items-center np-header__left d-flex"
+      class="align-items-center np-flow-header__left d-flex"
     >
       leftContent
     </div>
     <div
-      class="align-items-center d-flex np-header__right justify-content-end order-2"
+      class="align-items-center d-flex np-flow-header__right justify-content-end order-2"
     >
       rightContent
     </div>
@@ -24,18 +24,18 @@ exports[`Header renders as expected 1`] = `
 </div>
 `;
 
-exports[`Header renders as expected with vertical layout 1`] = `
+exports[`FlowHeader renders as expected with vertical layout 1`] = `
 <div>
   <div
-    class="np-header d-flex flex-wrap className"
+    class="np-flow-header d-flex flex-wrap className"
   >
     <div
-      class="align-items-center np-header__left d-flex flex__item--8"
+      class="align-items-center np-flow-header__left d-flex flex__item--8"
     >
       leftContent
     </div>
     <div
-      class="align-items-center d-flex np-header__right justify-content-end flex__item--4 "
+      class="align-items-center d-flex np-flow-header__right justify-content-end flex__item--4 "
     >
       rightContent
     </div>

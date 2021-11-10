@@ -22,7 +22,6 @@ type Props = PropsWithChildren<{ onClose: () => void; open: boolean } & CommonPr
  *
  * Neptune Web: https://transferwise.github.io/neptune-web/components/overlays/BottomSheet
  *
- * @param props
  */
 const BottomSheet = (props: Props): ReactElement => {
   const bottomSheetReference = useRef<HTMLDivElement>(null);

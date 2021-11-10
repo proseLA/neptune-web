@@ -21,38 +21,41 @@ const Option = ({
   showMediaCircle,
 }) => (
   <Element
-    className={classNames(className, 'media', {
+    className={classNames('np-option', className, {
       'decision-complex': complex,
       decision,
       disabled,
-      'tw-option__sm-media': showMediaAtAllSizes,
+      'np-option__sm-media': showMediaAtAllSizes,
     })}
     href={href}
     htmlFor={htmlFor}
     target={target}
     disabled={disabled && Element === 'button'}
+    aria-label={title}
     onClick={onClick}
   >
-    {media && (
-      <div className="media-left">
-        {showMediaCircle ? (
-          <div
-            className={classNames('circle circle-sm text-primary', {
-              'circle-inverse': inverseMediaCircle,
-            })}
-          >
-            {media}
-          </div>
-        ) : (
-          <div className="tw-option__no-media-circle">{media}</div>
-        )}
+    <div className="media">
+      {media && (
+        <div className="media-left">
+          {showMediaCircle ? (
+            <div
+              className={classNames('circle circle-sm text-primary', {
+                'circle-inverse': inverseMediaCircle,
+              })}
+            >
+              {media}
+            </div>
+          ) : (
+            <div className="np-option__no-media-circle">{media}</div>
+          )}
+        </div>
+      )}
+      <div className="media-body">
+        <div className="h5">{title}</div>
+        {content && <div className="decision__content">{content}</div>}
       </div>
-    )}
-    <div className="media-body">
-      <div className="h5">{title}</div>
-      {content && <div className="decision__content">{content}</div>}
+      <div className="media-right">{button}</div>
     </div>
-    <div className="media-right">{button}</div>
   </Element>
 );
 

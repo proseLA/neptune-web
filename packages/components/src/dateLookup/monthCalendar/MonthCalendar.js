@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
 
-import Header from '../header';
+import DateHeader from '../dateHeader';
 
 import MonthCalendarTable from './table';
 
@@ -33,7 +33,7 @@ class MonthCalendar extends PureComponent {
     } = this.props;
     return (
       <div>
-        <Header
+        <DateHeader
           label={formatDate(new Date(viewYear, 0), locale, { year: 'numeric' })}
           onLabelClick={onLabelClick}
           onPreviousClick={this.selectPreviousYear}

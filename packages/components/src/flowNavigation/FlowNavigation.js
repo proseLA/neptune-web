@@ -4,8 +4,8 @@ import { useRef } from 'react';
 
 import { Breakpoint, Layout } from '../common';
 import CloseButton from '../common/closeButton';
+import FlowHeader from '../common/flowHeader';
 import { useClientWidth } from '../common/hooks';
-import Header from '../header';
 import Logo from '../logo';
 import Stepper from '../stepper';
 
@@ -57,7 +57,7 @@ const FlowNavigation = ({ activeStep, avatar, logo, onClose, onGoBack, done, ste
         { 'np-flow-navigation--border-bottom': !done },
       )}
     >
-      <Header
+      <FlowHeader
         className={classNames(
           'np-flow-navigation__content p-x-3',
           {

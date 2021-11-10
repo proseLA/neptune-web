@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 
-import Header from '../header';
+import DateHeader from '../dateHeader';
 
 import YearCalendarTable from './table';
 
@@ -70,6 +70,6 @@ describe('YearCalendar', () => {
     expect(props.onSelect).toHaveBeenCalledTimes(1);
   });
 
-  const header = () => component.find(Header);
+  const header = () => component.find(DateHeader);
   const table = () => component.find(YearCalendarTable);
 });

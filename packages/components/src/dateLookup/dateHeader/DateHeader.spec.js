@@ -2,9 +2,9 @@ import { shallow } from 'enzyme';
 
 import Chevron from '../../chevron';
 
-import Header from '.';
+import DateHeader from '.';
 
-describe('Header', () => {
+describe('DateHeader', () => {
   let component;
   let props;
 
@@ -13,7 +13,7 @@ describe('Header', () => {
       onPreviousClick: jest.fn(),
       onNextClick: jest.fn(),
     };
-    component = shallow(<Header {...props} />);
+    component = shallow(<DateHeader {...props} />);
   });
 
   it('shows previous and next buttons', () => {

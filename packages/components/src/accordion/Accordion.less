@@ -1,62 +1,38 @@
-@import (reference) '@transferwise/neptune-css/src/less/addons/_spacing-utilities.less';
-@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
-
-@media (--screen-sm-max) {
-  .tw-accordion-item {
-    .accordion-content {
-      .media-body {
-        .m-l-0;
-      }
-    }
-  }
-}
-
-.tw-accordion-item {
+.np-accordion-item {
   display: block;
   width: 100%;
-  padding: 10px 24px;
 
-  &.decision {
-    &:hover {
-      &:not(.disabled) {
-        background-color: transparent;
-      }
+  &--open {
+    .media {
+      padding-bottom: var(--size-16);
+      border: 0 !important;
     }
   }
 
-  .btn {
-    border: none;
+  .decision:hover {
+    background-color: transparent;
   }
 
-  .chevron {
-    vertical-align: middle;
-  }
-
-  .media {
-    color: var(--color-text-primary);
-    flex-wrap: wrap;
-  }
-
-  &.decision .media-body {
-    white-space: normal;
-    font-size: @font-size-base;
-  }
-
-  .accordion-content {
-    cursor: auto;
-  }
-
-  &.closed {
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-    }
-  }
-
-  &.tw-accordion-item--dark {
+  &.np-accordion-item--dark {
     .media-body,
-    .tw-accordion-item__title {
+    .h5 {
       color: var(--color-text-control);
+    }
+  }
+
+  &__content {
+    padding: var(--size-24) 0;
+    margin: calc(var(--size-24) * -1) var(--size-16) 0 var(--size-16);
+    border-bottom: 1px solid var(--color-border-neutral);
+
+    @media (--screen-xs) {
+      &.icon-left {
+        padding-left: var(--size-56);
+      }
+
+      &.icon-right {
+        padding-right: var(--size-56);
+      }
     }
   }
 }

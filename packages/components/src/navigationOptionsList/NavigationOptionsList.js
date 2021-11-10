@@ -3,9 +3,9 @@ import { Children } from 'react';
 
 const NavigationOptionList = ({ children }) => {
   return (
-    <ul className="tw-navigation-options-list">
+    <ul className="np-navigation-options-list">
       {Children.map(children, (child) => (
-        <li key={child.key} className="tw-navigation-options-list__item">
+        <li key={child.key} className="np-navigation-options-list__item">
           {child}
         </li>
       ))}

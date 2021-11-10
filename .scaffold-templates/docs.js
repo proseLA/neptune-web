@@ -2,6 +2,9 @@
 
 const { capitalizeFirstLetter } = require('@transferwise/files-scaffold/utils/index.js');
 
+const expiryDate = new Date();
+expiryDate.setMonth(expiryDate.getMonth() + 2);
+
 module.exports = {
   type: 'docs',
   path: 'packages/docs/pages/components',
@@ -17,6 +20,10 @@ import code from '../../liveEditorCode/${name}.code';
 
 export const meta = {
   name: '${capitalizeFirstLetter(name)}',
+  badge: {
+    type: 'new',
+    expiryDate: '${expiryDate.toISOString().replace(/T.+/, '')}'
+  },
 };
 `,
 };

@@ -14,8 +14,8 @@ module.exports = {
     'jsdoc/require-jsdoc': 0,
     'jsdoc/require-param': 0,
     'jsdoc/require-returns': 0,
-    'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off',
+    'react/jsx-uses-react': 0,
+    'react/react-in-jsx-scope': 0,
     'react/destructuring-assignment': [0, 'never'],
     'jsx-a11y/label-has-for': [
       1,
@@ -132,11 +132,11 @@ module.exports = {
     {
       files: ['*.ts{,x}'],
       rules: {
-        'react/require-default-props': 'off',
-        'no-undef': 'off',
-        'react/prop-types': 'off',
-        'no-shadow': 'off',
-        'no-unused-vars': 'off',
+        'react/require-default-props': 0,
+        'no-undef': 0,
+        'react/prop-types': 0,
+        'no-shadow': 0,
+        'no-unused-vars': 0,
       },
     },
   ],

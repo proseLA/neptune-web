@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 
-import { Layout } from '../common';
+import { Layout } from '../propsValues/layouts';
 
-import Header from './Header';
+import FlowHeader from './FlowHeader';
 
-describe('Header', () => {
+describe('FlowHeader', () => {
   const props = {
     leftContent: 'leftContent',
     rightContent: 'rightContent',
@@ -13,10 +13,10 @@ describe('Header', () => {
     className: 'className',
   };
   it('renders as expected', () => {
-    expect(render(<Header {...props} />).container).toMatchSnapshot();
+    expect(render(<FlowHeader {...props} />).container).toMatchSnapshot();
   });
 
   it('renders as expected with vertical layout', () => {
-    expect(render(<Header {...props} layout={Layout.VERTICAL} />).container).toMatchSnapshot();
+    expect(render(<FlowHeader {...props} layout={Layout.VERTICAL} />).container).toMatchSnapshot();
   });
 });

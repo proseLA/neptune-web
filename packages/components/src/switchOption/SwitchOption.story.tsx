@@ -9,7 +9,7 @@ export default {
   title: 'SwitchOption',
 };
 
-export const Basic = () => {
+const Template = () => {
   const [checked, setChecked] = useState(false);
   const title = text('title', 'Switch option');
   const content = text('content', 'Normally, the button and icon are vertically centered.');
@@ -29,5 +29,19 @@ export const Basic = () => {
       aria-label={title}
       onChange={setChecked}
     />
+  );
+};
+
+export const Basic = () => {
+  return <Template />;
+};
+
+export const Multiple = () => {
+  return (
+    <>
+      <Template />
+      <Template />
+      <Template />
+    </>
   );
 };

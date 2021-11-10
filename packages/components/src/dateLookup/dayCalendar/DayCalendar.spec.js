@@ -1,7 +1,7 @@
 import * as formatting from '@transferwise/formatting';
 import { shallow } from 'enzyme';
 
-import Header from '../header';
+import DateHeader from '../dateHeader';
 
 import DayCalendarTable from './table';
 
@@ -111,6 +111,6 @@ describe('DayCalendar', () => {
     expect(table().prop('onSelect')).toBe(props.onSelect);
   });
 
-  const header = () => component.find(Header);
+  const header = () => component.find(DateHeader);
   const table = () => component.find(DayCalendarTable);
 });

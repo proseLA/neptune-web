@@ -3,13 +3,13 @@ import classNames from 'classnames';
 import { ReactElement, useState } from 'react';
 
 type HeadingProps = {
-  id?: string | undefined;
+  id?: string;
   children: string;
   as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   className?: string;
 };
 
-const Heading = ({ id = undefined, as, children, className }: HeadingProps): ReactElement => {
+const Heading = ({ id, as, children, className }: HeadingProps): ReactElement => {
   const [hover, setHover] = useState(false);
 
   const headerId = id || `${children.toLowerCase().split(' ').join('-')}`;

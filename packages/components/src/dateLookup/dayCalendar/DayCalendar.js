@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import { injectIntl } from 'react-intl';
 
 import { MonthFormat } from '../../common';
-import Header from '../header';
+import DateHeader from '../dateHeader';
 
 import DayCalendarTable from './table';
 
@@ -39,7 +39,7 @@ class DayCalendar extends PureComponent {
     } = this.props;
     return (
       <div>
-        <Header
+        <DateHeader
           label={formatDate(new Date(viewYear, viewMonth), locale, {
             month: monthFormat,
             year: 'numeric',

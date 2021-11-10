@@ -3,27 +3,26 @@
 exports[`AccordionItem open / close renders an item closed 1`] = `
 <div>
   <div
-    class="tw-accordion-item decision p-a-0 tw-accordion-item--light closed"
+    class="np-accordion-item np-accordion-item--light"
   >
     <button
-      aria-expanded="false"
-      class="tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3 p-b-3"
-      type="button"
+      aria-label="This is title number one"
+      class="np-option decision"
     >
       <div
         class="media"
       >
         <div
-          class="media-body title text-xs-left"
+          class="media-body"
         >
-          <span
-            class="h5 tw-accordion-item__title"
+          <div
+            class="h5"
           >
             This is title number one
-          </span>
+          </div>
         </div>
         <div
-          class="d-flex align-items-center media-right"
+          class="media-right"
         >
           <span
             aria-hidden="true"
@@ -46,16 +45,6 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
         </div>
       </div>
     </button>
-    <div
-      class="accordion-content media"
-    >
-      <div
-        aria-hidden="true"
-        class="media-body p-b-3"
-      >
-        Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
-      </div>
-    </div>
   </div>
 </div>
 `;
@@ -63,27 +52,26 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
 exports[`AccordionItem open / close renders an item open 1`] = `
 <div>
   <div
-    class="tw-accordion-item decision p-a-0 tw-accordion-item--light"
+    class="np-accordion-item np-accordion-item--light np-accordion-item--open"
   >
     <button
-      aria-expanded="true"
-      class="tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3 p-b-2"
-      type="button"
+      aria-label="This is title number one"
+      class="np-option decision"
     >
       <div
         class="media"
       >
         <div
-          class="media-body title text-xs-left"
+          class="media-body"
         >
-          <span
-            class="h5 tw-accordion-item__title"
+          <div
+            class="h5"
           >
             This is title number one
-          </span>
+          </div>
         </div>
         <div
-          class="d-flex align-items-center media-right"
+          class="media-right"
         >
           <span
             aria-hidden="true"
@@ -107,14 +95,9 @@ exports[`AccordionItem open / close renders an item open 1`] = `
       </div>
     </button>
     <div
-      class="accordion-content media"
+      class="np-accordion-item__content"
     >
-      <div
-        aria-hidden="false"
-        class="media-body p-b-3"
-      >
-        Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
-      </div>
+      Lauri Ipsum has been the industry standard dummy text ever since the 1500s.
     </div>
   </div>
 </div>

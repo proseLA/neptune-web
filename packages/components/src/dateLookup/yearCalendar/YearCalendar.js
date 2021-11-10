@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import Header from '../header';
+import DateHeader from '../dateHeader';
 
 import YearCalendarTable from './table';
 
@@ -23,7 +23,7 @@ class YearCalendar extends PureComponent {
     const { selectedDate, min, max, viewYear, placeholder } = this.props;
     return (
       <div>
-        <Header onPreviousClick={this.selectPreviousYears} onNextClick={this.selectNextYears} />
+        <DateHeader onPreviousClick={this.selectPreviousYears} onNextClick={this.selectNextYears} />
         <YearCalendarTable
           {...{ selectedDate, min, max, viewYear, placeholder }}
           onSelect={this.onYearSelect}

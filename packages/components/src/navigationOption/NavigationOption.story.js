@@ -9,15 +9,15 @@ export default {
   title: 'NavigationOption',
 };
 
-export const Basic = () => {
-  const href = text('href', 'http://www.wise.com');
-  const title = text('title', 'Navigation option');
-  const content = text('content', 'Button and icon are vertically centered.');
-  const complex = boolean('complex', false);
-  const disabled = boolean('disabled', false);
-  const showMediaAtAllSizes = boolean('showMediaAtAllSizes', false);
-  const showMediaCircle = boolean('showMediaCircle', true);
-  const className = text('className');
+const Template = (props) => {
+  const href = text('href', props.href);
+  const title = text('title', props.title ?? 'Navigation option');
+  const content = text('content', props.content ?? 'Button and icon are vertically centered.');
+  const complex = boolean('complex', props.complex ?? false);
+  const disabled = boolean('disabled', props.disabled ?? false);
+  const showMediaAtAllSizes = boolean('showMediaAtAllSizes', props.showMediaAtAllSizes ?? false);
+  const showMediaCircle = boolean('showMediaCircle', props.showMediaCircle ?? true);
+  const className = text('className', props.className);
 
   return (
     <NavigationOption
@@ -28,7 +28,7 @@ export const Basic = () => {
       href={href}
       title={title}
       content={content}
-      media={<FastFlagIcon />}
+      media={props.media || <FastFlagIcon />}
       showMediaAtAllSizes={showMediaAtAllSizes}
       showMediaCircle={showMediaCircle}
       className={className}
@@ -37,31 +37,19 @@ export const Basic = () => {
   );
 };
 
-export const illustration = () => {
-  const href = text('href', 'http://www.wise.com');
-  const title = text('title', 'Navigation option');
-  const content = text('content', 'Button and icon are vertically centered.');
-  const complex = boolean('complex', false);
-  const showMediaAtAllSizes = boolean('showMediaAtAllSizes', true);
-  const showMediaCircle = boolean('showMediaCircle', false);
-  const className = text('className');
+export const Basic = () => <Template />;
 
-  return (
-    <NavigationOption
-      complex={complex}
-      id="navigation-option"
-      name="navigation-option"
-      href={href}
-      title={title}
-      content={content}
-      className={className}
-      media={<ExampleIllustration />}
-      showMediaAtAllSizes={showMediaAtAllSizes}
-      showMediaCircle={showMediaCircle}
-      onClick={action('clicked')}
-    />
-  );
-};
+export const Multiple = () => (
+  <>
+    <Template />
+    <Template />
+    <Template />
+  </>
+);
+
+export const Illustration = () => (
+  <Template media={<ExampleIllustration />} showMediaCircle={false} />
+);
 
 const ExampleIllustration = () => (
   <svg style={{ width: '48px' }} viewBox="0 0 46 76">

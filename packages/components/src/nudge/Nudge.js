@@ -9,14 +9,23 @@ const Nudge = ({ media, title, link, href, onClick, onDismiss, id, className }) 
 
   return (
     <div className={classNames('tw-nudge media', className)} id={id}>
-      <div className={classNames({ 'media-left': !isRTL, 'media-right': isRTL })}>{media}</div>
+      <div
+        className={classNames('align-self-start', { 'media-left': !isRTL, 'media-right': isRTL })}
+      >
+        {media}
+      </div>
       <div className="media-body">
         <div className="tw-nudge__title media-heading h5">{title}</div>
         <a href={href} className="tw-nudge__link" onClick={onClick}>
           {link}
         </a>
       </div>
-      <div className={classNames({ 'media-right': !isRTL, 'media-left': isRTL })}>
+      <div
+        className={classNames('align-self-start', {
+          'media-right': !isRTL,
+          'media-left': isRTL,
+        })}
+      >
         <button type="button" className="close" aria-label="close" onClick={onDismiss}>
           <CrossIcon />
         </button>

@@ -31,14 +31,15 @@ describe('AccordionItem', () => {
 
   describe('icons', () => {
     it('renders the icon if passed', () => {
-      const { container } = render(<AccordionItem {...props} icon={<Freeze />} />);
+      render(<AccordionItem {...props} icon={<span>mock icon</span>} />);
 
-      expect(container.querySelector('.tw-icon-freeze')).toBeInTheDocument();
+      expect(screen.getByText('mock icon')).toBeInTheDocument();
     });
 
     it('will always render icons at 24px', () => {
       const { container } = render(<AccordionItem {...props} icon={<Freeze size={16} />} />);
 
+      // eslint-disable-next-line testing-library/no-container
       expect(container.querySelector('.tw-icon-freeze svg')).toHaveAttribute('width', '24');
     });
   });
@@ -57,8 +58,9 @@ describe('AccordionItem', () => {
   describe('Right-To-Left', () => {
     it('applies correct css classes when isRTL is true', () => {
       useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
-      const { container } = render(<AccordionItem {...props} />);
-      expect(container.querySelector('.media-body')).toHaveClass('text-xs-right');
+      const { container } = render(<AccordionItem {...props} icon={<span>mock icon</span>} open />);
+      // eslint-disable-next-line testing-library/no-container
+      expect(container.querySelector('.np-accordion-item__content')).toHaveClass('icon-right');
     });
   });
 });

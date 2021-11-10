@@ -5,6 +5,7 @@ import { cloneElement } from 'react';
 
 import Chevron from '../../chevron';
 import { Position, Theme } from '../../common';
+import Option from '../../common/Option';
 import { useDirection } from '../../common/hooks';
 
 const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
@@ -14,61 +15,28 @@ const AccordionItem = ({ id, title, content, onClick, open, icon, theme }) => {
   return (
     <div
       id={id}
-      className={classNames('tw-accordion-item decision p-a-0', `tw-accordion-item--${theme}`, {
-        closed: !open,
+      className={classNames('np-accordion-item', `np-accordion-item--${theme}`, {
+        'np-accordion-item--open': open,
       })}
     >
-      <button
-        type="button"
-        aria-expanded={open}
-        className={classNames('tw-accordion-item btn btn-link p-x-0 text-no-decoration p-t-3', {
-          'p-b-3': !open,
-          'p-b-2': open,
-        })}
+      <Option
+        as="button"
+        media={iconElement}
+        title={title}
+        button={<Chevron orientation={open ? Position.TOP : Position.DOWN} />}
+        inverseMediaCircle={false}
         onClick={onClick}
-      >
-        <div className="media">
-          {icon && (
-            <div
-              className={classNames('hidden-xs hidden-sm', {
-                'media-left': !isRTL,
-                'media-right': isRTL,
-                'p-r-2': !isRTL,
-                'p-l-2': isRTL,
-              })}
-            >
-              {iconElement}
-            </div>
-          )}
-          <div
-            className={classNames('media-body title', {
-              'text-xs-left': !isRTL,
-              'text-xs-right': isRTL,
-            })}
-          >
-            {isString(title) ? <span className="h5 tw-accordion-item__title">{title}</span> : title}
-          </div>
-          <div
-            className={classNames('d-flex align-items-center', {
-              'media-right': !isRTL,
-              'media-left': isRTL,
-            })}
-          >
-            <Chevron orientation={open ? Position.TOP : Position.BOTTOM} />
-          </div>
-        </div>
-      </button>
-      <div className="accordion-content media">
+      />
+      {open && (
         <div
-          className={classNames('media-body p-b-3', {
-            'm-l-5': icon || isRTL,
-            'm-r-5': icon,
+          className={classNames('np-accordion-item__content', {
+            'icon-right': icon && isRTL,
+            'icon-left': icon,
           })}
-          aria-hidden={!open}
         >
           {content}
         </div>
-      </div>
+      )}
     </div>
   );
 };

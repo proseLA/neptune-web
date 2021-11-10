@@ -2,16 +2,16 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 
-import { Layout } from '../common';
+import { Layout } from '../propsValues/layouts';
 
-const Header = forwardRef((props, reference) => {
+const FlowHeader = forwardRef((props, reference) => {
   const { bottomContent, className, layout, leftContent, rightContent } = props;
   const isVertical = layout === Layout.VERTICAL;
 
   return (
-    <div ref={reference} className={classNames('np-header', 'd-flex', 'flex-wrap', className)}>
+    <div ref={reference} className={classNames('np-flow-header', 'd-flex', 'flex-wrap', className)}>
       <div
-        className={classNames('align-items-center', 'np-header__left', 'd-flex', {
+        className={classNames('align-items-center', 'np-flow-header__left', 'd-flex', {
           'flex__item--8': isVertical,
         })}
       >
@@ -22,7 +22,7 @@ const Header = forwardRef((props, reference) => {
         className={classNames(
           'align-items-center',
           'd-flex',
-          'np-header__right',
+          'np-flow-header__right',
           'justify-content-end',
           {
             'flex__item--4 ': isVertical,
@@ -44,7 +44,7 @@ const Header = forwardRef((props, reference) => {
   );
 });
 
-Header.defaultProps = {
+FlowHeader.defaultProps = {
   bottomContent: undefined,
   className: undefined,
   layout: Layout.HORIZONTAL,
@@ -52,7 +52,7 @@ Header.defaultProps = {
   rightContent: undefined,
 };
 
-Header.propTypes = {
+FlowHeader.propTypes = {
   bottomContent: PropTypes.node,
   className: PropTypes.string,
   layout: PropTypes.oneOf(['HORIZONTAL', 'VERTICAL']),
@@ -60,4 +60,4 @@ Header.propTypes = {
   rightContent: PropTypes.node,
 };
 
-export default Header;
+export default FlowHeader;

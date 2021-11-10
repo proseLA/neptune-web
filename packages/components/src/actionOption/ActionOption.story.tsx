@@ -9,7 +9,7 @@ export default {
   title: 'ActionOption',
 };
 
-export const Basic = () => {
+const Template = () => {
   const title = text('title', 'Action option');
   const content = text('content', 'Normally, the button and icon are vertically centered.');
   const actionText = text('action', 'Action');
@@ -29,3 +29,13 @@ export const Basic = () => {
     />
   );
 };
+
+export const Basic = () => <Template />;
+
+export const Multiple = () => (
+  <>
+    <Template />
+    <Template />
+    <Template />
+  </>
+);

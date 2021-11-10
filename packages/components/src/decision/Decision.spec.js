@@ -144,6 +144,6 @@ describe('Decision', () => {
     });
   });
 
-  const getNavigationOption = () => container.querySelector('.tw-navigation-option');
+  const getNavigationOption = () => container.querySelector('.np-navigation-option');
   const getTile = () => container.querySelector('.np-tile');
 });

@@ -1,0 +1,14 @@
+import { Header } from '@transferwise/components';
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import code from '../../../liveEditorCode/header.code';
+
+<LiveEditorBlock code={code} scope={{ Header }} />
+<GeneratePropsTable componentName="Header" />
+
+export const meta = {
+  name: 'Header',
+  badge: {
+    type: 'new',
+    expiryDate: '2022-01-01',
+  },
+};

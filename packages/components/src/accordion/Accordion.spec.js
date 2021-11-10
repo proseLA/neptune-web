@@ -7,18 +7,18 @@ import Accordion from './Accordion';
 describe('Accordion', () => {
   const items = [
     {
-      title: 'This is title number one',
-      content: 'Lauri Ipsum has been the industry standard dummy text ever since the 1500s.',
+      title: 'Item 1 title',
+      content: 'Item 1 content',
       icon: <Freeze />,
     },
     {
-      title: 'This is title two',
-      content: 'Lauri Ipsum is simply dummy text of the printing and typesetting industry.',
+      title: 'Item 2 title',
+      content: 'Item 2 content',
       icon: <New />,
     },
     {
-      title: 'This is title three',
-      content: 'Lauri Ipsum has been the industry standard dummy text ever since the 1500s.',
+      title: 'Item 3 title',
+      content: 'Item 3 content',
       icon: <Emoji />,
     },
   ];
@@ -32,29 +32,32 @@ describe('Accordion', () => {
   describe('items', () => {
     it('renders a list with all items closed if items passed', () => {
       render(<Accordion items={items} />);
-      const openItem = screen.queryByRole('expanded');
-      expect(openItem).not.toBeInTheDocument();
+
+      items.forEach((item) => {
+        expect(screen.getByText(item.title)).toBeInTheDocument();
+        expect(screen.queryByText(item.content)).not.toBeInTheDocument();
+      });
     });
 
     it('renders a list with a specified item open if indexOpen is set', () => {
-      const { container } = render(<Accordion items={items} indexOpen={1} />);
-      const openItems = container.querySelectorAll('.tw-accordion-item[aria-expanded="true"]');
-      expect(openItems).toHaveLength(1);
+      render(<Accordion items={items} indexOpen={1} />);
 
-      const openItem = container.querySelector(
-        '.tw-accordion-item[aria-expanded="true"] .title .h5',
-      );
-      expect(openItem.innerHTML).toBe(items[1].title);
+      expect(screen.queryByText(items[0].content)).not.toBeInTheDocument();
+      expect(screen.getByText(items[1].content)).toBeInTheDocument();
+      expect(screen.queryByText(items[2].content)).not.toBeInTheDocument();
     });
   });
 
   describe('open and close', () => {
-    it('opens an item when clicked', () => {
-      const { container } = render(<Accordion items={items} />);
-      userEvent.click(screen.getAllByRole('button')[0]);
+    it('can open and close an item when clicked', () => {
+      const item = items[0];
+      render(<Accordion items={items} />);
 
-      expect(container).toMatchSnapshot();
-      expect(container.querySelectorAll('.closed')).toHaveLength(2);
+      userEvent.click(screen.getByRole('button', { name: item.title }));
+      expect(screen.getByText(item.content)).toBeInTheDocument();
+
+      userEvent.click(screen.getByRole('button', { name: item.title }));
+      expect(screen.queryByText(item.content)).not.toBeInTheDocument();
     });
   });
 

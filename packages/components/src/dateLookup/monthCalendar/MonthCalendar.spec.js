@@ -1,7 +1,7 @@
 import * as formatting from '@transferwise/formatting';
 import { shallow } from 'enzyme';
 
-import Header from '../header';
+import DateHeader from '../dateHeader';
 
 import MonthCalendarTable from './table';
 
@@ -94,6 +94,6 @@ describe('MonthCalendar', () => {
     expect(props.onSelect).toHaveBeenCalledTimes(1);
   });
 
-  const header = () => component.find(Header);
+  const header = () => component.find(DateHeader);
   const table = () => component.find(MonthCalendarTable);
 });

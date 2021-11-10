@@ -9,7 +9,7 @@ export default {
   title: 'CheckboxOption',
 };
 
-export const Basic = () => {
+const Template = () => {
   const [checked, setChecked] = useState(true);
   const content = text('content', 'Normally, the button and icon are vertically centered.');
   const title = text('title', 'Checkbox option');
@@ -28,5 +28,19 @@ export const Basic = () => {
       showMediaAtAllSizes={showMediaAtAllSizes}
       onChange={(newValue) => setChecked(newValue)}
     />
+  );
+};
+
+export const Basic = () => {
+  return <Template />;
+};
+
+export const Multiple = () => {
+  return (
+    <>
+      <Template />
+      <Template />
+      <Template />
+    </>
   );
 };

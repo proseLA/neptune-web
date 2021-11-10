@@ -1,40 +1,52 @@
-.tw-card {
-  border-top: solid 1px var(--color-border-neutral);
-  transition: all 0.15s ease, border 0s !important;
+.np-card {
+  transition-property: transform, box-shadow;
+  transition-duration: 0.35s;
+  transition-timing-function: ease;
 
-  &.list-group-item {
-    margin-top: 0;
-    border-left: 0;
-    background-color: transparent;
+  .media {
+    border: 0;
   }
 
-  &.active {
-    margin-top: 1px;
-    border-top: 0;
+  &--expanded {
     background-color: var(--color-background-elevated);
+    box-shadow: 0 1px 10px var(--color-border-neutral);
   }
 
-  &:hover {
-    background-color: var(--color-background-elevated);
-
-    .tw-card__panel .circle {
-      background-color: var(--color-background-neutral);
+  &--inactive {
+    .decision {
+      cursor: default;
     }
   }
 
-  &__panel {
-    .media {
-      cursor: pointer;
-    }
-
-    &--inactive {
-      .media {
-        cursor: default;
+  &--has-icon {
+    .np-card__content {
+      @media (--screen-xs) {
+        padding: var(--size-24) var(--size-72);
       }
     }
 
-    &:focus:not(:focus-visible) {
-      outline: none;
+    .np-card__divider {
+      @media (--screen-xs) {
+        &--expanded {
+          margin: 0 var(--size-72);
+        }
+      }
     }
+  }
+
+  &__button {
+    background-color: transparent;
+    text-align: left;
+    width: 100%;
+  }
+
+  &__content {
+    padding: var(--size-24) var(--size-16);
+  }
+
+  &__divider {
+    border-top: solid 1px var(--color-border-neutral);
+    margin: 0 var(--size-16);
+    transition: margin 0.35s ease;
   }
 }

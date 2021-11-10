@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import requiredIf from 'react-required-if';
 
 import Chevron from '../chevron';
-import { Position, Key } from '../common';
+import { Position } from '../common';
 import Option from '../common/Option';
 
 const Card = forwardRef((props, reference) => {
@@ -21,53 +21,33 @@ const Card = forwardRef((props, reference) => {
     ...rest
   } = props;
   const isOpen = !!(isExpanded && children);
-  const TOGGLE_KEYS = new Set([Key.ENTER, ...Key.SPACE]);
 
   return (
     <Element
       ref={reference}
-      className={classNames('tw-card list-group-item p-a-0', className, { active: isOpen })}
+      className={classNames('np-card', className, {
+        'np-card--expanded': isOpen,
+        'np-card--inactive': !children,
+        'np-card--has-icon': !!icon,
+      })}
       id={id}
       data-testid={rest['data-testid']}
     >
+      <Option
+        as={children ? 'button' : 'div'}
+        className={classNames('np-card__button')}
+        media={icon}
+        title={title}
+        content={details}
+        button={children && <Chevron orientation={isOpen ? Position.TOP : Position.BOTTOM} />}
+        onClick={() => children && onClick(!isExpanded)}
+      />
       <div
-        aria-expanded={isExpanded}
-        className={classNames('p-a-panel tw-card__panel', {
-          'tw-card__panel--inactive': !children,
+        className={classNames('np-card__divider', {
+          'np-card__divider--expanded': isOpen,
         })}
-        role={children ? 'button' : null}
-        tabIndex={children ? 0 : undefined}
-        onClick={() => children && onClick(!isExpanded)} // TODO: Consider renaming to onExpand as Card can be expanded with keyboard
-        onKeyDown={(event) => {
-          if (TOGGLE_KEYS.has(event.key) && children) {
-            event.preventDefault();
-            onClick(!isExpanded);
-          }
-        }}
-      >
-        <Option
-          as="div"
-          media={icon}
-          title={title}
-          content={details}
-          decision={false}
-          button={children && <Chevron orientation={isOpen ? Position.TOP : Position.DOWN} />}
-          inverseMediaCircle={isOpen}
-        />
-      </div>
-      {isOpen && (
-        <div className="p-l-panel p-r-panel p-b-panel tw-card__content">
-          <div className="media">
-            <div className="media-left">
-              <div className="circle circle-sm circle-inverse circle-responsive invisible" />
-            </div>
-            <div className="media-body">
-              <hr className="m-t-0 hidden-xs hidden-sm" />
-              <div>{children}</div>
-            </div>
-          </div>
-        </div>
-      )}
+      />
+      {isOpen && <div className="np-card__content">{children}</div>}
     </Element>
   );
 });

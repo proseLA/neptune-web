@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 
 import CloseButton from '../common/closeButton';
-import Header from '../header';
+import FlowHeader from '../common/flowHeader';
 import Logo from '../logo';
 
 const OverlayHeader = ({ avatar, onClose, logo }) => {
   const closeButton = onClose && <CloseButton onClick={onClose} />;
   return (
-    <Header
+    <FlowHeader
       className="np-overlay-header p-a-3"
       leftContent={logo}
       rightContent={
