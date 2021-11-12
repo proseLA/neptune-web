@@ -16,9 +16,7 @@ p + h2[id] {
 
 .Header {
   min-height: 100vh;
-
-  /* TODO: fix this while theming project */
-  background: var(--color-base-navy-light);
+  background-color: var(--color-navy-background-elevated);
 }
 
 .Header__Fixed {
@@ -69,15 +67,14 @@ p + h2[id] {
 }
 
 .Nav {
-  scroll-behavior: smooth;
   overflow-y: auto;
   margin-bottom: 0;
+  padding: 0;
   list-style: none;
   border-top: 1px solid var(--color-border-neutral);
   font-size: var(--font-size-14);
 }
 
-html:not([dir="rtl"]) .Nav,
 [dir="rtl"] .Nav {
   padding: 0;
 }
@@ -87,7 +84,7 @@ html:not([dir="rtl"]) .Nav,
   padding: var(--size-8) var(--size-16);
   transition: color 0.15s;
   text-decoration: none;
-  color: #37517e;
+  color: var(--color-content-primary);
   outline: 0 !important;
   font-weight: var(--font-weight-regular);
 }
@@ -104,19 +101,19 @@ html:not([dir="rtl"]) .Nav,
 }
 
 .Nav--dark {
-  border-top: 1px solid #4c638a;
+  border-top: 1px solid var(--color-navy-border-neutral);
 }
 
 .Nav__Group {
   padding: var(--size-16) var(--size-16) var(--size-8);
   text-transform: uppercase;
   font-size: var(--font-size-12);
-  color: var(--color-base-smoke-mid);
+  color: var(--color-navy-content-secondary);
   font-weight: 600;
 }
 
 .Sidebar .Nav__Group {
-  border-bottom: 1px solid #e2e6e8;
+  border-bottom: 1px solid var(--color-navy-border-neutral);
 }
 
 .Sidebar .Nav > .Nav__Group:not(:first-of-type) {
@@ -124,14 +121,14 @@ html:not([dir="rtl"]) .Nav,
 }
 
 .Nav--dark .Nav__Link {
-  color: #fff;
+  color: var(--color-navy-content-primary);
   border-bottom: 0;
   font-weight: var(--font-weight-bold);
 }
 
 /* TODO fix this while theming project */
 .Nav--dark .Nav__Link.active {
-  background: #2e4369;
+  background-color: var(--color-navy-background-screen);
 }
 
 .Content {
@@ -172,7 +169,11 @@ img {
 
 @media (min-width: 1200px) {
   .live-preview {
-    padding-inline-start: var(--size-32);
+    padding-left: var(--size-32);
+  }
+
+  [dir="rtl"] .live-preview {
+    padding-right: var(--size-32);
   }
 }
 
@@ -217,11 +218,11 @@ img {
   color: var(--color-content-primary);
 }
 
-[dir="rtl"] .docs-table > tbody > tr > th {
+[dir='rtl'] .docs-table > tbody > tr > th {
   padding-right: 5px;
 }
 
-:not([dir="rtl"]) .docs-table > tbody > tr > th {
+:not([dir='rtl']) .docs-table > tbody > tr > th {
   padding-left: 5px;
 }
 
