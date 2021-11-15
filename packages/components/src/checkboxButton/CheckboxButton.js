@@ -1,13 +1,23 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
-const CheckboxButton = ({ checked, className, disabled, onChange, ...rest }) => (
-  <span className={classNames('np-checkbox-button', className)}>
-    <input {...rest} type="checkbox" disabled={disabled} checked={checked} onChange={onChange} />
-    <span className="tw-checkbox-button">
-      <span className="tw-checkbox-check" />
+const CheckboxButton = forwardRef(
+  ({ checked, className, disabled, onChange, ...rest }, reference) => (
+    <span className={classNames('np-checkbox-button', className)}>
+      <input
+        ref={reference}
+        {...rest}
+        type="checkbox"
+        disabled={disabled}
+        checked={checked}
+        onChange={onChange}
+      />
+      <span className="tw-checkbox-button">
+        <span className="tw-checkbox-check" />
+      </span>
     </span>
-  </span>
+  ),
 );
 
 CheckboxButton.propTypes = {
