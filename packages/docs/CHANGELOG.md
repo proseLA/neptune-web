@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@14.0.0...@transferwise/neptune-docs@14.1.0) (2021-11-15)
+
+
+### Features
+
+* fix accessibility of the docs ([#1213](https://github.com/transferwise/neptune-web/issues/1213)) ([032d67b](https://github.com/transferwise/neptune-web/commit/032d67bb577113227570344b999a333fc9b19965))
+
+
+
+
+
 # [14.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@13.5.20...@transferwise/neptune-docs@14.0.0) (2021-11-10)
 
 
