@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [38.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.1.0...@transferwise/components@38.2.0) (2021-11-15)
+
+
+### Features
+
+* **components:** add aria-label prop to Option ([#1212](https://github.com/transferwise/neptune-web/issues/1212)) ([abaca09](https://github.com/transferwise/neptune-web/commit/abaca0998210f8d938347cd3995f50dbb3867997))
+
+
+
+
+
 # [38.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.0.0...@transferwise/components@38.1.0) (2021-11-15)
 
 
