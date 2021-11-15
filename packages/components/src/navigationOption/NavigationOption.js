@@ -8,6 +8,7 @@ import { Position } from '../common';
 import Option from '../common/Option';
 
 const NavigationOption = ({
+  'aria-label': ariaLabel,
   as,
   media,
   href,
@@ -22,6 +23,7 @@ const NavigationOption = ({
   className,
 }) => {
   const sharedProps = {
+    ariaLabel,
     as,
     media,
     href,
@@ -56,6 +58,7 @@ const NavigationOption = ({
 };
 
 NavigationOption.propTypes = {
+  'aria-label': PropTypes.string,
   as: PropTypes.string,
   media: PropTypes.node,
   title: PropTypes.node.isRequired,
@@ -71,6 +74,7 @@ NavigationOption.propTypes = {
 };
 
 NavigationOption.defaultProps = {
+  'aria-label': undefined,
   as: 'button',
   media: null,
   content: null,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 
 const Option = ({
+  'aria-label': ariaLabel,
   as: Element,
   href,
   target,
@@ -31,7 +32,7 @@ const Option = ({
     htmlFor={htmlFor}
     target={target}
     disabled={disabled && Element === 'button'}
-    aria-label={title}
+    aria-label={ariaLabel}
     onClick={onClick}
   >
     <div className="media">
@@ -60,6 +61,7 @@ const Option = ({
 );
 
 Option.propTypes = {
+  'aria-label': PropTypes.string,
   media: PropTypes.node,
   htmlFor: PropTypes.string,
   title: PropTypes.node.isRequired,
@@ -79,6 +81,7 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
+  'aria-label': undefined,
   as: 'label',
   media: '',
   content: null,

@@ -4,6 +4,7 @@ import CheckboxButton from '../checkboxButton';
 import Option from '../common/Option';
 
 const CheckboxOption = ({
+  'aria-label': ariaLabel,
   media,
   title,
   content,
@@ -14,7 +15,16 @@ const CheckboxOption = ({
   disabled,
   showMediaAtAllSizes,
 }) => {
-  const sharedProps = { media, title, content, name, complex, disabled, showMediaAtAllSizes };
+  const sharedProps = {
+    ariaLabel,
+    media,
+    title,
+    content,
+    name,
+    complex,
+    disabled,
+    showMediaAtAllSizes,
+  };
 
   return (
     <Option
@@ -27,6 +37,7 @@ const CheckboxOption = ({
 };
 
 CheckboxOption.propTypes = {
+  'aria-label': PropTypes.string,
   checked: PropTypes.bool,
   complex: PropTypes.bool,
   content: PropTypes.node,
@@ -40,6 +51,7 @@ CheckboxOption.propTypes = {
 };
 
 CheckboxOption.defaultProps = {
+  'aria-label': undefined,
   checked: false,
   complex: false,
   content: null,

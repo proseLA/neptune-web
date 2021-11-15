@@ -1,4 +1,3 @@
-import { testID as chevronTestID } from '../chevron/Chevron';
 import { Position } from '../common';
 import { render, screen, userEvent } from '../test-utils';
 
@@ -89,9 +88,15 @@ describe('Card', () => {
   describe('when there is children prop', () => {
     it('calls on onClick with inverse of current isExpanded value when clicked', () => {
       const onClick = jest.fn();
-      renderCard({ title: 'test title', children: 'mock children', isExpanded: false, onClick });
+      renderCard({
+        'aria-label': 'test',
+        title: 'test title',
+        children: 'mock children',
+        isExpanded: false,
+        onClick,
+      });
 
-      userEvent.click(screen.getByRole('button', { name: 'test title' }));
+      userEvent.click(screen.getByRole('button', { name: 'test' }));
       expect(onClick).toHaveBeenCalledWith(true);
     });
 

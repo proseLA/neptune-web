@@ -6,7 +6,6 @@ exports[`AccordionItem open / close renders an item closed 1`] = `
     class="np-accordion-item np-accordion-item--light"
   >
     <button
-      aria-label="This is title number one"
       class="np-option decision"
     >
       <div
@@ -55,7 +54,6 @@ exports[`AccordionItem open / close renders an item open 1`] = `
     class="np-accordion-item np-accordion-item--light np-accordion-item--open"
   >
     <button
-      aria-label="This is title number one"
       class="np-option decision"
     >
       <div

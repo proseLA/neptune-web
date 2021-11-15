@@ -9,6 +9,7 @@ import Option from '../common/Option';
 
 const Card = forwardRef((props, reference) => {
   const {
+    'aria-label': ariaLabel,
     as: Element,
     isExpanded,
     title,
@@ -34,6 +35,7 @@ const Card = forwardRef((props, reference) => {
       data-testid={rest['data-testid']}
     >
       <Option
+        aria-label={ariaLabel}
         as={children ? 'button' : 'div'}
         className={classNames('np-card__button')}
         media={icon}
@@ -55,6 +57,7 @@ const Card = forwardRef((props, reference) => {
 const hasChildren = ({ children }) => children;
 
 Card.propTypes = {
+  'aria-label': PropTypes.string,
   as: PropTypes.string,
   isExpanded: requiredIf(PropTypes.bool, hasChildren),
   title: PropTypes.node.isRequired,
@@ -68,6 +71,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  'aria-label': undefined,
   as: 'div',
   children: null,
   id: null,

@@ -4,6 +4,7 @@ import Option from '../common/Option';
 import RadioButton from '../common/RadioButton';
 
 const RadioOption = ({
+  'aria-label': ariaLabel,
   media,
   title,
   content,
@@ -16,7 +17,16 @@ const RadioOption = ({
   value,
   showMediaAtAllSizes,
 }) => {
-  const sharedProps = { media, title, content, name, complex, disabled, showMediaAtAllSizes };
+  const sharedProps = {
+    ariaLabel,
+    media,
+    title,
+    content,
+    name,
+    complex,
+    disabled,
+    showMediaAtAllSizes,
+  };
   return (
     <Option
       {...sharedProps}
@@ -35,6 +45,7 @@ const RadioOption = ({
 };
 
 RadioOption.propTypes = {
+  'aria-label': PropTypes.string,
   media: PropTypes.node,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -49,6 +60,7 @@ RadioOption.propTypes = {
 };
 
 RadioOption.defaultProps = {
+  'aria-label': undefined,
   media: null,
   content: null,
   checked: false,
