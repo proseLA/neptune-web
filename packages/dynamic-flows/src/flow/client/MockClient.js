@@ -4,6 +4,7 @@ import finalStep from '../examples/final.json';
 import formStep from '../examples/form.json';
 import layoutStep from '../examples/layout.json';
 import receiveStep from '../examples/recipient_details.json';
+import receiveStepRefresh from '../examples/recipient_details_refresh.json';
 import review from '../examples/review.json';
 
 const reviewStep = {
@@ -25,8 +26,10 @@ async function request({ action, data }) {
       return Promise.resolve(createResponse(decisionStep));
     case '/recipient':
       return Promise.resolve(createResponse(formStep));
-    case '/recipient_details':
+    case '/recipient-details':
       return Promise.resolve(createResponse(receiveStep));
+    case '/recipient-details-refresh':
+      return Promise.resolve(createResponse(receiveStepRefresh));
     case '/layout':
       return Promise.resolve(createResponse(layoutStep));
     case '/review':

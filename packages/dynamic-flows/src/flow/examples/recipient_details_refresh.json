@@ -1,7 +1,14 @@
 {
-  "key": "account",
+  "key": "account-unique-id-matched",
   "type": "form",
   "title": "Create recipient",
+  "actions": [
+    {
+      "title": "Confirm",
+      "url": "/v2/accounts?additionalInfo=legacyType&isDfv3Request=true&ownedByCustomer=false&contactsEnabled=true&enableOptionalAddress=true&emailRecipientEnabled=false",
+      "method": "POST"
+    }
+  ],
   "schemas": [
     {
       "allOf": [
@@ -35,7 +42,7 @@
               ],
               "validationMessages": { "required": "Please enter currency." },
               "refreshFormOnChange": true,
-              "refreshFormUrl": "/recipient-details-refresh",
+              "refreshFormUrl": "/v3/account-requirements?additionalInfo=legacyType&ownedByCustomer=false&contactsEnabled=true&enableOptionalAddress=true&emailRecipientEnabled=false&trigger=currency",
               "default": "EUR"
             },
             "legalEntityType": {
@@ -60,7 +67,7 @@
               "refreshFormOnChange": true,
               "autofillProvider": "contact",
               "autofillKey": "contact.email",
-              "refreshFormUrl": "/recipient-details-refresh",
+              "refreshFormUrl": "/v3/account-requirements?additionalInfo=legacyType&ownedByCustomer=false&contactsEnabled=true&enableOptionalAddress=true&emailRecipientEnabled=false&trigger=email",
               "pattern": "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$",
               "maxLength": 255
             }
@@ -225,10 +232,76 @@
                 "markdown": "To send EUR to this account, we need to use the SWIFT network. It’s slower, so the transfer might take a day or two longer. Also note that intermediary banks and your recipient’s bank might charge extra fees to the amount received.",
                 "type": "alert"
               }
+            },
+            {
+              "title": "Bob Loblaw",
+              "description": "Send to their EUR account ending in 6789.",
+              "type": "object",
+              "promoted": true,
+              "displayOrder": ["name", "ownedByCustomer", "details", "type"],
+              "properties": {
+                "name": {
+                  "type": "object",
+                  "displayOrder": ["fullName"],
+                  "properties": {
+                    "fullName": {
+                      "title": "Full name of the account holder",
+                      "type": "string",
+                      "validationMessages": {
+                        "minLength": "Name needs to be between 2 and 255 characters long.",
+                        "maxLength": "Recipient name cannot be longer than 255 characters.",
+                        "required": "Name cannot be empty."
+                      },
+                      "autofillProvider": "contact",
+                      "autofillKey": "contact.fullName",
+                      "minLength": 2,
+                      "maxLength": 255
+                    }
+                  },
+                  "required": ["fullName"]
+                },
+                "ownedByCustomer": {
+                  "title": "My own Account",
+                  "type": "boolean",
+                  "hidden": true,
+                  "const": false
+                },
+                "details": {
+                  "type": "object",
+                  "displayOrder": ["targetUserId"],
+                  "properties": {
+                    "targetUserId": {
+                      "title": "Target Recipient User ID",
+                      "type": "string",
+                      "hidden": true,
+                      "const": "9859779"
+                    }
+                  },
+                  "required": []
+                },
+                "type": { "title": "Type", "type": "string", "hidden": true, "const": "UniqueId" }
+              },
+              "required": ["type", "name", "details"],
+              "image": {
+                "url": "https://tw-test-avatar-storage.s3.eu-west-1.amazonaws.com/953f9d0c-49e2-4ce8-8098-43d8698761b2",
+                "type": "image"
+              }
             }
           ],
           "control": "tab",
-          "placeholder": "Please select where you are sending to..."
+          "promotion": {
+            "other": {
+              "title": "Send to a different account",
+              "icon": { "name": "bank", "type": "icon" },
+              "heading": { "text": "Recipient's bank details", "type": "heading" }
+            }
+          },
+          "placeholder": "Please select where you are sending to...",
+          "alert": {
+            "context": "success",
+            "markdown": "Onion Knight is already on Wise, and would like to receive EUR in the following account",
+            "type": "alert"
+          }
         }
       ]
     }
@@ -238,15 +311,10 @@
     "ownedByCustomer": false,
     "profileId": 14518756,
     "legalEntityType": "PERSON",
+    "name": { "fullName": "Bob Loblaw" },
     "currency": "EUR",
-    "details": {},
-    "type": "Iban"
-  },
-  "actions": [
-    {
-      "title": "Confirm",
-      "url": "/submit",
-      "method": "POST"
-    }
-  ]
+    "details": { "targetUserId": "9859779" },
+    "type": "UniqueId",
+    "email": "bobloblaw@law.blog"
+  }
 }

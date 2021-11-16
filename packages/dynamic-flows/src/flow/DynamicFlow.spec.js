@@ -373,7 +373,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     it('should inline any schemas referenced by id using the layout service', () => {
-      expect(inlineReferences).toHaveBeenCalledTimes(3);
+      expect(inlineReferences).toHaveBeenCalledTimes(4);
     });
   });
 

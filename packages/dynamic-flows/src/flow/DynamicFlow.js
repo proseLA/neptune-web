@@ -1,7 +1,7 @@
 import { Loader } from '@transferwise/components';
 import { isEmpty, isObject } from '@transferwise/neptune-validation';
 import Types from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import { Size } from '../common';
@@ -83,21 +83,23 @@ const DynamicFlow = (props) => {
 
   const { locale } = useIntl();
 
-  const [stepSpecification, setStepSpecification] = useState({});
-  const [models, setModels] = useState({});
-  const [modelIsValid, setModelIsValid] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
 
+  const [stepAndModels, setStepAndModels] = useState({ stepSpecification: {}, models: {} });
+  const { stepSpecification, models } = stepAndModels;
+
   const httpClient = propsHttpClient || defaultHttpClient.init({ baseUrl });
 
-  const onNewStep = () => {
-    if (stepSpecification?.model) {
-      setModels(buildInitialModels(stepSpecification.model, stepSpecification.schemas));
-    }
-    if (stepSpecification?.errors?.validation) {
-      setValidations(stepSpecification.errors.validation);
+  const updateStepSpecification = (step) => {
+    setStepAndModels((previous) => ({
+      stepSpecification: step,
+      models: step.model ? buildInitialModels(step.model, step.schemas) : previous.models,
+    }));
+
+    if (step?.errors?.validation) {
+      setValidations(step.errors.validation);
     } else {
       setValidations(null);
     }
@@ -108,11 +110,10 @@ const DynamicFlow = (props) => {
     fetchStep(action);
   }, [baseUrl, flowUrl, propsHttpClient]);
 
-  useEffect(onNewStep, [stepSpecification]);
-
-  useEffect(() => {
-    setModelIsValid(areModelsValid(models, stepSpecification.schemas));
-  }, [models]);
+  const modelIsValid = useMemo(
+    () => areModelsValid(models, stepSpecification.schemas),
+    [models, stepSpecification.schemas],
+  );
 
   const fetchStep = (action, data) => {
     const previousStep = stepSpecification;
@@ -124,12 +125,12 @@ const DynamicFlow = (props) => {
       .then(async (response) => {
         if (isExitResponse(response)) {
           const result = await response.json().catch(() => undefined);
-          setStepSpecification({});
+          updateStepSpecification({});
           onClose(result);
         } else {
-          const json = await response.json();
-          setStepSpecification(json);
-          onStepChange(json, previousStep);
+          const step = await response.json();
+          updateStepSpecification(step);
+          onStepChange(step, previousStep);
           setSubmitted(false);
         }
       })
@@ -141,8 +142,8 @@ const DynamicFlow = (props) => {
     return httpClient
       .request({ action, data })
       .then(async (response) => {
-        const json = await response.json();
-        setStepSpecification(json);
+        const step = await response.json();
+        updateStepSpecification(step);
       })
       .catch(handleFetchError);
   };
@@ -168,10 +169,14 @@ const DynamicFlow = (props) => {
     const { $id } = formSchema;
 
     // Multiple children might trigger model updates, we must access the previous model to ensure all changes are reflected in the new model
-    setModels((previousModels) => {
+    setStepAndModels((previous) => {
       const updatedModels = {
-        ...previousModels,
+        ...previous.models,
         [$id]: newModel,
+      };
+      const updatedState = {
+        stepSpecification: previous.stepSpecification,
+        models: updatedModels,
       };
 
       if (triggerSchema?.refreshFormOnChange) {
@@ -180,7 +185,7 @@ const DynamicFlow = (props) => {
         fetchRefresh(action, combineModels(updatedModels));
       }
 
-      return updatedModels;
+      return updatedState;
     });
   };
 
