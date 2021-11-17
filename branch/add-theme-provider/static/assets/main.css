@@ -16,7 +16,7 @@ p + h2[id] {
 
 .Header {
   min-height: 100vh;
-  background-color: var(--color-background-elevated);
+  background-color: var(--color-navy-background-elevated);
 }
 
 .Header__Fixed {
@@ -75,7 +75,7 @@ p + h2[id] {
   font-size: var(--font-size-14);
 }
 
-[dir="rtl"] .Nav {
+[dir='rtl'] .Nav {
   padding: 0;
 }
 
@@ -101,19 +101,19 @@ p + h2[id] {
 }
 
 .Nav--dark {
-  border-top: 1px solid var(--color-border-neutral);
+  border-top: 1px solid var(--color-navy-border-neutral);
 }
 
 .Nav__Group {
   padding: var(--size-16) var(--size-16) var(--size-8);
   text-transform: uppercase;
   font-size: var(--font-size-12);
-  color: var(--color-content-secondary);
+  color: var(--color-navy-content-secondary);
   font-weight: 600;
 }
 
 .Sidebar .Nav__Group {
-  border-bottom: 1px solid var(--color-border-neutral);
+  border-bottom: 1px solid var(--color-navy-border-neutral);
 }
 
 .Sidebar .Nav > .Nav__Group:not(:first-of-type) {
@@ -121,14 +121,14 @@ p + h2[id] {
 }
 
 .Nav--dark .Nav__Link {
-  color: var(--color-content-primary);
+  color: var(--color-navy-content-primary);
   border-bottom: 0;
   font-weight: var(--font-weight-bold);
 }
 
 /* TODO fix this while theming project */
 .Nav--dark .Nav__Link.active {
-  background-color: var(--color-background-screen);
+  background-color: var(--color-navy-background-screen);
 }
 
 .Content {
@@ -172,7 +172,7 @@ img {
     padding-left: var(--size-32);
   }
 
-  [dir="rtl"] .live-preview {
+  [dir='rtl'] .live-preview {
     padding-right: var(--size-32);
   }
 }
