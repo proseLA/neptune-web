@@ -75,7 +75,7 @@ p + h2[id] {
   font-size: var(--font-size-14);
 }
 
-[dir="rtl"] .Nav {
+[dir='rtl'] .Nav {
   padding: 0;
 }
 
@@ -172,7 +172,7 @@ img {
     padding-left: var(--size-32);
   }
 
-  [dir="rtl"] .live-preview {
+  [dir='rtl'] .live-preview {
     padding-right: var(--size-32);
   }
 }
