@@ -455,7 +455,7 @@ input[type='checkbox'] {
   .input-group-lg > .input-group-addon {
     height: @input-height-large;
     padding:
-      (@padding-small-vertical + @line-height-computed) @padding-small-horizontal
+      calc(@padding-small-vertical + var(--size-24)) @padding-small-horizontal
       @padding-small-vertical;
     font-size: @input-font-size-large;
     line-height: @input-line-height-large;

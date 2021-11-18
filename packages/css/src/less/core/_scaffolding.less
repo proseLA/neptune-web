@@ -1,5 +1,4 @@
 @import (reference) '../../variables/neptune-tokens.less';
-@import (reference) '../variables/_typography.less';
 @import (reference) '../mixins/_logical-properties.less';
 
 *,
@@ -12,7 +11,7 @@ html {
   color: var(--color-content-secondary);
   font-size: var(--font-size-16);
   line-height: var(--line-height-body);
-  font-family: 'Averta', 'Avenir W02', 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: var(--font-family-regular);
   letter-spacing: 0.016em;
   background-color: var(--color-background-screen);
   -webkit-font-smoothing: antialiased;
@@ -50,7 +49,7 @@ pre {
 a,
 .anchor {
   color: var(--color-content-accent);
-  font-weight: 600;
+  font-weight: var(--font-weight-semi-bold);
   letter-spacing: 0;
   text-decoration: underline;
   background-color: transparent; // Normalize 8.0.1

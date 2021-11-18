@@ -121,75 +121,14 @@
 
 @text-secondary-color:  @brand-grey;
 
-//== Typography
+//== Headings
 //
-//## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif:  "Averta", "Avenir W02", "Avenir", Helvetica, Arial, sans-serif;   //"Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
-//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
-
-@font-size-base:          16px;
-@font-size-large:         18px;
-@font-size-medium:        16px;
-@font-size-small:         14px;
-@font-size-xsmall:        12px;
-
-@font-size-h1:            42px;
-@font-size-h2:            28px;
-@font-size-h3:            22px;
-@font-size-h4:            18px;
-@font-size-h5:            16px;
-@font-size-h6:            14px;
-
-@line-height-h1:          48px;
-@line-height-h2:          32px;
-@line-height-h3:          30px;
-@line-height-h4:          24px;
-@line-height-h5:          24px;
-@line-height-h6:          24px;
-
-@font-spacing-base:       0.016em;
-@font-spacing-semi-bold:  0;
-
-@font-weight-normal:      500;
-@font-weight-semi-bold:   600;
-@font-weight-bold:        800;
-
-//** Unit-less `line-height` for use in components like buttons.
-@line-height-base:        24px; // 24/16
-//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
-@line-height-computed:    24px; // ~24px
-
-//** By default, this inherits from the `<body>`.
-@headings-font-family:    "Averta", "Avenir W02", "Avenir", Helvetica, Arial, sans-serif;    //inherit;
-@headings-font-weight:    @font-weight-semi-bold;
-@headings-line-height:    1.2;              //1.1;
 @headings-color:          @brand-navy-minus-10;
 
-@display1-size:       104px;
-@display2-size:       88px;
-@display3-size:       72px;
-@display4-size:       56px;
 
-@display1-weight:     @font-weight-bold;
-@display2-weight:     @font-weight-bold;
-@display3-weight:     @font-weight-bold;
-@display4-weight:     @font-weight-bold;
 
-@display1-margin-bottom: 8px;
-@display2-margin-bottom: 16px;
-@display3-margin-bottom: 24px;
-@display4-margin-bottom: 24px;
 
-@display1-line-height: 128px;
-@display2-line-height: 112px;
-@display3-line-height: 88px;
-@display4-line-height: 72px;
-
-@buttons-font-family:     "Averta", "Avenir W02", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 //** Global textual link color.
 @link-color:            @brand-light-blue;
@@ -203,13 +142,10 @@
 @link-active-color:     @brand-light-blue-minus-20;
 //** Link disabled color
 @link-disabled-color:   @brand-smoke-minus-10;
-//** Link font weight
-@link-font-weight:      @font-weight-semi-bold;
 
 @link-secondary-color:        @brand-navy;
 @link-secondary-hover-color:  @link-color;
 @link-secondary-active-color: @link-hover-color;
-@link-secondary-font-weight:  @font-weight-normal;
 
 //== Iconography
 //
@@ -238,9 +174,6 @@
 
 @padding-xs-vertical:       2px;
 @padding-xs-horizontal:     8px;
-
-@line-height-large:         32px; // 18*1.555 = 28
-@line-height-small:         24px; // 12*1.5=18
 
 @border-radius-base:        3px;
 @border-radius-large:       3px;
@@ -307,8 +240,6 @@
 //== Buttons
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
-
-@btn-font-weight:                @font-weight-semi-bold;               //normal;
 
 @btn-height:                     @input-height-base;
 @btn-font-size:                  16px;
@@ -486,7 +417,6 @@
 
 @control-label-color:            @text-color;
 @control-label-focus:            @brand-light-blue-minus-20;
-@control-label-font-size:        @font-size-small;
 
 //** Color for textual input addons
 @input-group-color:              @brand-smoke-minus-10;
@@ -669,8 +599,6 @@
 //##
 
 // Basics of a navbar
-@navbar-font-size:            14px;
-@navbar-font-size-mobile:     16px;
 @navbar-line-height:          40px;
 @navbar-height:               56px;
 @navbar-margin-bottom:        40px;
@@ -761,14 +689,10 @@
 
 //== Tabs
 @nav-tabs-border-color:                     @brand-smoke;
-@nav-tabs-font-size:                        @font-size-base;
 @nav-tabs-active-hover-border-color:        @brand-light-blue;
 
 @nav-tabs-justified-link-border-color:            @brand-smoke;
 @nav-tabs-justified-active-link-border-color:     @body-bg;
-
-//== Pills
-@nav-pills-font-size:                       @font-size-small;
 
 
 //== Pagination
@@ -776,7 +700,6 @@
 //##
 
 @pagination-color:                     @brand-navy;
-@pagination-font-weight:               @font-weight-normal;
 @pagination-bg:                        transparent;
 
 @pagination-hover-color:               @brand-navy;
@@ -941,8 +864,6 @@
 //** Padding applied to the modal title
 @modal-title-padding:          @spacing-1-desktop;
 @modal-title-vertical-padding: 28px;	// 2*28 + 24 = 80
-//** Modal title line-height
-@modal-title-line-height:      @line-height-computed;
 
 //** Background color of modal content area
 @modal-content-bg:                             #fff;
@@ -972,7 +893,6 @@
 @alert-padding:               24px;
 @alert-border-radius:         @border-radius-base;
 @alert-bar-width:             8px;
-@alert-link-font-weight:      bold;
 
 @alert-success-bg:            @state-success-bg;
 @alert-success-text:          @state-success-text;
@@ -1116,14 +1036,6 @@
 @thumbnail-caption-padding:   24px;
 
 
-//== Tiles
-//
-//##
-
-//** Padding around the tile
-@tile-font-size:              @font-size-small;
-
-
 
 //== Media objects
 //
@@ -1154,7 +1066,6 @@
 @badge-active-bg:             #fff;
 
 @badge-font-size:             10px;
-@badge-font-weight:           bold;
 @badge-line-height:           1;
 @badge-border-radius:         10px;
 
@@ -1180,7 +1091,6 @@
 @carousel-control-color:                      @brand-light-blue;
 @carousel-control-width:                      15%;
 @carousel-control-opacity:                    1;
-@carousel-control-font-size:                  20px;
 
 @carousel-indicator-active-bg:                @brand-light-blue;
 @carousel-indicator-border-color:             @brand-light-blue;
@@ -1192,8 +1102,6 @@
 //
 //##
 
-@close-font-size:             32px;
-@close-font-weight:           bold;
 @close-color:                 @brand-light-blue;
 @close-color-hover:           @brand-light-blue-minus-10;
 @close-color-active:          @brand-light-blue-minus-20;
@@ -1229,8 +1137,6 @@
 @headings-small-color:        @gray-light;
 //** Blockquote small color
 @blockquote-small-color:      @gray-light;
-//** Blockquote font size
-@blockquote-font-size:        @font-size-large;
 //** Blockquote border color
 @blockquote-border-color:     @brand-light-blue;
 //** Page header border color

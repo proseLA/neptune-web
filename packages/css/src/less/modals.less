@@ -100,7 +100,7 @@
 .modal-header {
   padding: @modal-inner-padding-collapse;
   border-bottom: 1px solid @modal-header-border-color;
-  min-height: (@modal-inner-padding-collapse + @modal-title-line-height);
+  min-height: calc(@modal-inner-padding-collapse + var(--size-24));
 }
 
 // Close icon
@@ -113,7 +113,7 @@
 
 .modal-title {
   margin: 0;
-  line-height: @modal-title-line-height;
+  line-height: var(--line-height-title);
 }
 
 // Modal body
@@ -179,7 +179,7 @@
 
   .modal-header {
     padding: @modal-title-vertical-padding @modal-title-padding;
-    min-height: (@modal-title-vertical-padding + @modal-title-line-height);
+    min-height: calc(@modal-title-vertical-padding + var(--size-24));
   }
 
   .modal-body {
