@@ -1,0 +1,177 @@
+#cameraCapture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1030;
+  background: black;
+
+  &.translucent {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  &.mirrored {
+    #cameraCaptureVideo,
+    #cameraCaptureSnapshot {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+#cameraCaptureVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1031;
+}
+
+#cameraCaptureLayers {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1032;
+}
+
+#cameraCaptureSnapshot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1033;
+
+  canvas {
+    position: fixed;
+    z-index: 1033;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+#cameraAccessOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.4;
+  z-index: 1035;
+}
+
+.camera-capture-box-small {
+  width: 100%;
+  vertical-align: bottom;
+  display: flex;
+  justify-content: space-around;
+}
+
+.camera-capture-btn-cancel {
+  color: red;
+  background-color: #f8f9fa;
+}
+
+.camera-capture-btn-confirm {
+  color: green;
+  background-color: #f8f9fa;
+}
+
+.camera-capture-btn-small {
+  height: 56px;
+  width: 56px;
+  display: inline-flex;
+  vertical-align: top;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border-radius: 50%;
+}
+
+.camera-capture-btn-big-inner {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 2px;
+  background-color: #f8f9fa;
+  border-radius: 50%;
+  transition: all 0.15s ease-in-out;
+}
+
+.camera-capture-btn-big {
+  display: inline-block;
+  height: 76px;
+  width: 76px;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 6px solid #f8f9fa;
+  border-radius: 50%;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    border-color: darken(#f8f9fa, 15%);
+
+    .camera-capture-btn-big-inner {
+      background-color: darken(#f8f9fa, 15%);
+    }
+  }
+
+  &:active {
+    border-color: darken(#f8f9fa, 30%);
+
+    .camera-capture-btn-big-inner {
+      background-color: darken(#f8f9fa, 30%);
+    }
+  }
+}
+
+.camera-capture-bar-top {
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  padding-left: 0.8em;
+  padding-top: 1.5em;
+  display: flex;
+  z-index: 1034;
+}
+
+.camera-capture-bar-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1034;
+}
+
+.camera-capture-img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%);
+}
+
+.camera-capture-title,
+.camera-capture-instructions {
+  color: white;
+  text-align: center;
+}
+
+.camera-capture-icon {
+  color: white;
+}

@@ -236,7 +236,7 @@ function inlineReferences(layout, schemas, actions, model) {
 }
 
 function inlineFormSchema(formComponent, schemas, model) {
-  if (formComponent.schema.$ref) {
+  if (formComponent.schema?.$ref) {
     const newForm = {
       ...formComponent,
       schema: getSchemaById(schemas, formComponent.schema.$ref),

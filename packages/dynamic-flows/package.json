@@ -53,6 +53,7 @@
     "@transferwise/test-config": "^4.0.2",
     "babel-loader": "^8.2.2",
     "babel-preset-minify": "^0.5.1",
+    "jest-canvas-mock": "^2.3.1",
     "react-intl": "^5.10.0"
   },
   "peerDependencies": {
@@ -69,6 +70,7 @@
     "@babel/runtime": "^7.15.3",
     "classnames": "^2.2.6",
     "core-js": "^3.8.0",
-    "lodash.isequal": "^4.5.0"
+    "lodash.isequal": "^4.5.0",
+    "screenfull": "^5.0.2"
   }
 }

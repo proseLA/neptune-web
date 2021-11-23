@@ -1,17 +1,16 @@
 import { Loader } from '@transferwise/components';
-import { isEmpty, isObject } from '@transferwise/neptune-validation';
+import { isObject } from '@transferwise/neptune-validation';
 import Types from 'prop-types';
-import { useEffect, useState, useMemo } from 'react';
-import { useIntl } from 'react-intl';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
+import { getStepType, stepType } from '../common/stepTypes/stepTypes';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { getValidModelParts } from '../common/validation/valid-model';
-import DynamicLayout from '../layout';
+import { CameraStep, LayoutStep } from '../step';
 
 import { httpClient as defaultHttpClient } from './client';
 import { withErrorBoundary } from './errorBoundary';
-import { convertStepToLayout, inlineReferences } from './layoutService';
 
 const EXIT_HEADER = 'X-Df-Exit';
 
@@ -38,16 +37,6 @@ const isSubmissionMethod = (method) => {
   return submissionMethods.includes(method.toUpperCase());
 };
 
-const getComponents = (step) => {
-  if (!step || isEmpty(step) || (!step.layout && !step.type)) {
-    return [];
-  }
-
-  const layout = convertStepToLayout(step);
-
-  return inlineReferences(layout, step.schemas, step.actions);
-};
-
 const isExitResponse = (response) => response.headers?.has(EXIT_HEADER);
 
 const buildInitialModels = (model, schemas) => {
@@ -66,7 +55,7 @@ const buildInitialModels = (model, schemas) => {
  * The dynamic flow component is responsible for the asynchronous actions occuring
  * within a dynamic flow, managing transitions between steps as well as refreshing
  * requirements.  It doesn't control any view logic, but takes the step definition
- * and reformats it to use a DynamicLayout for presentation.
+ * and reformats it to use a LayoutStep for presentation.
  *
  * @param props
  */
@@ -80,8 +69,6 @@ const DynamicFlow = (props) => {
     httpClient: propsHttpClient,
     loaderSize,
   } = props;
-
-  const { locale } = useIntl();
 
   const [loading, setLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
@@ -225,27 +212,34 @@ const DynamicFlow = (props) => {
     fetchStep(action);
   };
 
-  const components = getComponents(stepSpecification);
+  const getStep = () => {
+    const type = getStepType(stepSpecification);
+
+    const stepProps = {
+      stepSpecification,
+      submitted,
+      model: combineModels(models),
+      errors: validations,
+      baseUrl,
+      onAction,
+      onModelChange,
+    };
+
+    if (type === stepType.CAMERA) {
+      return <CameraStep {...stepProps} />;
+    } else {
+      return <LayoutStep {...stepProps} />;
+    }
+  };
 
   return (
-    components && (
-      <>
-        {loading ? (
-          <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
-        ) : (
-          <DynamicLayout
-            components={components}
-            submitted={submitted}
-            locale={locale}
-            model={combineModels(models)}
-            errors={validations}
-            baseUrl={baseUrl}
-            onAction={onAction}
-            onModelChange={onModelChange}
-          />
-        )}
-      </>
-    )
+    <>
+      {loading ? (
+        <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+      ) : (
+        getStep()
+      )}
+    </>
   );
 };
 

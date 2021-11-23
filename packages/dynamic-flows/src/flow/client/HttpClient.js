@@ -17,6 +17,7 @@ class HttpClient {
         'Content-Type': 'application/json',
         'X-Access-Token': 'Tr4n5f3rw153',
       },
+      credentials: 'include',
       body,
     }).then((response) => {
       if (response.status >= 400 && response.status < 600) {

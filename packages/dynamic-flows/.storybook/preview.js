@@ -1,10 +1,10 @@
 import React, { StrictMode } from 'react';
 import { select } from '@storybook/addon-knobs';
 import {
-  Provider,
-  getLangFromLocale,
-  DEFAULT_LOCALE,
   DEFAULT_LANG,
+  DEFAULT_LOCALE,
+  getLangFromLocale,
+  Provider,
   translations as componentTranslations,
 } from '@transferwise/components';
 import '@transferwise/neptune-css/dist/css/neptune.css';
@@ -60,12 +60,10 @@ const ProviderDecorator = (storyFn) => {
   const locale = select('locale (global)', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
   const lang = getLangFromLocale(locale) || DEFAULT_LANG;
   // eslint-disable-next-line fp/no-mutating-assign
-  const supportedLangs = {
-    ...translations,
-    ...componentTranslations,
+  const messages = {
+    ...translations[lang],
+    ...componentTranslations[lang],
   };
-
-  const messages = supportedLangs[lang];
   const props = {
     i18n: { locale, messages },
     children: storyFn(),

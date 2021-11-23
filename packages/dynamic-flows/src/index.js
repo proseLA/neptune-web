@@ -1,4 +1,4 @@
-export { convertStepToLayout, inlineReferences } from './flow/layoutService';
+export { convertStepToLayout, inlineReferences } from './step/layoutStep/layoutService';
 export { default as DynamicFlow } from './flow';
 export { default as Field } from './field';
 export { default as FormControl } from './formControl';

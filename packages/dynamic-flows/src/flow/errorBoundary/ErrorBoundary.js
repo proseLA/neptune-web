@@ -40,7 +40,7 @@ const withErrorBoundary = (WrappedComponent) => {
               }}
               message={intl.formatMessage(messages.errorAlert)}
               type={Sentiment.NEGATIVE}
-              className="m-a-3"
+              className="m-y-3"
               onDismiss={this.handleErrorReset}
             />
           )}
