@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [38.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.2.2...@transferwise/components@38.2.3) (2021-11-23)
+
+
+### Bug Fixes
+
+* Neptune components CSS build watch ([#1218](https://github.com/transferwise/neptune-web/issues/1218)) ([d4f1a5d](https://github.com/transferwise/neptune-web/commit/d4f1a5d9d645d1c645bf30c6a6208cc4d92b15cd))
+
+
+
+
+
 ## [38.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.2.1...@transferwise/components@38.2.2) (2021-11-22)
 
 **Note:** Version bump only for package @transferwise/components

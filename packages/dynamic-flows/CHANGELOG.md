@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.6.16...@transferwise/dynamic-flows@15.7.0) (2021-11-23)
+
+
+### Features
+
+* **camera capture:** Integrate camera capture with DF ([#1196](https://github.com/transferwise/neptune-web/issues/1196)) ([8bf332d](https://github.com/transferwise/neptune-web/commit/8bf332d9b203db718cad496ba1ca640e0f754caf))
+
+
+
+
+
 ## [15.6.16](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.6.15...@transferwise/dynamic-flows@15.6.16) (2021-11-22)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
