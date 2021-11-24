@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@11.0.0...@transferwise/neptune-css@11.0.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* **css:** add .media overrides when used with .decision ([#1226](https://github.com/transferwise/neptune-web/issues/1226)) ([a33d619](https://github.com/transferwise/neptune-web/commit/a33d6198731978e4163ecfbff9bb1ba4feb6086e))
+
+
+
+
+
 # [11.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@10.1.0...@transferwise/neptune-css@11.0.0) (2021-11-10)
 
 
