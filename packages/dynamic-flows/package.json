@@ -49,7 +49,7 @@
     "@transferwise/icons": "^2.6.0",
     "@transferwise/less-config": "^3.0.2",
     "@transferwise/neptune-css": "^11.0.0",
-    "@transferwise/neptune-tokens": "^4.0.0",
+    "@transferwise/neptune-tokens": "^5.1.0",
     "@transferwise/test-config": "^4.0.1",
     "babel-loader": "^8.2.2",
     "babel-preset-minify": "^0.5.1",
