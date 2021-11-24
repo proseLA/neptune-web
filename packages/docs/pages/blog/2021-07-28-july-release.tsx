@@ -369,6 +369,42 @@ const PageContent = (): ReactElement => {
         <li><code>.text-danger</code></li>
         <li><code>.text-success</code></li>
       </ul>
+
+      <h3>Map to migrate legacy Bootstrap less variables to new typography custom properties:</h3>
+      <ul>
+        <li>@font-size-base → var(--font-size-16); </li>
+        <li>@font-size-large → Was 18px, a deprecated size. Use var(--font-size-16) or var(--font-size-20) depending the case.</li>
+        <li>@font-size-medium → var(--font-size-16); </li>
+        <li>@font-size-small → var(--font-size-14); </li>
+        <li>@font-size-xsmall → var(--font-size-12); </li>
+        <li>@font-size-h1 → var(--font-size-32); </li>
+        <li>@font-size-h2 → var(--font-size-26); </li>
+        <li>@font-size-h3 → var(--font-size-20); </li>
+        <li>@font-size-h4 → var(--font-size-16); </li>
+        <li>@font-size-h5 → var(--font-size-14); </li>
+        <li>@font-size-h6 → var(--font-size-14); </li>
+        <li>@line-height-h1 → var(--line-height-title); </li>
+        <li>@line-height-h2 → var(--line-height-title); </li>
+        <li>@line-height-h3 → var(--line-height-title); </li>
+        <li>@line-height-h4 → var(--line-height-title); </li>
+        <li>@line-height-h5 → var(--line-height-title); </li>
+        <li>@line-height-h6 → var(--line-height-title); </li>
+        <li>@line-height-base → var(--line-height-body)</li>
+        <li>@font-weight-normal → var(--font-weight-regular); </li>
+        <li>@font-weight-semi-bold → var(--font-weight-semi-bold); </li>
+        <li>@font-weight-bold → var(--font-weight-bold); </li>
+      </ul>
+
+      <h3>Map to migrate from Neptune typography less variables to new typography custom properties:</h3>
+      <ul>
+        <li>@font-size-xx-large: 2.625rem; // 42px → Not equivalent.</li>
+        <li>@font-size-x-large → var(--font-size-26);</li>
+        <li>@font-size-large → var(--font-size-20);</li>
+        <li>@font-size-medium → Was 18px, a deprecated size. Use var(--font-size-16) or var(--font-size-20) depending the case.</li>
+        <li>@font-size-base: → var(--font-size-16)</li>
+        <li>@font-size-small → var(--font-size-14);</li>
+        <li>@font-size-x-small → var(--font-size-12);</li>
+      </ul>
     </>
   );
 };
