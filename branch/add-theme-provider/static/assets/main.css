@@ -1,3 +1,5 @@
+@import "@transferwise/neptune-tokens/themes/navy/tokens.css";
+
 /* Typography */
 
 h1[id] + p,
@@ -16,7 +18,7 @@ p + h2[id] {
 
 .Header {
   min-height: 100vh;
-  background-color: var(--color-navy-background-elevated);
+  background-color: var(--color-background-elevated);
 }
 
 .Header__Fixed {
@@ -101,19 +103,19 @@ p + h2[id] {
 }
 
 .Nav--dark {
-  border-top: 1px solid var(--color-navy-border-neutral);
+  border-top: 1px solid var(--color-border-neutral);
 }
 
 .Nav__Group {
   padding: var(--size-16) var(--size-16) var(--size-8);
   text-transform: uppercase;
   font-size: var(--font-size-12);
-  color: var(--color-navy-content-secondary);
+  color: var(--color-content-secondary);
   font-weight: 600;
 }
 
 .Sidebar .Nav__Group {
-  border-bottom: 1px solid var(--color-navy-border-neutral);
+  border-bottom: 1px solid var(--color-border-neutral);
 }
 
 .Sidebar .Nav > .Nav__Group:not(:first-of-type) {
@@ -121,14 +123,14 @@ p + h2[id] {
 }
 
 .Nav--dark .Nav__Link {
-  color: var(--color-navy-content-primary);
+  color: var(--color-content-primary);
   border-bottom: 0;
   font-weight: var(--font-weight-bold);
 }
 
 /* TODO fix this while theming project */
 .Nav--dark .Nav__Link.active {
-  background-color: var(--color-navy-background-screen);
+  background-color: var(--color-background-screen);
 }
 
 .Content {
