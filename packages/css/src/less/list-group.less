@@ -35,7 +35,7 @@
   .border(left, 2px, solid, transparent);
 
   margin-top: 1px;
-  line-height: @line-height-computed;
+  line-height: var(--line-height-body);
   transition: all ease @panel-focus-transtion;
 
   .panel-group & {
@@ -125,8 +125,8 @@ a.list-group-item {
     z-index: 2; // Place active items above their siblings for proper border styling
     background-color: var(--color-background-elevated);
     box-shadow: 0 1px 10px @brand-smoke-plus-10;
-    margin-top: @line-height-computed;
-    margin-bottom: @line-height-computed;
+    margin-top: var(--size-24);
+    margin-bottom: var(--size-24);
 
     &:first-child {
       margin-top: 1px;
@@ -174,7 +174,7 @@ a.list-group-item {
 
     &.active {
       border-top: 0;
-      margin-top: @line-height-computed;
+      margin-top: var(--size-24);
     }
   }
 }

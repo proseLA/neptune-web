@@ -7,7 +7,7 @@
 .btn {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: @btn-font-weight;
+  font-weight: var(--font-weight-semi-bold);
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -347,7 +347,7 @@ input[type="button"] {
 
 // @TODO Deprecate / Remove
 .btn-input {
-  font-weight: @font-weight-normal;
+  font-weight: var(--font-weight-regular);
   .padding(left, @padding-base-horizontal);
 
   .padding(right, @padding-base-horizontal);

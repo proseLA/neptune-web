@@ -1,7 +1,7 @@
 @import (reference) '_logical-properties.less';
 
 .reset-text() {
-  font-family: @font-family-base;
+  font-family: var(--font-family-regular);
 
   // We deliberately do NOT reset font-size.
 
@@ -9,7 +9,7 @@
   font-weight: normal;
   letter-spacing: normal;
   line-break: auto;
-  line-height: @line-height-base;
+  line-height: var(--size-24);
   .text-align(left);
 
   text-decoration: none;

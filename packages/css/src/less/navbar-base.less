@@ -1,4 +1,6 @@
+@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) './mixins/_logical-properties.less';
+@import (reference) './mixins/_nav-vertical-align.less';
 @import (reference) 'navbar.less';
 
 // stylelint-disable
@@ -585,7 +587,7 @@
     .navbar-vertical-align(22);
   }
 
-  font-weight: @btn-font-weight;
+  font-weight: var(--font-weight-semi-bold);
 
   @media (max-width: @grid-float-breakpoint-max) {
     display: block;
@@ -597,7 +599,7 @@
 // Add a class to make any element properly align itself vertically within the navbars.
 
 .navbar-text {
-  .navbar-vertical-align(@line-height-computed);
+  .navbar-vertical-align(@size-24);
 
   @media (--screen-md) {
     .float(left);

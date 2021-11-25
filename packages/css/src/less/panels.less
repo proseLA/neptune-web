@@ -39,7 +39,7 @@
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  line-height: (@line-height-computed + 8px);
+  line-height: calc(var(--line-height-title) + 8px);
 
   > a {
     text-decoration: none;
@@ -100,7 +100,7 @@
 
 @media (--screen-md) {
   .panel-title {
-    line-height: (@line-height-computed * 2);
+    line-height: calc(var(--line-height-title) * 2);
   }
 
   .panel-heading {
@@ -310,7 +310,7 @@
 // the help of our collapse JavaScript plugin.
 
 .panel-group {
-  margin-bottom: @line-height-computed;
+  margin-bottom: var(--size-24);
 
   // Tighten up margin so it's only between panels
   .panel {
