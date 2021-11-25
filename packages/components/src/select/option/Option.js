@@ -11,9 +11,12 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
         `${selected ? 'hidden-xs' : ''}`,
       ])}`
     : null;
+  const flexClassNames = secondary
+    ? `${style(['d-flex align-items-start', `${secondary ? 'flex-column' : ''}`])}`
+    : 'd-flex align-items-start';
 
   return (
-    <span className="d-flex align-items-center">
+    <span className={flexClassNames}>
       {currency ? (
         <i className={currencyClassNames} />
       ) : (

@@ -7,7 +7,7 @@ const buttonClasses = 'btn-link p-a-0 text-no-decoration font-weight-bold';
 
 const DateHeader = ({ label, onLabelClick, onPreviousClick, onNextClick }) => (
   <div className="text-xs-center p-t-1 p-b-2 clearfix">
-    <div className="pull-xs-left">
+    <div className="pull-left-single-direction">
       <button type="button" className={buttonClasses} onClick={onPreviousClick}>
         <Chevron orientation={Position.LEFT} size={Size.MEDIUM} />
       </button>
@@ -21,7 +21,7 @@ const DateHeader = ({ label, onLabelClick, onPreviousClick, onNextClick }) => (
         {label}
       </button>
     )}
-    <div className="pull-xs-right">
+    <div className="pull-right-single-direction">
       <button type="button" className={buttonClasses} onClick={onNextClick}>
         <Chevron orientation={Position.RIGHT} size={Size.MEDIUM} />
       </button>

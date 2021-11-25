@@ -1,3 +1,5 @@
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+
 .np-option {
   .circle-sm {
     width: var(--size-40);
@@ -8,7 +10,8 @@
 
 button.np-option {
   background-color: transparent;
-  text-align: left;
+  .text-align(left);
+
   width: 100%;
 
   &:focus:not(:focus-visible) {
