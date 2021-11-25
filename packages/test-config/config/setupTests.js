@@ -4,7 +4,7 @@ const Enzyme = require('enzyme');
 global.fetch = require('jest-fetch-mock');
 Enzyme.configure({ adapter: new Adapter() });
 
-global.requestAnimationFrame = async (callback) => callback();
+global.requestAnimationFrame = (callback) => callback();
 
 // https://github.com/esphen/jest-prop-type-error/blob/master/index.js
 // This mock will make tests fail when props error occurs.

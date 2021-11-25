@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prevent-abbreviations */
 import '@testing-library/jest-dom';
 import { render, screen, waitFor, act, fireEvent } from '@testing-library/react';
 import { Provider, translations as componentTranslations } from '@transferwise/components';
@@ -29,23 +28,23 @@ const mockClient = {
 const i18n = { locale: 'en-GB', messages: { ...componentTranslations['en'] } };
 
 describe('E2E: Given a DynamicFlow component to render', () => {
-  beforeEach(() => {
-    render(
-      <Provider i18n={i18n}>
-        <DynamicFlow
-          baseUrl=""
-          flowUrl="/recipient-details"
-          httpClient={mockClient}
-          onClose={jest.fn()}
-          onStepChange={jest.fn()}
-        />
-      </Provider>,
-    );
-  });
+  beforeAll(() => jest.useFakeTimers());
+  afterAll(() => jest.useFakeTimers());
 
   describe('when the step is refreshed and the new step contains data', () => {
-    // eslint-disable-next-line jest/no-disabled-tests
-    it.skip('displays the new data in the form', async () => {
+    it('displays the new data in the form', async () => {
+      render(
+        <Provider i18n={i18n}>
+          <DynamicFlow
+            baseUrl=""
+            flowUrl="/recipient-details"
+            httpClient={mockClient}
+            onClose={jest.fn()}
+            onStepChange={jest.fn()}
+          />
+        </Provider>,
+      );
+
       const emailField = await screen.findByLabelText('Their email');
 
       act(() => fireEvent.change(emailField, { target: { value: 'anything' } }));
