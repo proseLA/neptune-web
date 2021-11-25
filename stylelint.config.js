@@ -22,7 +22,7 @@ module.exports = {
       {
         importFrom: [
           './node_modules/@transferwise/neptune-tokens/colors-base.css',
-          './node_modules/@transferwise/neptune-tokens/themes/default/tokens.css',
+          './node_modules/@transferwise/neptune-tokens/tokens.css',
         ],
       },
     ],

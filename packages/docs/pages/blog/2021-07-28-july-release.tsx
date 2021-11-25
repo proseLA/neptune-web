@@ -369,6 +369,58 @@ const PageContent = (): ReactElement => {
         <li><code>.text-danger</code></li>
         <li><code>.text-success</code></li>
       </ul>
+
+      <h3 className="m-b-1">Map to migrate legacy Bootstrap less variables to new typography custom properties:</h3>
+
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>Legacy variables</th><th>New custom properties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>@font-size-base</td><td>var(--font-size-16)</td></tr>
+          <tr><td>@font-size-large</td><td>Was 18px, a deprecated size. Use var(--font-size-16) or var(--font-size-20) depending the cas</td></tr>
+          <tr><td>@font-size-medium</td><td>var(--font-size-16)</td></tr>
+          <tr><td>@font-size-small</td><td>var(--font-size-14)</td></tr>
+          <tr><td>@font-size-xsmall</td><td>var(--font-size-12)</td></tr>
+          <tr><td>@font-size-h1</td><td>var(--font-size-32)</td></tr>
+          <tr><td>@font-size-h2</td><td>var(--font-size-26)</td></tr>
+          <tr><td>@font-size-h3</td><td>var(--font-size-20)</td></tr>
+          <tr><td>@font-size-h4</td><td>var(--font-size-16)</td></tr>
+          <tr><td>@font-size-h5</td><td>var(--font-size-14)</td></tr>
+          <tr><td>@font-size-h6</td><td>var(--font-size-14)</td></tr>
+          <tr><td>@line-height-h1</td><td>var(--line-height-title)</td></tr>
+          <tr><td>@line-height-h2</td><td>var(--line-height-title)</td></tr>
+          <tr><td>@line-height-h3</td><td>var(--line-height-title)</td></tr>
+          <tr><td>@line-height-h4</td><td>var(--line-height-title)</td></tr>
+          <tr><td>@line-height-h5</td><td>var(--line-height-title)</td></tr>
+          <tr><td>@line-height-h6</td><td>var(--line-height-title</td></tr>
+          <tr><td>@line-height-base</td><td>var(--line-height-bod</td></tr>
+          <tr><td>@font-weight-normal</td><td>var(--font-weight-regular)</td></tr>
+          <tr><td>@font-weight-semi-bold</td><td>var(--font-weight-semi-bold)</td></tr>
+          <tr><td>@font-weight-bold</td><td>var(--font-weight-bold)</td></tr>
+        </tbody>
+      </table>
+
+      <h3 className="m-b-1">Map to migrate Neptune typography less variables to new typography custom properties:</h3>
+
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>Legacy variables</th><th>New custom properties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>@font-size-xx-large: 2.625rem; // 42px</td><td> Not equivalent</td></tr>
+          <tr><td>@font-size-x-large</td><td> var(--font-size-26)</td></tr>
+          <tr><td>@font-size-large</td><td> var(--font-size-20)</td></tr>
+          <tr><td>@font-size-medium</td><td> Was 18px, a deprecated size. Use var(--font-size-16) or var(--font-size-20) depending the case</td></tr>
+          <tr><td>@font-size-base:</td><td> var(--font-size-16</td></tr>
+          <tr><td>@font-size-small</td><td> var(--font-size-14)</td></tr>
+          <tr><td>@font-size-x-small</td><td> var(--font-size-12)</td></tr>
+        </tbody>
+      </table>
     </>
   );
 };
