@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [38.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.2.5...@transferwise/components@38.3.0) (2021-11-26)
+
+
+### Features
+
+* add dropfade animation ([#1216](https://github.com/transferwise/neptune-web/issues/1216)) ([1fb953f](https://github.com/transferwise/neptune-web/commit/1fb953f2a6d65d3cb191a573300a0d9211a16942))
+
+
+
+
+
 ## [38.2.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.2.4...@transferwise/components@38.2.5) (2021-11-25)
 
 **Note:** Version bump only for package @transferwise/components
