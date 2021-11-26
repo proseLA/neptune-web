@@ -1,8 +1,17 @@
 import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
 import { SnackbarProvider, SnackbarConsumer, useSnackbar, Button } from '@transferwise/components';
 import code from '../../../liveEditorCode/snackbar.code';
+import hookCode from '../../../liveEditorCode/snackbarHook.code';
 
 <LiveEditorBlock code={code} scope={{ Button, SnackbarConsumer, SnackbarProvider }} />
+
+<br/>
+CreateSnackbar can also be accessed through it's hook. The SnackbarProvider must appear higher up in the tree.
+
+<SnackbarProvider>
+  <LiveEditorBlock code={hookCode} scope={{ Button, SnackbarConsumer, SnackbarProvider, useSnackbar }} />
+</SnackbarProvider>
+
 <GeneratePropsTable componentName="Snackbar" />
 
 export const meta = {
