@@ -130,6 +130,10 @@ const sections: MainSection[] = [
         directory: 'components/context',
       },
       {
+        title: 'Animations',
+        directory: 'components/animations',
+      },
+      {
         title: 'Dynamic Forms',
         directory: 'components/dynamicForms',
       },

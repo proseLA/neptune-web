@@ -14,6 +14,7 @@ const excluded = new Set([
   // specific components
   'Provider',
   'BottomSheet',
+  'DropFade',
 
   // enums
   'Size',

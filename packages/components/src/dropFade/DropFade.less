@@ -1,0 +1,22 @@
+.np-dropfade,
+.np-dropfade-enter {
+  opacity: 0;
+  overflow: hidden;
+  height: 0;
+}
+
+.np-dropfade-enter-active {
+  transition: height 150ms ease-in, opacity 150ms ease-in 150ms;
+  opacity: 1;
+}
+
+.np-dropfade-enter-done,
+.np-dropfade-exit {
+  opacity: 1;
+  height: auto;
+}
+
+.np-dropfade-exit-active {
+  transition: opacity 150ms ease-in, height 150ms ease-in 150ms;
+  opacity: 0;
+}

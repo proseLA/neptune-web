@@ -100,6 +100,7 @@
     "@popperjs/core": "^2.6.0",
     "@transferwise/formatting": "^2.1.0",
     "@transferwise/neptune-validation": "^3.0.3",
+    "@types/react-transition-group": "4.4.4",
     "classnames": "^2.2.6",
     "commonmark": "0.29.1",
     "core-js": "^3.8.0",

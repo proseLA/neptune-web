@@ -27,6 +27,7 @@ export { default as Decision } from './decision';
 export { default as DefinitionList } from './definitionList';
 export { default as Dimmer } from './dimmer';
 export { default as Drawer } from './drawer';
+export { default as DropFade } from './dropFade';
 export { default as DynamicFieldDefinitionList } from './dynamicFieldDefinitionList';
 export { default as Emphasis } from './emphasis';
 export { default as FlowNavigation } from './flowNavigation';

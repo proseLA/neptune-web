@@ -1,0 +1,18 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { Nudge, Button, DropFade } from '@transferwise/components';
+import code from '../../../liveEditorCode/dropFade.code';
+
+A drop and fade animation to smooth the entrace of asynchonously loaded content.
+
+Please note that the top child element must accept a ref. This is used to calculate the height of the element when animating.
+
+<LiveEditorBlock code={code} scope={{ Nudge, Button, DropFade }} />
+<GeneratePropsTable componentName="DropFade" />
+
+export const meta = {
+  name: 'DropFade',
+  badge: {
+    type: 'new',
+    expiryDate: '2022-01-01',
+  },
+};
