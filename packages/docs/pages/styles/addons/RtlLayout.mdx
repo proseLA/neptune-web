@@ -50,23 +50,32 @@ padding: 0 var(--foo) 0;
 
 ### New syntax:
 
-#### Spacing:
+
+<h4 className="m-t-1">Spacing:</h4>
 
 ```
 margin-left: var(--foo); → .margin(left, var(--foo));
 ```
-There is a second optional value for the mixin `.margin(direction, value1, value2)`, if you need to specify/reset the oposite direction value.
+The output of above code is: 
+```
+Default or LTR → margin-left: var(--foo);
+RTL → margin-right: var(--foo); margin-left: 0;
+```
+The original margin resets to the initial value. If that value is not 0 or initial, there is a second optional value (`value2` in the next example) for the mixin `.margin(direction, value1, value2)` which you can use if you need to specify a different value for the opposite direction.
 
-By instance, let's imagin that we have a `margin-left: 8px`. The mixin for it would be `.margin(left, 8px)` and on RTL cases would be transformed to `margin-right: 8px`.
-By default, it also maintains the property `margin-left`, because the mixin doesn't have the information of its value. We may want to reset it to `0` or add another value depending the case. We have this `value2` option to do that.
+For instance, let's imagine that you have a `margin-left: 8px` in your code that you want to transform into a RTL friendly property. The mixin for it would be `.margin(left, 8px)`, and in RTL cases it would be transformed into `margin-right: 8px; margin-left: 0;`.
+You might want to change the `0` to a different value. If you do, you can provide the optional second value (the third parameter below):
+```
+.margin(left, var(--foo), var(--bar));
+```
 
-This is because we want to keep the default property with not conditional selectors which could add specificity value to the property and create collateral cascale collisions.
+We use this logic because we want to keep the default direction property with not conditional selectors in the mixin which could add specificity to the property and create collateral cascade collisions in consumers code.
 
 
 ```
 padding-left: var(--foo); → .padding(left, var(--foo));
 ```
-Same as in magin cases, in padding also we do have this second value to reset the default direction if needed `.padding(direction, value1, value2)`
+Same as in margin cases, in padding you also have this second value to change the original direction value if needed `.padding(direction, value1, value2)`
 
 Shorthands (only when left != right or you need more specificity):
 ```
@@ -87,6 +96,7 @@ text-align: left; → .text-align(left);
 ```
 left: var(foo);. → .left(var(--foo));
 ```
+For positions you also have this second value to change the original direction value from initial to another value if needed: `.left(value1, value2)`
 
 #### Floats:
 
@@ -132,6 +142,11 @@ background-position: left bottom; →  .background-position(left, bottom);
 
 ```
 background: linear-gradient(to left, var(--color1) var(--color2)) → .background-linear-gradient(left, var(--color1), var(--color2));
+```
+
+#### Horizontal translations
+```
+transform: translateX(var(--foo)); → .translateX(var(--foo));
 ```
 
 export const meta = {

@@ -62,7 +62,7 @@
 
 // CSS Logical Properties: https://caniuse.com/css-logical-props
 
-.padding(@direction, @currentDirectionPaddingValue, @oppositeDirectionPaddingValue: ~'') {
+.padding(@direction, @currentDirectionPaddingValue, @oppositeDirectionPaddingValue: initial) {
   & when (@direction = left) {
     [dir="rtl"] & {
       padding-right: @currentDirectionPaddingValue;
@@ -118,7 +118,7 @@
 
 // CSS Logical Properties: https://caniuse.com/css-logical-props
 
-.margin(@direction, @currentDirectionMarginValue, @oppositeDirectionMarginValue: ~'') {
+.margin(@direction, @currentDirectionMarginValue, @oppositeDirectionMarginValue: initial) {
   & when (@direction = left) {
     [dir="rtl"] & {
       margin-right: @currentDirectionMarginValue;
@@ -174,24 +174,22 @@
 
 // CSS property: inset-inline (positions): https://caniuse.com/mdn-css_properties_inset-inline
 
-.left(@value) {
+.left(@currentDirectionPositionValue, @oppositeDirectionPositionValue: initial) {
   [dir="rtl"] & {
-    right: @value;
+    right: @currentDirectionPositionValue;
+    left: @oppositeDirectionPositionValue;
   }
 
-  html:not([dir="rtl"]) & {
-    left: @value;
-  }
+  left: @currentDirectionPositionValue;
 }
 
-.right(@value) {
+.right(@currentDirectionPositionValue, @oppositeDirectionPositionValue: initial) {
   [dir="rtl"] & {
-    left: @value;
+    left: @currentDirectionPositionValue;
+    right: @oppositeDirectionPositionValue;
   }
 
-  html:not([dir="rtl"]) & {
-    right: @value;
-  }
+  right: @currentDirectionPositionValue;
 }
 
 // CSS property: border-inline-start https://caniuse.com/mdn-css_properties_border-inline-start
