@@ -105,7 +105,6 @@ const CameraCapture = (props) => {
     ])
       .then(async ([videoStream, images]) => {
         setIsVideoMirrored(isSelfieCamera(videoStream));
-        setMode(MODE.CAPTURE);
 
         await tryAcquireFullScreenAndLockOrientation();
         await startCameraCapture(videoStream)
@@ -118,6 +117,8 @@ const CameraCapture = (props) => {
           overlayImage,
           outlineImage,
         );
+
+        setMode(MODE.CAPTURE);
       })
       .catch(async (error) => {
         if (error.name === 'NotAllowedError') {

@@ -39,7 +39,8 @@ describe('Given a component for rendering a dynamic flow', () => {
   const actions = [successAction, navigateAction, failureAction, validationFailureAction];
 
   const numberSchema = { type: 'number' };
-  const stringSchema = { type: 'string', refreshFormOnChange: true };
+  const stringSchema = { type: 'string' };
+  const stringSchemaWithRefresh = { type: 'string', refreshFormOnChange: true };
 
   const thingSchema = {
     $id: '#thing',
@@ -396,7 +397,12 @@ describe('Given a component for rendering a dynamic flow', () => {
       const newModel = { a: 1, b: 'c' };
 
       beforeEach(() => {
-        getStep().invoke('onModelChange')(newModel, thingSchema, newModel.b, stringSchema);
+        getStep().invoke('onModelChange')(
+          newModel,
+          thingSchema,
+          newModel.b,
+          stringSchemaWithRefresh,
+        );
       });
 
       waitBeforeEach();
@@ -421,7 +427,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     describe('when a model update is triggered by a schema with refreshRequirements and refreshFormUrl', () => {
       const newModel = { a: 1, b: 'c' };
       const triggerSchema = {
-        ...stringSchema,
+        ...stringSchemaWithRefresh,
         refreshFormUrl: '/refreshFromTrigger',
       };
 
