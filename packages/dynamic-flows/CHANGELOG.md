@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.7.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.7.3...@transferwise/dynamic-flows@15.7.4) (2021-11-29)
+
+
+### Bug Fixes
+
+* OneOfSchema. Form controls not properly reset when changing selected schema ([#1219](https://github.com/transferwise/neptune-web/issues/1219)) ([f1ee702](https://github.com/transferwise/neptune-web/commit/f1ee702f3d453d4b326fad2d12e66ccc179113ab))
+
+
+
+
+
 ## [15.7.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.7.2...@transferwise/dynamic-flows@15.7.3) (2021-11-26)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
