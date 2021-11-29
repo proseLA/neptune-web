@@ -125,12 +125,12 @@
     .sequence-variant-detail(
       @color,
       @pip-offset-sm, @pip-offset-md, @pip-offset-lg,
-      @sequence-border, @sequence-inverse-border, @sequence-margin-lg
+      var(--color-border-neutral), @color-navy-border-neutral, @sequence-margin-lg
     );
   }
 
   @keyframes ~'sequence-pip-@{type}' {
-    from { border-color: @sequence-border; }
+    from { border-color: @color-navy-border-neutral; }
     to { border-color: @color; }
   }
 }

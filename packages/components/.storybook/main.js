@@ -1,5 +1,3 @@
-const path = require('path');
-
 const stories = ['../src/**/*.story.@(js|tsx)'];
 
 if (process.env.STORYBOOK_TEST) {

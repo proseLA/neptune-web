@@ -34,7 +34,7 @@ const Meta = ({ date, authors, version, tags }) => {
   const createdDate = parseISO(date);
   return (
     <small>
-      <div className="small m-b-2">
+      <div className="body-2 m-b-2">
         {format(parseISO(date), 'MMMM dd, yyyy')} {renderTags()}
       </div>
       {renderVersion()}

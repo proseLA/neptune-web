@@ -1,4 +1,5 @@
 // variables
+@import (reference) '../variables/neptune-tokens.less';
 @import (reference) '../variables/legacy-variables.less';
 
 // mixins
@@ -200,7 +201,7 @@ table col[class*='col-'] {
 // inheritance to nested tables.
 
 // Generate the contextual variants
-.table-row-variant(primary; var(--color-base-navy-light); var(--color-border-neutral); var(--color-base-white-light));
+.table-row-variant(primary; @color-navy-background-elevated; var(--color-border-neutral); var(--color-background-elevated));
 .table-row-variant(active; var(--color-background-screen); var(--color-border-neutral));
 .table-row-variant(success; var(--color-background-positive); var(--color-interactive-positive));
 .table-row-variant(info; var(--color-background-accent); var(--color-interactive-accent));
@@ -363,8 +364,8 @@ table col[class*='col-'] {
       text-decoration: none;
 
       &.active {
-        background-color: @brand-navy;
-        color: #fff;
+        background-color: @color-navy-background-elevated;
+        color: @color-navy-content-primary;
       }
 
       &:not([disabled]):hover {

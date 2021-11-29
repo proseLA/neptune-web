@@ -75,7 +75,7 @@
   .float(left);
 
   height: 100%;
-  .background-linear-gradient(right, var(--color-interactive-accent), var(--color-base-navy-light));
+  .background-linear-gradient(right, var(--color-interactive-accent), @color-navy-background-elevated);
 
   transition: width 0.6s ease-in-out;
 
@@ -88,7 +88,7 @@
     .margin(right, -4px);
 
     content: '';
-    background-color: var(--color-base-navy-light);
+    background-color: @color-navy-background-elevated;
     border-radius: 4px;
   }
 }

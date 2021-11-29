@@ -1,7 +1,6 @@
 @import (reference) '@transferwise/neptune-css/src/variables/zindex.less';
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
-@import (reference) '@transferwise/neptune-tokens/themes/navy/tokens.less';
 
 .snackbar {
   text-align: center;
@@ -14,9 +13,8 @@
   z-index: @zindex-mobile-nav;
 
   &__text {
-    // theming: use CSS custom property
-    background: @color-background-elevated;
-    color: var(--color-base-white-light);
+    background: @color-navy-background-elevated;
+    color: @color-navy-content-primary;
     font-size: var(--font-size-14);
     line-height: 20px;
     display: inline-flex;
@@ -58,8 +56,7 @@
       // stylelint-disable-next-line declaration-block-no-shorthand-property-overrides
       font: inherit;
       font-weight: var(--font-weight-semi-bold);
-      // theming: use CSS custom property
-      color: @color-content-accent;
+      color: @color-navy-content-accent;
       position: relative;
       cursor: pointer;
     }

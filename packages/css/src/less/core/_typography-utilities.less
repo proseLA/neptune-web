@@ -173,7 +173,7 @@
   .text-emphasis-variant(var(--color-content-primary), var(--color-content-primary), var(--color-content-primary));
 
   .bg-primary & {
-    color: var(--color-base-white-light) !important;
+    color: @color-navy-content-primary !important;
   }
 }
 
@@ -182,7 +182,7 @@
   .text-emphasis-variant(var(--color-content-positive), var(--color-content-positive), var(--color-content-positive-hover));
 
   .bg-primary & {
-    color: var(--color-content-positive) !important;
+    color: @color-navy-content-positive !important;
   }
 }
 
@@ -191,19 +191,19 @@
   .text-emphasis-variant(var(--color-content-accent), var(--color-content-accent), var(--color-content-accent-hover));
 
   .bg-primary & {
-    color: var(--color-content-accent) !important;
+    color: @color-navy-content-accent !important;
   }
 }
 
 .text-warning {
   .text-emphasis-variant(
-    var(--color-content-accent),
-    var(--color-content-accent),
-    var(--color-content-accent-hover),
+    var(--color-content-warning),
+    var(--color-content-warning),
+    var(--color-content-warning-hover),
   );
 
   .bg-primary & {
-    color: var(--color-content-warning) !important;
+    color: @color-navy-content-warning !important;
   }
 }
 
@@ -212,12 +212,12 @@
   .text-emphasis-variant(var(--color-content-negative), var(--color-content-negative), var(--color-content-negative-hover));
 
   .bg-primary & {
-    color: var(--color-content-negative) !important;
+    color: @color-navy-content-negative !important;
   }
 }
 
 .text-inverse {
-  .text-emphasis-variant(var(--color-base-white-light), var(--color-base-white-light), @color-base-smoke-fade);
+  .text-emphasis-variant(@color-navy-content-primary, @color-navy-content-primary, @color-navy-content-secondary);
 }
 
 .text-muted {

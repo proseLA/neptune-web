@@ -19,14 +19,14 @@
 
   .footer-link,
   .link-icon {
-    color: var(--color-base-white-mid);
+    color: var(--color-content-secondary);
     font-weight: normal;
     text-decoration: underline;
 
     &:hover,
     &:active,
     &:focus {
-      color: var(--color-base-white-mid);
+      color: var(--color-content-secondary);
     }
   }
 
@@ -60,50 +60,51 @@
     text-decoration: none;
 
     svg {
-      fill: var(--color-interactive-secondary);
+      fill: var(--color-content-secondary);
 
       &:hover,
       &:active,
       &:focus {
-        fill: var(--color-interactive-secondary-hover);
+        fill: var(--color-content-secondary);
       }
     }
   }
 
   &.footer-inverse {
-    background: var(--color-base-navy-light);
+    background: @color-navy-background-elevated;
 
     .footer-link,
     .link-icon {
-      color: var(--color-base-white-mid);
+      color: @color-navy-content-primary;
 
       &:hover,
       &:active,
       &:focus {
-        color: var(--color-base-white-mid);
+        color: @color-navy-content-primary;
       }
 
       svg {
-        fill: var(--color-base-white-mid);
+        fill: @color-navy-content-primary;
 
         &:hover,
         &:active,
         &:focus {
-          fill: var(--color-base-white-mid);
+          fill: @color-navy-content-primary;
         }
       }
     }
 
     .footer-title {
-      color: var(--color-base-white-mid);
+      color: @color-navy-content-primary;
     }
 
     hr {
       opacity: 0.1;
     }
 
-    .tiny {
-      color: var(--color-base-white-light);
+    .tiny,
+    .body-3 {
+      color: @color-navy-content-primary;
     }
   }
 

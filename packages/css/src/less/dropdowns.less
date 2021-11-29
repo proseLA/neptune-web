@@ -1,3 +1,4 @@
+@import (reference)  '../variables/neptune-tokens.less';
 @import (reference) '../variables/legacy-variables.less';
 @import (reference) './mixins/_border-radius.less';
 @import (reference) './mixins/_logical-properties.less';
@@ -44,7 +45,7 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
-    .nav-divider(@dropdown-divider-bg);
+    .nav-divider(var(--color-border-neutral));
   }
 
   //Force color to text-primary because the dropdowns are white regardless the context
@@ -129,13 +130,13 @@
   &:focus {
     text-decoration: none;
     color: var(--color-content-accent-hover);
-    background-color: @dropdown-link-hover-bg;
+    background-color: var(--color-background-neutral);
     outline: 0;
   }
 
   &:active {
-    color: var(--color-content-accent-active);
-    background-color: @dropdown-link-active-bg;
+    color: @color-navy-content-accent-active;
+    background-color: @color-navy-background-elevated;
   }
 }
 
@@ -145,20 +146,20 @@
   &,
   &:hover,
   &:focus {
-    // TODO fix this color when address navy colors in components
-    color: #fff;
+    color: @color-navy-content-primary;
     text-decoration: none;
     outline: 0;
-    background-color: @dropdown-link-active-bg;
+    background-color: @color-navy-background-elevated;
   }
 
   strong {
     color: inherit;
   }
 
+  .body-2,
   .small,
   .secondary {
-    color: var(--color-content-secondary);
+    color: @color-navy-content-secondary;
   }
 }
 
@@ -170,6 +171,7 @@
   &,
   &:hover,
   &:focus,
+  .body-2,
   .small,
   .secondary {
     color: var(--color-content-disabled);

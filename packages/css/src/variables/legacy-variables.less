@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 //== Colors
-//
+// Deprecated use Neptune Colors https://transferwise.github.io/neptune-web/styles/tokens/Colors
 //
 
 @brand-white: #fff;
@@ -222,7 +222,6 @@
 //** Element ID within SVG icon file.
 @icon-font-svg-id:        "glyphicons_halflingsregular";
 
-
 //== Components
 //
 //## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
@@ -303,6 +302,12 @@
 //** Border color for table and cell borders.
 @table-border-color:            @brand-smoke-plus-20;
 
+//== Panels
+//
+//##
+
+@panel-border-radius:         @border-radius-base;
+@panel-focus-transtion:       @transition-duration;
 
 //== Buttons
 //
@@ -502,6 +507,22 @@
 @cursor-disabled:                not-allowed;
 @cursor-default:                 default;
 
+//=== Button Download
+//
+//
+@btn-download-color:             #fff;
+@btn-download-bg:                #000;
+@btn-download-border:            #bbb;
+@btn-download-bg-hover:          #333;
+@btn-download-border-hover:      #999;
+@btn-download-bg-active:         #666;
+@btn-download-border-active:     #666;
+
+@btn-facebook:                   #3B5998;
+@btn-facebook-active:            #344F88;
+@btn-google:                     #4285F4;
+@btn-google-active:              #3B77DB;
+
 
 
 //== Dropdowns
@@ -521,6 +542,7 @@
 @dropdown-link-color:            @brand-navy-minus-10;
 //** Dropdown link padding.
 @dropdown-link-padding:          (@padding-large-vertical + 1px) @padding-large-horizontal (@padding-large-vertical - 1px);
+
 //** Hover color for dropdown links.
 @dropdown-link-hover-color:      @brand-navy-minus-10;
 //** Hover background for dropdown links.
@@ -650,7 +672,6 @@
 //** For `@screen-xl-min` and up.
 @container-xl:                 @container-xlarge-desktop;
 
-
 @nav-link-color:                            @link-secondary-color;
 @nav-link-hover-color:                      @link-secondary-hover-color;
 @nav-link-active-color:                     @link-secondary-active-color;
@@ -747,7 +768,6 @@
 // Navbar sercondary
 @navbar-inverse-secondary-bg:               @brand-navy-minus-10;
 
-
 //== Navs
 //
 //##
@@ -769,7 +789,6 @@
 
 //== Pills
 @nav-pills-font-size:                       @font-size-small;
-
 
 //== Pagination
 //
@@ -820,7 +839,6 @@
 @jumbotron-heading-font-size:    42px;
 @jumbotron-heading-line-height:  56px;
 
-
 //== Form states and alerts
 //
 //## Define colors for form feedback states and, by default, alerts.
@@ -870,7 +888,6 @@
 @tooltip-arrow-width:         5px;
 //** Tooltip arrow color
 @tooltip-arrow-color:         @tooltip-bg;
-
 
 //== Popovers
 //
@@ -953,6 +970,7 @@
 
 //** Modal backdrop background color
 @modal-backdrop-bg:           @brand-navy;
+
 //** Modal backdrop opacity
 @modal-backdrop-opacity:      .8;
 //** Modal header border color
@@ -1023,7 +1041,6 @@
 @progress-bar-info-bg:        @brand-light-blue;
 
 @progress-pip-size:           8px;
-
 
 //== List group
 //
@@ -1097,6 +1114,7 @@
 @panel-danger-heading-bg:     #FFF;
 
 
+
 //== Thumbnails
 //
 //##
@@ -1137,6 +1155,7 @@
 
 @well-bg:                     @gray-base;
 @well-border:                 @gray-lighter;
+
 
 
 //== Badges
@@ -1257,6 +1276,7 @@
 
 @sequence-inverse-border: @brand-navy-minus-20;
 @sequence-inverse-bg: @brand-navy;
+
 
 @sequence-spacing-horizontal: 24px;
 @sequence-spacing-horizontal-lg: 48px;

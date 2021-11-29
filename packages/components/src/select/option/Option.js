@@ -23,8 +23,8 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
         icon && cloneElement(icon, { size: 24, className: `${style(['tw-icon'])}` })
       )}
       {label}
-      {note && <span className="small m-l-1">{note}</span>}
-      {secondary && <span className="small text-ellipsis">{secondary}</span>}
+      {note && <span className="body-2 m-l-1">{note}</span>}
+      {secondary && <span className="body-2 text-ellipsis">{secondary}</span>}
     </span>
   );
 };

@@ -11,17 +11,10 @@ import en from '../i18n/en.json';
  * Source: https://testing-library.com/docs/example-react-intl/#creating-a-custom-render-function
  *
  */
-function customRender(
-  ui,
-  { locale = DEFAULT_LOCALE, messages = en, direction, ...renderOptions } = {},
-) {
+function customRender(ui, { locale = DEFAULT_LOCALE, messages = en, ...renderOptions } = {}) {
   // eslint-disable-next-line react/prop-types
   var Wrapper = ({ children }) => {
-    return (
-      <Provider i18n={{ locale, messages }} direction={direction}>
-        {children}
-      </Provider>
-    );
+    return <Provider i18n={{ locale, messages }}>{children}</Provider>;
   };
   return render(ui, { wrapper: Wrapper, ...renderOptions });
 }
@@ -31,14 +24,9 @@ function customRender(
  * For more info: https://react-hooks-testing-library.com/usage/advanced-hooks#context
  *
  */
-function customRenderHook(callback, { locale = DEFAULT_LOCALE, messages = en, direction } = {}) {
+function customRenderHook(callback, { locale = DEFAULT_LOCALE, messages = en } = {}) {
   return renderHook(callback, {
-    // eslint-disable-next-line react/prop-types
-    wrapper: ({ children }) => (
-      <Provider i18n={{ locale, messages }} direction={direction}>
-        {children}
-      </Provider>
-    ),
+    wrapper: ({ children }) => <Provider i18n={{ locale, messages }}>{children}</Provider>,
   });
 }
 

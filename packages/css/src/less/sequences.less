@@ -1,5 +1,6 @@
 // TODO: remove bootstrap dependencies
 
+@import (reference) '../variables/neptune-tokens.less';
 @import (reference) '../variables/legacy-variables.less';
 @import (reference) './mixins/_logical-properties.less';
 @import (reference) 'bootstrap/less/mixins/background-variant';
@@ -174,37 +175,38 @@
     border-color: var(--color-border-neutral);
 
     > a {
-      color: #fff; // @nav-inverse-link-color;
+      color: @color-navy-content-primary;
     }
 
     &::after {
-      background-color: var(--color-base-navy-light);
+      background-color: @color-navy-background-elevated;
     }
   }
 
   > .active {
     > a {
-      color: #fff;
+      color: @color-navy-content-primary;
     }
 
-    .small {
+    .small,
+    .body-2 {
       color: var(--color-content-secondary);
     }
 
     &::after,
     ~ li::after {
-      background-color: var(--color-base-navy-light);
+      background-color: @color-navy-background-elevated;
       background-image: none !important;
     }
 
     ~ li::before {
-      border-color: var(--color-base-navy-light);
+      border-color: @color-navy-background-elevated;
     }
   }
 }
 
 .sequence-variant('info', var(--color-interactive-accent));
-.sequence-variant('primary', var(--color-base-navy-light));
+.sequence-variant('primary', @color-navy-background-elevated);
 .sequence-variant('success', var(--color-interactive-positive));
 .sequence-variant('warning', var(--color-interactive-warning));
 .sequence-variant('danger', var(--color-interactive-negative));
@@ -226,7 +228,7 @@
   }
 
   &.sequence-inverse > li::before {
-    background-color: var(--color-base-navy-light);
+    background-color: @color-navy-background-elevated;
   }
 }
 
@@ -255,8 +257,8 @@
   }
 
   .sequence-inverse & {
-    background-color: var(--color-base-navy-light);
-    border-color: #fff;
+    background-color: @color-navy-background-elevated;
+    border-color: @color-navy-content-primary;
   }
 
   .sequence a & {

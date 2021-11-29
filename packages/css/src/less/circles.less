@@ -28,7 +28,7 @@
   text-decoration: none;
   text-transform: uppercase;
   border: 1px solid transparent;
-  background-color: @brand-white;
+  background-color: #fff;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -42,8 +42,8 @@
     color ease @transition-duration;
 
   &.active {
-    border-color: @brand-info;
-    background-color: @brand-info;
+    border-color: var(--color-interactive-accent-active);
+    background-color: var(--color-interactive-accent-active);
   }
 
   img {
@@ -64,7 +64,7 @@
 
   a& {
     &[style]:hover {
-      border: 1px solid @brand-info;
+      border: 1px solid var(--color-interactive-accent);
     }
   }
 
@@ -103,29 +103,29 @@ a.circle .icon {
 
 a:hover .circle,
 a.circle:hover {
-  border-color: @brand-info;
-  color: @brand-info;
+  border-color: var(--color-interactive-accent);
+  color: var(--color-content-accent);
   text-decoration: none;
 }
 
 a:hover .circle.active,
 a.circle.active:hover {
   text-decoration: none;
-  color: @brand-white;
+  color: #fff;
 }
 
 /* TODO this could be tidier, ideally change the general link behaviour */
 
 .dropdown-menu li a:hover .circle {
   background-color: var(--color-background-screen);
-  border-color: @brand-white;
-  color: @dropdown-link-color;
+  border-color: #fff;
+  color: var(--color-content-primary);
 }
 
 .dropdown-menu .disabled a:hover .circle {
   background-color: @circle-inverse-bg;
   border-color: transparent;
-  color: @link-disabled-color;
+  color: var(--color-content-disabled);
 }
 
 .circle-inverse {
@@ -149,7 +149,7 @@ a.circle.active:hover {
 
   &.circle-lg {
     border-radius: 50%;
-    background-color: @brand-white;
+    background-color: #fff;
 
     &.circle-inverse {
       background-color: var(--color-background-neutral);
@@ -161,7 +161,7 @@ a.circle.active:hover {
 @media (--screen-sm) {
   .circle-responsive {
     border-radius: 50%;
-    background-color: @brand-white;
+    background-color: #fff;
 
     &.circle,
     &.circle-sm,

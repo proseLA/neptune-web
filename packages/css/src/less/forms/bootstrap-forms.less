@@ -35,9 +35,9 @@ legend {
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-semi-bold);
   line-height: var(--line-height-title);
-  color: @legend-color;
+  color: var(--color-content-primary);
   border: 0;
-  border-bottom: 1px solid @legend-border-color;
+  border-bottom: 1px solid var(--color-border-neutral);
 }
 
 label {
@@ -274,7 +274,7 @@ input[type='search'] {
   &:focus-within {
     .control-label,
     > label {
-      color: @control-label-focus;
+      color: var(--color-content-accent);
     }
   }
 }
@@ -536,7 +536,7 @@ input[type='checkbox'] {
 .focus,
 .has-focus {
   .control-label {
-    color: @control-label-focus;
+    color: var(--color-content-accent-active);
   }
 
   .input-group-addon {
@@ -582,7 +582,7 @@ input[type='checkbox'] {
 .focus, // TODO legacy, remove.
 .has-focus {
   .alert {
-    border-color: @state-info-border;
+    border-color: var(--color-interactive-accent-active);
   }
 }
 
@@ -932,7 +932,8 @@ input[type='checkbox'] {
       min-height: 72px;
 
       small,
-      .small {
+      .small,
+      .body-2 {
         display: block;
         font-size: var(--font-size-14);
         color: var(--color-content-secondary);
@@ -951,7 +952,8 @@ input[type='checkbox'] {
     color: var(--color-content-disabled);
 
     small,
-    .small {
+    .small,
+    .body-2 {
       color: var(--color-content-disabled);
     }
   }
@@ -959,7 +961,7 @@ input[type='checkbox'] {
 
 .error-messages {
   display: none;
-  color: @state-danger-text;
+  color: var(--color-content-negative);
   font-size: var(--font-size-14);
   background-color: var(--color-background-negative);
   line-height: 24px;

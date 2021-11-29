@@ -1,5 +1,6 @@
-// TODO: remove bootstrap dependencies
+@import (reference)  '../variables/neptune-tokens.less';
 
+// TODO: remove bootstrap dependencies
 @import (reference) '../variables/legacy-variables.less';
 
 // mixins
@@ -105,11 +106,11 @@
 
 .nav-inverse {
   > li > a {
-    color: var(--color-base-white-light);
+    color: @color-navy-content-primary;
   }
 
   > li.active > a {
-    background-color: var(--color-base-navy-mid);
+    background-color: @color-navy-background-screen;
   }
 }
 

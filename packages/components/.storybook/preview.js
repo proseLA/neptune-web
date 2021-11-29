@@ -24,6 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const parameters = {
+  layout: 'fullscreen',
   a11y: {
     config: {
       rules: [{ id: 'color-contrast', enabled: false }],
@@ -52,7 +53,7 @@ export const parameters = {
 
 const StrictModeDecorator = (storyFn) => <StrictMode>{storyFn()}</StrictMode>;
 
-const CenterDecorator = (storyFn) => <div style={{ width: '100%' }}>{storyFn()}</div>;
+const CenterDecorator = (storyFn) => <div className="storybook-container">{storyFn()}</div>;
 
 // list is not exhaustive but should enough for testing diff edge cases
 // feel free to add more during development

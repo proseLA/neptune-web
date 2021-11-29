@@ -37,7 +37,7 @@ const Layout = ({ children, router: { pathname } }) => {
         </Link>
       </div>
       <ul className="Nav Nav--dark">
-        <li className="Nav__Group">Neptune</li>
+        <li className="Nav__Group">Content</li>
         {sections
           .filter((sec) => !sec.hidden)
           .map((section) => (
@@ -54,6 +54,7 @@ const Layout = ({ children, router: { pathname } }) => {
               </Link>
             </li>
           ))}
+        <li className="Nav__Group">Config</li>
         <li className="d-flex align-items-center">
           <label id="direction-label" htmlFor="switchId" className="Nav__Link">
             Force RTL layout

@@ -4,15 +4,22 @@ body {
 }
 
 #root {
+  width: 100%;
+  height: 100%;
+}
+
+.storybook-container {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
+  padding: 1rem;
+  background-color: var(--color-background-screen);
 }
 
 @media only screen and (min-width: 600px) {
-  #root {
+  .storybook-container {
     padding: 80px;
   }
 }

@@ -3,8 +3,8 @@
 // Contextual backgrounds
 
 // @DEPRECATED: .bg-default use .bg-neutral instead
-.bg-neutral,
-.bg-default {
+.bg-default,
+.bg-neutral {
   background-color: var(--color-background-neutral) !important;
   color: var(--color-content-secondary);
 }
@@ -16,8 +16,8 @@
 }
 
 .bg-primary {
-  background-color: @color-base-navy-light !important;
-  color: @color-base-white-light;
+  background-color: @color-navy-background-elevated !important;
+  color: @color-navy-content-primary;
 }
 
 // @DEPRECATED: .bg-success use .bg-positive instead
@@ -69,6 +69,6 @@
   .title-4,
   .title-5,
   strong {
-    color: var(--color-base-white-light);
+    color: @color-navy-content-primary;
   }
 }

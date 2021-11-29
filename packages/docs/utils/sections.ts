@@ -71,8 +71,13 @@ const sections: MainSection[] = [
   {
     title: 'Styles',
     directory: 'styles',
-    badge: { type: 'new', expiryDate: '2021-11-15' },
+    badge: { type: 'new', expiryDate: '2022-01-31' },
     children: [
+      {
+        title: 'Tokens',
+        directory: 'styles/tokens',
+        fileOrder: ['Colors', 'Typography', 'Sizes', 'Breakpoints'],
+      },
       {
         title: 'Core',
         directory: 'styles/core',
@@ -82,11 +87,6 @@ const sections: MainSection[] = [
         title: 'Addons',
         directory: 'styles/addons',
         fileOrder: ['BackgroundUtilities', 'DisplayUtilities', 'RtlLayout', 'SpacingUtilities'],
-      },
-      {
-        title: 'Tokens',
-        directory: 'styles/tokens',
-        fileOrder: ['Colors', 'Sizes', 'Breakpoints'],
       },
       {
         title: 'Extras',

@@ -28,7 +28,7 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
           justifyContent="flex-start"
           alignItems="flex-start"
           tagHtml="header"
-          className="Header"
+          className="Header np-theme-navy"
         >
           {firstContent}
         </Box>

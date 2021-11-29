@@ -17,7 +17,7 @@ const GeneratePropsTable = ({ componentName }) => {
   return data?.length > 0 ? (
     <div className="scroll-table">
       <Heading as="h2">Props</Heading>
-      <table id="props" className="table table-condensed docs-table">
+      <table className="table table-condensed docs-table">
         <thead>
           <tr>
             <th>Name</th>

@@ -1,3 +1,4 @@
+@import (reference) '../variables/neptune-tokens.less';
 @import (reference) '../variables/legacy-variables.less';
 @import (reference) './mixins/_logical-properties.less';
 
@@ -62,8 +63,8 @@
 
 .modal-content {
   position: relative;
-  background-color: @modal-content-bg;
-  border: 1px solid @modal-content-border-color;
+  background-color: var(--color-background-screen);
+  border: 1px solid var(--color-background-neutral);
   border-radius: @border-radius-large;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
@@ -81,7 +82,7 @@
   bottom: 0;
   left: 0;
   z-index: @zindex-modal-background;
-  background-color: @modal-backdrop-bg;
+  background-color: @color-navy-background-elevated;
 
   // Fade for backdrop
 
@@ -99,7 +100,7 @@
 
 .modal-header {
   padding: @modal-inner-padding-collapse;
-  border-bottom: 1px solid @modal-header-border-color;
+  border-bottom: 1px solid var(--color-border-neutral);
   min-height: calc(@modal-inner-padding-collapse + var(--size-24));
 }
 
@@ -130,7 +131,7 @@
   padding: var(--size-16) @modal-inner-padding-collapse;
   .text-align(right); // right align buttons
 
-  border-top: 1px solid @modal-footer-border-color;
+  border-top: 1px solid var(--color-border-neutral);
   &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
 
   // Properly space out buttons

@@ -16,7 +16,7 @@ Refer to the <DocumentLink href="/styles/core/Typography">documentation</Documen
 
 We maintain a [separate package](https://www.npmjs.com/package/@transferwise/neptune-tokens) where we define platform agnostic variables like spacing and colour codes.
 
-These are imported in `neptune.css` and are available at root level as <Link href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*" target="_blank">CSS Custom Properties (aka CSS Variables)</Link> which you can use in your codebase.
+These are imported in `neptune.css` and are available at root level (`:root`) as <Link href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*" target="_blank">CSS Custom Properties</Link> which you can use in your codebase.
 
 Information on what tokens are available can be found in the <DocumentLink href="/styles/tokens/Colors">tokens documentation</DocumentLink>.
 
@@ -45,7 +45,7 @@ require('@arshaw/postcss-custom-properties');
 module.exports = {
   plugins: {
     '@arshaw/postcss-custom-properties': {
-      importFrom: ['../../node_modules/@transferwise/neptune-css/dist/props/neptune-tokens.css'],
+      importFrom: ['./node_modules/@transferwise/neptune-css/dist/props/neptune-tokens.css'],
       preserveWithFallback: true,
     },
     ...
@@ -53,7 +53,7 @@ module.exports = {
 };
 ```
 
-Optional highly but recommended is to set up [Stylelint](https://stylelint.io) in your repository, and configure the [stylelint-value-no-unknown-custom-properties](https://github.com/csstools/stylelint-value-no-unknown-custom-properties) plugin to similarly point to the custom properties files, to ensure you are not using any that don't exist.
+Optional but highly recommended is to set up [Stylelint](https://stylelint.io) in your repository, and configure the [stylelint-value-no-unknown-custom-properties](https://github.com/csstools/stylelint-value-no-unknown-custom-properties) plugin to similarly point to the custom properties files, to ensure you are not using any that don't exist.
 
 ## Migrating from Bootstrap
 

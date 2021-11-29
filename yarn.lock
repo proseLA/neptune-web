@@ -4836,10 +4836,10 @@
   resolved "https://registry.yarnpkg.com/@transferwise/icons/-/icons-2.14.0.tgz#61a7ba1bc0b150bb1332af1e7022faf8557f4678"
   integrity sha512-2ZGU2wbDdBO8ms7tguuaA23NK5e9PLOpU47f7tAFqR08adnWbEDbjzqbpm+XtYo2pTpOr2e7ED5E6fqsGIqjKg==
 
-"@transferwise/neptune-tokens@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@transferwise/neptune-tokens/-/neptune-tokens-5.1.0.tgz#d6fe973ae4d598c8f47d3ba9a9fe885844bd2602"
-  integrity sha512-xmwU2t+/DqWyiYBYFjNseLFnYEcdrCTBKkesfL6rCpxzGQTKVYdrPR8BBlNlA3wDgp6mT6O72C9X6J7EsI1L8g==
+"@transferwise/neptune-tokens@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@transferwise/neptune-tokens/-/neptune-tokens-6.0.0.tgz#119e1f59fbbe09a04d67c22295dbf803b333f8c0"
+  integrity sha512-Ffj57eJph9sZjTHjjeNWiondIExTq4VpqIqNbpiWr3aqOwmHDsfGZYKDHYNerl1Uxxyp2x2uk1whmkhIqC5cfw==
 
 "@trysound/sax@0.1.1":
   version "0.1.1"

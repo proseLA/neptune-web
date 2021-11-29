@@ -140,7 +140,7 @@
 
   z-index: @zindex-navbar-fixed;
   backface-visibility: hidden;
-  background-color: var(--color-base-navy-light);
+  background-color: @color-navy-background-elevated;
 
   .navbar-nav > li {
     > a,
@@ -244,7 +244,7 @@
   font-weight: var(--font-weight-semi-bold);
   line-height: var(--line-height-body);
   margin-bottom: 8px;
-  color: var(--color-base-white-light);
+  color: @color-navy-content-primary;
 
   .icon-bar:first-child {
     margin-top: 1px;
@@ -317,7 +317,7 @@
 
         @media (--screen-md) {
           .navbar-inverse & {
-            color: var(--color-base-white-light);
+            color: @color-navy-content-primary;
           }
 
           &:hover {
@@ -647,7 +647,7 @@
   }
 
   .navbar-brand {
-    color: var(--color-base-white-light);
+    color: @color-navy-content-primary;
 
     &:hover,
     &:focus {
@@ -802,12 +802,12 @@
   }
 
   .navbar-text {
-    color: var(--color-base-white-light);
+    color: @color-navy-content-primary;
   }
 
   .navbar-nav {
     > li > a {
-      color: var(--color-base-white-light);
+      color: @color-navy-content-primary;
 
       @media (--screen-md) {
         border-bottom: 3px solid transparent;
@@ -862,7 +862,7 @@
   }
 
   .navbar-link {
-    color: var(--color-base-white-light);
+    color: @color-navy-content-primary;
 
     &:hover {
       color: var(--color-content-accent-hover);
@@ -870,7 +870,7 @@
   }
 
   .btn-link {
-    color: var(--color-base-white-light);
+    color: @color-navy-content-primary;
 
     &:hover,
     &:focus {
@@ -1023,7 +1023,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      background-color: var(--color-base-navy-mid);
+      background-color: @color-navy-background-screen;
       opacity: 0;
       transition: opacity 0.35s ease;
     }
@@ -1132,7 +1132,7 @@
 
 @media (max-width: @screen-sm-max) {
   .navbar-static-top {
-    background-color: var(--color-base-navy-light);
+    background-color: @color-navy-background-elevated;
     border-bottom-color: transparent;
   }
 }
@@ -1153,7 +1153,7 @@
 
 .navbar-title,
 .navbar-subtitle {
-  color: var(--color-base-white-light);
+  color: @color-navy-content-primary;
   text-overflow: ellipsis;
   overflow-x: hidden;
   white-space: nowrap;
@@ -1179,7 +1179,7 @@
   padding-top: 16px;
   margin-top: -16px;
   padding-bottom: 0;
-  background-color: var(--color-base-navy-light);
+  background-color: @color-navy-background-elevated;
   border-bottom: 1px solid var(--color-border-neutral);
 
   @media (min-width: @screen-lg-min) {
@@ -1223,14 +1223,14 @@
     .btn-info:not([disabled]):hover,
     .btn-warning:not([disabled]):hover,
     .btn-danger:not([disabled]):hover {
-      color: var(--color-base-white-light);
+      color: @color-navy-content-primary;
     }
 
     .form-control,
     .input-group,
     .btn-input,
     .input-group-addon {
-      border-color: var(--color-base-white-light);
+      border-color: #ffffff;
     }
   }
 
@@ -1261,7 +1261,7 @@
 // TODO this is a hack with no docs
 
 .simple-nav {
-  background-color: var(--color-base-navy-light);
+  background-color: @color-navy-background-elevated;
 
   .navbar-nav > li > a {
     padding-top: (@navbar-padding-vertical + 4px);
@@ -1303,7 +1303,7 @@
 
 @media (max-width: @screen-md-max) {
   .simple-nav .navbar-nav > li > a {
-    color: var(--color-base-white-light);
+    color: @color-navy-content-primary;
 
     &:focus,
     &:hover,
@@ -1352,7 +1352,7 @@
 
     &.navbar-inverse {
       &::before {
-        background-color: var(--color-base-navy-mid);
+        background-color: @color-navy-background-screen;
         border-top: none;
       }
     }

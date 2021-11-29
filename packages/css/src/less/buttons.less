@@ -80,8 +80,8 @@
 .btn-accent,
 .btn-primary {
   .button-variant(
-    var(--color-base-white-light);
-    var(--color-base-white-light);
+    #fff;
+    #fff;
     var(--color-interactive-accent);
     var(--color-interactive-accent-hover);
     var(--color-interactive-accent-active);
@@ -93,7 +93,7 @@
   &.btn-priority-2 {
     .button-variant(
       var(--color-interactive-accent);
-      var(--color-base-white-light);
+      #fff;
       transparent;
       var(--color-interactive-accent-hover);
       var(--color-interactive-accent-active);
@@ -101,7 +101,7 @@
       var(--color-interactive-accent-hover);
       var(--color-interactive-accent-active);
       var(--color-background-screen);
-      var(--color-base-white-light);
+      #fff;
     );
   }
 }
@@ -147,8 +147,8 @@
 .btn-positive,
 .btn-success {
   .button-variant(
-    var(--color-base-white-light);
-    var(--color-base-white-light);
+    #fff;
+    #fff;
     var(--color-interactive-positive);
     var(--color-interactive-positive-hover);
     var(--color-interactive-positive-active);
@@ -160,7 +160,7 @@
   &.btn-priority-2 {
     .button-variant(
       var(--color-interactive-positive);
-      var(--color-base-white-light);
+      #fff;
       transparent;
       var(--color-interactive-positive-hover);
       var(--color-interactive-positive-active);
@@ -168,7 +168,7 @@
       var(--color-interactive-positive-hover);
       var(--color-interactive-positive-active);
       var(--color-background-screen);
-      var(--color-base-white-light);
+      #fff;
     );
   }
 }
@@ -207,8 +207,8 @@
 .btn-danger,
 .btn-negative {
   .button-variant(
-    var(--color-base-white-light);
-    var(--color-base-white-light);
+    #fff;
+    #fff;
     var(--color-interactive-negative);
     var(--color-interactive-negative-hover);
     var(--color-interactive-negative-active);
@@ -220,7 +220,7 @@
   &.btn-priority-2 {
     .button-variant(
       var(--color-interactive-negative);
-      var(--color-base-white-light);
+      #fff;
       transparent;
       var(--color-interactive-negative-hover);
       var(--color-interactive-negative-active);
@@ -228,7 +228,7 @@
       var(--color-interactive-negative-hover);
       var(--color-interactive-negative-active);
       var(--color-background-screen);
-      var(--color-base-white-light);
+      #fff;
     );
   }
 }
@@ -246,10 +246,6 @@
     var(--color-interactive-secondary-hover);
     var(--color-interactive-secondary-active);
   );
-}
-
-.btn-input .caret {
-  .margin(left, var(--size-8));
 }
 
 // @TODO Deprecate / Remove
@@ -270,12 +266,16 @@
   }
 }
 
+.btn-input .caret {
+  .margin(left, var(--size-8));
+}
+
 // @TODO Deprecate / Remove
 .btn-inverse {
   .button-outline(
-    @brand-white;
-    @brand-smoke-plus-10;
-    @brand-grey
+    #fff;
+    #e2e6e8;
+    #5d7079;
   );
 }
 
@@ -403,15 +403,15 @@ input[type="button"] {
 .btn-input-inverse,
 .btn-addon {
   .button-variant(
-    #FFF;
-    #FFF;
-    @brand-navy-minus-10;
-    @brand-navy-minus-20;
-    @brand-navy-minus-20;
-    @brand-navy-minus-10;
-    @brand-navy-minus-20;
-    @brand-navy-minus-20;
-    #FFF
+    @color-navy-content-primary;
+    @color-navy-content-primary;
+    @color-navy-background-screen;
+    @color-navy-background-screen;
+    @color-navy-background-screen;
+    @color-navy-background-elevated;
+    @color-navy-background-screen;
+    @color-navy-background-screen;
+    var(--color-background-screen);
   );
 
   &:focus {
