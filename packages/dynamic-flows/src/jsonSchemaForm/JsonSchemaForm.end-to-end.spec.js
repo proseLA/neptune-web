@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+
+import { render, screen, act, fireEvent } from '@testing-library/react';
+import { useState } from 'react';
 
 import JsonSchemaForm from './JsonSchemaForm';
 
@@ -248,6 +250,149 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
       node.rerender(<JsonSchemaForm {...props} schema={requiredSchema} submitted />);
 
       expect(screen.getByText('Value is required...')).toBeInTheDocument();
+    });
+  });
+
+  describe('when wrapping JsonSchemaForm in a component with a useState managing the model', () => {
+    describe('and switching between the two non-const schemas in a oneOf', () => {
+      const schema = {
+        allOf: [
+          {
+            title: 'Recipient Bank Details',
+            oneOf: [
+              {
+                title: 'Sort Code Tab',
+                type: 'object',
+                properties: {
+                  name: {
+                    title: 'Full name field',
+                    type: 'string',
+                  },
+                  sortcode: {
+                    title: 'Sort Code field',
+                    type: 'string',
+                  },
+                  account: {
+                    title: 'Account number field',
+                    type: 'string',
+                  },
+                  type: {
+                    type: 'string',
+                    const: 'SortCode',
+                  },
+                },
+              },
+              {
+                title: 'IBAN Tab',
+                type: 'object',
+                properties: {
+                  name: {
+                    title: 'Full name field',
+                    type: 'string',
+                  },
+                  iban: {
+                    title: 'IBAN field',
+                    type: 'string',
+                  },
+                  type: {
+                    type: 'string',
+                    const: 'Iban',
+                  },
+                },
+              },
+            ],
+            control: 'tab',
+          },
+        ],
+      };
+      const renderComponent = () => {
+        const modelReference = { model: {} };
+        const JsonSchemaFormWithModelState = () => {
+          const [model, setModel] = useState({});
+          return (
+            <JsonSchemaForm
+              schema={schema}
+              model={model}
+              errors={{}}
+              submitted={false}
+              baseUrl=""
+              locale="en-GB"
+              onChange={(newModel) => {
+                setModel(newModel);
+                modelReference.model = newModel;
+              }}
+              onPersistAsync={jest.fn()}
+            />
+          );
+        };
+        const view = render(<JsonSchemaFormWithModelState />);
+
+        return { ...view, getModel: () => modelReference.model };
+      };
+      it('should always render the current model', () => {
+        jest.useFakeTimers();
+        // Render TestComponent with OneOf, returning a `getModel` function
+        const { getModel } = renderComponent();
+
+        // When name, sortcode and account number are filled in
+        act(() => {
+          fireEvent.change(screen.getByLabelText(/full name field/i), {
+            target: { value: 'Bob Loblaw' },
+          });
+          fireEvent.change(screen.getByLabelText(/sort code field/i), {
+            target: { value: '111111' },
+          });
+          fireEvent.change(screen.getByLabelText(/account number field/i), {
+            target: { value: '22222222' },
+          });
+        });
+
+        // the values are visible on the screen, of course
+        expect(screen.getByDisplayValue('111111')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('22222222')).toBeInTheDocument();
+
+        // most importantly, the model is updated to the correct values
+        expect(getModel()).toStrictEqual({
+          type: 'SortCode',
+          name: 'Bob Loblaw',
+          sortcode: '111111',
+          account: '22222222',
+        });
+
+        // when switching to the IBAN Tab
+        act(() => {
+          fireEvent.click(screen.getByText(/IBAN Tab/i));
+        });
+
+        // The sortcode and account number fields are not visible in this schema
+        expect(screen.queryByDisplayValue('111111')).not.toBeInTheDocument();
+        expect(screen.queryByDisplayValue('22222222')).not.toBeInTheDocument();
+
+        // and the model is "cleaned", the `type` is now `Iban`, not SortCode, but the `name` is kept.
+        expect(getModel()).toStrictEqual({
+          type: 'Iban',
+          name: 'Bob Loblaw',
+        });
+
+        // when switching back to the Sort Code Tab
+        act(() => {
+          fireEvent.click(screen.getByText(/Sort Code Tab/i));
+        });
+
+        // the model is updated to contain `type: "SortCode"`, the name is kept,
+        // but notably, the sortcode and account number are not coming back to the model.
+        expect(getModel()).toStrictEqual({
+          type: 'SortCode',
+          name: 'Bob Loblaw',
+        });
+
+        // As a result, we now expect the sort code and account number fields to be empty,
+        // in order to be consistent with the model above, which is what would eventually be submitted.
+        expect(screen.queryByDisplayValue('111111')).not.toBeInTheDocument();
+        expect(screen.queryByDisplayValue('22222222')).not.toBeInTheDocument();
+
+        jest.useRealTimers();
+      });
     });
   });
 });

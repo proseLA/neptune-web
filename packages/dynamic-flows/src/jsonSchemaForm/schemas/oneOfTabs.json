@@ -1,0 +1,50 @@
+{
+  "allOf": [
+    {
+      "title": "Recipient Bank Details",
+      "oneOf": [
+        {
+          "title": "Sort Code Tab",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Full name",
+              "type": "string"
+            },
+            "sortcode": {
+              "title": "Sort Code",
+              "type": "string"
+            },
+            "account": {
+              "title": "Account number",
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "const": "SortCode"
+            }
+          }
+        },
+        {
+          "title": "IBAN Tab",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Full name",
+              "type": "string"
+            },
+            "iban": {
+              "title": "IBAN",
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "const": "Iban"
+            }
+          }
+        }
+      ],
+      "control": "tab"
+    }
+  ]
+}
