@@ -1,19 +1,16 @@
-import { Profile as ProfileIcon, Bank as BankIcon } from '@transferwise/icons';
+import * as icons from '@transferwise/icons';
 import Types from 'prop-types';
 
 const DynamicIcon = (props) => {
-  const getIcon = (type) => {
-    // TODO more icons!
-    switch (type) {
-      case 'bank':
-        return <BankIcon />;
-      case 'profile':
-      default:
-        return <ProfileIcon />;
-    }
-  };
+  const iconName = `${props.type[0]?.toUpperCase()}${props.type.slice(1)}`;
 
-  return getIcon(props.type);
+  if (!Object.keys(icons).includes(iconName)) {
+    return <></>;
+  }
+
+  const Icon = icons[iconName];
+
+  return <Icon />;
 };
 
 DynamicIcon.propTypes = {

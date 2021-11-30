@@ -219,6 +219,10 @@ function inlineReferences(layout, schemas, actions, model) {
       return inlineFormSchema(component, schemas, model);
     }
 
+    if (component.type === 'decision') {
+      return inlineDecisionActions(component, actions);
+    }
+
     if (component.type === 'button') {
       return inlineAction(component, actions);
     }
@@ -246,6 +250,19 @@ function inlineFormSchema(formComponent, schemas, model) {
     return newForm;
   }
   return { ...formComponent, model };
+}
+
+function inlineDecisionActions(decisionComponent, actions) {
+  const newOptions = decisionComponent?.options?.map((option) => {
+    if (option?.action?.$ref) {
+      option.action = getActionById(actions, option.action.$ref);
+    }
+    return option;
+  });
+  return {
+    ...decisionComponent,
+    options: newOptions,
+  };
 }
 
 function inlineAction(actionComponent, actions) {

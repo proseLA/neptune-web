@@ -1,6 +1,8 @@
 import { NavigationOption } from '@transferwise/components';
 import { shallow } from 'enzyme';
 
+import DynamicIcon from '../icon';
+
 import DynamicDecision from '.';
 
 describe('Given a component for dynamically rendering reviews', () => {
@@ -9,9 +11,11 @@ describe('Given a component for dynamically rendering reviews', () => {
   let spec;
 
   const option = {
-    text: 'More information',
+    title: 'Option A',
+    description: 'More information',
+    icon: 'email',
     action: {
-      title: 'Option A',
+      title: '',
       url: '/example',
       method: 'GET',
     },
@@ -28,11 +32,17 @@ describe('Given a component for dynamically rendering reviews', () => {
   });
 
   it('should use the action title for the decision title', () => {
-    expect(component.find(NavigationOption).prop('title')).toStrictEqual(option.action.title);
+    expect(component.find(NavigationOption).prop('title')).toStrictEqual(option.title);
   });
 
   it('should use the action label for the action link', () => {
-    expect(component.find(NavigationOption).prop('content')).toBe(option.text);
+    expect(component.find(NavigationOption).prop('content')).toBe(option.description);
+  });
+
+  it('should use the icon for the action icon', () => {
+    expect(component.find(NavigationOption).prop('media')).toStrictEqual(
+      <DynamicIcon type={option.icon} />,
+    );
   });
 
   describe('when the an option triggers an action', () => {
