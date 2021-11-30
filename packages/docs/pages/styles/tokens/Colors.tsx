@@ -5,18 +5,17 @@ import { DocumentLink } from '../../../utils/pageUtils';
 
 export function ColorToken(props: { token: string }) {
   return (
-    <div className="d-flex align-items-center m-b-2">
+    <div className="m-a-1 d-inline-block">
       <div
         // eslint-disable-next-line react/forbid-dom-props
         style={{
           backgroundColor: `var(${props.token})`,
           border: 'solid 1px var(--color-border-neutral)',
           borderRadius: '100%',
-          width: '48px',
-          height: '48px',
+          width: '30px',
+          height: '30px',
         }}
       />
-      <code className="m-l-2">{props.token}</code>
     </div>
   );
 }
@@ -25,11 +24,11 @@ export default function PageContent() {
   return (
     <>
       <p>
-        Neptune provides semantic colors as{' '}
+        Neptune provides semantic colours as{' '}
         <Link target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/--*">
           CSS custom properties
         </Link>
-        . Read more about colors at{' '}
+        . Read more about colours at{' '}
         <Link target="_blank" href="https://neptune.wise.com/design/colour">
           Neptune design website
         </Link>
@@ -41,7 +40,7 @@ export default function PageContent() {
         first to get set up.
       </p>
       <div className="m-b-4">
-        <h3>Content Color Tokens</h3>
+        <h3>Content Colour Tokens</h3>
         <ColorToken token="--color-content-primary" />
         <ColorToken token="--color-content-secondary" />
         <ColorToken token="--color-content-accent" />
@@ -59,7 +58,7 @@ export default function PageContent() {
         <ColorToken token="--color-content-disabled" />
       </div>
       <div className="m-b-4">
-        <h3>Interactive Colors Tokens</h3>
+        <h3>Interactive Colour Tokens</h3>
         <p>
           Used to convey interactivity in any property that does not involve content, such as the
           colour of a button or the border of an input.
@@ -82,7 +81,7 @@ export default function PageContent() {
         <ColorToken token="--color-interactive-disabled" />
       </div>
       <div className="m-b-4">
-        <h3>Border Color Tokens</h3>
+        <h3>Border Colour Tokens</h3>
         <p>
           We use border colours to provide subtle visual aid to separate different blocks of
           content.
@@ -91,7 +90,7 @@ export default function PageContent() {
         <ColorToken token="--color-border-overlay" />
       </div>
       <div className="m-b-4">
-        <h3>Background Color Tokens</h3>
+        <h3>Background Colour Tokens</h3>
         <ColorToken token="--color-background-screen" />
         <ColorToken token="--color-background-elevated" />
         <ColorToken token="--color-background-neutral" />
@@ -106,7 +105,7 @@ export default function PageContent() {
 }
 
 export const meta = {
-  name: 'Colors',
+  name: 'Colours',
   badge: {
     expiryDate: '2021-11-15',
     type: 'new',
