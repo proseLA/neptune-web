@@ -65,9 +65,15 @@ export const WithIcons = () => {
     },
   ];
 
+  const theme = select('Theme', [Theme.LIGHT, Theme.DARK], Theme.LIGHT);
+
   const indexOpen = select('indexOpen', [0, 1, 2], 0);
 
-  return <Accordion items={items} indexOpen={indexOpen} />;
+  return (
+    <div className={theme === 'dark' ? 'bg--dark p-a-3' : 'p-a-3'}>
+      <Accordion items={items} indexOpen={indexOpen} theme={theme} />
+    </div>
+  );
 };
 
 export const inModal = () => {
