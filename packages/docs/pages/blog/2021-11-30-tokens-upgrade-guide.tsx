@@ -8,6 +8,7 @@ export const meta = {
   name: 'Tokens upgrade guide',
   date: '2021-11-30',
   hidden: true,
+  authors: [],
 };
 
 const PageContent = (): ReactElement => {
@@ -24,13 +25,15 @@ const PageContent = (): ReactElement => {
       <p>
         Currently, all our tokens are built into both less variables (e.g.{' '}
         <code>@color-content-primary</code>) and CSS custom properties (
+        {/*
+         */}
         <code>--color-content-primary</code>). Although the examples below are written as custom
         properties, <strong>the changes below apply to both less and custom properties.</strong>
       </p>
 
       <Alert
         className="m-y-2"
-        type="success"
+        type="positive"
         message="Prefer CSS custom properties over less variables."
       />
 
