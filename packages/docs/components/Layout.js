@@ -92,7 +92,9 @@ const Layout = ({ children, router: { pathname } }) => {
               {...{
                 date: page.component.meta.date,
                 authors: page.component.meta.authors,
+                version: page.component.meta.version,
               }}
+              compactVersion
             />
           ) : null}
         </>
