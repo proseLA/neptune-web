@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 
-import { Link } from '..';
 import Button from '../button';
 import {
   AriaLabelProperty,
@@ -10,6 +9,7 @@ import {
   LinkProps,
   Priority,
 } from '../common';
+import Link from '../link';
 
 type ActionProps = AriaLabelProperty & {
   text: string;
