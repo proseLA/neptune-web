@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [38.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.3.0...@transferwise/components@38.3.1) (2021-12-01)
+
+
+### Bug Fixes
+
+* circular dependency caused by import in Header component ([#1241](https://github.com/transferwise/neptune-web/issues/1241)) ([37feaca](https://github.com/transferwise/neptune-web/commit/37feaca46b4e92f5fd2b6438983f93f16f7845c2))
+
+
+
+
+
 # [38.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.2.5...@transferwise/components@38.3.0) (2021-11-26)
 
 
