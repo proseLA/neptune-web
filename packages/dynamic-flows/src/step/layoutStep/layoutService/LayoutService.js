@@ -60,12 +60,12 @@ function convertFinalStepToDynamicLayout(step) {
   const layout = [];
 
   if (step.details) {
-    if (step.details.title) {
-      layout.push(convertStepTitleToDynamicHeading(step.details.title));
-    }
     if (step.details.image) {
       const image = convertFinalStepImageToDynamicImage(step.details.image);
       layout.push(dynamicBox([image], 'sm'));
+    }
+    if (step.details.title) {
+      layout.push(convertStepTitleToDynamicHeading(step.details.title));
     }
     if (step.details.description) {
       layout.push(convertStepDescriptionToDynamicParagraph(step.details.description));
@@ -73,7 +73,9 @@ function convertFinalStepToDynamicLayout(step) {
   }
 
   if (step.actions) {
-    const actions = step.actions.map(convertStepActionToDynamicAction);
+    const actions = step.actions.map((action) =>
+      convertStepActionToDynamicAction({ ...action, type: action.type || 'primary' }),
+    );
     layout.push(dynamicBox(actions, 'md'));
   }
 

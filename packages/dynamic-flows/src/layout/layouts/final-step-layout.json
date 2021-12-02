@@ -32,7 +32,7 @@
         "context": "success",
         "action": {
           "title": "Continue",
-          "type": "success",
+          "type": "primary",
           "exit": true,
           "data": { "someKey": "some value" },
           "url": "/success",

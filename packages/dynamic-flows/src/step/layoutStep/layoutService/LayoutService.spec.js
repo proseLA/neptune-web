@@ -69,7 +69,7 @@ describe('Given a utility service for handling dynamic layouts', () => {
     it('should convert it into a layout', () => {
       const exitAction = {
         title: 'Exit',
-        type: 'success',
+        type: 'positive',
         exit: true,
         result: { someKey: 'some value' },
       };
@@ -88,13 +88,6 @@ describe('Given a utility service for handling dynamic layouts', () => {
 
       const finalLayout = [
         {
-          type: 'heading',
-          text: 'We create the thing!',
-          size: 'lg',
-          margin: 'lg',
-          align: 'center',
-        },
-        {
           type: 'box',
           width: 'sm',
           components: [
@@ -107,6 +100,13 @@ describe('Given a utility service for handling dynamic layouts', () => {
           ],
         },
         {
+          type: 'heading',
+          text: 'We create the thing!',
+          size: 'lg',
+          margin: 'lg',
+          align: 'center',
+        },
+        {
           type: 'paragraph',
           text: 'You now do stuff with the thing',
           align: 'center',
@@ -117,13 +117,73 @@ describe('Given a utility service for handling dynamic layouts', () => {
           components: [
             {
               type: 'button',
-              action: { ...exitAction, type: 'success' },
+              action: { ...exitAction },
             },
           ],
         },
       ];
 
       expect(convertStepToLayout(finalStep)).toStrictEqual(finalLayout);
+    });
+
+    describe('and the action has no type', () => {
+      it('should default to a "primary" action', () => {
+        const exitAction = {
+          title: 'Exit',
+          exit: true,
+          result: { someKey: 'some value' },
+        };
+
+        const finalStep = {
+          type: 'final',
+          key: 'thing-final',
+          details: {
+            title: 'We create the thing!',
+            description: 'You now do stuff with the thing',
+            image: '/images/1234.png',
+          },
+          actions: [exitAction],
+          success: true,
+        };
+
+        const finalLayout = [
+          {
+            type: 'box',
+            width: 'sm',
+            components: [
+              {
+                type: 'image',
+                url: '/images/1234.png',
+                margin: 'lg',
+                text: undefined,
+              },
+            ],
+          },
+          {
+            type: 'heading',
+            text: 'We create the thing!',
+            size: 'lg',
+            margin: 'lg',
+            align: 'center',
+          },
+          {
+            type: 'paragraph',
+            text: 'You now do stuff with the thing',
+            align: 'center',
+          },
+          {
+            type: 'box',
+            width: 'md',
+            components: [
+              {
+                type: 'button',
+                action: { ...exitAction, type: 'primary' },
+              },
+            ],
+          },
+        ];
+        expect(convertStepToLayout(finalStep)).toStrictEqual(finalLayout);
+      });
     });
   });
 
