@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.7.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.7.8...@transferwise/dynamic-flows@15.7.9) (2021-12-02)
+
+
+### Bug Fixes
+
+* move DynamicAlert to be rendered above basic type schema fields ([#1243](https://github.com/transferwise/neptune-web/issues/1243)) ([db1e8df](https://github.com/transferwise/neptune-web/commit/db1e8df984ae62248e907bd62e35b767d3414884))
+
+
+
+
+
 ## [15.7.8](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@15.7.7...@transferwise/dynamic-flows@15.7.8) (2021-12-02)
 
 
