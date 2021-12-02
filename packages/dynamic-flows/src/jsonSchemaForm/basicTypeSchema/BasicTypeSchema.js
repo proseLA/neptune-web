@@ -97,6 +97,7 @@ const BasicTypeSchema = (props) => {
   return (
     !isHidden && (
       <>
+        {props.schema.alert && <DynamicAlert component={props.schema.alert} />}
         <div className={classNames(formGroupClasses)}>
           {showLabel && (
             <div className="d-inline-block">
@@ -128,7 +129,6 @@ const BasicTypeSchema = (props) => {
             validationAsyncSuccessMessage={props.validationAsyncSuccessMessage}
           />
         </div>
-        {props.schema.alert && <DynamicAlert component={props.schema.alert} />}
       </>
     )
   );
