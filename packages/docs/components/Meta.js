@@ -1,9 +1,10 @@
 import { parseISO, format } from 'date-fns';
 import Types from 'prop-types';
+import React from 'react';
 
 import { printDate } from '../utils/pageUtils';
 
-const Meta = ({ date, authors, version, tags }) => {
+const Meta = ({ date, authors, version, tags, compactVersion }) => {
   const renderAuthors = () => (
     <>
       {authors?.map(({ name, githubUsername }, index) => (
@@ -19,7 +20,17 @@ const Meta = ({ date, authors, version, tags }) => {
       ))}
     </>
   );
-  const renderVersion = () => (
+  const renderVersionCompact = () => (
+    <div className="m-y-1">
+      {Object.entries(version).map(([key, value]) => (
+        <React.Fragment key={key}>
+          <strong>{key}</strong>: {value}{' '}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+
+  const renderVersionList = () => (
     <ul className="p-l-2 m-y-1">
       {Object.entries(version).map(([key, value]) => (
         <li key={key}>
@@ -37,7 +48,7 @@ const Meta = ({ date, authors, version, tags }) => {
       <div className="body-2 m-b-2">
         {format(parseISO(date), 'MMMM dd, yyyy')} {renderTags()}
       </div>
-      {renderVersion()}
+      {compactVersion ? renderVersionCompact() : renderVersionList()}
       {printDate(createdDate)}
       {renderAuthors()}
     </small>
@@ -46,6 +57,7 @@ const Meta = ({ date, authors, version, tags }) => {
 
 Meta.propTypes = {
   date: Types.string.isRequired,
+  compactVersion: Types.bool,
   authors: Types.arrayOf(
     Types.shape({
       name: Types.string.isRequired,
@@ -66,6 +78,7 @@ Meta.propTypes = {
 Meta.defaultProps = {
   version: {},
   tags: [],
+  compactVersion: false,
 };
 
 export default Meta;
