@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [38.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.3.1...@transferwise/components@38.4.0) (2021-12-02)
+
+
+### Features
+
+* add onFilesChange callback to UploadInput ([#1244](https://github.com/transferwise/neptune-web/issues/1244)) ([a27effe](https://github.com/transferwise/neptune-web/commit/a27effe903e6ae454c761e6a08bf1f1ddfeef4cc))
+
+
+
+
+
 ## [38.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.3.0...@transferwise/components@38.3.1) (2021-12-01)
 
 
