@@ -38,8 +38,9 @@ describe('UploadInput', () => {
     render(<UploadInput {...customProps} />);
 
   describe('single file upload', () => {
-    it('should trigger onUploadFiles with a single FormData entry containing `file` field', async () => {
-      renderComponent();
+    it('should trigger onUploadFiles & onFilesChange with a single FormData entry containing `file` field', async () => {
+      const onFilesChange = jest.fn();
+      renderComponent({ ...props, onFilesChange });
 
       const input = screen.getByTestId(UPLOAD_BUTTON_TEST_IDS.uploadInput);
       userEvent.upload(input, [pngFile, jpgFile]);
@@ -47,6 +48,25 @@ describe('UploadInput', () => {
       await waitFor(() => {
         expect(props.onUploadFile).toHaveBeenCalledTimes(1);
       });
+
+      expect(onFilesChange).toHaveBeenCalledTimes(2);
+      expect(onFilesChange).toHaveBeenNthCalledWith(1, [
+        {
+          filename: 'foo.png',
+          id: 'foo.png_3',
+          status: 'pending',
+          url: undefined,
+        },
+      ]);
+
+      expect(onFilesChange).toHaveBeenNthCalledWith(2, [
+        {
+          filename: 'foo.png',
+          id: 2,
+          status: 'succeeded',
+          url: undefined,
+        },
+      ]);
     });
 
     it('should render only one file even if multiple ones were supplied', () => {
@@ -91,11 +111,18 @@ describe('UploadInput', () => {
   });
 
   describe('file deletion', () => {
+    const onFilesChange = jest.fn();
+
+    beforeEach(() => {
+      onFilesChange.mockClear();
+    });
+
     it('should delete file with modal confirmation', async () => {
       renderComponent({
         ...props,
         files,
         multiple: true,
+        onFilesChange,
       });
 
       const fileToDelete = screen.getAllByTestId(UPLOAD_ITEM_TEST_IDS.uploadItem)[0];
@@ -104,6 +131,29 @@ describe('UploadInput', () => {
 
       await waitForElementToBeRemoved(fileToDelete);
       expect(props.onDeleteFile).toHaveBeenCalledWith(files[0].id);
+
+      expect(onFilesChange).toHaveBeenCalledTimes(2);
+      expect(onFilesChange).toHaveBeenNthCalledWith(1, [
+        {
+          error: undefined,
+          filename: 'purchase-receipt.pdf',
+          id: 1,
+          status: 'processing',
+        },
+        {
+          filename: 'CoWork-0317-invoice.pdf',
+          id: 2,
+          status: 'processing',
+        },
+      ]);
+
+      expect(onFilesChange).toHaveBeenLastCalledWith([
+        {
+          filename: 'CoWork-0317-invoice.pdf',
+          id: 2,
+          status: 'processing',
+        },
+      ]);
     });
 
     it('should delete file with failed state without modal confirmation', () => {
@@ -119,12 +169,16 @@ describe('UploadInput', () => {
         ...props,
         files,
         multiple: true,
+        onFilesChange,
       });
 
       const fileToDelete = screen.getAllByTestId(UPLOAD_ITEM_TEST_IDS.uploadItem)[0];
       within(fileToDelete).getByLabelText('Remove file', { exact: false }).click();
 
       expect(fileToDelete).not.toBeInTheDocument();
+
+      expect(onFilesChange).toHaveBeenCalledTimes(1);
+      expect(onFilesChange).toHaveBeenCalledWith([]);
     });
 
     it('should not render delete button when no delete callback is provided', () => {

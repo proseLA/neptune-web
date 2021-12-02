@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
 
 import { Status } from '../common';
@@ -129,7 +130,12 @@ export const withManualDownloadHandler = Template.bind({});
 withManualDownloadHandler.args = {
   ...props,
   files,
-  onDownload: (file: UploadedFile) => {
-    alert(`Manual download handler triggered for: ${JSON.stringify(file)}`);
-  },
+  onDownload: action('Manual download handler'),
+};
+
+export const withFilesChangeHandler = Template.bind({});
+withFilesChangeHandler.args = {
+  ...props,
+  files,
+  onFilesChange: action('Files change handler'),
 };

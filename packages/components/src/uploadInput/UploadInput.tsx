@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '../button';
@@ -48,6 +48,13 @@ export type UploadInputProps = {
   onValidationError?: (file: UploadedFile) => void;
 
   /**
+   * Provide a callback to trigger on change whenever the files are updated
+   *
+   * @param files
+   */
+  onFilesChange?: (files: UploadedFile[]) => void;
+
+  /**
    * Confirmation modal displayed on delete
    */
   deleteConfirm?: {
@@ -87,9 +94,11 @@ const UploadInput = ({
   onUploadFile,
   onDeleteFile,
   onValidationError,
+  onFilesChange,
   onDownload,
 }: UploadInputProps): ReactElement => {
   const [markedFileForDelete, setMarkedFileForDelete] = useState<UploadedFile | null>(null);
+  const [mounted, setMounted] = useState(false);
   const { formatMessage } = useIntl();
 
   const PROGRESS_STATUSES = new Set([Status.PENDING, Status.PROCESSING]);
@@ -208,6 +217,16 @@ const UploadInput = ({
       }
     }
   };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (onFilesChange && mounted) {
+      onFilesChange(uploadedFiles);
+    }
+  }, [onFilesChange, uploadedFiles]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
