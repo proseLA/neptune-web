@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
 import { getStepType, stepType } from '../common/stepTypes/stepTypes';
+import { TrackingContextProvider } from '../common/tracking';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { getValidModelParts } from '../common/validation/valid-model';
 import { CameraStep, LayoutStep } from '../step';
@@ -67,6 +68,7 @@ const DynamicFlow = (props) => {
     onStepChange,
     onError,
     httpClient: propsHttpClient,
+    onTrackableEvent,
     loaderSize,
   } = props;
 
@@ -236,13 +238,13 @@ const DynamicFlow = (props) => {
   };
 
   return (
-    <>
+    <TrackingContextProvider onTrackableEvent={onTrackableEvent}>
       {loading ? (
         <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
       ) : (
         getStep()
       )}
-    </>
+    </TrackingContextProvider>
   );
 };
 
@@ -255,6 +257,7 @@ DynamicFlow.propTypes = {
   httpClient: Types.shape({
     request: Types.func,
   }),
+  onTrackableEvent: Types.func,
   loaderSize: Types.string,
 };
 
@@ -264,6 +267,7 @@ DynamicFlow.defaultProps = {
   onStepChange: () => {},
   onError: () => {},
   httpClient: undefined,
+  onTrackableEvent: () => {},
   loaderSize: Size.EXTRA_LARGE,
 };
 

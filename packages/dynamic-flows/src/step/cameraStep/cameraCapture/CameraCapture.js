@@ -4,8 +4,24 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import screenfull from 'screenfull';
 
+import {
+  CAMERA_ERROR,
+  CAMERA_FEED_STARTED,
+  CAMERA_NOT_SUPPORTED,
+  CAMERA_PERMISSION_ACTIONED,
+  CAMERA_PERMISSION_DIALOG,
+} from '../../../common/tracking/events';
+
 import { drawLayers } from './layerDrawer/layerDrawer';
 import NoCameraAccess from './screens';
+import {
+  getCameraErrorTrackingProperties,
+  getCameraFeedStartedTrackingProperties,
+  getCameraNotSupportedTrackingProperties,
+  getCameraPermissionDeniedTrackingProperties,
+  getCameraPermissionDialogTrackingProperties,
+  getCameraPermissionGrantedTrackingProperties,
+} from './tracking/properties';
 
 export const CAMERA_DIRECTION = {
   FRONT: 'front',
@@ -84,6 +100,7 @@ const CameraCapture = (props) => {
     onError,
     onCancel,
     onCapture,
+    onTrackableEvent,
   } = props;
 
   const videoReference = useRef();
@@ -95,19 +112,24 @@ const CameraCapture = (props) => {
   const [random, setRandom] = useState(Math.random());
 
   useEffect(() => {
-    let renderLayout;
+    if (!isSupported()) {
+      onTrackableEvent(CAMERA_NOT_SUPPORTED, getCameraNotSupportedTrackingProperties());
+      onError(new Error('navigator.mediaDevices not accessible on this browser'));
+      return null;
+    }
 
+    let renderLayout;
     // load images and ask for permission first, then try to acquire fullscreen, and only then start the camera and overlays
     /* prettier-ignore */
     Promise.all([
-      getMediaStream(),
+      getMediaStreamWithTracking(),
       loadLayoutImages([overlay, outline]),
     ])
       .then(async ([videoStream, images]) => {
         setIsVideoMirrored(isSelfieCamera(videoStream));
 
         await tryAcquireFullScreenAndLockOrientation();
-        await startCameraCapture(videoStream)
+        await startCameraCaptureWithTracking(videoStream, props);
 
         const [overlayImage, outlineImage] = images;
         // eslint-disable-next-line testing-library/render-result-naming-convention
@@ -140,10 +162,12 @@ const CameraCapture = (props) => {
     };
   }, [random]);
 
-  if (!isSupported()) {
-    onError(new Error('navigator.mediaDevices not accessible on this browser'));
-    return null;
-  }
+  const startCameraCaptureWithTracking = async (stream, props) => {
+    return startCameraCapture(stream).then((stream) => {
+      onTrackableEvent(CAMERA_FEED_STARTED, getCameraFeedStartedTrackingProperties(props, stream));
+      return stream;
+    });
+  };
 
   const startCameraCapture = async (stream) => {
     return new Promise((resolve) => {
@@ -153,6 +177,40 @@ const CameraCapture = (props) => {
       });
       videoReference.current.srcObject = stream;
     });
+  };
+
+  const getMediaStreamWithTracking = async () => {
+    let dialogShown = false;
+
+    const dialogEventTimeout = setTimeout(() => {
+      dialogShown = true;
+      onTrackableEvent(CAMERA_PERMISSION_DIALOG, getCameraPermissionDialogTrackingProperties());
+    }, 500);
+
+    return getMediaStream()
+      .then((videoStream) => {
+        if (dialogShown) {
+          onTrackableEvent(
+            CAMERA_PERMISSION_ACTIONED,
+            getCameraPermissionGrantedTrackingProperties(),
+          );
+        } else {
+          clearTimeout(dialogEventTimeout);
+        }
+
+        return videoStream;
+      })
+      .catch(async (error) => {
+        if (error.name === 'NotAllowedError') {
+          onTrackableEvent(
+            CAMERA_PERMISSION_ACTIONED,
+            getCameraPermissionDeniedTrackingProperties(error),
+          );
+        } else {
+          onTrackableEvent(CAMERA_ERROR, getCameraErrorTrackingProperties(error));
+        }
+        throw error;
+      });
   };
 
   const getMediaStream = () => {
@@ -304,6 +362,8 @@ CameraCapture.propTypes = {
   onCancel: PropTypes.func,
   onCapture: PropTypes.func.isRequired,
   onError: PropTypes.func,
+
+  onTrackableEvent: PropTypes.func,
 };
 
 CameraCapture.defaultProps = {
@@ -319,6 +379,8 @@ CameraCapture.defaultProps = {
 
   onCancel: undefined,
   onError: () => {},
+
+  onTrackableEvent: () => {},
 };
 
 export default CameraCapture;

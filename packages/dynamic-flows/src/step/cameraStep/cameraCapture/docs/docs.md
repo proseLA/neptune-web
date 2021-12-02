@@ -18,3 +18,23 @@ The way the overlay position is calculated as seen in the example is the followi
 Its possible to enable debugging mode and displaying these different sections by toggling the `DEBUG_MODE` flag within the component
 
 ![img.png](src/step/cameraStep/cameraCapture/docs/img.png)
+
+### Analytics
+
+#### Events
+
+- Camera Permission Dialog
+- Camera Permission Actioned
+    - Provided : true/false
+- Camera Feed Started
+  - Camera Hardware Resolution: 1080 x 720
+  - Camera Hardware Height: 720
+  - Camera Hardware Width: 1080
+  - Camera Feed Resolution: 1080 x 720
+  - Camera Feed Height: 720
+  - Camera Feed Width: 1080
+  - Camera Direction (Actual): front | back
+  - Camera Direction (Asked): front | back
+- Camera Error
+  - Error
+- Camera Not Supported

@@ -2,6 +2,7 @@ import Types from 'prop-types';
 import { useEffect, useState } from 'react';
 
 import { filterHiddenSchemas } from '../../common/stepTypes/stepTypes';
+import { useTracking } from '../../common/tracking';
 
 import CameraCapture from './cameraCapture';
 
@@ -15,6 +16,8 @@ function blobToBase64(blob) {
 
 const CameraStep = (props) => {
   const { stepSpecification, model, onModelChange, onAction } = props;
+
+  const onTrackableEvent = useTracking();
 
   if (filterHiddenSchemas(stepSpecification.schemas).length !== 1) {
     throw new Error('camera step expects 1 non-hidden object schema');
@@ -61,6 +64,7 @@ const CameraStep = (props) => {
         instructions={instructions}
         showPreview={false}
         direction={direction}
+        onTrackableEvent={onTrackableEvent}
         onError={(error) => {
           throw error;
         }}
