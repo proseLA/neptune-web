@@ -361,3 +361,13 @@
 
   transform: translateX(@value) @transform2 @transform3;
 }
+
+// Rotations
+
+.rotate(@deg) {
+  [dir="rtl"] & {
+    transform: rotate(@deg * -1);
+  }
+
+  transform: rotate(@deg);
+}

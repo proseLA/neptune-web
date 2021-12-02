@@ -9,7 +9,7 @@ const DateHeader = ({ label, onLabelClick, onPreviousClick, onNextClick }) => (
   <div className="text-xs-center p-t-1 p-b-2 clearfix">
     <div className="pull-left-single-direction">
       <button type="button" className={buttonClasses} onClick={onPreviousClick}>
-        <Chevron orientation={Position.LEFT} size={Size.MEDIUM} />
+        <Chevron orientation={Position.LEFT} className="left-single-direction" size={Size.MEDIUM} />
       </button>
     </div>
     {label && (
@@ -23,7 +23,11 @@ const DateHeader = ({ label, onLabelClick, onPreviousClick, onNextClick }) => (
     )}
     <div className="pull-right-single-direction">
       <button type="button" className={buttonClasses} onClick={onNextClick}>
-        <Chevron orientation={Position.RIGHT} size={Size.MEDIUM} />
+        <Chevron
+          orientation={Position.RIGHT}
+          className="right-single-direction"
+          size={Size.MEDIUM}
+        />
       </button>
     </div>
   </div>
