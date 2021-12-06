@@ -41,6 +41,7 @@ export default function PageContent(): ReactElement {
   return (
     <>
       <Section>
+        <Heading as="h1">New and improved</Heading>
         <Heading as="h2">Accessible colours</Heading>
         <div>
           <Link href="https://neptune.wise.com/design/colour">Colour system docs</Link>
@@ -59,7 +60,7 @@ export default function PageContent(): ReactElement {
         </div>
       </Section>
       <Section>
-        <Heading as="h3">Semantic colours</Heading>
+        <Heading as="h3">Semantic naming</Heading>
         <p className="m-t-2">
           Our colour tokens are named semantically. This means that when you are looking for a
           colour, you should think about your use case, rather than the colour itself. For example,
@@ -97,14 +98,43 @@ export default function PageContent(): ReactElement {
           the breaking changes section below.
         </p>
       </Section>
+
+      <Section>
+        <Heading as="h2">Right to Left</Heading>
+        <DocumentLink href="/styles/addons/RtlLayout">Setup guide</DocumentLink>
+        <p className="m-t-3">
+          We have added right to left support for Neptune CSS and all components. If you want to get
+          started supporting right to left in your application today, we have{' '}
+          <DocumentLink href="/styles/addons/RtlLayout">a guide</DocumentLink> describing the steps
+          you need to take.
+        </p>
+        <div className="d-flex justify-content-center" dir="rtl">
+          {/* eslint-disable-next-line react/forbid-dom-props */}
+          <div style={{ width: 576 }}>
+            <NavigationOption
+              media={<FastFlagIcon />}
+              title="I am a title"
+              content="Here is the rest of the content"
+              // eslint-disable-next-line no-console
+              onClick={console.log}
+            />
+            <NavigationOption
+              media={<FastFlagIcon />}
+              title="I am a title"
+              content="Here is the rest of the content"
+              // eslint-disable-next-line no-console
+              onClick={console.log}
+            />
+          </div>
+        </div>
+      </Section>
       <Section>
         <Heading as="h2">Typography</Heading>
         <div>
           <Link href="https://neptune.wise.com/design/typography/">Typography docs</Link>
         </div>
-        <div>
-          <DocumentLink href="/styles/core/Typography#headings">Typography classes</DocumentLink>
-        </div>
+        <DocumentLink href="/styles/core/Typography#headings">Typography classes</DocumentLink>
+        <Alert className="m-y-2" message="Visual updates" type={Sentiment.WARNING} />
         <p className="m-t-3">
           We've made extensive typography improvements to increase consistency across platforms. As
           part of this we've adopted a new typography scale, which is shared across all platforms.
@@ -222,8 +252,7 @@ export default function PageContent(): ReactElement {
             </tr>
           </tbody>
         </table>
-      </Section>
-      <Section>
+
         <Heading as="h3">Typography tokens</Heading>
         <DocumentLink href="styles/tokens/Typography">Typography tokens docs</DocumentLink>
         <p className="m-t-2">
@@ -231,273 +260,8 @@ export default function PageContent(): ReactElement {
           <DocumentLink href="styles/tokens/Typography">documentation</DocumentLink> for the full
           list.
         </p>
-        <Section>
-          <Heading as="h2">Right to Left</Heading>
-          <DocumentLink href="/styles/addons/RtlLayout">Setup guide</DocumentLink>
-          <p className="m-t-3">
-            We have added right to left support for Neptune CSS and all components. If you want to
-            get started supporting right to left in your application today, we have{' '}
-            <DocumentLink href="/styles/addons/RtlLayout">a guide</DocumentLink> describing the
-            steps you need to take.
-          </p>
-          <div className="d-flex justify-content-center" dir="rtl">
-            {/* eslint-disable-next-line react/forbid-dom-props */}
-            <div style={{ width: 576 }}>
-              <NavigationOption
-                media={<FastFlagIcon />}
-                title="I am a title"
-                content="Here is the rest of the content"
-                // eslint-disable-next-line no-console
-                onClick={console.log}
-              />
-              <NavigationOption
-                media={<FastFlagIcon />}
-                title="I am a title"
-                content="Here is the rest of the content"
-                // eslint-disable-next-line no-console
-                onClick={console.log}
-              />
-            </div>
-          </div>
-        </Section>
-      </Section>
-      <Section>
-        <Heading as="h2">Tokens upgrade</Heading>
-        <p>
-          Version <strong>12</strong> of Neptune CSS bumps{' '}
-          <a href="https://github.com/transferwise/neptune-tokens">neptune-tokens</a> from v1 to v6,
-          so there are lots of great updates and some breaking changes that we need to address. Read
-          on to get familiar with new and updated tokens, and to see which tokens have been removed
-          and deprecated.
-        </p>
-        <Alert
-          type={Sentiment.POSITIVE}
-          message="**We have an upgrade script you can use to fix all breaking changes.** Update and run **yarn run neptune-css-upgrade-util**. Choose the upgrade script **2021-11-v11-v12.js** and follow the instructions."
-        />
-        <Link href="#steps-to-upgrade">Skip to the upgrade steps</Link>
-      </Section>
-      <Section>
-        <Heading as="h3">Changes</Heading>
-        <p>
-          Currently, all our tokens are built into both less variables (e.g.{' '}
-          <code>@color-content-primary</code>) and CSS custom properties (
-          {/*
-           */}
-          <code>--color-content-primary</code>). Although the examples below are written as custom
-          properties, <strong>the changes below apply to both less and custom properties.</strong>
-        </p>
-        <Alert
-          className="m-y-2"
-          type="positive"
-          message="Prefer CSS custom properties over less variables."
-        />
-      </Section>
-      <Section>
-        <Heading as="h3">New tokens</Heading>
-        <table className="table docs-table">
-          <thead>
-            <tr>
-              <th>New token</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <pre>{`--color-content-positive-hover
---color-content-positive-active
---color-content-warning-hover
---color-content-warning-active
---color-content-negative-hover
---color-content-negative-active`}</pre>
-              </td>
-              <td>
-                We've added missing combinations of tokens so that we have default, hover and active
-                states for postitive, negative and warning content colours.
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <pre>{`--color-content-secondary
---color-content-secondary-active
---color-content-secondary-hover`}</pre>
-              </td>
-              <td>We added a secondary content colour variation.</td>
-            </tr>
-            <tr>
-              <td>
-                <pre>--color-interactive-disabled</pre>
-              </td>
-              <td>We added a disabled colour for interactive elements.</td>
-            </tr>
-            <tr>
-              <td>
-                <pre>{`--color-border-overlay
---color-background-overlay`}</pre>
-              </td>
-              <td>We added overlay colours.</td>
-            </tr>
-            <tr>
-              <td>
-                <pre>--space-content-horizontal</pre>
-              </td>
-              <td>
-                Can be used to add consistent horizontal padding to the content, the same token is
-                used internally for our components.
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <pre>--font-family-regular</pre>
-              </td>
-              <td>
-                While you shouldn’t need to set the font often, on the occasions that you do, you
-                can now use <code>font-family-regular</code>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <Section>
-          <Heading as="h3">Updated tokens</Heading>
-          <Alert className="m-y-2" type={Sentiment.NEGATIVE} message="Breaking change" />
-          <table className="table docs-table">
-            <thead>
-              <tr>
-                <th>Old token</th>
-                <th>New token</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <pre>--color-text-*</pre>
-                </td>
-                <td>
-                  <pre>--color-content-*</pre>
-                </td>
-                <td>
-                  All <code>-text</code> tokens are now <code>-content</code> to better reflect that
-                  they should be used for more than just text (icons, for example).
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <pre>--color-control-*</pre>
-                </td>
-                <td>
-                  <pre>--color-interactive-*</pre>
-                </td>
-                <td>
-                  All <code>-control</code> tokens are now <code>-interactive</code> to emphasise
-                  that these tokens should be used to colour interactive elements.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </Section>
-        <Section>
-          <Heading as="h3">Removed tokens</Heading>
-          <Alert className="m-y-2" type={Sentiment.NEGATIVE} message="Breaking change" />
-          <table className="table docs-table">
-            <thead>
-              <tr>
-                <th>Old token</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <pre>--color-text-control</pre>
-                </td>
-                <td>
-                  Should be replaced with <code>#fff</code>, as this token is not themed.
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <pre>--color-text-important</pre>
-                </td>
-                <td>
-                  Should be replaced with <code>--color-content-primary</code>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <pre>{`--color-border-focus
---color-border-positive
---color-border-negative
---color-border-warning`}</pre>
-                </td>
-                <td>
-                  Most people won't need this, but if you find you're using this, try{' '}
-                  <code>--color-interactive-accent</code> instead
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </Section>
-        <Section>
-          <Heading as="h3">Deprecated color tokens</Heading>
-          <Alert
-            className="m-y-2"
-            type={Sentiment.WARNING}
-            message="These tokens are considered legacy and will be removed in an upcoming release."
-          />
-          <table className="table docs-table">
-            <thead>
-              <tr>
-                <th>Deprecated token</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <pre>{`--color-primary
---color-secondary
---color-accent
---color-positive
---color-negative
---color-warning`}</pre>
-                </td>
-                <td>
-                  These are tricky to replace using a find and replace - you need to look at the
-                  usage and decide whether a <code>--color-content-</code> or{' '}
-                  <code>--color-interactive-</code> colour is best, depending on where it's being
-                  used.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </Section>
-        <Section>
-          <Heading as="h3">Steps to upgrade</Heading>
-          <p>
-            Once you've updated to <code>neptune-css</code> v12, run{' '}
-            <code>yarn run neptune-css-upgrade-util</code>, choose the upgrade script{' '}
-            <code>2021-11-v11-v12.js</code> and follow the instructions.
-          </p>
 
-          <Alert
-            className="m-y-2"
-            type={Sentiment.WARNING}
-            message="This script only works on less and css files. If you're using tokens in your js or ts files, please contact us and we can look at extending the script."
-          />
-        </Section>
-      </Section>
-      <Section>
-        <Heading as="h2">Typography visual changes</Heading>
-        <Alert className="m-y-2" message="Visual updates" type={Sentiment.WARNING} />
-        <p>
-          In version <strong>12</strong> of Neptune CSS we updated many of our typography styles,
-          and added new ones. As part of this we've adopted a new typography scale, which is shared
-          across all platforms. We've also updated some font styles, added new utility classes and
-          improved our documentation. Refer to{' '}
-          <Link href="https://neptune.wise.com/design/typography/">the documentation</Link> to see
-          all the changes.
-        </p>
+        <Heading as="h3">Deprecated typography variables</Heading>
         <p>
           Eventually we would like to move away from using less variables and towards custom
           properties. As stated above,{' '}
@@ -508,17 +272,6 @@ export default function PageContent(): ReactElement {
           moment. You can start the migration today by only using custom properties listed on our{' '}
           <DocumentLink href="/styles/tokens/Colors">token docs</DocumentLink> page.
         </p>
-      </Section>
-      <Section>
-        <Heading as="h3">New typography tokens</Heading>
-        <p>
-          This release introduced new custom properties that can be used in place of old less
-          typography variables. Read all about them on the new{' '}
-          <DocumentLink href="/styles/tokens/Typography">documentation</DocumentLink> page.
-        </p>
-      </Section>
-      <Section>
-        <Heading as="h3">Deprecated typography tokens</Heading>
         <Alert
           className="m-y-2"
           type={Sentiment.WARNING}
@@ -530,7 +283,7 @@ export default function PageContent(): ReactElement {
             The following less variables come from the <code>legacy-variable.less</code> file and
             are deprecated, we are recommending to replace them following these instructions.
           </p>
-          <table className="table docs-table">
+          <table className="table docs-table table-condensed">
             <thead>
               <tr>
                 <th>Legacy variables</th>
@@ -716,7 +469,7 @@ export default function PageContent(): ReactElement {
             The following less variables come from the{' '}
             <code>src/less/variables/_typography.less</code> file and are deprecated.
           </p>
-          <table className="table docs-table">
+          <table className="table docs-table table-condensed">
             <thead>
               <tr>
                 <th>Legacy variables</th>
@@ -784,92 +537,319 @@ export default function PageContent(): ReactElement {
         </Section>
       </Section>
       <Section>
-        <Heading as="h2">Upgrade guide</Heading>
-        <ol>
+        <Heading as="h2">Token updates</Heading>
+        <Alert className="m-y-2" type={Sentiment.NEGATIVE} message="Breaking change" />
+        <p>
+          As part of the accessible colours work, tokens have been updated. In line with our new
+          approach to choose colours semantically, some token names have been changed, and a few
+          tokens removed. Read on to get familiar with new, updated and deprecated tokens.
+        </p>
+        <Alert
+          type={Sentiment.POSITIVE}
+          message="**We have an upgrade script you can use to fix all breaking changes.**"
+          action={{
+            'aria-label': 'Skip to the upgrade steps',
+            text: 'Skip to the upgrade steps',
+            href: '#steps-to-upgrade',
+          }}
+        />
+      </Section>
+      <Section>
+        <Heading as="h3" className="m-b-1">
+          Changes
+        </Heading>
+        <p>
+          Currently, all our tokens are built into both less variables (e.g.{' '}
+          <code>@color-content-primary</code>) and CSS custom properties (
+          {/*
+           */}
+          <code>--color-content-primary</code>). Although the examples below are written as custom
+          properties, <strong>the changes below apply to both less and custom properties.</strong>
+        </p>
+      </Section>
+      <Section>
+        <Heading as="h3" className="m-b-1">
+          New tokens
+        </Heading>
+        <table className="table docs-table table-condensed">
+          <thead>
+            <tr>
+              <th>New token</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <pre>{`--color-content-positive-hover
+--color-content-positive-active
+--color-content-warning-hover
+--color-content-warning-active
+--color-content-negative-hover
+--color-content-negative-active`}</pre>
+              </td>
+              <td>
+                We've added missing combinations of tokens so that we have default, hover and active
+                states for postitive, negative and warning content colours.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <pre>{`--color-content-secondary
+--color-content-secondary-active
+--color-content-secondary-hover`}</pre>
+              </td>
+              <td>We added a secondary content colour variation.</td>
+            </tr>
+            <tr>
+              <td>
+                <pre>--color-interactive-disabled</pre>
+              </td>
+              <td>We added a disabled colour for interactive elements.</td>
+            </tr>
+            <tr>
+              <td>
+                <pre>{`--color-border-overlay
+--color-background-overlay`}</pre>
+              </td>
+              <td>We added overlay colours.</td>
+            </tr>
+            <tr>
+              <td>
+                <pre>--space-content-horizontal</pre>
+              </td>
+              <td>
+                Can be used to add consistent horizontal padding to the content, the same token is
+                used internally for our components.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <pre>--font-family-regular</pre>
+              </td>
+              <td>
+                While you shouldn’t need to set the font often, on the occasions that you do, you
+                can now use <code>font-family-regular</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <Section>
+          <Heading as="h3" className="m-b-1">
+            Updated tokens
+          </Heading>
+          <table className="table docs-table table-condensed">
+            <thead>
+              <tr>
+                <th>Old token</th>
+                <th>New token</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <pre>--color-text-*</pre>
+                </td>
+                <td>
+                  <pre>--color-content-*</pre>
+                </td>
+                <td>
+                  All <code>-text</code> tokens are now <code>-content</code> to better reflect that
+                  they should be used for more than just text (icons, for example).
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <pre>--color-control-*</pre>
+                </td>
+                <td>
+                  <pre>--color-interactive-*</pre>
+                </td>
+                <td>
+                  All <code>-control</code> tokens are now <code>-interactive</code> to emphasise
+                  that these tokens should be used to colour interactive elements.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
+        <Section>
+          <Heading as="h3" className="m-b-1">
+            Removed tokens
+          </Heading>
+          <table className="table docs-table table-condensed">
+            <thead>
+              <tr>
+                <th>Old token</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <pre>--color-text-control</pre>
+                </td>
+                <td>
+                  Should be replaced with <code>#fff</code>, as this token is not themed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <pre>--color-text-important</pre>
+                </td>
+                <td>
+                  Should be replaced with <code>--color-content-primary</code>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <pre>{`--color-border-focus
+--color-border-positive
+--color-border-negative
+--color-border-warning`}</pre>
+                </td>
+                <td>
+                  Most people won't need this, but if you find you're using this, try{' '}
+                  <code>--color-interactive-accent</code> instead
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
+        <Section>
+          <Heading as="h3" className="m-b-1">
+            Deprecated color tokens
+          </Heading>
+          <table className="table docs-table table-condensed">
+            <thead>
+              <tr>
+                <th>Deprecated token</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <pre>{`--color-primary
+--color-secondary
+--color-accent
+--color-positive
+--color-negative
+--color-warning`}</pre>
+                </td>
+                <td>
+                  These are tricky to replace using a find and replace - you need to look at the
+                  usage and decide whether a <code>--color-content-</code> or{' '}
+                  <code>--color-interactive-</code> colour is best, depending on where it's being
+                  used.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
+      </Section>
+      <Section>
+        <Heading as="h1">Steps to upgrade</Heading>
+
+        <Alert
+          className="m-y-2"
+          type={Sentiment.POSITIVE}
+          message="**We have an upgrade script to fix all breaking changes for you.** See step 2."
+        />
+
+        <Heading as="h2">1. Update versions</Heading>
+        <p>
+          Update components (39.x) and neptune-css (12.x). Ensure all of your UI dependencies have
+          also migrated to these versions or higher.
+          <pre>yarn add @transferwise/neptune-css@12 @transferwise/components@39</pre>
+          <pre>npm install @transferwise/neptune-css@12 @transferwise/components@39</pre>
+        </p>
+
+        <Heading as="h2">2. Run the upgrade script</Heading>
+
+        <p>
+          Run the upgrade script, choose <code>2021-11-v11-v12.js</code> and follow the
+          instructions.
+          <pre>yarn run neptune-css-upgrade-util</pre>
+          <pre>npm exec neptune-css-upgrade-util</pre>
+        </p>
+
+        <Heading as="h2">3. Replace custom colours (recommended)</Heading>
+
+        <p>
+          All colours should eventually use only colours in our semantic palette. It's recommended
+          that you look through your <code>.less</code> / <code>.css</code> files for custom
+          colours, and begin replacing them with semantic tokens if you're not already using them.{' '}
+          <strong>Prefer custom properties over less variables.</strong>
+        </p>
+
+        <Heading as="h3">Choosing semantic colours</Heading>
+
+        <p>Here are some tips to help you choose the right colour token:</p>
+        <ul>
           <li>
-            <p>
-              Update Neptune and all UI dependencies (make sure all UI dependencies have migrated to
-              this version or higher version of components (39.x) and neptune-css (12.x)).
-              <br />
-              <br />
-              <code>npm install @transferwise/neptune-css@12 @transferwise/components@39</code>{' '}
-              <strong>or</strong>{' '}
-              <code>yarn add @transferwise/neptune-css@12 @transferwise/components@39</code>
-            </p>
+            <code>color</code> &ndash; the colour of text on an interactive element will always be{' '}
+            <code>#fff</code> - this is not themed. For everything else, choose from the{' '}
+            <DocumentLink href="styles/tokens/Colors#content-color-tokens">
+              content (text and icon) tokens
+            </DocumentLink>
+            .
           </li>
           <li>
-            <p>
-              Apply new colors in case you have custom color styles in your repository, check{' '}
-              <code>.less</code> / <code>.css</code> files.
-            </p>
-            <p>
-              To help you with the upgrades, we added a codemode to get you started with renaming
-              the deprecated/removed tokens to the replacement value.
-              <br />
-              <br />
-              <code>npm exec neptune-css-upgrade-util</code> <strong>or</strong>{' '}
-              <code>yarn run neptune-css-upgrade-util</code>
-            </p>
-            <p>
-              We named our colours semantically. This means describing them by when they should be
-              used, so you can pick them based on the purpose of the property you’re colouring:
-              <ul>
-                <li>
-                  <code>color</code> &ndash; choose{' '}
-                  <DocumentLink href="styles/tokens/Colors#content-color-tokens">
-                    content (text and icon) tokens
-                  </DocumentLink>
-                  .
-                </li>
-                <li>
-                  <code>background-color</code> &ndash; for surface / screen pick one of{' '}
-                  <DocumentLink href="styles/tokens/Colors#background-color-tokens">
-                    background colors tokens
-                  </DocumentLink>
-                  , if background for some interactive element pick{' '}
-                  <DocumentLink href="styles/tokens/Colors#interactive-colors-tokens">
-                    interactive colors tokens
-                  </DocumentLink>
-                  .
-                </li>
-                <li>
-                  <code>border-color</code> &ndash; use{' '}
-                  <DocumentLink href="styles/tokens/Colors#border-color-tokens">
-                    border color tokens
-                  </DocumentLink>{' '}
-                  if the purpose of the border is decorative, if it’s used in an interactive
-                  element, like inputs, use{' '}
-                  <DocumentLink href="styles/tokens/Colors#interactive-colors-tokens">
-                    interactive
-                  </DocumentLink>
-                  .
-                </li>
-                <li>
-                  <code>:hover</code> &ndash; pseudo class use tokens with <code>-hover</code>{' '}
-                  suffix
-                </li>
-                <li>
-                  <code>:focus</code> / <code>:active</code> &ndash; use tokens with{' '}
-                  <code>-active</code> suffix
-                </li>
-              </ul>
-            </p>
+            <code>background-color</code> &ndash; for surfaces / screens choose a{' '}
+            <DocumentLink href="styles/tokens/Colors#background-color-tokens">
+              background color token
+            </DocumentLink>
+            . If the background is for an interactive element, choose an{' '}
+            <DocumentLink href="styles/tokens/Colors#interactive-colors-tokens">
+              interactive color token
+            </DocumentLink>
+            .
           </li>
           <li>
-            Apply typography updates: check whether you use{' '}
-            <Link href="#deprecated-typography-tokens">deprecated typography tokens</Link>, and use{' '}
-            <Link href="#new-typography-tokens">new typography tokens</Link> in case you have custom
-            typogrpahy related styles in your repository.
+            <code>border-color</code> &ndash; use{' '}
+            <DocumentLink href="styles/tokens/Colors#border-color-tokens">
+              border color tokens
+            </DocumentLink>{' '}
+            if the purpose of the border is decorative. If it’s used in an interactive element use{' '}
+            <DocumentLink href="styles/tokens/Colors#interactive-colors-tokens">
+              interactive
+            </DocumentLink>
+            .
           </li>
           <li>
-            If you need add support for RTL mode please read{' '}
-            <DocumentLink href="/styles/addons/RtlLayout">RTL layout guide</DocumentLink>.
+            <code>:hover</code> &ndash; use tokens with <code>-hover</code> suffix
           </li>
           <li>
-            Lastly, please review the visual changes to your application or perform visual
-            regression test to make sure that colors and typography (and RTL mode) looks correct.
+            <code>:focus</code> / <code>:active</code> &ndash; use tokens with <code>-active</code>{' '}
+            suffix
           </li>
-        </ol>
+        </ul>
+
+        <Heading as="h2">4. Replace deprecated variables (recommended)</Heading>
+
+        <p>
+          Check whether you're using any of the{' '}
+          <Link href="#deprecated-typography-tokens">deprecated typography tokens</Link>, and
+          replace them with the <Link href="#new-typography-tokens">new typography tokens</Link>.
+        </p>
+
+        <Heading as="h2">5. Right to left setup (optional)</Heading>
+
+        <p>
+          If you need right to left support, please read the{' '}
+          <DocumentLink href="/styles/addons/RtlLayout">RTL setup guide</DocumentLink>.
+        </p>
+
+        <Heading as="h2">6. Visual regression test</Heading>
+
+        <p>
+          Lastly, please perform a visual regression test of your application to ensure sure that
+          colour, typography and right to left changes (if applied) look correct.{' '}
+          <strong>Please rememeber that some changes are expected</strong>: we have updated our
+          colours to be darker and we have updated our font styles. If in doubt, speak with us.
+        </p>
       </Section>
     </>
   );
