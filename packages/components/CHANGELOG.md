@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [38.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.4.0...@transferwise/components@38.4.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* **Dimmer:** fade background color on open/close ([#1223](https://github.com/transferwise/neptune-web/issues/1223)) ([4053c77](https://github.com/transferwise/neptune-web/commit/4053c772b0b0655b2dc43e225a0e26da3f4995d7))
+
+
+
+
+
 # [38.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.3.1...@transferwise/components@38.4.0) (2021-12-02)
 
 
