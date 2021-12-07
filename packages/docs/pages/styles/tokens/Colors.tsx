@@ -71,6 +71,7 @@ export default function PageContent() {
         <ColorToken token="--color-content-warning" className="m-b-2" />
         <ColorToken token="--color-content-warning-hover" className="m-b-2" />
         <ColorToken token="--color-content-warning-active" className="m-b-2" />
+        <ColorToken token="--color-content-tertiary" className="m-b-2" />
         <ColorToken token="--color-content-disabled" className="m-b-2" />
       </div>
       <div className="m-b-4">

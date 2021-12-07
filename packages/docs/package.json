@@ -43,7 +43,7 @@
     "@transferwise/dynamic-flows": "^15.7.12",
     "@transferwise/icons": "^2.14.0",
     "@transferwise/neptune-css": "^11.0.1",
-    "@transferwise/neptune-tokens": "6.0.0",
+    "@transferwise/neptune-tokens": "6.1.0",
     "classnames": "^2.3.1",
     "currency-flags": "^3.2.1",
     "date-fns": "^2.23.0",
