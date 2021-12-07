@@ -307,6 +307,17 @@ describe('Given a telephone number component', () => {
     });
   });
 
+  describe('overlapping prefix and suffix numbers', () => {
+    it("shouldn't change the prefix number on matching suffix input", () => {
+      component = mount(<PhoneNumberInput {...props} countryCode="eg" />);
+
+      component.find(NUMBER_SELECTOR).simulate('change', { target: { value: '1111111' } });
+
+      expect(component.find(NUMBER_SELECTOR).props().value).toBe('1111111');
+      expect(props.onChange).toHaveBeenCalledWith('+201111111');
+    });
+  });
+
   const changeSelectValue = (value) => {
     component.find('button.dropdown-toggle').simulate('click', fakeEvent());
     component.find('.tw-select-filter').simulate('change', { target: { value } });

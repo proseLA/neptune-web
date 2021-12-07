@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 import { select, boolean } from '@storybook/addon-knobs';
 
 import PhoneNumberInput from './PhoneNumberInput';
@@ -15,13 +14,12 @@ export const Basic = () => {
 
   return (
     <PhoneNumberInput
-      countryCode=""
       disabled={disabled}
       required={required}
       size={size}
       searchPlaceholder="searchPlaceholder"
       placeholder="placeholder"
-      onChange={(v) => action(v)}
+      onChange={console.log}
     />
   );
 };

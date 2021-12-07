@@ -36,25 +36,25 @@ const PhoneNumberInput = (props) => {
 
   const getInitialValue = () => {
     const { initialValue } = props;
+
     const cleanValue = initialValue ? cleanNumber(initialValue) : null;
-    return cleanValue && isValidPhoneNumber(cleanValue) ? cleanValue : null;
+
+    if (!cleanValue || !isValidPhoneNumber(cleanValue)) {
+      return {
+        prefix: setDefaultPrefix(locale, countryCode),
+        suffix: '',
+      };
+    }
+
+    return explodeNumberModel(cleanValue);
   };
 
   const [internalValue, setInternalValue] = useState(getInitialValue());
-  const [broadcastValue, setBroadcastValue] = useState(getInitialValue());
+  const [broadcastedValue, setBroadcastedValue] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   const listSortedByISO3 = groupCountriesByPrefix(sortArrayByProperty(countries, 'iso3'));
   const listSortedByPhone = groupCountriesByPrefix(sortArrayByProperty(countries, 'phone'));
-
-  const getSuffixPrefix = (value) => {
-    let prefix = setDefaultPrefix(locale, countryCode);
-    let suffix = '';
-    if (value) {
-      ({ prefix, suffix } = explodeNumberModel(value));
-    }
-    return { prefix, suffix };
-  };
 
   const getSelectOptions = () => {
     const filteredOptions = filterOptionsForQuery(
@@ -78,60 +78,68 @@ const PhoneNumberInput = (props) => {
 
   const options = getSelectOptions();
 
-  const handleChangeSelect = (event) => {
-    const { suffix } = getSuffixPrefix(internalValue);
-    const prefix = event.value;
-
+  const onPrefixChange = ({ value }) => {
     setSearchQuery('');
-    setInternalValue(prefix + suffix);
+    setInternalValue({ prefix: value, suffix: internalValue.suffix });
   };
 
-  const handleInputChange = (event) => {
-    const suffix = event.target.value;
+  const onSuffixChange = (event) => {
+    const { value = '' } = event.target;
 
-    if (ALLOWED_PHONE_CHARS.test(suffix)) {
-      const { prefix } = getSuffixPrefix(internalValue);
-      setInternalValue(prefix + suffix);
+    if (ALLOWED_PHONE_CHARS.test(value)) {
+      setInternalValue({ prefix: internalValue.prefix, suffix: value });
     }
   };
 
-  const handlePaste = (event) => {
+  const onPaste = (event) => {
     if (!event.nativeEvent.clipboardData) {
       return;
     }
-    const pasteValue = (event.nativeEvent.clipboardData.getData('text/plain') || '').replace(
+    const pastedValue = (event.nativeEvent.clipboardData.getData('text/plain') || '').replace(
       /(\s|-)+/g,
       '',
     );
-    const selected = options.find(({ value }) => new RegExp(`^\\${value}`).test(pasteValue));
-    if (selected && ALLOWED_PHONE_CHARS.test(pasteValue.replace(selected.value, ''))) {
-      setInternalValue(pasteValue);
+    const { prefix: pastedPrefix, suffix: pastedSuffix } = explodeNumberModel(pastedValue);
+    const selectedPrefix = options.find(({ value }) => value === pastedPrefix);
+
+    if (selectedPrefix && ALLOWED_PHONE_CHARS.test(pastedSuffix)) {
+      setInternalValue({ prefix: pastedPrefix, suffix: pastedSuffix });
     }
   };
 
   useEffect(() => {
-    const newbroadcastValue = isValidPhoneNumber(internalValue) ? cleanNumber(internalValue) : null;
-    if (newbroadcastValue !== broadcastValue) {
-      onChange(newbroadcastValue);
-      setBroadcastValue({ newbroadcastValue });
+    if (broadcastedValue === null) {
+      return setBroadcastedValue(internalValue);
     }
-  }, [internalValue]);
 
-  const { prefix, suffix } = getSuffixPrefix(internalValue);
+    const internalPhoneNumber = internalValue.prefix + internalValue.suffix;
+    const broadcastedPhoneNumber = broadcastedValue.prefix + broadcastedValue.suffix;
+
+    if (internalPhoneNumber === broadcastedPhoneNumber) {
+      return;
+    }
+
+    const newValue = isValidPhoneNumber(internalPhoneNumber)
+      ? cleanNumber(internalPhoneNumber)
+      : null;
+
+    onChange(newValue);
+    setBroadcastedValue(internalValue);
+  }, [onChange, broadcastedValue, internalValue]);
 
   return (
     <div className="tw-telephone">
       <div className="tw-telephone__country-select">
         <Select
           options={options}
-          selected={{ value: prefix, label: prefix }}
+          selected={{ value: internalValue.prefix, label: internalValue.prefix }}
           placeholder="Select an option..."
           searchPlaceholder={searchPlaceholder}
           searchValue={searchQuery}
           required={required}
           disabled={disabled}
           size={size}
-          onChange={handleChangeSelect}
+          onChange={onPrefixChange}
           onSearchChange={(newSearch) => setSearchQuery(newSearch)}
         />
       </div>
@@ -141,14 +149,14 @@ const PhoneNumberInput = (props) => {
           <input
             name="phoneNumber"
             inputMode="numeric"
-            value={suffix}
+            value={internalValue.suffix}
             type="text"
             className="form-control"
             disabled={disabled}
             required={required}
             placeholder={placeholder}
-            onChange={handleInputChange}
-            onPaste={handlePaste}
+            onChange={onSuffixChange}
+            onPaste={onPaste}
             onFocus={onFocus}
             onBlur={onBlur}
           />
