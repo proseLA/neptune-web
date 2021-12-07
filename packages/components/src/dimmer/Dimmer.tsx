@@ -1,9 +1,8 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { useEffect, useRef } from 'react';
+import { MouseEvent, ReactElement, ReactNode, useCallback, useEffect, useRef } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-import { addNoScrollBodyClass, removeNoScrollBodyClass } from '../common';
+import { addNoScrollBodyClass, CommonProps, removeNoScrollBodyClass } from '../common';
 import { isIosDevice } from '../common/deviceDetection';
 import FocusBoundary from '../common/focusBoundary';
 import withNextPortal from '../withNextPortal/withNextPortal';
@@ -14,8 +13,19 @@ export const EXIT_ANIMATION = 350;
 
 const dimmerManager = new DimmerManager();
 
-export const handleTouchMove = (event) => {
-  const isTouchedElementDimmer = event.target.classList.contains('dimmer');
+type DimmerProps = CommonProps & {
+  children?: ReactNode;
+  disableClickToClose?: boolean;
+  fadeContentOnEnter?: boolean;
+  fadeContentOnExit?: boolean;
+  open?: boolean;
+  scrollable?: boolean;
+  transparent?: boolean;
+  onClose?: (event: KeyboardEvent | MouseEvent) => void;
+};
+
+export const handleTouchMove = (event: Event) => {
+  const isTouchedElementDimmer = (event.target as HTMLDivElement).classList.contains('dimmer');
 
   // disable scroll on iOS devices for Dimmer area
   // this is because of bug in WebKit https://bugs.webkit.org/show_bug.cgi?id=220908
@@ -29,50 +39,64 @@ export const handleTouchMove = (event) => {
 const Dimmer = ({
   children,
   className,
-  disableClickToClose,
-  fadeContentOnEnter,
-  fadeContentOnExit,
-  transparent,
+  disableClickToClose = false,
+  fadeContentOnEnter = false,
+  fadeContentOnExit = false,
+  open = false,
+  scrollable = false,
+  transparent = false,
   onClose,
-  open,
-  scrollable,
-}) => {
-  const dimmerReference = useRef();
-  const closeOnClick = (event) => {
+}: DimmerProps) => {
+  const dimmerReference = useRef<HTMLDivElement>(null);
+
+  const closeOnClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === dimmerReference.current) {
-      onClose(event);
+      onClose?.(event);
     }
   };
-  const handleClick = !disableClickToClose && onClose ? closeOnClick : undefined;
 
-  const handleKeyDown = (event) => {
-    if (event.key !== 'Escape') {
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (disableClickToClose || !onClose) {
       return;
     }
-    event.stopPropagation();
 
-    if (onClose && dimmerManager.isTop(dimmerReference)) {
-      onClose(event);
-    }
+    closeOnClick(event);
   };
 
-  const onEnter = () => dimmerManager.add(dimmerReference);
-  const onExited = () => dimmerManager.remove(dimmerReference);
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') {
+        return;
+      }
+      event.stopPropagation();
+
+      if (onClose && dimmerReference.current && dimmerManager.isTop(dimmerReference.current)) {
+        onClose(event);
+      }
+    },
+    [onClose],
+  );
+
+  const onEnter = () => {
+    dimmerReference.current && dimmerManager.add(dimmerReference.current);
+  };
+  const onExited = () => {
+    dimmerReference.current && dimmerManager.remove(dimmerReference.current);
+  };
 
   useEffect(() => {
+    const localReferenceCopy = dimmerReference.current;
+
     if (open) {
       document.addEventListener('keydown', handleKeyDown);
-      if (dimmerReference.current) {
-        dimmerReference.current.addEventListener('touchmove', handleTouchMove);
-      }
+      localReferenceCopy?.addEventListener('touchmove', handleTouchMove);
     }
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      if (dimmerReference.current) {
-        dimmerReference.current.removeEventListener('touchmove', handleTouchMove);
-      }
+
+      localReferenceCopy?.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [open]);
+  }, [handleKeyDown, open]);
 
   return (
     <CSSTransition
@@ -107,7 +131,13 @@ const Dimmer = ({
   );
 };
 
-export const DimmerContentWrapper = ({ children, scrollBody }) => {
+export const DimmerContentWrapper = ({
+  children,
+  scrollBody,
+}: {
+  children: ReactElement;
+  scrollBody: boolean;
+}) => {
   useEffect(() => {
     if (scrollBody) {
       addNoScrollBodyClass();
@@ -118,36 +148,12 @@ export const DimmerContentWrapper = ({ children, scrollBody }) => {
         removeNoScrollBodyClass();
       }
     };
-  }, []);
+  }, [scrollBody]);
 
   return children;
 };
 
-Dimmer.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  disableClickToClose: PropTypes.bool,
-  fadeContentOnEnter: PropTypes.bool,
-  fadeContentOnExit: PropTypes.bool,
-  /** Sets the background to transparent and prevents body scroll locking */
-  transparent: PropTypes.bool,
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
-  scrollable: PropTypes.bool,
-};
-
-Dimmer.defaultProps = {
-  children: null,
-  className: undefined,
-  disableClickToClose: false,
-  fadeContentOnEnter: false,
-  fadeContentOnExit: false,
-  transparent: false,
-  onClose: undefined,
-  open: false,
-  scrollable: false,
-};
-
+// Export without the Portal for tests only
 export { Dimmer };
 
 export default withNextPortal(Dimmer);

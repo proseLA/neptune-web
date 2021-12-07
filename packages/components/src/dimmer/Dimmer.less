@@ -33,18 +33,19 @@
   width: 100%;
   height: 100%;
   transition: background-color cubic-bezier(0, 0.94, 0.62, 1) 350ms;
-  background: @background-color;
 
   &.dimmer--enter-done {
+    background: @background-color;
+
+    &.dimmer--transparent {
+      background: transparent;
+    }
+
     &.dimmer--enter-fade {
       > * {
         opacity: 1;
       }
     }
-  }
-
-  &--transparent.dimmer {
-    background: transparent;
   }
 
   // Fades the content along the modal and prevents content to disappear with a jump when the

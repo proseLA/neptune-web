@@ -40,7 +40,9 @@ describe('Dimmer', () => {
   });
 
   it('renders with right props', () => {
-    component = mount(<Dimmer {...props} />);
+    component = mount(
+      <Dimmer {...props} disableClickToClose={false} transparent={false} scrollable={false} />,
+    );
     expect(component.find(Dimmer)).toHaveLength(1);
     expect(component.find(Dimmer).props()).toStrictEqual({
       ...props,

@@ -1,5 +1,5 @@
 import { isKey, isUndefined } from '@transferwise/neptune-validation';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 
 import { useConditionalListener } from '../hooks';
@@ -35,7 +35,7 @@ const FocusBoundary = ({ children }) => {
 };
 
 FocusBoundary.propTypes = {
-  children: Types.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default FocusBoundary;

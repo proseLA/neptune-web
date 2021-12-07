@@ -47,7 +47,6 @@ const jsFiles = [
   { filename: 'TextareaWithDisplayFormat', folder: 'textareaWithDisplayFormat' },
   { filename: 'Chevron', folder: 'chevron' },
   { filename: 'Accordion', folder: 'accordion' },
-  { filename: 'Dimmer', folder: 'dimmer' },
   { filename: 'SlidingPanel', folder: 'slidingPanel' },
   { filename: 'Drawer', folder: 'drawer' },
   { filename: 'Sticky', folder: 'sticky' },
