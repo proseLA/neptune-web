@@ -1,0 +1,226 @@
+
+// Mixin to support Logical properties/values for modern browsers
+
+// Custom property for the cases which doesn't exist a logical value. (Translations, linear-gradients)
+:root {
+  --left: left;
+  --right: right;
+
+  &[dir="rtl"] {
+    --left: right;
+    --right: left;
+  }
+}
+
+// CSS property: float: Flow-relative values inline-start and inline-end: https://caniuse.com/mdn-css_properties_float_flow_relative_values
+// Still needs support in Chrome / Safari / Edge
+
+.float(@direction) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      float: right;
+    }
+
+    float: @direction;
+    float: inline-start;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      float: left;
+    }
+
+    float: @direction;
+    float: inline-end;
+  }
+}
+
+// CSS property: clear: Flow-relative values inline-start and inline-end: https://caniuse.com/mdn-css_properties_clear_flow_relative_values
+
+.clear(@direction) {
+  & when (@direction = left) {
+    [dir="rtl"] & {
+      clear: right;
+    }
+
+    clear: @direction;
+    clear: inline-start;
+  }
+
+  & when (@direction = right) {
+    [dir="rtl"] & {
+      clear: left;
+    }
+
+    clear: @direction;
+    clear: inline-end;
+  }
+}
+
+// CSS property: text-align: Flow-relative values start and end: https://caniuse.com/mdn-css_properties_text-align_flow_relative_values_start_and_end
+
+.text-align(@direction) {
+  & when (@direction = left) {
+    text-align: start;
+  }
+
+  & when (@direction = right) {
+    text-align: end;
+  }
+}
+
+// CSS Logical Properties: https://caniuse.com/css-logical-props
+
+.padding(@direction, @value) {
+  & when (@direction = left) {
+    padding-inline-start: @value;
+  }
+
+  & when (@direction = right) {
+    padding-inline-end: @value;
+  }
+}
+
+// Use only if the right and left values are different or you have to step up specificity of the padding.
+// Use for single value shorthand 'padding: var(--foo);' -> '.padding-shorthand(var(--foo))'
+// Use for multiple value shorthand 'padding: var(--foo1) var(--foo2) var(--foo3) var(--foo4);' -> '.padding-shorthand(var(--foo1), var(--foo2), var(--foo3), var(--foo4))'
+
+.padding-shorthand(@value1, @value2: ~'', @value3: ~'', @value4: ~'') {
+  [dir="rtl"] & {
+    padding: @value1 @value4 @value3 @value2;
+  }
+
+  html:not([dir="rtl"]) & {
+    padding: @value1 @value2 @value3 @value4;
+  }
+}
+
+// CSS Logical Properties: https://caniuse.com/css-logical-props
+
+.margin(@direction, @value) {
+  & when (@direction = left) {
+    margin-inline-start: @value;
+  }
+
+  & when (@direction = right) {
+    padding-inline-end: @value;
+  }
+}
+
+// Use only if the right and left values are different or you have to step up specificity of the margin.
+// Use for single value shorthand 'margin: var(--foo);' -> '.margin-shorthand(var(--foo))'
+// Use for multiple value shorthand 'margin: var(--foo1) var(--foo2) var(--foo3) var(--foo4);' -> '.margin-shorthand(var(--foo1), var(--foo2), var(--foo3), var(--foo4))'
+
+.margin-shorthand(@value1, @value2: ~'', @value3: ~'', @value4: ~'') {
+  [dir="rtl"] & {
+    margin: @value1 @value4 @value3 @value2;
+  }
+
+  html:not([dir="rtl"]) & {
+    margin: @value1 @value2 @value3 @value4;
+  }
+}
+
+// CSS property: inset-inline (positions): https://caniuse.com/mdn-css_properties_inset-inline
+
+.left(@value) {
+  inset-inline-start: @value;
+}
+
+.right(@value) {
+  inset-inline-end: @value;
+}
+
+// CSS property: border-inline-start https://caniuse.com/mdn-css_properties_border-inline-start
+
+.border(@direction, @size, @style: ~'', @color: ~'') {
+  & when (@direction = left) {
+    border-inline-start: @size @style @color;
+  }
+
+  & when (@direction = right) {
+    border-inline-end: @size @style @color;
+  }
+}
+
+.border-width(@direction, @size) {
+  & when (@direction = left) {
+    border-inline-start-width: @size;
+  }
+
+  & when (@direction = right) {
+    border-inline-end-width: @size;
+  }
+}
+
+// CSS property: border-start-start-radius: https://caniuse.com/mdn-css_properties_border-start-start-radius
+// Still needs support in Safari
+
+//  | start-start | start-end |
+//  | end-start   | end-end   |
+
+.border-radius(@direction, @radius) {
+  & when (@direction = left) {
+    border-start-start-radius: @radius;
+    border-end-start-radius: @radius;
+  }
+
+  & when (@direction = right) {
+    border-start-end-radius: @radius;
+    border-end-end-radius: @radius;
+  }
+}
+
+.border-top-dir-radius(@direction, @radius) {
+  & when (@direction = left) {
+    border-start-start-radius: @radius;
+  }
+
+  & when (@direction = right) {
+    border-start-end-radius: @radius;
+  }
+}
+
+.border-bottom-dir-radius(@direction, @radius) {
+  & when (@direction = left) {
+    border-end-start-radius: @radius;
+  }
+
+  & when (@direction = right) {
+    border-end-end-radius: @radius;
+  }
+}
+
+// Background position
+
+.background-position(@direction, @vertical-direction: ~'') {
+  & when (@direction = left) {
+    background-position: var(--left) @vertical-direction;
+  }
+
+  & when (@direction = right) {
+    background-position: var(--right) @vertical-direction;
+  }
+}
+
+// Horizontal linear gradient
+
+.background-linear-gradient(@direction, @color1, @color2) {
+  & when (@direction = left) {
+    background: linear-gradient(to var(--left), @color1, @color2);
+  }
+
+  & when (@direction = right) {
+    background: linear-gradient(to var(--right), @color1, @color2);
+  }
+}
+
+// Horizontal translations
+
+.translateX(@value, @transform2: ~'', @transform3: ~'') {
+  [dir="rtl"] & {
+    transform: translateX(@value * -1) @transform2 @transform3;
+  }
+
+  transform: translateX(@value) @transform2 @transform3;
+}

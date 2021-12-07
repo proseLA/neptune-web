@@ -2,10 +2,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import RadioButton from '../common/RadioButton';
-import { useDirection } from '../common/hooks';
 
 const Radio = ({ label, id, disabled, avatar, secondary, ...otherProps }) => {
-  const { isRTL } = useDirection();
   return (
     <div
       className={classNames('radio np-radio', {
@@ -15,20 +13,14 @@ const Radio = ({ label, id, disabled, avatar, secondary, ...otherProps }) => {
       disabled={disabled}
     >
       <label htmlFor={id}>
-        <span className={classNames('np-radio-button', { 'p-r-2': !isRTL, 'p-l-2': isRTL })}>
+        <span className="np-radio-button p-r-2">
           <RadioButton id={id} disabled={disabled} {...otherProps} />
         </span>
         <span className="np-radio__text">
           {label}
           {secondary && <small>{secondary}</small>}
         </span>
-        {avatar && (
-          <span
-            className={classNames('np-radio__avatar', { 'm-l-auto': !isRTL, 'm-r-auto': isRTL })}
-          >
-            {avatar}
-          </span>
-        )}
+        {avatar && <span className="np-radio__avatar m-l-auto">{avatar}</span>}
       </label>
     </div>
   );

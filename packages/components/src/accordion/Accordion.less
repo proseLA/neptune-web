@@ -1,3 +1,6 @@
+@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+
 .np-accordion-item {
   display: block;
   width: 100%;
@@ -15,8 +18,8 @@
 
   &.np-accordion-item--dark {
     .media-body,
-    .h5 {
-      color: var(--color-text-control);
+    .title-4 {
+      color: @color-navy-content-primary;
     }
   }
 
@@ -26,12 +29,8 @@
     border-bottom: 1px solid var(--color-border-neutral);
 
     @media (--screen-xs) {
-      &.icon-left {
-        padding-left: var(--size-56);
-      }
-
-      &.icon-right {
-        padding-right: var(--size-56);
+      &.has-icon {
+        .padding(left, var(--size-56));
       }
     }
   }

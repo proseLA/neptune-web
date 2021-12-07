@@ -2,6 +2,7 @@
  * Types
  */
 export type { UploadedFile, UploadError, UploadResponse } from './uploadInput/types';
+export type { LayoutDirection } from './common';
 
 /**
  * Components
@@ -51,7 +52,7 @@ export { default as OverlayHeader } from './overlayHeader';
 export { default as PhoneNumberInput } from './phoneNumberInput';
 export { default as Popover } from './popover';
 export { default as ProcessIndicator } from './processIndicator';
-export { default as Provider } from './provider';
+export { default as Provider, DirectionProvider } from './provider';
 export { default as Radio } from './radio';
 export { default as RadioGroup } from './radioGroup';
 export { default as RadioOption } from './radioOption';
@@ -77,11 +78,13 @@ export { SnackbarConsumer, SnackbarContext } from './snackbar/SnackbarContext';
  * Hooks
  */
 export { default as useSnackbar } from './snackbar/useSnackbar';
+export { useDirection } from './common/hooks';
 
 /**
  * Enums
  */
 export {
+  Direction,
   Size,
   Width,
   Sentiment,
@@ -112,11 +115,15 @@ export { FileType } from './common';
  */
 export {
   SUPPORTED_LANGUAGES,
+  RTL_LANGUAGES,
   DEFAULT_LANG,
   DEFAULT_LOCALE,
   adjustLocale,
   getLangFromLocale,
   getCountryFromLocale,
+  getDirectionFromLocale,
+  isServerSide,
+  isBrowser,
 } from './common';
 
 /**

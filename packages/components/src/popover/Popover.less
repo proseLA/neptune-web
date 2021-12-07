@@ -1,15 +1,17 @@
-@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
 @import (reference) '@transferwise/neptune-css/src/less/core/_typography.less';
+
 // This can't be wrapped in np-popover because styles won't get applied to bottomsheet
 //which is opened in a portal hence it won't be contained in np-popover.
+
 .np-popover__container {
   .np-popover__content {
-    font-size: @font-size-small;
+    font-size: var(--font-size-14);
+    color: var(--color-content-secondary);
   }
 
   &.np-panel {
     .np-popover__title {
-      .h5;
+      .title-4;
     }
 
     .np-popover__content {
@@ -20,7 +22,7 @@
 
   &.np-bottom-sheet {
     .np-popover__title {
-      .h2;
+      .title-2;
     }
 
     .np-popover__content {

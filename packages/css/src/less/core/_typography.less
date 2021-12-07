@@ -1,4 +1,18 @@
 @import (reference) '../../variables/neptune-tokens.less';
+@import (reference) '../mixins/_logical-properties.less';
+
+// Deprecated classes. To remove in next iterations
+
+// h6
+// .h1, .h2, .h3, .h4, .h5, .h6
+// .small, .tiny
+// .lead
+
+// small / .small inside headings
+
+// Deprecate to style the elements to avoid specificity issues and encourage users to use class names?
+
+/* stylelint-disable no-duplicate-selectors */
 
 h1,
 h2,
@@ -11,104 +25,57 @@ h6,
 .h3,
 .h4,
 .h5,
-.h6 {
+.h6,
+.title-1,
+.title-1,
+.title-2,
+.title-3,
+.title-4,
+.title-5 {
   margin: 0;
-  color: var(--color-text-primary);
-  font-weight: @font-weight-semi-bold;
+  color: var(--color-content-primary);
+  line-height: var(--line-height-title);
   letter-spacing: 0;
-
-  small,
-  .small {
-    color: @color-base-grey-light;
-    font-weight: 300;
-    line-height: 1;
-  }
 }
 
 h1,
-.h1 {
-  margin-bottom: var(--size-4);
-  font-weight: @font-weight-bold;
-  font-size: @font-size-x-large;
-  line-height: @line-height-x-large;
-
-  @media (--screen-md) {
-    margin-bottom: var(--size-8);
-    font-size: @font-size-xx-large;
-  }
-}
-
-h2,
-.h2 {
-  margin-bottom: 2px;
-  font-size: @font-size-large;
-  line-height: @line-height-large;
-
-  @media (--screen-md) {
-    margin-bottom: var(--size-4);
-    font-weight: @font-weight-bold;
-    font-size: @font-size-x-large;
-    line-height: @line-height-x-large;
-  }
-}
-
-h3,
-.h3 {
-  font-size: @font-size-medium;
-  line-height: @line-height-medium;
-
-  @media (--screen-md) {
-    margin-bottom: 2px;
-    font-size: @font-size-large;
-    line-height: @line-height-large;
-  }
-}
-
-h4,
-h5,
-.h4,
-.h5 {
-  font-size: @font-size-base;
-  line-height: @line-height-base;
-}
-
-h4,
-.h4 {
-  @media (--screen-md) {
-    font-size: @font-size-medium;
-    line-height: @line-height-medium;
-  }
-}
-
-h6,
-.h6 {
-  color: @color-base-grey-light;
-  font-size: @font-size-small;
-  line-height: @line-height-small;
-}
-
-h1,
-h2,
 .h1,
-.h2 {
-  small,
-  .small {
-    font-size: 65%;
-  }
+.title-1 {
+  margin-bottom: var(--size-8);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-bold);
+}
+
+h2,
+.h2,
+.title-2 {
+  margin-bottom: var(--size-4);
+  font-size: var(--font-size-26);
+  font-weight: var(--font-weight-bold);
 }
 
 h3,
+.h3,
+.title-3 {
+  margin-bottom: 2px;
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semi-bold);
+}
+
 h4,
+.h4,
+.title-4 {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semi-bold);
+}
+
 h5,
 h6,
-.h3,
-.h4,
 .h5,
-.h6 {
-  small,
-  .small {
-    font-size: 75%;
-  }
+.h6,
+.title-5 {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semi-bold);
 }
 
 p {
@@ -125,45 +92,89 @@ p {
   + .h3,
   + .h4,
   + .h5,
-  + .h6 {
+  + .h6,
+  + .title-1,
+  + .title-2,
+  + .title-3,
+  + .title-4,
+  + .title-5 {
     margin-top: var(--size-32);
   }
 }
 
-.lead {
-  margin: 0 0 var(--size-24);
-  font-weight: 300;
-  font-size: @font-size-medium;
-  line-height: 1.7777777778; // 32/18
+.body-1,
+.body-2,
+.body-3,
+.label,
+.value {
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
 
-  @media (--screen-md) {
-    font-size: @font-size-large;
-    line-height: 1.4545454545; // 32/22
-  }
+.body-1 {
+  font-size: var(--font-size-16);
+}
+
+.body-2 {
+  font-size: var(--font-size-14);
+}
+
+.body-3 {
+  font-size: var(--font-size-12);
+}
+
+.control-1,
+.control-2 {
+  color: var(--color-content-accent);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--line-height-title);
+}
+
+.control-1 {
+  font-size: var(--font-size-16);
+}
+
+.control-2 {
+  font-size: var(--font-size-14);
+}
+
+.label {
+  font-size: var(--font-size-14);
+}
+
+.value {
+  font-size: var(--font-size-16);
+}
+
+.lead {
+  margin-bottom: var(--size-24);
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-title);
 }
 
 small,
-.small {
-  font-size: @font-size-small;
-  line-height: @line-height-small;
+.small,
+.body-2 {
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
 }
 
 .tiny {
-  color: @color-base-grey-light;
-  font-size: @font-size-x-small;
-  line-height: @line-height-x-small;
+  color: var(--color-content-secondary);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-body);
 }
 
 strong,
 b {
-  color: var(--color-text-primary);
-  font-weight: @font-weight-semi-bold;
+  color: var(--color-content-primary);
+  font-weight: var(--font-weight-semi-bold);
   letter-spacing: 0;
 }
 
 mark,
 .mark {
-  padding: 0.2em;
+  padding: var(--size-4);
   background-color: var(--color-background-warning);
 }
 
@@ -186,7 +197,7 @@ sup {
 abbr[title],
 abbr[data-original-title] {
   text-decoration: none;
-  border-bottom: 1px dotted var(--color-accent);
+  border-bottom: 1px dotted var(--color-content-accent);
   cursor: help;
 }
 
@@ -198,8 +209,8 @@ address {
 blockquote {
   margin: var(--size-16) 0;
   padding: 0 var(--size-16) 0 calc(var(--size-16) - 2px);
-  font-size: 1.0666666667rem;
-  border-left: 2px solid var(--color-accent);
+  font-size: var(--font-size-16);
+  .border(left, 2px, solid, var(--color-content-accent));
 
   p {
     margin-bottom: var(--size-8);
@@ -215,9 +226,9 @@ blockquote {
 
   footer {
     display: block;
-    color: @color-base-grey-light;
-    font-size: @font-size-small;
-    line-height: @line-height-small;
+    color: var(--color-content-secondary);
+    font-size: var(--font-size-14);
+    line-height: var(--line-height-body);
 
     &::before {
       content: '\2014 \00A0'; // em dash, nbsp
@@ -230,17 +241,20 @@ blockquote {
 
   @media (--screen-lg) {
     margin: var(--size-32);
-    font-size: @font-size-medium;
-    line-height: @line-height-medium;
+    font-size: var(--font-size-16);
   }
 }
 
 .blockquote-reverse {
-  padding-right: 22px;
-  padding-left: 0;
-  text-align: right;
-  border-right: 2px solid var(--color-accent);
-  border-left: 0;
+  .padding(right, 22px);
+
+  .padding(left, 0);
+
+  .text-align(right);
+
+  .border(right, 2px, solid, var(--color-content-accent));
+
+  .border(left, 0);
 
   footer {
     &::before {
@@ -266,9 +280,9 @@ pre {
   margin: 0 0 var(--size-24);
   padding: var(--size-16);
   overflow: auto;
-  color: @color-base-grey-dark;
-  font-size: @font-size-small;
-  line-height: @line-height-small;
+  color: var(--color-content-secondary);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
   word-wrap: break-word;
   word-break: break-all;
   background-color: var(--color-background-neutral);
@@ -285,7 +299,7 @@ pre {
 code {
   padding: 2px var(--size-4);
   font-size: 90%;
-  color: @color-base-grey-dark;
+  color: var(--color-content-secondary);
   background-color: var(--color-background-neutral);
 }
 
@@ -297,7 +311,7 @@ kbd {
 
   kbd {
     padding: 0;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     font-size: 100%;
   }
 }
@@ -306,3 +320,5 @@ samp {
   font-size: 1em;
   border-radius: 0;
 }
+
+/* stylelint-enable no-duplicate-selectors */

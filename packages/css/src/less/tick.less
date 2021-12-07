@@ -1,3 +1,5 @@
+@import (reference) './mixins/_logical-properties.less';
+
 .tw-checkbox-check {
   position: relative;
   display: inline-block;
@@ -15,7 +17,18 @@
 
     .tw-checkbox-button[disabled] &,
     input[type='checkbox']:disabled + .tw-checkbox-button & {
-      background-color: var(--color-text-inactive);
+      background-color: var(--color-interactive-disabled);
+    }
+
+    .tw-checkbox-button + .tw-checkbox-button & {
+      background-color: var(--color-interactive-disabled);
+    }
+  }
+
+  .has-error {
+    &::before,
+    &::after {
+      background-color: var(--color-interactive-negative);
     }
   }
 

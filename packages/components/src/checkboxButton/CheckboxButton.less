@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .np-checkbox-button {
   input[type='checkbox'] {
@@ -21,7 +22,8 @@
 .checkbox .np-checkbox-button {
   input[type='checkbox'] {
     top: 0;
-    left: 0;
+    .left(0);
+
     margin: 0;
   }
 }

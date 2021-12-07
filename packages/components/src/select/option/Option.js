@@ -11,17 +11,20 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
         `${selected ? 'hidden-xs' : ''}`,
       ])}`
     : null;
+  const flexClassNames = secondary
+    ? `${style(['d-flex align-items-start', `${secondary ? 'flex-column' : ''}`])}`
+    : 'd-flex align-items-start';
 
   return (
-    <span>
+    <span className={flexClassNames}>
       {currency ? (
         <i className={currencyClassNames} />
       ) : (
         icon && cloneElement(icon, { size: 24, className: `${style(['tw-icon'])}` })
       )}
       {label}
-      {note && <span className="small m-l-1">{note}</span>}
-      {secondary && <span className="small text-ellipsis">{secondary}</span>}
+      {note && <span className="body-2 m-l-1">{note}</span>}
+      {secondary && <span className="body-2 text-ellipsis">{secondary}</span>}
     </span>
   );
 };

@@ -10,7 +10,7 @@ const DynamicFieldDefinitionList = ({ model, title, layout, fields }) => (
   <>
     {title && (
       <div className="m-t-1">
-        <div className="p-t-3 h4">{title}</div>
+        <div className="p-t-3 title-4">{title}</div>
       </div>
     )}
 

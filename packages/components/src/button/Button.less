@@ -1,9 +1,11 @@
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+
 .np-btn {
   position: relative;
 
   &.np-btn-block > span.btn-loader {
     position: absolute;
-    left: var(--size-24);
+    .left(var(--size-24));
   }
 
   &.np-btn-xs > span.btn-loader {

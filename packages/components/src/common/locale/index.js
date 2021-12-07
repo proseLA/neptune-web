@@ -1,3 +1,5 @@
+import { Direction } from '..';
+
 /**
  * Default language
  *
@@ -12,17 +14,22 @@ export const DEFAULT_LANG = 'en';
  */
 export const DEFAULT_LOCALE = 'en-GB';
 
-export const SUPPORTED_RTL = ['he-IL'];
+/**
+ * Array of languages that are written from the right to the left
+ *
+ * @type {string[]}
+ */
+export const RTL_LANGUAGES = ['ar', 'he'];
 
 export const SUPPORTED_LANGUAGES = [
   DEFAULT_LANG,
-  'ja',
   'de',
   'es',
   'fr',
   'hu',
   'id',
   'it',
+  'ja',
   'pl',
   'pt',
   'ro',
@@ -67,6 +74,7 @@ export function getLangFromLocale(locale) {
   }
   try {
     const { language } = new Intl.Locale(adjustedLocale);
+
     if (SUPPORTED_LANGUAGES.includes(language)) {
       return language;
     }
@@ -85,7 +93,7 @@ export function getLangFromLocale(locale) {
  * @param {string} locale
  * @returns {string|null}
  */
-export const getCountryFromLocale = (locale) => {
+export function getCountryFromLocale(locale) {
   const adjustedLocale = adjustLocale(locale);
   if (adjustedLocale === null) {
     return null;
@@ -98,4 +106,24 @@ export const getCountryFromLocale = (locale) => {
     console.error(error);
     return null;
   }
-};
+}
+
+/**
+ * Provides the layout direction for a given locale.
+ * If locale is invalid or language is unsupported returns Direction.LTR
+ *
+ * @param {string} locale (`es`, `es-ES`, `en-GB`, `en`, `ja`, `ja-JP` etc)
+ * @returns {Direction} The layout direction based on the locale
+ */
+export function getDirectionFromLocale(locale) {
+  try {
+    const adjustedLocale = adjustLocale(locale);
+    const { language } = new Intl.Locale(adjustedLocale);
+
+    return RTL_LANGUAGES.includes(language) ? Direction.RTL : Direction.LTR;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return Direction.LTR;
+  }
+}

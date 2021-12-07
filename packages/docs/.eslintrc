@@ -9,6 +9,7 @@
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["invalidHref", "preferButton"]
       }
-    ]
+    ],
+    "react/jsx-max-depth": [0]
   }
 }

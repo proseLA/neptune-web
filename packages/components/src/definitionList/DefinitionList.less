@@ -1,3 +1,5 @@
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+
 .tw-definition-list {
   &__item dd {
     word-break: break-all;
@@ -21,7 +23,7 @@
           flex: 1;
           min-width: 150px;
           max-width: 30%;
-          margin-right: var(--size-8);
+          .margin(right, var(--size-8));
         }
 
         dd {

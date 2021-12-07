@@ -1,5 +1,5 @@
 @import (reference) '../variables/neptune-tokens.less';
-@import (reference) './variables/_typography.less';
+@import (reference) './mixins/_logical-properties.less';
 
 @progress-height: 2px;
 @progress-pip-size: 8px;
@@ -8,26 +8,30 @@
   height: @progress-height;
   margin-top: calc((var(--size-24) - @progress-height) / 2);
   margin-bottom: calc((var(--size-24) - @progress-height) / 2);
-  background-color: @color-base-smoke-light;
+  background-color: var(--color-background-neutral);
   border-radius: calc(@progress-height / 2);
 }
 
 .progress-bar {
-  float: left;
+  .float(left);
+
   width: 0%;
   height: 100%;
-  font-size: @font-size-base;
-  font-weight: bold;
-  color: @color-base-white;
-  text-align: right;
-  background-color: @color-base-blue-light;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+  .text-align(right);
+
+  background-color: var(--color-content-accent);
   transition: width 0.6s ease;
 
   &::after {
     content: '';
-    float: right;
+    .float(right);
+
     margin-top: @progress-pip-size / 2 + 1;
-    margin-right: @progress-pip-size / 2;
+    .margin(right, @progress-pip-size / 2);
+
     width: @progress-pip-size;
     height: @progress-pip-size;
     background-color: inherit;
@@ -46,21 +50,21 @@
 }
 
 .progress-bar-primary {
-  background-color: @color-base-navy-light;
+  background-color: var(--color-content-primary);
 }
 
 .progress-bar-success {
-  background-color: @color-base-green-light;
+  background-color: var(--color-content-positive);
 }
 
 .progress-bar-info {
-  background-color: @color-base-blue-light;
+  background-color: var(--color-content-accent);
 }
 
 .progress-bar-warning {
-  background-color: var(--color-warning);
+  background-color: var(--color-content-warning);
 }
 
 .progress-bar-danger {
-  background-color: var(--color-negative);
+  background-color: var(--color-content-negative);
 }

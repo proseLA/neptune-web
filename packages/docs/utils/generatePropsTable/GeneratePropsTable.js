@@ -1,3 +1,4 @@
+import { Check } from '@transferwise/icons';
 import Types from 'prop-types';
 
 import Heading from '../../components/Heading';
@@ -16,12 +17,12 @@ const GeneratePropsTable = ({ componentName }) => {
   return data?.length > 0 ? (
     <div className="scroll-table">
       <Heading as="h2">Props</Heading>
-      <table id="props" className="table table-condensed docs-table">
+      <table className="table table-condensed docs-table">
         <thead>
           <tr>
             <th>Name</th>
             {componentName === '*' && <td>Used in</td>}
-            <th>PropType</th>
+            <th>Type</th>
             <th>Required</th>
             <th>Default Value</th>
             <th>Allowed Values</th>
@@ -39,8 +40,10 @@ const GeneratePropsTable = ({ componentName }) => {
                 <th scope="row">{propName}</th>
                 {componentName === '*' && <td>{displayName}</td>}
                 <td>{type}</td>
-                <td>{required ? 'true' : 'false'}</td>
-                <td>{defaultValue}</td>
+                <td>{required ? <Check /> : null}</td>
+                <td>
+                  <code>{defaultValue}</code>
+                </td>
                 <td>
                   {Array.isArray(allowedValues) ? (
                     <ul>

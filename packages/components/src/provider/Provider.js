@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 
-import { DEFAULT_LOCALE, adjustLocale } from '../common/locale';
+import { adjustLocale, DEFAULT_LOCALE, getDirectionFromLocale } from '../common';
 import en from '../i18n/en.json';
 
 import { DirectionProvider } from './direction';
@@ -10,6 +10,7 @@ const Provider = ({ i18n, children }) => {
   const { locale, messages, defaultRichTextElements } = i18n;
   const adjustedLocale = adjustLocale(locale);
   let intlConfig;
+
   if (adjustedLocale === null) {
     // eslint-disable-next-line no-console
     console.warn(
@@ -21,7 +22,7 @@ const Provider = ({ i18n, children }) => {
   }
 
   return (
-    <DirectionProvider locale={intlConfig.locale}>
+    <DirectionProvider direction={getDirectionFromLocale(locale)}>
       <IntlProvider
         defaultLocale={DEFAULT_LOCALE}
         locale={intlConfig.locale}

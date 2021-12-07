@@ -1,5 +1,4 @@
-import '@testing-library/jest-dom';
-import { render, waitFor, cleanup, screen } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import closeButtonMessages from '../common/closeButton/CloseButton.messages';
@@ -8,18 +7,18 @@ import Provider from '.';
 
 describe('Provider', () => {
   beforeAll(() => {
-    jest.spyOn(console, 'error').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation(() => {});
-    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => jest.fn());
+    jest.spyOn(console, 'error').mockImplementation(() => jest.fn());
+    jest.spyOn(console, 'warn').mockImplementation(() => jest.fn());
   });
   afterAll(() => {
     jest.restoreAllMocks();
   });
-  beforeEach(cleanup);
 
   it('does not add any elements in the DOM', async () => {
     const locale = 'en';
-    const messages = await import(`../i18n/${locale}.json`);
+    const messages = (await import(`../i18n/${locale}.json`)) as Record<string, string>;
+
     const { container } = render(<Provider i18n={{ locale, messages }} />);
 
     expect(container).toBeEmptyDOMElement();
@@ -39,13 +38,13 @@ describe('Provider', () => {
     [null, 'en-GB'],
     [undefined, 'en-GB'],
   ])('check locale value "%s"', (locale, expectedValue) => {
-    const messages = {};
     const TestComponent = () => {
       const intl = useIntl();
       return <>locale: {intl.locale}</>;
     };
     const { container } = render(
-      <Provider i18n={{ locale, messages }}>
+      // @ts-expect-error 2322
+      <Provider i18n={{ locale, messages: {} }}>
         <TestComponent />
       </Provider>,
     );
@@ -59,7 +58,7 @@ describe('Provider', () => {
   ])('switching locale (%s)', async (locale, expectedMessage) => {
     expect(document.body).toBeEmptyDOMElement();
 
-    const messages = await import(`../i18n/${locale}.json`);
+    const messages = (await import(`../i18n/${locale}.json`)) as Record<string, string>;
 
     render(
       <Provider i18n={{ locale, messages }}>

@@ -1,1 +1,11 @@
 @import '@transferwise/neptune-tokens/tokens.css';
+
+/* DEPRECATED, use neptune-tokens instead: https://transferwise.github.io/neptune-web/styles/tokens/Colors */
+:root {
+  --color-primary: #37517e;
+  --color-secondary: #5d7079;
+  --color-accent: #00b9ff;
+  --color-positive: #2ed06e;
+  --color-negative: #f53636;
+  --color-warning: #ffa600;
+}

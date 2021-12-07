@@ -30,5 +30,7 @@ module.exports = {
     '**/*.tsx',
     '**/bootstrap-forms.less',
     '**/legacy-variables.less',
+    '**/navbar-base.less',
+    '**/_logical-properties-modern-browsers.less',
   ],
 };

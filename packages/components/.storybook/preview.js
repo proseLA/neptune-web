@@ -1,7 +1,6 @@
-import React, { StrictMode } from 'react';
+import React, { StrictMode, useEffect } from 'react';
 import { select } from '@storybook/addon-knobs';
-
-import { Provider } from '../src';
+import { DirectionProvider, Provider } from '../src';
 import '@transferwise/neptune-css/dist/css/neptune.css';
 import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
@@ -25,6 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const parameters = {
+  layout: 'fullscreen',
   a11y: {
     config: {
       rules: [{ id: 'color-contrast', enabled: false }],
@@ -36,11 +36,24 @@ export const parameters = {
   viewport: {
     viewports: MINIMAL_VIEWPORTS,
   },
+  /**
+   * For more info https://docs.percy.io/docs/storybook#configuration
+   */
+  percy: {
+    // tell percy to take an additional set of snapshots
+    additionalSnapshots: [
+      // for RTL mode
+      {
+        suffix: ' [RTL]',
+        queryParams: { direction: 'rtl' },
+      },
+    ],
+  },
 };
 
 const StrictModeDecorator = (storyFn) => <StrictMode>{storyFn()}</StrictMode>;
 
-const CenterDecorator = (storyFn) => <div style={{ width: '100%' }}>{storyFn()}</div>;
+const CenterDecorator = (storyFn) => <div className="storybook-container">{storyFn()}</div>;
 
 // list is not exhaustive but should enough for testing diff edge cases
 // feel free to add more during development
@@ -55,18 +68,32 @@ const severalExamplesOfSupportedLocales = [
   'ru',
   'de',
   'tr',
-  'he-IL',
 ];
 
-const ProviderDecorator = (storyFn) => {
-  const locale = select('locale (global)', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
-  const lang = getLangFromLocale(locale);
-  const messages = supportedLangs[lang];
-  const props = {
-    i18n: { locale, messages },
-    children: storyFn(),
-  };
-  return <Provider {...props} />;
+const DirectionDecorator = (storyFn) => {
+  const urlParams = new URLSearchParams(document.location.search);
+  const direction = select('direction', ['ltr', 'rtl'], urlParams.get('direction') || 'ltr');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('dir', direction);
+  }, [direction]);
+
+  document.documentElement.setAttribute('dir', direction);
+
+  return <DirectionProvider direction={direction}>{storyFn()}</DirectionProvider>;
 };
 
-export const decorators = [StrictModeDecorator, CenterDecorator, ProviderDecorator];
+const ProviderDecorator = (storyFn) => {
+  const locale = select('locale', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
+  const lang = getLangFromLocale(locale);
+  const messages = supportedLangs[lang];
+
+  return <Provider i18n={{ locale, messages }}>{storyFn()}</Provider>;
+};
+
+export const decorators = [
+  StrictModeDecorator,
+  CenterDecorator,
+  DirectionDecorator,
+  ProviderDecorator,
+];

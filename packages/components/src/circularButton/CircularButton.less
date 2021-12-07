@@ -1,3 +1,4 @@
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 @import './_button-label-states';
 
 .np-circular-btn {
@@ -24,7 +25,7 @@
     color: white;
     transition: color 0.15s ease-in-out;
     width: 100%;
-    left: 0;
+    .left(0);
 
     > svg {
       margin: 0 auto;
@@ -33,25 +34,25 @@
 }
 
 .np-circular-btn__label {
-  font-weight: 600;
+  font-weight: var(--font-weight-semi-bold);
   font-family: inherit;
   transition: color 0.15s ease-in-out;
 }
 
 ._button-label-states(np-circular-btn, accent,
-var(--color-control-accent),
-var(--color-control-accent-hover),
-var(--color-control-accent-active));
+var(--color-interactive-accent),
+var(--color-interactive-accent-hover),
+var(--color-interactive-accent-active));
 
 ._button-label-states(np-circular-btn, positive,
-var(--color-control-positive),
-var(--color-control-positive-hover),
-var(--color-control-positive-active));
+var(--color-interactive-positive),
+var(--color-interactive-positive-hover),
+var(--color-interactive-positive-active));
 
 ._button-label-states(np-circular-btn, negative,
-var(--color-control-negative),
-var(--color-control-negative-hover),
-var(--color-control-negative-active));
+var(--color-interactive-negative),
+var(--color-interactive-negative-hover),
+var(--color-interactive-negative-active));
 
 // Boost specificity to ensure rules apply to .secondary buttons
 .np-circular-btn.disabled.disabled {
@@ -59,10 +60,10 @@ var(--color-control-negative-active));
 
   input[type='button']:disabled + .tw-icon,
   input[type='button']:disabled ~ .np-circular-btn__label {
-    color: var(--color-text-inactive);
+    color: var(--color-content-disabled);
   }
 
   &.secondary input[type='button'] {
-    border-color: var(--color-text-inactive);
+    border-color: var(--color-content-disabled);
   }
 }

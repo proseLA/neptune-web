@@ -1,5 +1,26 @@
-// TODO: remove bootstrap dependencies
-
-// variables
 @import (reference) '../variables/legacy-variables.less';
-@import 'bootstrap/less/breadcrumbs.less';
+
+//
+// Breadcrumbs
+// --------------------------------------------------
+.breadcrumb {
+  padding: @breadcrumb-padding-vertical @breadcrumb-padding-horizontal;
+  margin-bottom: var(--size-24);
+  list-style: none;
+  background-color: none;
+  border-radius: @border-radius-base;
+
+  > li {
+    display: inline-block;
+
+    + li::before {
+      content: "@{breadcrumb-separator}\00a0"; // Unicode space added since inline-block means non-collapsing white-space
+      padding: 0 5px;
+      color: #fff;
+    }
+  }
+
+  > .active {
+    color: var(--color-content-secondary);
+  }
+}

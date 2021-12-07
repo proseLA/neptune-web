@@ -1,5 +1,66 @@
-// TODO: remove bootstrap dependencies
-
-// variables
 @import (reference) '../variables/legacy-variables.less';
-@import 'bootstrap/less/badges.less';
+@import (reference) './mixins/_logical-properties.less';
+
+// Base class
+.badge {
+  display: inline-block;
+  min-width: var(--size-16);
+  padding: 5px var(--size-8);
+  font-size: 10px;
+  font-weight: var(--font-weight-semi-bold);
+  color: #fff;
+  line-height: var(--line-height-control);
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  background-color: var(--color-interactive-negative);
+  border-radius: var(--radius-medium);
+  top: -1px;
+  position: relative;
+
+  // Empty badges collapse automatically
+
+  &:empty {
+    display: none;
+  }
+
+  // Quick fix for badges in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+
+  .btn-xs &,
+  .btn-group-xs > .btn & {
+    top: 0;
+    padding: 1px 5px;
+  }
+
+  // Hover state, but only for links
+  a& {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  // Account for badges in navs
+
+  .list-group-item > & {
+    .float(right);
+  }
+
+  .list-group-item > & + & {
+    .margin(right, 5px);
+  }
+
+  .nav-pills > li > a > &,
+  .nav-stacked > li > a > & {
+    .margin(left, 19px);
+  }
+
+  &-success {
+    background: var(--color-interactive-positive);
+  }
+}

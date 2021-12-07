@@ -1,5 +1,5 @@
-@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
-@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '../variables/neptune-tokens.less';
+@import (reference) './core/_typography.less';
 
 .decision {
   display: block;
@@ -8,6 +8,12 @@
   border: 0;
   align-items: center;
   transition: background-color ease 350ms;
+
+  &__title {
+    .title-4;
+
+    line-height: var(--line-height-body);
+  }
 
   &__content {
     margin-top: var(--size-4);
@@ -38,9 +44,9 @@
     }
 
     .media-body {
-      color: @color-base-grey-dark;
-      font-weight: @font-weight-base;
-      font-size: @font-size-small; // 14px
+      color: var(--color-content-secondary);
+      font-weight: var(--font-weight-regular);
+      font-size: var(--font-size-14);
       line-height: calc(20 / 14); // 20px
     }
 
@@ -67,12 +73,12 @@
     background-color: #86a7bd12;
 
     .circle-inverse {
-      background-color: var(--color-background-elevated);
+      background-color: var(--color-background-screen);
     }
 
     .tw-checkbox-button,
     .tw-radio-button {
-      border-color: var(--color-border-focus);
+      border-color: var(--color-interactive-accent);
     }
   }
 

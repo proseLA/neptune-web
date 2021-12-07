@@ -10,11 +10,11 @@
     },
     {
       "path": "./packages/components/build/main.css",
-      "maxSize": "10kB"
+      "maxSize": "12kB"
     },
     {
       "path": "./packages/css/dist/css/neptune.css",
-      "maxSize": "40kB"
+      "maxSize": "48kB"
     }
   ]
 }

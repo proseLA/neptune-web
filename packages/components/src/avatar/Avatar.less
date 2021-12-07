@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 @avatar-diameter-lg: 72px;
 @avatar-diameter-md: 48px;
@@ -17,6 +18,7 @@
     align-items: center;
     border-radius: 50%;
     overflow: hidden;
+    color: var(--color-content-primary);
     background-color: var(--color-background-neutral);
     height: 100%;
     width: 100%;
@@ -25,17 +27,18 @@
   }
 
   &--outlined {
-    border: 1px solid var(--color-control-accent);
+    border: 1px solid var(--color-interactive-accent);
     cursor: pointer;
 
     &:hover {
-      border-color: var(--color-control-accent-hover);
+      border-color: var(--color-interactive-accent-hover);
     }
   }
 
+  // theming: this becomes redundant when we implement theming as we will just change value of CSS custom props
   &--dark &__content {
-    background: @color-base-navy-mid;
-    color: @color-text-control;
+    color: @color-navy-content-primary;
+    background-color: @color-navy-background-elevated;
   }
 
   &--thumbnail {
@@ -55,7 +58,7 @@
 
   &.tw-avatar--initials,
   &.tw-avatar--icon {
-    color: @color-text-primary;
+    color: var(--color-content-primary);
   }
 
   &.tw-avatar--initials,
@@ -94,7 +97,7 @@
 
   &.tw-avatar--initials {
     font-size: @avatar-size * 0.35;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
   }
 
   &.tw-avatar--outlined {
@@ -114,11 +117,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-border-overlay);
     content: '';
     border-radius: 50%;
   }
 
+  // theming: this becomes redundant when we implement theming as we will just change value of CSS custom props
   &.tw-avatar--dark.tw-avatar--thumbnail::after {
     border-color: rgba(255, 255, 255, 0.08);
   }

@@ -1,30 +1,32 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
-
-//@TODO To be added in tokens and removed from here
-@color-control-hover: #707b8f;
-@color-control-active: #707b8f;
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .np-date-trigger {
   &.dropdown-toggle {
     overflow: visible !important;
+
+    &.btn {
+      display: flex;
+    }
   }
 
   .clear-btn {
     transition: color 0.15s ease-in-out;
-    color: @color-base-navy-fade;
+    color: var(--color-content-disabled);
     height: 100%;
     position: absolute;
     top: 0;
-    right: 0;
+    .right(0);
+
     padding: 0 var(--size-16);
 
     &:hover,
     &:focus {
-      color: @color-control-hover;
+      color: var(--color-interactive-negative-hover);
     }
 
     &:active {
-      color: @color-control-active;
+      color: var(--color-interactive-negative-active);
     }
   }
 

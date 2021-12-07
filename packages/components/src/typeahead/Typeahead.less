@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/variables/legacy-variables.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 @animation-timing-function: ease-in-out;
 @animation-duration: 0.03s;
@@ -75,12 +76,12 @@
 
     &.typeahead--has-value {
       .typeahead__input-container {
-        padding-left: var(--size-8);
+        .padding(left, var(--size-8));
       }
 
       .typeahead__input {
         margin-bottom: calc(-1 * var(--size-8) + 1px);
-        margin-left: var(--size-4);
+        .margin(left, var(--size-4));
       }
 
       .typeahead__input-wrapper {

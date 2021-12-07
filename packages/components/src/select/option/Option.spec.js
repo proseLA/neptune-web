@@ -18,12 +18,12 @@ describe('option', () => {
 
   it('renders the given small note', () => {
     component.setProps({ note: 'whadup' });
-    expect(component.find('span.small').text()).toStrictEqual('whadup');
+    expect(component.find('span.body-2').text()).toStrictEqual('whadup');
   });
 
   it('renders the given secondary text in a separate line', () => {
     component.setProps({ secondary: 'secondary text' });
-    expect(component.find('span.small.text-ellipsis').text()).toStrictEqual('secondary text');
+    expect(component.find('span.body-2.text-ellipsis').text()).toStrictEqual('secondary text');
   });
 
   it('renders a given icon', () => {

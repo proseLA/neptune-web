@@ -1,7 +1,126 @@
 // TODO: remove bootstrap dependencies
 
-// variables
 @import (reference) '../variables/legacy-variables.less';
-@import (reference) 'bootstrap/less/mixins/reset-text.less';
-@import (reference) 'bootstrap/less/mixins/opacity.less';
-@import 'bootstrap/less/tooltip.less';
+@import (reference) './mixins/_logical-properties.less';
+@import (reference) './mixins/_reset-text.less';
+
+//
+// Tooltips
+// --------------------------------------------------
+
+// Base class
+.tooltip {
+  position: absolute;
+  z-index: @zindex-tooltip;
+  display: block;
+
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+
+  .reset-text();
+
+  opacity: 0;
+
+  &.in {
+    opacity: @tooltip-opacity;
+  }
+
+  &.top {
+    margin-top: -3px;
+    padding: @tooltip-arrow-width 0;
+  }
+
+  &.right {
+    .margin(left, 3px);
+
+    padding: 0 @tooltip-arrow-width;
+  }
+
+  &.bottom {
+    margin-top: 3px;
+    padding: @tooltip-arrow-width 0;
+  }
+
+  &.left {
+    .margin(left, -3px);
+
+    padding: 0 @tooltip-arrow-width;
+  }
+}
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+  font-size: var(--font-size-14);
+  max-width: @tooltip-max-width;
+  padding: var(--size-16) var(--size-16);
+  color: var(--color-content-primary);
+  text-align: center;
+  background-color: var(--color-background-screen);
+  border-radius: @border-radius-base;
+  box-shadow: 0 1px 28px 0 rgba(34, 48, 73, 0.2);
+}
+
+// Arrows
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+// Note: Deprecated .top-left, .top-right, .bottom-left, and .bottom-right as of v3.3.1
+// stylelint-disable-next-line no-duplicate-selectors
+.tooltip {
+  &.top .tooltip-arrow {
+    bottom: 0;
+    .left(50%);
+
+    .margin(left, -@tooltip-arrow-width);
+
+    border-width: @tooltip-arrow-width @tooltip-arrow-width 0;
+    border-top-color: var(--color-background-screen);
+  }
+
+  &.right .tooltip-arrow {
+    top: 50%;
+    .left(0);
+
+    margin-top: -@tooltip-arrow-width;
+    border-width: @tooltip-arrow-width @tooltip-arrow-width @tooltip-arrow-width 0;
+    border-right-color: var(--color-background-screen);
+  }
+
+  &.left .tooltip-arrow {
+    top: 50%;
+    .right(0);
+
+    margin-top: -@tooltip-arrow-width;
+    border-width: @tooltip-arrow-width 0 @tooltip-arrow-width @tooltip-arrow-width;
+    border-left-color: var(--color-background-screen);
+  }
+
+  &.bottom .tooltip-arrow {
+    top: 0;
+    .left(50%);
+
+    .margin(left, -@tooltip-arrow-width);
+
+    border-width: 0 @tooltip-arrow-width @tooltip-arrow-width;
+    border-bottom-color: var(--color-background-screen);
+  }
+}
+
+[data-toggle=tooltip]:not(.btn) {
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--color-content-accent-hover) !important;
+    outline: 0;
+  }
+}
+
+a[data-toggle=tooltip] {
+  white-space: nowrap;
+}

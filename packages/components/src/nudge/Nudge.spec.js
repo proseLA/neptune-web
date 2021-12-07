@@ -1,9 +1,6 @@
-import { useDirection } from '../common/hooks';
 import { render, fireEvent, cleanup, screen } from '../test-utils';
 
 import Nudge from '.';
-
-jest.mock('../common/hooks/useDirection');
 
 describe('Nudge', () => {
   const defaultProps = {
@@ -18,10 +15,6 @@ describe('Nudge', () => {
     onClick: jest.fn(),
     onDismiss: jest.fn(),
   };
-
-  beforeEach(() => {
-    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
-  });
 
   afterEach(cleanup);
 
@@ -53,7 +46,7 @@ describe('Nudge', () => {
 
   it('calls onDismiss prop when close button is clicked', () => {
     render(<Nudge {...defaultProps} />);
-    const closeButton = screen.getByLabelText('close');
+    const closeButton = screen.getByLabelText('Close');
     fireEvent.click(closeButton);
     expect(defaultProps.onDismiss).toHaveBeenCalledTimes(1);
   });

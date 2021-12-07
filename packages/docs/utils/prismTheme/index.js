@@ -1,14 +1,14 @@
 const colors = {
-  punctuation: '#829CA9',
-  tag: '#253655',
-  propName: '#00A4DF',
-  propValue: '#28B862',
-  propParenthesis: '#253655',
+  punctuation: 'var(--color-content-secondary)',
+  tag: 'var(--color-content-primary)',
+  propName: 'var(--color-content-accent)',
+  propValue: 'var(--color-content-positive)',
+  propParenthesis: 'var(--color-content-primary)',
 };
 const theme = {
   plain: {
-    color: '#829ca9',
-    fontSize: '14px',
+    color: 'var(--color-content-secondary)',
+    fontSize: 'var(--font-size-14)',
   },
   styles: [
     {

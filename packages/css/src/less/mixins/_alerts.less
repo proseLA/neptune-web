@@ -1,3 +1,5 @@
+@import (reference) '../mixins/_logical-properties.less';
+
 .alert-variant(@background; @text-color; @text-hover) {
   background-color: @background;
   color: @text-color;
@@ -34,17 +36,20 @@
     display: block;
     width: @size;
     height: @size;
-    left: (2 * @size);
+    .left((2 * @size));
+
     top: (@size / -2);
     transform: rotate(45deg);
+    clip-path: polygon(0% 0%, 0 100%, 100% 0);
     background-color: inherit;
   }
 }
 
 .arrow-positions(@size: 10px) {
   &.arrow-center::before {
-    left: 50%;
-    margin-left: (@size / -2);
+    .left(50%);
+
+    .margin(left, (@size / -2));
   }
 
   &.arrow-top::before {
@@ -53,17 +58,20 @@
   }
 
   &.arrow-left::before {
-    left: (2 * @size);
-    right: auto;
+    .left((2 * @size));
+
+    .right(auto);
   }
 
   &.arrow-right::before {
-    left: auto;
-    right: (2 * @size);
+    .left(auto);
+
+    .right((2 * @size));
   }
 
   &.arrow-bottom::before {
     top: auto;
     bottom: (@size / -2);
+    transform: rotate(225deg);
   }
 }

@@ -1,5 +1,282 @@
-// TODO: remove bootstrap dependencies
-
 @import (reference) '../variables/legacy-variables.less';
-@import 'bootstrap/less/mixins/list-group.less';
-@import 'bootstrap/less/list-group.less';
+@import (reference) './mixins/_list-group.less';
+@import (reference) './mixins/_logical-properties.less';
+
+//
+// List groups
+// --------------------------------------------------
+
+// Base class
+//
+// Easily usable on <ul>, <ol>, or <div>.
+
+.list-group {
+  // No need to set list-style: none; since .list-group-item is block level
+
+  margin-bottom: 20px;
+  .padding(left, 0); // reset padding because ul and ol
+
+  border-left: 1px solid var(--color-border-neutral);
+  border-right: 1px solid var(--color-border-neutral);
+  border-bottom: 1px solid var(--color-border-neutral);
+}
+
+// Individual list items
+//
+// Use on `li`s or `div`s within the `.list-group` parent.
+
+.list-group-item {
+  display: block;
+  .padding-shorthand(@spacing-1-mobile, @spacing-1-mobile, @spacing-1-mobile, (@spacing-1-mobile - 2px));
+
+  // Place the border on the list items and negative margin up for better styling
+
+  background-color: var(--color-background-screen);
+  .border(left, 2px, solid, transparent);
+
+  margin-top: 1px;
+  line-height: var(--line-height-body);
+  transition: all ease @panel-focus-transtion;
+
+  .panel-group & {
+    border-top: 1px solid var(--color-border-neutral);
+    margin-top: 0;
+  }
+}
+
+@media (--screen-sm) {
+  .list-group-item {
+    .padding-shorthand(@spacing-1-tablet, @spacing-1-tablet, @spacing-1-tablet, (@spacing-1-tablet - 2px));
+  }
+}
+
+@media (--screen-lg) {
+  .list-group-item {
+    .padding-shorthand(@spacing-1-desktop, @spacing-1-desktop, @spacing-1-desktop, (@spacing-1-desktop - 2px));
+  }
+}
+
+// Custom content options
+//
+// Extra classes for creating well-formatted content within `.list-group-item`s.
+
+.list-group-item-heading {
+  margin-bottom: 0;
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-content-primary);
+}
+
+.list-group-item-text {
+  margin-bottom: 0;
+  color: var(--color-content-secondary);
+}
+
+// Linked list items
+//
+// Use anchor elements instead of `li`s or `div`s to create linked list items.
+// Includes an extra `.active` modifier class for showing selected items.
+
+a.list-group-item {
+  color: var(--color-content-accent);
+  text-decoration: none;
+
+  .list-group-item-heading {
+    color: var(--color-content-accent);
+  }
+
+  // Hover state
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: var(--color-content-accent-hover);
+    background-color: var(--color-background-neutral);
+  }
+}
+
+// stylelint-disable-next-line no-duplicate-selectors
+.list-group-item {
+  // Ideally would use role=button on list group item but invalid markup on li
+  &[ng-click] {
+    cursor: pointer;
+
+    &:hover {
+      // tell the browser there is a likelihood this will animate when clicked
+      will-change: margin, contents;
+    }
+  }
+
+  // Disabled state
+  &.disabled {
+    color: var(--color-content-disabled);
+
+    .list-group-item-heading,
+    .list-group-item-text,
+    b,
+    strong,
+    .circle,
+    .icon {
+      color: var(--color-content-disabled);
+    }
+  }
+
+  // Active class on item itself, not parent
+  &.active {
+    z-index: 2; // Place active items above their siblings for proper border styling
+    background-color: var(--color-background-elevated);
+    box-shadow: 0 1px 10px var(--color-border-neutral);
+    margin-top: var(--size-24);
+    margin-bottom: var(--size-24);
+
+    &:first-child {
+      margin-top: 1px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    + .list-group-item {
+      border-top-width: 0;
+    }
+  }
+
+  @media (min-width: @screen-md-min) {
+    &.active {
+      margin-left: -12px;
+      margin-right: -12px;
+    }
+
+    .media-body {
+      // In combination with applying extra padding to the media-body,
+      // this prevents text reflow on panel expansion
+      transition: padding ease @panel-focus-transtion;
+    }
+  }
+}
+
+.list-group-inactive {
+  .list-group-item {
+    background-color: transparent;
+    border-top: 1px solid var(--color-border-neutral);
+    margin-top: 0;
+
+    &:hover,
+    &.active {
+      background-color: var(--color-background-screen);
+
+      @media (--screen-sm) {
+        .circle {
+          background-color: var(--color-background-neutral);
+        }
+      }
+    }
+
+    &.active {
+      border-top: 0;
+      margin-top: var(--size-24);
+    }
+  }
+}
+
+// Contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+
+.list-group-item-variant(success; var(--color-background-positive); var(--color-content-positive));
+.list-group-item-variant(info; var(--color-background-accent); var(--color-content-accent));
+.list-group-item-variant(warning; var(--color-background-warning); var(--color-content-warning));
+.list-group-item-variant(danger; var(--color-background-negative); var(--color-content-negative));
+
+// Hover states
+.list-group:hover {
+  .list-group-item:not(.active) {
+    background-color: #fbfcfd;
+
+    .media {
+      opacity: 0.94;
+    }
+  }
+
+  .list-group-item:hover {
+    background-color: var(--color-background-screen);
+
+    .media {
+      opacity: 1;
+    }
+  }
+}
+
+.list-group-inactive:hover {
+  .list-group-item:not(.active) {
+    background-color: var(--color-background-neutral);
+  }
+
+  .list-group-item:hover {
+    background-color: var(--color-background-screen);
+  }
+}
+
+@keyframes listSlideOver {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(0); }
+}
+
+@media (max-width: @screen-sm-max) {
+  .list-group-slide-out {
+    .list-group-item {
+      .collapse {
+        position: fixed;
+        top: 0;
+        .left(0);
+
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        overflow-y: auto;
+        background-color: #fff;
+        animation: listSlideOver 0.15s ease-out forwards;
+        z-index: 3;
+
+        .media-left {
+          display: none;
+        }
+
+        .well {
+          border-radius: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .list-group-item.active,
+    .list-group-inactive .list-group-item.active {
+      margin-top: 1px;
+      margin-bottom: 0;
+      box-shadow: none !important;
+    }
+
+    .list-group-inactive .list-group-item.active {
+      border-top: 1px solid var(--color-border-neutral);
+      border-bottom: 1px solid var(--color-border-neutral);
+    }
+
+    .list-group-item.active .collapse {
+      height: 100vh;
+      overflow-y: auto;
+
+      // Annoying but makes sure the last content is visible in iOS safari
+
+      padding-bottom: 72px;
+    }
+
+    .list-group-item.active .collapse .well {
+
+      // Annoying but makes sure the last content is visible in iOS safari
+
+      padding-bottom: 72px;
+      margin-bottom: -72px;
+    }
+  }
+}

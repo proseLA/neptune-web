@@ -1,4 +1,4 @@
-@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .np-summary {
   min-width: 280px;
@@ -14,34 +14,35 @@
 
   &__icon {
     position: relative;
-    color: var(--color-primary);
+    color: var(--color-content-primary);
 
     .np-summary-icon__done {
-      color: var(--color-control-positive);
+      color: var(--color-interactive-positive);
     }
 
     .np-summary-icon__pending {
-      color: var(--color-control-warning);
+      color: var(--color-interactive-warning);
     }
     // The second icon is the badge
     :nth-child(2) {
       background-color: var(--color-background-screen);
       border-radius: 50%;
       position: absolute;
-      right: -8px;
+      .right(-8px);
+
       bottom: -6px;
     }
   }
 
   &__description {
     margin-top: var(--size-4);
-    font-size: @font-size-small;
+    font-size: var(--font-size-14);
     line-height: calc(20 / 14);
   }
 
   &__action {
     margin-top: var(--size-4);
-    font-size: @font-size-small;
+    font-size: var(--font-size-14);
     line-height: calc(18 / 14);
   }
 

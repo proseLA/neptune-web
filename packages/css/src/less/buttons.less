@@ -2,11 +2,12 @@
 @import (reference) '../variables/legacy-variables.less';
 @import './mixins/_buttons.less';
 @import './mixins/_tab-focus.less';
+@import (reference) './mixins/_logical-properties.less';
 
 .btn {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: @btn-font-weight;
+  font-weight: var(--font-weight-semi-bold);
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -38,7 +39,7 @@
   &:hover,
   &:focus,
   &.focus {
-    color: @btn-default-color;
+    color: var(--color-interactive-accent-hover);
     text-decoration: none;
   }
 
@@ -63,14 +64,14 @@
 // @TODO Deprecate / Remove
 .btn-default {
   .button-variant(
-    @btn-default-color;
+    var(--color-content-accent);
     #FFF;
-    @btn-default-bg;
-    @btn-default-bg-hover;
-    @btn-default-bg-active;
-    @btn-default-border;
-    @btn-default-border-hover;
-    @btn-default-border-active;
+    transparent;
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
+    var(--color-interactive-accent);
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
     #FFF
   );
 }
@@ -79,28 +80,28 @@
 .btn-accent,
 .btn-primary {
   .button-variant(
-    @color-text-control;
-    @color-text-control;
-    @color-control-accent;
-    @color-control-accent-hover;
-    @color-control-accent-active;
-    @color-control-accent;
-    @color-control-accent-hover;
-    @color-control-accent-active;
+    #fff;
+    #fff;
+    var(--color-interactive-accent);
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
+    var(--color-interactive-accent);
+    var(--color-interactive-accent-hover);
+    var(--color-interactive-accent-active);
   );
 
   &.btn-priority-2 {
     .button-variant(
-      @color-control-accent;
-      @color-text-control;
+      var(--color-interactive-accent);
+      #fff;
       transparent;
-      @color-control-accent-hover;
-      @color-control-accent-active;
-      @color-control-accent;
-      @color-control-accent-hover;
-      @color-control-accent-active;
-      @color-background-screen;
-      @color-text-control;
+      var(--color-interactive-accent-hover);
+      var(--color-interactive-accent-active);
+      var(--color-interactive-accent);
+      var(--color-interactive-accent-hover);
+      var(--color-interactive-accent-active);
+      var(--color-background-screen);
+      #fff;
     );
   }
 }
@@ -108,7 +109,7 @@
 // @DEPRECATED:.btn-link (use Button component with type Accent / priority Tertiary)
 .btn-link,
 .btn-accent.btn-priority-3 {
-  color: @link-color;
+  color: var(--color-content-accent);
   text-decoration: @link-decoration;
   border-color: transparent;
 
@@ -122,22 +123,22 @@
 
   &:hover,
   &:focus {
-    color: @link-hover-color;
+    color: var(--color-content-accent-hover);
     text-decoration: @link-decoration;
     border-color: transparent;
   }
 
   &:active {
-    color: @link-active-color;
+    color: var(--color-content-accent-active);
   }
 
   &[disabled],
   fieldset[disabled] & {
-    color: @link-disabled-color;
+    color: var(--color-content-disabled);
 
     &:hover,
     &:focus {
-      color: @link-disabled-color;
+      color: var(--color-content-disabled);
     }
   }
 }
@@ -146,28 +147,28 @@
 .btn-positive,
 .btn-success {
   .button-variant(
-    @color-text-control;
-    @color-text-control;
-    @color-control-positive;
-    @color-control-positive-hover;
-    @color-control-positive-active;
-    @color-control-positive;
-    @color-control-positive-hover;
-    @color-control-positive-active;
+    #fff;
+    #fff;
+    var(--color-interactive-positive);
+    var(--color-interactive-positive-hover);
+    var(--color-interactive-positive-active);
+    var(--color-interactive-positive);
+    var(--color-interactive-positive-hover);
+    var(--color-interactive-positive-active);
   );
 
   &.btn-priority-2 {
     .button-variant(
-      @color-control-positive;
-      @color-text-control;
+      var(--color-interactive-positive);
+      #fff;
       transparent;
-      @color-control-positive-hover;
-      @color-control-positive-active;
-      @color-control-positive;
-      @color-control-positive-hover;
-      @color-control-positive-active;
-      @color-background-screen;
-      @color-text-control;
+      var(--color-interactive-positive-hover);
+      var(--color-interactive-positive-active);
+      var(--color-interactive-positive);
+      var(--color-interactive-positive-hover);
+      var(--color-interactive-positive-active);
+      var(--color-background-screen);
+      #fff;
     );
   }
 }
@@ -202,66 +203,49 @@
   );
 }
 
+// @DEPRECATED: .btn-danger (use Button component with type Negative)
+.btn-danger,
 .btn-negative {
   .button-variant(
-    @color-text-control;
-    @color-text-control;
-    @color-control-negative;
-    @color-control-negative-hover;
-    @color-control-negative-active;
-    @color-control-negative;
-    @color-control-negative-hover;
-    @color-control-negative-active;
+    #fff;
+    #fff;
+    var(--color-interactive-negative);
+    var(--color-interactive-negative-hover);
+    var(--color-interactive-negative-active);
+    var(--color-interactive-negative);
+    var(--color-interactive-negative-hover);
+    var(--color-interactive-negative-active);
   );
 
   &.btn-priority-2 {
     .button-variant(
-      @color-control-negative;
-      @color-text-control;
+      var(--color-interactive-negative);
+      #fff;
       transparent;
-      @color-control-negative-hover;
-      @color-control-negative-active;
-      @color-control-negative;
-      @color-control-negative-hover;
-      @color-control-negative-active;
-      @color-background-screen;
-      @color-text-control;
+      var(--color-interactive-negative-hover);
+      var(--color-interactive-negative-active);
+      var(--color-interactive-negative);
+      var(--color-interactive-negative-hover);
+      var(--color-interactive-negative-active);
+      var(--color-background-screen);
+      #fff;
     );
   }
-}
-
-// @DEPRECATED: .btn-danger (use Button component with type Negative)
-.btn-danger {
-  .button-variant(
-    @btn-danger-color;
-    #FFF;
-    @btn-danger-bg;
-    @btn-danger-bg-hover;
-    @btn-danger-bg-active;
-    @btn-danger-border;
-    @btn-danger-border-hover;
-    @btn-danger-border-active;
-    #FFF
-  );
 }
 
 // @TODO Deprecate / Remove
 .bootstrap-select .btn-default,
 .btn-input {
   .button-variant(
-    @input-color;
-    @input-color;
-    @input-bg;
-    @input-bg;
-    @input-bg;
-    @input-border;
-    @input-border;
-    @input-border-focus
+    var(--color-content-primary);
+    var(--color-content-primary);
+    var(--color-background-screen);
+    var(--color-background-screen);
+    var(--color-background-screen);
+    var(--color-interactive-secondary);
+    var(--color-interactive-secondary-hover);
+    var(--color-interactive-secondary-active);
   );
-}
-
-.btn-input .caret {
-  margin-left: 8px;
 }
 
 // @TODO Deprecate / Remove
@@ -282,12 +266,16 @@
   }
 }
 
+.btn-input .caret {
+  .margin(left, var(--size-8));
+}
+
 // @TODO Deprecate / Remove
 .btn-inverse {
   .button-outline(
-    @brand-white;
-    @brand-smoke-plus-10;
-    @brand-grey
+    #fff;
+    #e2e6e8;
+    #5d7079;
   );
 }
 
@@ -359,40 +347,32 @@ input[type="button"] {
 
 // @TODO Deprecate / Remove
 .btn-input {
-  font-weight: @font-weight-normal;
-  padding-left: @padding-base-horizontal;
-  padding-right: @padding-base-horizontal;
+  font-weight: var(--font-weight-regular);
+  .padding(left, @padding-base-horizontal);
+
+  .padding(right, @padding-base-horizontal);
 
   &:hover {
-    border-color: @input-border-hover;
+    border-color: var(--color-interactive-secondary-hover);
   }
 
   &.active,
   &:active,
   &.focus,
   &:focus {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-accent-active);
     outline: 0 none !important;
   }
 
   // stylelint-disable-next-line no-duplicate-selectors
   .caret {
-    color: @brand-light-blue;
+    color: var(--color-content-accent);
   }
 
   &[disabled] {
-    background-color: @input-bg-disabled;
-    color: @input-color-disabled;
-
-    .caret {
-      color: @input-color-disabled;
-    }
-
-    &:hover,
-    &:focus {
-      background-color: @input-bg-disabled;
-      color: @input-color-disabled;
-    }
+    background-color: var(--color-background-neutral);
+    border-color: var(--color-interactive-disabled);
+    color: var(--color-content-disabled);
   }
 
   .form-control-placeholder {
@@ -403,16 +383,17 @@ input[type="button"] {
   }
 
   &.btn-sm {
-    padding-left: 12px;
-    padding-right: 12px;
+    .padding(left, 12px);
+
+    .padding(right, 12px);
   }
 
   &.btn-lg {
-    font-size: @input-font-size-large;
+    font-size: var(--font-size-20);
 
     &.btn-addon,
     &.btn-input-inverse {
-      font-weight: @font-weight-semi-bold;
+      font-weight: var(--font-weight-semi-bold);
     }
   }
 }
@@ -422,15 +403,15 @@ input[type="button"] {
 .btn-input-inverse,
 .btn-addon {
   .button-variant(
-    #FFF;
-    #FFF;
-    @brand-navy-minus-10;
-    @brand-navy-minus-20;
-    @brand-navy-minus-20;
-    @brand-navy-minus-10;
-    @brand-navy-minus-20;
-    @brand-navy-minus-20;
-    #FFF
+    @color-navy-content-primary;
+    @color-navy-content-primary;
+    @color-navy-background-screen;
+    @color-navy-background-screen;
+    @color-navy-background-screen;
+    @color-navy-background-elevated;
+    @color-navy-background-screen;
+    @color-navy-background-screen;
+    var(--color-background-screen);
   );
 
   &:focus {
@@ -453,9 +434,9 @@ input[type="button"] {
 }
 // @TODO Deprecate / Remove
 .bootstrap-select.open > .dropdown-toggle.btn-default {
-  border-color: @input-border-focus;
-  background-color: @input-bg;
-  color: @input-color;
+  border-color: var(--color-interactive-accent);
+  background-color: var(--color-background-screen);
+  color: var(--color-content-primary);
 }
 
 .btn-loader {
@@ -486,16 +467,18 @@ input[type="button"] {
 }
 
 .btn-input.btn {
-  text-align: left;
+  .text-align(left);
 
   .tw-icon {
     position: absolute;
-    right: 16px;
+    .right(16px);
+
     top: 16px;
   }
 
   &.btn-sm .tw-icon {
-    right: 8px;
+    .right(8px);
+
     top: 8px;
   }
 

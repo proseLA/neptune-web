@@ -1,15 +1,17 @@
 // variables
+@import (reference) '../variables/neptune-tokens.less';
 @import (reference) '../variables/legacy-variables.less';
 
 // mixins
 @import './mixins/_table-row.less';
+@import (reference) './mixins/_logical-properties.less';
 
 //
 // Tables
 // --------------------------------------------------
 
 table {
-  background-color: @table-bg;
+  background-color: var(--color-background-screen);
   border-collapse: separate;
 
   td,
@@ -25,12 +27,12 @@ table {
 caption {
   padding-top: @table-cell-padding;
   padding-bottom: @table-cell-padding;
-  color: @text-muted;
-  text-align: left;
+  color: var(--color-content-disabled);
+  .text-align(left);
 }
 
 th {
-  text-align: left;
+  .text-align(left);
 }
 
 // Baseline styles
@@ -38,17 +40,18 @@ th {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: @line-height-computed;
+  margin-bottom: var(--size-24);
+
   // Cells
   > thead,
   > tbody,
   > tfoot {
     > tr > th,
     > tr > td {
-      padding: @line-height-computed @table-cell-padding;
-      line-height: @line-height-base;
+      padding: var(--size-24) @table-cell-padding;
+      line-height: var(--line-height-body);
       vertical-align: top;
-      border-top: 1px solid @table-border-color;
+      border-top: 1px solid var(--color-background-neutral);
       border-bottom: 0;
       transition: border ease @panel-focus-transtion;
     }
@@ -57,10 +60,10 @@ th {
   > .thead > ol > li,
   > .tbody > dl > dd,
   > .tfoot > ol > li {
-    padding: @line-height-computed @table-cell-padding;
-    line-height: @line-height-base;
+    padding: var(--size-24) @table-cell-padding;
+    line-height: var(--line-height-body);
     vertical-align: top;
-    border-top: 1px solid @table-border-color;
+    border-top: 1px solid var(--color-background-neutral);
     border-bottom: 0;
     transition: border ease @panel-focus-transtion;
   }
@@ -99,30 +102,30 @@ th {
   }
   // Account for multiple tbody instances
   > tbody + tbody {
-    border-top: 1px solid @table-border-color;
+    border-top: 1px solid var(--color-border-neutral);
   }
 
   // Nesting
   .table {
-    background-color: @body-bg;
+    background-color: var(--color-background-screen);
   }
 
   > thead,
   > tfoot,
   > .thead,
   > .tfoot {
-    font-size: @font-size-small;
-    color: @headings-color;
+    font-size: var(--font-size-14);
+    color: var(--color-content-primary);
   }
 
   > tbody,
   > .tbody {
-    font-size: @font-size-small;
+    font-size: var(--font-size-14);
   }
 
   > tbody > tr > th,
   > .tbody > dl > .th {
-    color: @headings-color;
+    color: var(--color-content-primary);
   }
 }
 
@@ -151,12 +154,12 @@ th {
 // Add borders all around the table and between all the columns.
 
 .table-bordered {
-  border: 1px solid @table-border-color;
+  border: 1px solid var(--color-border-neutral);
   border-radius: @border-radius-base;
 
   thead,
   .thead {
-    background-color: @gray-base;
+    background-color: var(--color-background-neutral);
   }
 }
 
@@ -172,28 +175,12 @@ th {
 
 .table-striped {
   > tbody > tr:nth-of-type(odd) {
-    background-color: @table-bg-accent;
+    background-color: var(--color-background-neutral);
   }
 
   @media (min-width: @screen-md-min) {
     > .tbody > dl:nth-of-type(odd) {
-      background-color: @table-bg-accent;
-    }
-  }
-}
-
-// Hover effect
-//
-// Placed here since it has to come after the potential zebra striping
-
-.table-hover {
-  > tbody > tr:hover {
-    background-color: @table-bg-hover;
-  }
-
-  @media (min-width: @screen-md-min) {
-    > .tbody > dl:hover {
-      background-color: @table-bg-hover;
+      background-color: var(--color-background-neutral);
     }
   }
 }
@@ -214,13 +201,13 @@ table col[class*='col-'] {
 // inheritance to nested tables.
 
 // Generate the contextual variants
-.table-row-variant(primary; @brand-navy-minus-10; @table-border-color; @brand-white);
-.table-row-variant(active; @table-bg-active; @table-border-color);
-.table-row-variant(success; @state-success-bg; @state-success-text);
-.table-row-variant(info; @state-info-bg; @state-info-text);
-.table-row-variant(warning; @state-warning-bg; @state-warning-text);
-.table-row-variant(danger; @state-danger-bg; @state-danger-text);
-.table-row-variant(default; @brand-smoke-plus-20; @table-border-color);
+.table-row-variant(primary; @color-navy-background-elevated; var(--color-border-neutral); var(--color-background-elevated));
+.table-row-variant(active; var(--color-background-screen); var(--color-border-neutral));
+.table-row-variant(success; var(--color-background-positive); var(--color-interactive-positive));
+.table-row-variant(info; var(--color-background-accent); var(--color-interactive-accent));
+.table-row-variant(warning; var(--color-background-warning); var(--color-interactive-warning));
+.table-row-variant(danger; var(--color-background-negative); var(--color-interactive-negative));
+.table-row-variant(default; var(--color-background-secondary); var(--color-interactive-secondary));
 
 // Responsive tables
 //
@@ -238,7 +225,7 @@ table col[class*='col-'] {
 
   @media screen and (max-width: @screen-sm-max) {
     width: 100%;
-    margin-bottom: @line-height-computed;
+    margin-bottom: var(--size-24);
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 
@@ -278,7 +265,7 @@ table col[class*='col-'] {
     }
 
     &.table-bordered {
-      border: 1px solid @table-border-color;
+      border: 1px solid var(--color-background-neutral);
       border-radius: @border-radius-base;
     }
   }
@@ -299,8 +286,8 @@ table col[class*='col-'] {
 
         > li {
           display: table-cell;
-          font-weight: @font-weight-bold;
-          color: @headings-color;
+          font-weight: var(--font-weight-bold);
+          color: var(--color-content-primary);
         }
       }
     }
@@ -317,8 +304,8 @@ table col[class*='col-'] {
 
         > dd {
           display: table-cell;
-          font-size: @font-size-small;
-          color: @text-color;
+          font-size: var(--font-size-14);
+          color: var(--color-content-secondary);
         }
       }
     }
@@ -337,10 +324,10 @@ table col[class*='col-'] {
 
     > .tbody {
       > dl {
-        border: 1px @input-border solid;
+        border: 1px var(--color-interactive-secondary) solid;
         border-radius: @border-radius-base;
-        margin-bottom: @line-height-computed;
-        padding: @line-height-computed @line-height-computed 0;
+        margin-bottom: var(--size-24);
+        padding: var(--size-24) var(--line-height-body) 0;
 
         > dd {
           padding: 0;
@@ -377,12 +364,12 @@ table col[class*='col-'] {
       text-decoration: none;
 
       &.active {
-        background-color: @brand-navy;
-        color: #fff;
+        background-color: @color-navy-background-elevated;
+        color: @color-navy-content-primary;
       }
 
       &:not([disabled]):hover {
-        background-color: @brand-light-blue;
+        background-color: var(--color-content-accent);
         color: #fff;
       }
     }

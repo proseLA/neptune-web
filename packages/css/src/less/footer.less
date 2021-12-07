@@ -1,10 +1,9 @@
 @import (reference) '../variables/neptune-tokens.less';
-@import (reference) './variables/_typography.less';
 
 .footer {
-  background-color: @color-base-smoke-fade;
-  font-size: @font-size-small;
-  line-height: @line-height-small;
+  background-color: var(--color-background-neutral);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
   padding-top: calc(var(--size-8) * 10);
   padding-bottom: calc(var(--size-8) * 10);
 
@@ -20,29 +19,29 @@
 
   .footer-link,
   .link-icon {
-    color: @color-base-smoke-fade;
+    color: var(--color-content-secondary);
     font-weight: normal;
     text-decoration: underline;
 
     &:hover,
     &:active,
     &:focus {
-      color: #384347;
+      color: var(--color-content-secondary);
     }
   }
 
   .footer-title {
-    font-size: @font-size-small;
-    color: var(--color-text-primary);
+    font-size: var(--font-size-14);
+    color: var(--color-content-primary);
 
     .footer-link {
-      color: var(--color-text-primary);
-      font-weight: bold;
+      color: var(--color-content-primary);
+      font-weight: var(--font-weight-bold);
 
       &:hover,
       &:active,
       &:focus {
-        color: @color-base-grey-mid;
+        color: var(--color-content-primary);
       }
     }
   }
@@ -61,50 +60,51 @@
     text-decoration: none;
 
     svg {
-      fill: @color-base-grey-mid;
+      fill: var(--color-content-secondary);
 
       &:hover,
       &:active,
       &:focus {
-        fill: #384347;
+        fill: var(--color-content-secondary);
       }
     }
   }
 
   &.footer-inverse {
-    background: @color-base-navy-light;
+    background: @color-navy-background-elevated;
 
     .footer-link,
     .link-icon {
-      color: @color-base-smoke-fade;
+      color: @color-navy-content-primary;
 
       &:hover,
       &:active,
       &:focus {
-        color: @color-base-smoke-dark;
+        color: @color-navy-content-primary;
       }
 
       svg {
-        fill: @color-base-smoke-fade;
+        fill: @color-navy-content-primary;
 
         &:hover,
         &:active,
         &:focus {
-          fill: @color-base-smoke-dark;
+          fill: @color-navy-content-primary;
         }
       }
     }
 
     .footer-title {
-      color: @color-base-smoke-fade;
+      color: @color-navy-content-primary;
     }
 
     hr {
       opacity: 0.1;
     }
 
-    .tiny {
-      color: @color-base-white;
+    .tiny,
+    .body-3 {
+      color: @color-navy-content-primary;
     }
   }
 

@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 
+import Button from '../../../button';
 import ProcessIndicator from '../../../processIndicator';
 
 import ProcessingStep from '.';
@@ -43,11 +44,11 @@ describe('ProcessingStep', () => {
   });
 
   it('renders button when psButtonText is set up', () => {
-    expect(component.find('button.btn-default')).toHaveLength(1);
+    expect(component.find(Button)).toHaveLength(1);
   });
 
   it('calls onClear when button is clicked', () => {
-    component.find('button.btn-default').simulate('click', {});
+    component.find(Button).simulate('click', {});
     expect(PROCESSING_STEP_PROPS.onClear).toHaveBeenCalledTimes(1);
   });
 });

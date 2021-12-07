@@ -30,6 +30,7 @@ dist
 packages/css/pages/styles
 !packages/css/src/props/*.css
 !packages/docs/**/*.css
+!packages/css/upgrades/test-files/**/*.css
 !storybook.css
 
 # docs

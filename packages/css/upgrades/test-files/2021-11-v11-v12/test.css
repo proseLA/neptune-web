@@ -1,0 +1,47 @@
+/* stylelint-disable */
+body {
+  /* Should not change */
+  background-color: var(--color-background-screen);
+
+  /* Should change to color-content-primary */
+  color: var(--color-text-primary);
+}
+
+.some-component {
+  /* Should change to color-content-primary */
+  color: var(--color-text-primary);
+}
+
+.some-component button {
+    /* Should change to #fff */
+    color: var(--color-text-control);
+}
+
+.some-component.some-component--positive {
+  /* Should change to color-content-positive */
+  color: var(--color-text-positive);
+}
+
+.some-component.some-component--disabled {
+  /* Should change to color-content-disabled */
+  color: var(--color-text-inactive);
+}
+
+.some-component.some-component--important {
+  /* Should change to color-content-primary */
+  color: var(--color-text-important);
+}
+
+button {
+  /* Should change to #fff */
+  color: var(--color-text-control);
+
+  /* Should change to var(--color-interactive-accent) */
+  background-color: var(--color-control-accent);
+}
+
+button:hover {
+  /* Should change to var(--color-interactive-accent-hover) */
+  color: var(--color-control-accent-hover);
+}
+/* stylelint-enable */

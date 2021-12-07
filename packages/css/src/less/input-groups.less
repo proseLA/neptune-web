@@ -2,6 +2,7 @@
 @import './mixins/_border-radius.less';
 @import './mixins/_buttons.less';
 @import './mixins/_forms.less';
+@import (reference) './mixins/_logical-properties.less';
 
 .input-sm {
   .input-size(
@@ -26,69 +27,65 @@
   // Undo padding and float of grid classes
   &[class*="col-"] {
     float: none;
-    padding-left: 0;
-    padding-right: 0;
+    .padding(left, 0);
+
+    .padding(start, 0);
   }
 
   .form-control {
     // https://github.com/twbs/bootstrap/issues/11561#issuecomment-28936855
-    float: left;
+    .float(left);
+
     width: 100%;
     margin-bottom: 0;
 
     &:not(:first-child) {
-      border-left: 0;
+      .border(left, 0);
     }
 
     &:not(:last-child) {
-      border-right: 0;
+      .border(right, 0);
     }
 
-    border-color: @input-border;
+    border-color: var(--color-interactive-secondary);
 
     :hover& {
-      border-color: @input-border-hover;
+      border-color: var(--color-interactive-secondary-hover);
     }
 
+    &:active,
     &:focus {
-      border-color: @input-border-focus;
+      border-color: var(--color-interactive-accent-active);
     }
   }
 
   .input-group-addon + .form-control {
-    padding-left: 0;
+    .padding(left, 0);
   }
 
   .form-control + .input-group-addon {
-    padding-left: 0;
+    .padding(left, 0);
   }
 
-  &:hover {
-    .input-group-addon,
-    .form-control,
-    .btn-input,
-    .bootstrap-select .btn-default {
-      border-color: @input-border-hover;
-    }
-  }
-
+  &:active,
+  &:focus,
   .focus & {
     .input-group-addon,
     .form-control,
     .btn-input,
     .bootstrap-select .btn-default {
-      border-color: @input-border-focus;
+      border-color: var(--color-interactive-accent-active);
     }
   }
 
   &.disabled {
     .input-group-addon {
-      background-color: @input-bg-disabled;
-      border-color: @input-border-disabled;
+      background-color: var(--color-background-neutral);
+      border-color: var(--color-interactive-disabled);
     }
 
-    &:hover .input-group-addon {
-      border-color: @input-border-hover;
+    &:active .input-group-addon {
+      border-color: var(--color-interactive-secondary-active);
     }
   }
 }
@@ -101,7 +98,7 @@
   > .input-group-btn .btn {
     .input-lg();
 
-    font-size: @btn-lg-font-size;
+    font-size: var(--font-size-20);
     margin-bottom: 0;
   }
 }
@@ -111,7 +108,7 @@
   .input-sm();
 
   .icon {
-    font-size: 20px;
+    font-size: var(--font-size-20);
   }
 }
 
@@ -142,12 +139,12 @@
 // -------------------------
 .input-group-addon {
   padding: @input-group-addon-padding;
-  font-size: @input-group-addon-font-size;
-  line-height: @input-line-height;
-  color: @input-group-color;
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-body);
+  color: var(--color-content-secondary);
   text-align: center;
-  background-color: @input-group-addon-bg;
-  border: 1px solid @input-group-addon-border-color;
+  background-color: var(--color-background-screen);
+  border: 1px solid var(--color-interactive-secondary);
 
   // Sizing - over rule spacing from .input-group-sm/lg
   &.input-sm {
@@ -169,8 +166,8 @@
     vertical-align: middle;
     display: inline-block;
     margin-top: -2px;
-    margin-left: -4px;
-    margin-right: -5px;
+    .margin(left, -4px);
+    .margin(right, -5px);
   }
 
   a {
@@ -191,35 +188,39 @@
 
 .input-group .input-group-addon,
 .input-group .form-control {
-  border-left-width: 0;
-  border-right-width: 0;
+  .border-width(left,0);
+
+  .border-width(right,0);
+
   border-radius: 0;
 }
 
 .input-group .input-group-btn:first-child,
 .input-group .input-group-addon:first-child,
 .input-group .form-control:first-child {
-  border-left-width: 1px;
-  .border-left-radius(@border-radius-base);
+  .border-width(left, 1px);
+
+  .border-radius(left, @border-radius-base);
 }
 
 .input-group .input-group-btn:last-child,
 .input-group .input-group-addon:last-child,
 .input-group .form-control:last-child {
-  border-right-width: 1px;
-  .border-right-radius(@border-radius-base);
+  .border-width(right, 1px);
+
+  .border-radius(right, @border-radius-base);
 }
 
 // stylelint-disable-next-line no-duplicate-selectors
 .input-group {
   > :first-child .btn,
   > :first-child .btn-group {
-    .border-right-radius(0);
+    .border-radius(right, 0);
   }
 
   > :last-child .btn,
   > :last-child .btn-group {
-    .border-left-radius(0);
+    .border-radius(left, 0);
   }
 }
 
@@ -238,7 +239,7 @@
     position: relative;
 
     + .btn {
-      margin-left: -1px;
+      .margin(left, -1px);
     }
     // Bring the "active" button to the front
     &:hover,
@@ -252,7 +253,7 @@
   &:first-child {
     > .btn,
     > .btn-group {
-      margin-right: -1px;
+      .margin(right, -1px);
     }
   }
 }
@@ -263,10 +264,10 @@
 .input-group:focus-within {
   .form-control,
   .input-group-addon {
-    border-color: @input-border-focus;
+    border-color: var(--color-interactive-accent);
 
-    :hover& {
-      border-color: @input-border-focus;
+    &:hover {
+      border-color: var(--color-interactive-accent-hover);
     }
   }
 }
@@ -274,10 +275,10 @@
 .has-error .input-group {
   .form-control,
   .input-group-addon {
-    border-color: @state-danger-text;
+    border-color: var(--color-interactive-negative);
 
-    :hover& {
-      border-color: @state-danger-text;
+    &:hover {
+      border-color: var(--color-interactive-negative-hover);
     }
   }
 }
@@ -285,6 +286,5 @@
 .dropdown-menu {
   .input-group-addon {
     border: 0;
-    color: @input-group-color;
   }
 }

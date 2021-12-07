@@ -1,3 +1,3 @@
-<Tooltip label="Hey I'm the tooltip text edit me!!!!!!" position={Position.BOTTOM} offset={0}>
+<Tooltip label="Hey I'm the tooltip text edit me!!!!!!" position={Position.BOTTOM}>
   <Button>Hover me</Button>
 </Tooltip>;

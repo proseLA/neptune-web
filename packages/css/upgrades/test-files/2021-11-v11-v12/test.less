@@ -1,0 +1,50 @@
+/* stylelint-disable */
+@import (reference) '../../variables/neptune-tokens.less';
+
+body {
+  // Should not change
+  background-color: @color-background-screen;
+
+  // Should change to color-content-primary
+  color: var(--color-text-primary);
+}
+
+.some-component {
+  // Should change to color-content-primary
+  color: var(--color-text-primary);
+
+  button {
+    /* Should change to #fff */
+    color: @color-text-control;
+  }
+
+  &.some-component--positive {
+    // Should change to color-content-positive
+    color: var(--color-text-positive);
+  }
+
+  .some-component--disabled {
+    /* Should change to color-content-disabled */
+    color: var(--color-text-inactive);
+  }
+
+
+  &.some-component--important {
+    // Should change to color-content-primary
+    color: var(--color-text-important);
+  }
+}
+
+button {
+  // Should change to #fff
+  color: @color-text-control;
+
+  // Should change to @color-interactive-accent
+  background-color: @color-control-accent;
+
+  &:hover {
+    // Should change to @color-interactive-accent-hover
+    color: @color-control-accent-hover;
+  }
+}
+/* stylelint-enable */

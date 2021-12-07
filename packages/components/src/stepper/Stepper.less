@@ -1,5 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
-@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .tw-stepper {
   padding-bottom: 24px;
@@ -10,23 +10,20 @@
   }
 
   &__step {
-    position: absolute;
     list-style-type: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 
     &--active .tw-stepper__step-label {
-      color: @color-base-navy-mid;
-      font-weight: @font-weight-semi-bold;
+      color: var(--color-content-primary);
+      font-weight: var(--font-weight-semi-bold);
     }
 
     &--clickable .tw-stepper__step-label {
-      color: @color-base-blue-light;
-      font-weight: @font-weight-semi-bold;
+      color: var(--color-content-accent);
+      font-weight: var(--font-weight-semi-bold);
       transition: color 0.15s ease-in-out;
-
-      &:hover,
-      &:focus {
-        color: @color-base-blue-mid;
-      }
     }
 
     @media screen and (--screen-sm) and (--screen-md-max) {
@@ -45,11 +42,9 @@
   }
 
   &__step-label {
-    color: @color-base-smoke-dark;
+    color: var(--color-content-secondary);
     transition: color 0.6s ease-in-out;
-    position: absolute;
     white-space: nowrap;
-    transform: translateX(-50%);
   }
 
   & .tooltip {
@@ -68,30 +63,41 @@
 
 .tw-stepper-steps {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 125%;
+  .margin(left, -12.5%);
+
+  .padding-shorthand(0);
 }
 
 .progress-bar-ending {
-  float: left;
+  .float(left);
+
   height: 100%;
-  background: linear-gradient(to right, @color-base-blue-light, @color-base-navy-mid);
+  .background-linear-gradient(right, var(--color-interactive-accent), @color-navy-background-elevated);
+
   transition: width 0.6s ease-in-out;
 
   &::after {
-    float: right;
+    .float(right);
+
     width: 8px;
     height: 8px;
     margin-top: -3px;
-    margin-right: -4px;
+    .margin(right, -4px);
+
     content: '';
-    background-color: @color-base-navy-mid;
+    background-color: @color-navy-background-elevated;
     border-radius: 4px;
   }
 }
 
 .progress-bar-filler {
-  float: left;
+  .float(left);
+
   height: 100%;
-  background-color: @color-base-blue-light;
+  background-color: var(--color-interactive-accent);
   border-top-left-radius: 1px;
   border-bottom-left-radius: 1px;
   transition: width 0.6s ease-in-out;

@@ -15,24 +15,24 @@
     button {
       width: 100%;
       padding: var(--size-4) 0;
-      color: @color-base-blue-light;
+      color: var(--color-content-accent);
       border: transparent;
       border-radius: 3px;
       background-color: transparent;
-      font-weight: 600;
+      font-weight: var(--font-weight-semi-bold);
 
       &.active {
-        color: var(--color-text-control);
-        background-color: @color-base-navy-light;
+        color: #fff;
+        background-color: var(--color-interactive-accent-active);
       }
 
       &:not([disabled]):hover {
-        color: var(--color-text-control);
-        background-color: var(--color-control-accent);
+        color: #fff;
+        background-color: var(--color-interactive-accent-hover);
       }
 
       &:disabled {
-        color: @color-base-smoke-mid;
+        color: var(--color-content-disabled);
       }
     }
   }

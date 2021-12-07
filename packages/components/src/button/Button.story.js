@@ -12,11 +12,7 @@ export default {
 
 export const Basic = () => {
   const size = select('size', Object.values(Size), Size.SMALL);
-  const type = select(
-    'type',
-    ['accent', 'positive', 'negative', 'primary', 'pay', 'secondary', 'danger', 'link'],
-    'primary',
-  );
+  const type = select('type', ['accent', 'positive', 'negative'], 'positive');
   const priority = select('priority', Object.values(Priority), Priority.PRIMARY);
   const htmlType = select('htmlType', ['button', 'submit', 'reset'], 'button');
   const disabled = boolean('disabled', false);
@@ -66,23 +62,23 @@ export const variants = () => {
   return (
     <div className={background === 'blue' && 'bg--dark p-a-3'}>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Accent</div>
+        <div className="title-4 m-b-1">Accent</div>
         <Button priority={Priority.PRIMARY} type={Type.ACCENT} {...commonProps} />
         <Button priority={Priority.SECONDARY} type={ControlType.ACCENT} {...commonProps} />
         <Button priority={Priority.TERTIARY} type={ControlType.ACCENT} {...commonProps} />
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Positive</div>
+        <div className="title-4 m-b-1">Positive</div>
         <Button priority={Priority.PRIMARY} type={ControlType.POSITIVE} {...commonProps} />
         <Button priority={Priority.SECONDARY} type={ControlType.POSITIVE} {...commonProps} />
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Negative</div>
+        <div className="title-4 m-b-1">Negative</div>
         <Button priority={Priority.PRIMARY} type={ControlType.NEGATIVE} {...commonProps} />
         <Button priority={Priority.SECONDARY} type={ControlType.NEGATIVE} {...commonProps} />
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Disabled</div>
+        <div className="title-4 m-b-1">Disabled</div>
         <Button {...commonProps} disabled />
         <Button priority={Priority.SECONDARY} {...commonProps} disabled />
         <Button priority={Priority.TERTIARY} {...commonProps} disabled />
@@ -113,24 +109,24 @@ export const deprecated = () => {
   return (
     <>
       <div className="m-b-2 m-t-4">
-        <div className="h3 m-b-1">DEPRECATED</div>
-        <div className="h4 m-b-1">Primary</div>
+        <div className="title-3 m-b-1">DEPRECATED</div>
+        <div className="title-4 m-b-1">Primary</div>
         <Button type={Type.PRIMARY} {...commonProps} />
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Secondary</div>
+        <div className="title-4 m-b-1">Secondary</div>
         <Button type={Type.SECONDARY} {...commonProps} />
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Pay</div>
+        <div className="title-4 m-b-1">Pay</div>
         <Button type={Type.PAY} {...commonProps} />
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Danger</div>
+        <div className="title-4 m-b-1">Danger</div>
         <Button type={Type.DANGER} {...commonProps} />
       </div>
       <div className="m-b-2">
-        <div className="h4 m-b-1">Link</div>
+        <div className="title-4 m-b-1">Link</div>
         <Button type={Type.LINK} {...commonProps} />
       </div>
     </>

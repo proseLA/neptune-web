@@ -6,10 +6,10 @@
 .alert {
   padding: var(--size-16);
   border-radius: var(--radius-medium);
-  color: var(--color-text-primary);
+  color: var(--color-content-primary);
   background-color: var(--color-background-neutral);
   min-width: 200px;
-  font-size: @font-size-base;
+  font-size: var(--font-size-16);
   margin-bottom: var(--size-16);
 
   // Adjust for the font baseline offset
@@ -46,7 +46,7 @@
     padding: 4px 16px 3px;
     margin-top: -2px;
     border-style: solid;
-    border-color: @input-border;
+    border-color: var(--color-border-neutral);
     border-width: 0 1px 1px 1px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -76,43 +76,75 @@
 .alert-success,
 .alert-positive {
   .alert-variant(
-    @color-background-positive;
-    @color-base-green-dark;
-    darken(@color-base-green-dark, 10%);
+    var(--color-background-positive);
+    var(--color-content-positive);
+    var(--color-content-positive-hover);
   );
+
+  .bg-primary & {
+    .alert-variant(
+      @color-navy-background-positive;
+      @color-navy-content-positive;
+      @color-navy-content-positive-hover;
+    );
+  }
 }
 
 .alert-info,
 .alert-neutral {
   .alert-variant(
-    @color-background-neutral;
-    @color-text-primary;
-    darken(@color-text-primary, 10%);
+    var(--color-background-neutral);
+    var(--color-content-primary);
+    var(--color-content-primary);
   );
+
+  .bg-primary & {
+    .alert-variant(
+      @color-navy-background-neutral;
+      @color-navy-content-primary;
+      @color-navy-content-primary;
+    );
+  }
 }
 
 .alert-warning {
   .alert-variant(
-    @color-background-warning;
-    @color-base-orange-dark;
-    darken(@color-base-orange-dark, 10%);
+    var(--color-background-warning);
+    var(--color-content-warning);
+    var(--color-content-warning-hover);
   );
+
+  .bg-primary & {
+    .alert-variant(
+      @color-navy-background-warning;
+      @color-navy-content-warning;
+      @color-navy-content-warning-hover;
+    );
+  }
 }
 
 .alert-danger,
 .alert-negative {
   .alert-variant(
-    @color-background-negative;
-    @color-base-red-dark;
-    darken(@color-base-red-dark, 10%);
+    var(--color-background-negative);
+    var(--color-content-negative);
+    var(--color-content-negative-hover);
   );
+
+  .bg-primary & {
+    .alert-variant(
+      @color-navy-background-negative;
+      @color-navy-content-negative;
+      @color-navy-content-negative-hover;
+    );
+  }
 }
 
 .form-group:focus-within .alert-focus,
 input:focus ~ .alert-focus,
 .btn:focus ~ .alert-focus {
   display: block;
-  border-color: @alert-info-border;
+  border-color: var(--color-interactive-accent);
 }
 
 .focus .alert-focus,

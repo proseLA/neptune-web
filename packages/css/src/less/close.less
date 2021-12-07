@@ -1,8 +1,40 @@
-// TODO: remove bootstrap dependencies
-
-// variables
 @import (reference) '../variables/legacy-variables.less';
+@import (reference) './mixins/_tab-focus.less';
+@import (reference) './mixins/_logical-properties.less';
 
-// mixins
-@import (reference) 'bootstrap/less/mixins/tab-focus.less';
-@import 'bootstrap/less/close.less';
+.close {
+  .float(right);
+
+  font-size: calc(var(--font-size-16) * 2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  color: var(--color-content-accent);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: var(--color-content-accent-hover);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &:focus {
+    .tab-focus();
+  }
+
+  &:active {
+    color: var(--color-content-accent-active);
+  }
+
+  // Additional properties for button version
+  // iOS requires the button element instead of an anchor tag.
+  // If you want the anchor version, it requires `href="#"`.
+  // See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+  button& {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    appearance: none;
+  }
+}

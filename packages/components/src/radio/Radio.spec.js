@@ -1,7 +1,6 @@
 import { shallow } from 'enzyme';
 
 import RadioButton from '../common/RadioButton';
-import { useDirection } from '../common/hooks';
 
 import Radio from '.';
 
@@ -20,7 +19,6 @@ describe('Radio', () => {
       disabled: false,
       secondary: '',
     };
-    useDirection.mockImplementation(() => ({ direction: 'rtl', isRTL: true }));
     component = shallow(<Radio {...props} />);
   });
 

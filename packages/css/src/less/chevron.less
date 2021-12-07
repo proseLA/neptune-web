@@ -1,3 +1,6 @@
+@import (reference) '../variables/neptune-tokens.less';
+@import (reference) './mixins/_logical-properties.less';
+
 .tw-chevron {
   display: inline-block;
   transition: transform cubic-bezier(0, 0.94, 0.62, 1) 350ms;
@@ -7,7 +10,11 @@
   }
 
   &.right {
-    transform: rotate(+90deg);
+    .rotate(90deg);
+  }
+
+  &.right-sigle-direction {
+    transform: rotate(+90deg) !important;
   }
 
   &.bottom {
@@ -15,10 +22,18 @@
   }
 
   &.left {
-    transform: rotate(270deg);
+    .rotate(270deg);
+  }
+
+  &.left-single-direction {
+    transform: rotate(270deg) !important;
   }
 }
 
 .chevron-color {
-  color: var(--color-control-accent);
+  color: var(--color-content-accent);
+}
+
+.btn-input-inverse > .chevron-color {
+  color: @color-navy-content-accent;
 }

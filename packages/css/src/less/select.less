@@ -1,9 +1,11 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+@import (reference) './mixins/_logical-properties.less';
 
 .tw-select {
   .tw-icon {
     display: inline-block;
-    margin-right: var(--size-8);
+    .margin(right, var(--size-8));
+
     margin-top: -2px;
     vertical-align: middle;
   }
@@ -16,7 +18,7 @@
     &--divider {
       border-bottom-style: solid;
       border-bottom-width: 1px;
-      border-bottom-color: @color-base-smoke-fade;
+      border-bottom-color: var(--color-border-neutral);
     }
 
     &--focused {
@@ -24,7 +26,7 @@
     }
 
     .currency-flag {
-      margin-right: var(--size-8);
+      .margin(right, var(--size-8));
     }
 
     > a {
@@ -34,22 +36,22 @@
 
   .dropdown-toggle.btn-input {
     &.btn-sm {
-      padding-right: var(--size-32);
+      .padding(right, var(--size-32));
     }
 
     &.btn-md {
-      padding-right: var(--size-40);
+      .padding(right, var(--size-40));
     }
 
     &.btn-lg {
-      padding-right: var(--size-48);
+      .padding(right, var(--size-48));
     }
   }
 
   // tw-chevron-down-icon - Angular component
   .dropdown-toggle .tw-select-chevron,
   .dropdown-toggle tw-chevron-down-icon > span { // stylelint-disable-line selector-type-no-unknown
-    margin: 0;
+    .margin-shorthand(0);
   }
 
   // tw-icon - Angular component

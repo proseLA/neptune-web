@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
 
 import { Size, Breakpoint } from '../common';
-import { useDirection } from '../common/hooks';
 import NavigationOption from '../navigationOption';
 import SizeSwapper from '../sizeSwapper';
 import Tile from '../tile';
@@ -11,7 +10,6 @@ import Tile from '../tile';
 import { Presentation, Type } from './decisionEnums';
 
 const Decision = ({ options, presentation, type, size }) => {
-  const { isRTL } = useDirection();
   if (type === Type.NAVIGATION) {
     const { LIST_BLOCK, LIST_BLOCK_GRID } = Presentation;
     if (presentation === LIST_BLOCK || presentation === LIST_BLOCK_GRID) {
@@ -71,7 +69,6 @@ const Decision = ({ options, presentation, type, size }) => {
           className={classNames('np-decision', {
             'np-decision--small': isSmall,
             'np-decision--grid': isGrid,
-            'np-decision--rtl': isRTL,
           })}
         >
           <SizeSwapper items={items} />

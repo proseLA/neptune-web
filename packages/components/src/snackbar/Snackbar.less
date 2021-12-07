@@ -1,26 +1,29 @@
 @import (reference) '@transferwise/neptune-css/src/variables/zindex.less';
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
-@import (reference) '@transferwise/neptune-css/src/less/variables/_typography.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
 
 .snackbar {
   text-align: center;
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  .left(0);
+
+  .right(0);
+
   z-index: @zindex-mobile-nav;
 
   &__text {
-    background: @color-base-navy-mid;
-    color: @color-base-white;
-    font-size: @font-size-small;
+    background: @color-navy-background-elevated;
+    color: @color-navy-content-primary;
+    font-size: var(--font-size-14);
     line-height: 20px;
     display: inline-flex;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
     align-items: center;
     justify-content: space-between;
-    text-align: left;
+    .text-align(left);
+
     margin: 0 var(--size-16);
     padding: 14px var(--size-16);
     width: calc(100% - var(--size-32));
@@ -28,7 +31,7 @@
 
     &--dark {
       background: var(--color-background-screen);
-      color: var(--color-text-primary);
+      color: var(--color-content-primary);
     }
 
     @media (--screen-sm) {
@@ -42,13 +45,18 @@
       line-height: 1;
       border: 0;
       padding: 14px 16px;
-      margin: -14px -16px -14px 0;
+      margin-top: -14px;
+      .margin(right, calc(var(--size-16)* -1));
+
+      margin-bottom: -14px;
+      .margin(left, 0);
+
       background: none;
       outline: 0;
       // stylelint-disable-next-line declaration-block-no-shorthand-property-overrides
       font: inherit;
-      color: var(--color-accent);
-      font-weight: @font-weight-semi-bold;
+      font-weight: var(--font-weight-semi-bold);
+      color: @color-navy-content-accent;
       position: relative;
       cursor: pointer;
     }
@@ -65,12 +73,6 @@
       @media (--screen-sm) {
         transform: translateY(-24px);
       }
-    }
-  }
-
-  &--rtl {
-    .snackbar__text__action {
-      margin: -14px 0 -14px -16px;
     }
   }
 }

@@ -41,7 +41,7 @@
     "@transferwise/eslint-plugin": "^0.2.0",
     "@transferwise/files-scaffold": "^1.0.1",
     "@transferwise/icons": "^2.12.0",
-    "@transferwise/neptune-tokens": "^1.0.0",
+    "@transferwise/neptune-tokens": "6.1.0",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.29.0",

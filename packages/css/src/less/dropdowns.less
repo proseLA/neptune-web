@@ -1,0 +1,364 @@
+@import (reference)  '../variables/neptune-tokens.less';
+@import (reference) '../variables/legacy-variables.less';
+@import (reference) './mixins/_border-radius.less';
+@import (reference) './mixins/_logical-properties.less';
+@import (reference) 'bootstrap/less/mixins/nav-divider.less';
+
+//
+// Dropdown menus
+// --------------------------------------------------
+
+// The dropdown wrapper (div)
+.dropup,
+.dropdown {
+  position: relative;
+}
+
+// The dropdown menu (ul)
+.dropdown-menu {
+  position: absolute;
+  top: 0; //100%;
+  .left(0);
+
+  z-index: @zindex-dropdown;
+  .float(left);
+
+  .padding-shorthand(@padding-base-vertical);
+
+  margin: 0; // override default ul
+  list-style: none;
+  font-size: var(--font-size-16);
+  .text-align(left); // Ensures proper alignment if parent has it changed (e.g., modal footer)
+
+  background-color: var(--color-background-screen);
+  border: 0 solid var(--color-border-neutral);
+  border-radius: @border-radius-base;
+  box-shadow: 0 20px 66px 0 rgba(34, 48, 73, 0.2);
+  background-clip: padding-box;
+
+  // Bit of a hack for our calculators to make the two controls the same width.
+  min-width: 104px;
+
+  @media (min-width: @screen-sm-min) {
+    min-width: 160px;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  .divider {
+    .nav-divider(var(--color-border-neutral));
+  }
+
+  //Force color to text-primary because the dropdowns are white regardless the context
+  .text-primary {
+    color: var(--color-content-primary) !important;
+  }
+
+  .dropdown-menu-closed();
+
+  // Links within the dropdown menu
+  > li > a {
+    display: block;
+    padding: @dropdown-link-padding;
+    clear: both;
+    font-weight: normal;
+    border-radius: @border-radius-base;
+    line-height: var(--line-height-body);
+    color: var(--color-content-primary);
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+
+    .secondary {
+      display: block;
+      white-space: normal;
+    }
+  }
+
+  > li:first-child > a {
+    .border-top-radius((@border-radius-base - 1px));
+  }
+
+  > li:last-child > a {
+    .border-bottom-radius((@border-radius-base - 1px));
+  }
+
+  > .overlay-back-button,
+  > .overlay-title {
+    display: none;
+  }
+}
+
+.dropdown-menu-open() {
+  transition:
+    opacity 0.2s cubic-bezier(0.6, 0.2, 0.1, 1),
+    transform 0.2s cubic-bezier(0.6, 0.2, 0.1, 1),
+    visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+.dropdown-menu-closed() {
+  // the visibility transition here allows us to wait for the opacity/transform animation to finish before we make it hidden.
+  transition:
+    opacity 0.2s cubic-bezier(0.6, 0.2, 0.1, 1),
+    transform 0.2s cubic-bezier(0.6, 0.2, 0.1, 1),
+    visibility 0s linear 0.2s;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95, 0.95);
+  visibility: hidden;
+}
+
+.dropdown-menu,
+.btn-group .dropdown-menu {
+  max-width: ~'calc(100vw - 32px)';
+
+  &.dropdown-menu-sm {
+    width: 220px;
+  }
+
+  &.dropdown-menu-md {
+    width: 300px;
+  }
+
+  &.dropdown-menu-lg {
+    width: 420px;
+  }
+}
+
+// Hover/Focus/Active state
+.dropdown-menu > li:not(.active):not(.selected) > a:not([disabled]):not(.disabled) {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: var(--color-content-primary);
+    background-color: var(--color-background-neutral);
+    outline: 0;
+  }
+
+  &:active {
+    color: @color-navy-content-primary;
+    background-color: @color-navy-background-elevated;
+  }
+}
+
+// Active state
+.dropdown-menu > .active > a,
+.dropdown-menu > .selected > a {
+  &,
+  &:hover,
+  &:focus {
+    color: @color-navy-content-primary;
+    text-decoration: none;
+    outline: 0;
+    background-color: @color-navy-background-elevated;
+  }
+
+  strong {
+    color: inherit;
+  }
+
+  .body-2,
+  .small,
+  .secondary {
+    color: @color-navy-content-secondary;
+  }
+}
+
+// Disabled state
+//
+// Gray out text and ensure the hover/focus state remains gray
+
+.dropdown-menu > .disabled > a {
+  &,
+  &:hover,
+  &:focus,
+  .body-2,
+  .small,
+  .secondary {
+    color: var(--color-content-disabled);
+  }
+
+  // Nuke hover/focus effects
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: transparent;
+    background-image: none; // Remove CSS gradient
+    cursor: @cursor-disabled;
+  }
+
+  .circle img,
+  .currency-flag {
+    opacity: 0.5;
+  }
+
+  .circle,
+  .icon {
+    color: var(--color-content-disabled);
+  }
+}
+
+// Open state for the dropdown
+.open {
+  > .dropdown-menu {
+    .dropdown-menu-open();
+  }
+
+  @media (max-width: @screen-sm-min) {
+    > .dropdown-menu-overlay {
+      position: fixed;
+      top: 0;
+      .left(0);
+
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      max-width: none;
+      overflow-y: auto;
+      animation: listSlideOver 0.15s ease-out forwards;
+
+      > .overlay-back-button,
+      > .overlay-title {
+        display: block;
+      }
+    }
+  }
+
+  // Remove the outline when :focus is triggered
+  > a {
+    outline: 0;
+  }
+}
+
+// Menu positioning
+//
+// Add extra class to `.dropdown-menu` to flip the alignment of the dropdown
+// menu with the parent.
+.dropdown-menu-right,
+.dropdown-menu-xs-right {
+  .left(auto);
+
+  .right(0);
+}
+
+.dropdown-menu-left,
+.dropdown-menu-xs-left {
+  .left(0);
+
+  .right(auto);
+}
+
+@media (min-width: @screen-sm-min) {
+  .dropdown-menu-sm-right {
+    .left(auto);
+
+    .right(0);
+  }
+
+  .dropdown-menu-sm-left {
+    .left(0);
+
+    .right(auto);
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .dropdown-menu-md-right {
+    .left(auto);
+
+    .right(0);
+  }
+
+  .dropdown-menu-md-left {
+    .left(0);
+
+    .right(auto);
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .dropdown-menu-lg-right {
+    .left(auto);
+
+    .right(0);
+  }
+
+  .dropdown-menu-lg-left {
+    .left(0);
+
+    .right(auto);
+  }
+}
+
+@media (min-width: @screen-xl-min) {
+  .dropdown-menu-xl-right {
+    .left(auto); // Reset the default from `.dropdown-menu`
+
+    .right(0);
+  }
+
+  .dropdown-menu-xl-left {
+    .left(0);
+
+    .right(auto);
+  }
+}
+
+// Dropdown section headers
+.dropdown-header {
+  display: block;
+  padding: 8px 16px 8px;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-body);
+  color: var(--color-content-secondary);
+  white-space: nowrap; // as with > li > a
+}
+
+// Backdrop to catch body clicks on mobile, etc.
+.dropdown-backdrop {
+  position: fixed;
+  .left(0);
+
+  .right(0);
+
+  bottom: 0;
+  top: 0;
+  z-index: (@zindex-dropdown - 10);
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+//
+// Just add .dropup after the standard .dropdown class and you're set, bro.
+// TODO: abstract this so that the navbar fixed styles are not placed here?
+
+.dropup,
+.navbar-fixed-bottom .dropdown {
+  // Different positioning for bottom up menu
+  .dropdown-menu {
+    top: auto;
+    bottom: -2px; // 100%;
+    margin-bottom: 2px;
+  }
+}
+
+// Component alignment
+//
+// Reiterate per navbar.less and the modified component alignment there.
+
+@media (min-width: @grid-float-breakpoint) {
+  .navbar-right {
+    .dropdown-menu {
+      .dropdown-menu-right();
+    }
+    // Necessary for overrides of the default right aligned menu.
+    // Will remove come v4 in all likelihood.
+    .dropdown-menu-left {
+      .dropdown-menu-left();
+    }
+  }
+}
+
+.bootstrap-select .dropdown-menu {
+  margin: -8px 0 -6px 0;
+}

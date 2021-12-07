@@ -1,10 +1,14 @@
-export function BackgroundToken(props) {
+import { Link } from '@transferwise/components';
+import { CssClass } from '../../../components/Css';
+
+export function Demo({ name, comment }) {
   return (
     <div className="m-b-2">
       <div
-        className={props.token}
+        className={name}
         style={{
-          display: 'flex',
+          border: '1px solid var(--color-border-neutral)',
+          display: 'inline-flex',
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: '3px',
@@ -12,8 +16,9 @@ export function BackgroundToken(props) {
           height: '48px',
         }}
       >
-        .{props.token}
-      </div>
+        <CssClass name={name} />
+      </div>{' '}
+      {comment}
     </div>
   );
 }
@@ -22,17 +27,48 @@ import { DocumentLink } from '../../../utils/pageUtils';
 
 Background utility classes.
 
-**Note:** To use these classes in your application, you need `neptune.css` or `neptune-addons.css` on your page. Refer to <DocumentLink href="/about/Setup#installation">Installation</DocumentLink> on the Setup page to get started.
-
 ## Contextual backgrounds
 
+Based on <Link target="_blank" href="https://neptune.wise.com/design/colour/#background">background colors</Link>.
+
 <div className="m-b-4">
-  <BackgroundToken token="bg-default" />
-  <BackgroundToken token="bg-info" />
-  <BackgroundToken token="bg-primary" />
-  <BackgroundToken token="bg-success" />
-  <BackgroundToken token="bg-danger" />
-  <BackgroundToken token="bg-warning" />
+  <Demo name="bg-screen" />
+  <Demo name="bg-elevated" />
+  <Demo
+    name="bg-neutral"
+    comment={
+      <>
+        Use to be <CssClass name="bg-default" code />
+      </>
+    }
+  />
+  <Demo
+    name="bg-accent"
+    comment={
+      <>
+        Use to be <CssClass name="bg-info" code />
+      </>
+    }
+  />
+  <Demo name="bg-primary" />
+  <Demo
+    name="bg-positive"
+    comment={
+      <>
+        Use to be <CssClass name="bg-success" code />
+      </>
+    }
+  />
+  <Demo
+    name="bg-negative"
+    comment={
+      <>
+        Use to be <CssClass name="bg-negative" code />
+      </>
+    }
+  />
+  <Demo name="bg-warning" />
+  <Demo name="bg-overlay" />
 </div>
 
 export const meta = {
