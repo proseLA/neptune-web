@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.0.0...@transferwise/components@39.0.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* **PhoneNumberInput:** do not change prefix on phone number input change ([#1217](https://github.com/transferwise/neptune-web/issues/1217)) ([3cc332f](https://github.com/transferwise/neptune-web/commit/3cc332f21e236aaa916cb702a873e2a114d852bd))
+* peer dependencies after major release ([#1251](https://github.com/transferwise/neptune-web/issues/1251)) ([5188626](https://github.com/transferwise/neptune-web/commit/518862672e3839e44d50ab4e91acab1da9dbc9d6))
+
+
+
+
+
 # [39.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@38.4.1...@transferwise/components@39.0.0) (2021-12-07)
 
 
