@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@11.0.1...@transferwise/neptune-css@12.0.0) (2021-12-07)
+
+
+* feat!: Neptune November Release - Typography, Accessible Colors, Right to Left (#1169) ([af8906a](https://github.com/transferwise/neptune-web/commit/af8906a57dce1a585d8d475e32b6a02252c99c99)), closes [#1169](https://github.com/transferwise/neptune-web/issues/1169)
+
+
+### BREAKING CHANGES
+
+* https://transferwise.github.io/neptune-web/blog/2021-11-30-november-release
+
+
+
+
+
 ## [11.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@11.0.0...@transferwise/neptune-css@11.0.1) (2021-11-24)
 
 
