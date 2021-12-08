@@ -37,9 +37,11 @@ export const basic = () => {
     final: '/final',
     error: '/error',
     recipient_details: '/recipient-details',
+    payin_old: '/payin-old',
+    payin_new: '/payin-new',
   };
 
-  const flowUrl = select('step', steps, '/decision');
+  const flowUrl = select('step', steps, '/payin-old');
 
   const baseUrl = '';
 

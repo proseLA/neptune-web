@@ -39,9 +39,11 @@ export const basic = () => {
     'Final step layout': finalStepLayout,
     'Final step (converted)': convertStepToLayout(finalStep),
     'Pay in': payInLayoutInline,
+    oldOutput: oldOutput.layout,
+    newOutput: newOutput.layout,
   };
 
-  const components = select('layout', layouts, allComponentsLayout);
+  const components = select('layout', layouts, oldOutput.layout);
   const submitted = boolean('submitted', true);
 
   return (
@@ -54,4 +56,208 @@ export const basic = () => {
       onModelChange={onModelChange}
     />
   );
+};
+
+const oldOutput = {
+  key: 'PAY_ID',
+  type: 'form',
+  title: 'Pay Using PayID',
+  actions: [
+    {
+      title: 'I have paid',
+      type: 'primary',
+      exit: true,
+      result: {
+        paid: 'POTENTIALLY_PAID',
+      },
+    },
+    {
+      title: "I'll transfer my money later",
+      type: 'secondary',
+      exit: true,
+      result: {
+        paid: 'NOT_PAID',
+      },
+    },
+  ],
+  schemas: [
+    {
+      title: 'Pay Using PayID',
+      type: 'string',
+      default: 'PayId',
+    },
+  ],
+  layout: [
+    {
+      type: 'info',
+      markdown:
+        'Go to your online banking and transfer **50.25 AUD** to our account using the email below.',
+    },
+    {
+      components: [
+        {
+          context: 'info',
+          markdown: 'ZZ',
+          type: 'alert',
+        },
+        {
+          type: 'review',
+          title: 'Our Bank Details',
+          fields: [
+            {
+              label: 'Email',
+              value: 'rahul@wise.com',
+            },
+          ],
+        },
+        {
+          left: [
+            {
+              type: 'review',
+              fields: [
+                {
+                  label: 'Account Name',
+                  value: 'Wise Australia Pty Ltd',
+                },
+              ],
+            },
+          ],
+          right: [
+            {
+              type: 'review',
+              fields: [
+                {
+                  label: 'Amount',
+                  value: '50.25 AUD',
+                },
+              ],
+            },
+          ],
+          type: 'columns',
+        },
+      ],
+      type: 'box',
+    },
+    {
+      type: 'button',
+      action: {
+        title: 'I have paid',
+        type: 'primary',
+        exit: true,
+        result: {
+          paid: 'POTENTIALLY_PAID',
+        },
+      },
+    },
+    {
+      type: 'button',
+      action: {
+        title: "I'll transfer my money later",
+        type: 'secondary',
+        exit: true,
+        result: {
+          paid: 'NOT_PAID',
+        },
+      },
+    },
+  ],
+};
+
+const newOutput = {
+  key: 'PAY_ID',
+  type: 'form',
+  title: 'Pay Using PayID',
+  actions: [
+    {
+      title: 'I have paid',
+      type: 'primary',
+      exit: true,
+      result: {
+        paid: 'POTENTIALLY_PAID',
+      },
+      $id: '#payNow',
+    },
+    {
+      title: "I'll transfer my money later",
+      type: 'secondary',
+      exit: true,
+      result: {
+        paid: 'NOT_PAID',
+      },
+      $id: '#payLater',
+    },
+  ],
+  schemas: [
+    {
+      title: 'Pay Using PayID',
+      type: 'string',
+      hidden: true,
+      default: 'PayId',
+    },
+  ],
+  layout: [
+    {
+      type: 'info',
+      markdown:
+        'Go to your online banking and transfer **50.25 AUD** to our account using the email below.',
+    },
+    {
+      components: [
+        {
+          context: 'info',
+          markdown:
+            "We've updated our PayID email and no longer require you to enter any reference numbers. Use this PayID going forward.",
+          type: 'alert',
+        },
+        {
+          type: 'review',
+          title: 'Our Bank Details',
+          fields: [
+            {
+              label: 'Email',
+              value: 'rahul@wise.com',
+            },
+          ],
+        },
+        {
+          left: [
+            {
+              type: 'review',
+              fields: [
+                {
+                  label: 'Account Name',
+                  value: 'Wise Australia Pty Ltd',
+                },
+              ],
+            },
+          ],
+          right: [
+            {
+              type: 'review',
+              fields: [
+                {
+                  label: 'Amount',
+                  value: '50.25 AUD',
+                },
+              ],
+            },
+          ],
+          type: 'columns',
+        },
+      ],
+      type: 'box',
+    },
+    {
+      type: 'button',
+      action: {
+        $ref: '#payNow',
+      },
+    },
+    {
+      type: 'button',
+      action: {
+        $ref: '#payLater',
+      },
+    },
+  ],
 };

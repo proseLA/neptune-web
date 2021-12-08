@@ -3,6 +3,8 @@ import decisionStep from '../examples/decision.json';
 import finalStep from '../examples/final.json';
 import formStep from '../examples/form.json';
 import layoutStep from '../examples/layout.json';
+import payinNew from '../examples/payin-new.json';
+import payinOld from '../examples/payin-old.json';
 import receiveStep from '../examples/recipient_details.json';
 import receiveStepRefresh from '../examples/recipient_details_refresh.json';
 import review from '../examples/review.json';
@@ -38,6 +40,10 @@ async function request({ action, data }) {
       return Promise.resolve(createResponse(reviewStep));
     case '/final':
       return Promise.resolve(createResponse(finalStep));
+    case '/payin-old':
+      return Promise.resolve(createResponse(payinOld));
+    case '/payin-new':
+      return Promise.resolve(createResponse(payinNew));
     case '/error':
       return Promise.reject({
         error: 'Something went wrong',
