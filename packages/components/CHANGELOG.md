@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.0.1...@transferwise/components@39.1.0) (2021-12-08)
+
+
+### Features
+
+* show icon over currency flag and hide it on mobile when selected ([#1252](https://github.com/transferwise/neptune-web/issues/1252)) ([9f15c7e](https://github.com/transferwise/neptune-web/commit/9f15c7e3cdbbdf3f0c7bb26e0a79d8f80ef48cb3))
+
+
+
+
+
 ## [39.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.0.0...@transferwise/components@39.0.1) (2021-12-07)
 
 
