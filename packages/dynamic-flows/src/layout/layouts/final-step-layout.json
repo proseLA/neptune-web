@@ -1,26 +1,21 @@
 [
   {
+    "type": "image",
+    "url": "https://via.placeholder.com/1024",
+    "text": "Image size sm",
+    "margin": "lg",
+    "size": "sm"
+  },
+  {
     "type": "heading",
-    "text": "Details verified",
+    "text": "Image size sm",
     "size": "lg",
     "margin": "lg",
     "align": "center"
   },
   {
-    "type": "box",
-    "width": "sm",
-    "components": [
-      {
-        "type": "image",
-        "url": "https://wise.com/public-resources/assets/spot-illustrations/dedicated_fraud_team.png",
-        "text": "alt text",
-        "margin": "lg"
-      }
-    ]
-  },
-  {
     "type": "paragraph",
-    "text": "We do this extra check to make sure your money goes to the right place....",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ante felis. Nullam auctor posuere justo ac posuere. Nullam efficitur enim ut turpis venenatis vestibulum.",
     "align": "center"
   },
   {
@@ -29,9 +24,8 @@
     "components": [
       {
         "type": "button",
-        "context": "success",
         "action": {
-          "title": "Continue",
+          "title": "Button",
           "type": "primary",
           "exit": true,
           "data": { "someKey": "some value" },

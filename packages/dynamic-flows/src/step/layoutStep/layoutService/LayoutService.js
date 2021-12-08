@@ -28,7 +28,7 @@ function convertCommonComponents(step) {
   }
   if (step.image) {
     const image = convertStepImageToDynamicImage(step.image);
-    layout.push(dynamicBox([image], 'sm'));
+    layout.push(image);
   }
   if (step.description) {
     layout.push(convertStepDescriptionToDynamicParagraph(step.description));
@@ -62,7 +62,7 @@ function convertFinalStepToDynamicLayout(step) {
   if (step.details) {
     if (step.details.image) {
       const image = convertFinalStepImageToDynamicImage(step.details.image);
-      layout.push(dynamicBox([image], 'sm'));
+      layout.push(image);
     }
     if (step.details.title) {
       layout.push(convertStepTitleToDynamicHeading(step.details.title));
@@ -150,17 +150,21 @@ function convertStepImageToDynamicImage(image) {
     type: 'image',
     url: image.url,
     text: image.text,
-    margin: 'lg',
+    margin: image.margin || 'lg',
+    size: image.size || 'md',
   };
 }
 
 function convertFinalStepImageToDynamicImage(image) {
-  return {
-    type: 'image',
-    url: image,
-    text: undefined,
-    margin: 'lg',
-  };
+  return typeof image === 'string'
+    ? {
+        type: 'image',
+        url: image,
+        text: undefined,
+        margin: 'lg',
+        size: 'md',
+      }
+    : convertStepImageToDynamicImage(image);
 }
 
 function convertStepActionToDynamicAction(action) {

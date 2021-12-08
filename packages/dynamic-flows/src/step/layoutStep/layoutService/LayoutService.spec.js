@@ -88,16 +88,11 @@ describe('Given a utility service for handling dynamic layouts', () => {
 
       const finalLayout = [
         {
-          type: 'box',
-          width: 'sm',
-          components: [
-            {
-              type: 'image',
-              url: '/images/1234.png',
-              margin: 'lg',
-              text: undefined,
-            },
-          ],
+          type: 'image',
+          url: '/images/1234.png',
+          size: 'md',
+          margin: 'lg',
+          text: undefined,
         },
         {
           type: 'heading',
@@ -148,16 +143,70 @@ describe('Given a utility service for handling dynamic layouts', () => {
 
         const finalLayout = [
           {
+            type: 'image',
+            url: '/images/1234.png',
+            size: 'md',
+            margin: 'lg',
+            text: undefined,
+          },
+          {
+            type: 'heading',
+            text: 'We create the thing!',
+            size: 'lg',
+            margin: 'lg',
+            align: 'center',
+          },
+          {
+            type: 'paragraph',
+            text: 'You now do stuff with the thing',
+            align: 'center',
+          },
+          {
             type: 'box',
-            width: 'sm',
+            width: 'md',
             components: [
               {
-                type: 'image',
-                url: '/images/1234.png',
-                margin: 'lg',
-                text: undefined,
+                type: 'button',
+                action: { ...exitAction, type: 'primary' },
               },
             ],
+          },
+        ];
+        expect(convertStepToLayout(finalStep)).toStrictEqual(finalLayout);
+      });
+    });
+
+    describe('and the image is an object', () => {
+      it('should use the image url, text, and size when present', () => {
+        const exitAction = {
+          title: 'Exit',
+          exit: true,
+          result: { someKey: 'some value' },
+        };
+
+        const finalStep = {
+          type: 'final',
+          key: 'thing-final',
+          details: {
+            title: 'We create the thing!',
+            description: 'You now do stuff with the thing',
+            image: {
+              url: '/images/1234.png',
+              text: 'some image text',
+              size: 'lg',
+            },
+          },
+          actions: [exitAction],
+          success: true,
+        };
+
+        const finalLayout = [
+          {
+            type: 'image',
+            url: '/images/1234.png',
+            margin: 'lg',
+            text: 'some image text',
+            size: 'lg',
           },
           {
             type: 'heading',

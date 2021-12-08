@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-dom-props */
 import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
 
@@ -41,17 +42,21 @@ export const basic = () => {
     'Pay in': payInLayoutInline,
   };
 
-  const components = select('layout', layouts, allComponentsLayout);
+  const components = select('layout', layouts, finalStepLayout);
   const submitted = boolean('submitted', true);
 
   return (
-    <DynamicLayout
-      components={components}
-      submitted={submitted}
-      errors={null}
-      baseUrl=""
-      onAction={onAction}
-      onModelChange={onModelChange}
-    />
+    <div style={{ padding: '5em', backgroundColor: '#eee' }}>
+      <div style={{ backgroundColor: '#fff' }}>
+        <DynamicLayout
+          components={components}
+          submitted={submitted}
+          errors={null}
+          baseUrl=""
+          onAction={onAction}
+          onModelChange={onModelChange}
+        />
+      </div>
+    </div>
   );
 };

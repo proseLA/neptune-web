@@ -3,9 +3,12 @@
   "type": "final",
   "success": true,
   "details": {
-    "image": "https://wise.com/public-resources/assets/spot-illustrations/dedicated_fraud_team.png",
-    "title": "Details verified *",
-    "description": "We do this extra check to make sure your money goes to the right place...."
+    "image": {
+      "url": "https://via.placeholder.com/1024",
+      "text": "Image size: sm"
+    },
+    "title": "Image size: undefined",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel ante felis. Nullam auctor posuere justo ac posuere. Nullam efficitur enim ut turpis venenatis vestibulum."
   },
   "actions": [
     {
