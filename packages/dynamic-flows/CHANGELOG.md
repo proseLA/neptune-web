@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.0.2...@transferwise/dynamic-flows@16.1.0) (2021-12-08)
+
+
+### Features
+
+* **dynamic-flows:** accept size property for step and layout images ([#1247](https://github.com/transferwise/neptune-web/issues/1247)) ([3b6338b](https://github.com/transferwise/neptune-web/commit/3b6338b65c4c444cf1129eef21d42a49f0e46a8e))
+
+
+
+
+
 ## [16.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.0.1...@transferwise/dynamic-flows@16.0.2) (2021-12-08)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
