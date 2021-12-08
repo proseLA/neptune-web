@@ -36,9 +36,23 @@ describe('option', () => {
     expect(component.find('i.currency-flag.currency-flag-hustle')).toHaveLength(1);
   });
 
-  it('does not show currency icons on mobile if it is selected', () => {
+  it('overrides currency flag with icon', () => {
+    component.setProps({ currency: 'hustle', icon: <ProfileIcon /> });
+    expect(component.find(ProfileIcon)).toHaveLength(1);
+    expect(component.find('i.currency-flag.currency-flag-hustle')).toHaveLength(0);
+  });
+
+  it('does not show currency flags on mobile if it is selected', () => {
     const flagHiddenOnMobile = () => component.find('i.currency-flag').hasClass('hidden-xs');
     component.setProps({ currency: 'hustle' });
+    expect(flagHiddenOnMobile()).toBe(false);
+    component.setProps({ selected: true });
+    expect(flagHiddenOnMobile()).toBe(true);
+  });
+
+  it('does not show currency icons on mobile if it is selected', () => {
+    const flagHiddenOnMobile = () => component.find(ProfileIcon).hasClass('hidden-xs');
+    component.setProps({ currency: 'hustle', icon: <ProfileIcon /> });
     expect(flagHiddenOnMobile()).toBe(false);
     component.setProps({ selected: true });
     expect(flagHiddenOnMobile()).toBe(true);

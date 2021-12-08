@@ -17,11 +17,12 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
 
   return (
     <span className={flexClassNames}>
-      {currency ? (
-        <i className={currencyClassNames} />
-      ) : (
-        icon && cloneElement(icon, { size: 24, className: `${style(['tw-icon'])}` })
-      )}
+      {icon
+        ? cloneElement(icon, {
+            size: 24,
+            className: `${style(['tw-icon', `${selected && currency ? 'hidden-xs' : ''}`])}`,
+          })
+        : currency && <i className={currencyClassNames} />}
       {label}
       {note && <span className="body-2 m-l-1">{note}</span>}
       {secondary && <span className="body-2 text-ellipsis">{secondary}</span>}
