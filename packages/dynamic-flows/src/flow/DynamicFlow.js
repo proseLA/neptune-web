@@ -16,12 +16,12 @@ import { withErrorBoundary } from './errorBoundary';
 const EXIT_HEADER = 'X-Df-Exit';
 
 const validateExitResult = async (response) => {
-  const json = await response.json();
+  const body = await response.json();
   return new Promise((resolve, reject) => {
-    if (!isObject(json)) {
-      reject('Incorrect response when submitting an exit action. Expected an object');
+    if (!isObject(body)) {
+      reject('Incorrect response body when submitting an exit action. Expected an object');
     }
-    resolve(json);
+    resolve(body);
   });
 };
 
