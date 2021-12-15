@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.4...@transferwise/neptune-docs@15.0.5) (2021-12-15)
+
+
+### Bug Fixes
+
+* RTL layout bugs (Select, grid) ([#1256](https://github.com/transferwise/neptune-web/issues/1256)) ([a975006](https://github.com/transferwise/neptune-web/commit/a9750067ebabe8830e5ca8231dff8fe3e5c317bb))
+
+
+
+
+
 ## [15.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.3...@transferwise/neptune-docs@15.0.4) (2021-12-09)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
