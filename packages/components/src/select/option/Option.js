@@ -11,22 +11,23 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
         `${selected ? 'hidden-xs' : ''}`,
       ])}`
     : null;
-  const flexClassNames = secondary
-    ? `${style(['d-flex align-items-start', `${secondary ? 'flex-column' : ''}`])}`
-    : 'd-flex align-items-start';
+
+  const flexClassNames = note ? `${style(['d-flex align-items-center'])}` : undefined;
 
   return (
-    <span className={flexClassNames}>
+    <>
       {icon
         ? cloneElement(icon, {
             size: 24,
             className: `${style(['tw-icon', `${selected && currency ? 'hidden-xs' : ''}`])}`,
           })
         : currency && <i className={currencyClassNames} />}
-      {label}
-      {note && <span className="body-2 m-l-1">{note}</span>}
+      <span className={flexClassNames}>
+        {label}
+        {note && <span className="body-2 m-l-1">{note}</span>}
+      </span>
       {secondary && <span className="body-2 text-ellipsis">{secondary}</span>}
-    </span>
+    </>
   );
 };
 

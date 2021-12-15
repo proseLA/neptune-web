@@ -81,9 +81,8 @@
     .navbar-fixed-top &,
     .navbar-static-top &,
     .navbar-fixed-bottom & {
-      .padding(left, 0);
-
-      .padding(right, 0);
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }
@@ -99,8 +98,8 @@
   > .navbar-collapse {
 
     @media (--screen-md) {
-      .margin(right, 0);
-      .margin(left, 0);
+      margin-right: 0;
+      margin-left: 0;
     }
   }
 }
@@ -134,10 +133,8 @@
 .navbar-fixed-top,
 .navbar-fixed-bottom {
   position: fixed;
-  .right(0);
-
-  .left(0);
-
+  right:0;
+  left:0;
   z-index: @zindex-navbar-fixed;
   backface-visibility: hidden;
   background-color: @color-navy-background-elevated;
@@ -439,10 +436,8 @@
   @media (--screen-md) {
     width: auto;
     border: 0;
-    .margin(left, 0);
-
-    .margin(right, 0);
-
+    margin-left: 0;
+    margin-right: 0;
     padding-top: 0;
     padding-bottom: 0;
     box-shadow: none;
@@ -603,10 +598,8 @@
 
   @media (--screen-md) {
     .float(left);
-
-    .margin(left, @navbar-padding-horizontal);
-
-    .margin(right, @navbar-padding-horizontal);
+    margin-left: @navbar-padding-horizontal;
+    margin-right: @navbar-padding-horizontal;
   }
 }
 
@@ -925,10 +918,8 @@
   .navbar-collapse {
     position: fixed;
     bottom: 0;
-    .left(0);
-
-    .right(0);
-
+    left: 0;
+    right: 0;
     height: 100% !important;
 
     // Backwards compatibility if collapse-panel missing

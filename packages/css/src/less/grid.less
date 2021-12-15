@@ -13,17 +13,17 @@
     max-width: @container-xl;
   }
 
-  .padding(right, @spacing-1-mobile);
-  .padding(left, @spacing-1-mobile);
+  padding-right: @spacing-1-mobile;
+  padding-left: @spacing-1-mobile;
 
   @media (min-width: @screen-sm-min) {
-    .padding(right, @spacing-1-tablet);
-    .padding(left, @spacing-1-tablet);
+    padding-right: @spacing-1-tablet;
+    padding-left: @spacing-1-tablet;
   }
 
   @media (min-width: @screen-lg-min) {
-    .padding(right, @spacing-1-desktop);
-    .padding(left, @spacing-1-desktop);
+    padding-right: @spacing-1-desktop;
+    padding-left: @spacing-1-desktop;
   }
 }
 
@@ -67,15 +67,15 @@
 
 @media (max-width: @screen-xs-max) {
   .container {
-    .padding(right, @spacing-1-mobile);
-    .padding(left, @spacing-1-mobile);
+    padding-right: @spacing-1-mobile;
+    padding-left: @spacing-1-mobile;
   }
 }
 
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
   .container {
-    .padding(right, @spacing-1-tablet);
-    .padding(left, @spacing-1-tablet);
+    padding-right: @spacing-1-tablet;
+    padding-left: @spacing-1-tablet;
   }
 }
 
@@ -132,23 +132,23 @@
 // Make grid gutters smaller on mobile
 @media (max-width: @screen-xs-max) {
   .row {
-    .margin(right, -8px);
-    .margin(left, -8px);
+    margin-right: -8px;
+    margin-left: -8px;
   }
 
   [class*='col-'] {
-    .padding(right, 8px);
-    .padding(left, 8px);
+    padding-right: 8px;
+    padding-left: 8px;
   }
 }
 
 .make-grid-columns-wide(@gutter: @grid-gutter-width) {
-  .margin(right, -@gutter / 2);
-  .margin(left, -@gutter / 2);
+  margin-right: -@gutter / 2;
+  margin-left: -@gutter / 2;
 
   [class*='col-'] {
-    .padding(right, @gutter / 2);
-    .padding(left, @gutter / 2);
+    padding-right: @gutter / 2;
+    padding-left: @gutter / 2;
   }
 }
 
@@ -172,14 +172,14 @@
 
 .container--text {
   max-width: 700px;
-  .margin(right, auto);
-  .margin(left, auto);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .container--wide {
   max-width: 1500px;
-  .margin(right, auto);
-  .margin(left, auto);
+  margin-right: auto;
+  margin-left: auto;
 
   @media (min-width: @screen-xl-min) {
     max-width: 1500px;

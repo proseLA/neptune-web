@@ -44,8 +44,15 @@ export const Basic = () => {
       dropdownUp={dropdownUp}
       options={[
         { header: 'Basic' },
+        { value: -1, label: 'A thing' },
         { value: 0, label: 'A thing', note: 'with a note' },
         { value: 1, label: 'Another thing', secondary: 'with secondary text this time' },
+        {
+          value: -2,
+          label: 'One more thing',
+          note: 'with a note',
+          secondary: 'and with secondary text',
+        },
         { value: 2, label: 'A disabled thing', disabled: true },
         { header: 'Icons' },
         { value: 3, label: 'Profile', icon: <ProfileIcon /> },
