@@ -352,7 +352,7 @@ export default function PageContent(): ReactElement {
       <Heading as="h3">Small Text</Heading>
       <DeprecationNotice>
         <>
-          This API is deprecated. Please use <code>.small</code> instead.
+          This API is deprecated. Please use <code>.body-2</code> instead.
         </>
       </DeprecationNotice>
       <pre>
