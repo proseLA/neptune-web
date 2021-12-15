@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.5...@transferwise/neptune-docs@15.0.6) (2021-12-15)
+
+
+### Bug Fixes
+
+* tiny bug in typography docs ([7618eff](https://github.com/transferwise/neptune-web/commit/7618effb0dae23642c6687eb8606041458ab2b0c))
+
+
+
+
+
 ## [15.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.4...@transferwise/neptune-docs@15.0.5) (2021-12-15)
 
 
