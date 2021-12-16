@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.1...@transferwise/neptune-css@12.0.2) (2021-12-16)
+
+
+### Bug Fixes
+
+* **deps:** change Bootstrap reference to a git tag ([#1257](https://github.com/transferwise/neptune-web/issues/1257)) ([c1c5c3a](https://github.com/transferwise/neptune-web/commit/c1c5c3a875da7a9f8b91148b54da1354a4bc3a9d))
+
+
+
+
+
 ## [12.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.0...@transferwise/neptune-css@12.0.1) (2021-12-15)
 
 
