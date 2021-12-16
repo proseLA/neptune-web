@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.0...@transferwise/components@39.2.1) (2021-12-16)
+
+
+### Bug Fixes
+
+* md size in MoneyInput ([#1259](https://github.com/transferwise/neptune-web/issues/1259)) ([6657a2c](https://github.com/transferwise/neptune-web/commit/6657a2c2953d64b80a8c49821ead3851c78706c1))
+
+
+
+
+
 # [39.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.1.2...@transferwise/components@39.2.0) (2021-12-16)
 
 
