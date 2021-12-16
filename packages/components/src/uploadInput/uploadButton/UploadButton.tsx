@@ -10,6 +10,7 @@ import MESSAGES from './UploadButton.messages';
 import { imageFileTypes, DEFAULT_SIZE_LIMIT } from './defaults';
 import getAllowedFileTypes from './getAllowedFileTypes';
 
+type AllowedFileTypes = string | string[] | FileType[];
 export type UploadButtonProps = {
   /**
    * Disable the upload button if your app is not yet ready to accept uploads
@@ -24,12 +25,17 @@ export type UploadButtonProps = {
   /**
    * List of allowed filetypes, eg. '*' | '.zip,application/zip' | ['.jpg,.jpeg,image/jpeg', '.png,image/png'] (default: image files + PDF)
    */
-  fileTypes?: string | string[] | FileType[];
+  fileTypes?: AllowedFileTypes;
 
   /**
    * Size limit in KBs 1000 KB = 1 MB (default: 5000 KB)
    */
   sizeLimit?: number;
+
+  /**
+   * Description for the upload button
+   */
+  description?: string | undefined;
 
   /**
    * Called when some files were successfully selected
@@ -51,6 +57,7 @@ const onDragOver = (event: DragEvent): void => {
 const UploadButton = ({
   disabled,
   multiple,
+  description,
   fileTypes = imageFileTypes,
   sizeLimit = DEFAULT_SIZE_LIMIT,
   onChange,
@@ -105,23 +112,44 @@ const UploadButton = ({
   };
 
   const getFileTypesDescription = (): string => {
-    if (Array.isArray(fileTypes)) {
-      return getAllowedFileTypes(fileTypes).join(', ');
-    }
     if (fileTypes === '*') {
       return fileTypes;
     }
 
-    return getAllowedFileTypes([fileTypes]).join(', ');
+    return Array.isArray(fileTypes)
+      ? getAllowedFileTypes(fileTypes).join(', ')
+      : getAllowedFileTypes([fileTypes]).join(', ');
   };
 
-  const fileTypesDescription = getFileTypesDescription();
-  const allowAllFileTypes = fileTypesDescription === '*';
-  const description = allowAllFileTypes
-    ? formatMessage(MESSAGES.allFileTypes)
-    : fileTypesDescription;
+  function getDescription() {
+    if (description) {
+      return description;
+    }
 
-  const acceptFileTypes = Array.isArray(fileTypes) ? fileTypes.join(',') : fileTypes;
+    const fileTypesDescription = getFileTypesDescription();
+
+    const derivedFileDescription =
+      fileTypesDescription === '*' ? formatMessage(MESSAGES.allFileTypes) : fileTypesDescription;
+
+    return formatMessage(MESSAGES.instructions, {
+      fileTypes: derivedFileDescription,
+      size: Math.round(sizeLimit / 1000),
+    });
+  }
+
+  function getAcceptedTypes() {
+    const areAllFilesAllowed = getFileTypesDescription() === '*';
+
+    if (areAllFilesAllowed) {
+      return null; //file input by default allows all files
+    }
+
+    if (Array.isArray(fileTypes)) {
+      return { accept: fileTypes.join(',') };
+    }
+
+    return { accept: fileTypes };
+  }
 
   return (
     <div
@@ -134,7 +162,7 @@ const UploadButton = ({
         ref={inputReference}
         id="np-upload-button"
         type="file"
-        {...(!allowAllFileTypes && { accept: acceptFileTypes })}
+        {...getAcceptedTypes()}
         {...(multiple && { multiple: true })}
         className="tw-droppable-input"
         disabled={disabled}
@@ -155,10 +183,7 @@ const UploadButton = ({
           <div className="media-body text-xs-left" data-testid={TEST_IDS.mediaBody}>
             <div>{formatMessage(multiple ? MESSAGES.uploadFiles : MESSAGES.uploadFile)}</div>
             <small className={classNames('np-upload-description', { 'text-primary': !disabled })}>
-              {formatMessage(MESSAGES.instructions, {
-                fileTypes: description,
-                size: Math.round(sizeLimit / 1000),
-              })}
+              {getDescription()}
             </small>
           </div>
         </div>

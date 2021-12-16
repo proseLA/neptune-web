@@ -78,4 +78,22 @@ describe('UploadButton', () => {
       expect(screen.getByTestId(TEST_IDS.uploadInput)).not.toHaveAttribute('accept');
     });
   });
+
+  describe('description for the button', () => {
+    it('should show default description based on the default file types provided', () => {
+      renderComponent({ ...props });
+      expect(screen.getByText('PDF, JPG, JPEG, PNG, less than 5MB')).toBeInTheDocument();
+    });
+
+    it('should show default all files allowed description if all files are accepted', () => {
+      renderComponent({ ...props, fileTypes: ['*'] });
+      expect(screen.getByText('All file types, less than 5MB')).toBeInTheDocument();
+    });
+
+    it('should show custom description if provided', () => {
+      const description = 'Test description';
+      renderComponent({ ...props, fileTypes: ['*'], description });
+      expect(screen.getByText('Test description')).toBeInTheDocument();
+    });
+  });
 });

@@ -78,7 +78,7 @@ export type UploadInputProps = {
      */
     cancelText?: string;
   };
-} & Pick<UploadButtonProps, 'disabled' | 'multiple' | 'fileTypes' | 'sizeLimit'> &
+} & Pick<UploadButtonProps, 'disabled' | 'multiple' | 'fileTypes' | 'sizeLimit' | 'description'> &
   Pick<UploadItemProps, 'onDownload'> &
   CommonProps;
 
@@ -91,6 +91,7 @@ const UploadInput = ({
   multiple = false,
   fileTypes = imageFileTypes,
   sizeLimit = DEFAULT_SIZE_LIMIT,
+  description,
   onUploadFile,
   onDeleteFile,
   onValidationError,
@@ -253,6 +254,7 @@ const UploadInput = ({
             multiple={multiple}
             fileTypes={fileTypes}
             sizeLimit={sizeLimit}
+            description={description}
             onChange={addFiles}
           />
         )}

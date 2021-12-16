@@ -71,6 +71,13 @@ SingleFile.args = { ...props };
 export const MultipleFiles = Template.bind({});
 MultipleFiles.args = { ...props, multiple: true };
 
+export const UploadInputWithDescriptionFromOutside = Template.bind({});
+UploadInputWithDescriptionFromOutside.args = {
+  ...props,
+  multiple: true,
+  description: 'Custom file description from prop',
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = { ...props, disabled: true };
 
