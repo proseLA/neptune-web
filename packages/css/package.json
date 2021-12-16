@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@transferwise/neptune-tokens": "6.1.0",
-    "bootstrap": "github:transferwise/bootstrap#7.0.0",
+    "bootstrap": "github:transferwise/bootstrap#v7.0.0",
     "inquirer": "^8.2.0",
     "inquirer-file-tree-selection-prompt": "^1.0.13",
     "replace-in-file": "6.3.2",

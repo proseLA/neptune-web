@@ -7171,7 +7171,7 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-"bootstrap@github:transferwise/bootstrap#7.0.0":
+"bootstrap@github:transferwise/bootstrap#v7.0.0":
   version "7.0.0"
   resolved "https://codeload.github.com/transferwise/bootstrap/tar.gz/15a288d2a16176c97b5b3daf206713ea7423bbc9"
 
