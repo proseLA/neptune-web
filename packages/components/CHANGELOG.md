@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.1.2...@transferwise/components@39.2.0) (2021-12-16)
+
+
+### Features
+
+* **UploadInput:** Accept an optional description for the upload button ([#1255](https://github.com/transferwise/neptune-web/issues/1255)) ([4ac43c4](https://github.com/transferwise/neptune-web/commit/4ac43c4026dd09d3aa9e0c4b2767cf2a38021caa))
+
+
+
+
+
 ## [39.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.1.1...@transferwise/components@39.1.2) (2021-12-16)
 
 **Note:** Version bump only for package @transferwise/components
