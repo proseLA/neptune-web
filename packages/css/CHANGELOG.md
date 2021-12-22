@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.2...@transferwise/neptune-css@12.0.3) (2021-12-22)
+
+
+### Bug Fixes
+
+* update regex ([#1262](https://github.com/transferwise/neptune-web/issues/1262)) ([ca77c39](https://github.com/transferwise/neptune-web/commit/ca77c3941607834bf758f507fb1e2867c1a611f2))
+
+
+
+
+
 ## [12.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.1...@transferwise/neptune-css@12.0.2) (2021-12-16)
 
 
