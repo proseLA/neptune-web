@@ -34,7 +34,7 @@ const mappings = {
 };
 
 // Special case mappings that are not exchanging variable for variable
-const from = [new RegExp('@color-text-control', 'g'), new RegExp('--color-text-control', 'g')];
+const from = [new RegExp('@color-text-control', 'g'), /var\(--color-text-control\)/g];
 const to = ['#fff', '#fff'];
 
 Object.keys(mappings).forEach((value) => {
