@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.13...@transferwise/neptune-docs@15.1.0) (2022-01-04)
+
+
+### Features
+
+* **docs:** global search ([#910](https://github.com/transferwise/neptune-web/issues/910)) ([c60f5f5](https://github.com/transferwise/neptune-web/commit/c60f5f5af1dd30108219ef873f0121e9608add1c))
+
+
+
+
+
 ## [15.0.13](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.12...@transferwise/neptune-docs@15.0.13) (2022-01-04)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
