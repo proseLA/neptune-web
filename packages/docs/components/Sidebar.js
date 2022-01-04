@@ -48,8 +48,6 @@ const Sidebar = ({ router: { pathname }, section }) => {
   const [links, updateLinks] = useState(getLinks({ pathname, section }));
   const [filteredLinks, updateFilteredLinks] = useState(links.map(({ content }) => content));
 
-  const [searchInput, updateSearchInput] = useState('');
-  const searchElement = useRef(null);
   const scrollableNavElement = useRef(null);
 
   useEffect(() => {
@@ -66,28 +64,7 @@ const Sidebar = ({ router: { pathname }, section }) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (searchInput) {
-      const searchString = searchInput.toLowerCase();
-      updateFilteredLinks(
-        links
-          .filter(({ name }) => typeof name !== 'string' || name.includes(searchString))
-          .map(({ content }) => content),
-      );
-    } else {
-      updateFilteredLinks(links.map(({ content }) => content));
-    }
-  }, [searchInput, links]);
-
-  useEffect(() => {
-    updateSearchInput('');
-    updateLinks(getLinks({ pathname, section }));
-  }, [section]);
-
-  useEffect(() => {
-    updateLinks(getLinks({ pathname, section }));
-  }, [pathname]);
-
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const handleKeyDown = (event) => {
     // Allow user to type slash into liveEditor.
     if (
@@ -95,9 +72,6 @@ const Sidebar = ({ router: { pathname }, section }) => {
       (event.code === 'Slash' || event.keyCode === 191)
     ) {
       event.preventDefault();
-      if (searchElement.current !== null) {
-        searchElement.current.focus();
-      }
     }
   };
 
@@ -106,16 +80,6 @@ const Sidebar = ({ router: { pathname }, section }) => {
       <div className="Sidebar__Header">
         <h5 className="Sidebar__Title">{section.title}</h5>
       </div>
-      {section.searchable && (
-        <input
-          ref={searchElement}
-          className="Sidebar__Search"
-          type="text"
-          placeholder="Search..."
-          value={searchInput}
-          onChange={(event) => updateSearchInput(event.target.value)}
-        />
-      )}
       <div className="Sidebar__Inner">
         <ul ref={scrollableNavElement} className="Nav">
           {filteredLinks}
@@ -135,7 +99,6 @@ Sidebar.propTypes = {
         directory: PropTypes.string.isRequired,
       }),
     ),
-    searchable: PropTypes.bool,
   }).isRequired,
 };
 

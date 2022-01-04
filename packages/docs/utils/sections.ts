@@ -57,7 +57,6 @@ interface SubSection {
 
 interface MainSection extends SubSection {
   children?: SubSection[];
-  searchable?: boolean;
   hidden?: boolean;
   sidebar?: boolean;
 }
@@ -143,7 +142,6 @@ const sections: MainSection[] = [
         directory: 'components/internal',
       },
     ],
-    searchable: true,
   },
   {
     title: 'Devs',

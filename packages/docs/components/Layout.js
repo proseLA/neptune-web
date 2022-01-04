@@ -1,10 +1,16 @@
-import { Switch, Direction, Button, Priority } from '@transferwise/components';
+import { DocSearch } from '@docsearch/react';
+import { Switch, Direction, Button, Priority, Logo } from '@transferwise/components';
 import { parseISO } from 'date-fns';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 import { useDirection } from '../hooks/useDirection';
-import { getFirstPageInSection, getPageFromPath } from '../utils/pageUtils';
+import {
+  getFirstPageInSection,
+  getPageFromPath,
+  addBasePath,
+  PROD_ORIGIN,
+} from '../utils/pageUtils';
 import sections from '../utils/sections';
 
 import Badge from './Badge';
@@ -26,17 +32,18 @@ const Layout = ({ children, router: { pathname } }) => {
   const firstContent = (
     <div className="Header__Fixed" role="navigation" aria-label="Primary navigation">
       <div className="Header__Brand">
-        <Link href="/">
-          <a className="Logo">
-            <img
-              src="https://wise.com/public-resources/assets/logos/wise/brand_logo_inverse.svg"
-              alt="Wise Logo"
-            />
-            <span className="sr-only">Wise</span>
-          </a>
-        </Link>
+        <a href="https://wise.com/" target="_blank" rel="noreferrer">
+          <Logo inverse className="Logo" />
+        </a>
       </div>
       <ul className="Nav Nav--dark">
+        <li>
+          <DocSearch
+            apiKey="a7106c2ce36353c2046f1d48a42be7bc"
+            indexName="transferwise"
+            transformItems={searchTransformItems}
+          />
+        </li>
         <li className="Nav__Group">Content</li>
         {sections
           .filter((sec) => !sec.hidden)
@@ -87,7 +94,9 @@ const Layout = ({ children, router: { pathname } }) => {
     <div className="Content" role="main">
       {page ? (
         <>
-          <h1 className="colored-dot">{page.component.meta.name}</h1>
+          <h1 id={page.component.meta.name} className="colored-dot">
+            {page.component.meta.name}
+          </h1>
           {page.component.meta.date ? (
             <Meta
               {...{
@@ -121,6 +130,18 @@ const Layout = ({ children, router: { pathname } }) => {
     />
   );
 };
+
+/**
+ * Custom items transformer to make search works on different envs (localhost, per PR deployment, prod)
+ */
+function searchTransformItems(items) {
+  return items.map((item) => {
+    return {
+      ...item,
+      url: addBasePath(item.url.replace(PROD_ORIGIN, '')),
+    };
+  });
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

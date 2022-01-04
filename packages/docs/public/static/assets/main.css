@@ -1,4 +1,4 @@
-@import "@transferwise/neptune-tokens/themes/navy/tokens.css";
+@import '@transferwise/neptune-tokens/themes/navy/tokens.css';
 
 /* Typography */
 
@@ -33,9 +33,7 @@ p + h2[id] {
   align-items: center;
 }
 
-.Logo img {
-  height: 24px;
-  max-width: none;
+.Logo {
   margin: var(--size-24);
 }
 
@@ -50,6 +48,7 @@ p + h2[id] {
 }
 
 .Sidebar__Header {
+  border-bottom: 1px solid var(--color-border-neutral);
   padding: 20px var(--size-16);
 }
 
@@ -60,20 +59,11 @@ p + h2[id] {
   flex-grow: 1;
 }
 
-.Sidebar__Search {
-  padding: var(--size-8) var(--size-16);
-  color: var(--color-content-primary);
-  border: none;
-  border-top: 1px solid var(--color-border-neutral);
-  font-size: var(--font-size-14);
-}
-
 .Nav {
   overflow-y: auto;
   margin-bottom: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--color-border-neutral);
   font-size: var(--font-size-14);
 }
 
@@ -100,10 +90,6 @@ p + h2[id] {
   color: var(--color-content-accent-active);
   background: var(--color-background-screen);
   font-weight: var(--font-weight-bold);
-}
-
-.Nav--dark {
-  border-top: 1px solid var(--color-border-neutral);
 }
 
 .Nav__Group {

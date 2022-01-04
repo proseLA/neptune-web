@@ -13,6 +13,7 @@ import '@transferwise/neptune-css/dist/css/neptune-social-media.css';
 import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
 import '@transferwise/components/build/main.css';
+import '@docsearch/css';
 
 import Heading from '../components/Heading';
 import Layout from '../components/Layout';
@@ -65,7 +66,7 @@ const MyApp = ({ Component, pageProps, locale, messages }) => {
     <>
       <Head>
         <title>Neptune Web - the Wise Design System on Web</title>
-        <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/favicon.ico`} />
+        <link rel="icon" href={`${process.env.ASSET_PREFIX}/static/assets/neptune-logo.ico`} />
         <script src={`https://polyfill.io/v3/polyfill.min.js?features=${polyfills}`} />
       </Head>
       <MDXProvider components={customComponents}>

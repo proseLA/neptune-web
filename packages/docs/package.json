@@ -39,6 +39,8 @@
     "@mdx-js/loader": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^11.0.1",
+    "@docsearch/react": "^3.0.0-alpha.42",
+    "@docsearch/css": "^3.0.0-alpha.42",
     "@transferwise/components": "^39.2.2",
     "@transferwise/dynamic-flows": "^16.1.7",
     "@transferwise/icons": "^2.14.0",

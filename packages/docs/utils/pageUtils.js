@@ -2,6 +2,8 @@ import { formatDistance } from 'date-fns';
 import NextLink from 'next/link';
 import PropTypes from 'prop-types';
 
+export const PROD_ORIGIN = 'https://transferwise.github.io/neptune-web';
+
 /**
  * Check if date is past date
  *
