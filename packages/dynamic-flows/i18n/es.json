@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "Permitir acceso a la cámara",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "No tenemos acceso a tu cámara. Puedes habilitar el acceso en los ajustes de tu navegador",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "Sin acceso a la cámara",
   "dynamicFlows.ErrorBoundary.errorAlert": "Vaya. Algo ha salido mal...",
   "dynamicFlows.ErrorBoundary.retry": "Reintentar",
   "dynamicFlows.Help.ariaLabel": "Haz clic aquí para más información.",

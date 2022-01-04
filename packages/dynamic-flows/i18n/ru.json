@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "Разрешить доступ к камере",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "У нас нет доступа к Вашей камере. Вы можете разрешить доступ в настройках Вашего браузера",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "Нет доступа к камере",
   "dynamicFlows.ErrorBoundary.errorAlert": "Что-то пошло не так...",
   "dynamicFlows.ErrorBoundary.retry": "Повторить попытку",
   "dynamicFlows.Help.ariaLabel": "Узнать больше.",

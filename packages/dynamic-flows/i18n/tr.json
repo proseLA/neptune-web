@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "Kamera erişimi verin",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "Kameranıza erişimimiz yok. Tarayıcınızın ayarlar bölümünden erişime izin verebilirsiniz",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "Kameraya erişim yok",
   "dynamicFlows.ErrorBoundary.errorAlert": "Amanın! Bir şeyler ters gitti...",
   "dynamicFlows.ErrorBoundary.retry": "Tekrar dene",
   "dynamicFlows.Help.ariaLabel": "Ayrıntılar için tıklayın.",

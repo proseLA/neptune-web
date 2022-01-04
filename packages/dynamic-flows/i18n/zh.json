@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "允許取用相機",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "我們無權取用你的相機。你可以在瀏覽器的設定開啟權限",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "無權取用相機",
   "dynamicFlows.ErrorBoundary.errorAlert": "噢！出了些問題...",
   "dynamicFlows.ErrorBoundary.retry": "重試",
   "dynamicFlows.Help.ariaLabel": "點按這裡查看更多資訊。",

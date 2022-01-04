@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "Engedélyezem a hozzáférést a kamerához",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "Nem tudunk hozzáférni a kamerádhoz. Ezt a telefonod beállításaiban engedélyezheted",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "Nincs hozzáférés a kamerához",
   "dynamicFlows.ErrorBoundary.errorAlert": "Hoppá! Valami hiba történt...",
   "dynamicFlows.ErrorBoundary.retry": "Újra",
   "dynamicFlows.Help.ariaLabel": "Kattints ide további információért.",

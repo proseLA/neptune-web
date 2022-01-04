@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "カメラへのアクセスを許可する",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "カメラへのアクセスが許可されていません。ブラウザの設定でアクセスを有効にすることができます",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "カメラへのアクセスが許可されていません",
   "dynamicFlows.ErrorBoundary.errorAlert": "エラーが発生しました...",
   "dynamicFlows.ErrorBoundary.retry": "再試行",
   "dynamicFlows.Help.ariaLabel": "詳細はこちら。",

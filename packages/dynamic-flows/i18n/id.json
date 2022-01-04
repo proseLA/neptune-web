@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "Izinkan akses kamera",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "Kami tidak memiliki akses ke kamera Anda. Anda dapat mengaktifkan akses di pengaturan browser Anda",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "Tidak ada akses ke kamera",
   "dynamicFlows.ErrorBoundary.errorAlert": "Ups! Terjadi kesalahan...",
   "dynamicFlows.ErrorBoundary.retry": "Coba lagi",
   "dynamicFlows.Help.ariaLabel": "Klik di sini untuk info selengkapnya.",

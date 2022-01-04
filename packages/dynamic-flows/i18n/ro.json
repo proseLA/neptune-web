@@ -1,4 +1,7 @@
 {
+  "dynamicFlows.CameraCapture.NoCameraAccess.action": "Permite acces la cameră",
+  "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "Nu avem acces la camera ta. Poți permite accesul în setările browserului tău",
+  "dynamicFlows.CameraCapture.NoCameraAccess.title": "Fără acces la cameră",
   "dynamicFlows.ErrorBoundary.errorAlert": "Ups! Ceva nu a mers bine...",
   "dynamicFlows.ErrorBoundary.retry": "Încearcă din nou",
   "dynamicFlows.Help.ariaLabel": "Dă click aici pentru mai multe informații.",
