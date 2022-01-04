@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.12](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.11...@transferwise/neptune-docs@15.0.12) (2022-01-04)
+
+
+### Bug Fixes
+
+* delete WhatsApp.html ([#1265](https://github.com/transferwise/neptune-web/issues/1265)) ([1b41bc8](https://github.com/transferwise/neptune-web/commit/1b41bc8c1f144757cb1d5f1c294cfc715b497087))
+
+
+
+
+
 ## [15.0.11](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.0.10...@transferwise/neptune-docs@15.0.11) (2021-12-22)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
