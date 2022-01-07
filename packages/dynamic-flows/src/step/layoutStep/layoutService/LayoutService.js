@@ -168,7 +168,10 @@ function convertFinalStepImageToDynamicImage(image) {
 }
 
 function convertStepActionToDynamicAction(action) {
-  const newAction = { ...action, title: action.title };
+  if (!action) {
+    return {};
+  }
+  const newAction = { ...action, title: action?.title };
   return {
     type: 'button',
     action: newAction,
@@ -310,4 +313,4 @@ function addMissingTitleToStep(step) {
   return step.layout;
 }
 
-export { convertStepToLayout, inlineReferences };
+export { convertStepToLayout, inlineReferences, convertStepActionToDynamicAction };
