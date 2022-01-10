@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/neptune-docs",
-  "version": "15.1.0",
+  "version": "15.1.1",
   "description": "Neptune Web",
   "main": "index.js",
   "private": true,
@@ -42,7 +42,7 @@
     "@mdx-js/react": "^1.6.22",
     "@next/mdx": "^11.0.1",
     "@transferwise/components": "^39.2.2",
-    "@transferwise/dynamic-flows": "^16.1.7",
+    "@transferwise/dynamic-flows": "^16.1.8",
     "@transferwise/icons": "^2.14.0",
     "@transferwise/neptune-css": "^12.0.3",
     "@transferwise/neptune-tokens": "6.1.0",

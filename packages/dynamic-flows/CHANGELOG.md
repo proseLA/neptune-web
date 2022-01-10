@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.8](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.7...@transferwise/dynamic-flows@16.1.8) (2022-01-10)
+
+
+### Bug Fixes
+
+* OneOfSchema now persists the model of each of the child schemas. ([#1273](https://github.com/transferwise/neptune-web/issues/1273)) ([2219092](https://github.com/transferwise/neptune-web/commit/2219092a767efa56fe4eed40b5f353977c5907c0))
+
+
+
+
+
 ## [16.1.7](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.6...@transferwise/dynamic-flows@16.1.7) (2022-01-04)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
