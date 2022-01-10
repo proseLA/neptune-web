@@ -86,13 +86,7 @@
 
   &[disabled],
   input[type='checkbox']:disabled + & {
-    background-color: var(--color-background-neutral);
-    border-color: var(--color-interactive-disabled) !important;
     cursor: @cursor-disabled;
-
-    .tw-checkbox-check {
-      color: var(--color-content-disabled);
-    }
   }
 
   .checkbox.has-error &,
@@ -102,10 +96,6 @@
     &[checked],
     &.checked {
       background-color: var(--color-interactive-negative);
-    }
-
-    &[disabled] {
-      background-color: var(--color-background-neutral);
     }
   }
 
@@ -180,13 +170,7 @@
 
   &[disabled],
   &.disabled {
-    background-color: var(--color-background-neutral);
-    border-color: var(--color-interactive-disabled) !important;
     cursor: @cursor-disabled;
-
-    .tw-radio-check {
-      background-color: var(--color-interactive-disabled);
-    }
   }
 
   .radio.has-error &,
@@ -197,18 +181,6 @@
     &.checked .tw-radio-check {
       background-color: var(--color-interactive-negative);
     }
-
-    &[disabled] .tw-radio-check {
-      background-color: var(--color-interactive-disabled);
-    }
-  }
-}
-
-.checkbox {
-  &.disabled label,
-  &.disabled label:hover {
-    border-color: var(--color-interactive-disabled);
-    color: var(--color-content-disabled) !important;
   }
 }
 

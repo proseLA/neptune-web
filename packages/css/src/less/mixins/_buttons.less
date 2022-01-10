@@ -50,27 +50,6 @@
     background-image: none;
   }
 
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &,
-    &:hover,
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
-      background-color: var(--color-background-neutral);
-      border-color: var(--color-interactive-disabled);
-      color: var(--color-content-disabled);
-
-      &.btn-priority-2 {
-        background-color: @background;
-        border-color: var(--color-interactive-disabled);
-        color: var(--color-content-disabled);
-      }
-    }
-  }
-
   .badge {
     color: @background;
     background-color: @color;

@@ -172,26 +172,6 @@ output {
     color: var(--color-content-tertiary);
   }
 
-  // Disabled and read-only inputs
-  //
-  // HTML5 says that controls under a fieldset > legend:first-child won't be
-  // disabled if the fieldset is disabled. Due to implementation difficulty, we
-  // don't honor that edge case; we style them as disabled anyway.
-  &[disabled],
-  &[readonly],
-  fieldset[disabled] & {
-    background-color: var(--color-background-neutral);
-    color: var(--color-content-disabled);
-    border-color: var(--color-interactive-disabled);
-
-    &::placeholder {
-      color: var(--color-content-disabled);
-    }
-
-    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
-    opacity: 1;
-  }
-
   &[disabled],
   fieldset[disabled] & {
     cursor: @cursor-disabled;
@@ -911,18 +891,6 @@ input[type='checkbox'] {
     &.has-focus:hover,
     &:focus-within {
       border-color: var(--color-interactive-accent-active);
-    }
-  }
-
-  &[disabled],
-  &[readonly],
-  fieldset[disabled] &,
-  &.disabled,
-  &.readonly {
-    label {
-      color: var(--color-content-disabled);
-      border-color: var(--color-interactive-disabled);
-      background-color: var(--color-background-neutral);
     }
   }
 
