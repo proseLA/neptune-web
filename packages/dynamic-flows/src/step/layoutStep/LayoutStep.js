@@ -27,7 +27,6 @@ const LayoutStep = (props) => {
   if (useStickyLayout(stepSpecification)) {
     const stickyButton = stepSpecification.actions
       .filter((action) => action.type === 'primary')
-      .map((action) => ({ ...action, margin: 'xs' }))
       .pop();
     const newStepSpecification = {
       ...stepSpecification,
