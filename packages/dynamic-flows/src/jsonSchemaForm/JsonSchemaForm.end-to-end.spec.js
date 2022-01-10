@@ -253,91 +253,121 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     });
   });
 
-  describe('when wrapping JsonSchemaForm in a component with a useState managing the model', () => {
-    describe('and switching between the two non-const schemas in a oneOf', () => {
-      const schema = {
-        allOf: [
-          {
-            title: 'Recipient Bank Details',
-            oneOf: [
-              {
-                title: 'Sort Code Tab',
-                type: 'object',
-                properties: {
-                  name: {
-                    title: 'Full name field',
-                    type: 'string',
-                  },
-                  sortcode: {
-                    title: 'Sort Code field',
-                    type: 'string',
-                  },
-                  account: {
-                    title: 'Account number field',
-                    type: 'string',
-                  },
-                  type: {
-                    type: 'string',
-                    const: 'SortCode',
-                  },
+  describe('when initialising it with a schema containing a oneOf with two options', () => {
+    const makeSchemaWithOneOfTwoOptions = (control) => ({
+      allOf: [
+        {
+          title: 'Recipient Bank Details',
+          oneOf: [
+            {
+              title: 'Sort Code Tab',
+              type: 'object',
+              properties: {
+                name: {
+                  title: 'Full name field',
+                  type: 'string',
+                },
+                sortcode: {
+                  title: 'Sort Code field',
+                  type: 'string',
+                },
+                account: {
+                  title: 'Account number field',
+                  type: 'string',
+                },
+                type: {
+                  type: 'string',
+                  const: 'SortCode',
                 },
               },
-              {
-                title: 'IBAN Tab',
-                type: 'object',
-                properties: {
-                  name: {
-                    title: 'Full name field',
-                    type: 'string',
-                  },
-                  iban: {
-                    title: 'IBAN field',
-                    type: 'string',
-                  },
-                  type: {
-                    type: 'string',
-                    const: 'Iban',
-                  },
+            },
+            {
+              title: 'IBAN Tab',
+              type: 'object',
+              properties: {
+                name: {
+                  title: 'Full name field',
+                  type: 'string',
+                },
+                iban: {
+                  title: 'IBAN field',
+                  type: 'string',
+                },
+                type: {
+                  type: 'string',
+                  const: 'Iban',
                 },
               },
-            ],
-            control: 'tab',
-          },
-        ],
+            },
+          ],
+          control,
+        },
+      ],
+    });
+    const renderComponent = (schema, onChange, initialModel = {}) => {
+      const JsonSchemaFormWithModelState = () => {
+        const [model, setModel] = useState(initialModel);
+        return (
+          <JsonSchemaForm
+            schema={schema}
+            model={model}
+            errors={{}}
+            submitted={false}
+            baseUrl=""
+            locale="en-GB"
+            onChange={(newModel) => {
+              setModel(newModel);
+              onChange(newModel);
+            }}
+            onPersistAsync={jest.fn()}
+          />
+        );
       };
-      const renderComponent = () => {
-        const modelReference = { model: {} };
-        const JsonSchemaFormWithModelState = () => {
-          const [model, setModel] = useState({});
-          return (
-            <JsonSchemaForm
-              schema={schema}
-              model={model}
-              errors={{}}
-              submitted={false}
-              baseUrl=""
-              locale="en-GB"
-              onChange={(newModel) => {
-                setModel(newModel);
-                modelReference.model = newModel;
-              }}
-              onPersistAsync={jest.fn()}
-            />
-          );
-        };
-        const view = render(<JsonSchemaFormWithModelState />);
+      const view = render(<JsonSchemaFormWithModelState />);
 
-        return { ...view, getModel: () => modelReference.model };
-      };
-      it('should always render the current model', () => {
+      return { ...view };
+    };
+
+    ['tab', 'radio', 'select'].forEach((control) => {
+      describe(`when using a "${control}" control type`, () => {
+        it(`dispatches onChange immediately with the model corresponding to the selected oneOf`, () => {
+          //
+          jest.useFakeTimers();
+
+          const onChange = jest.fn();
+          const schema = makeSchemaWithOneOfTwoOptions(control);
+          const initialModel = {
+            name: 'Bob Loblaw',
+            sortcode: '111111',
+            account: '22222222',
+            iban: 'IT0000000000',
+          };
+
+          renderComponent(schema, onChange, initialModel);
+
+          expect(onChange).toHaveBeenLastCalledWith({
+            type: 'SortCode',
+            name: 'Bob Loblaw',
+            sortcode: '111111',
+            account: '22222222',
+          });
+        });
+      });
+    });
+
+    describe('and switching between the two non-const schemas in the oneOf', () => {
+      it('keeps separate models for each schema in the oneOf', () => {
         jest.useFakeTimers();
-        // Render TestComponent with OneOf, returning a `getModel` function
-        const { getModel } = renderComponent();
 
-        // When name, sortcode and account number are filled in
+        const onChange = jest.fn();
+        const schema = makeSchemaWithOneOfTwoOptions('tab');
+        const initialModel = {};
+        renderComponent(schema, onChange, initialModel);
+
+        // enter name, sortcode and account number
         act(() => {
           fireEvent.change(screen.getByLabelText(/full name field/i), {
-            target: { value: 'Bob Loblaw' },
+            target: { value: 'Robert Sortcode' },
           });
           fireEvent.change(screen.getByLabelText(/sort code field/i), {
             target: { value: '111111' },
@@ -347,49 +377,66 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
           });
         });
 
-        // the values are visible on the screen, of course
+        // expect the values to be visible, of course
+        expect(screen.getByDisplayValue('Robert Sortcode')).toBeInTheDocument();
         expect(screen.getByDisplayValue('111111')).toBeInTheDocument();
         expect(screen.getByDisplayValue('22222222')).toBeInTheDocument();
 
-        // most importantly, the model is updated to the correct values
-        expect(getModel()).toStrictEqual({
+        // also expect the model to have been updated to the expected value
+        expect(onChange).toHaveBeenLastCalledWith({
           type: 'SortCode',
-          name: 'Bob Loblaw',
+          name: 'Robert Sortcode',
           sortcode: '111111',
           account: '22222222',
         });
 
-        // when switching to the IBAN Tab
+        // switch to the other schema (IBAN Tab)
         act(() => {
           fireEvent.click(screen.getByText(/IBAN Tab/i));
         });
 
-        // The sortcode and account number fields are not visible in this schema
+        // expect the values entered on the other schema to not be visible here
+        expect(screen.queryByDisplayValue('Robert Sortcode')).not.toBeInTheDocument();
         expect(screen.queryByDisplayValue('111111')).not.toBeInTheDocument();
         expect(screen.queryByDisplayValue('22222222')).not.toBeInTheDocument();
 
-        // and the model is "cleaned", the `type` is now `Iban`, not SortCode, but the `name` is kept.
-        expect(getModel()).toStrictEqual({
-          type: 'Iban',
-          name: 'Bob Loblaw',
+        // also expect the model to be updated to the selected type: 'Iban'
+        expect(onChange).toHaveBeenLastCalledWith({ type: 'Iban' });
+
+        // now enter a different name and an IBAN
+        act(() => {
+          fireEvent.change(screen.getByLabelText(/full name field/i), {
+            target: { value: 'Bob Iban' },
+          });
+          fireEvent.change(screen.getByLabelText(/IBAN field/i), {
+            target: { value: 'IT000000000' },
+          });
         });
 
-        // when switching back to the Sort Code Tab
+        // expect the model to be updated accordingly
+        expect(onChange).toHaveBeenLastCalledWith({
+          type: 'Iban',
+          name: 'Bob Iban',
+          iban: 'IT000000000',
+        });
+
+        // now switch back to the first tab (Sort Code Tab)
         act(() => {
           fireEvent.click(screen.getByText(/Sort Code Tab/i));
         });
 
-        // the model is updated to contain `type: "SortCode"`, the name is kept,
-        // but notably, the sortcode and account number are not coming back to the model.
-        expect(getModel()).toStrictEqual({
-          type: 'SortCode',
-          name: 'Bob Loblaw',
-        });
+        // expect the values initially entered in this tab to be visible again
+        expect(screen.getByDisplayValue('111111')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('22222222')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('Robert Sortcode')).toBeInTheDocument();
 
-        // As a result, we now expect the sort code and account number fields to be empty,
-        // in order to be consistent with the model above, which is what would eventually be submitted.
-        expect(screen.queryByDisplayValue('111111')).not.toBeInTheDocument();
-        expect(screen.queryByDisplayValue('22222222')).not.toBeInTheDocument();
+        // also expect the model to be updated accordingly
+        expect(onChange).toHaveBeenLastCalledWith({
+          type: 'SortCode',
+          name: 'Robert Sortcode',
+          sortcode: '111111',
+          account: '22222222',
+        });
 
         jest.useRealTimers();
       });

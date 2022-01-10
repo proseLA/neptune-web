@@ -25,7 +25,7 @@ const GenericSchemaForm = (props) => {
     case schemaType.BASIC:
       return <BasicTypeSchema {...props} />;
     case schemaType.OBJECT:
-      return <ObjectSchema {...props} />;
+      return <ObjectSchema {...props} key={JSON.stringify(schema)} />;
     case schemaType.PROMOTED_ONE_OF:
       return <PromotedOneOfSchema {...props} />;
     case schemaType.ONE_OF:

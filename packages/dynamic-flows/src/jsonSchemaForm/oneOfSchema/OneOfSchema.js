@@ -101,11 +101,6 @@ const OneOfSchema = (props) => {
   const [schemaIndex, setSchemaIndex] = useState(getActiveSchemaIndex(props.schema, props.model));
   const [models, setModels] = useState(getModelPartsForSchemas(props.model, props.schema.oneOf));
 
-  // When the model or the schema.oneOf from props changes
-  useEffect(() => {
-    setModels(getModelPartsForSchemas(props.model, props.schema.oneOf));
-  }, [props.model, props.schema.oneOf]);
-
   // When the schema we receive from parent changes
   useEffect(() => {
     const modelIndex = getValidIndexFromModel(props.schema, props.model);
