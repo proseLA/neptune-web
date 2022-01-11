@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.2...@transferwise/components@39.2.3) (2022-01-11)
+
+
+### Bug Fixes
+
+* Select icon position and money input flag display ([#1271](https://github.com/transferwise/neptune-web/issues/1271)) ([bdafe3a](https://github.com/transferwise/neptune-web/commit/bdafe3aa1bc685c7cbfd812c07c5a021befbf4e1))
+
+
+
+
+
 ## [39.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.1...@transferwise/components@39.2.2) (2021-12-22)
 
 **Note:** Version bump only for package @transferwise/components

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.3...@transferwise/neptune-css@12.0.4) (2022-01-11)
+
+
+### Bug Fixes
+
+* Select icon position and money input flag display ([#1271](https://github.com/transferwise/neptune-web/issues/1271)) ([bdafe3a](https://github.com/transferwise/neptune-web/commit/bdafe3aa1bc685c7cbfd812c07c5a021befbf4e1))
+
+
+
+
+
 ## [12.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.2...@transferwise/neptune-css@12.0.3) (2021-12-22)
 
 
