@@ -471,15 +471,19 @@ input[type="button"] {
 
   .tw-icon {
     position: absolute;
-    .right(16px);
+    .right(var(--size-16));
 
-    top: 16px;
+    &:not(.tw-chevron) {
+      position: initial;
+    }
+
+    top: var(--size-16);
   }
 
   &.btn-sm .tw-icon {
-    .right(8px);
+    .right(var(--size-8));
 
-    top: 8px;
+    top: var(--size-8);
   }
 
   &.btn-lg .tw-icon {

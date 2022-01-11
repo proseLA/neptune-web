@@ -12,7 +12,7 @@ const Option = ({ currency, label, note, secondary, icon, classNames, selected }
       ])}`
     : null;
 
-  const flexClassNames = note ? `${style(['d-flex align-items-center'])}` : undefined;
+  const flexClassNames = note ? `${style(['d-inline-flex align-items-center'])}` : undefined;
 
   return (
     <>
