@@ -1,5 +1,6 @@
 import { Image } from '@transferwise/components';
 import Types from 'prop-types';
+import { useEffect, useState } from 'react';
 
 import { marginModel } from '../models';
 import { getMarginBottom } from '../utils';
@@ -25,12 +26,51 @@ const getImageClasses = (image) => {
   return `img-responsive ${margin}`;
 };
 
+const readImageBlobAsDataURL = (imageBlob) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.addEventListener('loadend', () => resolve(reader.result));
+    reader.addEventListener('error', (error) => reject(error));
+
+    reader.readAsDataURL(imageBlob);
+  });
+
+const getImageSource = async (image) => {
+  try {
+    const url = new URL(image.url, window?.location?.origin);
+
+    if (url.origin !== window.location.origin) {
+      return image.url;
+    }
+
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'image/*',
+        'X-Access-Token': 'Tr4n5f3rw153',
+      },
+      credentials: 'same-origin',
+    })
+      .then((response) => response.blob())
+      .then(readImageBlobAsDataURL);
+  } catch {
+    return image.url;
+  }
+};
+
 const DynamicImage = (props) => {
   const image = props.component;
 
+  const [imageSource, setImageSource] = useState();
+
+  useEffect(() => {
+    getImageSource(image).then(setImageSource);
+  }, [image.url]);
+
   const imageProps = {
     alt: image.text,
-    src: image.url,
+    src: imageSource,
     stretch: true,
     shrink: true,
   };
