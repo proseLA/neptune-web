@@ -1,5 +1,5 @@
-class HttpClient {
-  init(params = {}) {
+export class HttpClient {
+  constructor(params = {}) {
     this.baseUrl = params.baseUrl;
 
     return this;
@@ -27,5 +27,3 @@ class HttpClient {
     });
   }
 }
-
-export const httpClient = new HttpClient();

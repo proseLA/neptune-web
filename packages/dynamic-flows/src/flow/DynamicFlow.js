@@ -10,7 +10,7 @@ import { isValidSchema } from '../common/validation/schema-validators';
 import { getValidModelParts } from '../common/validation/valid-model';
 import { CameraStep, LayoutStep } from '../step';
 
-import { httpClient as defaultHttpClient } from './client';
+import { HttpClient } from './client';
 import { withErrorBoundary } from './errorBoundary';
 
 const EXIT_HEADER = 'X-Df-Exit';
@@ -79,7 +79,10 @@ const DynamicFlow = (props) => {
   const [stepAndModels, setStepAndModels] = useState({ stepSpecification: {}, models: {} });
   const { stepSpecification, models } = stepAndModels;
 
-  const httpClient = propsHttpClient || defaultHttpClient.init({ baseUrl });
+  const httpClient = useMemo(
+    () => propsHttpClient || new HttpClient({ baseUrl }),
+    [baseUrl, propsHttpClient],
+  );
 
   const updateStepSpecification = (step) => {
     setStepAndModels((previous) => ({
