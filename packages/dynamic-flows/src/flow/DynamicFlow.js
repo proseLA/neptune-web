@@ -4,6 +4,7 @@ import Types from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
+import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
 import { getStepType, stepType } from '../common/stepTypes/stepTypes';
 import { TrackingContextProvider } from '../common/tracking';
 import { isValidSchema } from '../common/validation/schema-validators';
@@ -228,7 +229,6 @@ const DynamicFlow = (props) => {
       submitted,
       model: combineModels(models),
       errors: validations,
-      baseUrl,
       onAction,
       onModelChange,
     };
@@ -242,11 +242,13 @@ const DynamicFlow = (props) => {
 
   return (
     <TrackingContextProvider onTrackableEvent={onTrackableEvent}>
-      {loading ? (
-        <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
-      ) : (
-        getStep()
-      )}
+      <BaseUrlContext.Provider value={{ baseUrl }}>
+        {loading ? (
+          <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+        ) : (
+          getStep()
+        )}
+      </BaseUrlContext.Provider>
     </TrackingContextProvider>
   );
 };

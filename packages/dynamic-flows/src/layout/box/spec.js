@@ -42,7 +42,6 @@ describe('Given a component for dynamically rendering a box of other components'
         model={model}
         submitted={false}
         errors={{}}
-        baseUrl="dynamic-box-base-url"
         onModelChange={onModelChange}
         onAction={onAction}
         onPersistAsync={onPersistAsync}

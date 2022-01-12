@@ -45,7 +45,6 @@ const DynamicLayout = (props) => {
             model={model}
             submitted={submitted}
             errors={errors}
-            baseUrl={props.baseUrl}
             onModelChange={onModelChange}
             onAction={onAction}
             onPersistAsync={onPersistAsync}
@@ -59,7 +58,6 @@ const DynamicLayout = (props) => {
             model={model}
             submitted={submitted}
             errors={errors}
-            baseUrl={props.baseUrl}
             onModelChange={onModelChange}
             onPersistAsync={onPersistAsync}
           />
@@ -74,7 +72,6 @@ const DynamicLayout = (props) => {
             model={model}
             submitted={submitted}
             errors={errors}
-            baseUrl={props.baseUrl}
             onModelChange={onModelChange}
             onAction={onAction}
             onPersistAsync={onPersistAsync}
@@ -97,7 +94,6 @@ DynamicLayout.propTypes = {
   model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  baseUrl: Types.string.isRequired,
   onAction: Types.func.isRequired,
   onModelChange: Types.func.isRequired,
   onPersistAsync: Types.func,

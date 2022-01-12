@@ -35,7 +35,6 @@ describe('Given a component for dynamically rendering forms', () => {
         model={model}
         submitted={submitted}
         errors={errors}
-        baseUrl="dynamic-form-spec-base-url"
         onModelChange={onModelChange}
         onPersistAsync={onPersistAsync}
       />,

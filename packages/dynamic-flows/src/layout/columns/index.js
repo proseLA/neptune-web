@@ -27,7 +27,6 @@ const DynamicColumns = (props) => {
           model={props.model}
           submitted={props.submitted}
           errors={props.errors}
-          baseUrl={props.baseUrl}
           onModelChange={props.onModelChange}
           onAction={props.onAction}
           onPersistAsync={props.onPersistAsync}
@@ -39,7 +38,6 @@ const DynamicColumns = (props) => {
           model={props.model}
           submitted={props.submitted}
           errors={props.errors}
-          baseUrl={props.baseUrl}
           onModelChange={props.onModelChange}
           onAction={props.onAction}
           onPersistAsync={props.onPersistAsync}
@@ -59,7 +57,6 @@ DynamicColumns.propTypes = {
   model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  baseUrl: Types.string.isRequired,
   onAction: Types.func.isRequired,
   onModelChange: Types.func.isRequired,
   onPersistAsync: Types.func.isRequired,

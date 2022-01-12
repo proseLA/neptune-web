@@ -34,7 +34,6 @@ describe('Given a component for rendering a dynamic layout', () => {
   const schema = {
     type: 'string',
   };
-  const baseUrl = 'dynamic-layout-base-url';
 
   beforeEach(() => {
     onAction = jest.fn();
@@ -47,7 +46,6 @@ describe('Given a component for rendering a dynamic layout', () => {
       submitted: false,
       errors: {},
       onPersistAsync,
-      baseUrl,
     };
   });
 

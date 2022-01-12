@@ -36,7 +36,6 @@ const DynamicBox = (props) => {
           model={props.model}
           submitted={props.submitted}
           errors={props.errors}
-          baseUrl={props.baseUrl}
           onModelChange={props.onModelChange}
           onAction={props.onAction}
           onPersistAsync={props.onPersistAsync}
@@ -54,7 +53,6 @@ const DynamicBox = (props) => {
             model={props.model}
             submitted={props.submitted}
             errors={props.errors}
-            baseUrl={props.baseUrl}
             onModelChange={props.onModelChange}
             onAction={props.onAction}
             onPersistAsync={props.onPersistAsync}
@@ -75,7 +73,6 @@ DynamicBox.propTypes = {
   model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  baseUrl: Types.string.isRequired,
   onModelChange: Types.func.isRequired,
   onAction: Types.func.isRequired,
   onPersistAsync: Types.func.isRequired,

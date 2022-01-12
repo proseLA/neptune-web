@@ -16,7 +16,7 @@ const getComponents = (step) => {
 };
 
 const LayoutStep = (props) => {
-  const { stepSpecification, submitted, model, errors, baseUrl, onModelChange, onAction } = props;
+  const { stepSpecification, submitted, model, errors, onModelChange, onAction } = props;
 
   const components = getComponents(stepSpecification);
 
@@ -26,7 +26,6 @@ const LayoutStep = (props) => {
       submitted={submitted}
       model={model}
       errors={errors}
-      baseUrl={baseUrl}
       onAction={onAction}
       onModelChange={onModelChange}
     />
@@ -38,7 +37,6 @@ LayoutStep.propTypes = {
   model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  baseUrl: Types.string.isRequired,
   onAction: Types.func.isRequired,
   onModelChange: Types.func.isRequired,
 };

@@ -39,7 +39,6 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
         components={[box]}
         submitted
         errors={errors}
-        baseUrl="dynamic-layout-base-url"
         onAction={onAction}
         onModelChange={onModelChange}
         onPersistAsync={onPersistAsync}
