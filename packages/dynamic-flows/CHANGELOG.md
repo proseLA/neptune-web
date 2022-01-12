@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.12](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.11...@transferwise/dynamic-flows@16.1.12) (2022-01-12)
+
+
+### Bug Fixes
+
+* Avoid HttpClient singleton ([#1279](https://github.com/transferwise/neptune-web/issues/1279)) ([bcab87d](https://github.com/transferwise/neptune-web/commit/bcab87d636c807c32c16a7dff41eb266deb03c43))
+
+
+
+
+
 ## [16.1.11](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.10...@transferwise/dynamic-flows@16.1.11) (2022-01-12)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
