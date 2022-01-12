@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.2.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.3...@transferwise/components@39.2.4) (2022-01-12)
+
+
+### Bug Fixes
+
+* update Sentiment values accepted by InlineAlert ([#1280](https://github.com/transferwise/neptune-web/issues/1280)) ([9a70c87](https://github.com/transferwise/neptune-web/commit/9a70c87f0bc77b2438fdd7bd9387da6a12fd839e))
+
+
+
+
+
 ## [39.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.2...@transferwise/components@39.2.3) (2022-01-11)
 
 
