@@ -12,6 +12,8 @@ Docs global search powered by [Algolia DocSearch](https://docsearch.algolia.com)
 
 A little bit about how it works: they run a crawler on their own infrastructure every 24 hours. It follows every link in prod docs website and extract content from every page it traverses. It then pushes this content to an Algolia index which we hit everytime we type something in the search input.
 
+Here is our config on Algolia side: https://github.com/algolia/docsearch-configs/blob/master/configs/transferwise.json feel free to edit it.
+
 For support reach out to `documentationsearch@algolia.com`.
 
 ## CSS in JS
