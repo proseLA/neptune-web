@@ -1,8 +1,7 @@
 export class HttpClient {
   constructor(params = {}) {
     this.baseUrl = params.baseUrl;
-
-    return this;
+    this.headers = params.headers || {};
   }
 
   async request({ action, data }) {
@@ -16,6 +15,7 @@ export class HttpClient {
       headers: {
         'Content-Type': 'application/json',
         'X-Access-Token': 'Tr4n5f3rw153',
+        ...this.headers,
       },
       credentials: 'include',
       body,
