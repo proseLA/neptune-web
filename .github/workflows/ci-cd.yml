@@ -3,7 +3,7 @@ name: 'CI/CD'
 on:
   push:
     branches:
-      - main
+      - main-v38
   pull_request:
 
 jobs:
@@ -242,7 +242,7 @@ jobs:
 
       - name: Export docs
         env:
-          BRANCH_NAME: main
+          BRANCH_NAME: main-v38
         run: yarn --cwd packages/docs deploy:export
 
       - name: Deploy docs
@@ -287,7 +287,7 @@ jobs:
 
   publish-beta:
     name: Publish beta packages
-    if: ${{ github.ref != 'refs/heads/main' }}
+    if: ${{ github.ref != 'refs/heads/main-v38' }}
     runs-on: ubuntu-latest
     needs: test
     environment: beta
@@ -328,7 +328,7 @@ jobs:
 
   publish:
     name: Publish packages
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main-v38' }}
     runs-on: ubuntu-latest
     needs: [bundlesizes, lint, test]
 

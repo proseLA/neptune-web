@@ -1,7 +1,6 @@
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 import { useState } from 'react';
 
-import { NavigationOptionsList } from '..';
 import Accordion from '../accordion';
 import Card from '../card';
 import Header from '../header';
@@ -113,18 +112,6 @@ export const WithNavigationOptions = () => {
       <Header title="Section with options" />
       <NavigationOption title="Option 1" onClick={() => alert('Option 1')} />
       <NavigationOption title="Option 2" onClick={() => alert('Option 2')} />
-    </Section>
-  );
-};
-
-export const WithNavigationOptionsList = () => {
-  return (
-    <Section>
-      <Header title="Section with options" />
-      <NavigationOptionsList>
-        <NavigationOption title="Option 1" onClick={() => alert('Option 1')} />
-        <NavigationOption title="Option 2" onClick={() => alert('Option 2')} />
-      </NavigationOptionsList>
     </Section>
   );
 };

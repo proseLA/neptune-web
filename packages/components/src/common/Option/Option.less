@@ -4,6 +4,20 @@
     height: var(--size-40);
     line-height: var(--size-40);
   }
+
+  &__sm-media.decision .media-left {
+    display: block;
+  }
+
+  &__no-media-circle {
+    width: var(--size-40);
+    display: flex;
+    justify-content: center;
+  }
+
+  &__no-media-circle > * {
+    max-height: 76px;
+  }
 }
 
 button.np-option {
@@ -14,18 +28,4 @@ button.np-option {
   &:focus:not(:focus-visible) {
     outline: none;
   }
-}
-
-.np-option__sm-media.decision .media-left {
-  display: block;
-}
-
-.np-option__no-media-circle {
-  width: var(--size-40);
-  display: flex;
-  justify-content: center;
-}
-
-.np-option__no-media-circle > * {
-  max-height: 76px;
 }
