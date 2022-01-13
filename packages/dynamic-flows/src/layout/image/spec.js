@@ -47,6 +47,7 @@ describe('Given a component for dynamically rendering image', () => {
       expect(component.find(Image).prop('src')).toBe(spec.url);
     });
     it('should use the text text for alt text', () => {
+      component.update();
       expect(component.find(Image).prop('alt')).toBe(spec.text);
     });
   });

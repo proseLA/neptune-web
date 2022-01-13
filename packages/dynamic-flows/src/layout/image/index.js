@@ -81,15 +81,16 @@ const DynamicImage = (props) => {
     shrink: true,
   };
 
+  const getImage = () =>
+    imageSource ? <Image className={getImageClasses(image)} {...imageProps} /> : null;
+
   if (!image.size || image.size === 'xl') {
-    return <Image className={getImageClasses(image)} {...imageProps} />;
+    return getImage();
   }
 
   return (
     <div className="row m-b-0">
-      <div className={getWrapperClasses(image)}>
-        <Image className={getImageClasses(image)} {...imageProps} />
-      </div>
+      <div className={getWrapperClasses(image)}>{getImage()}</div>
     </div>
   );
 };
