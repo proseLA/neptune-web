@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.15...@transferwise/dynamic-flows@16.2.0) (2022-01-13)
+
+
+### Features
+
+* Allow specifying extra headers in HttpClient constructor ([#1278](https://github.com/transferwise/neptune-web/issues/1278)) ([220a772](https://github.com/transferwise/neptune-web/commit/220a772f739e436c058a58df1ee92640e1edc068))
+
+
+
+
+
 ## [16.1.15](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.14...@transferwise/dynamic-flows@16.1.15) (2022-01-13)
 
 
