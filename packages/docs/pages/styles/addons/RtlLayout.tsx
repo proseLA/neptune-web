@@ -7,9 +7,7 @@ import Heading from '../../../components/Heading';
 export default function PageContent() {
   return (
     <>
-      <p>
-        neptune-css and components provide support and tools for RTL (Right to Left) direction.
-      </p>
+      <p>neptune-css and components provide support and tools for RTL (Right to Left) direction.</p>
       <Heading as="h2">The basics</Heading>
       <p>
         Set{' '}
