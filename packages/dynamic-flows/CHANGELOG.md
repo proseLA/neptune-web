@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.15](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.14...@transferwise/dynamic-flows@16.1.15) (2022-01-13)
+
+
+### Bug Fixes
+
+* Avoid rendering broken img tag in DynamicImage ([#1282](https://github.com/transferwise/neptune-web/issues/1282)) ([b322055](https://github.com/transferwise/neptune-web/commit/b3220558dfd9113f5566b51de247ea16552bf678))
+
+
+
+
+
 ## [16.1.14](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.13...@transferwise/dynamic-flows@16.1.14) (2022-01-13)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
