@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@11.0.1...@transferwise/neptune-css@11.1.0) (2022-01-13)
+
+
+### Features
+
+* remove embedded paddings from Header and Option components (backport for v38) ([#1266](https://github.com/transferwise/neptune-web/issues/1266)) ([c0b897e](https://github.com/transferwise/neptune-web/commit/c0b897e7bfd73d50251e506aa0c2b24bb8394dd1))
+
+
+
+
+
 ## [11.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@11.0.0...@transferwise/neptune-css@11.0.1) (2021-11-24)
 
 
