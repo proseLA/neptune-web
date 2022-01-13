@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.6...@transferwise/neptune-docs@15.2.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* grammer mistake in sentence ([4c1195b](https://github.com/transferwise/neptune-web/commit/4c1195bc9353721ff9bed7aa2606a24fe0b0702f))
+
+
+### Features
+
+* remove embedded paddings from Header and Option components ([#1254](https://github.com/transferwise/neptune-web/issues/1254)) ([eca1019](https://github.com/transferwise/neptune-web/commit/eca1019a3c917962018d128ecd03f5ad33f19f4a))
+
+
+
+
+
 ## [15.1.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.5...@transferwise/neptune-docs@15.1.6) (2022-01-12)
 
 **Note:** Version bump only for package @transferwise/neptune-docs

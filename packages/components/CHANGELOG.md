@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.4...@transferwise/components@39.3.0) (2022-01-13)
+
+
+### Features
+
+* remove embedded paddings from Header and Option components ([#1254](https://github.com/transferwise/neptune-web/issues/1254)) ([eca1019](https://github.com/transferwise/neptune-web/commit/eca1019a3c917962018d128ecd03f5ad33f19f4a))
+
+
+
+
+
 ## [39.2.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.3...@transferwise/components@39.2.4) (2022-01-12)
 
 
