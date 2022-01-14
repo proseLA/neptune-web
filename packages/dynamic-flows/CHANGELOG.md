@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.0...@transferwise/dynamic-flows@16.2.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* Add baseUrl context provider to DynamicLayout ([#1284](https://github.com/transferwise/neptune-web/issues/1284)) ([50f7728](https://github.com/transferwise/neptune-web/commit/50f77289bb7a4cc561324d5a91c922a628aa5b97))
+
+
+
+
+
 # [16.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.15...@transferwise/dynamic-flows@16.2.0) (2022-01-13)
 
 
