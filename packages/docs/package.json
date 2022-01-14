@@ -1,6 +1,6 @@
 {
   "name": "@transferwise/neptune-docs",
-  "version": "15.2.2",
+  "version": "15.2.3",
   "description": "Neptune Web",
   "main": "index.js",
   "private": true,
