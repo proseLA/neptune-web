@@ -13,7 +13,7 @@ const JsonSchemaForm = (props) => {
   }
   return (
     <BaseUrlProvider baseUrl={props.baseUrl}>
-      <GenericSchema {...props} />{' '}
+      <GenericSchema {...props} />
     </BaseUrlProvider>
   );
 };
