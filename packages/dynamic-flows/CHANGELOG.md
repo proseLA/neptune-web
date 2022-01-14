@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.1...@transferwise/dynamic-flows@16.2.2) (2022-01-14)
+
+
+### Bug Fixes
+
+* auto-formatting  artifact ([#1287](https://github.com/transferwise/neptune-web/issues/1287)) ([fd0fbf6](https://github.com/transferwise/neptune-web/commit/fd0fbf6a0ab3b5fd75d6747f0c32aebdbb08adcf))
+
+
+
+
+
 ## [16.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.0...@transferwise/dynamic-flows@16.2.1) (2022-01-14)
 
 
