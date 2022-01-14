@@ -1,9 +1,7 @@
 /* eslint-disable react/forbid-dom-props */
 import { action } from '@storybook/addon-actions';
 import { boolean, select } from '@storybook/addon-knobs';
-import { Image } from '@transferwise/components';
 
-import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
 import { convertStepToLayout, inlineReferences } from '../step/layoutStep/layoutService';
 
 import DynamicLayout from './DynamicLayout';
@@ -50,16 +48,14 @@ export const basic = () => {
   return (
     <div style={{ padding: '5em', backgroundColor: '#eee' }}>
       <div style={{ backgroundColor: '#fff' }}>
-        <BaseUrlContext.Provider value={{ baseUrl: '' }}>
-          <DynamicLayout
-            components={components}
-            submitted={submitted}
-            errors={null}
-            baseUrl=""
-            onAction={onAction}
-            onModelChange={onModelChange}
-          />
-        </BaseUrlContext.Provider>
+        <DynamicLayout
+          components={components}
+          submitted={submitted}
+          errors={null}
+          baseUrl=""
+          onAction={onAction}
+          onModelChange={onModelChange}
+        />
       </div>
     </div>
   );

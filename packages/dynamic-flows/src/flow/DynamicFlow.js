@@ -4,7 +4,7 @@ import Types from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
-import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
+import { BaseUrlProvider } from '../common/contexts/baseUrlContext/BaseUrlContext';
 import { getStepType, stepType } from '../common/stepTypes/stepTypes';
 import { TrackingContextProvider } from '../common/tracking';
 import { isValidSchema } from '../common/validation/schema-validators';
@@ -242,13 +242,13 @@ const DynamicFlow = (props) => {
 
   return (
     <TrackingContextProvider onTrackableEvent={onTrackableEvent}>
-      <BaseUrlContext.Provider value={{ baseUrl }}>
+      <BaseUrlProvider baseUrl={baseUrl}>
         {loading ? (
           <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
         ) : (
           getStep()
         )}
-      </BaseUrlContext.Provider>
+      </BaseUrlProvider>
     </TrackingContextProvider>
   );
 };

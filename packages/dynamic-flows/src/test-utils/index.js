@@ -2,7 +2,7 @@ import { Provider, translations as componentTranslations } from '@transferwise/c
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
-import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
+import { BaseUrlProvider } from '../common/contexts/baseUrlContext/BaseUrlContext';
 
 const getMockFetchPromise = (status, jsonFn, delay, signal) => {
   const response = {
@@ -37,7 +37,7 @@ function mountWithProviders(
 ) {
   return mount(
     <Provider i18n={{ locale, messages }}>
-      <BaseUrlContext.Provider value={{ baseUrl }}>{component}</BaseUrlContext.Provider>
+      <BaseUrlProvider baseUrl={baseUrl}>{component}</BaseUrlProvider>
     </Provider>,
   );
 }

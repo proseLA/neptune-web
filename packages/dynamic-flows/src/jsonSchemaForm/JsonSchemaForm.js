@@ -1,21 +1,20 @@
 import Types from 'prop-types';
-import { useContext } from 'react';
 
-import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
+import {
+  BaseUrlProvider,
+  useHasBaseUrlProvider,
+} from '../common/contexts/baseUrlContext/BaseUrlContext';
 
 import GenericSchema from './genericSchema';
 
 const JsonSchemaForm = (props) => {
-  const context = useContext(BaseUrlContext);
-  if (context.baseUrl !== null && context.baseUrl !== undefined) {
+  if (useHasBaseUrlProvider()) {
     return <GenericSchema {...props} />;
   }
-
-  const { baseUrl } = props;
   return (
-    <BaseUrlContext.Provider value={{ baseUrl }}>
-      <GenericSchema {...props} />
-    </BaseUrlContext.Provider>
+    <BaseUrlProvider baseUrl={props.baseUrl}>
+      <GenericSchema {...props} />{' '}
+    </BaseUrlProvider>
   );
 };
 
