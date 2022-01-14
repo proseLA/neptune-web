@@ -1,5 +1,6 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_states.less';
 
 .np-switch {
   display: inline-flex;
@@ -34,9 +35,9 @@
   }
 
   &--disabled {
-    background: var(--color-interactive-disabled);
+    .disabled();
+
     cursor: not-allowed;
-    border-color: var(--color-interactive-disabled);
   }
 
   input {

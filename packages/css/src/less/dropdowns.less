@@ -168,15 +168,6 @@
 // Gray out text and ensure the hover/focus state remains gray
 
 .dropdown-menu > .disabled > a {
-  &,
-  &:hover,
-  &:focus,
-  .body-2,
-  .small,
-  .secondary {
-    color: var(--color-content-disabled);
-  }
-
   // Nuke hover/focus effects
   &:hover,
   &:focus {
@@ -184,16 +175,6 @@
     background-color: transparent;
     background-image: none; // Remove CSS gradient
     cursor: @cursor-disabled;
-  }
-
-  .circle img,
-  .currency-flag {
-    opacity: 0.5;
-  }
-
-  .circle,
-  .icon {
-    color: var(--color-content-disabled);
   }
 }
 

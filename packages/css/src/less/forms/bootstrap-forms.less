@@ -54,10 +54,6 @@ label,
   transition: color ease-in-out 0.15s;
 }
 
-.disabled > label {
-  color: var(--color-content-disabled);
-}
-
 // Normalize form controls
 //
 // While most of our form styles require extra classes, some basic normalization
@@ -356,9 +352,9 @@ input[type='checkbox'] {
   line-height: var(--line-height-control);
   min-height: calc(var(--line-height-control) * 2);
   font-size: var(--font-size-16);
-  color: var(--color-content-disabled);
+  color: var(--color-content-secondary);
   background-color: var(--color-background-neutral);
-  border: 1px solid var(--color-interactive-disabled);
+  border: 1px solid var(--color-interactive-secondary);
   border-radius: @input-border-radius;
   padding: @input-padding;
 
@@ -906,23 +902,6 @@ input[type='checkbox'] {
         font-size: var(--font-size-14);
         color: var(--color-content-secondary);
       }
-    }
-  }
-}
-
-.disabled .checkbox,
-.checkbox.disabled,
-.disabled .radio,
-.radio.disabled {
-  > label,
-  > label:hover {
-    border-color: var(--color-interactive-disabled);
-    color: var(--color-content-disabled);
-
-    small,
-    .small,
-    .body-2 {
-      color: var(--color-content-disabled);
     }
   }
 }

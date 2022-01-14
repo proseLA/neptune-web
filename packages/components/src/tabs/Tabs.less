@@ -1,6 +1,7 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) '@transferwise/neptune-css/src/variables/legacy-variables.less';
 @import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_states.less';
 
 @transition-timing-function: ease-in-out;
 @short-transition-duration: 0.15s;
@@ -25,7 +26,8 @@
     }
 
     &--disabled {
-      color: var(--color-content-disabled);
+      .disabled();
+
       cursor: not-allowed;
     }
 

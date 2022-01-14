@@ -1,4 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
+@import (reference) '@transferwise/neptune-css/src/less/mixins/_states.less';
 @import './_button-label-states';
 
 .np-circular-btn {
@@ -57,13 +58,4 @@ var(--color-interactive-negative-active));
 // Boost specificity to ensure rules apply to .secondary buttons
 .np-circular-btn.disabled.disabled {
   cursor: not-allowed;
-
-  input[type='button']:disabled + .tw-icon,
-  input[type='button']:disabled ~ .np-circular-btn__label {
-    color: var(--color-content-disabled);
-  }
-
-  &.secondary input[type='button'] {
-    border-color: var(--color-content-disabled);
-  }
 }
