@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.0...@transferwise/neptune-css@12.1.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* bundle panels.less ([#1283](https://github.com/transferwise/neptune-web/issues/1283)) ([1cd7c5e](https://github.com/transferwise/neptune-web/commit/1cd7c5ea77d81e70a00d7468dae3dd84c53ad566))
+
+
+
+
+
 # [12.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.4...@transferwise/neptune-css@12.1.0) (2022-01-13)
 
 
