@@ -1,16 +1,32 @@
 import { HttpClient } from './HttpClient';
 
 describe('HttpClient tests', () => {
+  describe('when instantiating with baseUrl', () => {
+    describe('and called with a relative path', () => {
+      it('uses the baseURL as a prefix for the request endpoint', () => {
+        const client = new HttpClient({ baseUrl: 'https://foo.net' });
+        client.request({ action: { url: '/some-path' } });
+        expect(requestUrlInLastCallToFetch()).toBe('https://foo.net/some-path');
+      });
+    });
+    describe('and called with an absolute URL', () => {
+      it('ignores the baseURL and makes the request using the given url', () => {
+        const client = new HttpClient({ baseUrl: 'https://foo.net' });
+        client.request({ action: { url: 'https://test.net/some-path' } });
+        expect(requestUrlInLastCallToFetch()).toBe('https://test.net/some-path');
+      });
+    });
+  });
   describe('when instantiating two HttpClients with different baseUrls', () => {
     it('each instances makes requests using their own baseUrl', () => {
-      const clientA = new HttpClient({ baseUrl: 'https://foo' });
-      const clientB = new HttpClient({ baseUrl: 'https://test' });
+      const clientA = new HttpClient({ baseUrl: 'https://foo.net' });
+      const clientB = new HttpClient({ baseUrl: 'https://test.net' });
 
       clientA.request({ action: { url: '/some-path-in-foo' } });
-      expect(requestUrlInLastCallToFetch()).toBe('https://foo/some-path-in-foo');
+      expect(requestUrlInLastCallToFetch()).toBe('https://foo.net/some-path-in-foo');
 
       clientB.request({ action: { url: '/some-path-in-test' } });
-      expect(requestUrlInLastCallToFetch()).toBe('https://test/some-path-in-test');
+      expect(requestUrlInLastCallToFetch()).toBe('https://test.net/some-path-in-test');
     });
   });
 

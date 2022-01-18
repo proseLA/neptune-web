@@ -7,7 +7,8 @@ export class HttpClient {
   async request({ action, data }) {
     const { url, method } = action;
 
-    const endpoint = `${this.baseUrl}${url}`;
+    const endpoint = startsWithHTTP(url) ? url : `${this.baseUrl}${url}`;
+
     const body = method === 'GET' ? undefined : JSON.stringify(data);
 
     return fetch(endpoint, {
@@ -26,4 +27,10 @@ export class HttpClient {
       return response;
     });
   }
+}
+
+function startsWithHTTP(url = '') {
+  return ['https://', 'http://'].some(
+    (prefix) => url.slice(0, prefix.length) === prefix && url.length > prefix.length,
+  );
 }
