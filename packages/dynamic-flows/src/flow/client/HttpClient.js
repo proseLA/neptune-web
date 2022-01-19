@@ -4,7 +4,14 @@ export class HttpClient {
     this.headers = params.headers || {};
   }
 
-  async request({ method, url, data, signal, contentType = 'application/json' }) {
+  async request({
+    method,
+    url,
+    data,
+    signal,
+    contentType = 'application/json',
+    credentials = 'include',
+  }) {
     const endpoint = startsWithHTTP(url) ? url : `${this.baseUrl}${url}`;
 
     const body = data !== undefined ? JSON.stringify(data) : undefined;
@@ -16,7 +23,7 @@ export class HttpClient {
         'X-Access-Token': 'Tr4n5f3rw153',
         ...this.headers,
       },
-      credentials: 'include',
+      credentials,
       body,
       signal,
     }).then((response) => {

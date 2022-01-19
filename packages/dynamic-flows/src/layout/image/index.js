@@ -56,7 +56,7 @@ const DynamicImage = (props) => {
             url: image.url,
             method: 'GET',
             contentType: 'image/*',
-            credentials: 'same-origin', // WHY?
+            credentials: 'same-origin',
           })
           .then((response) => {
             return response.blob();
