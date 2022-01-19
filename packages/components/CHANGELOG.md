@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.3.1...@transferwise/components@39.4.0) (2022-01-19)
+
+
+### Features
+
+* add ability to not show media in a circle in Decision ([#1291](https://github.com/transferwise/neptune-web/issues/1291)) ([0c9e111](https://github.com/transferwise/neptune-web/commit/0c9e111cb063108a6f699f6b61f36eb577773502))
+
+
+
+
+
 ## [39.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.3.0...@transferwise/components@39.3.1) (2022-01-17)
 
 **Note:** Version bump only for package @transferwise/components
