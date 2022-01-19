@@ -9,7 +9,7 @@ import Tile from '../tile';
 
 import { Presentation, Type } from './decisionEnums';
 
-const Decision = ({ options, presentation, type, size }) => {
+const Decision = ({ options, presentation, type, showMediaCircleInList, size }) => {
   if (type === Type.NAVIGATION) {
     const { LIST_BLOCK, LIST_BLOCK_GRID } = Presentation;
     if (presentation === LIST_BLOCK || presentation === LIST_BLOCK_GRID) {
@@ -40,6 +40,7 @@ const Decision = ({ options, presentation, type, size }) => {
               target={target}
               media={list}
               showMediaAtAllSizes
+              showMediaCircle={showMediaCircleInList}
               title={title}
               onClick={onClick}
             />,
@@ -88,6 +89,7 @@ const Decision = ({ options, presentation, type, size }) => {
           target={target}
           media={list}
           showMediaAtAllSizes
+          showMediaCircle={showMediaCircleInList}
           title={title}
           onClick={onClick}
         />
@@ -119,12 +121,16 @@ Decision.propTypes = {
   size: PropTypes.oneOf(['sm', 'md']),
   /** Decide which kind of element type needs to be rendered ex: Navigation Options or in the future Radio or Checkbox Options */
   type: PropTypes.oneOf(['NAVIGATION']),
+
+  /** Display media in a circle in list presentation */
+  showMediaCircleInList: PropTypes.bool,
 };
 
 Decision.defaultProps = {
   presentation: Presentation.LIST,
   size: Size.MEDIUM,
   type: Type.NAVIGATION,
+  showMediaCircleInList: true,
 };
 
 export default Decision;
