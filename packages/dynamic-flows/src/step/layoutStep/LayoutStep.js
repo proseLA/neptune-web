@@ -46,7 +46,6 @@ const LayoutStep = (props) => {
           submitted={submitted}
           model={model}
           errors={errors}
-          baseUrl={baseUrl}
           onAction={onAction}
           onModelChange={onModelChange}
         />
