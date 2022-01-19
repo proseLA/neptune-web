@@ -181,8 +181,8 @@ describe('Given a component for rendering a dynamic flow', () => {
     return resolve(response, { headers: new Headers({ 'X-DF-Exit': true }) });
   };
 
-  const mockRequest = ({ action, data }) => {
-    switch (action.url) {
+  const mockRequest = ({ url, data }) => {
+    switch (url) {
       case '/form':
         return resolve(formStep);
       case '/formNoLayout':
@@ -261,7 +261,8 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
     it('should load the step specification using the supplied URL', () => {
       expect(mockClient.request).toHaveBeenCalledWith({
-        action: { url: decisionUrl, method: 'GET' },
+        url: decisionUrl,
+        method: 'GET',
       });
     });
   });
@@ -412,7 +413,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           method: 'POST',
           url: '/refresh',
         };
-        expect(mockClient.request).toHaveBeenCalledWith({ action: fakeAction, data: newModel });
+        expect(mockClient.request).toHaveBeenCalledWith({ ...fakeAction, data: newModel });
       });
 
       it('should pass the new schema to the layout', () => {
@@ -442,7 +443,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           method: 'POST',
           url: '/refreshFromTrigger',
         };
-        expect(mockClient.request).toHaveBeenCalledWith({ action: fakeAction, data: newModel });
+        expect(mockClient.request).toHaveBeenCalledWith({ ...fakeAction, data: newModel });
       });
 
       it('should pass the new schema to the layout', () => {
@@ -478,7 +479,8 @@ describe('Given a component for rendering a dynamic flow', () => {
 
       it('should make the corresponding request', () => {
         expect(mockClient.request).toHaveBeenCalledWith({
-          action: successAction,
+          url: successAction.url,
+          method: successAction.method,
           data: { a: 1 },
         });
       });
@@ -508,7 +510,10 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should ignore the invalid model and make the corresponding request', () => {
-        expect(mockClient.request).toHaveBeenCalledWith({ action: navigateAction });
+        expect(mockClient.request).toHaveBeenCalledWith({
+          url: navigateAction.url,
+          method: navigateAction.method,
+        });
       });
     });
 
@@ -586,7 +591,8 @@ describe('Given a component for rendering a dynamic flow', () => {
 
       it('should submit the latest model combined with the action data', () => {
         expect(mockClient.request).toHaveBeenCalledWith({
-          action: dataAction,
+          url: dataAction.url,
+          method: dataAction.method,
           data: { a: 2, c: true },
         });
       });

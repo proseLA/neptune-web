@@ -1,20 +1,25 @@
 import Types from 'prop-types';
+import { useMemo } from 'react';
 
 import {
-  BaseUrlProvider,
-  useHasBaseUrlProvider,
-} from '../common/contexts/baseUrlContext/BaseUrlContext';
+  HttpClientProvider,
+  useHasHttpClientProvider,
+} from '../common/contexts/httpClientContext/httpClientContext';
+import { HttpClient } from '../flow/client';
 
 import GenericSchema from './genericSchema';
 
 const JsonSchemaForm = (props) => {
-  if (useHasBaseUrlProvider()) {
+  const httpClient = useMemo(() => new HttpClient({ baseUrl: props.baseUrl }), [props.baseUrl]);
+
+  if (useHasHttpClientProvider()) {
     return <GenericSchema {...props} />;
   }
+
   return (
-    <BaseUrlProvider baseUrl={props.baseUrl}>
+    <HttpClientProvider httpClient={httpClient}>
       <GenericSchema {...props} />
-    </BaseUrlProvider>
+    </HttpClientProvider>
   );
 };
 

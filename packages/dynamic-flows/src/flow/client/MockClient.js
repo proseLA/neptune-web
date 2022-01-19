@@ -17,11 +17,11 @@ const createResponse = (body) => new Response(JSON.stringify(body));
 
 function init() {}
 
-async function request({ action, data }) {
+async function request({ url, data }) {
   // eslint-disable-next-line no-console
-  console.log('request', action.url, data);
+  console.log('request', url, data);
 
-  switch (action.url) {
+  switch (url) {
     case '/decision':
       return Promise.resolve(createResponse(decisionStep));
     case '/recipient':

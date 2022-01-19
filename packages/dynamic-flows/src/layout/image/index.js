@@ -1,8 +1,8 @@
 import { Image } from '@transferwise/components';
 import Types from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import { useHttpClient } from '../../common/contexts/httpClientContext/httpClientContext';
 import { marginModel } from '../models';
 import { getMarginBottom } from '../utils';
 
@@ -37,42 +37,46 @@ const readImageBlobAsDataURL = (imageBlob) =>
     reader.readAsDataURL(imageBlob);
   });
 
-const getImageSource = async (baseUrl, image) => {
-  try {
-    const url = new URL(image.url, window?.location?.origin);
-    if (image.url?.indexOf(url.pathname) === 0) {
-      url.pathname = baseUrl + url.pathname;
-    }
-
-    if (url.origin !== window?.location?.origin) {
-      return image.url;
-    }
-
-    return fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'image/*',
-        'X-Access-Token': 'Tr4n5f3rw153',
-      },
-      credentials: 'same-origin',
-    })
-      .then((response) => response.blob())
-      .then(readImageBlobAsDataURL);
-  } catch {
-    return image.url;
-  }
-};
-
 const DynamicImage = (props) => {
   const image = props.component;
 
-  const baseUrl = useBaseUrl();
+  const httpClient = useHttpClient();
 
   const [imageSource, setImageSource] = useState('');
 
+  const getImageSource = useCallback(
+    async (image) => {
+      try {
+        if (isDifferentOriginThanWindowLocation(image.url)) {
+          return image.url;
+        }
+
+        return httpClient
+          .request({
+            url: image.url,
+            method: 'GET',
+            contentType: 'image/*',
+            credentials: 'same-origin', // WHY?
+          })
+          .then((response) => {
+            return response.blob();
+          })
+          .then((blob) => {
+            return readImageBlobAsDataURL(blob);
+          })
+          .catch((error) => {
+            return image.url;
+          });
+      } catch {
+        return image.url;
+      }
+    },
+    [httpClient],
+  );
+
   useEffect(() => {
-    getImageSource(baseUrl, image).then(setImageSource);
-  }, [image.url]);
+    getImageSource(image).then(setImageSource);
+  }, [getImageSource, image, setImageSource]);
 
   const imageProps = {
     alt: image.text,
@@ -105,3 +109,13 @@ DynamicImage.propTypes = {
 };
 
 export default DynamicImage;
+
+function startsWithHTTP(url = '') {
+  return ['https://', 'http://', 'data:'].some(
+    (prefix) => url.slice(0, prefix.length) === prefix && url.length > prefix.length,
+  );
+}
+
+function isDifferentOriginThanWindowLocation(url) {
+  return startsWithHTTP(url) && new URL(url).origin !== window?.location?.origin;
+}

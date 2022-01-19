@@ -5,14 +5,14 @@ describe('HttpClient tests', () => {
     describe('and called with a relative path', () => {
       it('uses the baseURL as a prefix for the request endpoint', () => {
         const client = new HttpClient({ baseUrl: 'https://foo.net' });
-        client.request({ action: { url: '/some-path' } });
+        client.request({ url: '/some-path' });
         expect(requestUrlInLastCallToFetch()).toBe('https://foo.net/some-path');
       });
     });
     describe('and called with an absolute URL', () => {
       it('ignores the baseURL and makes the request using the given url', () => {
         const client = new HttpClient({ baseUrl: 'https://foo.net' });
-        client.request({ action: { url: 'https://test.net/some-path' } });
+        client.request({ url: 'https://test.net/some-path' });
         expect(requestUrlInLastCallToFetch()).toBe('https://test.net/some-path');
       });
     });
@@ -22,10 +22,10 @@ describe('HttpClient tests', () => {
       const clientA = new HttpClient({ baseUrl: 'https://foo.net' });
       const clientB = new HttpClient({ baseUrl: 'https://test.net' });
 
-      clientA.request({ action: { url: '/some-path-in-foo' } });
+      clientA.request({ url: '/some-path-in-foo' });
       expect(requestUrlInLastCallToFetch()).toBe('https://foo.net/some-path-in-foo');
 
-      clientB.request({ action: { url: '/some-path-in-test' } });
+      clientB.request({ url: '/some-path-in-test' });
       expect(requestUrlInLastCallToFetch()).toBe('https://test.net/some-path-in-test');
     });
   });
@@ -34,7 +34,7 @@ describe('HttpClient tests', () => {
     it('adds the specified headers to the request', () => {
       const client = new HttpClient({ headers: { 'X-custom-header': 'custom-value' } });
 
-      client.request({ action: { url: '/some-path', method: 'POST' }, data: { some: 'data' } });
+      client.request({ url: '/some-path', method: 'POST', data: { some: 'data' } });
       expect(headersInLastCallToFetch()).toMatchObject({ 'X-custom-header': 'custom-value' });
     });
   });

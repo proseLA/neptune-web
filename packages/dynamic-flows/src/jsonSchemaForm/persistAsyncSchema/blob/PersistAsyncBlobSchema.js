@@ -4,15 +4,12 @@ import Types from 'prop-types';
 import { useEffect, useState } from 'react';
 
 import { isStatus422 } from '../../../common/api/utils';
-import { useBaseUrl } from '../../../common/contexts/baseUrlContext/BaseUrlContext';
 import { getValidationFailures } from '../../../common/validation/validation-failures';
 import ControlFeedback from '../../controlFeedback';
 import { mapSchemaToUploadOptions } from '../../schemaFormControl/optionMapper';
 import { getIdFromResponse } from '../basic/PersistAsyncBasicSchema';
 
 const PersistAsyncBlobSchema = (props) => {
-  const baseUrl = useBaseUrl();
-
   const [persistAsyncValidationMessages, setPersistAsyncValidationMessages] = useState({});
   const [persistAsyncValidations, setPersistAsyncValidations] = useState(null);
   const [validations, setValidations] = useState([]);
@@ -63,7 +60,7 @@ const PersistAsyncBlobSchema = (props) => {
         usLabel={props.schema.title}
         usPlaceholder={props.schema.description}
         httpOptions={{
-          url: baseUrl + url,
+          url,
           method,
           fileInputName: props.schema.persistAsync.param,
           headers: {

@@ -4,7 +4,7 @@ import Types from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
-import { BaseUrlProvider } from '../common/contexts/baseUrlContext/BaseUrlContext';
+import { HttpClientProvider } from '../common/contexts/httpClientContext/httpClientContext';
 import { getStepType, stepType } from '../common/stepTypes/stepTypes';
 import { TrackingContextProvider } from '../common/tracking';
 import { isValidSchema } from '../common/validation/schema-validators';
@@ -110,11 +110,10 @@ const DynamicFlow = (props) => {
 
   const fetchStep = (action, data) => {
     const previousStep = stepSpecification;
-
     setLoading(true);
-
+    const { method, url } = action;
     return httpClient
-      .request({ action, data })
+      .request({ method, url, data })
       .then(async (response) => {
         if (isExitResponse(response)) {
           const result = await response.json().catch(() => undefined);
@@ -133,9 +132,9 @@ const DynamicFlow = (props) => {
 
   const fetchRefresh = (action, data) => {
     setLoading(true);
-
+    const { method, url } = action;
     return httpClient
-      .request({ action, data })
+      .request({ method, url, data })
       .then(async (response) => {
         const step = await response.json();
         updateStepSpecification(step);
@@ -145,7 +144,11 @@ const DynamicFlow = (props) => {
   };
 
   const fetchExitResult = (action, data) => {
-    return httpClient.request({ action, data }).then(validateExitResult).catch(handleFetchError);
+    const { method, url } = action;
+    return httpClient
+      .request({ method, url, data })
+      .then(validateExitResult)
+      .catch(handleFetchError);
   };
 
   const handleFetchError = async (response) => {
@@ -242,13 +245,13 @@ const DynamicFlow = (props) => {
 
   return (
     <TrackingContextProvider onTrackableEvent={onTrackableEvent}>
-      <BaseUrlProvider baseUrl={baseUrl}>
+      <HttpClientProvider httpClient={httpClient}>
         {loading ? (
           <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
         ) : (
           getStep()
         )}
-      </BaseUrlProvider>
+      </HttpClientProvider>
     </TrackingContextProvider>
   );
 };

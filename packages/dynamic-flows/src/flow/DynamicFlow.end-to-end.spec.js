@@ -19,8 +19,8 @@ const delayedJsonResponse = async (response, init = {}) => {
 };
 
 const mockClient = {
-  request: ({ action, data }) => {
-    const json = routes[action.url] || {};
+  request: ({ url, data }) => {
+    const json = routes[url] || {};
     return delayedJsonResponse(json);
   },
 };

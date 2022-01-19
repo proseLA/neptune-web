@@ -3,8 +3,7 @@ import isEqual from 'lodash.isequal';
 import Types from 'prop-types';
 import { useRef, useState } from 'react';
 
-import { getAsyncUrl } from '../../common/async/url';
-import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import { useHttpClient } from '../../common/contexts/httpClientContext/httpClientContext';
 import { isValidSchema } from '../../common/validation/schema-validators';
 import BasicTypeSchema from '../basicTypeSchema';
 
@@ -15,27 +14,24 @@ const ValidationAsyncSchema = (props) => {
   const [validationAsyncErrors, setValidationAsyncErrors] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
   const [abortController, setAbortController] = useState(null);
-  const baseUrl = useBaseUrl();
+  const httpClient = useHttpClient();
 
-  const getValidationAsyncResponse = async (currentValidationAsyncModel, validationAsyncSpec) => {
+  const getValidationAsyncResponse = (currentValidationAsyncModel, validationAsyncSpec) => {
     const signal = abortCurrentRequestAndGetNewAbortSignal();
 
     const requestBody = { [validationAsyncSpec.param]: currentValidationAsyncModel };
     previousRequestedModelReference.current = currentValidationAsyncModel;
     setFieldSubmitted(true);
 
-    const validationAsyncFetch = fetch(getAsyncUrl(validationAsyncSpec.url, baseUrl), {
-      method: validationAsyncSpec.method,
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': 'Tr4n5f3rw153',
-      },
-      body: JSON.stringify(requestBody),
-      signal,
-    });
-
-    const response = await validationAsyncFetch;
-    setValidationMessages(response);
+    httpClient
+      .request({
+        method: validationAsyncSpec.method,
+        url: validationAsyncSpec.url,
+        data: requestBody,
+        signal,
+      })
+      .then(setValidationMessages)
+      .catch(setValidationMessages);
   };
 
   const setValidationMessages = async (response) => {

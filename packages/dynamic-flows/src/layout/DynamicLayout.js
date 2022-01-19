@@ -1,10 +1,5 @@
 import Types from 'prop-types';
 
-import {
-  BaseUrlProvider,
-  useHasBaseUrlProvider,
-} from '../common/contexts/baseUrlContext/BaseUrlContext';
-
 import DynamicAlert from './alert';
 import DynamicBox from './box';
 import DynamicButton from './button';
@@ -24,8 +19,7 @@ const getKey = (component) => {
 };
 
 const DynamicLayout = (props) => {
-  const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync, baseUrl } =
-    props;
+  const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync } = props;
 
   const renderComponent = (component) => {
     switch (component.type) {
@@ -92,11 +86,7 @@ const DynamicLayout = (props) => {
     }
   };
 
-  if (useHasBaseUrlProvider() || baseUrl == null) {
-    return <>{components.map(renderComponent)}</>;
-  } else {
-    return <BaseUrlProvider baseUrl={baseUrl}>{components.map(renderComponent)}</BaseUrlProvider>;
-  }
+  return <>{components.map(renderComponent)}</>;
 };
 
 DynamicLayout.propTypes = {
@@ -104,7 +94,6 @@ DynamicLayout.propTypes = {
   model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  baseUrl: Types.string.isRequired,
   onAction: Types.func.isRequired,
   onModelChange: Types.func.isRequired,
   onPersistAsync: Types.func,

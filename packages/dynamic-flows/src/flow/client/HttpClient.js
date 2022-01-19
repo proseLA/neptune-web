@@ -4,22 +4,21 @@ export class HttpClient {
     this.headers = params.headers || {};
   }
 
-  async request({ action, data }) {
-    const { url, method } = action;
-
+  async request({ method, url, data, signal, contentType = 'application/json' }) {
     const endpoint = startsWithHTTP(url) ? url : `${this.baseUrl}${url}`;
 
-    const body = method === 'GET' ? undefined : JSON.stringify(data);
+    const body = data !== undefined ? JSON.stringify(data) : undefined;
 
     return fetch(endpoint, {
       method,
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': contentType,
         'X-Access-Token': 'Tr4n5f3rw153',
         ...this.headers,
       },
       credentials: 'include',
       body,
+      signal,
     }).then((response) => {
       if (response.status >= 400 && response.status < 600) {
         throw response;

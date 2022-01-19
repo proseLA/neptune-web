@@ -6,8 +6,7 @@ import { useIntl } from 'react-intl';
 
 import { FormControlType } from '../../../common';
 import { isStatus2xx, isStatus422, QueryablePromise } from '../../../common/api/utils';
-import { getAsyncUrl } from '../../../common/async/url';
-import { useBaseUrl } from '../../../common/contexts/baseUrlContext/BaseUrlContext';
+import { useHttpClient } from '../../../common/contexts/httpClientContext/httpClientContext';
 import usePrevious from '../../../common/hooks/usePrevious';
 import { isValidSchema } from '../../../common/validation/schema-validators';
 import BasicTypeSchema from '../../basicTypeSchema';
@@ -32,7 +31,7 @@ const controlTypesWithPersistOnChange = new Set([
 
 const PersistAsyncBasicSchema = (props) => {
   const intl = useIntl();
-  const baseUrl = useBaseUrl();
+  const httpClient = useHttpClient();
 
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
   const previousPersistAsyncModel = usePrevious(persistAsyncModel);
@@ -55,21 +54,17 @@ const PersistAsyncBasicSchema = (props) => {
     const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
     setFieldSubmitted(true); // persist async initiated implied the field has been submitted
 
-    const persistAsyncFetch = new QueryablePromise(
-      fetch(getAsyncUrl(persistAsyncSpec.url, baseUrl), {
+    const promise = new QueryablePromise(
+      httpClient.request({
         method: persistAsyncSpec.method,
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': 'Tr4n5f3rw153',
-        },
-        body: JSON.stringify(requestBody),
+        url: persistAsyncSpec.url,
+        data: requestBody,
         signal,
       }),
     );
-    props.onPersistAsync(persistAsyncFetch);
-    const response = await persistAsyncFetch;
+    props.onPersistAsync(promise);
 
-    broadcast(response);
+    promise.then(broadcast).catch(broadcast);
   };
 
   const abortCurrentRequestAndGetNewAbortSignal = () => {

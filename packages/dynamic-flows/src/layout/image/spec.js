@@ -5,7 +5,7 @@ import { mount } from '../../test-utils';
 import DynamicImage from '.';
 
 const IMAGE_BLOB_URL = 'data:image/jpeg;base64,/9j';
-const FAILURE_FETCH_URL = 'FAILURE.png';
+const FAILURE_FETCH_URL = 'http://localhost/FAILURE.png';
 
 const fetch = jest.spyOn(global, 'fetch').mockImplementation((url) => {
   if (url.toString().includes(FAILURE_FETCH_URL)) {
