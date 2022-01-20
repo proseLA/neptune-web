@@ -14,7 +14,7 @@ export class HttpClient {
   }) {
     const endpoint = startsWithHTTP(url) ? url : `${this.baseUrl}${url}`;
 
-    const body = data !== undefined ? JSON.stringify(data) : undefined;
+    const body = method === 'GET' ? undefined : JSON.stringify(data);
 
     return fetch(endpoint, {
       method,

@@ -14,7 +14,7 @@ describe('Given a component for rendering persist async schemas', () => {
     type: 'string',
     title: 'Text input',
     persistAsync: {
-      method: 'GET',
+      method: 'POST',
       url: '/v1/foobar',
       param,
       idProperty,
