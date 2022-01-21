@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.4.0...@transferwise/components@39.5.0) (2022-01-21)
+
+
+### Features
+
+* **components:** Add an optional fetcher prop to Upload ([#1295](https://github.com/transferwise/neptune-web/issues/1295)) ([863f085](https://github.com/transferwise/neptune-web/commit/863f0850547eace8be513fd8d2adc8956ab28f37))
+
+
+
+
+
 # [39.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.3.1...@transferwise/components@39.4.0) (2022-01-19)
 
 
