@@ -120,13 +120,13 @@ class Upload extends Component {
   };
 
   asyncPost = (file) => {
-    const { httpOptions } = this.props;
+    const { httpOptions, fetcher } = this.props;
     const { fileInputName = file.name, data = {} } = httpOptions || {};
 
     const formData = new FormData();
     formData.append(fileInputName, file);
     Object.keys(data).forEach((key) => formData.append(key, data[key]));
-    return postData(this.prepareHttpOptions(httpOptions), formData);
+    return postData(this.prepareHttpOptions(httpOptions), formData, fetcher);
   };
 
   asyncResponse = (response, type) => {
@@ -370,6 +370,11 @@ Upload.propTypes = {
     data: PropTypes.object,
     headers: PropTypes.object,
   }),
+  /**
+   * You can provide a fetcher function with the same interface as the global fetch function, which is used by default.
+   * function fetcher(input: RequestInfo, init?: RequestInit): Promise<Response>
+   */
+  fetcher: PropTypes.func,
   maxSize: PropTypes.number,
   onCancel: PropTypes.func,
   onFailure: PropTypes.func,
