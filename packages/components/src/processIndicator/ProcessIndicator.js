@@ -2,7 +2,9 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 
-import { Status, Size } from '../common';
+import { Status, Size, Theme } from '../common';
+
+import './ProcessIndicator.css';
 
 const radius = { xs: 11, sm: 22, xl: 61 };
 export const ANIMATION_DURATION_IN_MS = 1500;
@@ -71,9 +73,9 @@ class ProcessIndicator extends Component {
   };
 
   render() {
-    const { className, 'data-testid': dataTestId } = this.props;
+    const { className, 'data-testid': dataTestId, theme } = this.props;
     const { size, status } = this.state;
-    const classes = classNames(`process process-${size}`, className, {
+    const classes = classNames(`process process-${size} process--${theme}`, className, {
       [`process-danger`]: status === Status.FAILED,
       [`process-stopped`]: status === Status.HIDDEN,
       [`process-success`]: status === Status.SUCCEEDED,
@@ -104,6 +106,7 @@ ProcessIndicator.propTypes = {
   onAnimationCompleted: PropTypes.func,
   className: PropTypes.string,
   'data-testid': PropTypes.string,
+  theme: PropTypes.oneOf(['light', 'dark']),
 };
 
 ProcessIndicator.defaultProps = {
@@ -112,6 +115,7 @@ ProcessIndicator.defaultProps = {
   onAnimationCompleted: null,
   className: undefined,
   'data-testid': null,
+  theme: Theme.LIGHT,
 };
 
 export default ProcessIndicator;

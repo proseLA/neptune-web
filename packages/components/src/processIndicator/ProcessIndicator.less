@@ -1,0 +1,28 @@
+@import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
+
+.process--dark {
+  .process-icon-horizontal,
+  .process-icon-vertical,
+  .process-circle {
+    stroke: @color-navy-content-accent;
+    background-color: @color-navy-content-accent;
+  }
+
+  &.process-danger {
+    .process-icon-horizontal,
+    .process-icon-vertical,
+    .process-circle {
+      stroke: @color-navy-content-negative;
+      background-color: @color-navy-content-negative;
+    }
+  }
+
+  &.process-success {
+    .process-icon-horizontal,
+    .process-icon-vertical,
+    .process-circle {
+      stroke: @color-navy-content-positive;
+      background-color: @color-navy-content-positive;
+    }
+  }
+}
