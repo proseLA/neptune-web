@@ -2,7 +2,7 @@ import { isEmpty } from '@transferwise/neptune-validation';
 import Types from 'prop-types';
 
 import DynamicLayout from '../../layout';
-import StickyLayout from '../../layout/StickyLayout';
+import StickyLayout, {isPositionStickySupported} from '../../layout/StickyLayout';
 import DynamicButton from '../../layout/button';
 
 import { convertStepToLayout, inlineReferences } from './layoutService';
@@ -54,7 +54,7 @@ const LayoutStep = (props) => {
     );
   };
 
-  if (singlePrimaryActionExists(stepSpecification)) {
+  if (singlePrimaryActionExists(stepSpecification) && isPositionStickySupported()) {
     const { newStepSpecification, stickyButton } = removePrimaryButtonFromSchema(stepSpecification);
     const bodyComponents = getComponents(newStepSpecification);
     const stickyButtonComponent = convertStepActionToDynamicAction(stickyButton);

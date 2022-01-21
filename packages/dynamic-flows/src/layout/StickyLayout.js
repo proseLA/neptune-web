@@ -1,5 +1,9 @@
 import Types from 'prop-types';
 
+export const isPositionStickySupported = () => {
+  return window?.CSS?.supports('position', 'sticky');
+};
+
 const StickyLayout = (props) => {
   const { children, stickyContent } = props;
 
