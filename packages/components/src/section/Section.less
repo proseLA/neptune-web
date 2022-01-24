@@ -2,24 +2,8 @@
   background-color: var(--color-background-screen);
   margin-top: var(--size-32);
 
-  // Remove the border from the last option element inside a section
-  .np-option:last-child .media {
-    border: none;
-  }
-
-  // Remove the border from the last accordion item content inside a section
-  .np-accordion-item:last-child .np-accordion-item__content {
-    border: none;
-  }
-
-  // Remove the border from the last card when not expanded inside a section
-  .np-card:last-child .np-card__divider:not(.np-card__divider--expanded) {
-    border: none;
-  }
-
-  // Re-apply borders for options inside an Accordion or NavigationOptionsList component
-  .np-navigation-options-list__item:not(:last-child) .media,
-  .np-accordion-item:not(:last-child) .media {
-    border-bottom: 1px solid var(--color-border-neutral);
+  &--with-horizontal-padding {
+    padding-right: var(--space-content-horizontal);
+    padding-left: var(--space-content-horizontal);
   }
 }

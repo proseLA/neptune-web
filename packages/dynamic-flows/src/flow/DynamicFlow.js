@@ -4,13 +4,14 @@ import Types from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
+import { BaseUrlProvider } from '../common/contexts/baseUrlContext/BaseUrlContext';
 import { getStepType, stepType } from '../common/stepTypes/stepTypes';
 import { TrackingContextProvider } from '../common/tracking';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { getValidModelParts } from '../common/validation/valid-model';
 import { CameraStep, LayoutStep } from '../step';
 
-import { httpClient as defaultHttpClient } from './client';
+import { HttpClient } from './client';
 import { withErrorBoundary } from './errorBoundary';
 
 const EXIT_HEADER = 'X-Df-Exit';
@@ -79,7 +80,10 @@ const DynamicFlow = (props) => {
   const [stepAndModels, setStepAndModels] = useState({ stepSpecification: {}, models: {} });
   const { stepSpecification, models } = stepAndModels;
 
-  const httpClient = propsHttpClient || defaultHttpClient.init({ baseUrl });
+  const httpClient = useMemo(
+    () => propsHttpClient || new HttpClient({ baseUrl }),
+    [baseUrl, propsHttpClient],
+  );
 
   const updateStepSpecification = (step) => {
     setStepAndModels((previous) => ({
@@ -225,7 +229,6 @@ const DynamicFlow = (props) => {
       submitted,
       model: combineModels(models),
       errors: validations,
-      baseUrl,
       onAction,
       onModelChange,
     };
@@ -239,11 +242,13 @@ const DynamicFlow = (props) => {
 
   return (
     <TrackingContextProvider onTrackableEvent={onTrackableEvent}>
-      {loading ? (
-        <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
-      ) : (
-        getStep()
-      )}
+      <BaseUrlProvider baseUrl={baseUrl}>
+        {loading ? (
+          <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+        ) : (
+          getStep()
+        )}
+      </BaseUrlProvider>
     </TrackingContextProvider>
   );
 };

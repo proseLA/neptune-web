@@ -1,5 +1,10 @@
 import Types from 'prop-types';
 
+import {
+  BaseUrlProvider,
+  useHasBaseUrlProvider,
+} from '../common/contexts/baseUrlContext/BaseUrlContext';
+
 import DynamicAlert from './alert';
 import DynamicBox from './box';
 import DynamicButton from './button';
@@ -19,7 +24,8 @@ const getKey = (component) => {
 };
 
 const DynamicLayout = (props) => {
-  const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync } = props;
+  const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync, baseUrl } =
+    props;
 
   const renderComponent = (component) => {
     switch (component.type) {
@@ -45,7 +51,6 @@ const DynamicLayout = (props) => {
             model={model}
             submitted={submitted}
             errors={errors}
-            baseUrl={props.baseUrl}
             onModelChange={onModelChange}
             onAction={onAction}
             onPersistAsync={onPersistAsync}
@@ -59,7 +64,6 @@ const DynamicLayout = (props) => {
             model={model}
             submitted={submitted}
             errors={errors}
-            baseUrl={props.baseUrl}
             onModelChange={onModelChange}
             onPersistAsync={onPersistAsync}
           />
@@ -74,7 +78,6 @@ const DynamicLayout = (props) => {
             model={model}
             submitted={submitted}
             errors={errors}
-            baseUrl={props.baseUrl}
             onModelChange={onModelChange}
             onAction={onAction}
             onPersistAsync={onPersistAsync}
@@ -89,7 +92,11 @@ const DynamicLayout = (props) => {
     }
   };
 
-  return <>{components.map(renderComponent)}</>;
+  if (useHasBaseUrlProvider() || baseUrl == null) {
+    return <>{components.map(renderComponent)}</>;
+  } else {
+    return <BaseUrlProvider baseUrl={baseUrl}>{components.map(renderComponent)}</BaseUrlProvider>;
+  }
 };
 
 DynamicLayout.propTypes = {

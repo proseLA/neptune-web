@@ -3,6 +3,145 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.2.10](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.9...@transferwise/neptune-docs@15.2.10) (2022-01-21)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.9](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.8...@transferwise/neptune-docs@15.2.9) (2022-01-19)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.8](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.7...@transferwise/neptune-docs@15.2.8) (2022-01-18)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.7](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.6...@transferwise/neptune-docs@15.2.7) (2022-01-17)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.5...@transferwise/neptune-docs@15.2.6) (2022-01-17)
+
+
+### Bug Fixes
+
+* url to another page ([cd2ad7d](https://github.com/transferwise/neptune-web/commit/cd2ad7db35ea66aa814fff2e600256f9fd229c18))
+
+
+
+
+
+## [15.2.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.4...@transferwise/neptune-docs@15.2.5) (2022-01-14)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.3...@transferwise/neptune-docs@15.2.4) (2022-01-14)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.2...@transferwise/neptune-docs@15.2.3) (2022-01-14)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.1...@transferwise/neptune-docs@15.2.2) (2022-01-13)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.0...@transferwise/neptune-docs@15.2.1) (2022-01-13)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+# [15.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.6...@transferwise/neptune-docs@15.2.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* grammer mistake in sentence ([4c1195b](https://github.com/transferwise/neptune-web/commit/4c1195bc9353721ff9bed7aa2606a24fe0b0702f))
+
+
+### Features
+
+* remove embedded paddings from Header and Option components ([#1254](https://github.com/transferwise/neptune-web/issues/1254)) ([eca1019](https://github.com/transferwise/neptune-web/commit/eca1019a3c917962018d128ecd03f5ad33f19f4a))
+
+
+
+
+
+## [15.1.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.5...@transferwise/neptune-docs@15.1.6) (2022-01-12)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.1.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.4...@transferwise/neptune-docs@15.1.5) (2022-01-12)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.1.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.3...@transferwise/neptune-docs@15.1.4) (2022-01-12)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.2...@transferwise/neptune-docs@15.1.3) (2022-01-11)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [15.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.1...@transferwise/neptune-docs@15.1.2) (2022-01-11)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
 ## [15.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.1.0...@transferwise/neptune-docs@15.1.1) (2022-01-10)
 
 **Note:** Version bump only for package @transferwise/neptune-docs

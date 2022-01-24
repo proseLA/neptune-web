@@ -7,7 +7,6 @@
 
   &--open {
     .media {
-      padding-bottom: var(--size-16);
       border: 0 !important;
     }
   }
@@ -24,13 +23,12 @@
   }
 
   &__content {
-    padding: var(--size-24) 0;
-    margin: calc(var(--size-24) * -1) var(--size-16) 0 var(--size-16);
+    padding: 0 var(--size-12) var(--size-24) var(--size-12);
     border-bottom: 1px solid var(--color-border-neutral);
 
     @media (--screen-xs) {
       &.has-icon {
-        .padding(left, var(--size-56));
+        .padding(left, 68px);
       }
     }
   }

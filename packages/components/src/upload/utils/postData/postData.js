@@ -1,5 +1,5 @@
-export const postData = (httpOptions, data = {}) =>
-  fetch(`${httpOptions.url}`, {
+export const postData = (httpOptions, data = {}, fetcher = fetch) =>
+  fetcher(`${httpOptions.url}`, {
     method: 'POST',
     body: data,
     ...httpOptions,

@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.4.0...@transferwise/components@39.5.0) (2022-01-21)
+
+
+### Features
+
+* **components:** Add an optional fetcher prop to Upload ([#1295](https://github.com/transferwise/neptune-web/issues/1295)) ([863f085](https://github.com/transferwise/neptune-web/commit/863f0850547eace8be513fd8d2adc8956ab28f37))
+
+
+
+
+
+# [39.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.3.1...@transferwise/components@39.4.0) (2022-01-19)
+
+
+### Features
+
+* add ability to not show media in a circle in Decision ([#1291](https://github.com/transferwise/neptune-web/issues/1291)) ([0c9e111](https://github.com/transferwise/neptune-web/commit/0c9e111cb063108a6f699f6b61f36eb577773502))
+
+
+
+
+
+## [39.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.3.0...@transferwise/components@39.3.1) (2022-01-17)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+# [39.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.4...@transferwise/components@39.3.0) (2022-01-13)
+
+
+### Features
+
+* remove embedded paddings from Header and Option components ([#1254](https://github.com/transferwise/neptune-web/issues/1254)) ([eca1019](https://github.com/transferwise/neptune-web/commit/eca1019a3c917962018d128ecd03f5ad33f19f4a))
+
+
+
+
+
+## [39.2.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.3...@transferwise/components@39.2.4) (2022-01-12)
+
+
+### Bug Fixes
+
+* update Sentiment values accepted by InlineAlert ([#1280](https://github.com/transferwise/neptune-web/issues/1280)) ([9a70c87](https://github.com/transferwise/neptune-web/commit/9a70c87f0bc77b2438fdd7bd9387da6a12fd839e))
+
+
+
+
+
+## [39.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.2...@transferwise/components@39.2.3) (2022-01-11)
+
+
+### Bug Fixes
+
+* Select icon position and money input flag display ([#1271](https://github.com/transferwise/neptune-web/issues/1271)) ([bdafe3a](https://github.com/transferwise/neptune-web/commit/bdafe3aa1bc685c7cbfd812c07c5a021befbf4e1))
+
+
+
+
+
 ## [39.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.2.1...@transferwise/components@39.2.2) (2021-12-22)
 
 **Note:** Version bump only for package @transferwise/components

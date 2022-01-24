@@ -2,7 +2,7 @@
   {
     "type": "image",
     "url": "https://via.placeholder.com/1024",
-    "text": "Image size sm",
+    "text": "Image alt text",
     "margin": "lg",
     "size": "sm"
   },

@@ -27,12 +27,12 @@ const InlineAlert = (props) => {
 InlineAlert.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
+  type: PropTypes.oneOf(['positive', 'negative', 'warning', 'neutral', 'success', 'info', 'error']),
 };
 
 InlineAlert.defaultProps = {
   className: undefined,
-  type: Sentiment.INFO,
+  type: Sentiment.NEUTRAL,
 };
 
 export default InlineAlert;

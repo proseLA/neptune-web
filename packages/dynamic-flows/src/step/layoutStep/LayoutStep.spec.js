@@ -110,8 +110,6 @@ describe('Given a component for rendering a dynamic flow', () => {
     },
   };
 
-  const baseUrl = '';
-
   beforeEach(async () => {
     onAction = jest.fn();
     onModelChange = jest.fn();
@@ -135,7 +133,6 @@ describe('Given a component for rendering a dynamic flow', () => {
           submitted={false}
           model={{}}
           errors={undefined}
-          baseUrl={baseUrl}
           onAction={onAction}
           onModelChange={onModelChange}
         />,
@@ -155,7 +152,6 @@ describe('Given a component for rendering a dynamic flow', () => {
           submitted={false}
           model={{}}
           errors={undefined}
-          baseUrl={baseUrl}
           onAction={onAction}
           onModelChange={onModelChange}
         />,
@@ -181,7 +177,6 @@ describe('Given a component for rendering a dynamic flow', () => {
           submitted={false}
           model={{}}
           errors={undefined}
-          baseUrl={baseUrl}
           onAction={onAction}
           onModelChange={onModelChange}
         />,

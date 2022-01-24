@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.0...@transferwise/neptune-css@12.1.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* bundle panels.less ([#1283](https://github.com/transferwise/neptune-web/issues/1283)) ([1cd7c5e](https://github.com/transferwise/neptune-web/commit/1cd7c5ea77d81e70a00d7468dae3dd84c53ad566))
+
+
+
+
+
+# [12.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.4...@transferwise/neptune-css@12.1.0) (2022-01-13)
+
+
+### Features
+
+* remove embedded paddings from Header and Option components ([#1254](https://github.com/transferwise/neptune-web/issues/1254)) ([eca1019](https://github.com/transferwise/neptune-web/commit/eca1019a3c917962018d128ecd03f5ad33f19f4a))
+
+
+
+
+
+## [12.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.3...@transferwise/neptune-css@12.0.4) (2022-01-11)
+
+
+### Bug Fixes
+
+* Select icon position and money input flag display ([#1271](https://github.com/transferwise/neptune-web/issues/1271)) ([bdafe3a](https://github.com/transferwise/neptune-web/commit/bdafe3aa1bc685c7cbfd812c07c5a021befbf4e1))
+
+
+
+
+
 ## [12.0.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.0.2...@transferwise/neptune-css@12.0.3) (2021-12-22)
 
 

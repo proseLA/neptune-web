@@ -18,6 +18,7 @@ export const Basic = () => {
     DecisionPresentation.LIST_BLOCK,
   );
   const disabled = boolean('disabled', false);
+  const showMediaCircleInList = boolean('showMediaCircleInList', true);
   const size = select('size', [Size.MEDIUM, Size.SMALL]);
 
   return (
@@ -74,14 +75,17 @@ export const Basic = () => {
             media: {
               block: (
                 <img
-                  src="https://wise.com/public-resources/assets/bank-details/bank-details-flow/finish.svg"
+                  src="https://wise.com/public-resources/assets/illustrations/business_account_web_small.svg"
                   alt="alt"
+                  width="100"
                 />
               ),
               list: (
-                <Avatar size="md" type="initials">
-                  HM
-                </Avatar>
+                <img
+                  src="https://wise.com/public-resources/assets/illustrations/business_account_web_small.svg"
+                  alt="alt"
+                  width="100"
+                />
               ),
             },
             disabled,
@@ -91,6 +95,7 @@ export const Basic = () => {
         presentation={presentation}
         type={DecisionType.NAVIGATION}
         size={size}
+        showMediaCircleInList={showMediaCircleInList}
       />
     </>
   );

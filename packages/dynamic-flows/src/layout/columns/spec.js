@@ -52,7 +52,6 @@ describe('Given a component for dynamically rendering columns', () => {
         model={model}
         submitted={false}
         errors={{}}
-        baseUrl="dynamic-columns-base-url"
         onModelChange={onModelChange}
         onAction={onAction}
         onPersistAsync={onPersistAsync}

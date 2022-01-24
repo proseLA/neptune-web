@@ -48,8 +48,12 @@
   }
 
   &__divider {
-    border-top: solid 1px var(--color-border-neutral);
-    margin: 0 var(--size-16);
+    background-color: var(--color-border-neutral);
+    height: 1px;
     transition: margin 0.35s ease;
+
+    &--expanded {
+      margin: 0 var(--size-16);
+    }
   }
 }

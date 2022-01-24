@@ -3,6 +3,136 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.2.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.5...@transferwise/dynamic-flows@16.2.6) (2022-01-21)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [16.2.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.4...@transferwise/dynamic-flows@16.2.5) (2022-01-19)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [16.2.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.3...@transferwise/dynamic-flows@16.2.4) (2022-01-18)
+
+
+### Bug Fixes
+
+* HttpClient to support requests to absolute URLs even when a baseURL is set ([#1288](https://github.com/transferwise/neptune-web/issues/1288)) ([9201d2f](https://github.com/transferwise/neptune-web/commit/9201d2f1933b2dd52cd1b6380a3a37c21667c5de))
+
+
+
+
+
+## [16.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.2...@transferwise/dynamic-flows@16.2.3) (2022-01-17)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [16.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.1...@transferwise/dynamic-flows@16.2.2) (2022-01-14)
+
+
+### Bug Fixes
+
+* auto-formatting  artifact ([#1287](https://github.com/transferwise/neptune-web/issues/1287)) ([fd0fbf6](https://github.com/transferwise/neptune-web/commit/fd0fbf6a0ab3b5fd75d6747f0c32aebdbb08adcf))
+
+
+
+
+
+## [16.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.0...@transferwise/dynamic-flows@16.2.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* Add baseUrl context provider to DynamicLayout ([#1284](https://github.com/transferwise/neptune-web/issues/1284)) ([50f7728](https://github.com/transferwise/neptune-web/commit/50f77289bb7a4cc561324d5a91c922a628aa5b97))
+
+
+
+
+
+# [16.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.15...@transferwise/dynamic-flows@16.2.0) (2022-01-13)
+
+
+### Features
+
+* Allow specifying extra headers in HttpClient constructor ([#1278](https://github.com/transferwise/neptune-web/issues/1278)) ([220a772](https://github.com/transferwise/neptune-web/commit/220a772f739e436c058a58df1ee92640e1edc068))
+
+
+
+
+
+## [16.1.15](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.14...@transferwise/dynamic-flows@16.1.15) (2022-01-13)
+
+
+### Bug Fixes
+
+* Avoid rendering broken img tag in DynamicImage ([#1282](https://github.com/transferwise/neptune-web/issues/1282)) ([b322055](https://github.com/transferwise/neptune-web/commit/b3220558dfd9113f5566b51de247ea16552bf678))
+
+
+
+
+
+## [16.1.14](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.13...@transferwise/dynamic-flows@16.1.14) (2022-01-13)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [16.1.13](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.12...@transferwise/dynamic-flows@16.1.13) (2022-01-12)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [16.1.12](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.11...@transferwise/dynamic-flows@16.1.12) (2022-01-12)
+
+
+### Bug Fixes
+
+* Avoid HttpClient singleton ([#1279](https://github.com/transferwise/neptune-web/issues/1279)) ([bcab87d](https://github.com/transferwise/neptune-web/commit/bcab87d636c807c32c16a7dff41eb266deb03c43))
+
+
+
+
+
+## [16.1.11](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.10...@transferwise/dynamic-flows@16.1.11) (2022-01-12)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [16.1.10](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.9...@transferwise/dynamic-flows@16.1.10) (2022-01-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [16.1.9](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.8...@transferwise/dynamic-flows@16.1.9) (2022-01-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 ## [16.1.8](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.1.7...@transferwise/dynamic-flows@16.1.8) (2022-01-10)
 
 

@@ -1,16 +1,20 @@
 import Types from 'prop-types';
 
-import { BaseUrlContext } from '../common/contexts/baseUrlContext/BaseUrlContext';
+import {
+  BaseUrlProvider,
+  useHasBaseUrlProvider,
+} from '../common/contexts/baseUrlContext/BaseUrlContext';
 
 import GenericSchema from './genericSchema';
 
 const JsonSchemaForm = (props) => {
-  const { baseUrl } = props;
-
+  if (useHasBaseUrlProvider()) {
+    return <GenericSchema {...props} />;
+  }
   return (
-    <BaseUrlContext.Provider value={{ baseUrl }}>
+    <BaseUrlProvider baseUrl={props.baseUrl}>
       <GenericSchema {...props} />
-    </BaseUrlContext.Provider>
+    </BaseUrlProvider>
   );
 };
 
@@ -58,7 +62,7 @@ JsonSchemaForm.propTypes = {
   /**
    * Specifies the baseUrl of persist async and validation async requests.
    */
-  baseUrl: Types.string.isRequired,
+  baseUrl: Types.string,
 };
 
 JsonSchemaForm.defaultProps = {
@@ -67,6 +71,7 @@ JsonSchemaForm.defaultProps = {
   locale: 'en-GB',
   translations: {},
   disabled: false,
+  baseUrl: '',
 };
 
 export default JsonSchemaForm;

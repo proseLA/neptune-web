@@ -1,2 +1,2 @@
-export { httpClient } from './HttpClient';
+export { HttpClient } from './HttpClient';
 export { mockClient } from './MockClient';

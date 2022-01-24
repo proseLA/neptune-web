@@ -93,4 +93,17 @@ describe('postData', () => {
 
     expect(mockFetch.mock.calls[0][1]['Content-type']).toBeUndefined();
   });
+
+  describe('when passed a fetcher as third argument', () => {
+    it('should call that instead of global.fetch', () => {
+      const RESOLVE_RESPONSE = new Response('', { status: 200 });
+
+      const fetcher = jest.fn(async () => RESOLVE_RESPONSE);
+
+      postData(HTTPOPTIONS, DATA, fetcher);
+
+      expect(global.fetch).not.toHaveBeenCalled();
+      expect(fetcher).toHaveBeenCalledTimes(1);
+    });
+  });
 });

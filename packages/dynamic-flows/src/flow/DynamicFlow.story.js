@@ -27,6 +27,12 @@ const onError = (...args) => {
   action('onError');
 };
 
+const onTrackableEvent = (...args) => {
+  // eslint-disable-next-line no-console
+  console.log('onTrackableEvent', ...args);
+  action('onTrackableEvent');
+};
+
 export const basic = () => {
   const steps = {
     decision: '/decision',
@@ -51,6 +57,7 @@ export const basic = () => {
       onClose={onClose}
       onStepChange={onStepChange}
       onError={onError}
+      onTrackableEvent={onTrackableEvent}
     />
   );
 };
