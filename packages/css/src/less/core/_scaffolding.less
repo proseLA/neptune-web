@@ -379,13 +379,14 @@ video {
 :disabled {
   filter: grayscale(1);
   opacity: 0.45;
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 
   /* Custom properties logic to neutralize hover on disabled */
 
   --color-interactive-secondary-hover: var(--color-interactive-secondary);
   --color-interactive-positive-hover: var(--color-interactive-positive);
   --color-interactive-accent-hover: var(--color-interactive-accent);
+  --color-interactive-accent-active: var(--color-interactive-accent);
   --color-interactive-negative-hover: var(--color-interactive-negative);
 
   label:hover {
