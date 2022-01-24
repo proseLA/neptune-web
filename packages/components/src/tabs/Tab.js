@@ -29,7 +29,7 @@ const Tab = forwardRef(
         ref={reference}
         className={classNames('tabs__tab', {
           'tabs__tab--selected': selected,
-          'tabs__tab--disabled': disabled,
+          disabled: disabled,
         })}
         role="tab"
         id={id}

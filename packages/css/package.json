@@ -43,7 +43,7 @@
     "lintless:fix": "yarn lintless --fix"
   },
   "dependencies": {
-    "@transferwise/neptune-tokens": "6.1.0",
+    "@transferwise/neptune-tokens": "7.0.0",
     "bootstrap": "github:transferwise/bootstrap#v7.0.0",
     "inquirer": "^8.2.0",
     "inquirer-file-tree-selection-prompt": "^1.0.13",

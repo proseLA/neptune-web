@@ -222,7 +222,7 @@ class MoneyInput extends Component {
             className={classNames(
               this.style('input-group-addon'),
               this.style(`input-${size}`),
-              disabled ? this.style('tw-money-input--disabled') : '',
+              disabled ? this.style('disabled') : '',
             )}
           >
             {addon}
@@ -234,7 +234,7 @@ class MoneyInput extends Component {
               this.style('input-group-addon'),
               this.style(`input-${size}`),
               this.style('tw-money-input__fixed-currency'),
-              disabled ? this.style('tw-money-input--disabled') : '',
+              disabled ? this.style('disabled') : '',
             )}
           >
             {(size === 'lg' || size === 'md') && (

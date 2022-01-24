@@ -1,6 +1,5 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) '@transferwise/neptune-css/src/less/mixins/_logical-properties.less';
-@import (reference) '@transferwise/neptune-css/src/less/mixins/_states.less';
 
 .tw-money-input {
   .tw-money-input__fixed-currency {
@@ -15,12 +14,6 @@
     .margin(right, var(--size-24));
 
     transform: translateY(4px);
-  }
-
-  &--disabled {
-    .disabled();
-
-    cursor: not-allowed;
   }
 
   &__fixed-currency {
