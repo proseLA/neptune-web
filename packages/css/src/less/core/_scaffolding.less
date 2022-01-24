@@ -379,6 +379,17 @@ video {
 :disabled {
   filter: grayscale(1);
   opacity: 0.45;
+
+  /* Custom properties logic to neutralize hover on disabled */
+
+  --color-interactive-secondary-hover: var(--color-interactive-secondary);
+  --color-interactive-positive-hover: var(--color-interactive-positive);
+  --color-interactive-accent-hover: var(--color-interactive-accent);
+  --color-interactive-negative-hover: var(--color-interactive-negative);
+
+  label:hover {
+    --color-interactive-accent-hover: var(--color-interactive-secondary);
+  }
 }
 
 // Only display content to screen readers
