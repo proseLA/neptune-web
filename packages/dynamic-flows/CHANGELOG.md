@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.8...@transferwise/dynamic-flows@17.0.0) (2022-01-25)
+
+
+* feat!: DynamicFlow - Remove httpClient prop in favour of a fetcher prop (#1294) ([cead29a](https://github.com/transferwise/neptune-web/commit/cead29abd72f7b71f5c26b121d4bfbff7fadd5ad)), closes [#1294](https://github.com/transferwise/neptune-web/issues/1294)
+
+
+### BREAKING CHANGES
+
+* Removed httpClient prop in favour of a fetcher prop.
+
+In the `DynamicFlow` component, we remove the ability to pass a custom `httpClient` as a prop. Instead we allow consumers to pass a `fetcher` prop, which is a function with the same signature as global fetch:
+
+```ts
+```
+
+**Before**
+
+```jsx
+<DynamicFlow
+  flowUrl="/my-flow"
+  httpClient={myCustomHttpClient}
+  ...
+/>
+```
+
+**After**
+
+```jsx
+<DynamicFlow
+  flowUrl="/my-flow"
+  fetcher={myCustomFetchFunction}
+  ...
+/>
+```
+
+
+
+
+
 ## [16.2.8](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.7...@transferwise/dynamic-flows@16.2.8) (2022-01-25)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
