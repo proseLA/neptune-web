@@ -15,33 +15,47 @@ const reviewStep = {
 
 const createResponse = (body) => new Response(JSON.stringify(body));
 
+const delayedResponse = async (response) => {
+  await wait(500);
+  return response;
+};
+
+const delayedReject = async (reason) => {
+  await wait(100);
+  throw reason;
+};
+
 export async function mockFetcher(input, init) {
   // eslint-disable-next-line no-console
   console.log('mockFetcher', input, init);
 
   switch (input) {
     case '/decision':
-      return Promise.resolve(createResponse(decisionStep));
+      return delayedResponse(createResponse(decisionStep));
     case '/recipient':
-      return Promise.resolve(createResponse(formStep));
+      return delayedResponse(createResponse(formStep));
     case '/recipient-details':
-      return Promise.resolve(createResponse(receiveStep));
-    case '/recipient-details-refresh':
-      return Promise.resolve(createResponse(receiveStepRefresh));
+      return delayedResponse(createResponse(receiveStep));
+    case '/recipient-details-refresh': {
+      const requestModel = JSON.parse(init.body);
+      if (requestModel.email.slice(0, 6) === 'match') {
+        return delayedResponse(createResponse(receiveStepRefresh));
+      }
+      return delayedResponse(createResponse({ ...receiveStep, model: requestModel }));
+    }
     case '/layout':
-      return Promise.resolve(createResponse(layoutStep));
+      return delayedResponse(createResponse(layoutStep));
     case '/review':
-      return Promise.resolve(createResponse(review));
+      return delayedResponse(createResponse(review));
     case '/confirm':
-      return Promise.resolve(createResponse(reviewStep));
+      return delayedResponse(createResponse(reviewStep));
     case '/final':
-      return Promise.resolve(createResponse(finalStep));
+      return delayedResponse(createResponse(finalStep));
     case '/error':
-      return Promise.reject({
-        error: 'Something went wrong',
-        validation: {},
-      });
+      return delayedReject({ error: 'Something went wrong', validation: {} });
     default:
-      return Promise.resolve({});
+      return delayedResponse({});
   }
 }
+
+const wait = (t) => new Promise((resolve) => setTimeout(resolve, t));

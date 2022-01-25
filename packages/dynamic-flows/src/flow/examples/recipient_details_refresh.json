@@ -299,7 +299,7 @@
           "placeholder": "Please select where you are sending to...",
           "alert": {
             "context": "success",
-            "markdown": "Onion Knight is already on Wise, and would like to receive EUR in the following account",
+            "markdown": "Bob Loblaw is already on Wise, and would like to receive EUR in the following account",
             "type": "alert"
           }
         }
@@ -315,6 +315,6 @@
     "currency": "EUR",
     "details": { "targetUserId": "9859779" },
     "type": "UniqueId",
-    "email": "bobloblaw@law.blog"
+    "email": "match@wise.com"
   }
 }
