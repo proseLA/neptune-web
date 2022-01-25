@@ -45,6 +45,14 @@
     }
   }
 
+  &[disabled] {
+    &:hover {
+      color: @color;
+      background-color: @background;
+      border-color: @border;
+    }
+  }
+
   &.active,
   .open > .dropdown-toggle& {
     background-image: none;
