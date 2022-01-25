@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.5.1...@transferwise/components@39.5.2) (2022-01-25)
+
+
+### Bug Fixes
+
+* MoneyInput label alignments ([#1293](https://github.com/transferwise/neptune-web/issues/1293)) ([757c186](https://github.com/transferwise/neptune-web/commit/757c1864cfd4279b73653d117d90ddd6c13438e0))
+
+
+
+
+
 ## [39.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.5.0...@transferwise/components@39.5.1) (2022-01-25)
 
 **Note:** Version bump only for package @transferwise/components
