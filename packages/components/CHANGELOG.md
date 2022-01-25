@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.5.2...@transferwise/components@39.6.0) (2022-01-25)
+
+
+### Features
+
+* **UploadInput:** optionally restrict the maximum number of files to upload ([#1289](https://github.com/transferwise/neptune-web/issues/1289)) ([10b2a5a](https://github.com/transferwise/neptune-web/commit/10b2a5a53b28779b393a88602db0f7eb6c072d01))
+
+
+
+
+
 ## [39.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.5.1...@transferwise/components@39.5.2) (2022-01-25)
 
 
