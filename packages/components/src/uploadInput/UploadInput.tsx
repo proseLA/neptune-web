@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '../button';
@@ -78,9 +78,25 @@ export type UploadInputProps = {
      */
     cancelText?: string;
   };
+
+  /**
+   * Maximum number of files allowed, if provided, shows error below file item
+   */
+  maxFiles?: number;
+
+  /**
+   * Error message to show when the maximum number of files are uploaded already
+   */
+  maxFilesErrorMessage?: string;
 } & Pick<UploadButtonProps, 'disabled' | 'multiple' | 'fileTypes' | 'sizeLimit' | 'description'> &
   Pick<UploadItemProps, 'onDownload'> &
   CommonProps;
+
+function generateFileId(file: File) {
+  const { name, size } = file;
+  const uploadTimeStamp = new Date().getTime();
+  return `${name}_${size}_${uploadTimeStamp}`;
+}
 
 const UploadInput = ({
   files = [],
@@ -97,6 +113,8 @@ const UploadInput = ({
   onValidationError,
   onFilesChange,
   onDownload,
+  maxFiles,
+  maxFilesErrorMessage,
 }: UploadInputProps): ReactElement => {
   const [markedFileForDelete, setMarkedFileForDelete] = useState<UploadedFile | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -108,20 +126,38 @@ const UploadInput = ({
     multiple || files.length === 0 ? files : [files[0]],
   );
 
+  const uploadedFilesListReference = useRef(multiple || files.length === 0 ? files : [files[0]]);
+
+  function addFileToList(recentUploadedFile: UploadedFile) {
+    function addToList(listToAddTo: UploadedFile[]) {
+      return [...listToAddTo, recentUploadedFile];
+    }
+
+    setUploadedFiles(addToList);
+    uploadedFilesListReference.current = addToList(uploadedFilesListReference.current);
+  }
+
   const removeFileFromList = (file: UploadedFile) => {
-    setUploadedFiles((currentFiles) =>
-      currentFiles.filter((fileInList) => file !== fileInList && file.id !== fileInList.id),
-    );
+    function filterOutFrom(listToFilterFrom: UploadedFile[]) {
+      return listToFilterFrom.filter(
+        (fileInList) => file !== fileInList && file.id !== fileInList.id,
+      );
+    }
+
+    setUploadedFiles(filterOutFrom);
+    uploadedFilesListReference.current = filterOutFrom(uploadedFilesListReference.current);
   };
 
   const modifyFileInList = (file: UploadedFile, updates: Partial<UploadedFile>) => {
-    setUploadedFiles((currentFiles) =>
-      currentFiles.map((fileInList) => {
+    const updateListItem = (listToUpdate: UploadedFile[]) =>
+      listToUpdate.map((fileInList) => {
         return fileInList === file || fileInList.id === file.id
           ? { ...file, ...updates }
           : fileInList;
-      }),
-    );
+      });
+
+    setUploadedFiles(updateListItem);
+    uploadedFilesListReference.current = updateListItem(uploadedFilesListReference.current);
   };
 
   const removeFile = (file: UploadedFile) => {
@@ -143,6 +179,40 @@ const UploadInput = ({
     }
   };
 
+  function handleFileUploadFailure(file: File, failureMessage: string) {
+    const { name } = file;
+    const id = generateFileId(file);
+    const failedUpload = {
+      id,
+      filename: name,
+      status: Status.FAILED,
+      error: failureMessage,
+    };
+
+    addFileToList(failedUpload);
+
+    if (onValidationError) {
+      onValidationError(failedUpload);
+    }
+  }
+
+  function getNumberOfFilesUploaded() {
+    const uploadInitiatedStatus = new Set([Status.SUCCEEDED, Status.PENDING]);
+    const validFiles = uploadedFilesListReference.current.filter(
+      (file) => file.status && uploadInitiatedStatus.has(file.status),
+    );
+    return validFiles.length;
+  }
+
+  function areMaximumFilesUploadedAlready() {
+    if (!maxFiles) {
+      return false;
+    }
+
+    const numberOfValidFiles = getNumberOfFilesUploaded();
+    return numberOfValidFiles >= maxFiles;
+  }
+
   // One or more files selected, create entries for them
   const addFiles = (selectedFiles: FileList) => {
     for (let i = 0; i < selectedFiles.length; i += 1) {
@@ -152,43 +222,29 @@ const UploadInput = ({
       const formData = new FormData();
 
       if (file) {
-        const { name, size } = file;
-        const id = `${name}_${size}`;
+        const { name } = file;
+        const id = generateFileId(file);
 
         const allowedFileTypes = Array.isArray(fileTypes) ? fileTypes.join(',') : fileTypes;
 
         // Check if file type is valid
         if (!isTypeValid(file, allowedFileTypes)) {
-          const failedUpload = {
-            id,
-            filename: name,
-            status: Status.FAILED,
-            error: formatMessage(MESSAGES.fileTypeNotSupported),
-          };
-
-          setUploadedFiles((currentFiles) => [...currentFiles, failedUpload]);
-
-          if (onValidationError) {
-            onValidationError(failedUpload);
-          }
+          handleFileUploadFailure(file, formatMessage(MESSAGES.fileTypeNotSupported));
           continue;
         }
 
         // Check if the filesize is valid
         // Convert to rough bytes
         if (!isSizeValid(file, sizeLimit * 1000)) {
-          const failedUpload = {
-            id,
-            filename: name,
-            status: Status.FAILED,
-            error: formatMessage(MESSAGES.fileIsTooLarge),
-          };
+          handleFileUploadFailure(file, formatMessage(MESSAGES.fileIsTooLarge));
+          continue;
+        }
 
-          setUploadedFiles((currentFiles) => [...currentFiles, failedUpload]);
-
-          if (onValidationError) {
-            onValidationError(failedUpload);
-          }
+        if (areMaximumFilesUploadedAlready()) {
+          const failureMessage =
+            maxFilesErrorMessage ||
+            formatMessage(MESSAGES.maximumFilesAlreadyUploaded, { maxFilesAllowed: maxFiles });
+          handleFileUploadFailure(file, failureMessage);
           continue;
         }
 
@@ -199,7 +255,7 @@ const UploadInput = ({
           status: Status.PENDING,
         };
 
-        setUploadedFiles((currentFiles) => [...currentFiles, pendingFile]);
+        addFileToList(pendingFile);
 
         // Start uploading the file
         onUploadFile(formData)
@@ -250,11 +306,12 @@ const UploadInput = ({
         ))}
         {(multiple || (!multiple && !uploadedFiles.length)) && (
           <UploadButton
-            disabled={disabled}
+            disabled={areMaximumFilesUploadedAlready() || disabled}
             multiple={multiple}
             fileTypes={fileTypes}
             sizeLimit={sizeLimit}
             description={description}
+            maxFiles={maxFiles}
             onChange={addFiles}
           />
         )}

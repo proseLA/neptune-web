@@ -8,6 +8,8 @@ import UploadInput, { UploadInputProps } from './UploadInput';
 import { TEST_IDS as UPLOAD_BUTTON_TEST_IDS } from './uploadButton/UploadButton';
 import { TEST_IDS as UPLOAD_ITEM_TEST_IDS } from './uploadItem/UploadItem';
 
+const spiedDateObject = jest.spyOn(global, 'Date');
+
 describe('UploadInput', () => {
   const pngFile = new File(['foo'], 'foo.png', { type: 'image/png' });
   const jpgFile = new File(['foo'], 'foo.jpg', { type: 'image/jpeg' });
@@ -37,8 +39,27 @@ describe('UploadInput', () => {
   const renderComponent = (customProps: UploadInputProps = props) =>
     render(<UploadInput {...customProps} />);
 
+  beforeEach(() => {
+    (spiedDateObject as jest.Mock).mockImplementation(() => ({
+      getTime: jest.fn().mockReturnValue(Math.random()),
+    }));
+  });
+
+  afterAll(() => {
+    (spiedDateObject as jest.Mock).mockRestore();
+  });
+
   describe('single file upload', () => {
     it('should trigger onUploadFiles & onFilesChange with a single FormData entry containing `file` field', async () => {
+      const mockTimeStampValue1 = '11111111';
+      const mockTimeStampValue2 = '22222222';
+      (spiedDateObject as jest.Mock).mockImplementation(() => ({
+        getTime: jest
+          .fn()
+          .mockReturnValueOnce(mockTimeStampValue1)
+          .mockReturnValueOnce(mockTimeStampValue2),
+      }));
+
       const onFilesChange = jest.fn();
       renderComponent({ ...props, onFilesChange });
 
@@ -53,7 +74,7 @@ describe('UploadInput', () => {
       expect(onFilesChange).toHaveBeenNthCalledWith(1, [
         {
           filename: 'foo.png',
-          id: 'foo.png_3',
+          id: `foo.png_3_${mockTimeStampValue1}`,
           status: 'pending',
           url: undefined,
         },
@@ -190,6 +211,74 @@ describe('UploadInput', () => {
       });
 
       expect(screen.queryByLabelText('Remove file ', { exact: false })).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Max File Upload limit', () => {
+    it('should show max file number in the description next to the upload button', async () => {
+      renderComponent({
+        ...props,
+        multiple: true,
+        maxFiles: 2,
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText(/Maximum 2 files\./)).toBeInTheDocument();
+      });
+    });
+
+    it('should show given error when maxFiles limit is applied and more files are uploaded', async () => {
+      const maxFilesReachedMessage = 'Maximum files message from prop';
+      const mockOnUploadFileFn = jest.fn();
+      renderComponent({
+        ...props,
+        multiple: true,
+        maxFiles: 3,
+        maxFilesErrorMessage: maxFilesReachedMessage,
+        onUploadFile: mockOnUploadFileFn,
+      });
+
+      mockOnUploadFileFn.mockImplementation((formData: FormData) => {
+        const file = formData.get('file');
+        return Promise.resolve({ file, id: Math.random() });
+      });
+
+      const input = screen.getByTestId(UPLOAD_BUTTON_TEST_IDS.uploadInput);
+      userEvent.upload(input, [pngFile, jpgFile]);
+
+      const pngFile2 = new File(['foo2'], 'foo2.png', { type: 'image/png' });
+      const jpgFile2 = new File(['foo2'], 'foo2.jpg', { type: 'image/jpeg' });
+      userEvent.upload(input, [pngFile2, jpgFile2]);
+
+      await waitFor(() => {
+        expect(screen.getByText(maxFilesReachedMessage)).toBeInTheDocument();
+      });
+    });
+
+    it('should show default error when maxFiles limit exceeds and no error message provided', async () => {
+      const defaultMaxFilesReachedMessage =
+        'Sorry, this upload failed because we can only accept 2 files at once.';
+      const mockOnUploadFileFn = jest.fn();
+      renderComponent({
+        ...props,
+        multiple: true,
+        maxFiles: 2,
+        onUploadFile: mockOnUploadFileFn,
+      });
+
+      mockOnUploadFileFn.mockImplementation((formData: FormData) => {
+        const file = formData.get('file');
+        return Promise.resolve({ file, id: Math.random() });
+      });
+
+      const input = screen.getByTestId(UPLOAD_BUTTON_TEST_IDS.uploadInput);
+      const pngFile2 = new File(['foo2'], 'foo2.png', { type: 'image/png' });
+
+      userEvent.upload(input, [pngFile, jpgFile, pngFile2]);
+
+      await waitFor(() => {
+        expect(screen.getByText(defaultMaxFilesReachedMessage)).toBeInTheDocument();
+      });
     });
   });
 });

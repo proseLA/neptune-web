@@ -95,5 +95,10 @@ describe('UploadButton', () => {
       renderComponent({ ...props, fileTypes: ['*'], description });
       expect(screen.getByText('Test description')).toBeInTheDocument();
     });
+
+    it('should show maxFiles next to the description, if provided', () => {
+      renderComponent({ ...props, fileTypes: ['*'], maxFiles: 5 });
+      expect(screen.getByText(/Maximum 5 files\./)).toBeInTheDocument();
+    });
   });
 });

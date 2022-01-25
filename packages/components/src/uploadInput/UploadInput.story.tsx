@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import { Status } from '../common';
 
 import UploadInput, { UploadInputProps } from './UploadInput';
-import { UploadedFile, UploadResponse } from './types';
+import { UploadResponse } from './types';
 
 export default {
   title: 'UploadInput',
@@ -25,16 +25,12 @@ const files = [
   {
     id: 3,
     filename: 'receipt failed with error string.png',
-    status: Status.FAILED,
-    error: 'File is too large',
+    status: Status.SUCCEEDED,
   },
   {
     id: 4,
     filename: 'receipt failed with error object.png',
-    status: Status.FAILED,
-    error: {
-      message: 'Filetype not supported',
-    },
+    status: Status.SUCCEEDED,
   },
 ];
 
@@ -71,8 +67,8 @@ SingleFile.args = { ...props };
 export const MultipleFiles = Template.bind({});
 MultipleFiles.args = { ...props, multiple: true };
 
-export const UploadInputWithDescriptionFromOutside = Template.bind({});
-UploadInputWithDescriptionFromOutside.args = {
+export const UploadInputWithDescriptionFromProps = Template.bind({});
+UploadInputWithDescriptionFromProps.args = {
   ...props,
   multiple: true,
   description: 'Custom file description from prop',
@@ -145,4 +141,12 @@ withFilesChangeHandler.args = {
   ...props,
   files,
   onFilesChange: action('Files change handler'),
+};
+
+export const withMaxFilesToUploadLimit = Template.bind({});
+withMaxFilesToUploadLimit.args = {
+  ...props,
+  multiple: true,
+  maxFiles: 5,
+  maxFilesErrorMessage: "Can't upload as maximum number of files allowed are already uploaded",
 };

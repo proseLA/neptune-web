@@ -1,13 +1,13 @@
-import { Upload as UploadIcon, PlusCircle as PlusIcon } from '@transferwise/icons';
+import { PlusCircle as PlusIcon, Upload as UploadIcon } from '@transferwise/icons';
 import classNames from 'classnames';
-import { useState, useRef, DragEvent, ChangeEvent } from 'react';
+import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { FileType } from '../../common';
 import { useDirection } from '../../common/hooks';
 
 import MESSAGES from './UploadButton.messages';
-import { imageFileTypes, DEFAULT_SIZE_LIMIT } from './defaults';
+import { DEFAULT_SIZE_LIMIT, imageFileTypes } from './defaults';
 import getAllowedFileTypes from './getAllowedFileTypes';
 
 type AllowedFileTypes = string | string[] | FileType[];
@@ -38,6 +38,11 @@ export type UploadButtonProps = {
   description?: string | undefined;
 
   /**
+   * Maximum number of files allowed, if provided, shows error below file item
+   */
+  maxFiles?: number;
+
+  /**
    * Called when some files were successfully selected
    *
    * @param files
@@ -60,6 +65,7 @@ const UploadButton = ({
   description,
   fileTypes = imageFileTypes,
   sizeLimit = DEFAULT_SIZE_LIMIT,
+  maxFiles,
   onChange,
 }: UploadButtonProps) => {
   const { isRTL } = useDirection();
@@ -151,6 +157,22 @@ const UploadButton = ({
     return { accept: fileTypes };
   }
 
+  function renderDescription() {
+    return (
+      <>
+        <small className={classNames('np-upload-description', { 'text-primary': !disabled })}>
+          {getDescription()}
+          {maxFiles && (
+            <>
+              <br />
+              {`Maximum ${maxFiles} files.`}
+            </>
+          )}
+        </small>
+      </>
+    );
+  }
+
   return (
     <div
       className={classNames('np-upload-button-container', 'droppable', {
@@ -182,9 +204,7 @@ const UploadButton = ({
           </div>
           <div className="media-body text-xs-left" data-testid={TEST_IDS.mediaBody}>
             <div>{formatMessage(multiple ? MESSAGES.uploadFiles : MESSAGES.uploadFile)}</div>
-            <small className={classNames('np-upload-description', { 'text-primary': !disabled })}>
-              {getDescription()}
-            </small>
+            {renderDescription()}
           </div>
         </div>
       </label>

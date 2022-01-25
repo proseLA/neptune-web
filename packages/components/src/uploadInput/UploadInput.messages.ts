@@ -31,4 +31,11 @@ export default defineMessages({
     defaultMessage: 'Remove',
     description: 'Confirm button text to display on delete confirmation modal',
   },
+  maximumFilesAlreadyUploaded: {
+    id: 'neptune.UploadInput.maximumFilesAlreadyUploaded',
+    defaultMessage:
+      'Sorry, this upload failed because we can only accept {maxFilesAllowed} files at once.',
+    description:
+      'When number of files to be uploaded is restricted, this message is displayed below the files that are extra',
+  },
 });
