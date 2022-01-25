@@ -1,9 +1,9 @@
 import Types from 'prop-types';
 
 import {
-  BaseUrlProvider,
-  useHasBaseUrlProvider,
-} from '../common/contexts/baseUrlContext/BaseUrlContext';
+  FetcherProviderFromBaseUrl,
+  useHasFetcherProvider,
+} from '../common/contexts/fetcherContext';
 
 import DynamicAlert from './alert';
 import DynamicBox from './box';
@@ -92,10 +92,14 @@ const DynamicLayout = (props) => {
     }
   };
 
-  if (useHasBaseUrlProvider() || baseUrl == null) {
-    return <>{components.map(renderComponent)}</>;
+  if (useHasFetcherProvider() || baseUrl == null) {
+    return components.map(renderComponent);
   } else {
-    return <BaseUrlProvider baseUrl={baseUrl}>{components.map(renderComponent)}</BaseUrlProvider>;
+    return (
+      <FetcherProviderFromBaseUrl baseUrl={baseUrl}>
+        {components.map(renderComponent)}
+      </FetcherProviderFromBaseUrl>
+    );
   }
 };
 
@@ -104,7 +108,7 @@ DynamicLayout.propTypes = {
   model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
   submitted: Types.bool.isRequired,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  baseUrl: Types.string.isRequired,
+  baseUrl: Types.string,
   onAction: Types.func.isRequired,
   onModelChange: Types.func.isRequired,
   onPersistAsync: Types.func,

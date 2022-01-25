@@ -5,7 +5,7 @@ import DynamicFlow from '.';
 
 describe('Given a component for rendering a dynamic flow', () => {
   let component;
-  let mockClient;
+  let mockFetcher;
   let onClose;
   let onStepChange;
   let onError;
@@ -134,7 +134,6 @@ describe('Given a component for rendering a dynamic flow', () => {
     },
   };
 
-  const baseUrl = '';
   const formUrl = '/form';
   const formWithErrorsUrl = '/formWithErrors';
   const decisionUrl = '/decision';
@@ -181,8 +180,8 @@ describe('Given a component for rendering a dynamic flow', () => {
     return resolve(response, { headers: new Headers({ 'X-DF-Exit': true }) });
   };
 
-  const mockRequest = ({ action, data }) => {
-    switch (action.url) {
+  const mockRequest = (url) => {
+    switch (url) {
       case '/form':
         return resolve(formStep);
       case '/formNoLayout':
@@ -205,9 +204,6 @@ describe('Given a component for rendering a dynamic flow', () => {
         return resolve(newStep);
       case '/refresh':
       case '/refreshFromTrigger':
-        if (data.failure) {
-          return rejectWithJsonResponse(validationErrorResponse);
-        }
         return resolve(newStep);
       case '/failure':
         return rejectWithJsonResponse(errorResponse);
@@ -227,10 +223,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   }
 
   beforeEach(async () => {
-    mockClient = {
-      init: jest.fn(),
-      request: jest.fn().mockImplementation(mockRequest),
-    };
+    mockFetcher = jest.fn().mockImplementation(mockRequest);
     onClose = jest.fn();
     onStepChange = jest.fn();
     onError = jest.fn();
@@ -251,18 +244,18 @@ describe('Given a component for rendering a dynamic flow', () => {
       // Use mount an manually mock, information above
       component = mount(
         <DynamicFlow
-          baseUrl={baseUrl}
+          fetcher={mockFetcher}
           flowUrl={decisionUrl}
-          httpClient={mockClient}
           onClose={onClose}
           onStepChange={onStepChange}
         />,
       );
     });
     it('should load the step specification using the supplied URL', () => {
-      expect(mockClient.request).toHaveBeenCalledWith({
-        action: { url: decisionUrl, method: 'GET' },
-      });
+      expect(mockFetcher).toHaveBeenCalledWith(
+        decisionUrl,
+        expect.objectContaining({ method: 'GET' }),
+      );
     });
   });
 
@@ -274,12 +267,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     describe('and the response is valid JSON', () => {
       beforeEach(() => {
         component = mount(
-          <DynamicFlow
-            baseUrl={baseUrl}
-            flowUrl="/failedStep"
-            httpClient={mockClient}
-            onError={onError}
-          />,
+          <DynamicFlow flowUrl="/failedStep" fetcher={mockFetcher} onError={onError} />,
         );
       });
 
@@ -296,12 +284,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     describe('but the response is not JSON', () => {
       beforeEach(() => {
         component = mount(
-          <DynamicFlow
-            baseUrl={baseUrl}
-            flowUrl="/failedStepNoJson"
-            httpClient={mockClient}
-            onError={onError}
-          />,
+          <DynamicFlow flowUrl="/failedStepNoJson" fetcher={mockFetcher} onError={onError} />,
         );
       });
 
@@ -317,9 +300,8 @@ describe('Given a component for rendering a dynamic flow', () => {
     beforeEach(() => {
       component = mount(
         <DynamicFlow
-          baseUrl={baseUrl}
           flowUrl={formWithErrorsUrl}
-          httpClient={mockClient}
+          fetcher={mockFetcher}
           onClose={onClose}
           onStepChange={onStepChange}
         />,
@@ -353,9 +335,8 @@ describe('Given a component for rendering a dynamic flow', () => {
     beforeEach(() => {
       component = mount(
         <DynamicFlow
-          baseUrl={baseUrl}
           flowUrl={formUrl}
-          httpClient={mockClient}
+          fetcher={mockFetcher}
           onClose={onClose}
           onStepChange={onStepChange}
         />,
@@ -408,11 +389,13 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should use the model to request a new schema', () => {
-        const fakeAction = {
-          method: 'POST',
-          url: '/refresh',
-        };
-        expect(mockClient.request).toHaveBeenCalledWith({ action: fakeAction, data: newModel });
+        expect(mockFetcher).toHaveBeenCalledWith(
+          '/refresh',
+          expect.objectContaining({
+            method: 'POST',
+            body: JSON.stringify(newModel),
+          }),
+        );
       });
 
       it('should pass the new schema to the layout', () => {
@@ -438,11 +421,13 @@ describe('Given a component for rendering a dynamic flow', () => {
       waitBeforeEach();
 
       it('should use the model to request a new schema', () => {
-        const fakeAction = {
-          method: 'POST',
-          url: '/refreshFromTrigger',
-        };
-        expect(mockClient.request).toHaveBeenCalledWith({ action: fakeAction, data: newModel });
+        expect(mockFetcher).toHaveBeenCalledWith(
+          '/refreshFromTrigger',
+          expect.objectContaining({
+            method: 'POST',
+            body: JSON.stringify(newModel),
+          }),
+        );
       });
 
       it('should pass the new schema to the layout', () => {
@@ -477,16 +462,19 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should make the corresponding request', () => {
-        expect(mockClient.request).toHaveBeenCalledWith({
-          action: successAction,
-          data: { a: 1 },
-        });
+        expect(mockFetcher).toHaveBeenCalledWith(
+          successAction.url,
+          expect.objectContaining({
+            method: successAction.method,
+            body: JSON.stringify({ a: 1 }),
+          }),
+        );
       });
     });
 
     describe('when the layout broadcasts a POST action and the model is invalid', () => {
       beforeEach(() => {
-        mockClient.request.mockClear();
+        mockFetcher.mockClear();
 
         getStep().invoke('onModelChange')({}, thingSchema, undefined, numberSchema);
         getStep().invoke('onAction')(successAction);
@@ -497,7 +485,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should not make the corresponding request', () => {
-        expect(mockClient.request).not.toHaveBeenCalled();
+        expect(mockFetcher).not.toHaveBeenCalled();
       });
     });
 
@@ -508,7 +496,10 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
 
       it('should ignore the invalid model and make the corresponding request', () => {
-        expect(mockClient.request).toHaveBeenCalledWith({ action: navigateAction });
+        expect(mockFetcher).toHaveBeenCalledWith(
+          navigateAction.url,
+          expect.objectContaining({ method: navigateAction.method }),
+        );
       });
     });
 
@@ -578,17 +569,20 @@ describe('Given a component for rendering a dynamic flow', () => {
       const dataAction = { ...successAction, data: { a: 2, c: true } };
 
       beforeEach(() => {
-        mockClient.request.mockClear();
+        mockFetcher.mockClear();
 
         getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getStep().invoke('onAction')(dataAction);
       });
 
       it('should submit the latest model combined with the action data', () => {
-        expect(mockClient.request).toHaveBeenCalledWith({
-          action: dataAction,
-          data: { a: 2, c: true },
-        });
+        expect(mockFetcher).toHaveBeenCalledWith(
+          dataAction.url,
+          expect.objectContaining({
+            method: dataAction.method,
+            body: JSON.stringify({ a: 2, c: true }),
+          }),
+        );
       });
     });
 
@@ -699,9 +693,8 @@ describe('Given a component for rendering a dynamic flow', () => {
     beforeEach(() => {
       component = mount(
         <DynamicFlow
-          baseUrl={baseUrl}
           flowUrl={decisionUrl}
-          httpClient={mockClient}
+          fetcher={mockFetcher}
           onClose={onClose}
           onStepChange={onStepChange}
           onError={onError}

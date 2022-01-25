@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 
 import DynamicFlow from './DynamicFlow';
-import { mockClient } from './client';
+import { mockFetcher } from './_storybook/mockFetcher';
 
 export default {
   component: DynamicFlow,
@@ -47,13 +47,10 @@ export const basic = () => {
 
   const flowUrl = select('step', steps, '/decision');
 
-  const baseUrl = '';
-
   return (
     <DynamicFlow
       flowUrl={flowUrl}
-      baseUrl={baseUrl}
-      httpClient={mockClient}
+      fetcher={mockFetcher}
       onClose={onClose}
       onStepChange={onStepChange}
       onError={onError}

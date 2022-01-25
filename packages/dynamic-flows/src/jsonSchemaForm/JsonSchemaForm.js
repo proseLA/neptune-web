@@ -1,20 +1,20 @@
 import Types from 'prop-types';
 
 import {
-  BaseUrlProvider,
-  useHasBaseUrlProvider,
-} from '../common/contexts/baseUrlContext/BaseUrlContext';
+  FetcherProviderFromBaseUrl,
+  useHasFetcherProvider,
+} from '../common/contexts/fetcherContext';
 
 import GenericSchema from './genericSchema';
 
 const JsonSchemaForm = (props) => {
-  if (useHasBaseUrlProvider()) {
+  if (useHasFetcherProvider() || props.baseUrl == null) {
     return <GenericSchema {...props} />;
   }
   return (
-    <BaseUrlProvider baseUrl={props.baseUrl}>
+    <FetcherProviderFromBaseUrl baseUrl={props.baseUrl}>
       <GenericSchema {...props} />
-    </BaseUrlProvider>
+    </FetcherProviderFromBaseUrl>
   );
 };
 

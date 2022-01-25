@@ -15,13 +15,11 @@ const reviewStep = {
 
 const createResponse = (body) => new Response(JSON.stringify(body));
 
-function init() {}
-
-async function request({ action, data }) {
+export async function mockFetcher(input, init) {
   // eslint-disable-next-line no-console
-  console.log('request', action.url, data);
+  console.log('mockFetcher', input, init);
 
-  switch (action.url) {
+  switch (input) {
     case '/decision':
       return Promise.resolve(createResponse(decisionStep));
     case '/recipient':
@@ -47,5 +45,3 @@ async function request({ action, data }) {
       return Promise.resolve({});
   }
 }
-
-export const mockClient = { init, request };

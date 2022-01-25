@@ -3,8 +3,7 @@ import isEqual from 'lodash.isequal';
 import Types from 'prop-types';
 import { useRef, useState } from 'react';
 
-import { getAsyncUrl } from '../../common/async/url';
-import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import { useFetcher } from '../../common/contexts/fetcherContext';
 import { isValidSchema } from '../../common/validation/schema-validators';
 import BasicTypeSchema from '../basicTypeSchema';
 
@@ -15,7 +14,7 @@ const ValidationAsyncSchema = (props) => {
   const [validationAsyncErrors, setValidationAsyncErrors] = useState(null);
   const [fieldSubmitted, setFieldSubmitted] = useState(false);
   const [abortController, setAbortController] = useState(null);
-  const baseUrl = useBaseUrl();
+  const fetcher = useFetcher();
 
   const getValidationAsyncResponse = async (currentValidationAsyncModel, validationAsyncSpec) => {
     const signal = abortCurrentRequestAndGetNewAbortSignal();
@@ -24,7 +23,7 @@ const ValidationAsyncSchema = (props) => {
     previousRequestedModelReference.current = currentValidationAsyncModel;
     setFieldSubmitted(true);
 
-    const validationAsyncFetch = fetch(getAsyncUrl(validationAsyncSpec.url, baseUrl), {
+    const validationAsyncFetch = fetcher(validationAsyncSpec.url, {
       method: validationAsyncSpec.method,
       headers: {
         'Content-Type': 'application/json',

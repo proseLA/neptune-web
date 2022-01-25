@@ -18,11 +18,9 @@ const delayedJsonResponse = async (response, init = {}) => {
   return new Response(JSON.stringify(response), init);
 };
 
-const mockClient = {
-  request: ({ action, data }) => {
-    const json = routes[action.url] || {};
-    return delayedJsonResponse(json);
-  },
+const mockFetcher = (input, init) => {
+  const json = routes[input] || {};
+  return delayedJsonResponse(json);
 };
 
 const i18n = { locale: 'en-GB', messages: { ...componentTranslations['en'] } };
@@ -36,9 +34,8 @@ describe('E2E: Given a DynamicFlow component to render', () => {
       render(
         <Provider i18n={i18n}>
           <DynamicFlow
-            baseUrl=""
             flowUrl="/recipient-details"
-            httpClient={mockClient}
+            fetcher={mockFetcher}
             onClose={jest.fn()}
             onStepChange={jest.fn()}
           />

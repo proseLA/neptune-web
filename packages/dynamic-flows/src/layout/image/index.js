@@ -2,7 +2,7 @@ import { Image } from '@transferwise/components';
 import Types from 'prop-types';
 import { useEffect, useState } from 'react';
 
-import { useBaseUrl } from '../../common/contexts/baseUrlContext/BaseUrlContext';
+import { useFetcher } from '../../common/contexts/fetcherContext';
 import { marginModel } from '../models';
 import { getMarginBottom } from '../utils';
 
@@ -37,18 +37,15 @@ const readImageBlobAsDataURL = (imageBlob) =>
     reader.readAsDataURL(imageBlob);
   });
 
-const getImageSource = async (baseUrl, image) => {
+const getImageSource = async (fetcher, image) => {
   try {
     const url = new URL(image.url, window?.location?.origin);
-    if (image.url?.indexOf(url.pathname) === 0) {
-      url.pathname = baseUrl + url.pathname;
-    }
 
     if (url.origin !== window?.location?.origin) {
       return image.url;
     }
 
-    return fetch(url, {
+    return fetcher(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'image/*',
@@ -66,12 +63,12 @@ const getImageSource = async (baseUrl, image) => {
 const DynamicImage = (props) => {
   const image = props.component;
 
-  const baseUrl = useBaseUrl();
+  const fetcher = useFetcher();
 
   const [imageSource, setImageSource] = useState('');
 
   useEffect(() => {
-    getImageSource(baseUrl, image).then(setImageSource);
+    getImageSource(fetcher, image).then(setImageSource);
   }, [image.url]);
 
   const imageProps = {

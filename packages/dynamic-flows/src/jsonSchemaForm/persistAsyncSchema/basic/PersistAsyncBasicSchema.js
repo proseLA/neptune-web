@@ -6,8 +6,7 @@ import { useIntl } from 'react-intl';
 
 import { FormControlType } from '../../../common';
 import { isStatus2xx, isStatus422, QueryablePromise } from '../../../common/api/utils';
-import { getAsyncUrl } from '../../../common/async/url';
-import { useBaseUrl } from '../../../common/contexts/baseUrlContext/BaseUrlContext';
+import { useFetcher } from '../../../common/contexts/fetcherContext';
 import usePrevious from '../../../common/hooks/usePrevious';
 import { isValidSchema } from '../../../common/validation/schema-validators';
 import BasicTypeSchema from '../../basicTypeSchema';
@@ -32,7 +31,7 @@ const controlTypesWithPersistOnChange = new Set([
 
 const PersistAsyncBasicSchema = (props) => {
   const intl = useIntl();
-  const baseUrl = useBaseUrl();
+  const fetcher = useFetcher();
 
   const [persistAsyncModel, setPersistAsyncModel] = useState(null);
   const previousPersistAsyncModel = usePrevious(persistAsyncModel);
@@ -56,7 +55,7 @@ const PersistAsyncBasicSchema = (props) => {
     setFieldSubmitted(true); // persist async initiated implied the field has been submitted
 
     const persistAsyncFetch = new QueryablePromise(
-      fetch(getAsyncUrl(persistAsyncSpec.url, baseUrl), {
+      fetcher(persistAsyncSpec.url, {
         method: persistAsyncSpec.method,
         headers: {
           'Content-Type': 'application/json',

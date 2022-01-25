@@ -4,14 +4,13 @@ import Types from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
-import { BaseUrlProvider } from '../common/contexts/baseUrlContext/BaseUrlContext';
+import { FetcherProvider, makeFetcher } from '../common/contexts/fetcherContext';
 import { getStepType, stepType } from '../common/stepTypes/stepTypes';
 import { TrackingContextProvider } from '../common/tracking';
 import { isValidSchema } from '../common/validation/schema-validators';
 import { getValidModelParts } from '../common/validation/valid-model';
 import { CameraStep, LayoutStep } from '../step';
 
-import { HttpClient } from './client';
 import { withErrorBoundary } from './errorBoundary';
 
 const EXIT_HEADER = 'X-Df-Exit';
@@ -64,11 +63,11 @@ const buildInitialModels = (model, schemas) => {
 const DynamicFlow = (props) => {
   const {
     baseUrl,
+    fetcher: propsFetcher,
     flowUrl,
     onClose,
     onStepChange,
     onError,
-    httpClient: propsHttpClient,
     onTrackableEvent,
     loaderSize,
   } = props;
@@ -80,10 +79,8 @@ const DynamicFlow = (props) => {
   const [stepAndModels, setStepAndModels] = useState({ stepSpecification: {}, models: {} });
   const { stepSpecification, models } = stepAndModels;
 
-  const httpClient = useMemo(
-    () => propsHttpClient || new HttpClient({ baseUrl }),
-    [baseUrl, propsHttpClient],
-  );
+  const fetcher = useMemo(() => propsFetcher || makeFetcher(baseUrl), [propsFetcher, baseUrl]);
+  const requestStep = useMemo(() => makeRequestStep(fetcher), [fetcher]);
 
   const updateStepSpecification = (step) => {
     setStepAndModels((previous) => ({
@@ -101,7 +98,7 @@ const DynamicFlow = (props) => {
   useEffect(() => {
     const action = { url: flowUrl, method: 'GET' };
     fetchStep(action);
-  }, [baseUrl, flowUrl, propsHttpClient]);
+  }, [baseUrl, flowUrl, fetcher]);
 
   const modelIsValid = useMemo(
     () => areModelsValid(models, stepSpecification.schemas),
@@ -113,8 +110,7 @@ const DynamicFlow = (props) => {
 
     setLoading(true);
 
-    return httpClient
-      .request({ action, data })
+    return requestStep({ action, data })
       .then(async (response) => {
         if (isExitResponse(response)) {
           const result = await response.json().catch(() => undefined);
@@ -134,8 +130,7 @@ const DynamicFlow = (props) => {
   const fetchRefresh = (action, data) => {
     setLoading(true);
 
-    return httpClient
-      .request({ action, data })
+    return requestStep({ action, data })
       .then(async (response) => {
         const step = await response.json();
         updateStepSpecification(step);
@@ -145,7 +140,7 @@ const DynamicFlow = (props) => {
   };
 
   const fetchExitResult = (action, data) => {
-    return httpClient.request({ action, data }).then(validateExitResult).catch(handleFetchError);
+    return requestStep({ action, data }).then(validateExitResult).catch(handleFetchError);
   };
 
   const handleFetchError = async (response) => {
@@ -242,26 +237,24 @@ const DynamicFlow = (props) => {
 
   return (
     <TrackingContextProvider onTrackableEvent={onTrackableEvent}>
-      <BaseUrlProvider baseUrl={baseUrl}>
+      <FetcherProvider fetcher={fetcher}>
         {loading ? (
           <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
         ) : (
           getStep()
         )}
-      </BaseUrlProvider>
+      </FetcherProvider>
     </TrackingContextProvider>
   );
 };
 
 DynamicFlow.propTypes = {
   baseUrl: Types.string.isRequired,
+  fetcher: Types.func,
   flowUrl: Types.string,
   onClose: Types.func,
   onStepChange: Types.func,
   onError: Types.func,
-  httpClient: Types.shape({
-    request: Types.func,
-  }),
   onTrackableEvent: Types.func,
   loaderSize: Types.string,
 };
@@ -277,3 +270,24 @@ DynamicFlow.defaultProps = {
 };
 
 export default withErrorBoundary(DynamicFlow);
+
+function makeRequestStep(fetcher) {
+  return function requestStep({ action, data }) {
+    const { url, method } = action;
+    const body = method === 'GET' ? undefined : JSON.stringify(data);
+    return fetcher(url, {
+      method: method || 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': 'Tr4n5f3rw153',
+      },
+      credentials: 'include',
+      body,
+    }).then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw response;
+    });
+  };
+}
