@@ -128,15 +128,12 @@ const DynamicFlow = (props) => {
   };
 
   const fetchRefresh = (action, data) => {
-    setLoading(true);
-
     return requestStep({ action, data })
       .then(async (response) => {
         const step = await response.json();
         updateStepSpecification(step);
       })
-      .catch(handleFetchError)
-      .finally(() => setLoading(false));
+      .catch(handleFetchError);
   };
 
   const fetchExitResult = (action, data) => {
