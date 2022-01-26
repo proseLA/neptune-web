@@ -255,7 +255,7 @@ const DynamicFlow = (props) => {
 };
 
 DynamicFlow.propTypes = {
-  baseUrl: Types.string.isRequired,
+  baseUrl: Types.string,
   fetcher: Types.func,
   flowUrl: Types.string,
   onClose: Types.func,
