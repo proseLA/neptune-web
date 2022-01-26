@@ -59,7 +59,7 @@ const delayedJsonResponse = async (response, init = {}) => {
   return new Response(JSON.stringify(response), init);
 };
 
-const mockFetcher = (input, init) => {
+const mockFetcher = jest.fn((input, init) => {
   switch (input) {
     case '/example':
       return delayedJsonResponse(getFormStep());
@@ -84,7 +84,7 @@ const mockFetcher = (input, init) => {
     default:
       return delayedJsonResponse({});
   }
-};
+});
 
 const i18n = { locale: 'en-GB', messages: { ...componentTranslations['en'] } };
 
@@ -105,6 +105,32 @@ describe('E2E: Given a DynamicFlow component to render', () => {
         </Provider>,
       );
     }
+
+    it('disables actions while refreshing steps', async () => {
+      const onClose = jest.fn();
+      render(
+        <Provider i18n={i18n}>
+          <DynamicFlow
+            flowUrl="/example"
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={jest.fn()}
+          />
+        </Provider>,
+      );
+
+      const inputBeforeRefresh = await screen.findByLabelText('Email');
+
+      mockFetcher.mockClear();
+      act(() => userEvent.paste(inputBeforeRefresh, 'some@email.com'));
+      expect(mockFetcher).toHaveBeenCalledTimes(1);
+
+      const submitButton = screen.getByText('Submit');
+
+      mockFetcher.mockClear();
+      act(() => userEvent.click(submitButton));
+      expect(mockFetcher).not.toHaveBeenCalled();
+    });
 
     describe('and the refreshed step has an identical schema', () => {
       it('the focused text input is kept in focus', async () => {
