@@ -35,6 +35,7 @@ const DynamicBox = (props) => {
           components={box.components}
           model={props.model}
           submitted={props.submitted}
+          disabled={props.disabled}
           errors={props.errors}
           onModelChange={props.onModelChange}
           onAction={props.onAction}
@@ -52,6 +53,7 @@ const DynamicBox = (props) => {
             components={box.components}
             model={props.model}
             submitted={props.submitted}
+            disabled={props.disabled}
             errors={props.errors}
             onModelChange={props.onModelChange}
             onAction={props.onAction}
@@ -72,6 +74,7 @@ DynamicBox.propTypes = {
   }).isRequired,
   model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
   submitted: Types.bool.isRequired,
+  disabled: Types.bool,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
   onModelChange: Types.func.isRequired,
   onAction: Types.func.isRequired,

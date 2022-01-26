@@ -1,7 +1,7 @@
 import { Loader } from '@transferwise/components';
 import { isObject } from '@transferwise/neptune-validation';
 import Types from 'prop-types';
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
 import { FetcherProvider, makeFetcher } from '../common/contexts/fetcherContext';
@@ -72,7 +72,7 @@ const DynamicFlow = (props) => {
     loaderSize,
   } = props;
 
-  const refreshingReference = useRef(false);
+  const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
@@ -129,16 +129,14 @@ const DynamicFlow = (props) => {
   };
 
   const fetchRefresh = (action, data) => {
-    refreshingReference.current = true;
+    setRefreshing(true);
     return requestStep({ action, data })
       .then(async (response) => {
         const step = await response.json();
         updateStepSpecification(step);
       })
       .catch(handleFetchError)
-      .finally(() => {
-        refreshingReference.current = false;
-      });
+      .finally(() => setRefreshing(false));
   };
 
   const fetchExitResult = (action, data) => {
@@ -183,7 +181,7 @@ const DynamicFlow = (props) => {
   };
 
   const onAction = async (action) => {
-    if (refreshingReference.current) {
+    if (refreshing) {
       return;
     }
 
@@ -228,6 +226,7 @@ const DynamicFlow = (props) => {
     const stepProps = {
       stepSpecification,
       submitted,
+      disabled: refreshing,
       model: combineModels(models),
       errors: validations,
       onAction,

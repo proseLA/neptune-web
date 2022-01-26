@@ -24,8 +24,17 @@ const getKey = (component) => {
 };
 
 const DynamicLayout = (props) => {
-  const { components, model, submitted, errors, onModelChange, onAction, onPersistAsync, baseUrl } =
-    props;
+  const {
+    components,
+    model,
+    submitted,
+    disabled,
+    errors,
+    onModelChange,
+    onAction,
+    onPersistAsync,
+    baseUrl,
+  } = props;
 
   const renderComponent = (component) => {
     switch (component.type) {
@@ -69,7 +78,14 @@ const DynamicLayout = (props) => {
           />
         );
       case 'button':
-        return <DynamicButton key={getKey(component)} component={component} onAction={onAction} />;
+        return (
+          <DynamicButton
+            key={getKey(component)}
+            component={component}
+            disabled={disabled}
+            onAction={onAction}
+          />
+        );
       case 'box':
         return (
           <DynamicBox
@@ -77,6 +93,7 @@ const DynamicLayout = (props) => {
             component={component}
             model={model}
             submitted={submitted}
+            disabled={disabled}
             errors={errors}
             onModelChange={onModelChange}
             onAction={onAction}
@@ -107,6 +124,7 @@ DynamicLayout.propTypes = {
   components: Types.arrayOf(componentModel).isRequired,
   model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
   submitted: Types.bool.isRequired,
+  disabled: Types.bool,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
   baseUrl: Types.string,
   onAction: Types.func.isRequired,

@@ -40,7 +40,7 @@ const getButtonTypeAndPriority = (action) => {
 };
 
 const DynamicButton = (props) => {
-  const { component, onAction } = props;
+  const { component, disabled, onAction } = props;
   const { type, priority } = getButtonTypeAndPriority(component.action);
 
   return (
@@ -50,7 +50,7 @@ const DynamicButton = (props) => {
       priority={priority}
       block
       className={getActionClasses(component.action)}
-      disabled={component.action.disabled}
+      disabled={component.action.disabled || disabled}
       onClick={() => onAction(component.action)}
     >
       {component.action.title}
@@ -66,6 +66,7 @@ DynamicButton.propTypes = {
     align: alignModel,
     margin: marginModel,
   }).isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default DynamicButton;

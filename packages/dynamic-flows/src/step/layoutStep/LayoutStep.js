@@ -16,7 +16,7 @@ const getComponents = (step) => {
 };
 
 const LayoutStep = (props) => {
-  const { stepSpecification, submitted, model, errors, onModelChange, onAction } = props;
+  const { stepSpecification, submitted, disabled, model, errors, onModelChange, onAction } = props;
 
   const components = getComponents(stepSpecification);
 
@@ -24,6 +24,7 @@ const LayoutStep = (props) => {
     <DynamicLayout
       components={components}
       submitted={submitted}
+      disabled={disabled}
       model={model}
       errors={errors}
       onAction={onAction}
@@ -36,6 +37,7 @@ LayoutStep.propTypes = {
   stepSpecification: Types.object.isRequired,
   model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
   submitted: Types.bool.isRequired,
+  disabled: Types.bool,
   errors: Types.oneOfType([Types.string, Types.object, Types.array]),
   onAction: Types.func.isRequired,
   onModelChange: Types.func.isRequired,
