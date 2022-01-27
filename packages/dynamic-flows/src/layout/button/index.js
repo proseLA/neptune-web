@@ -1,6 +1,7 @@
 import { Button } from '@transferwise/components';
 import PropTypes from 'prop-types';
 
+import { useDynamicFlow } from '../../common/contexts/dynamicFlowContext/dynamicFlowContext';
 import { actionModel, sizeModel, alignModel, marginModel } from '../models';
 import { getMarginBottom } from '../utils';
 
@@ -43,6 +44,8 @@ const DynamicButton = (props) => {
   const { component, onAction } = props;
   const { type, priority } = getButtonTypeAndPriority(component.action);
 
+  const { refreshing } = useDynamicFlow();
+
   return (
     <Button
       size={getButtonSize(component.size)}
@@ -50,7 +53,7 @@ const DynamicButton = (props) => {
       priority={priority}
       block
       className={getActionClasses(component.action)}
-      disabled={component.action.disabled}
+      disabled={component.action.disabled || refreshing}
       onClick={() => onAction(component.action)}
     >
       {component.action.title}

@@ -4,6 +4,7 @@ import Types from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
+import { DynamicFlowProvider } from '../common/contexts/dynamicFlowContext/dynamicFlowContext';
 import { FetcherProvider, makeFetcher } from '../common/contexts/fetcherContext';
 import { getStepType, stepType } from '../common/stepTypes/stepTypes';
 import { TrackingContextProvider } from '../common/tracking';
@@ -72,6 +73,7 @@ const DynamicFlow = (props) => {
     loaderSize,
   } = props;
 
+  const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
@@ -128,15 +130,14 @@ const DynamicFlow = (props) => {
   };
 
   const fetchRefresh = (action, data) => {
-    setLoading(true);
-
+    setRefreshing(true);
     return requestStep({ action, data })
       .then(async (response) => {
         const step = await response.json();
         updateStepSpecification(step);
       })
       .catch(handleFetchError)
-      .finally(() => setLoading(false));
+      .finally(() => setRefreshing(false));
   };
 
   const fetchExitResult = (action, data) => {
@@ -181,6 +182,10 @@ const DynamicFlow = (props) => {
   };
 
   const onAction = async (action) => {
+    if (refreshing) {
+      return;
+    }
+
     const { data, method, exit, url, result } = action;
 
     const submissionData = {
@@ -237,19 +242,21 @@ const DynamicFlow = (props) => {
 
   return (
     <TrackingContextProvider onTrackableEvent={onTrackableEvent}>
-      <FetcherProvider fetcher={fetcher}>
-        {loading ? (
-          <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
-        ) : (
-          getStep()
-        )}
-      </FetcherProvider>
+      <DynamicFlowProvider refreshing={refreshing}>
+        <FetcherProvider fetcher={fetcher}>
+          {loading ? (
+            <Loader size={loaderSize} classNames={{ 'tw-loader': 'tw-loader m-x-auto' }} />
+          ) : (
+            getStep()
+          )}
+        </FetcherProvider>
+      </DynamicFlowProvider>
     </TrackingContextProvider>
   );
 };
 
 DynamicFlow.propTypes = {
-  baseUrl: Types.string.isRequired,
+  baseUrl: Types.string,
   fetcher: Types.func,
   flowUrl: Types.string,
   onClose: Types.func,
