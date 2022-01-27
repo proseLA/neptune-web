@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.0.1...@transferwise/dynamic-flows@17.0.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** Fix input focus after a refresh ([#1299](https://github.com/transferwise/neptune-web/issues/1299)) ([12932c0](https://github.com/transferwise/neptune-web/commit/12932c030d6f36bb64b690e7d236c35bbac74a3c))
+
+
+
+
+
 ## [17.0.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.0.0...@transferwise/dynamic-flows@17.0.1) (2022-01-25)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
