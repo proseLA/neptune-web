@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.6.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.6.0...@transferwise/components@39.6.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* **Tooltip:** z-index ([#1304](https://github.com/transferwise/neptune-web/issues/1304)) ([7ca402e](https://github.com/transferwise/neptune-web/commit/7ca402ee6c14ce440c20e213f60fff6428b7e861))
+
+
+
+
+
 # [39.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.5.2...@transferwise/components@39.6.0) (2022-01-25)
 
 
