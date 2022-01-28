@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.6.2...@transferwise/components@39.7.0) (2022-01-28)
+
+
+### Features
+
+* add id prop on InlineAlert ([#1306](https://github.com/transferwise/neptune-web/issues/1306)) ([04ff03f](https://github.com/transferwise/neptune-web/commit/04ff03f63aced0e81d7965bb694ebccc4ed6f134))
+
+
+
+
+
 ## [39.6.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.6.1...@transferwise/components@39.6.2) (2022-01-28)
 
 **Note:** Version bump only for package @transferwise/components
