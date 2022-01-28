@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.2...@transferwise/neptune-css@12.1.3) (2022-01-28)
+
+
+### Bug Fixes
+
+* border on focused inputs ([#1305](https://github.com/transferwise/neptune-web/issues/1305)) ([2805697](https://github.com/transferwise/neptune-web/commit/280569775135b3b205982d9db744c0eb58fe08d6))
+
+
+
+
+
 ## [12.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.1...@transferwise/neptune-css@12.1.2) (2022-01-25)
 
 
