@@ -14,6 +14,7 @@ const InlineAlert = (props) => {
     return (
       <div
         role="alert"
+        id={props.id}
         className={classNames('alert alert-detach p-x-2 p-y-1', typeClass, className)}
       >
         {children}
@@ -27,11 +28,13 @@ const InlineAlert = (props) => {
 InlineAlert.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  id: PropTypes.string,
   type: PropTypes.oneOf(['positive', 'negative', 'warning', 'neutral', 'success', 'info', 'error']),
 };
 
 InlineAlert.defaultProps = {
   className: undefined,
+  id: undefined,
   type: Sentiment.NEUTRAL,
 };
 
