@@ -107,7 +107,7 @@ const Tooltip = ({
         <div
           // @ts-expect-error
           ref={setPopperElement}
-          className={classNames('np-panel', 'np-panel--open', 'bg-screen', className)}
+          className={classNames('np-tooltip', 'np-panel', 'np-panel--open', 'bg-screen', className)}
           // eslint-disable-next-line react/forbid-dom-props
           style={{ ...styles.popper }}
           {...attributes.popper}

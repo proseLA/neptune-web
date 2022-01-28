@@ -1,3 +1,5 @@
+@import (reference) '@transferwise/neptune-css/src/variables/zindex.less';
+
 .tw-tooltip-container {
   display: inline-block;
   background-color: yellow;
@@ -28,6 +30,10 @@
   to {
     visibility: hidden;
   }
+}
+
+.np-tooltip {
+  z-index: @zindex-tooltip;
 }
 
 .np-panel[data-popper-placement^='right'] > .np-panel__content.tooltip-inner {
