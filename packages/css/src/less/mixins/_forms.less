@@ -28,8 +28,8 @@
   // Set the border and box shadow on specific inputs to match
   .form-control,
   .btn-input,
-  .btn-input:focus,
-  .btn-input:hover,
+  .btn-input:not(.disabled, :disabled):focus,
+  .btn-input:not(.disabled, :disabled):hover,
   .input-group-addon,
   .alert {
     border-color: @border-color;
@@ -49,7 +49,7 @@
     }
   }
 
-  &:hover {
+  &:not(.disabled, :disabled):hover {
     &.radio label,
     &.checkbox label,
     .btn-input,
@@ -66,12 +66,12 @@
   .radio,
   &.checkbox {
     > label {
-      &:not(.disabled) {
+      &:not(.disabled, :disabled) {
         border-color: @border-color;
         color: var(--color-content-primary);
       }
 
-      &:hover,
+      &:not(.disabled, :disabled):hover,
       &:focus-within {
         border-color: @border-hover !important;
 
@@ -102,7 +102,7 @@
 // Example usage: change the default blue border and shadow to white for better
 // contrast against a dark gray background.
 .form-control-focus(@color: var(--color-interactive-accent-active)) {
-  &:focus {
+  &:not(.disabled, :disabled):focus {
     border-color: @color;
     outline: 0;
   }

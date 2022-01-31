@@ -46,7 +46,7 @@ const Switch = (props: Props): ReactElement => {
         {
           'np-switch--unchecked': !checked,
           'np-switch--checked': checked,
-          'np-switch--disabled': disabled,
+          disabled: disabled,
         },
         className,
       )}

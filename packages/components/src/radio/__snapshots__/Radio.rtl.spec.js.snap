@@ -5,7 +5,9 @@ exports[`Radio shows the avatar when supplied 1`] = `
   <div
     class="radio np-radio"
   >
-    <label>
+    <label
+      class=""
+    >
       <span
         class="np-radio-button p-r-2"
       >

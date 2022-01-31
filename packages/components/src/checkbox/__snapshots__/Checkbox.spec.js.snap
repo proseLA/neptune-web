@@ -5,7 +5,9 @@ exports[`Checkbox renders the given label 1`] = `
   <div
     class="np-checkbox checkbox"
   >
-    <label>
+    <label
+      class=""
+    >
       <span
         class="np-checkbox-button p-r-2"
       >

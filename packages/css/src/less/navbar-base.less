@@ -681,15 +681,6 @@
         }
       }
     }
-
-    > .disabled > a {
-      &,
-      &:hover,
-      &:focus {
-        color: var(--color-content-disabled);
-        background-color: transparent;
-      }
-    }
   }
 
   // Dropdown menu items
@@ -731,15 +722,6 @@
             background-color: transparent;
           }
         }
-
-        > .disabled > a {
-          &,
-          &:hover,
-          &:focus {
-            color: var(--color-content-disabled);
-            background-color: transparent;
-          }
-        }
       }
     }
   }
@@ -762,14 +744,6 @@
     &:hover,
     &:focus {
       color: var(--color-content-accent-hover);
-    }
-
-    &[disabled],
-    fieldset[disabled] & {
-      &:hover,
-      &:focus {
-        color: var(--color-content-disabled);
-      }
     }
   }
 }
@@ -828,15 +802,6 @@
       }
     }
 
-    > .disabled > a {
-      &,
-      &:hover,
-      &:focus {
-        color: var(--color-content-disabled);
-        background-color: transparent;
-      }
-    }
-
     > .open > a,
     .dropdown:focus-within > a {
       &,
@@ -868,14 +833,6 @@
     &:hover,
     &:focus {
       color: var(--color-content-accent-hover);
-    }
-
-    &[disabled],
-    fieldset[disabled] & {
-      &:hover,
-      &:focus {
-        color: var(--color-content-disabled);
-      }
     }
   }
 }
@@ -1204,16 +1161,16 @@
       }
     }
 
-    .btn-info:not([disabled]),
-    .btn-warning:not([disabled]),
-    .btn-danger:not([disabled]) {
+    .btn-info:not(.disabled, :disabled),
+    .btn-warning:not(.disabled, :disabled),
+    .btn-danger:not(.disabled, :disabled) {
       color: var(--color-content-accent);
       border-color: var(--color-interactive-accent);
     }
 
-    .btn-info:not([disabled]):hover,
-    .btn-warning:not([disabled]):hover,
-    .btn-danger:not([disabled]):hover {
+    .btn-info:not(.disabled, :disabled):hover,
+    .btn-warning:not(.disabled, :disabled):hover,
+    .btn-danger:not(.disabled, :disabled):hover {
       color: @color-navy-content-primary;
     }
 
@@ -1296,9 +1253,9 @@
   .simple-nav .navbar-nav > li > a {
     color: @color-navy-content-primary;
 
-    &:focus,
-    &:hover,
-    &:active {
+    &:not(.disabled, :disabled):focus,
+    &:not(.disabled, :disabled):hover,
+    &:not(.disabled, :disabled):active {
       color: var(--color-content-accent-hover);
     }
   }

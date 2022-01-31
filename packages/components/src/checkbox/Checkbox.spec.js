@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+
 import { render, fireEvent, screen } from '@testing-library/react';
 
 import Checkbox from '.';
@@ -67,7 +68,7 @@ describe('Checkbox', () => {
 
   it('has disabled class when the disabled prop is true', () => {
     const { container } = render(<Checkbox {...props} disabled />);
-    expect(getCheckboxContainer(container)).toHaveClass('disabled');
+    expect(getCheckboxContainer(container).firstChild).toHaveClass('disabled');
   });
 
   it('has error class and passes it to checkbox button when required and not checked', () => {

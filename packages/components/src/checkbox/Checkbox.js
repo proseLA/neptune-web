@@ -10,6 +10,7 @@ const Checkbox = ({
   disabled,
   readOnly,
   label,
+  className,
   secondary,
   onChange,
   onFocus,
@@ -17,17 +18,20 @@ const Checkbox = ({
 }) => {
   const hasError = required && !disabled && !readOnly && !checked;
 
-  const classList = classNames('np-checkbox', {
-    checkbox: true,
-    'checkbox-lg': secondary,
-    'has-error': hasError,
-    disabled,
-  });
+  const classList = classNames(
+    'np-checkbox',
+    {
+      checkbox: true,
+      'checkbox-lg': secondary,
+      'has-error': hasError,
+    },
+    className,
+  );
 
   return (
     <div id={id} className={classList}>
       {/* eslint-disable jsx-a11y/label-has-for */}
-      <label>
+      <label className={classNames({ disabled })}>
         <CheckboxButton
           className={classNames('p-r-2', { 'has-error': hasError })}
           checked={checked}
@@ -57,6 +61,7 @@ Checkbox.propTypes = {
   onFocus: PropTypes.func,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
+  className: PropTypes.string,
 };
 
 Checkbox.defaultProps = {
@@ -68,6 +73,7 @@ Checkbox.defaultProps = {
   secondary: null,
   onFocus: null,
   onBlur: null,
+  className: undefined,
 };
 
 export default Checkbox;

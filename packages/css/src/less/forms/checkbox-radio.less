@@ -41,19 +41,19 @@
     color: var(--color-background-screen);
   }
 
-  &:hover,
+  &:not(.disabled, :disabled):hover,
   input[type='checkbox']:hover + &,
   .checkbox:hover & {
     border-color: var(--color-interactive-secondary);
   }
 
-  &:focus,
-  &.focus,
-  &:focus:hover,
-  &.focus:hover,
+  &:not(.disabled, :disabled):focus,
+  &:not(.disabled, :disabled).focus,
+  &:not(.disabled, :disabled):focus:hover,
+  &:not(.disabled, :disabled).focus:hover,
   input[type='checkbox']:focus + &,
-  &:active,
-  &.active,
+  &:not(.disabled, :disabled):active,
+  &:not(.disabled, :disabled).active,
   input[type='checkbox']:active + & {
     border-color: var(--color-interactive-secondary);
     outline: none;
@@ -72,27 +72,16 @@
 
   &[checked]:hover,
   &.checked:hover,
-  input[type='checkbox']:not(:disabled):checked:hover + & {
+  input[type='checkbox']:not(.disabled, :disabled):checked:hover + & {
     border-color: var(--color-interactive-accent-hover) !important;
     background-color: var(--color-interactive-accent-hover);
   }
 
   &[checked]:active,
   &.checked:active,
-  input[type='checkbox']:not(:disabled):checked:active + & {
+  input[type='checkbox']:not(.disabled, :disabled):checked:active + & {
     border-color: var(--color-interactive-accent-active) !important;
     background-color: var(--color-interactive-accent-active);
-  }
-
-  &[disabled],
-  input[type='checkbox']:disabled + & {
-    background-color: var(--color-background-neutral);
-    border-color: var(--color-interactive-disabled) !important;
-    cursor: @cursor-disabled;
-
-    .tw-checkbox-check {
-      color: var(--color-content-disabled);
-    }
   }
 
   .checkbox.has-error &,
@@ -103,23 +92,19 @@
     &.checked {
       background-color: var(--color-interactive-negative);
     }
-
-    &[disabled] {
-      background-color: var(--color-background-neutral);
-    }
   }
 
-  .checkbox.has-error input[type='checkbox']:checked + & {
+  .checkbox.has-error input[type='checkbox']:not(.disabled, :disabled):checked + & {
     border-color: var(--color-interactive-negative) !important;
     background-color: var(--color-interactive-negative);
   }
 
-  .checkbox.has-error input[type='checkbox']:checked:hover + & {
+  .checkbox.has-error input[type='checkbox']:not(.disabled, :disabled):checked:hover + & {
     border-color: var(--color-interactive-negative-hover) !important;
     background-color: var(--color-interactive-negative-hover);
   }
 
-  .checkbox.has-error input[type='checkbox']:checked:active + & {
+  .checkbox.has-error input[type='checkbox']:not(.disabled, :disabled):checked:active + & {
     border-color: var(--color-interactive-negative-active) !important;
     background-color: var(--color-interactive-negative-active);
   }
@@ -147,15 +132,15 @@
     transition: all 0.15s ease-in-out;
   }
 
-  .radio:hover &,
-  &:hover {
+  .radio:not(.disabled, :disabled):hover &,
+  &:not(.disabled, :disabled):hover {
     border-color: var(--color-interactive-secondary-hover);
   }
 
-  &:focus,
-  &.focus,
-  &:active,
-  &.active {
+  &:not(.disabled, :disabled):focus,
+  &:not(.disabled, :disabled).focus,
+  &:not(.disabled, :disabled):active,
+  &:not(.disabled, :disabled).active {
     border-color: var(--color-interactive-secondary-active);
     outline: none;
   }
@@ -178,17 +163,6 @@
     }
   }
 
-  &[disabled],
-  &.disabled {
-    background-color: var(--color-background-neutral);
-    border-color: var(--color-interactive-disabled) !important;
-    cursor: @cursor-disabled;
-
-    .tw-radio-check {
-      background-color: var(--color-interactive-disabled);
-    }
-  }
-
   .radio.has-error &,
   &.has-error {
     border-color: var(--color-interactive-negative) !important;
@@ -197,18 +171,6 @@
     &.checked .tw-radio-check {
       background-color: var(--color-interactive-negative);
     }
-
-    &[disabled] .tw-radio-check {
-      background-color: var(--color-interactive-disabled);
-    }
-  }
-}
-
-.checkbox {
-  &.disabled label,
-  &.disabled label:hover {
-    border-color: var(--color-interactive-disabled);
-    color: var(--color-content-disabled) !important;
   }
 }
 
@@ -276,9 +238,5 @@
 .np-radio {
   .np-radio__avatar {
     pointer-events: none;
-  }
-
-  &[disabled] .np-radio__avatar {
-    opacity: 0.5;
   }
 }

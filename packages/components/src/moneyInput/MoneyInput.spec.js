@@ -408,15 +408,11 @@ describe('Money Input', () => {
     });
 
     expect(amountInput().prop('disabled')).toBe(false);
-    expect(
-      component.find('.tw-money-input__fixed-currency').hasClass('tw-money-input--disabled'),
-    ).toBe(false);
+    expect(component.find('.tw-money-input__fixed-currency').hasClass('disabled')).toBe(false);
 
     component.setProps({ onAmountChange: undefined });
     expect(amountInput().prop('disabled')).toBe(true);
-    expect(
-      component.find('.tw-money-input__fixed-currency').hasClass('tw-money-input--disabled'),
-    ).toBe(true);
+    expect(component.find('.tw-money-input__fixed-currency').hasClass('disabled')).toBe(true);
   });
 
   it('uses the passed in search placeholder', () => {

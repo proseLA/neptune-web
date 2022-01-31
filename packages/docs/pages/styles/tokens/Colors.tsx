@@ -1,6 +1,4 @@
-/* eslint-disable react/function-component-definition */
-import { Link, Accordion } from '@transferwise/components';
-import { Eye } from '@transferwise/icons';
+import { Link } from '@transferwise/components';
 import classNames from 'classnames';
 
 import Heading from '../../../components/Heading';
@@ -50,6 +48,10 @@ export default function PageContent() {
         For LESS variables, you need add import:
         <pre>@import '@transferwise/neptune-css/dist/less/neptune-tokens.less';</pre>
       </p>
+      <p>
+        For disabled colors see{' '}
+        <DocumentLink href="/styles/addons/DisabledState">Disabled States approach</DocumentLink>.
+      </p>
       <div className="m-b-4">
         <Heading as="h2">Content Colour Tokens</Heading>
         <p>
@@ -72,7 +74,6 @@ export default function PageContent() {
         <ColorToken token="--color-content-warning-hover" className="m-b-2" />
         <ColorToken token="--color-content-warning-active" className="m-b-2" />
         <ColorToken token="--color-content-tertiary" className="m-b-2" />
-        <ColorToken token="--color-content-disabled" className="m-b-2" />
       </div>
       <div className="m-b-4">
         <Heading as="h2">Interactive Colours Tokens</Heading>
@@ -95,7 +96,6 @@ export default function PageContent() {
         <ColorToken token="--color-interactive-secondary" className="m-b-2" />
         <ColorToken token="--color-interactive-secondary-hover" className="m-b-2" />
         <ColorToken token="--color-interactive-secondary-active" className="m-b-2" />
-        <ColorToken token="--color-interactive-disabled" className="m-b-2" />
       </div>
       <div className="m-b-4">
         <Heading as="h2">Border Colour Tokens</Heading>

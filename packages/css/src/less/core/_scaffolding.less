@@ -95,15 +95,6 @@ a,
       color: var(--color-content-accent-active);
     }
   }
-
-  &[disabled] {
-    color: var(--color-content-disabled);
-    cursor: default;
-
-    .bg-primary & {
-      color: @color-navy-content-disabled;
-    }
-  }
 }
 
 html.ios-click {
@@ -382,6 +373,13 @@ video {
 
 [hidden] {
   display: none; // Normalize 8.0.1
+}
+
+.disabled,
+:disabled {
+  filter: grayscale(1);
+  opacity: 0.45;
+  cursor: not-allowed !important;
 }
 
 // Only display content to screen readers

@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 
 import RadioButton from '../common/RadioButton';
 
-const Radio = ({ label, id, disabled, avatar, secondary, ...otherProps }) => {
+const Radio = ({ label, id, disabled, className, avatar, secondary, ...otherProps }) => {
   return (
     <div
-      className={classNames('radio np-radio', {
-        'radio-lg': secondary,
-        disabled,
-      })}
-      disabled={disabled}
+      className={classNames(
+        'radio np-radio',
+        {
+          'radio-lg': secondary,
+        },
+        className,
+      )}
     >
-      <label htmlFor={id}>
+      <label className={classNames({ disabled })} htmlFor={id}>
         <span className="np-radio-button p-r-2">
           <RadioButton id={id} disabled={disabled} {...otherProps} />
         </span>
@@ -36,6 +38,7 @@ Radio.propTypes = {
   onChange: PropTypes.func.isRequired,
   secondary: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  className: PropTypes.string,
 };
 
 Radio.defaultProps = {
@@ -45,6 +48,7 @@ Radio.defaultProps = {
   id: null,
   secondary: null,
   value: '',
+  className: undefined,
 };
 
 export default Radio;
