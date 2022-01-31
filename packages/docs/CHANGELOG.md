@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.18...@transferwise/neptune-docs@15.3.0) (2022-01-31)
+
+
+### Features
+
+* new disabled state approach ([#1285](https://github.com/transferwise/neptune-web/issues/1285)) ([3bed0c3](https://github.com/transferwise/neptune-web/commit/3bed0c390c90d0b1ec8f1578eb6b1cad2a02dc51))
+
+
+
+
+
 ## [15.2.18](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.2.17...@transferwise/neptune-docs@15.2.18) (2022-01-28)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
