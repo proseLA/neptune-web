@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.1.0...@transferwise/dynamic-flows@17.1.1) (2022-01-31)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 # [17.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.0.5...@transferwise/dynamic-flows@17.1.0) (2022-01-31)
 
 
