@@ -2,6 +2,10 @@ import { action } from '@storybook/addon-actions';
 import { text, boolean } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon } from '@transferwise/icons';
 
+import Avatar, { AvatarType } from '../avatar';
+import AvatarWrapper from '../avatarWrapper';
+import { Size } from '../common';
+
 import NavigationOption from './NavigationOption';
 
 export default {
@@ -30,7 +34,7 @@ const Template = (props) => {
       content={content}
       media={props.media || <FastFlagIcon />}
       showMediaAtAllSizes={showMediaAtAllSizes}
-      showMediaCircle={showMediaCircle}
+      showMediaCircle={props.showMediaCircle && showMediaCircle}
       className={className}
       onClick={action('clicked')}
     />
@@ -44,6 +48,32 @@ export const Multiple = () => (
     <Template />
     <Template />
     <Template />
+  </>
+);
+
+export const WithAvatar = () => (
+  <>
+    <Template
+      media={
+        <Avatar type={AvatarType.THUMBNAIL} size={Size.MEDIUM}>
+          <img src="https://wise.com/public-resources/assets/flags/square/gbp.svg" alt="UK Flag" />
+        </Avatar>
+      }
+      showMediaCircle={false}
+    />
+    <Template
+      media={
+        <AvatarWrapper
+          url="https://wise.com/public-resources/assets/flags/square/gbp.svg"
+          badgeUrl="https://wise.com/public-resources/assets/brand/fast_flag_badge.svg"
+          avatarProps={{
+            type: AvatarType.THUMBNAIL,
+            size: Size.MEDIUM,
+          }}
+        />
+      }
+      showMediaCircle={false}
+    />
   </>
 );
 
