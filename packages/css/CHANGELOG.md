@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.2.0...@transferwise/neptune-css@12.2.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* hover effect in accent tertiary button ([#1309](https://github.com/transferwise/neptune-web/issues/1309)) ([702b7ea](https://github.com/transferwise/neptune-web/commit/702b7ead41fb1eb850a42957865e79f5b0859ca4))
+
+
+
+
+
 # [12.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.3...@transferwise/neptune-css@12.2.0) (2022-01-31)
 
 

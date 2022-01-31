@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.8.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.1...@transferwise/components@39.8.2) (2022-01-31)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
 ## [39.8.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.0...@transferwise/components@39.8.1) (2022-01-31)
 
 **Note:** Version bump only for package @transferwise/components
