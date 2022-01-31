@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "Sigur vrei să elimini acest fișier?",
   "neptune.UploadInput.fileIsTooLarge": "Fișierul este prea mare",
   "neptune.UploadInput.fileTypeNotSupported": "Tipul fișierului nu este acceptat",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "Ne pare rău, această încărcare nu a reușit, deoarece putem accepta doar {maxFilesAllowed} fișiere simultan.",
   "neptune.UploadItem.deleting": "Se șterge...",
   "neptune.UploadItem.removeFile": "Elimină fișierul {filename}",
   "neptune.UploadItem.uploaded": "Încărcat",

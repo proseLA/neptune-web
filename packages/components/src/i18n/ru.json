@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "Уверены, что хотите удалить этот файл?",
   "neptune.UploadInput.fileIsTooLarge": "Файл слишком большой",
   "neptune.UploadInput.fileTypeNotSupported": "Тип файла не поддерживается",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "К сожалению, эта загрузка не удалась, так как одновременно мы можем принять только {maxFilesAllowed} файла(-ов).",
   "neptune.UploadItem.deleting": "Удаляется...",
   "neptune.UploadItem.removeFile": "Удалить файл {filename}",
   "neptune.UploadItem.uploaded": "Завершено",

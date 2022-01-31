@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "Jistě chcete odstranit tento soubor?",
   "neptune.UploadInput.fileIsTooLarge": "Soubor je příliš velký",
   "neptune.UploadInput.fileTypeNotSupported": "Typ souboru není podporován",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "Sorry, this upload failed because we can only accept {maxFilesAllowed} files at once.",
   "neptune.UploadItem.deleting": "Mažeme...",
   "neptune.UploadItem.removeFile": "Odstranit soubor {filename}",
   "neptune.UploadItem.uploaded": "Nahráno",
