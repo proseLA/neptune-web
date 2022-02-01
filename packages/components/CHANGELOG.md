@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.8.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.2...@transferwise/components@39.8.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* stepper label positions ([#1310](https://github.com/transferwise/neptune-web/issues/1310)) ([cd68b56](https://github.com/transferwise/neptune-web/commit/cd68b564d07d178d4745ab54b5ba7a726f73c68b))
+
+
+
+
+
 ## [39.8.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.1...@transferwise/components@39.8.2) (2022-01-31)
 
 **Note:** Version bump only for package @transferwise/components
