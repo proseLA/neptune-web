@@ -10,10 +10,9 @@
   }
 
   &__step {
+    position: absolute;
+    top: 0;
     list-style-type: none;
-    display: flex;
-    justify-content: center;
-    width: 100%;
 
     &--active .tw-stepper__step-label {
       color: var(--color-content-primary);
@@ -39,12 +38,27 @@
         z-index: 1;
       }
     }
+
+    &:first-child {
+      .tw-stepper__step-label {
+        transform: translateX(0%);
+      }
+    }
+
+    &:last-child {
+      .tw-stepper__step-label {
+        .translateX(-100%);
+      }
+    }
   }
 
   &__step-label {
+    position: absolute;
+    top: 0;
     color: var(--color-content-secondary);
     transition: color 0.6s ease-in-out;
     white-space: nowrap;
+    .translateX(-50%);
   }
 
   & .tooltip {
@@ -63,11 +77,6 @@
 
 .tw-stepper-steps {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  width: 125%;
-  .margin(left, -12.5%);
-
   .padding-shorthand(0);
 }
 
@@ -85,7 +94,7 @@
     width: 8px;
     height: 8px;
     margin-top: -3px;
-    .margin(right, -4px);
+    .margin(right, -8px);
 
     content: '';
     background-color: @color-navy-background-elevated;
