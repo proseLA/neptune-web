@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.2.1...@transferwise/neptune-css@12.3.0) (2022-02-03)
+
+
+### Bug Fixes
+
+* **Popover:** dotted link ([#1317](https://github.com/transferwise/neptune-web/issues/1317)) ([b1bb4ff](https://github.com/transferwise/neptune-web/commit/b1bb4ff4dc170e9ae07177d852870902675b5a86))
+
+
+### Features
+
+* **dynamic-flows:** Multiple file upload component support for DFv3 ([#1274](https://github.com/transferwise/neptune-web/issues/1274)) ([1046f3a](https://github.com/transferwise/neptune-web/commit/1046f3a4699e885a963ed005ebdc1f6637f45a35)), closes [#1283](https://github.com/transferwise/neptune-web/issues/1283)
+
+
+
+
+
 ## [12.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.2.0...@transferwise/neptune-css@12.2.1) (2022-01-31)
 
 

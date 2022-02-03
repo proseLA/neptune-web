@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.1.3...@transferwise/dynamic-flows@17.2.0) (2022-02-03)
+
+
+### Features
+
+* **dynamic-flows:** Multiple file upload component support for DFv3 ([#1274](https://github.com/transferwise/neptune-web/issues/1274)) ([1046f3a](https://github.com/transferwise/neptune-web/commit/1046f3a4699e885a963ed005ebdc1f6637f45a35)), closes [#1283](https://github.com/transferwise/neptune-web/issues/1283)
+
+
+
+
+
 ## [17.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.1.2...@transferwise/dynamic-flows@17.1.3) (2022-02-01)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
