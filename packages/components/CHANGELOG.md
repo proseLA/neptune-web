@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.9.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.0...@transferwise/components@39.9.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* **FlowNavigation:** disabled color of active state ([#1318](https://github.com/transferwise/neptune-web/issues/1318)) ([4671ab0](https://github.com/transferwise/neptune-web/commit/4671ab0757f2e68bf5ca975c975a75a86532e45c))
+
+
+
+
+
 # [39.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.3...@transferwise/components@39.9.0) (2022-02-03)
 
 
