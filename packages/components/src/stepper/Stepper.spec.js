@@ -110,10 +110,14 @@ describe('Stepper', () => {
     });
 
     it('are not clickable when active', () => {
-      const clickOnStep = (index) =>
-        component.find('.tw-stepper__step button').at(index).simulate('click');
+      const clickOnStep = (index) => {
+        const buttonReference = component.find('.tw-stepper__step').at(index).find('button');
+        if (buttonReference.exists()) {
+          buttonReference.simulate('click');
+        }
+      };
       const buttonDisabled = (index) =>
-        component.find('.tw-stepper__step button').at(index).prop('disabled');
+        !component.find('.tw-stepper__step').at(index).find('button').exists();
       const clickedOnFirstStep = jest.fn();
       const clickedOnSecondStep = jest.fn();
       component.setProps({
@@ -158,7 +162,7 @@ describe('Stepper', () => {
           active: stepElement.hasClass(buttonStates[0]),
           clickable: stepElement.hasClass(buttonStates[1]),
           clickableAndActive: buttonStates.every((c) => stepElement.hasClass(c)),
-          disabled: stepElement.find('button').prop('disabled'),
+          disabled: !stepElement.find('button').exists(),
         };
       };
 
@@ -223,7 +227,7 @@ describe('Stepper', () => {
         steps: [{ hoverLabel: 'hover', label: 'label' }, { label: 'label 2' }],
       });
       const firstStepHoverLabel = step(0).children();
-      expect(firstStepHoverLabel.type()).toBe('button');
+      expect(firstStepHoverLabel.type()).toBe('small');
       expect(firstStepHoverLabel.text()).toStrictEqual('label');
       expect(step(1).text()).toStrictEqual('label 2');
     });

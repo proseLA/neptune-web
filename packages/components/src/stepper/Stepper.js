@@ -29,15 +29,16 @@ const Stepper = ({ steps, activeStep, className }) => {
     const active = index === activeStepIndex;
     const clickable = step.onClick && !active;
 
-    const labelButton = (
+    const labelButton = clickable ? (
       <button
         type="button"
         className="btn-unstyled tw-stepper__step-label"
-        disabled={!clickable}
         onClick={() => clickable && step.onClick()}
       >
         <small>{step.label}</small>
       </button>
+    ) : (
+      <small className="tw-stepper__step-label">{step.label}</small>
     );
     return (
       <li
