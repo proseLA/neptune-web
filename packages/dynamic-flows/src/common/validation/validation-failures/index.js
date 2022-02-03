@@ -155,6 +155,13 @@ function getArrayValidationFailures(value, schema) {
   return failures;
 }
 
+function getBlobValidationFailures(value, schema) {
+  if (isNull(value)) {
+    return ['type'];
+  }
+  return [];
+}
+
 /**
  * When validating an object we only checking that it is an object and that it
  * has the required properties, we do not check if the properties are valid.
@@ -188,4 +195,5 @@ export {
   getConstValidationFailures,
   getArrayValidationFailures,
   getObjectValidationFailures,
+  getBlobValidationFailures,
 };

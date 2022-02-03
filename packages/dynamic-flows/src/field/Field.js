@@ -13,6 +13,7 @@ export const FieldTypes = {
   NUMBER: 'number',
   INTEGER: 'integer',
   BOOLEAN: 'boolean',
+  BLOB: 'blob',
 };
 
 export const FieldFormats = {

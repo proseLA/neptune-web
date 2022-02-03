@@ -44,9 +44,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * multiple alerts showing at one time ([#1298](https://github.com/transferwise/neptune-web/issues/1298)) ([89893b6](https://github.com/transferwise/neptune-web/commit/89893b698c412f92ea0fb8728bb684c0db6da640))
 
 
-
-
-
 ## [12.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.0...@transferwise/neptune-css@12.1.1) (2022-01-17)
 
 

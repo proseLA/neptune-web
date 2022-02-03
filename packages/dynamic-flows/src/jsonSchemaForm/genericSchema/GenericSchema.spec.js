@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 
 import AllOfSchema from '../allOfSchema';
+import ArraySchema from '../arrayTypeSchema';
 import BasicTypeSchema from '../basicTypeSchema';
 import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
@@ -382,6 +383,39 @@ describe('Given a component for rendering any generic schema', () => {
         expect(shallowWrapper.find(AllOfSchema)).toHaveLength(1);
         expect(shallowWrapper.find(ReadOnlySchema)).toHaveLength(0);
       });
+    });
+  });
+
+  describe('when array schema is supplied', () => {
+    let arraySchemaComponent;
+    beforeEach(() => {
+      model = 'foo';
+      schema = {
+        type: 'array',
+      };
+      errors = 'bar';
+      props = { ...sharedProps, model, schema, errors };
+
+      component = shallow(<GenericSchema {...props} />);
+      arraySchemaComponent = component.find(ArraySchema);
+    });
+
+    it('should render the array schema', function () {
+      expect(arraySchemaComponent).toHaveLength(1);
+    });
+
+    it('should pass through all the supplied props', function () {
+      expect(arraySchemaComponent.prop('schema')).toStrictEqual(schema);
+      expect(arraySchemaComponent.prop('model')).toStrictEqual(model);
+      expect(arraySchemaComponent.prop('errors')).toStrictEqual(errors);
+      expect(arraySchemaComponent.prop('locale')).toStrictEqual(locale);
+      expect(arraySchemaComponent.prop('translations')).toStrictEqual(translations);
+    });
+
+    it('should trigger onChange with what the component passes through', function () {
+      const params = ['randomFileId', 123, 'stringValue'];
+      arraySchemaComponent.simulate('change', params, schema);
+      expect(onChange).toHaveBeenCalledWith(params, schema);
     });
   });
 });

@@ -160,9 +160,6 @@ In the `DynamicFlow` component, we remove the ability to pass a custom `httpClie
 * HttpClient to support requests to absolute URLs even when a baseURL is set ([#1288](https://github.com/transferwise/neptune-web/issues/1288)) ([9201d2f](https://github.com/transferwise/neptune-web/commit/9201d2f1933b2dd52cd1b6380a3a37c21667c5de))
 
 
-
-
-
 ## [16.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.2...@transferwise/dynamic-flows@16.2.3) (2022-01-17)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows

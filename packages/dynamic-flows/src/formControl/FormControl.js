@@ -338,7 +338,6 @@ export default class FormControl extends PureComponent {
           />
         );
       }
-
       case FormControlType.TEXT:
       default: {
         const inputProps = {

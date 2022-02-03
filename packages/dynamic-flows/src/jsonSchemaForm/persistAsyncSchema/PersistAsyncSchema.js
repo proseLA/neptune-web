@@ -43,7 +43,7 @@ PersistAsyncSchema.propTypes = {
     help: Types.shape({}),
   }).isRequired,
   translations: Types.shape({}),
-  model: Types.oneOfType([Types.string, Types.number, Types.bool]),
+  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
   errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
   onChange: Types.func.isRequired,
   submitted: Types.bool.isRequired,
