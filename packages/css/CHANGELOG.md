@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.1...@transferwise/neptune-css@12.3.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* chevron position in angular select ([#1320](https://github.com/transferwise/neptune-web/issues/1320)) ([9cb678d](https://github.com/transferwise/neptune-web/commit/9cb678dd87719c89ff9ca604244ed361a2566773))
+
+
+
+
+
 ## [12.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.0...@transferwise/neptune-css@12.3.1) (2022-02-03)
 
 
