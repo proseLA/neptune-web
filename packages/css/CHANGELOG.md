@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.2...@transferwise/neptune-css@12.3.3) (2022-02-08)
+
+
+### Bug Fixes
+
+* **Popover:** cropped arrow via clip-path ([#1322](https://github.com/transferwise/neptune-web/issues/1322)) ([03a8259](https://github.com/transferwise/neptune-web/commit/03a8259ea460fb21d8cacca7f9cab6a5e90c78dd))
+
+
+
+
+
 ## [12.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.1...@transferwise/neptune-css@12.3.2) (2022-02-07)
 
 
