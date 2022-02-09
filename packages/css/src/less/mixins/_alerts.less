@@ -28,6 +28,8 @@
   position: relative;
   .arrow-pointer(@size);
 
-  clip-path: polygon(0% 0%, 0 100%, 100% 0);
+  &::before {
+    clip-path: polygon(0% 0%, 0 100%, 100% 0);
+  }
   .arrow-positions(@size);
 }
