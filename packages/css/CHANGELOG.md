@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.4...@transferwise/neptune-css@12.3.5) (2022-02-09)
+
+
+### Bug Fixes
+
+* **InlineAlert:** apply clip-path to arrow ([#1324](https://github.com/transferwise/neptune-web/issues/1324)) ([d69ab1a](https://github.com/transferwise/neptune-web/commit/d69ab1a33cf8cceb6d21152d83315240a6658bf9))
+
+
+
+
+
 ## [12.3.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.3...@transferwise/neptune-css@12.3.4) (2022-02-09)
 
 **Note:** Version bump only for package @transferwise/neptune-css
