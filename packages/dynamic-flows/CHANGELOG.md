@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.6...@transferwise/dynamic-flows@17.3.0) (2022-02-10)
+
+
+### Features
+
+* **dynamic-flows:** Add support for ETags when refreshing steps ([#1303](https://github.com/transferwise/neptune-web/issues/1303)) ([17de499](https://github.com/transferwise/neptune-web/commit/17de499bfa6201775117abefadfdeb714a432a76))
+
+
+
+
+
 ## [17.2.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.5...@transferwise/dynamic-flows@17.2.6) (2022-02-09)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
