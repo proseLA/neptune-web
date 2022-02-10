@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.10.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.6...@transferwise/components@39.10.0) (2022-02-10)
+
+
+### Features
+
+* render Modal content in Drawer on mobile ([#1307](https://github.com/transferwise/neptune-web/issues/1307)) ([2149bae](https://github.com/transferwise/neptune-web/commit/2149bae0529e5d31d4fb980ac293e7956dc5d25f))
+
+
+
+
+
 ## [39.9.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.5...@transferwise/components@39.9.6) (2022-02-09)
 
 **Note:** Version bump only for package @transferwise/components
