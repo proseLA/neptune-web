@@ -78,16 +78,21 @@ const DynamicFlow = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
 
-  const [stepAndModels, setStepAndModels] = useState({ stepSpecification: {}, models: {} });
-  const { stepSpecification, models } = stepAndModels;
+  const [stepAndModels, setStepAndModels] = useState({
+    stepSpecification: {},
+    models: {},
+    etag: undefined,
+  });
+  const { stepSpecification, models, etag } = stepAndModels;
 
   const fetcher = useMemo(() => propsFetcher || makeFetcher(baseUrl), [propsFetcher, baseUrl]);
   const requestStep = useMemo(() => makeRequestStep(fetcher), [fetcher]);
 
-  const updateStepSpecification = (step) => {
+  const updateStepSpecification = (step, etag) => {
     setStepAndModels((previous) => ({
       stepSpecification: step,
       models: step.model ? buildInitialModels(step.model, step.schemas) : previous.models,
+      etag,
     }));
 
     if (step?.errors?.validation) {
@@ -116,11 +121,11 @@ const DynamicFlow = (props) => {
       .then(async (response) => {
         if (isExitResponse(response)) {
           const result = await response.json().catch(() => undefined);
-          updateStepSpecification({});
+          updateStepSpecification({}, etag);
           onClose(result);
         } else {
           const step = await response.json();
-          updateStepSpecification(step);
+          updateStepSpecification(step, getETag(response.headers));
           onStepChange(step, previousStep);
           setSubmitted(false);
         }
@@ -131,17 +136,25 @@ const DynamicFlow = (props) => {
 
   const fetchRefresh = (action, data) => {
     setRefreshing(true);
-    return requestStep({ action, data })
+    return requestStep({ action, data, etag })
       .then(async (response) => {
         const step = await response.json();
-        updateStepSpecification(step);
+        updateStepSpecification(step, getETag(response.headers));
       })
+      .catch(handleRefreshError)
       .catch(handleFetchError)
       .finally(() => setRefreshing(false));
   };
 
   const fetchExitResult = (action, data) => {
     return requestStep({ action, data }).then(validateExitResult).catch(handleFetchError);
+  };
+
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const handleRefreshError = (error) => {
+    if (error.status !== 304) {
+      throw error;
+    }
   };
 
   const handleFetchError = async (response) => {
@@ -169,6 +182,7 @@ const DynamicFlow = (props) => {
       const updatedState = {
         stepSpecification: previous.stepSpecification,
         models: updatedModels,
+        etag: previous.etag,
       };
 
       if (triggerSchema?.refreshFormOnChange) {
@@ -279,7 +293,7 @@ DynamicFlow.defaultProps = {
 export default withErrorBoundary(DynamicFlow);
 
 function makeRequestStep(fetcher) {
-  return function requestStep({ action, data }) {
+  return function requestStep({ action, data, etag }) {
     const { url, method } = action;
     const body = method === 'GET' ? undefined : JSON.stringify(data);
     return fetcher(url, {
@@ -287,6 +301,7 @@ function makeRequestStep(fetcher) {
       headers: {
         'Content-Type': 'application/json',
         'X-Access-Token': 'Tr4n5f3rw153',
+        ...(etag ? { 'If-None-Match': etag } : {}),
       },
       credentials: 'include',
       body,
@@ -297,4 +312,8 @@ function makeRequestStep(fetcher) {
       throw response;
     });
   };
+}
+
+function getETag(headers) {
+  return headers.get('etag') || undefined;
 }

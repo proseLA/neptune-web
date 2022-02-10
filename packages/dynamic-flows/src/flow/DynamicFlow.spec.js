@@ -154,10 +154,17 @@ describe('Given a component for rendering a dynamic flow', () => {
     anotherTestKey: 'anotherValue',
   };
 
+  const generateETag = (response) => JSON.stringify(response).slice(0, 100);
+
   const resolve = (response, init = {}) => {
     return new Promise((promiseResolve) => {
       setTimeout(async () => {
-        promiseResolve(new Response(JSON.stringify(response), init));
+        promiseResolve(
+          new Response(JSON.stringify(response), {
+            ...init,
+            headers: { ...init.headers, etag: generateETag(response) },
+          }),
+        );
       }, 0);
     });
   };
@@ -165,7 +172,8 @@ describe('Given a component for rendering a dynamic flow', () => {
   const rejectWithJsonResponse = (response, init = {}) => {
     return new Promise((_, promiseReject) => {
       setTimeout(() => {
-        promiseReject(new Response(JSON.stringify(response), init));
+        const body = response != null ? JSON.stringify(response) : null;
+        promiseReject(new Response(body, init));
       }, 0);
     });
   };
@@ -177,7 +185,7 @@ describe('Given a component for rendering a dynamic flow', () => {
   };
 
   const resolveWithExitHeader = (response) => {
-    return resolve(response, { headers: new Headers({ 'X-DF-Exit': true }) });
+    return resolve(response, { headers: { 'X-DF-Exit': true } });
   };
 
   const mockRequest = (url) => {
@@ -202,6 +210,8 @@ describe('Given a component for rendering a dynamic flow', () => {
         return resolve(newStep);
       case '/success':
         return resolve(newStep);
+      case '/refreshWithSameFormStep':
+        return rejectWithJsonResponse(null, { status: 304, etag: generateETag(formStep) });
       case '/refresh':
       case '/refreshFromTrigger':
         return resolve(newStep);
@@ -685,6 +695,53 @@ describe('Given a component for rendering a dynamic flow', () => {
 
       it('should not trigger onStepChange', () => {
         expect(onStepChange).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('ETags', () => {
+      const newModel = { a: 1, b: 'c' };
+      const triggerSchema = {
+        ...stringSchemaWithRefresh,
+        refreshFormUrl: '/refreshWithSameFormStep',
+      };
+
+      beforeEach(() => {
+        getStep().invoke('onModelChange')(newModel, thingSchema, newModel.b, triggerSchema);
+      });
+
+      waitBeforeEach();
+
+      describe('when requesting a refresh', () => {
+        it('should pass the current ETag in the "If-None-Match" header', () => {
+          expect(mockFetcher).toHaveBeenCalledWith(
+            '/refreshWithSameFormStep',
+            expect.objectContaining({
+              method: 'POST',
+              body: JSON.stringify(newModel),
+              headers: expect.objectContaining({ 'If-None-Match': expect.any(String) }),
+            }),
+          );
+        });
+      });
+      describe('when the refreshed step has empty body and status 304', () => {
+        it('should request the refresh using the current ETag', () => {
+          expect(mockFetcher).toHaveBeenCalledWith(
+            '/refreshWithSameFormStep',
+            expect.objectContaining({
+              method: 'POST',
+              body: JSON.stringify(newModel),
+              headers: expect.objectContaining({ 'If-None-Match': expect.any(String) }),
+            }),
+          );
+        });
+
+        it('should keep the current schema in the the layout', () => {
+          expect(getStep().prop('stepSpecification')).toStrictEqual(formStep);
+        });
+
+        it('should pass the new model to the layout', () => {
+          expect(getStep().prop('model')).toStrictEqual(newModel);
+        });
       });
     });
   });

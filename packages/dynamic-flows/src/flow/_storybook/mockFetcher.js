@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import reviewLayout from '../../layout/layouts/review.json';
 import decisionStep from '../examples/decision.json';
 import finalStep from '../examples/final.json';
@@ -13,15 +14,23 @@ const reviewStep = {
   layout: reviewLayout,
 };
 
-const createResponse = (body) => new Response(JSON.stringify(body));
+const DELAY = 500;
 
-const delayedResponse = async (response) => {
-  await wait(500);
-  return response;
+const respondWith = async (body) => {
+  await wait(DELAY);
+  return new Response(JSON.stringify(body));
+};
+const respondWithEtag = async (body, etag) => {
+  await wait(DELAY);
+  return new Response(JSON.stringify(body), { headers: { etag } });
+};
+const emptyResposeWithEtag = async (etag) => {
+  await wait(DELAY);
+  return new Response(null, { headers: { etag }, status: 304 });
 };
 
 const delayedReject = async (reason) => {
-  await wait(100);
+  await wait(DELAY);
   throw reason;
 };
 
@@ -31,31 +40,44 @@ export async function mockFetcher(input, init) {
 
   switch (input) {
     case '/decision':
-      return delayedResponse(createResponse(decisionStep));
+      return respondWith(decisionStep);
     case '/recipient':
-      return delayedResponse(createResponse(formStep));
+      return respondWith(formStep);
     case '/recipient-details':
-      return delayedResponse(createResponse(receiveStep));
+      return respondWithEtag(receiveStep, eTagFromStep(receiveStep));
     case '/recipient-details-refresh': {
       const requestModel = JSON.parse(init.body);
       if (requestModel.email.slice(0, 6) === 'match') {
-        return delayedResponse(createResponse(receiveStepRefresh));
+        return respondWith(receiveStepRefresh);
       }
-      return delayedResponse(createResponse({ ...receiveStep, model: requestModel }));
+      const schemaEtag = eTagFromStep(receiveStep);
+      const requestEtag = init?.headers?.['If-None-Match'] || undefined;
+      if (requestEtag != null && requestEtag === schemaEtag) {
+        return emptyResposeWithEtag(schemaEtag);
+      } else {
+        console.log('schemaEtag', schemaEtag, 'requestEtag', requestEtag);
+      }
+      return respondWithEtag({ ...receiveStep, model: requestModel }, eTagFromStep(receiveStep));
     }
     case '/layout':
-      return delayedResponse(createResponse(layoutStep));
+      return respondWith(layoutStep);
     case '/review':
-      return delayedResponse(createResponse(review));
+      return respondWith(review);
     case '/confirm':
-      return delayedResponse(createResponse(reviewStep));
+      return respondWith(reviewStep);
     case '/final':
-      return delayedResponse(createResponse(finalStep));
+      return respondWith(finalStep);
     case '/error':
       return delayedReject({ error: 'Something went wrong', validation: {} });
     default:
-      return delayedResponse({});
+      return respondWith({});
   }
 }
 
 const wait = (t) => new Promise((resolve) => setTimeout(resolve, t));
+
+// eslint-disable-next-line unicorn/prevent-abbreviations
+const eTagFromStep = (step) => {
+  const schema = JSON.stringify(step.schemas[0] || {});
+  return `${schema.slice(0, 50)}-${schema.length}`;
+};
