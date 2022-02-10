@@ -1,5 +1,6 @@
+import { action } from '@storybook/addon-actions';
 import { select, text } from '@storybook/addon-knobs';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { Button, Modal, DateInput } from '..';
 import { Size, Scroll, Position } from '../common';
@@ -9,12 +10,12 @@ export default {
   title: 'Modal',
 };
 
-const Template = (props) => {
-  const size = select('size', Object.values(Size), Size.MEDIUM);
+const Template = (props: { children: ReactNode }) => {
+  const size = select('size', [Size.SMALL, Size.MEDIUM, Size.LARGE, Size.EXTRA_LARGE], Size.MEDIUM);
   const [open, setOpen] = useState(false);
   const title = text('title', 'title');
-  const scroll = select('scroll', Object.values(Scroll), Scroll.CONTENT);
-  const position = select('position', Object.values(Position), Position.CENTER);
+  const className = text('class', '');
+  const position = select('position', [Position.TOP, Position.CENTER], Position.CENTER);
 
   return (
     <>
@@ -27,11 +28,10 @@ const Template = (props) => {
           </>
         }
         open={open}
-        scroll={scroll}
         position={position}
         size={size}
         title={title}
-        className=""
+        className={className}
         footer={
           <Button block onClick={() => alert('clicked')}>
             Action

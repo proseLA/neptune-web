@@ -78,7 +78,7 @@ export { SnackbarConsumer, SnackbarContext } from './snackbar/SnackbarContext';
  * Hooks
  */
 export { default as useSnackbar } from './snackbar/useSnackbar';
-export { useDirection } from './common/hooks';
+export { useDirection, useLayout } from './common/hooks';
 
 /**
  * Enums

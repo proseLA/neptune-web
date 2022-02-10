@@ -316,7 +316,6 @@ const UploadInput = ({
           />
         )}
       </div>
-      {/* @ts-expect-error Remove this comment once Modal is migrated to TypeScript */}
       <Modal
         title={
           deleteConfirm?.title !== undefined

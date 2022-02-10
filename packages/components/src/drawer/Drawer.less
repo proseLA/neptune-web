@@ -10,19 +10,14 @@
   height: 100vh;
   max-height: 100vh;
 
-  .np-drawer-header,
-  .np-drawer-footer {
+  /* mobile viewport bug fix */
+  // stylelint-disable-next-line value-no-vendor-prefix
+  max-height: -webkit-fill-available;
+
+  .np-drawer-header {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-  }
-
-  .np-drawer-content {
-    overflow-y: auto;
-    flex: 1;
-  }
-
-  .np-drawer-header {
     min-height: var(--size-56);
     padding: var(--size-24) var(--size-16);
 
@@ -35,6 +30,11 @@
       cursor: pointer;
       fill: rgb(0, 185, 255);
     }
+  }
+
+  .np-drawer-content {
+    overflow-y: auto;
+    flex: 1;
   }
 
   .np-drawer-footer,

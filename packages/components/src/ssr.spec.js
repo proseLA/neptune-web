@@ -11,6 +11,7 @@ const excluded = new Set([
   // hooks
   'useSnackbar',
   'useDirection',
+  'useLayout',
 
   // specific components
   'Provider',

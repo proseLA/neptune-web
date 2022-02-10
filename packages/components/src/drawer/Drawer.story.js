@@ -14,7 +14,7 @@ export default {
 export const Basic = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const position = select('position', Object.values(Position), Position.RIGHT);
+  const position = select('position', [Position.LEFT, Position.RIGHT], Position.RIGHT);
 
   const handleDrawerClose = (event) => {
     console.log('drawer close');

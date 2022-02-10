@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import CloseButton from '../common/closeButton';
+import { useLayout } from '../common/hooks';
 import { Position } from '../common/propsValues/position';
 import Dimmer from '../dimmer';
 import SlidingPanel from '../slidingPanel';
@@ -13,9 +14,11 @@ const Drawer = ({ children, className, footerContent, headerTitle, onClose, open
     !onClose,
   );
 
+  const { isMobile } = useLayout();
+
   return (
     <Dimmer open={open} onClose={onClose}>
-      <SlidingPanel open={open} position={position}>
+      <SlidingPanel open={open} position={isMobile ? Position.BOTTOM : position}>
         <div className={classNames('np-drawer', className)}>
           <div
             className={classNames('np-drawer-header', {
@@ -40,13 +43,13 @@ Drawer.propTypes = {
   /** The content to appear in the drawer footer. */
   footerContent: PropTypes.node,
   /** The content to appear in the drawer header. */
-  headerTitle: PropTypes.string,
+  headerTitle: PropTypes.node,
   /** The action to perform on close click. */
   onClose: PropTypes.func,
   /** The status of Drawer either open or not. */
   open: PropTypes.bool,
-  /** The placement of Drawer on the screen either left or right. */
-  position: PropTypes.oneOf(['left', 'right']),
+  /** The placement of Drawer on the screen either left or right. On mobile it will default to bottom. */
+  position: PropTypes.oneOf(['left', 'right', 'bottom']),
 };
 
 Drawer.defaultProps = {
