@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.5...@transferwise/neptune-css@12.3.6) (2022-02-11)
+
+
+### Bug Fixes
+
+* **FlowNavigation:** alignment of labels and stepper dots and tooltips ([#1326](https://github.com/transferwise/neptune-web/issues/1326)) ([0cb60fa](https://github.com/transferwise/neptune-web/commit/0cb60faa3423a6ed3bf41108a88080fce643c040))
+
+
+
+
+
 ## [12.3.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.4...@transferwise/neptune-css@12.3.5) (2022-02-09)
 
 
