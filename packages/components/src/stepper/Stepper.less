@@ -24,6 +24,7 @@
       color: var(--color-content-accent);
       font-weight: var(--font-weight-semi-bold);
       transition: color 0.15s ease-in-out;
+      line-height: 0;
     }
 
     @media screen and (--screen-sm) and (--screen-md-max) {
@@ -37,18 +38,6 @@
 
       .tooltip-arrow {
         z-index: 1;
-      }
-    }
-
-    &:first-child {
-      .tw-stepper__step-label {
-        transform: translateX(0%);
-      }
-    }
-
-    &:last-child {
-      .tw-stepper__step-label {
-        .translateX(-100%);
       }
     }
   }
@@ -95,7 +84,7 @@
     width: 8px;
     height: 8px;
     margin-top: -3px;
-    .margin(right, -8px);
+    .margin(right, -4px);
 
     content: '';
     background-color: @color-navy-background-elevated;
