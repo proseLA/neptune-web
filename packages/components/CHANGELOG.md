@@ -3,6 +3,150 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.11.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.10.1...@transferwise/components@39.11.0) (2022-02-14)
+
+
+### Features
+
+* adding basic ActionButton component implementation ([#1321](https://github.com/transferwise/neptune-web/issues/1321)) ([df9c43d](https://github.com/transferwise/neptune-web/commit/df9c43d8493506035517752666482e98ccd10889))
+
+
+
+
+
+## [39.10.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.10.0...@transferwise/components@39.10.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* **FlowNavigation:** alignment of labels and stepper dots and tooltips ([#1326](https://github.com/transferwise/neptune-web/issues/1326)) ([0cb60fa](https://github.com/transferwise/neptune-web/commit/0cb60faa3423a6ed3bf41108a88080fce643c040))
+
+
+
+
+
+# [39.10.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.6...@transferwise/components@39.10.0) (2022-02-10)
+
+
+### Features
+
+* render Modal content in Drawer on mobile ([#1307](https://github.com/transferwise/neptune-web/issues/1307)) ([2149bae](https://github.com/transferwise/neptune-web/commit/2149bae0529e5d31d4fb980ac293e7956dc5d25f))
+
+
+
+
+
+## [39.9.6](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.5...@transferwise/components@39.9.6) (2022-02-09)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [39.9.5](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.4...@transferwise/components@39.9.5) (2022-02-09)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [39.9.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.3...@transferwise/components@39.9.4) (2022-02-08)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [39.9.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.2...@transferwise/components@39.9.3) (2022-02-07)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [39.9.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.1...@transferwise/components@39.9.2) (2022-02-03)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [39.9.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.9.0...@transferwise/components@39.9.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* **FlowNavigation:** disabled color of active state ([#1318](https://github.com/transferwise/neptune-web/issues/1318)) ([4671ab0](https://github.com/transferwise/neptune-web/commit/4671ab0757f2e68bf5ca975c975a75a86532e45c))
+
+
+
+
+
+# [39.9.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.3...@transferwise/components@39.9.0) (2022-02-03)
+
+
+### Features
+
+* **dynamic-flows:** Multiple file upload component support for DFv3 ([#1274](https://github.com/transferwise/neptune-web/issues/1274)) ([1046f3a](https://github.com/transferwise/neptune-web/commit/1046f3a4699e885a963ed005ebdc1f6637f45a35)), closes [#1283](https://github.com/transferwise/neptune-web/issues/1283)
+
+
+
+
+
+## [39.8.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.2...@transferwise/components@39.8.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* stepper label positions ([#1310](https://github.com/transferwise/neptune-web/issues/1310)) ([cd68b56](https://github.com/transferwise/neptune-web/commit/cd68b564d07d178d4745ab54b5ba7a726f73c68b))
+
+
+
+
+
+## [39.8.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.1...@transferwise/components@39.8.2) (2022-01-31)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [39.8.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.8.0...@transferwise/components@39.8.1) (2022-01-31)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+# [39.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.7.0...@transferwise/components@39.8.0) (2022-01-31)
+
+
+### Features
+
+* new disabled state approach ([#1285](https://github.com/transferwise/neptune-web/issues/1285)) ([3bed0c3](https://github.com/transferwise/neptune-web/commit/3bed0c390c90d0b1ec8f1578eb6b1cad2a02dc51))
+
+
+
+
+
+# [39.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.6.2...@transferwise/components@39.7.0) (2022-01-28)
+
+
+### Features
+
+* add id prop on InlineAlert ([#1306](https://github.com/transferwise/neptune-web/issues/1306)) ([04ff03f](https://github.com/transferwise/neptune-web/commit/04ff03f63aced0e81d7965bb694ebccc4ed6f134))
+
+
+
+
+
 ## [39.6.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.6.1...@transferwise/components@39.6.2) (2022-01-28)
 
 **Note:** Version bump only for package @transferwise/components
@@ -69,7 +213,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * add ability to not show media in a circle in Decision ([#1291](https://github.com/transferwise/neptune-web/issues/1291)) ([0c9e111](https://github.com/transferwise/neptune-web/commit/0c9e111cb063108a6f699f6b61f36eb577773502))
-
 
 
 

@@ -54,10 +54,6 @@ label,
   transition: color ease-in-out 0.15s;
 }
 
-.disabled > label {
-  color: var(--color-content-disabled);
-}
-
 // Normalize form controls
 //
 // While most of our form styles require extra classes, some basic normalization
@@ -161,7 +157,7 @@ output {
   // Remove iOS drop shadow
   background-clip: padding-box;
 
-  &:hover {
+  &:not(.disabled, :disabled):hover {
     border-color: var(--color-interactive-secondary-hover);
   }
 
@@ -170,31 +166,6 @@ output {
 
   &::placeholder {
     color: var(--color-content-tertiary);
-  }
-
-  // Disabled and read-only inputs
-  //
-  // HTML5 says that controls under a fieldset > legend:first-child won't be
-  // disabled if the fieldset is disabled. Due to implementation difficulty, we
-  // don't honor that edge case; we style them as disabled anyway.
-  &[disabled],
-  &[readonly],
-  fieldset[disabled] & {
-    background-color: var(--color-background-neutral);
-    color: var(--color-content-disabled);
-    border-color: var(--color-interactive-disabled);
-
-    &::placeholder {
-      color: var(--color-content-disabled);
-    }
-
-    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
-    opacity: 1;
-  }
-
-  &[disabled],
-  fieldset[disabled] & {
-    cursor: @cursor-disabled;
   }
 
   // Reset height for `textarea`s
@@ -376,9 +347,9 @@ input[type='checkbox'] {
   line-height: var(--line-height-control);
   min-height: calc(var(--line-height-control) * 2);
   font-size: var(--font-size-16);
-  color: var(--color-content-disabled);
+  color: var(--color-content-secondary);
   background-color: var(--color-background-neutral);
-  border: 1px solid var(--color-interactive-disabled);
+  border: 1px solid var(--color-interactive-secondary);
   border-radius: @input-border-radius;
   padding: @input-padding;
 
@@ -590,24 +561,24 @@ input[type='checkbox'] {
 .has-success {
   .form-control-validation(
     var(--color-content-positive);
-    var(--color-interactive-secondary);
-    var(--color-interactive-secondary-hover);
+    var(--color-interactive-positive);
+    var(--color-interactive-positive-hover);
   );
 }
 
 .has-info {
   .form-control-validation(
     var(--color-content-accent);
-    var(--color-interactive-secondary);
-    var(--color-interactive-secondary-hover);
+    var(--color-interactive-accent);
+    var(--color-interactive-accent-hover);
   );
 }
 
 .has-warning {
   .form-control-validation(
     var(--color-content-warning);
-    var(--color-interactive-secondary);
-    var(--color-interactive-secondary-hover);
+    var(--color-interactive-warning);
+    var(--color-interactive-warning-hover);
   );
 }
 
@@ -901,28 +872,16 @@ input[type='checkbox'] {
     border-radius: @border-radius-base;
     transition: border 0.15s ease-in-out, background-color 0.15s ease-in-out;
 
-    &:hover {
+    &:not(.disabled, :disabled):hover {
       border-color: var(--color-interactive-accent-hover);
     }
 
-    &.focus,
-    &.focus:hover,
-    &.has-focus,
-    &.has-focus:hover,
-    &:focus-within {
+    &:not(.disabled, :disabled).focus,
+    &:not(.disabled, :disabled).focus:hover,
+    &:not(.disabled, :disabled).has-focus,
+    &:not(.disabled, :disabled).has-focus:hover,
+    &:not(.disabled, :disabled):focus-within {
       border-color: var(--color-interactive-accent-active);
-    }
-  }
-
-  &[disabled],
-  &[readonly],
-  fieldset[disabled] &,
-  &.disabled,
-  &.readonly {
-    label {
-      color: var(--color-content-disabled);
-      border-color: var(--color-interactive-disabled);
-      background-color: var(--color-background-neutral);
     }
   }
 
@@ -938,23 +897,6 @@ input[type='checkbox'] {
         font-size: var(--font-size-14);
         color: var(--color-content-secondary);
       }
-    }
-  }
-}
-
-.disabled .checkbox,
-.checkbox.disabled,
-.disabled .radio,
-.radio.disabled {
-  > label,
-  > label:hover {
-    border-color: var(--color-interactive-disabled);
-    color: var(--color-content-disabled);
-
-    small,
-    .small,
-    .body-2 {
-      color: var(--color-content-disabled);
     }
   }
 }

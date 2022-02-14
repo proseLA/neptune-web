@@ -17,7 +17,7 @@
     text-decoration: none;
   }
 
-  &:hover {
+  &:not(.disabled, :disabled):hover {
     .tw-avatar__content {
       background-color: var(--color-background-screen);
     }
@@ -39,19 +39,12 @@
   outline: none;
   background: none;
 
-  &:hover,
-  &:focus {
+  &:not(.disabled, :disabled):hover,
+  &:not(.disabled, :disabled):focus {
     color: var(--color-content-accent-hover);
   }
 
-  &:active {
+  &:not(.disabled, :disabled):active {
     color: var(--color-content-accent-active);
-  }
-
-  &[disabled] {
-    &:hover,
-    &:focus {
-      color: var(--color-content-disabled);
-    }
   }
 }

@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "你確定要移除此檔案嗎？",
   "neptune.UploadInput.fileIsTooLarge": "檔案太大",
   "neptune.UploadInput.fileTypeNotSupported": "不支持檔案類型",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "抱歉，這次上載失敗，因為我們每次最多只能接受{maxFilesAllowed}個檔案。",
   "neptune.UploadItem.deleting": "刪除中…",
   "neptune.UploadItem.removeFile": "移除檔案{filename}",
   "neptune.UploadItem.uploaded": "已上載",

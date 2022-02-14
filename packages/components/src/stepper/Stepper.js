@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { Position } from '../common';
+import { useDirection } from '../common/hooks';
 import Tooltip from '../tooltip';
 
 import { isTouchDevice } from './deviceDetection';
@@ -12,6 +13,8 @@ function clamp(from, to, value) {
 
 /* eslint-disable react/no-array-index-key */
 const Stepper = ({ steps, activeStep, className }) => {
+  const { isRTL } = useDirection();
+
   if (steps.length === 0) {
     return null;
   }
@@ -26,15 +29,16 @@ const Stepper = ({ steps, activeStep, className }) => {
     const active = index === activeStepIndex;
     const clickable = step.onClick && !active;
 
-    const labelButton = (
+    const labelButton = clickable ? (
       <button
         type="button"
         className="btn-unstyled tw-stepper__step-label"
-        disabled={!clickable}
         onClick={() => clickable && step.onClick()}
       >
         <small>{step.label}</small>
       </button>
+    ) : (
+      <small className="tw-stepper__step-label">{step.label}</small>
     );
     return (
       <li
@@ -45,6 +49,11 @@ const Stepper = ({ steps, activeStep, className }) => {
           ${active ? 'tw-stepper__step--active' : ''}
           ${clickable ? 'tw-stepper__step--clickable' : ''}
         `}
+        style={
+          isRTL
+            ? { right: `${index * stepPercentage * 100}%` }
+            : { left: `${index * stepPercentage * 100}%` }
+        }
       >
         {step.hoverLabel && !isTouchDevice() ? (
           <Tooltip position={Position.BOTTOM} label={step.hoverLabel}>

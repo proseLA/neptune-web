@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "Yakin ingin menghapus file ini?",
   "neptune.UploadInput.fileIsTooLarge": "File terlalu besar",
   "neptune.UploadInput.fileTypeNotSupported": "Jenis file tidak didukung",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "Maaf, unggahan ini gagal karena kami hanya dapat menerima {maxFilesAllowed} file sekaligus.",
   "neptune.UploadItem.deleting": "Menghapus...",
   "neptune.UploadItem.removeFile": "Hapus file {filename}",
   "neptune.UploadItem.uploaded": "Diunggah",

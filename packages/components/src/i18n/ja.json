@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "このファイルを削除しますか？",
   "neptune.UploadInput.fileIsTooLarge": "ファイルが大きすぎます。",
   "neptune.UploadInput.fileTypeNotSupported": "このファイルの種類はサポートされていません",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "申し訳ございませんが、このアップロードに失敗しました。一度に{maxFilesAllowed}個のファイルのみ受付可能です。",
   "neptune.UploadItem.deleting": "削除中...",
   "neptune.UploadItem.removeFile": "{filename} を削除",
   "neptune.UploadItem.uploaded": "アップロード済み",

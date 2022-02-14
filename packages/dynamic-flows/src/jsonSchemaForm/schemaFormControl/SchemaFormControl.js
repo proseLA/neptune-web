@@ -27,7 +27,6 @@ export const getControlType = (schema) => {
   if (schema.oneOf) {
     return schema.oneOf.length === 1 || schema.oneOf.length >= 3 ? 'select' : 'radio';
   }
-
   if (schema.type === 'string') {
     switch (schema.format) {
       case 'date':
@@ -76,7 +75,6 @@ const SchemaFormControl = (props) => {
     // If the model does not satisfy the schema propagate null
     props.onChange(getValidModelParts(value, props.schema));
   };
-
   const controlType = getControlType(props.schema);
   const options = getOptions(props.schema);
 

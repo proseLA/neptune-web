@@ -1,0 +1,19 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { DocumentLink } from '../../../utils/pageUtils';
+import { ActionButton, Link } from '@transferwise/components';
+import code from '../../../liveEditorCode/actionButton.code';
+
+Use action buttons for non-primary standalone actions or when there are multiple actions a user can choose from.
+
+For primary actions, use a normal <DocumentLink href="components/inputs/Button">Button</DocumentLink>. Refer to the <Link href="https://neptune.wise.com/components/action-button/" target="_blank">action button usage guidelines</Link> for more information on the differences between the two components.
+
+<LiveEditorBlock code={code} scope={{ ActionButton }} />
+<GeneratePropsTable componentName="ActionButton" />
+
+export const meta = {
+  name: 'ActionButton',
+  badge: {
+    expiryDate: '2022-03-04',
+    type: 'new',
+  },
+};

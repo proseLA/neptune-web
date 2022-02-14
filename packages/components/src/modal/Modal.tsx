@@ -1,35 +1,74 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-import { Size, Position, Scroll } from '../common';
+import {
+  Size,
+  Position,
+  PositionTop,
+  PositionCenter,
+  Scroll,
+  CommonProps,
+  SizeSmall,
+  SizeMedium,
+  SizeLarge,
+  SizeExtraLarge,
+  ScrollContent,
+  ScrollViewport,
+} from '../common';
 import CloseButton from '../common/closeButton';
+import { useLayout } from '../common/hooks';
 import Dimmer from '../dimmer';
+import Drawer from '../drawer';
 
 const TRANSITION_DURATION_IN_MILLISECONDS = 150;
 
+type ModalProps = CommonProps & {
+  title?: ReactNode;
+  body: ReactNode;
+  footer?: ReactNode;
+  size?: SizeSmall | SizeMedium | SizeLarge | SizeExtraLarge;
+  onClose: () => void;
+  open: boolean;
+  /** @deprecated Scroll behaviour will always be "content" regardless of this property, you can remove it from your component  */
+  scroll?: ScrollContent | ScrollViewport;
+  position?: PositionTop | PositionCenter;
+};
+
 const Modal = ({
-  title,
+  title = null,
   body,
-  footer,
+  footer = null,
   onClose,
   className,
   open,
-  size,
-  scroll,
-  position,
+  size = Size.MEDIUM,
+  scroll = Scroll.VIEWPORT,
+  position = Position.CENTER,
   ...otherProps
-}) => {
-  const checkSpecialClasses = (classToCheck) => className.split(' ').includes(classToCheck);
+}: ModalProps) => {
+  const checkSpecialClasses = (classToCheck: string) =>
+    className?.split(' ').includes(classToCheck);
+  const { isMobile } = useLayout();
 
   // These should be replaced with props in breaking change.
   const isCompact = checkSpecialClasses('compact');
   const noDivider = checkSpecialClasses('no-divider');
 
-  return (
+  return isMobile ? (
+    <Drawer
+      open={open}
+      headerTitle={title}
+      footerContent={footer}
+      position={Position.BOTTOM}
+      onClose={onClose}
+    >
+      {body}
+    </Drawer>
+  ) : (
     <Dimmer
       open={open}
-      scrollable={scroll === Scroll.VIEWPORT}
+      scrollable={false}
       className={classNames('d-flex', 'justify-content-center')}
       onClose={onClose}
     >
@@ -41,17 +80,9 @@ const Modal = ({
         unmountOnExit
       >
         <div
-          className={classNames(
-            'tw-modal',
-            'd-flex',
-            {
-              'align-self-center': position === Position.CENTER,
-              'tw-modal--content': scroll === Scroll.CONTENT,
-            },
-            'fade',
-            'outline-none',
-            className,
-          )}
+          className={classNames('tw-modal', 'd-flex', 'fade', 'outline-none', className, {
+            'align-self-center': position === Position.CENTER,
+          })}
           {...otherProps}
         >
           <div
@@ -86,6 +117,7 @@ const Modal = ({
                 )}
               >
                 <h4 className="tw-modal-title">{title}</h4>
+                {/* @ts-expect-error TODO: Remove this once CloseButton is migrated to TypeScript */}
                 <CloseButton onClick={onClose} />
               </div>
               <div className="tw-modal-body">{body}</div>
@@ -110,27 +142,6 @@ const Modal = ({
       </CSSTransition>
     </Dimmer>
   );
-};
-
-Modal.propTypes = {
-  title: PropTypes.node,
-  body: PropTypes.node.isRequired,
-  footer: PropTypes.node,
-  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
-  onClose: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  open: PropTypes.bool.isRequired,
-  scroll: PropTypes.oneOf(['content', 'viewport']),
-  position: PropTypes.oneOf(['top', 'center']),
-};
-
-Modal.defaultProps = {
-  title: null,
-  footer: null,
-  size: Size.MEDIUM,
-  className: '',
-  scroll: Scroll.VIEWPORT,
-  position: Position.CENTER,
 };
 
 export default Modal;

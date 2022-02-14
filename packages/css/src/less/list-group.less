@@ -86,8 +86,8 @@ a.list-group-item {
   }
 
   // Hover state
-  &:hover,
-  &:focus {
+  &:not(.disabled, :disabled):hover,
+  &:not(.disabled, :disabled):focus {
     text-decoration: none;
     color: var(--color-content-accent-hover);
     background-color: var(--color-background-neutral);
@@ -103,20 +103,6 @@ a.list-group-item {
     &:hover {
       // tell the browser there is a likelihood this will animate when clicked
       will-change: margin, contents;
-    }
-  }
-
-  // Disabled state
-  &.disabled {
-    color: var(--color-content-disabled);
-
-    .list-group-item-heading,
-    .list-group-item-text,
-    b,
-    strong,
-    .circle,
-    .icon {
-      color: var(--color-content-disabled);
     }
   }
 

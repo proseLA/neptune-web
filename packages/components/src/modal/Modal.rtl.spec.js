@@ -1,4 +1,4 @@
-import { Position, Scroll } from '../common';
+import { Position } from '../common';
 import { render, fireEvent, screen } from '../test-utils';
 
 import Modal from './Modal';
@@ -12,12 +12,6 @@ describe('Modal', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  it('appends the tw-modal--content scroll class to modal', () => {
-    render(<Modal {...props} open scroll={Scroll.CONTENT} />);
-
-    expect(getModal()).toHaveClass('tw-modal--content');
   });
 
   it(`doesn't calls onClose when click is inside modal`, () => {
@@ -52,5 +46,4 @@ describe('Modal', () => {
   });
 
   const getDialog = () => screen.getByRole('dialog');
-  const getModal = () => document.querySelector('.tw-modal');
 });

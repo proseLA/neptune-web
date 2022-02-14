@@ -23,7 +23,6 @@ const jsFiles = [
   { filename: 'FlowNavigation', folder: 'flowNavigation' },
   { filename: 'Popover', folder: 'popover' },
   { filename: 'Money', folder: 'money' },
-  { filename: 'Modal', folder: 'modal' },
   { filename: 'RadioOption', folder: 'radioOption' },
   { filename: 'CheckboxOption', folder: 'checkboxOption' },
   { filename: 'NavigationOption', folder: 'navigationOption' },

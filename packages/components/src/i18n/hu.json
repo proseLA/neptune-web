@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "Biztosan törölni szeretnéd ezt a fájlt?",
   "neptune.UploadInput.fileIsTooLarge": "A fájl túl nagy",
   "neptune.UploadInput.fileTypeNotSupported": "Nem támogatott fájltípus",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "Sajnos ez a feltöltés sikertelen volt, mert csak {maxFilesAllowed} fájlt tudunk egyszerre elfogadni.",
   "neptune.UploadItem.deleting": "Törlés...",
   "neptune.UploadItem.removeFile": "{filename} fájl törlése",
   "neptune.UploadItem.uploaded": "Feltöltve",

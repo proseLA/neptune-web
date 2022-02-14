@@ -1,3 +1,5 @@
+import { isArraySchema } from './arraySchemaTypes';
+
 const basicTypes = new Set(['string', 'number', 'integer', 'boolean']);
 
 export const schemaType = {
@@ -9,6 +11,7 @@ export const schemaType = {
   ONE_OF: 'oneOf',
   ALL_OF: 'allOf',
   BASIC: 'basic',
+  ARRAY: 'array',
 };
 
 export const isReadOnlySchema = (schema) => !!schema.readOnly && isBasicSchema(schema);
@@ -41,6 +44,9 @@ export const getSchemaType = (schema) => {
   }
   if (isObjectSchema(schema)) {
     return schemaType.OBJECT;
+  }
+  if (isArraySchema(schema)) {
+    return schemaType.ARRAY;
   }
   if (isPromotedOneOfSchema(schema)) {
     return schemaType.PROMOTED_ONE_OF;

@@ -3,7 +3,7 @@ import { createContext, useContext, useMemo } from 'react';
 
 import { makeFetcher } from '.';
 
-const FetcherContext = createContext(fetch);
+const FetcherContext = createContext();
 
 export const FetcherProvider = ({ fetcher, children }) => {
   return <FetcherContext.Provider value={fetcher}>{children}</FetcherContext.Provider>;

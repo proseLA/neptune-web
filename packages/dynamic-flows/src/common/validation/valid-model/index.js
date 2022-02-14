@@ -9,7 +9,6 @@ import {
   isNull,
   isEmpty,
 } from '@transferwise/neptune-validation';
-
 function getValidModelParts(model, schema) {
   if (schema.allOf) {
     return cleanModelWithAllOfSchema(model, schema);
@@ -26,7 +25,6 @@ function getValidModelParts(model, schema) {
   if (!isUndefined(schema.const) && model === schema.const) {
     return model;
   }
-
   if (schema.type) {
     switch (schema.type) {
       case 'object':

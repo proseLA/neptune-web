@@ -14,61 +14,39 @@
   background-color: @background;
   border-color: @border;
   transition: all 0.15s ease-in-out;
-  transition-property: color, border-color, background-color;
 
-  &:focus,
-  &.focus {
+  &:not(.disabled, :disabled):focus,
+  &:not(.disabled, :disabled).focus {
     color: @color-hover;
     background-color: @background-hover;
     border-color: @border-hover;
   }
 
-  &:hover {
+  &:not(.disabled, :disabled):hover {
     color: @color-hover;
     background-color: @background-hover;
     border-color: @border-hover;
   }
 
-  &:active,
-  &.active,
+  &:not(.disabled, :disabled):active,
+  &:not(.disabled, :disabled).active,
   .open > .dropdown-toggle& {
     color: @color-active;
     background-color: @background-active;
     border-color: @border-active;
 
-    &:hover,
-    &:focus,
-    &.focus {
+    &:not(.disabled, :disabled):hover,
+    &:not(.disabled, :disabled):focus,
+    &:not(.disabled, :disabled).focus {
       color: @color-active;
       background-color: @background-active;
       border-color: @border-active;
     }
   }
 
-  &.active,
+  &:not(.disabled, :disabled).active,
   .open > .dropdown-toggle& {
     background-image: none;
-  }
-
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    &,
-    &:hover,
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
-      background-color: var(--color-background-neutral);
-      border-color: var(--color-interactive-disabled);
-      color: var(--color-content-disabled);
-
-      &.btn-priority-2 {
-        background-color: @background;
-        border-color: var(--color-interactive-disabled);
-        color: var(--color-content-disabled);
-      }
-    }
   }
 
   .badge {

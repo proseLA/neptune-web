@@ -33,6 +33,7 @@
   "neptune.UploadInput.deleteModalTitle": "Vuoi davvero cancellare questo file?",
   "neptune.UploadInput.fileIsTooLarge": "File troppo grande",
   "neptune.UploadInput.fileTypeNotSupported": "Tipo di file non supportato",
+  "neptune.UploadInput.maximumFilesAlreadyUploaded": "Sorry, this upload failed because we can only accept {maxFilesAllowed} files at once.",
   "neptune.UploadItem.deleting": "Eliminando...",
   "neptune.UploadItem.removeFile": "Rimuovi file {filename}",
   "neptune.UploadItem.uploaded": "Caricato",

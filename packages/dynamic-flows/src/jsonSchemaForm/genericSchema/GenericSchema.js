@@ -2,6 +2,7 @@ import Types from 'prop-types';
 
 import { getSchemaType, schemaType } from '../../common/schemaTypes/schemaTypes';
 import AllOfSchema from '../allOfSchema';
+import ArraySchema from '../arrayTypeSchema';
 import BasicTypeSchema from '../basicTypeSchema';
 import ObjectSchema from '../objectSchema';
 import OneOfSchema from '../oneOfSchema';
@@ -26,6 +27,8 @@ const GenericSchemaForm = (props) => {
       return <BasicTypeSchema {...props} />;
     case schemaType.OBJECT:
       return <ObjectSchema {...props} key={JSON.stringify(schema)} />;
+    case schemaType.ARRAY:
+      return <ArraySchema {...props} />;
     case schemaType.PROMOTED_ONE_OF:
       return <PromotedOneOfSchema {...props} />;
     case schemaType.ONE_OF:

@@ -3,6 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.5...@transferwise/neptune-css@12.3.6) (2022-02-11)
+
+
+### Bug Fixes
+
+* **FlowNavigation:** alignment of labels and stepper dots and tooltips ([#1326](https://github.com/transferwise/neptune-web/issues/1326)) ([0cb60fa](https://github.com/transferwise/neptune-web/commit/0cb60faa3423a6ed3bf41108a88080fce643c040))
+
+
+
+
+
+## [12.3.5](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.4...@transferwise/neptune-css@12.3.5) (2022-02-09)
+
+
+### Bug Fixes
+
+* **InlineAlert:** apply clip-path to arrow ([#1324](https://github.com/transferwise/neptune-web/issues/1324)) ([d69ab1a](https://github.com/transferwise/neptune-web/commit/d69ab1a33cf8cceb6d21152d83315240a6658bf9))
+
+
+
+
+
+## [12.3.4](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.3...@transferwise/neptune-css@12.3.4) (2022-02-09)
+
+**Note:** Version bump only for package @transferwise/neptune-css
+
+
+
+
+
+## [12.3.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.2...@transferwise/neptune-css@12.3.3) (2022-02-08)
+
+
+### Bug Fixes
+
+* **Popover:** cropped arrow via clip-path ([#1322](https://github.com/transferwise/neptune-web/issues/1322)) ([03a8259](https://github.com/transferwise/neptune-web/commit/03a8259ea460fb21d8cacca7f9cab6a5e90c78dd))
+
+
+
+
+
+## [12.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.1...@transferwise/neptune-css@12.3.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* chevron position in angular select ([#1320](https://github.com/transferwise/neptune-web/issues/1320)) ([9cb678d](https://github.com/transferwise/neptune-web/commit/9cb678dd87719c89ff9ca604244ed361a2566773))
+
+
+
+
+
+## [12.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.0...@transferwise/neptune-css@12.3.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* border colors for inputs + inline alerts ([#1319](https://github.com/transferwise/neptune-web/issues/1319)) ([9b5acae](https://github.com/transferwise/neptune-web/commit/9b5acaef72e865b9d14cf255bb988c0f81b3cf86))
+
+
+
+
+
+# [12.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.2.1...@transferwise/neptune-css@12.3.0) (2022-02-03)
+
+
+### Bug Fixes
+
+* **Popover:** dotted link ([#1317](https://github.com/transferwise/neptune-web/issues/1317)) ([b1bb4ff](https://github.com/transferwise/neptune-web/commit/b1bb4ff4dc170e9ae07177d852870902675b5a86))
+
+
+### Features
+
+* **dynamic-flows:** Multiple file upload component support for DFv3 ([#1274](https://github.com/transferwise/neptune-web/issues/1274)) ([1046f3a](https://github.com/transferwise/neptune-web/commit/1046f3a4699e885a963ed005ebdc1f6637f45a35)), closes [#1283](https://github.com/transferwise/neptune-web/issues/1283)
+
+
+
+
+
+## [12.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.2.0...@transferwise/neptune-css@12.2.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* hover effect in accent tertiary button ([#1309](https://github.com/transferwise/neptune-web/issues/1309)) ([702b7ea](https://github.com/transferwise/neptune-web/commit/702b7ead41fb1eb850a42957865e79f5b0859ca4))
+
+
+
+
+
+# [12.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.3...@transferwise/neptune-css@12.2.0) (2022-01-31)
+
+
+### Features
+
+* new disabled state approach ([#1285](https://github.com/transferwise/neptune-web/issues/1285)) ([3bed0c3](https://github.com/transferwise/neptune-web/commit/3bed0c390c90d0b1ec8f1578eb6b1cad2a02dc51))
+
+
+
+
+
 ## [12.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.2...@transferwise/neptune-css@12.1.3) (2022-01-28)
 
 
@@ -20,9 +121,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * multiple alerts showing at one time ([#1298](https://github.com/transferwise/neptune-web/issues/1298)) ([89893b6](https://github.com/transferwise/neptune-web/commit/89893b698c412f92ea0fb8728bb684c0db6da640))
-
-
-
 
 
 ## [12.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.1.0...@transferwise/neptune-css@12.1.1) (2022-01-17)

@@ -30,20 +30,14 @@
     border-radius: 50%;
     font-weight: normal;
 
-    &:hover,
-    &:focus {
+    &:not(.disabled, :disabled):hover,
+    &:not(.disabled, :disabled):focus {
       background-color: var(--color-background-neutral);
     }
 
-    &.active {
+    &:not(.disabled, :disabled).active {
       background-color: var(--color-background-neutral);
       font-weight: var(--font-weight-bold);
-      cursor: not-allowed;
-    }
-
-    &.disabled {
-      color: var(--color-content-disabled);
-      background-color: transparent;
       cursor: not-allowed;
     }
   }

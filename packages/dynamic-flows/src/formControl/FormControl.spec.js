@@ -265,7 +265,6 @@ describe('FormControl', () => {
       expect(input.prop('type')).toBe('hidden');
     });
   });
-
   function testSimpleControl(controlType, selector, valueToSet, placeholder) {
     let input;
     describe(`type: ${controlType}`, () => {

@@ -17,7 +17,6 @@
           </>
         }
         open={open}
-        scroll={Scroll.VIEWPORT}
         position={Position.TOP}
         onClose={() => setOpen(false)}
         size={Size.MEDIUM}

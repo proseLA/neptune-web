@@ -12,7 +12,7 @@
 
   .clear-btn {
     transition: color 0.15s ease-in-out;
-    color: var(--color-content-disabled);
+    color: var(--color-interactive-secondary);
     height: 100%;
     position: absolute;
     top: 0;
@@ -20,12 +20,12 @@
 
     padding: 0 var(--size-16);
 
-    &:hover,
-    &:focus {
+    &:not(.disabled, :disabled):hover,
+    &:not(.disabled, :disabled):focus {
       color: var(--color-interactive-negative-hover);
     }
 
-    &:active {
+    &:not(.disabled, :disabled):active {
       color: var(--color-interactive-negative-active);
     }
   }

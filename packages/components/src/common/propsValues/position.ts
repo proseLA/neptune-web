@@ -10,6 +10,7 @@ export enum Position {
   TOP = 'top',
 }
 
+export type PositionCenter = 'center';
 export type PositionTop = 'top';
 export type PositionRight = 'right';
 export type PositionBottom = 'bottom';

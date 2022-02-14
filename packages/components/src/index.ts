@@ -8,6 +8,7 @@ export type { LayoutDirection } from './common';
  * Components
  */
 export { default as Accordion } from './accordion';
+export { default as ActionButton } from './actionButton';
 export { default as ActionOption } from './actionOption';
 export { default as Alert } from './alert';
 export { default as Avatar } from './avatar';
@@ -78,7 +79,7 @@ export { SnackbarConsumer, SnackbarContext } from './snackbar/SnackbarContext';
  * Hooks
  */
 export { default as useSnackbar } from './snackbar/useSnackbar';
-export { useDirection, useTheme } from './common/hooks';
+export { useDirection, useLayout, useTheme } from './common/hooks';
 
 /**
  * Enums

@@ -8,6 +8,7 @@ import {
   getEnumValidationFailures,
   getConstValidationFailures,
   getArrayValidationFailures,
+  getBlobValidationFailures,
 } from '../validation-failures';
 
 function isValidStringSchema(value, schema) {
@@ -84,6 +85,10 @@ function isValidAllOfSchema(value, schema) {
     .every((valid) => valid);
 }
 
+function isValidBlobSchema(value, schema) {
+  return !getBlobValidationFailures(value, schema).length;
+}
+
 /**
  * Validate any value against a given schema
  *
@@ -120,6 +125,8 @@ function isValidSchema(value, schema) {
       return isValidArraySchema(value, schema);
     case 'object':
       return isValidObjectSchema(value, schema);
+    case 'blob':
+      return isValidBlobSchema(value, schema);
     default:
       return false;
   }

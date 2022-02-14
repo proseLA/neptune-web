@@ -17,6 +17,7 @@ module.exports = {
     'react/jsx-uses-react': 0,
     'react/react-in-jsx-scope': 0,
     'react/destructuring-assignment': [0, 'never'],
+    'react/function-component-definition': 0,
     'jsx-a11y/label-has-for': [
       1,
       {

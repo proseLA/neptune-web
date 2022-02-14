@@ -3,6 +3,154 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.3.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.3...@transferwise/dynamic-flows@17.3.4) (2022-02-14)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.3.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.2...@transferwise/dynamic-flows@17.3.3) (2022-02-14)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** avoid referencing fetch in module scope ([#1327](https://github.com/transferwise/neptune-web/issues/1327)) ([f4800a1](https://github.com/transferwise/neptune-web/commit/f4800a1b41265720679cd3deea684f380c4eedd7))
+
+
+
+
+
+## [17.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.1...@transferwise/dynamic-flows@17.3.2) (2022-02-11)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.3.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.0...@transferwise/dynamic-flows@17.3.1) (2022-02-10)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [17.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.6...@transferwise/dynamic-flows@17.3.0) (2022-02-10)
+
+
+### Features
+
+* **dynamic-flows:** Add support for ETags when refreshing steps ([#1303](https://github.com/transferwise/neptune-web/issues/1303)) ([17de499](https://github.com/transferwise/neptune-web/commit/17de499bfa6201775117abefadfdeb714a432a76))
+
+
+
+
+
+## [17.2.6](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.5...@transferwise/dynamic-flows@17.2.6) (2022-02-09)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.2.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.4...@transferwise/dynamic-flows@17.2.5) (2022-02-09)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.2.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.3...@transferwise/dynamic-flows@17.2.4) (2022-02-08)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.2...@transferwise/dynamic-flows@17.2.3) (2022-02-07)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.1...@transferwise/dynamic-flows@17.2.2) (2022-02-03)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.2.0...@transferwise/dynamic-flows@17.2.1) (2022-02-03)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [17.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.1.3...@transferwise/dynamic-flows@17.2.0) (2022-02-03)
+
+
+### Features
+
+* **dynamic-flows:** Multiple file upload component support for DFv3 ([#1274](https://github.com/transferwise/neptune-web/issues/1274)) ([1046f3a](https://github.com/transferwise/neptune-web/commit/1046f3a4699e885a963ed005ebdc1f6637f45a35)), closes [#1283](https://github.com/transferwise/neptune-web/issues/1283)
+
+
+
+
+
+## [17.1.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.1.2...@transferwise/dynamic-flows@17.1.3) (2022-02-01)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.1.1...@transferwise/dynamic-flows@17.1.2) (2022-01-31)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [17.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.1.0...@transferwise/dynamic-flows@17.1.1) (2022-01-31)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [17.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.0.5...@transferwise/dynamic-flows@17.1.0) (2022-01-31)
+
+
+### Features
+
+* new disabled state approach ([#1285](https://github.com/transferwise/neptune-web/issues/1285)) ([3bed0c3](https://github.com/transferwise/neptune-web/commit/3bed0c390c90d0b1ec8f1578eb6b1cad2a02dc51))
+
+
+
+
+
+## [17.0.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.0.4...@transferwise/dynamic-flows@17.0.5) (2022-01-28)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 ## [17.0.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.0.3...@transferwise/dynamic-flows@17.0.4) (2022-01-28)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
@@ -115,9 +263,6 @@ In the `DynamicFlow` component, we remove the ability to pass a custom `httpClie
 ### Bug Fixes
 
 * HttpClient to support requests to absolute URLs even when a baseURL is set ([#1288](https://github.com/transferwise/neptune-web/issues/1288)) ([9201d2f](https://github.com/transferwise/neptune-web/commit/9201d2f1933b2dd52cd1b6380a3a37c21667c5de))
-
-
-
 
 
 ## [16.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@16.2.2...@transferwise/dynamic-flows@16.2.3) (2022-01-17)
