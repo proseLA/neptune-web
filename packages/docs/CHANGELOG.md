@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.5.2...@transferwise/neptune-docs@15.6.0) (2022-02-14)
+
+
+### Features
+
+* adding basic ActionButton component implementation ([#1321](https://github.com/transferwise/neptune-web/issues/1321)) ([df9c43d](https://github.com/transferwise/neptune-web/commit/df9c43d8493506035517752666482e98ccd10889))
+
+
+
+
+
 ## [15.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@15.5.1...@transferwise/neptune-docs@15.5.2) (2022-02-14)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
