@@ -9,6 +9,7 @@ type ThemeProviderProps = PropsWithChildren<{
 }>;
 
 export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
+  console.log('children', children);
   const themedChildren = Children.map(children, (child) => {
     if (!isValidElement(child)) {
       if (process.env.NODE_ENV !== 'production') {

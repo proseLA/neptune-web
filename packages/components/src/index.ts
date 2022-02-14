@@ -52,7 +52,7 @@ export { default as OverlayHeader } from './overlayHeader';
 export { default as PhoneNumberInput } from './phoneNumberInput';
 export { default as Popover } from './popover';
 export { default as ProcessIndicator } from './processIndicator';
-export { default as Provider, DirectionProvider } from './provider';
+export { default as Provider, DirectionProvider, ThemeProvider } from './provider';
 export { default as Radio } from './radio';
 export { default as RadioGroup } from './radioGroup';
 export { default as RadioOption } from './radioOption';
@@ -78,7 +78,7 @@ export { SnackbarConsumer, SnackbarContext } from './snackbar/SnackbarContext';
  * Hooks
  */
 export { default as useSnackbar } from './snackbar/useSnackbar';
-export { useDirection } from './common/hooks';
+export { useDirection, useTheme } from './common/hooks';
 
 /**
  * Enums

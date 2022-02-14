@@ -8,6 +8,7 @@ import 'currency-flags/dist/currency-flags.min.css';
 
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { DEFAULT_LOCALE, getLangFromLocale } from '../src/common/locale';
+import { Theme } from '../src/common/theme';
 import supportedLangs from '../src/i18n';
 
 import '../src/main.css';
@@ -70,9 +71,13 @@ const severalExamplesOfSupportedLocales = [
   'tr',
 ];
 
+const globalKnowSuffix = '(global)';
+
+const themes = [Theme.LIGHT, Theme.DARK, Theme.NAVY];
+
 const DirectionDecorator = (storyFn) => {
   const urlParams = new URLSearchParams(document.location.search);
-  const direction = select('direction', ['ltr', 'rtl'], urlParams.get('direction') || 'ltr');
+  const direction = select(`direction ${globalKnowSuffix}`, ['ltr', 'rtl'], urlParams.get('direction') || 'ltr');
 
   useEffect(() => {
     document.documentElement.setAttribute('dir', direction);
@@ -84,16 +89,18 @@ const DirectionDecorator = (storyFn) => {
 };
 
 const ProviderDecorator = (storyFn) => {
-  const locale = select('locale', severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
+  const locale = select(`locale ${globalKnowSuffix}`, severalExamplesOfSupportedLocales, DEFAULT_LOCALE);
   const lang = getLangFromLocale(locale);
   const messages = supportedLangs[lang];
 
-  return <Provider i18n={{ locale, messages }}>{storyFn()}</Provider>;
+  const theme = select(`theme ${globalKnowSuffix}`, themes, Theme.LIGHT);
+
+  return <Provider i18n={{ locale, messages }} theme={theme}>{storyFn()}</Provider>;
 };
 
 export const decorators = [
   StrictModeDecorator,
   CenterDecorator,
-  DirectionDecorator,
   ProviderDecorator,
+  DirectionDecorator,
 ];

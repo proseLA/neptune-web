@@ -5,8 +5,9 @@ import { adjustLocale, DEFAULT_LOCALE, getDirectionFromLocale } from '../common'
 import en from '../i18n/en.json';
 
 import { DirectionProvider } from './direction';
+import { ThemeProvider } from './theme';
 
-const Provider = ({ i18n, children }) => {
+const Provider = ({ i18n, theme, children }) => {
   const { locale, messages, defaultRichTextElements } = i18n;
   const adjustedLocale = adjustLocale(locale);
   let intlConfig;
@@ -29,7 +30,7 @@ const Provider = ({ i18n, children }) => {
         messages={intlConfig.messages}
         defaultRichTextElements={defaultRichTextElements}
       >
-        {children}
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
       </IntlProvider>
     </DirectionProvider>
   );
@@ -41,10 +42,12 @@ Provider.propTypes = {
     messages: PropTypes.shape({}).isRequired,
     defaultRichTextElements: PropTypes.shape({}),
   }).isRequired,
+  theme: PropTypes.oneOf(['dark', 'light', 'navy']),
   children: PropTypes.node,
 };
 
 Provider.defaultProps = {
+  theme: 'light',
   children: undefined,
 };
 

@@ -289,7 +289,7 @@ jobs:
     name: Publish beta packages
     if: ${{ github.ref != 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: test
+    needs: setup
     environment: beta
 
     steps:
