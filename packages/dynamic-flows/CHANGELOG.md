@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.3.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.2...@transferwise/dynamic-flows@17.3.3) (2022-02-14)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** avoid referencing fetch in module scope ([#1327](https://github.com/transferwise/neptune-web/issues/1327)) ([f4800a1](https://github.com/transferwise/neptune-web/commit/f4800a1b41265720679cd3deea684f380c4eedd7))
+
+
+
+
+
 ## [17.3.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.1...@transferwise/dynamic-flows@17.3.2) (2022-02-11)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
