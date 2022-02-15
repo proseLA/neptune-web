@@ -88,36 +88,60 @@ const mockFetcher = jest.fn((input, init) => {
 
 const i18n = { locale: 'en-GB', messages: { ...componentTranslations['en'] } };
 
-describe('E2E: Given a DynamicFlow component to render', () => {
+describe('E2E: Given a DynamicFlow component with a "initialStep" prop', () => {
   beforeAll(() => jest.useFakeTimers());
   afterAll(() => jest.useFakeTimers());
 
-  describe('when the step is refreshed', () => {
-    function renderComponent() {
-      render(
-        <Provider i18n={i18n}>
-          <DynamicFlow
-            flowUrl="/example"
-            fetcher={mockFetcher}
-            onClose={jest.fn()}
-            onStepChange={jest.fn()}
-          />
-        </Provider>,
-      );
-    }
+  function renderComponent() {
+    render(
+      <Provider i18n={i18n}>
+        <DynamicFlow
+          initialStep={getFormStep()}
+          fetcher={mockFetcher}
+          onClose={jest.fn()}
+          onStepChange={jest.fn()}
+        />
+      </Provider>,
+    );
+  }
 
+  it('renders the form', async () => {
+    renderComponent();
+    const emailInput = await screen.findByLabelText('Email');
+    const accoutInput = await screen.findByLabelText('Account number');
+    expect(emailInput).toBeInTheDocument();
+    expect(accoutInput).toBeInTheDocument();
+  });
+});
+
+describe('E2E: Given a DynamicFlow component with a "flowUrl" prop', () => {
+  beforeAll(() => jest.useFakeTimers());
+  afterAll(() => jest.useFakeTimers());
+
+  function renderComponent() {
+    render(
+      <Provider i18n={i18n}>
+        <DynamicFlow
+          flowUrl="/example"
+          fetcher={mockFetcher}
+          onClose={jest.fn()}
+          onStepChange={jest.fn()}
+        />
+      </Provider>,
+    );
+  }
+
+  it('renders the form', async () => {
+    renderComponent();
+    const emailInput = await screen.findByLabelText('Email');
+    const accoutInput = await screen.findByLabelText('Account number');
+    expect(emailInput).toBeInTheDocument();
+    expect(accoutInput).toBeInTheDocument();
+  });
+
+  describe('when the step is refreshed', () => {
     it('disables actions while refreshing steps', async () => {
-      const onClose = jest.fn();
-      render(
-        <Provider i18n={i18n}>
-          <DynamicFlow
-            flowUrl="/example"
-            fetcher={mockFetcher}
-            onClose={onClose}
-            onStepChange={jest.fn()}
-          />
-        </Provider>,
-      );
+      renderComponent();
 
       const inputBeforeRefresh = await screen.findByLabelText('Email');
 

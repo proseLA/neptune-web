@@ -16,9 +16,9 @@ const reviewStep = {
 
 const DELAY = 500;
 
-const respondWith = async (body) => {
+const respondWith = async (body, init) => {
   await wait(DELAY);
-  return new Response(JSON.stringify(body));
+  return new Response(JSON.stringify(body), init);
 };
 const respondWithEtag = async (body, etag) => {
   await wait(DELAY);
@@ -69,6 +69,8 @@ export async function mockFetcher(input, init) {
       return respondWith(finalStep);
     case '/error':
       return delayedReject({ error: 'Something went wrong', validation: {} });
+    case '/submit':
+      return respondWith({ error: 'This is an error ' }, { status: 422 });
     default:
       return respondWith({});
   }

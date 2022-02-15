@@ -66,6 +66,7 @@ const DynamicFlow = (props) => {
     baseUrl,
     fetcher: propsFetcher,
     flowUrl,
+    initialStep,
     onClose,
     onStepChange,
     onError,
@@ -74,12 +75,12 @@ const DynamicFlow = (props) => {
   } = props;
 
   const [refreshing, setRefreshing] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialStep);
   const [submitted, setSubmitted] = useState(false);
   const [validations, setValidations] = useState();
 
   const [stepAndModels, setStepAndModels] = useState({
-    stepSpecification: {},
+    stepSpecification: initialStep || {},
     models: {},
     etag: undefined,
   });
@@ -102,10 +103,14 @@ const DynamicFlow = (props) => {
     }
   };
 
-  useEffect(() => {
-    const action = { url: flowUrl, method: 'GET' };
-    fetchStep(action);
-  }, [baseUrl, flowUrl, fetcher]);
+  useEffect(
+    function initialise() {
+      if (!initialStep) {
+        fetchStep({ url: flowUrl, method: 'GET' });
+      }
+    },
+    [baseUrl, flowUrl, fetcher, initialStep],
+  );
 
   const modelIsValid = useMemo(
     () => areModelsValid(models, stepSpecification.schemas),
@@ -113,25 +118,25 @@ const DynamicFlow = (props) => {
   );
 
   const fetchStep = (action, data) => {
-    const previousStep = stepSpecification;
-
     setLoading(true);
-
     return requestStep({ action, data })
-      .then(async (response) => {
-        if (isExitResponse(response)) {
-          const result = await response.json().catch(() => undefined);
-          updateStepSpecification({}, etag);
-          onClose(result);
-        } else {
-          const step = await response.json();
-          updateStepSpecification(step, getETag(response.headers));
-          onStepChange(step, previousStep);
-          setSubmitted(false);
-        }
-      })
+      .then(handleFetchStepResponse)
       .catch(handleFetchError)
       .finally(() => setLoading(false));
+  };
+
+  const handleFetchStepResponse = async (response) => {
+    const previousStep = stepSpecification;
+    if (isExitResponse(response)) {
+      const result = await response.json().catch(() => undefined);
+      updateStepSpecification({}, etag);
+      onClose(result);
+    } else {
+      const step = await response.json();
+      updateStepSpecification(step, getETag(response.headers));
+      onStepChange(step, previousStep);
+      setSubmitted(false);
+    }
   };
 
   const fetchRefresh = (action, data) => {
@@ -273,6 +278,7 @@ DynamicFlow.propTypes = {
   baseUrl: Types.string,
   fetcher: Types.func,
   flowUrl: Types.string,
+  initialStep: Types.object,
   onClose: Types.func,
   onStepChange: Types.func,
   onError: Types.func,
