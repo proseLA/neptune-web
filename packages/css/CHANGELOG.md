@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.8](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.7...@transferwise/neptune-css@12.3.8) (2022-02-16)
+
+
+### Bug Fixes
+
+* accent button active state ([#1334](https://github.com/transferwise/neptune-web/issues/1334)) ([11bf577](https://github.com/transferwise/neptune-web/commit/11bf57767186219871c9d1d2ec9d174a278b6dd4))
+
+
+
+
+
 ## [12.3.7](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.6...@transferwise/neptune-css@12.3.7) (2022-02-16)
 
 
