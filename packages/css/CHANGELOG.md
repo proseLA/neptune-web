@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.7](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.6...@transferwise/neptune-css@12.3.7) (2022-02-16)
+
+
+### Bug Fixes
+
+* custom media typo in column layout ([#1332](https://github.com/transferwise/neptune-web/issues/1332)) ([8215009](https://github.com/transferwise/neptune-web/commit/8215009ced35039eeb08f0c2ff44166e89f109d0))
+
+
+
+
+
 ## [12.3.6](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.5...@transferwise/neptune-css@12.3.6) (2022-02-11)
 
 
