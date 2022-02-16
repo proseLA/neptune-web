@@ -107,7 +107,7 @@
 
 // @DEPRECATED:.btn-link (use Button component with type Accent / priority Tertiary)
 .btn-link,
-.btn-accent.btn-priority-3 {
+.btn-accent:not(.disabled, :disabled).btn-priority-3 {
   color: var(--color-content-accent);
   text-decoration: @link-decoration;
   border-color: transparent;
