@@ -100,7 +100,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     key: 'thing-final',
     success: true,
     details: {
-      image: '/images/1234.png',
+      image: 'http://localhost:3000/images/1234.png',
       title: 'We create the thing!',
       description: 'You now do stuff with the thing',
       actionTitle: 'Continue',

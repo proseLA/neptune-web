@@ -2,6 +2,7 @@ import { Image } from '@transferwise/components';
 import Types from 'prop-types';
 import { useEffect, useState } from 'react';
 
+import { isRelativePath } from '../../common/api/utils';
 import { useFetcher } from '../../common/contexts/fetcherContext';
 import { marginModel } from '../models';
 import { getMarginBottom } from '../utils';
@@ -39,22 +40,20 @@ const readImageBlobAsDataURL = (imageBlob) =>
 
 const getImageSource = async (fetcher, image) => {
   try {
-    const url = new URL(image.url, window?.location?.origin);
-
-    if (url.origin !== window?.location?.origin) {
-      return image.url;
+    if (isRelativePath(image.url) || image?.url?.indexOf(`${window?.location?.origin}/`) === 0) {
+      return fetcher(image.url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'image/*',
+          'X-Access-Token': 'Tr4n5f3rw153',
+        },
+        credentials: 'same-origin',
+      })
+        .then((response) => response.blob())
+        .then(readImageBlobAsDataURL);
     }
 
-    return fetcher(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'image/*',
-        'X-Access-Token': 'Tr4n5f3rw153',
-      },
-      credentials: 'same-origin',
-    })
-      .then((response) => response.blob())
-      .then(readImageBlobAsDataURL);
+    return image.url;
   } catch {
     return image.url;
   }

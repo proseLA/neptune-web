@@ -10,6 +10,14 @@ export function getJson(response) {
   return response.json();
 }
 
+export function isRelativePath(url = '') {
+  return (
+    ['https://', 'http://', 'data:'].some(
+      (prefix) => url.slice(0, prefix.length) === prefix && url.length > prefix.length,
+    ) === false
+  );
+}
+
 export function QueryablePromise(promise) {
   if (promise.isResolved) {
     return promise;
