@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.11.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.11.2...@transferwise/components@39.11.3) (2022-02-18)
+
+
+### Bug Fixes
+
+* **PhoneNumberInput:** fix south sudan prefix ([#1337](https://github.com/transferwise/neptune-web/issues/1337)) ([8a69f90](https://github.com/transferwise/neptune-web/commit/8a69f90f459f854f1c876abb90d9214c93014933))
+
+
+
+
+
 ## [39.11.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.11.1...@transferwise/components@39.11.2) (2022-02-16)
 
 **Note:** Version bump only for package @transferwise/components
