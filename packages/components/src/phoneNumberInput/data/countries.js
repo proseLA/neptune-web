@@ -1282,7 +1282,7 @@ const countries = [
     name: 'South Sudan',
     iso2: 'SS',
     iso3: 'SSD',
-    phone: '+2011',
+    phone: '+211',
   },
   {
     name: 'Spain',
