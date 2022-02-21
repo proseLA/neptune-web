@@ -2,7 +2,7 @@
  * Types
  */
 export type { UploadedFile, UploadError, UploadResponse } from './uploadInput/types';
-export type { LayoutDirection } from './common';
+export type { LayoutDirection, ThemeType } from './common';
 
 /**
  * Components
