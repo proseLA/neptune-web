@@ -3,59 +3,63 @@
 exports[`OverlayHeader renders as expected 1`] = `
 <div>
   <div
-    class="np-flow-header d-flex flex-wrap np-overlay-header p-a-3"
+    class="np-overlay-header d-flex justify-content-center"
   >
     <div
-      class="align-items-center np-flow-header__left d-flex"
-    >
-      <img
-        alt="logo_desktop"
-        height="24"
-        src="img_desktop"
-        width="138"
-      />
-    </div>
-    <div
-      class="align-items-center d-flex np-flow-header__right justify-content-end order-2"
+      class="np-flow-header d-flex flex-wrap np-overlay-header__content p-a-3"
     >
       <div
-        class="tw-avatar tw-avatar--md tw-avatar--initials tw-avatar--light"
+        class="align-items-center np-flow-header__left d-flex"
+      >
+        <img
+          alt="logo_desktop"
+          height="24"
+          src="img_desktop"
+          width="138"
+        />
+      </div>
+      <div
+        class="align-items-center d-flex np-flow-header__right justify-content-end order-2"
       >
         <div
-          class="tw-avatar__content"
+          class="tw-avatar tw-avatar--md tw-avatar--initials tw-avatar--light"
         >
-          TM
-        </div>
-      </div>
-      <span
-        class="separator"
-      />
-      <button
-        aria-label="Close"
-        class="np-close-button close btn-link text-no-decoration np-close-button--large"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="tw-icon tw-icon-cross "
-          role="presentation"
-        >
-          <svg
-            fill="currentColor"
-            focusable="false"
-            height="24"
-            width="24"
+          <div
+            class="tw-avatar__content"
           >
-            <path
-              d="M12 13.414l7.293 7.293 1.414-1.414L13.414 12l7.293-7.293-1.414-1.414L12 10.586 4.707 3.293 3.293 4.707 10.586 12l-7.293 7.293 1.414 1.414L12 13.414z"
-            />
-          </svg>
-        </span>
-      </button>
+            TM
+          </div>
+        </div>
+        <span
+          class="separator"
+        />
+        <button
+          aria-label="Close"
+          class="np-close-button close btn-link text-no-decoration np-close-button--large"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="tw-icon tw-icon-cross "
+            role="presentation"
+          >
+            <svg
+              fill="currentColor"
+              focusable="false"
+              height="24"
+              width="24"
+            >
+              <path
+                d="M12 13.414l7.293 7.293 1.414-1.414L13.414 12l7.293-7.293-1.414-1.414L12 10.586 4.707 3.293 3.293 4.707 10.586 12l-7.293 7.293 1.414 1.414L12 13.414z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        class="align-items-center d-flex justify-content-center order-1 flex-grow-1"
+      />
     </div>
-    <div
-      class="align-items-center d-flex justify-content-center order-1 flex-grow-1"
-    />
   </div>
 </div>
 `;

@@ -7,17 +7,19 @@ import Logo from '../logo';
 const OverlayHeader = ({ avatar, onClose, logo }) => {
   const closeButton = onClose && <CloseButton onClick={onClose} />;
   return (
-    <FlowHeader
-      className="np-overlay-header p-a-3"
-      leftContent={logo}
-      rightContent={
-        <>
-          {avatar}
-          {avatar && closeButton && <span className="separator" />}
-          {closeButton}
-        </>
-      }
-    />
+    <div className="np-overlay-header d-flex justify-content-center">
+      <FlowHeader
+        className="np-overlay-header__content p-a-3"
+        leftContent={logo}
+        rightContent={
+          <>
+            {avatar}
+            {avatar && closeButton && <span className="separator" />}
+            {closeButton}
+          </>
+        }
+      />
+    </div>
   );
 };
 
