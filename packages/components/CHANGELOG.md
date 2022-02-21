@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [39.11.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.11.3...@transferwise/components@39.11.4) (2022-02-21)
+
+
+### Bug Fixes
+
+* **OverlayHeader:** set max width ([#1336](https://github.com/transferwise/neptune-web/issues/1336)) ([ddede7d](https://github.com/transferwise/neptune-web/commit/ddede7db5f5d1f88de2f15e035d22e6226633bcd))
+
+
+
+
+
 ## [39.11.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.11.2...@transferwise/components@39.11.3) (2022-02-18)
 
 
