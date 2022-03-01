@@ -328,10 +328,11 @@ describe('Given a component for rendering a dynamic flow', () => {
 
     it('should clear the validation errors when refreshing to a step without errors', async () => {
       getStep().invoke('onModelChange')(
-        { a: 'changed value' },
+        { a: 100 },
         formStepWithErrors.schemas[0],
-        'changed value',
+        100,
         formStepWithErrors.schemas[0].properties.a,
+        99,
       );
 
       await wait(0);
@@ -384,7 +385,51 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
     });
 
-    describe('when a model update is triggered by a schema with refreshRequirements', () => {
+    describe('when a model update is triggered by a schema with refreshFormOnChange, it should only refresh if the changed model is valid or was valid before', () => {
+      const triggerSchema = { type: 'number', refreshFormOnChange: true };
+      const cases = [
+        {
+          title: 'should refresh when new value is valid and prev value was valid',
+          newValue: 100,
+          preValue: 99,
+          expected: 1,
+        },
+        {
+          title: 'should refresh when new value is NOT valid and prev value was valid',
+          newValue: 'invalid',
+          preValue: 99,
+          expected: 1,
+        },
+        {
+          title: 'should refresh when new value is valid and prev value was NOT valid',
+          newValue: 199,
+          preValue: 'invalid',
+          expected: 1,
+        },
+        {
+          title: 'should NOT refresh when new value is NOT valid and prev value was NOT valid',
+          newValue: 'more invalid',
+          preValue: 'invalid',
+          expected: 0,
+        },
+      ];
+
+      cases.forEach(({ title, newValue, preValue, expected }) => {
+        it(`${title}`, () => {
+          mockFetcher.mockClear();
+          getStep().invoke('onModelChange')(
+            { a: newValue },
+            thingSchema,
+            newValue,
+            triggerSchema,
+            preValue,
+          );
+          expect(mockFetcher).toHaveBeenCalledTimes(expected);
+        });
+      });
+    });
+
+    describe('when a model update is triggered by a schema with refreshFormOnChange', () => {
       const newModel = { a: 1, b: 'c' };
 
       beforeEach(() => {
@@ -417,7 +462,7 @@ describe('Given a component for rendering a dynamic flow', () => {
       });
     });
 
-    describe('when a model update is triggered by a schema with refreshRequirements and refreshFormUrl', () => {
+    describe('when a model update is triggered by a schema with refreshFormOnChange and refreshFormUrl', () => {
       const newModel = { a: 1, b: 'c' };
       const triggerSchema = {
         ...stringSchemaWithRefresh,

@@ -175,7 +175,7 @@ const DynamicFlow = (props) => {
     }
   };
 
-  const onModelChange = (newModel, formSchema, triggerModel, triggerSchema) => {
+  const onModelChange = (newModel, formSchema, triggerModel, triggerSchema, lastTriggerModel) => {
     const { $id } = formSchema;
 
     // Multiple children might trigger model updates, we must access the previous model to ensure all changes are reflected in the new model
@@ -190,7 +190,7 @@ const DynamicFlow = (props) => {
         etag: previous.etag,
       };
 
-      if (triggerSchema?.refreshFormOnChange) {
+      if (shouldTriggerRefresh(triggerSchema, triggerModel, lastTriggerModel)) {
         const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
         const action = { url, method: 'POST' };
         fetchRefresh(action, combineModels(updatedModels));
@@ -322,4 +322,10 @@ function makeRequestStep(fetcher) {
 
 function getETag(headers) {
   return headers.get('etag') || undefined;
+}
+
+function shouldTriggerRefresh(triggerSchema, triggerModel, lastTriggerModel) {
+  const isValid = () => isValidSchema(triggerModel, triggerSchema);
+  const wasValid = () => isValidSchema(lastTriggerModel, triggerSchema);
+  return triggerSchema?.refreshFormOnChange && (isValid() || wasValid());
 }
