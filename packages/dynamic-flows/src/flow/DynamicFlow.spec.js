@@ -3,8 +3,18 @@ import { mount, wait } from '../test-utils';
 
 import DynamicFlow from '.';
 
+async function mountAndWait(...args) {
+  const wrapper = mount(...args);
+  await waitAndUpdate(wrapper);
+  return wrapper;
+}
+
+async function waitAndUpdate(wrapper) {
+  await wait(0);
+  wrapper.update();
+}
+
 describe('Given a component for rendering a dynamic flow', () => {
-  let component;
   let mockFetcher;
   let onClose;
   let onStepChange;
@@ -228,10 +238,6 @@ describe('Given a component for rendering a dynamic flow', () => {
     }
   };
 
-  function getStep() {
-    return component.find(LayoutStep);
-  }
-
   beforeEach(async () => {
     mockFetcher = jest.fn().mockImplementation(mockRequest);
     onClose = jest.fn();
@@ -239,20 +245,12 @@ describe('Given a component for rendering a dynamic flow', () => {
     onError = jest.fn();
   });
 
-  function waitBeforeEach() {
-    // eslint-disable-next-line jest/no-duplicate-hooks
-    beforeEach(async () => {
-      await wait(0);
-      component.update();
-    });
-  }
-
   describe('when instantiated', () => {
     beforeEach(() => {
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
       // Use mount an manually mock, information above
-      component = mount(
+      mount(
         <DynamicFlow
           fetcher={mockFetcher}
           flowUrl={decisionUrl}
@@ -275,14 +273,11 @@ describe('Given a component for rendering a dynamic flow', () => {
 
   describe('when there is an error fetching a step', () => {
     describe('and the response is valid JSON', () => {
-      beforeEach(() => {
-        component = mount(
+      beforeEach(async () => {
+        await mountAndWait(
           <DynamicFlow flowUrl="/failedStep" fetcher={mockFetcher} onError={onError} />,
         );
       });
-
-      waitBeforeEach();
-
       it('should trigger onError callback with the status code', () => {
         expect(onError).toHaveBeenCalledWith(
           expect.objectContaining({ arbitraryKey: 'Not Authorized' }),
@@ -292,14 +287,11 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('but the response is not JSON', () => {
-      beforeEach(() => {
-        component = mount(
+      beforeEach(async () => {
+        await mountAndWait(
           <DynamicFlow flowUrl="/failedStepNoJson" fetcher={mockFetcher} onError={onError} />,
         );
       });
-
-      waitBeforeEach();
-
       it('should still trigger onError callback with the status code', () => {
         expect(onError).toHaveBeenCalledWith(expect.anything(), 500);
       });
@@ -307,8 +299,11 @@ describe('Given a component for rendering a dynamic flow', () => {
   });
 
   describe('when there is a form step with errors', () => {
-    beforeEach(() => {
-      component = mount(
+    let component;
+    const getStep = () => component.find(LayoutStep);
+
+    beforeEach(async () => {
+      component = await mountAndWait(
         <DynamicFlow
           flowUrl={formWithErrorsUrl}
           fetcher={mockFetcher}
@@ -317,8 +312,6 @@ describe('Given a component for rendering a dynamic flow', () => {
         />,
       );
     });
-
-    waitBeforeEach();
 
     it('should pass the validation errors to the LayoutStep component', async () => {
       expect(getStep().props().errors).toMatchObject({
@@ -335,37 +328,39 @@ describe('Given a component for rendering a dynamic flow', () => {
         99,
       );
 
-      await wait(0);
-      component.update();
+      await waitAndUpdate(component);
 
       expect(getStep().props().errors).toBeNull();
     });
   });
 
   describe('when there is a step layout', () => {
-    beforeEach(() => {
-      component = mount(
-        <DynamicFlow
-          flowUrl={formUrl}
-          fetcher={mockFetcher}
-          onClose={onClose}
-          onStepChange={onStepChange}
-        />,
-      );
-    });
+    describe('initialisation', () => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
 
-    waitBeforeEach();
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+      });
 
-    it('should use the LayoutStep to render it', () => {
-      expect(getStep()).toBeTruthy();
-    });
+      it('should use the LayoutStep to render it', () => {
+        expect(getStep()).toBeTruthy();
+      });
 
-    it('should inline the form schema(s) and pass as the specification as a layout', () => {
-      expect(getStep().prop('stepSpecification')).toStrictEqual(formStep);
-    });
+      it('should inline the form schema(s) and pass as the specification as a layout', () => {
+        expect(getStep().prop('stepSpecification')).toStrictEqual(formStep);
+      });
 
-    it('should pass the layout the step model', () => {
-      expect(getStep().prop('model')).toStrictEqual(formStep.model);
+      it('should pass the layout the step model', () => {
+        expect(getStep().prop('model')).toStrictEqual(formStep.model);
+      });
     });
 
     describe('when a model update is triggered by multiple schemas', () => {
@@ -373,14 +368,21 @@ describe('Given a component for rendering a dynamic flow', () => {
       const newModel2 = { c: true };
       const expetectModel = { b: 'c', c: true };
 
-      beforeEach(() => {
+      it('should pass the expected model to the layout', async () => {
+        const component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+        const getStep = () => component.find(LayoutStep);
+
         getStep().invoke('onModelChange')(newModel1, thingSchema, newModel1.b, stringSchema);
         getStep().invoke('onModelChange')(newModel2, anotherThingSchema, newModel2.c, stringSchema);
-      });
+        await waitAndUpdate(component);
 
-      waitBeforeEach();
-
-      it('should pass the expected model to the layout', () => {
         expect(getStep().prop('model')).toStrictEqual(expetectModel);
       });
     });
@@ -415,9 +417,18 @@ describe('Given a component for rendering a dynamic flow', () => {
       ];
 
       cases.forEach(({ title, newValue, preValue, expected }) => {
-        it(`${title}`, () => {
+        it(`${title}`, async () => {
+          const component = await mountAndWait(
+            <DynamicFlow
+              flowUrl={formUrl}
+              fetcher={mockFetcher}
+              onClose={onClose}
+              onStepChange={onStepChange}
+            />,
+          );
+
           mockFetcher.mockClear();
-          getStep().invoke('onModelChange')(
+          component.find(LayoutStep).invoke('onModelChange')(
             { a: newValue },
             thingSchema,
             newValue,
@@ -432,16 +443,27 @@ describe('Given a component for rendering a dynamic flow', () => {
     describe('when a model update is triggered by a schema with refreshFormOnChange', () => {
       const newModel = { a: 1, b: 'c' };
 
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+
         getStep().invoke('onModelChange')(
           newModel,
           thingSchema,
           newModel.b,
           stringSchemaWithRefresh,
         );
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it('should use the model to request a new schema', () => {
         expect(mockFetcher).toHaveBeenCalledWith(
@@ -469,11 +491,21 @@ describe('Given a component for rendering a dynamic flow', () => {
         refreshFormUrl: '/refreshFromTrigger',
       };
 
-      beforeEach(() => {
-        getStep().invoke('onModelChange')(newModel, thingSchema, newModel.b, triggerSchema);
-      });
+      let component;
+      const getStep = () => component.find(LayoutStep);
 
-      waitBeforeEach();
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+        getStep().invoke('onModelChange')(newModel, thingSchema, newModel.b, triggerSchema);
+        await waitAndUpdate(component);
+      });
 
       it('should use the model to request a new schema', () => {
         expect(mockFetcher).toHaveBeenCalledWith(
@@ -495,22 +527,43 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('when a refresh requirements call fails', () => {
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         getStep().invoke('onModelChange')({ a: 1, b: 'c' }, thingSchema, 'c', thingSchema);
       });
 
-      it('should continue to render the original step', () => {
+      it('should continue to render the original step', async () => {
         expect(getStep().prop('stepSpecification')).toStrictEqual(formStep);
       });
     });
 
     describe('when the layout broadcasts a POST action and the model is valid', () => {
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getStep().invoke('onAction')(successAction);
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it('should tell the layout the form is submitted then reset to false on step reload', () => {
         expect(getStep().prop('submitted')).toBe(false);
@@ -528,9 +581,19 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('when the layout broadcasts a POST action and the model is invalid', () => {
-      beforeEach(() => {
-        mockFetcher.mockClear();
+      let component;
+      const getStep = () => component.find(LayoutStep);
 
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+        mockFetcher.mockClear();
         getStep().invoke('onModelChange')({}, thingSchema, undefined, numberSchema);
         getStep().invoke('onAction')(successAction);
       });
@@ -545,7 +608,18 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('when the layout broadcasts a GET action and the model is invalid', () => {
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         getStep().invoke('onModelChange')({}, thingSchema, undefined, numberSchema);
         getStep().invoke('onAction')(navigateAction);
       });
@@ -559,14 +633,24 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('when we submit an action but we receive a server error', () => {
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         onStepChange.mockClear();
 
         getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getStep().invoke('onAction')(validationFailureAction);
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it('should pass those errors to the layout', () => {
         expect(getStep().prop('errors')).toMatchObject(validationErrorResponse.validation);
@@ -579,12 +663,22 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('when we submit an action and we receive a new step', () => {
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getStep().invoke('onAction')(successAction);
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it('should update the flow to use that step', () => {
         expect(getStep().prop('stepSpecification')).toStrictEqual(newStep);
@@ -602,14 +696,24 @@ describe('Given a component for rendering a dynamic flow', () => {
         exit: true,
       };
 
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         onStepChange.mockClear();
 
         getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getStep().invoke('onAction')(exitAction);
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it('should exit the flow', () => {
         expect(onClose).toHaveBeenCalledTimes(1);
@@ -623,7 +727,18 @@ describe('Given a component for rendering a dynamic flow', () => {
     describe('when we submit an action with additional data', () => {
       const dataAction = { ...successAction, data: { a: 2, c: true } };
 
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         mockFetcher.mockClear();
 
         getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
@@ -651,7 +766,18 @@ describe('Given a component for rendering a dynamic flow', () => {
         },
       };
 
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         getStep().invoke('onAction')(exitAction);
       });
 
@@ -670,13 +796,23 @@ describe('Given a component for rendering a dynamic flow', () => {
         },
       };
 
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+
         onStepChange.mockClear();
-
         getStep().invoke('onAction')(exitAction);
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it("should exit the flow with the action's result", () => {
         expect(onClose).toHaveBeenCalledWith(exitAction.result);
@@ -698,13 +834,23 @@ describe('Given a component for rendering a dynamic flow', () => {
         },
       };
 
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         onStepChange.mockClear();
 
         getStep().invoke('onAction')(exitAction);
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it('should exit the flow with the merged result', () => {
         const mergedResult = {
@@ -725,14 +871,24 @@ describe('Given a component for rendering a dynamic flow', () => {
         method: 'POST',
       };
 
-      beforeEach(() => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
         onStepChange.mockClear();
 
         getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
         getStep().invoke('onAction')(exitAction);
+        await waitAndUpdate(component);
       });
-
-      waitBeforeEach();
 
       it('should exit the flow', () => {
         expect(onClose).toHaveBeenCalledTimes(1);
@@ -750,11 +906,21 @@ describe('Given a component for rendering a dynamic flow', () => {
         refreshFormUrl: '/refreshWithSameFormStep',
       };
 
-      beforeEach(() => {
-        getStep().invoke('onModelChange')(newModel, thingSchema, newModel.b, triggerSchema);
-      });
+      let component;
+      const getStep = () => component.find(LayoutStep);
 
-      waitBeforeEach();
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+        getStep().invoke('onModelChange')(newModel, thingSchema, newModel.b, triggerSchema);
+        await waitAndUpdate(component);
+      });
 
       describe('when requesting a refresh', () => {
         it('should pass the current ETag in the "If-None-Match" header', () => {
@@ -792,8 +958,11 @@ describe('Given a component for rendering a dynamic flow', () => {
   });
 
   describe('when there is a step with exceptions', () => {
-    beforeEach(() => {
-      component = mount(
+    let component;
+    const getStep = () => component.find(LayoutStep);
+
+    beforeEach(async () => {
+      component = await mountAndWait(
         <DynamicFlow
           flowUrl={decisionUrl}
           fetcher={mockFetcher}
@@ -805,8 +974,6 @@ describe('Given a component for rendering a dynamic flow', () => {
         translations,
       );
     });
-
-    waitBeforeEach();
 
     describe('when a JS error is thrown', () => {
       const errors = new Error();
