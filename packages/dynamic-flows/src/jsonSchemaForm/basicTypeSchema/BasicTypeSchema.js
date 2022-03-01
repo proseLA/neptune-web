@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import { getValidModelParts } from '../../common/validation/valid-model';
@@ -135,33 +135,35 @@ const BasicTypeSchema = (props) => {
 };
 
 BasicTypeSchema.propTypes = {
-  schema: Types.shape({
-    type: Types.oneOf(['string', 'number', 'integer', 'boolean']),
-    alert: Types.shape({
-      context: Types.string,
-      markdown: Types.string,
+  schema: PropTypes.shape({
+    type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean']),
+    alert: PropTypes.shape({
+      context: PropTypes.string,
+      markdown: PropTypes.string,
     }),
-    enum: Types.arrayOf(Types.oneOfType([Types.string, Types.number, Types.bool])),
-    const: Types.oneOfType([Types.string, Types.number, Types.bool]),
-    format: Types.string,
-    title: Types.string,
-    values: Types.arrayOf(Types.shape({})),
-    default: Types.oneOfType([Types.string, Types.number, Types.bool]),
-    disabled: Types.bool,
-    hidden: Types.bool,
-    help: Types.shape({ markdown: Types.string }),
-    description: Types.string,
+    enum: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    ),
+    const: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    format: PropTypes.string,
+    title: PropTypes.string,
+    values: PropTypes.arrayOf(PropTypes.shape({})),
+    default: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    disabled: PropTypes.bool,
+    hidden: PropTypes.bool,
+    help: PropTypes.shape({ markdown: PropTypes.string }),
+    description: PropTypes.string,
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool]),
-  errors: Types.string,
-  translations: Types.shape({}),
-  onChange: Types.func.isRequired,
-  submitted: Types.bool.isRequired,
-  required: Types.bool,
-  locale: Types.string,
-  disabled: Types.bool,
-  onBlur: Types.func,
-  validationAsyncSuccessMessage: Types.string,
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  errors: PropTypes.string,
+  translations: PropTypes.shape({}),
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
+  locale: PropTypes.string,
+  disabled: PropTypes.bool,
+  onBlur: PropTypes.func,
+  validationAsyncSuccessMessage: PropTypes.string,
 };
 
 BasicTypeSchema.defaultProps = {

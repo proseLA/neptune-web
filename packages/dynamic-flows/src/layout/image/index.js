@@ -1,5 +1,5 @@
 import { Image } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 import { isRelativePath } from '../../common/api/utils';
@@ -92,11 +92,11 @@ const DynamicImage = (props) => {
 };
 
 DynamicImage.propTypes = {
-  component: Types.shape({
-    text: Types.string,
-    url: Types.string,
+  component: PropTypes.shape({
+    text: PropTypes.string,
+    url: PropTypes.string,
     margin: marginModel,
-    size: Types.string,
+    size: PropTypes.string,
   }).isRequired,
 };
 

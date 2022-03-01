@@ -1,5 +1,5 @@
 import { isEmpty } from '@transferwise/neptune-validation';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import DynamicLayout from '../../layout';
 
@@ -33,12 +33,18 @@ const LayoutStep = (props) => {
 };
 
 LayoutStep.propTypes = {
-  stepSpecification: Types.object.isRequired,
-  model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
-  submitted: Types.bool.isRequired,
-  errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  onAction: Types.func.isRequired,
-  onModelChange: Types.func.isRequired,
+  stepSpecification: PropTypes.object.isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
+  submitted: PropTypes.bool.isRequired,
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
+  onAction: PropTypes.func.isRequired,
+  onModelChange: PropTypes.func.isRequired,
 };
 
 export default LayoutStep;

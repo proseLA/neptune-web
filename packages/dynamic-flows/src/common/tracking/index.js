@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { createContext, useContext } from 'react';
 
 const EVENT_NAME_PREFIX = 'Dynamic Flow - ';
@@ -27,8 +27,8 @@ export const TrackingContextProvider = ({ children, onTrackableEvent }) => {
 };
 
 TrackingContextProvider.propTypes = {
-  children: Types.node,
-  onTrackableEvent: Types.func,
+  children: PropTypes.node,
+  onTrackableEvent: PropTypes.func,
 };
 
 export function useTracking() {

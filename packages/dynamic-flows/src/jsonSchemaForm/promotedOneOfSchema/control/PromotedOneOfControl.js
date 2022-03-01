@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import PromotedOneOfCheckboxControl from './PromotedOneOfCheckboxControl';
 import PromotedOneOfRadioControl from './PromotedOneOfRadioControl';
@@ -17,28 +17,28 @@ const PromotedOneOfControl = (props) => {
 };
 
 PromotedOneOfControl.propTypes = {
-  title: Types.string,
-  promotedOneOf: Types.shape({
-    title: Types.string,
-    description: Types.string,
+  title: PropTypes.string,
+  promotedOneOf: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
-  promotion: Types.shape({
-    default: Types.string,
-    checkedMeans: Types.string,
-    control: Types.string,
-    promoted: Types.shape({
-      title: Types.string,
+  promotion: PropTypes.shape({
+    default: PropTypes.string,
+    checkedMeans: PropTypes.string,
+    control: PropTypes.string,
+    promoted: PropTypes.shape({
+      title: PropTypes.string,
     }),
-    other: Types.shape({
-      title: Types.string,
-      heading: Types.shape({
-        text: Types.string,
+    other: PropTypes.shape({
+      title: PropTypes.string,
+      heading: PropTypes.shape({
+        text: PropTypes.string,
       }),
-      description: Types.string,
+      description: PropTypes.string,
     }),
   }).isRequired,
-  selection: Types.string.isRequired,
-  setSelection: Types.func.isRequired,
+  selection: PropTypes.string.isRequired,
+  setSelection: PropTypes.func.isRequired,
 };
 
 PromotedOneOfControl.defaultProps = {

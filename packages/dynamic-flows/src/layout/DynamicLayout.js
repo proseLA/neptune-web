@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import {
   FetcherProviderFromBaseUrl,
@@ -104,14 +104,20 @@ const DynamicLayout = (props) => {
 };
 
 DynamicLayout.propTypes = {
-  components: Types.arrayOf(componentModel).isRequired,
-  model: Types.oneOfType([Types.string, Types.object, Types.array, Types.number, Types.bool]),
-  submitted: Types.bool.isRequired,
-  errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  baseUrl: Types.string,
-  onAction: Types.func.isRequired,
-  onModelChange: Types.func.isRequired,
-  onPersistAsync: Types.func,
+  components: PropTypes.arrayOf(componentModel).isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
+  submitted: PropTypes.bool.isRequired,
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
+  baseUrl: PropTypes.string,
+  onAction: PropTypes.func.isRequired,
+  onModelChange: PropTypes.func.isRequired,
+  onPersistAsync: PropTypes.func,
 };
 
 DynamicLayout.defaultProps = {

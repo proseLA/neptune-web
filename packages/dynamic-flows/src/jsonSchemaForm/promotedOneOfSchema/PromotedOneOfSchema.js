@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import DynamicAlert from '../../layout/alert';
@@ -68,27 +68,33 @@ const PromotedOneOfSchema = (props) => {
 };
 
 PromotedOneOfSchema.propTypes = {
-  schema: Types.shape({
-    title: Types.string,
-    oneOf: Types.arrayOf(Types.object).isRequired,
-    promotion: Types.shape({
-      default: Types.string,
-      promoted: Types.shape({
-        control: Types.string,
-        checkedMeans: Types.string,
-        title: Types.string,
+  schema: PropTypes.shape({
+    title: PropTypes.string,
+    oneOf: PropTypes.arrayOf(PropTypes.object).isRequired,
+    promotion: PropTypes.shape({
+      default: PropTypes.string,
+      promoted: PropTypes.shape({
+        control: PropTypes.string,
+        checkedMeans: PropTypes.string,
+        title: PropTypes.string,
       }),
-      other: Types.shape({
-        title: Types.string,
-        heading: Types.shape({
-          text: Types.string,
+      other: PropTypes.shape({
+        title: PropTypes.string,
+        heading: PropTypes.shape({
+          text: PropTypes.string,
         }),
-        description: Types.string,
+        description: PropTypes.string,
       }).isRequired,
     }),
-    alert: Types.shape({}),
+    alert: PropTypes.shape({}),
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
 };
 
 PromotedOneOfSchema.defaultProps = {

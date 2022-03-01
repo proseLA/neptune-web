@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { getSchemaType, schemaType } from '../../common/schemaTypes/schemaTypes';
 import AllOfSchema from '../allOfSchema';
@@ -41,25 +41,31 @@ const GenericSchemaForm = (props) => {
 };
 
 GenericSchemaForm.propTypes = {
-  schema: Types.shape({
-    type: Types.oneOf(['string', 'number', 'integer', 'boolean', 'object', 'array']),
-    enum: Types.arrayOf(Types.oneOfType([Types.string, Types.number])),
-    const: Types.oneOfType([Types.string, Types.number, Types.bool]),
-    oneOf: Types.arrayOf(Types.shape({})),
-    allOf: Types.arrayOf(Types.shape({})),
-    persistAsync: Types.shape({}),
-    validationAsync: Types.shape({}),
-    promotion: Types.shape({}),
+  schema: PropTypes.shape({
+    type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean', 'object', 'array']),
+    enum: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    const: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    oneOf: PropTypes.arrayOf(PropTypes.shape({})),
+    allOf: PropTypes.arrayOf(PropTypes.shape({})),
+    persistAsync: PropTypes.shape({}),
+    validationAsync: PropTypes.shape({}),
+    promotion: PropTypes.shape({}),
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
-  errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
-  locale: Types.string,
-  translations: Types.shape({}),
-  onChange: Types.func.isRequired,
-  submitted: Types.bool.isRequired,
-  hideTitle: Types.bool,
-  disabled: Types.bool,
-  onPersistAsync: Types.func.isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
+  locale: PropTypes.string,
+  translations: PropTypes.shape({}),
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  hideTitle: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onPersistAsync: PropTypes.func.isRequired,
 };
 
 GenericSchemaForm.defaultProps = {

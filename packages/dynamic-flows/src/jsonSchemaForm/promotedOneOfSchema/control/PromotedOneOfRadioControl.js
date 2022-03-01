@@ -1,5 +1,5 @@
 import { RadioGroup } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import { mapAvatar, mapIcon } from '../../schemaFormControl/optionMapper';
@@ -53,41 +53,41 @@ const PromotedOneOfRadioControl = (props) => {
 };
 
 PromotedOneOfRadioControl.propTypes = {
-  title: Types.string,
-  promotedOneOf: Types.shape({
-    title: Types.string,
-    description: Types.string,
-    image: Types.shape({
-      url: Types.string,
+  title: PropTypes.string,
+  promotedOneOf: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.shape({
+      url: PropTypes.string,
     }),
-    icon: Types.shape({
-      name: Types.string,
-    }),
-  }).isRequired,
-  promotion: Types.shape({
-    default: Types.string,
-    checkedMeans: Types.string,
-    control: Types.string,
-    promoted: Types.shape({
-      title: Types.string,
-      description: Types.string,
-    }),
-    other: Types.shape({
-      title: Types.string,
-      heading: Types.shape({
-        text: Types.string,
-      }),
-      description: Types.string,
-      image: Types.shape({
-        url: Types.string,
-      }),
-      icon: Types.shape({
-        name: Types.string,
-      }),
+    icon: PropTypes.shape({
+      name: PropTypes.string,
     }),
   }).isRequired,
-  selection: Types.string.isRequired,
-  setSelection: Types.func.isRequired,
+  promotion: PropTypes.shape({
+    default: PropTypes.string,
+    checkedMeans: PropTypes.string,
+    control: PropTypes.string,
+    promoted: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+    }),
+    other: PropTypes.shape({
+      title: PropTypes.string,
+      heading: PropTypes.shape({
+        text: PropTypes.string,
+      }),
+      description: PropTypes.string,
+      image: PropTypes.shape({
+        url: PropTypes.string,
+      }),
+      icon: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+    }),
+  }).isRequired,
+  selection: PropTypes.string.isRequired,
+  setSelection: PropTypes.func.isRequired,
 };
 
 PromotedOneOfRadioControl.defaultProps = {

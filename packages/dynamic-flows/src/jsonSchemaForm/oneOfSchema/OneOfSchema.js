@@ -1,6 +1,6 @@
 import { isArray, isEmpty } from '@transferwise/neptune-validation';
 import classNames from 'classnames';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 import { isValidSchema } from '../../common/validation/schema-validators';
@@ -227,26 +227,32 @@ function getTitleAndHelp(schema, id) {
 }
 
 OneOfSchema.propTypes = {
-  schema: Types.shape({
-    title: Types.string,
-    alert: Types.shape({
-      context: Types.string,
-      markdown: Types.string,
+  schema: PropTypes.shape({
+    title: PropTypes.string,
+    alert: PropTypes.shape({
+      context: PropTypes.string,
+      markdown: PropTypes.string,
     }),
-    control: Types.string,
-    placeholder: Types.string,
-    help: Types.shape({ markdown: Types.string }),
-    oneOf: Types.arrayOf(Types.object).isRequired,
+    control: PropTypes.string,
+    placeholder: PropTypes.string,
+    help: PropTypes.shape({ markdown: PropTypes.string }),
+    oneOf: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
-  errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
-  locale: Types.string,
-  translations: Types.shape({}),
-  onChange: Types.func.isRequired,
-  submitted: Types.bool.isRequired,
-  required: Types.bool,
-  disabled: Types.bool,
-  onPersistAsync: Types.func.isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
+  locale: PropTypes.string,
+  translations: PropTypes.shape({}),
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onPersistAsync: PropTypes.func.isRequired,
 };
 
 OneOfSchema.defaultProps = {

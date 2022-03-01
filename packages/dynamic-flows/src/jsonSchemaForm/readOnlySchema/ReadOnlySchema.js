@@ -1,7 +1,7 @@
 /* eslint-disable no-lonely-if */
 import { DefinitionList, Layout } from '@transferwise/components';
 import { isBoolean } from '@transferwise/neptune-validation';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
@@ -73,14 +73,20 @@ function getCurrencyFlagFromOption(option) {
 }
 
 ReadOnlySchema.propTypes = {
-  schema: Types.shape({
-    title: Types.string,
-    type: Types.oneOf(['string', 'number', 'integer', 'boolean', 'object', 'array']),
-    enum: Types.arrayOf(Types.oneOfType([Types.string, Types.number])),
-    const: Types.oneOfType([Types.string, Types.number, Types.bool]),
-    oneOf: Types.arrayOf(Types.shape({})),
+  schema: PropTypes.shape({
+    title: PropTypes.string,
+    type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean', 'object', 'array']),
+    enum: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    const: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+    oneOf: PropTypes.arrayOf(PropTypes.shape({})),
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
 };
 
 ReadOnlySchema.defaultProps = {

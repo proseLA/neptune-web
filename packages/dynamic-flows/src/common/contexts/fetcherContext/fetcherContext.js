@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { createContext, useContext, useMemo } from 'react';
 
 import { makeFetcher } from '.';
@@ -10,8 +10,8 @@ export const FetcherProvider = ({ fetcher, children }) => {
 };
 
 FetcherProvider.propTypes = {
-  fetcher: Types.func.isRequired,
-  children: Types.node,
+  fetcher: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 export const FetcherProviderFromBaseUrl = ({ baseUrl, children }) => {
@@ -20,8 +20,8 @@ export const FetcherProviderFromBaseUrl = ({ baseUrl, children }) => {
 };
 
 FetcherProviderFromBaseUrl.propTypes = {
-  baseUrl: Types.string.isRequired,
-  children: Types.node,
+  baseUrl: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };
 
 /**

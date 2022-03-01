@@ -1,5 +1,5 @@
 import { InlineAlert } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 const ControlFeedback = (props) => {
   // Use validation messages from the schema if possible.
@@ -36,28 +36,28 @@ const ControlFeedback = (props) => {
   );
 };
 
-const validationMessagesProps = Types.shape({
-  min: Types.string,
-  max: Types.string,
-  minLength: Types.string,
-  maxLength: Types.string,
-  pattern: Types.string,
-  required: Types.string,
+const validationMessagesProps = PropTypes.shape({
+  min: PropTypes.string,
+  max: PropTypes.string,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string,
+  pattern: PropTypes.string,
+  required: PropTypes.string,
 });
 
 ControlFeedback.propTypes = {
-  changed: Types.bool.isRequired, // Has the control been interacted with
-  blurred: Types.bool.isRequired, // Has the control been blurred at least once
-  focused: Types.bool.isRequired, // Is the control in focus
-  submitted: Types.bool.isRequired,
-  errors: Types.string,
-  validations: Types.arrayOf(Types.string),
+  changed: PropTypes.bool.isRequired, // Has the control been interacted with
+  blurred: PropTypes.bool.isRequired, // Has the control been blurred at least once
+  focused: PropTypes.bool.isRequired, // Is the control in focus
+  submitted: PropTypes.bool.isRequired,
+  errors: PropTypes.string,
+  validations: PropTypes.arrayOf(PropTypes.string),
   validationMessages: validationMessagesProps,
-  schema: Types.shape({
-    description: Types.string,
+  schema: PropTypes.shape({
+    description: PropTypes.string,
     validationMessages: validationMessagesProps,
   }).isRequired,
-  validationAsyncSuccessMessage: Types.string,
+  validationAsyncSuccessMessage: PropTypes.string,
 };
 
 ControlFeedback.defaultProps = {

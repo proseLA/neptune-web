@@ -1,6 +1,6 @@
 import { UploadInput } from '@transferwise/components';
 import classNames from 'classnames';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import { usePersistAsync } from '../../../../common/hooks/usePersistAsync';
@@ -87,47 +87,53 @@ const MultipleFileUploadSchema = (props) => {
   );
 };
 
-const FileItemSchema = Types.shape({
-  type: Types.string,
-  format: Types.string,
-  accepts: Types.arrayOf(Types.string),
-  maxSize: Types.number,
-  validationMessages: Types.object,
+const FileItemSchema = PropTypes.shape({
+  type: PropTypes.string,
+  format: PropTypes.string,
+  accepts: PropTypes.arrayOf(PropTypes.string),
+  maxSize: PropTypes.number,
+  validationMessages: PropTypes.object,
 });
 
 MultipleFileUploadSchema.propTypes = {
-  schema: Types.shape({
-    title: Types.string,
-    type: Types.string.isRequired,
-    description: Types.string,
-    maxItems: Types.number,
-    minItems: Types.number,
-    items: Types.shape({
-      type: Types.string,
-      title: Types.string,
-      description: Types.string,
-      persistAsync: Types.shape({
-        url: Types.string.isRequired,
-        method: Types.string,
-        param: Types.string.isRequired,
-        idProperty: Types.string.isRequired,
+  schema: PropTypes.shape({
+    title: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    maxItems: PropTypes.number,
+    minItems: PropTypes.number,
+    items: PropTypes.shape({
+      type: PropTypes.string,
+      title: PropTypes.string,
+      description: PropTypes.string,
+      persistAsync: PropTypes.shape({
+        url: PropTypes.string.isRequired,
+        method: PropTypes.string,
+        param: PropTypes.string.isRequired,
+        idProperty: PropTypes.string.isRequired,
         schema: FileItemSchema,
       }),
     }),
-    validationMessages: Types.shape({
-      maxItems: Types.string,
+    validationMessages: PropTypes.shape({
+      maxItems: PropTypes.string,
     }),
   }).isRequired,
-  disabled: Types.bool,
-  errors: Types.string,
-  hideTitle: Types.bool,
-  locale: Types.string,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
-  onChange: Types.func.isRequired,
-  onPersistAsync: Types.func,
-  required: Types.bool,
-  submitted: Types.bool.isRequired,
-  translations: Types.shape({}),
+  disabled: PropTypes.bool,
+  errors: PropTypes.string,
+  hideTitle: PropTypes.bool,
+  locale: PropTypes.string,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
+  onChange: PropTypes.func.isRequired,
+  onPersistAsync: PropTypes.func,
+  required: PropTypes.bool,
+  submitted: PropTypes.bool.isRequired,
+  translations: PropTypes.shape({}),
 };
 
 MultipleFileUploadSchema.defaultProps = {

@@ -1,5 +1,5 @@
 import { Alert } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { contextModel, marginModel } from '../models';
 import { getMarginBottom } from '../utils';
@@ -40,8 +40,8 @@ const DynamicAlert = (props) => {
 };
 
 DynamicAlert.propTypes = {
-  component: Types.shape({
-    markdown: Types.string.isRequired,
+  component: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
     context: contextModel,
     margin: marginModel,
   }).isRequired,

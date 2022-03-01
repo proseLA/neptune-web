@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import DynamicLayout from '..';
 import { marginModel } from '../models';
@@ -64,18 +64,24 @@ const DynamicBox = (props) => {
 };
 
 DynamicBox.propTypes = {
-  component: Types.shape({
-    components: Types.arrayOf(Types.shape({})),
+  component: PropTypes.shape({
+    components: PropTypes.arrayOf(PropTypes.shape({})),
     margin: marginModel,
-    border: Types.bool,
-    width: Types.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+    border: PropTypes.bool,
+    width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
-  submitted: Types.bool.isRequired,
-  errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  onModelChange: Types.func.isRequired,
-  onAction: Types.func.isRequired,
-  onPersistAsync: Types.func.isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.bool,
+  ]),
+  submitted: PropTypes.bool.isRequired,
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
+  onModelChange: PropTypes.func.isRequired,
+  onAction: PropTypes.func.isRequired,
+  onPersistAsync: PropTypes.func.isRequired,
 };
 
 DynamicBox.defaultProps = {

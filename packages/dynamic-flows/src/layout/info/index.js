@@ -1,5 +1,5 @@
 import { Markdown } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { marginModel } from '../models';
 import { getTextAlignmentAndMargin } from '../utils';
@@ -13,8 +13,8 @@ const DynamicInfo = ({ component }) => {
 };
 
 DynamicInfo.propTypes = {
-  component: Types.shape({
-    markdown: Types.string.isRequired,
+  component: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
     margin: marginModel,
   }).isRequired,
 };

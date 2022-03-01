@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import { getValidModelParts } from '../../common/validation/valid-model';
@@ -94,28 +94,28 @@ const ObjectSchema = (props) => {
 };
 
 ObjectSchema.propTypes = {
-  schema: Types.shape({
-    type: Types.oneOf(['object']).isRequired,
-    alert: Types.shape({
-      context: Types.string,
-      markdown: Types.string,
+  schema: PropTypes.shape({
+    type: PropTypes.oneOf(['object']).isRequired,
+    alert: PropTypes.shape({
+      context: PropTypes.string,
+      markdown: PropTypes.string,
     }),
-    properties: Types.shape({}).isRequired,
-    required: Types.arrayOf(Types.string),
-    title: Types.string,
-    description: Types.string,
-    width: Types.oneOf(['sm', 'md', 'lg']),
-    displayOrder: Types.arrayOf(Types.string),
+    properties: PropTypes.shape({}).isRequired,
+    required: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string,
+    description: PropTypes.string,
+    width: PropTypes.oneOf(['sm', 'md', 'lg']),
+    displayOrder: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
-  model: Types.shape({}),
-  errors: Types.shape({}),
-  locale: Types.string,
-  translations: Types.shape({}),
-  onChange: Types.func.isRequired,
-  submitted: Types.bool.isRequired,
-  hideTitle: Types.bool,
-  disabled: Types.bool,
-  onPersistAsync: Types.func.isRequired,
+  model: PropTypes.shape({}),
+  errors: PropTypes.shape({}),
+  locale: PropTypes.string,
+  translations: PropTypes.shape({}),
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  hideTitle: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onPersistAsync: PropTypes.func.isRequired,
 };
 
 ObjectSchema.defaultProps = {

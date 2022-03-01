@@ -1,6 +1,6 @@
 import { Loader } from '@transferwise/components';
 import { isObject } from '@transferwise/neptune-validation';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
 
 import { Size } from '../common';
@@ -275,15 +275,15 @@ const DynamicFlow = (props) => {
 };
 
 DynamicFlow.propTypes = {
-  baseUrl: Types.string,
-  fetcher: Types.func,
-  flowUrl: Types.string,
-  initialStep: Types.object,
-  onClose: Types.func,
-  onStepChange: Types.func,
-  onError: Types.func,
-  onTrackableEvent: Types.func,
-  loaderSize: Types.string,
+  baseUrl: PropTypes.string,
+  fetcher: PropTypes.func,
+  flowUrl: PropTypes.string,
+  initialStep: PropTypes.object,
+  onClose: PropTypes.func,
+  onStepChange: PropTypes.func,
+  onError: PropTypes.func,
+  onTrackableEvent: PropTypes.func,
+  loaderSize: PropTypes.string,
 };
 
 DynamicFlow.defaultProps = {

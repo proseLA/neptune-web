@@ -1,5 +1,5 @@
 import * as icons from '@transferwise/icons';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 const DynamicIcon = (props) => {
   const iconName = `${props.type[0]?.toUpperCase()}${props.type.slice(1)}`;
@@ -14,7 +14,7 @@ const DynamicIcon = (props) => {
 };
 
 DynamicIcon.propTypes = {
-  type: Types.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 DynamicIcon.defaultProps = {

@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { marginModel, alignModel } from '../models';
 import { getTextAlignmentAndMargin } from '../utils';
@@ -12,8 +12,8 @@ const DynamicParagraph = (props) => {
 };
 
 DynamicParagraph.propTypes = {
-  component: Types.shape({
-    text: Types.string.isRequired,
+  component: PropTypes.shape({
+    text: PropTypes.string.isRequired,
     margin: marginModel,
     align: alignModel,
   }).isRequired,

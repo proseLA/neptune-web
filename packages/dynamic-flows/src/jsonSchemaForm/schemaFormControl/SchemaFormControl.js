@@ -1,5 +1,5 @@
 import { isNull, isUndefined } from '@transferwise/neptune-validation';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { FormControlType } from '../../common';
 import { isOneOfSchema } from '../../common/schemaTypes/schemaTypes';
@@ -103,24 +103,24 @@ const SchemaFormControl = (props) => {
 };
 
 SchemaFormControl.propTypes = {
-  id: Types.string.isRequired,
-  value: Types.oneOfType([Types.string, Types.number, Types.bool]),
-  schema: Types.shape({
-    type: Types.oneOf(['string', 'number', 'integer', 'boolean']),
-    format: Types.string,
-    values: Types.arrayOf(Types.shape({})),
-    title: Types.string,
-    placeholder: Types.string,
-    help: Types.shape({}),
-    displayFormat: Types.string,
-    disabled: Types.bool,
+  id: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  schema: PropTypes.shape({
+    type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean']),
+    format: PropTypes.string,
+    values: PropTypes.arrayOf(PropTypes.shape({})),
+    title: PropTypes.string,
+    placeholder: PropTypes.string,
+    help: PropTypes.shape({}),
+    displayFormat: PropTypes.string,
+    disabled: PropTypes.bool,
   }).isRequired,
-  onChange: Types.func.isRequired,
-  onFocus: Types.func,
-  onBlur: Types.func,
-  translations: Types.shape({}),
-  locale: Types.string,
-  disabled: Types.bool,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  translations: PropTypes.shape({}),
+  locale: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 SchemaFormControl.defaultProps = {

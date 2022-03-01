@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { ArraySchemaVariants, getArrayVariant } from '../../common/schemaTypes/arraySchemaTypes';
 
@@ -21,27 +21,33 @@ const ArraySchema = (props) => {
   }
 };
 
-const ListSchemaItemsType = Types.object;
-const TupleSchemaItemsType = Types.array;
+const ListSchemaItemsType = PropTypes.object;
+const TupleSchemaItemsType = PropTypes.array;
 
 ArraySchema.propTypes = {
-  schema: Types.shape({
-    title: Types.string,
-    type: Types.string.isRequired,
-    description: Types.string,
-    maxItems: Types.number,
-    minItems: Types.number,
-    items: Types.oneOfType([ListSchemaItemsType, TupleSchemaItemsType]).isRequired,
+  schema: PropTypes.shape({
+    title: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    maxItems: PropTypes.number,
+    minItems: PropTypes.number,
+    items: PropTypes.oneOfType([ListSchemaItemsType, TupleSchemaItemsType]).isRequired,
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
-  disabled: Types.bool,
-  errors: Types.string,
-  hideTitle: Types.bool,
-  locale: Types.string,
-  onChange: Types.func.isRequired,
-  required: Types.bool,
-  submitted: Types.bool.isRequired,
-  translations: Types.shape({}),
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
+  disabled: PropTypes.bool,
+  errors: PropTypes.string,
+  hideTitle: PropTypes.bool,
+  locale: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  required: PropTypes.bool,
+  submitted: PropTypes.bool.isRequired,
+  translations: PropTypes.shape({}),
 };
 
 ArraySchema.defaultProps = {

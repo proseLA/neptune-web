@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { marginModel, alignModel, sizeModel } from '../models';
 import { getTextAlignmentAndMargin } from '../utils';
@@ -24,8 +24,8 @@ const DynamicHeading = (props) => {
 };
 
 DynamicHeading.propTypes = {
-  component: Types.shape({
-    text: Types.string.isRequired,
+  component: PropTypes.shape({
+    text: PropTypes.string.isRequired,
     margin: marginModel,
     size: sizeModel,
     align: alignModel,

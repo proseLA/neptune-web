@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import { getValidModelParts } from '../../common/validation/valid-model';
@@ -63,20 +63,26 @@ const AllOfSchema = (props) => {
 };
 
 AllOfSchema.propTypes = {
-  schema: Types.shape({
-    title: Types.string,
-    description: Types.string,
-    allOf: Types.arrayOf(Types.object).isRequired,
-    width: Types.string,
+  schema: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    allOf: PropTypes.arrayOf(PropTypes.object).isRequired,
+    width: PropTypes.string,
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
-  errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
-  locale: Types.string,
-  translations: Types.shape({}),
-  onChange: Types.func.isRequired,
-  submitted: Types.bool.isRequired,
-  disabled: Types.bool,
-  onPersistAsync: Types.func.isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
+  locale: PropTypes.string,
+  translations: PropTypes.shape({}),
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+  onPersistAsync: PropTypes.func.isRequired,
 };
 
 AllOfSchema.defaultProps = {

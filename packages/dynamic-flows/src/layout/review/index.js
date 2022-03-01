@@ -1,5 +1,5 @@
 import { DefinitionList } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { marginModel, actionModel, orientationModel } from '../models';
 import { getMarginBottom } from '../utils';
@@ -52,13 +52,13 @@ const DynamicReview = (props) => {
 };
 
 DynamicReview.propTypes = {
-  onAction: Types.func.isRequired,
-  component: Types.shape({
-    title: Types.string,
-    fields: Types.arrayOf(
-      Types.shape({
-        label: Types.string,
-        value: Types.string,
+  onAction: PropTypes.func.isRequired,
+  component: PropTypes.shape({
+    title: PropTypes.string,
+    fields: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        value: PropTypes.string,
       }),
     ).isRequired,
     margin: marginModel,

@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import {
   FetcherProviderFromBaseUrl,
@@ -22,47 +22,53 @@ JsonSchemaForm.propTypes = {
   /**
    * The JSON schema we're trying to satisfy
    */
-  schema: Types.shape({}).isRequired,
+  schema: PropTypes.shape({}).isRequired,
   /**
    * An initial data model
    */
-  model: Types.oneOfType([Types.string, Types.number, Types.bool, Types.array, Types.shape({})]),
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+    PropTypes.shape({}),
+  ]),
   /**
    * Errors should be human readable strings, the object should match the shape of the model.
    */
-  errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
   /**
    * The user's locale, this will affect the rendering of some components e.g. dates.
    */
-  locale: Types.string,
+  locale: PropTypes.string,
   /**
    * Translations used to enhance components.
    */
-  translations: Types.shape({}),
+  translations: PropTypes.shape({}),
   /**
    * Fires when the internal data model changes as a result of form interaction.
    *
    * Provide two params the new model, and a boolean indicating if it's valid.
    */
-  onChange: Types.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   /**
    * Tell the form if it has been submitted, triggering display of any validation failures.
    */
-  submitted: Types.bool.isRequired,
+  submitted: PropTypes.bool.isRequired,
   /**
    * Tell the form if it should disable all controls.
    */
-  disabled: Types.bool,
+  disabled: PropTypes.bool,
   /**
    * Fires when any internal persist async is triggered and API call is underway.
    *
    * Provides a QueryablePromise of the persist async call.
    */
-  onPersistAsync: Types.func.isRequired,
+  onPersistAsync: PropTypes.func.isRequired,
   /**
    * Specifies the baseUrl of persist async and validation async requests.
    */
-  baseUrl: Types.string,
+  baseUrl: PropTypes.string,
 };
 
 JsonSchemaForm.defaultProps = {

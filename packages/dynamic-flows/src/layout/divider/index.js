@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { marginModel } from '../models';
 import { getMarginBottom } from '../utils';
@@ -11,7 +11,7 @@ const DynamicDivider = ({ component }) => {
 };
 
 DynamicDivider.propTypes = {
-  component: Types.shape({
+  component: PropTypes.shape({
     margin: marginModel,
   }).isRequired,
 };

@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import JsonSchemaForm from '../../jsonSchemaForm';
 import { marginModel, orientationModel } from '../models';
@@ -25,20 +25,26 @@ const DynamicForm = (props) => {
 };
 
 DynamicForm.propTypes = {
-  component: Types.shape({
+  component: PropTypes.shape({
     // eslint-disable-next-line react/forbid-prop-types
-    schema: Types.object,
+    schema: PropTypes.object,
     // eslint-disable-next-line react/forbid-prop-types
-    model: Types.object,
+    model: PropTypes.object,
     submitted: false,
     margin: marginModel,
     orientation: orientationModel,
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
-  submitted: Types.bool.isRequired,
-  errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  onModelChange: Types.func.isRequired,
-  onPersistAsync: Types.func.isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.bool,
+  ]),
+  submitted: PropTypes.bool.isRequired,
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
+  onModelChange: PropTypes.func.isRequired,
+  onPersistAsync: PropTypes.func.isRequired,
 };
 
 DynamicForm.defaultProps = {

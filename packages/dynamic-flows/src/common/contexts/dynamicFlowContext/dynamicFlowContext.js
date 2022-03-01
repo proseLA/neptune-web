@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { createContext, useContext, useMemo } from 'react';
 
 const defaultContextValue = { refreshing: false };
@@ -11,8 +11,8 @@ export const DynamicFlowProvider = ({ refreshing, children }) => {
 };
 
 DynamicFlowProvider.propTypes = {
-  refreshing: Types.func.isRequired,
-  children: Types.node,
+  refreshing: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 export const useDynamicFlow = () => {

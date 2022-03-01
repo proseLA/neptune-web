@@ -1,4 +1,4 @@
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import DynamicLayout from '..';
 import { marginModel } from '../models';
@@ -48,18 +48,24 @@ const DynamicColumns = (props) => {
 };
 
 DynamicColumns.propTypes = {
-  component: Types.shape({
-    left: Types.arrayOf(Types.shape),
-    right: Types.arrayOf(Types.shape),
+  component: PropTypes.shape({
+    left: PropTypes.arrayOf(PropTypes.shape),
+    right: PropTypes.arrayOf(PropTypes.shape),
     margin: marginModel,
-    bias: Types.oneOf(['left', 'right']),
+    bias: PropTypes.oneOf(['left', 'right']),
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.object, Types.array, Types.bool]),
-  submitted: Types.bool.isRequired,
-  errors: Types.oneOfType([Types.string, Types.object, Types.array]),
-  onAction: Types.func.isRequired,
-  onModelChange: Types.func.isRequired,
-  onPersistAsync: Types.func.isRequired,
+  model: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.bool,
+  ]),
+  submitted: PropTypes.bool.isRequired,
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
+  onAction: PropTypes.func.isRequired,
+  onModelChange: PropTypes.func.isRequired,
+  onPersistAsync: PropTypes.func.isRequired,
 };
 
 DynamicColumns.defaultProps = {

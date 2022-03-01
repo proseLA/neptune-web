@@ -1,6 +1,6 @@
 import { isNull } from '@transferwise/neptune-validation';
 import isEqual from 'lodash.isequal';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 
 import { useFetcher } from '../../common/contexts/fetcherContext';
@@ -93,23 +93,23 @@ const ValidationAsyncSchema = (props) => {
 };
 
 ValidationAsyncSchema.propTypes = {
-  schema: Types.shape({
-    type: Types.oneOf(['string', 'number', 'integer', 'boolean']),
-    alert: Types.shape({
-      context: Types.string,
-      markdown: Types.string,
+  schema: PropTypes.shape({
+    type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean']),
+    alert: PropTypes.shape({
+      context: PropTypes.string,
+      markdown: PropTypes.string,
     }),
-    validationAsync: Types.shape({
-      method: Types.string,
-      url: Types.string,
-      param: Types.string,
+    validationAsync: PropTypes.shape({
+      method: PropTypes.string,
+      url: PropTypes.string,
+      param: PropTypes.string,
     }),
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool]),
-  onChange: Types.func.isRequired,
-  submitted: Types.bool.isRequired,
-  required: Types.bool,
-  errors: Types.oneOfType([Types.string, Types.array, Types.shape({})]),
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
+  errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
 };
 
 ValidationAsyncSchema.defaultProps = {

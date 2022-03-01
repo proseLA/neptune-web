@@ -1,6 +1,6 @@
 import { Upload } from '@transferwise/components';
 import classNames from 'classnames';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 import { isStatus422 } from '../../../common/api/utils';
@@ -93,29 +93,29 @@ const PersistAsyncBlobSchema = (props) => {
 };
 
 PersistAsyncBlobSchema.propTypes = {
-  schema: Types.shape({
-    type: Types.oneOf(['string', 'number', 'integer', 'boolean']),
-    title: Types.string,
-    disabled: Types.bool,
-    hidden: Types.bool,
-    description: Types.string,
-    persistAsync: Types.shape({
-      method: Types.string,
-      url: Types.string,
-      param: Types.string,
-      idProperty: Types.string,
-      schema: Types.shape({
-        maxSize: Types.number,
-        type: Types.oneOf(['blob']),
-        accepts: Types.arrayOf(Types.string),
+  schema: PropTypes.shape({
+    type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean']),
+    title: PropTypes.string,
+    disabled: PropTypes.bool,
+    hidden: PropTypes.bool,
+    description: PropTypes.string,
+    persistAsync: PropTypes.shape({
+      method: PropTypes.string,
+      url: PropTypes.string,
+      param: PropTypes.string,
+      idProperty: PropTypes.string,
+      schema: PropTypes.shape({
+        maxSize: PropTypes.number,
+        type: PropTypes.oneOf(['blob']),
+        accepts: PropTypes.arrayOf(PropTypes.string),
       }),
     }),
   }).isRequired,
-  model: Types.oneOfType([Types.string, Types.number, Types.bool]),
-  errors: Types.string,
-  onChange: Types.func.isRequired,
-  submitted: Types.bool.isRequired,
-  required: Types.bool,
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  errors: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
 };
 
 PersistAsyncBlobSchema.defaultProps = {

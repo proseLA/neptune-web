@@ -1,5 +1,5 @@
 import { Markdown, Info } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
 import messages from './Help.messages';
@@ -19,7 +19,7 @@ const Help = (props) => {
 };
 
 Help.propTypes = {
-  help: Types.shape({ markdown: Types.string }).isRequired,
+  help: PropTypes.shape({ markdown: PropTypes.string }).isRequired,
 };
 
 export default Help;

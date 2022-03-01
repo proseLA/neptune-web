@@ -1,5 +1,5 @@
 import { NavigationOption, NavigationOptionsList } from '@transferwise/components';
-import Types from 'prop-types';
+import PropTypes from 'prop-types';
 
 import DynamicIcon from '../icon';
 import { actionModel, marginModel } from '../models';
@@ -44,18 +44,18 @@ const DynamicDecision = (props) => {
 };
 
 DynamicDecision.propTypes = {
-  onAction: Types.func.isRequired,
-  component: Types.shape({
-    options: Types.arrayOf(
-      Types.shape({
-        title: Types.string,
-        description: Types.string,
+  onAction: PropTypes.func.isRequired,
+  component: PropTypes.shape({
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
         action: actionModel.isRequired,
-        icon: Types.string,
-        image: Types.shape({
-          url: Types.string,
+        icon: PropTypes.string,
+        image: PropTypes.shape({
+          url: PropTypes.string,
         }),
-        disabled: Types.bool,
+        disabled: PropTypes.bool,
       }),
     ).isRequired,
     margin: marginModel,
