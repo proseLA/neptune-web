@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.12.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.11.4...@transferwise/components@39.12.0) (2022-03-03)
+
+
+### Features
+
+* **Typeahead:** specify where arbitrary data can live on Typeahead options ([#1345](https://github.com/transferwise/neptune-web/issues/1345)) ([aa0d468](https://github.com/transferwise/neptune-web/commit/aa0d468e60c4e0d07d5bb6daa0b8bd84c584d0ff))
+
+
+
+
+
 ## [39.11.4](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.11.3...@transferwise/components@39.11.4) (2022-02-21)
 
 
