@@ -435,6 +435,7 @@ Typeahead.propTypes = {
       label: PropTypes.string.isRequired,
       note: PropTypes.string,
       secondary: PropTypes.string,
+      value: PropTypes.object,
     }),
   ).isRequired,
   initialValue: PropTypes.arrayOf(

@@ -306,6 +306,33 @@ describe('Typeahead', () => {
     expect(component.find(InlineAlert)).toHaveLength(1);
   });
 
+  it('allows supplying options with arbitrary data that will be included with the onChange callback', () => {
+    const text = 'test';
+    const options = [
+      {
+        label: 'label 1',
+        note: 'note-1',
+        secondary: 'secondary-1',
+        value: { id: 123, name: 'Neptune' },
+      },
+    ];
+    let selectedOption;
+
+    component.setProps({
+      onChange: (selections) => (selectedOption = selections[0]),
+      options: options,
+    });
+
+    input().simulate('change', { target: { value: text } });
+    option().at(0).simulate('click', fakeEvent());
+    expect(selectedOption).toStrictEqual({
+      label: 'label 1',
+      note: 'note-1',
+      secondary: 'secondary-1',
+      value: { id: 123, name: 'Neptune' },
+    });
+  });
+
   describe('menu', () => {
     it('should render footer', () => {
       component.setProps({
