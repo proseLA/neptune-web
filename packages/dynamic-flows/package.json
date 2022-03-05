@@ -70,6 +70,7 @@
     "@babel/runtime": "^7.15.3",
     "classnames": "^2.2.6",
     "core-js": "^3.8.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "screenfull": "^5.0.2"
   }

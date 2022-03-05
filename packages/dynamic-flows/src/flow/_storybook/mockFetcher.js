@@ -47,7 +47,7 @@ export async function mockFetcher(input, init) {
       return respondWithEtag(receiveStep, eTagFromStep(receiveStep));
     case '/recipient-details-refresh': {
       const requestModel = JSON.parse(init.body);
-      if (requestModel.email.slice(0, 6) === 'match') {
+      if (requestModel.email?.slice(0, 5) === 'match') {
         return respondWith(receiveStepRefresh);
       }
       const schemaEtag = eTagFromStep(receiveStep);

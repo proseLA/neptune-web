@@ -13,6 +13,7 @@ import { getValidModelParts } from '../common/validation/valid-model';
 import { CameraStep, LayoutStep } from '../step';
 
 import { withErrorBoundary } from './errorBoundary';
+import { useDebouncedRefresh } from './useDebouncedRefresh';
 
 const EXIT_HEADER = 'X-Df-Exit';
 
@@ -139,7 +140,7 @@ const DynamicFlow = (props) => {
     }
   };
 
-  const fetchRefresh = (action, data) => {
+  const fetchRefresh = useDebouncedRefresh((action, data, etag) => {
     setRefreshing(true);
     return requestStep({ action, data, etag })
       .then(async (response) => {
@@ -149,7 +150,7 @@ const DynamicFlow = (props) => {
       .catch(handleRefreshError)
       .catch(handleFetchError)
       .finally(() => setRefreshing(false));
-  };
+  });
 
   const fetchExitResult = (action, data) => {
     return requestStep({ action, data }).then(validateExitResult).catch(handleFetchError);
@@ -193,7 +194,7 @@ const DynamicFlow = (props) => {
       if (shouldTriggerRefresh(triggerSchema, triggerModel, lastTriggerModel)) {
         const url = triggerSchema.refreshFormUrl || stepSpecification.refreshFormUrl;
         const action = { url, method: 'POST' };
-        fetchRefresh(action, combineModels(updatedModels));
+        fetchRefresh(action, combineModels(updatedModels), etag, triggerSchema);
       }
 
       return updatedState;

@@ -1,3 +1,5 @@
+import { waitFor } from '@testing-library/react';
+
 import { LayoutStep } from '../step';
 import { mount, wait } from '../test-utils';
 
@@ -50,7 +52,10 @@ describe('Given a component for rendering a dynamic flow', () => {
 
   const numberSchema = { type: 'number' };
   const stringSchema = { type: 'string' };
-  const stringSchemaWithRefresh = { type: 'string', refreshFormOnChange: true };
+  const numberSchemaWithRefresh = {
+    refreshFormOnChange: true,
+    oneOf: [{ const: 99 }, { const: 100 }, { const: 999 }],
+  };
 
   const thingSchema = {
     $id: '#thing',
@@ -108,6 +113,7 @@ describe('Given a component for rendering a dynamic flow', () => {
     ...formStepWithErrors.schemas[0].properties.a,
     refreshFormOnChange: true,
     refreshFormUrl: '/formNoLayout',
+    oneOf: [{ const: 1 }, { const: 99 }, { const: 100 }, { const: 999 }],
   };
 
   const decisionStep = {
@@ -388,7 +394,11 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('when a model update is triggered by a schema with refreshFormOnChange, it should only refresh if the changed model is valid or was valid before', () => {
-      const triggerSchema = { type: 'number', refreshFormOnChange: true };
+      const triggerSchema = {
+        type: 'number',
+        refreshFormOnChange: true,
+        oneOf: [{ const: 99 }, { const: 100 }, { const: 199 }],
+      };
       const cases = [
         {
           title: 'should refresh when new value is valid and prev value was valid',
@@ -435,13 +445,16 @@ describe('Given a component for rendering a dynamic flow', () => {
             triggerSchema,
             preValue,
           );
-          expect(mockFetcher).toHaveBeenCalledTimes(expected);
+
+          await waitFor(() => {
+            expect(mockFetcher).toHaveBeenCalledTimes(expected);
+          });
         });
       });
     });
 
     describe('when a model update is triggered by a schema with refreshFormOnChange', () => {
-      const newModel = { a: 1, b: 'c' };
+      const newModel = { a: 1, b: 999 };
 
       let component;
       const getStep = () => component.find(LayoutStep);
@@ -460,7 +473,7 @@ describe('Given a component for rendering a dynamic flow', () => {
           newModel,
           thingSchema,
           newModel.b,
-          stringSchemaWithRefresh,
+          numberSchemaWithRefresh,
         );
         await waitAndUpdate(component);
       });
@@ -485,9 +498,9 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('when a model update is triggered by a schema with refreshFormOnChange and refreshFormUrl', () => {
-      const newModel = { a: 1, b: 'c' };
+      const newModel = { a: 1, b: 999 };
       const triggerSchema = {
-        ...stringSchemaWithRefresh,
+        ...numberSchemaWithRefresh,
         refreshFormUrl: '/refreshFromTrigger',
       };
 
@@ -900,9 +913,9 @@ describe('Given a component for rendering a dynamic flow', () => {
     });
 
     describe('ETags', () => {
-      const newModel = { a: 1, b: 'c' };
+      const newModel = { a: 1, b: 999 };
       const triggerSchema = {
-        ...stringSchemaWithRefresh,
+        ...numberSchemaWithRefresh,
         refreshFormUrl: '/refreshWithSameFormStep',
       };
 
@@ -918,20 +931,23 @@ describe('Given a component for rendering a dynamic flow', () => {
             onStepChange={onStepChange}
           />,
         );
+        mockFetcher.mockClear();
         getStep().invoke('onModelChange')(newModel, thingSchema, newModel.b, triggerSchema);
         await waitAndUpdate(component);
       });
 
       describe('when requesting a refresh', () => {
-        it('should pass the current ETag in the "If-None-Match" header', () => {
-          expect(mockFetcher).toHaveBeenCalledWith(
-            '/refreshWithSameFormStep',
-            expect.objectContaining({
-              method: 'POST',
-              body: JSON.stringify(newModel),
-              headers: expect.objectContaining({ 'If-None-Match': expect.any(String) }),
-            }),
-          );
+        it('should pass the current ETag in the "If-None-Match" header', async () => {
+          await waitFor(() => {
+            expect(mockFetcher).toHaveBeenCalledWith(
+              '/refreshWithSameFormStep',
+              expect.objectContaining({
+                method: 'POST',
+                body: JSON.stringify(newModel),
+                headers: expect.objectContaining({ 'If-None-Match': expect.any(String) }),
+              }),
+            );
+          });
         });
       });
       describe('when the refreshed step has empty body and status 304', () => {

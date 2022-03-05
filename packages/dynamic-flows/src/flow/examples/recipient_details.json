@@ -38,6 +38,12 @@
               "refreshFormUrl": "/recipient-details-refresh",
               "default": "EUR"
             },
+            "favouriteNumber": {
+              "title": "Enter your favourite number",
+              "type": "number",
+              "refreshFormOnChange": true,
+              "refreshFormUrl": "/recipient-details-refresh"
+            },
             "legalEntityType": {
               "title": "Select recipient type",
               "type": "string",
