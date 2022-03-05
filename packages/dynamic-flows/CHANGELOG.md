@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.13...@transferwise/dynamic-flows@17.4.0) (2022-03-05)
+
+
+### Features
+
+* **dynamic-flow:** add debouncing when refreshing string schemas ([#1350](https://github.com/transferwise/neptune-web/issues/1350)) ([4ab6cab](https://github.com/transferwise/neptune-web/commit/4ab6cabf04b3641b2cf9a8627ac5b18b3665d6fc))
+
+
+
+
+
 ## [17.3.13](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.3.12...@transferwise/dynamic-flows@17.3.13) (2022-03-03)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
