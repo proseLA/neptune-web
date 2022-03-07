@@ -18,7 +18,6 @@
 
   border-left: 1px solid var(--color-border-neutral);
   border-right: 1px solid var(--color-border-neutral);
-  border-bottom: 1px solid var(--color-border-neutral);
 }
 
 // Individual list items
@@ -39,7 +38,6 @@
   transition: all ease @panel-focus-transtion;
 
   .panel-group & {
-    border-top: 1px solid var(--color-border-neutral);
     margin-top: 0;
   }
 }
@@ -121,10 +119,6 @@ a.list-group-item {
     &:last-child {
       margin-bottom: 0;
     }
-
-    + .list-group-item {
-      border-top-width: 0;
-    }
   }
 
   @media (min-width: @screen-md-min) {
@@ -144,7 +138,6 @@ a.list-group-item {
 .list-group-inactive {
   .list-group-item {
     background-color: transparent;
-    border-top: 1px solid var(--color-border-neutral);
     margin-top: 0;
 
     &:hover,
@@ -159,7 +152,6 @@ a.list-group-item {
     }
 
     &.active {
-      border-top: 0;
       margin-top: var(--size-24);
     }
   }
@@ -241,11 +233,6 @@ a.list-group-item {
       margin-top: 1px;
       margin-bottom: 0;
       box-shadow: none !important;
-    }
-
-    .list-group-inactive .list-group-item.active {
-      border-top: 1px solid var(--color-border-neutral);
-      border-bottom: 1px solid var(--color-border-neutral);
     }
 
     .list-group-item.active .collapse {
