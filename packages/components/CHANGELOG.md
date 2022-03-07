@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [39.14.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.13.0...@transferwise/components@39.14.0) (2022-03-07)
+
+
+### Features
+
+* **UploadInput:** Add additional props make it customisable with DF / other clients ([#1338](https://github.com/transferwise/neptune-web/issues/1338)) ([8da56dd](https://github.com/transferwise/neptune-web/commit/8da56dd7260d1c662e89f89c951a7e7d3302b885))
+
+
+
+
+
 # [39.13.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.12.0...@transferwise/components@39.13.0) (2022-03-07)
 
 
