@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.8...@transferwise/neptune-css@12.4.0) (2022-03-07)
+
+
+### Features
+
+* update keylines and spacing ([#1349](https://github.com/transferwise/neptune-web/issues/1349)) ([4b6d073](https://github.com/transferwise/neptune-web/commit/4b6d0733bff12c5e93d11dab31aa6e0df13ae424))
+
+
+
+
+
 ## [12.3.8](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.7...@transferwise/neptune-css@12.3.8) (2022-02-16)
 
 
