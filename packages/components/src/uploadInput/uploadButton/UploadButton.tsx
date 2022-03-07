@@ -48,6 +48,16 @@ export type UploadButtonProps = {
    * @param files
    */
   onChange: (files: FileList) => void;
+
+  /**
+   * Id for the upload input
+   */
+  id?: string;
+
+  /**
+   * Title for the upload button
+   */
+  uploadButtonTitle?: string;
 };
 
 export enum TEST_IDS {
@@ -59,6 +69,7 @@ const onDragOver = (event: DragEvent): void => {
   event.preventDefault();
 };
 
+const DEFAULT_FILE_INPUT_ID = 'np-upload-button';
 const UploadButton = ({
   disabled,
   multiple,
@@ -67,6 +78,8 @@ const UploadButton = ({
   sizeLimit = DEFAULT_SIZE_LIMIT,
   maxFiles,
   onChange,
+  id = DEFAULT_FILE_INPUT_ID,
+  uploadButtonTitle,
 }: UploadButtonProps) => {
   const { isRTL } = useDirection();
   const { formatMessage } = useIntl();
@@ -173,6 +186,13 @@ const UploadButton = ({
     );
   }
 
+  function renderButtonTitle() {
+    if (uploadButtonTitle) {
+      return uploadButtonTitle;
+    }
+    return formatMessage(multiple ? MESSAGES.uploadFiles : MESSAGES.uploadFile);
+  }
+
   return (
     <div
       className={classNames('np-upload-button-container', 'droppable', {
@@ -182,7 +202,7 @@ const UploadButton = ({
     >
       <input
         ref={inputReference}
-        id="np-upload-button"
+        id={id}
         type="file"
         {...getAcceptedTypes()}
         {...(multiple && { multiple: true })}
@@ -203,7 +223,7 @@ const UploadButton = ({
             <UploadIcon size={24} className="text-link" />
           </div>
           <div className="media-body text-xs-left" data-testid={TEST_IDS.mediaBody}>
-            <div>{formatMessage(multiple ? MESSAGES.uploadFiles : MESSAGES.uploadFile)}</div>
+            <div>{renderButtonTitle()}</div>
             {renderDescription()}
           </div>
         </div>

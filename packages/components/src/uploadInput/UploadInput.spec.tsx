@@ -281,4 +281,34 @@ describe('UploadInput', () => {
       });
     });
   });
+
+  describe('Misc', () => {
+    it('should attach the input id accepted from props to the input components', () => {
+      const inputId = 'testInputId';
+      const labelText = 'LabelText';
+      render(
+        <>
+          <label htmlFor={inputId}>{labelText}</label>
+          <UploadInput {...props} id={inputId} />
+        </>,
+      );
+      expect(screen.getByLabelText(labelText)).toHaveAttribute('id', inputId);
+    });
+
+    it('should show the file size error when provided in props', async () => {
+      const bytesInaKb = 1024;
+      const twoKbInBytes = 2 * bytesInaKb;
+
+      const sizeLimitErrorMessage = 'file oversized';
+      renderComponent({ ...props, sizeLimit: 1, sizeLimitErrorMessage });
+      const input = screen.getByTestId(UPLOAD_BUTTON_TEST_IDS.uploadInput);
+      const overSizedFile = new File([''], 'testFile.png', { type: 'image/png' });
+      Object.defineProperty(overSizedFile, 'size', { value: twoKbInBytes });
+
+      userEvent.upload(input, [overSizedFile]);
+      await waitFor(() => {
+        expect(screen.getByText(sizeLimitErrorMessage)).toBeInTheDocument();
+      });
+    });
+  });
 });

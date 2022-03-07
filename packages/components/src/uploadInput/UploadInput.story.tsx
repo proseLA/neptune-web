@@ -150,3 +150,16 @@ withMaxFilesToUploadLimit.args = {
   maxFiles: 5,
   maxFilesErrorMessage: "Can't upload as maximum number of files allowed are already uploaded",
 };
+
+export const withFileSizeErrorMessage = Template.bind({});
+withFileSizeErrorMessage.args = {
+  ...props,
+  sizeLimit: 1,
+  sizeLimitErrorMessage: 'The file is oversized',
+};
+
+export const withCustomUploadButtonTitle = Template.bind({});
+withCustomUploadButtonTitle.args = {
+  ...props,
+  uploadButtonTitle: 'Upload the VAT receipts for FY 2022-23',
+};

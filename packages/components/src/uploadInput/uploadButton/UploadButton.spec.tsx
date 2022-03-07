@@ -22,6 +22,12 @@ describe('UploadButton', () => {
       expect(screen.getByText('Upload file')).toBeInTheDocument();
     });
 
+    it('should render the file input button with title, if provided', () => {
+      const buttonTitle = 'Upload your id';
+      renderComponent({ ...props, uploadButtonTitle: buttonTitle });
+      expect(screen.getByText(buttonTitle)).toBeInTheDocument();
+    });
+
     it('should set accept to imageTypes', () => {
       expect(screen.getByTestId(TEST_IDS.uploadInput)).toHaveAttribute(
         'accept',

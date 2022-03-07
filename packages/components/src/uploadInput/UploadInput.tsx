@@ -88,7 +88,15 @@ export type UploadInputProps = {
    * Error message to show when the maximum number of files are uploaded already
    */
   maxFilesErrorMessage?: string;
-} & Pick<UploadButtonProps, 'disabled' | 'multiple' | 'fileTypes' | 'sizeLimit' | 'description'> &
+
+  /**
+   * Error message to show when files over a allowed size limit are uploaded
+   */
+  sizeLimitErrorMessage?: string;
+} & Pick<
+  UploadButtonProps,
+  'disabled' | 'multiple' | 'fileTypes' | 'sizeLimit' | 'description' | 'id' | 'uploadButtonTitle'
+> &
   Pick<UploadItemProps, 'onDownload'> &
   CommonProps;
 
@@ -115,6 +123,9 @@ const UploadInput = ({
   onDownload,
   maxFiles,
   maxFilesErrorMessage,
+  id,
+  sizeLimitErrorMessage,
+  uploadButtonTitle,
 }: UploadInputProps): ReactElement => {
   const [markedFileForDelete, setMarkedFileForDelete] = useState<UploadedFile | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -236,7 +247,8 @@ const UploadInput = ({
         // Check if the filesize is valid
         // Convert to rough bytes
         if (!isSizeValid(file, sizeLimit * 1000)) {
-          handleFileUploadFailure(file, formatMessage(MESSAGES.fileIsTooLarge));
+          const failureMessage = sizeLimitErrorMessage || formatMessage(MESSAGES.fileIsTooLarge);
+          handleFileUploadFailure(file, failureMessage);
           continue;
         }
 
@@ -306,6 +318,8 @@ const UploadInput = ({
         ))}
         {(multiple || (!multiple && !uploadedFiles.length)) && (
           <UploadButton
+            id={id}
+            uploadButtonTitle={uploadButtonTitle}
             disabled={areMaximumFilesUploadedAlready() || disabled}
             multiple={multiple}
             fileTypes={fileTypes}
