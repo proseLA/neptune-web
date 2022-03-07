@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.4.1...@transferwise/dynamic-flows@17.5.0) (2022-03-07)
+
+
+### Features
+
+* **dynamic-flows:** Update the MultipleFileUpload schema to accept allowed file size in bytes ([#1331](https://github.com/transferwise/neptune-web/issues/1331)) ([70a7e0b](https://github.com/transferwise/neptune-web/commit/70a7e0b77e093a486b6a677f29de49312eaadb04))
+
+
+
+
+
 ## [17.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.4.0...@transferwise/dynamic-flows@17.4.1) (2022-03-07)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
