@@ -7,7 +7,7 @@ import MultipleFileUploadSchema from './MultipleFileUploadSchema';
 
 describe('Given a Multiple File Upload array schema', () => {
   const accepts = ['image/png', 'image/jpg', 'application/pdf'];
-  const maxSize = 5242;
+  const maxSize = 5242000;
   const description = 'PNG, JPG, or PDF, less than 5mb';
   const idProperty = 'responseKey';
   const param = 'bodyAttribute';
@@ -76,7 +76,7 @@ describe('Given a Multiple File Upload array schema', () => {
       className: 'form-control',
       fileInputName: expect.any(String),
       fileTypes: accepts,
-      sizeLimit: maxSize,
+      sizeLimit: Math.floor(maxSize / 1024),
       disabled: false,
       description,
       multiple: true,

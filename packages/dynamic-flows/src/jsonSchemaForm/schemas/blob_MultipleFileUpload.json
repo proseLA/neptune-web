@@ -16,7 +16,7 @@
           "idProperty": "responseKey",
           "schema": {
             "type": "blob",
-            "maxSize": 5242,
+            "maxSize": 5242000,
             "accepts": ["image/png", "image/jpg", "application/pdf"],
             "validationMessages": {
               "maxSize": "Your file is too large"

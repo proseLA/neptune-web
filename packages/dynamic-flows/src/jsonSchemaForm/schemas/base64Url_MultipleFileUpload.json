@@ -17,7 +17,7 @@
           "schema": {
             "type": "string",
             "format": "base64url",
-            "maxSize": 5242,
+            "maxSize": 5242000,
             "accepts": ["image/png", "image/jpg", "application/pdf"],
             "validationMessages": {
               "maxSize": "Your file is too large"

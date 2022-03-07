@@ -7,6 +7,8 @@ import { usePersistAsync } from '../../../../common/hooks/usePersistAsync';
 import { getArrayValidationFailures } from '../../../../common/validation/validation-failures';
 import ControlFeedback from '../../../controlFeedback';
 
+const ONE_KB_IN_BYTES = 1024;
+
 const useUniqueId = (prefix) => {
   const prefixString = prefix ? `${prefix}-` : '';
   const [id] = useState(() => `${prefixString}${generateRandomValue()}`);
@@ -53,6 +55,9 @@ const MultipleFileUploadSchema = (props) => {
     Boolean(props.errors) ||
     ((inputChanged || props.submitted) && Boolean(fileListValidationFailures.length));
 
+  const fileSizeLimitInBytes = fileSchemaDescriptor.maxSize;
+  const fileSizeLimitInKiloBytes = Math.floor(fileSizeLimitInBytes / ONE_KB_IN_BYTES);
+
   return (
     <div className={classNames('form-group', { 'has-error': showError })}>
       {/* eslint-disable jsx-a11y/label-has-for */}
@@ -64,7 +69,7 @@ const MultipleFileUploadSchema = (props) => {
           files={files}
           fileInputName={fileInputName}
           fileTypes={fileSchemaDescriptor.accepts}
-          sizeLimit={fileSchemaDescriptor.maxSize}
+          sizeLimit={fileSizeLimitInKiloBytes}
           maxFiles={props.schema.maxItems}
           maxFilesErrorMessage={props.schema.validationMessages?.maxItems}
           description={props.schema.items.description}
