@@ -195,6 +195,24 @@ describe('Given a component for rendering object schemas', () => {
         expect(genericSchemaComponents.at(2).prop('schema')).toBe(properties.something);
       });
     });
+
+    describe('when displayOrder contains some invalid properties', () => {
+      it('should ignore any invalid properties and render the rest', () => {
+        const schemaWithDisplayOrder = {
+          ...schema,
+          properties,
+          displayOrder: ['number', 'string', 'some-invalid-property', 'something'],
+        };
+
+        component = shallow(<ObjectSchema {...props} schema={schemaWithDisplayOrder} />);
+
+        genericSchemaComponents = component.find(GenericSchema);
+
+        expect(genericSchemaComponents.at(0).prop('schema')).toBe(properties.number);
+        expect(genericSchemaComponents.at(1).prop('schema')).toBe(properties.string);
+        expect(genericSchemaComponents.at(2).prop('schema')).toBe(properties.something);
+      });
+    });
   });
 
   describe('when no display order exists', () => {

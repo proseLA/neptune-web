@@ -47,9 +47,15 @@ const ObjectSchema = (props) => {
     }
   }, [props.schema]);
 
-  const orderedPropertyNames = [
-    ...new Set([...(props.schema.displayOrder || []), ...Object.keys(props.schema.properties)]),
-  ];
+  const allorderedPropertiesSet = new Set([
+    ...(props.schema.displayOrder || []),
+    ...Object.keys(props.schema.properties),
+  ]);
+
+  const isPropertyDefined = (propertyName) =>
+    typeof props.schema.properties[propertyName] !== 'undefined';
+
+  const orderedPropertyNames = [...allorderedPropertiesSet].filter(isPropertyDefined);
 
   return (
     <fieldset>
