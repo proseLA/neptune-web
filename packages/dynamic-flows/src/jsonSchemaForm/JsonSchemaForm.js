@@ -48,7 +48,11 @@ JsonSchemaForm.propTypes = {
   /**
    * Fires when the internal data model changes as a result of form interaction.
    *
-   * Provide two params the new model, and a boolean indicating if it's valid.
+   * Provide four params:
+   *  - model: the new model (for the entire form)
+   *  - triggerSchema: the schema that triggered the change
+   *  - triggerModel: the model that changed (e.g. some string, number, boolean)
+   *  - lastTriggerModel: the previous value of that model)
    */
   onChange: PropTypes.func.isRequired,
   /**
