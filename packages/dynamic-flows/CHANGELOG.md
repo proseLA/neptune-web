@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.5.2...@transferwise/dynamic-flows@17.5.3) (2022-03-08)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** ignore invalid property names in displayOrder array in ObjectSchema ([#1353](https://github.com/transferwise/neptune-web/issues/1353)) ([4b99ad8](https://github.com/transferwise/neptune-web/commit/4b99ad81283acabaee923fb0f44eede669877c74))
+
+
+
+
+
 ## [17.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@17.5.1...@transferwise/dynamic-flows@17.5.2) (2022-03-08)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
