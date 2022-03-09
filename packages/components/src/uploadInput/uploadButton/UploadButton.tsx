@@ -213,7 +213,7 @@ const UploadButton = ({
         onChange={filesSelected}
       />
       <label
-        htmlFor="np-upload-button"
+        htmlFor={id}
         className={classNames('btn', 'np-upload-accent', 'np-upload-button', {
           disabled,
         })}
