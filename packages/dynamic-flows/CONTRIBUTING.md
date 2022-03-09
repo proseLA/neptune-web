@@ -39,6 +39,12 @@ As a reminder: to load the docs, run `docs` **from the root of the monorepo**, n
 
 Please familiarise yourself with our [accessibility guidelines](https://github.com/transferwise/neptune-web/blob/main/ACCESSIBILITY.md) and ensure your changes meet accessibility standards.
 
+# TypeScript Support
+
+We strongly encourage new components to be written in TypeScript, please also consider to rewrite components in TypeScript during major refactoring.
+
+While migrating a component to TypeScript please remove it, if necessary, from [list of component for custom type generation process](https://github.com/transferwise/neptune-web/blob/main/packages/dynamic-flows/scripts/generate-type-declarations.js#L15).
+
 # Testing
 
 Please use [react-testing-library](https://github.com/testing-library/react-testing-library) for testing.

@@ -1,3 +1,5 @@
+const tsPreset = ['@babel/preset-typescript', { isTSX: true, allExtensions: true }];
+
 const esConfig = {
   presets: [
     [
@@ -11,6 +13,7 @@ const esConfig = {
         modules: false,
       },
     ],
+    tsPreset,
     [
       'minify',
       {
@@ -23,6 +26,7 @@ const esConfig = {
 const esConfigNoPolyfill = {
   presets: [
     ['@babel/preset-env', { useBuiltIns: false, modules: false }],
+    tsPreset,
     [
       'minify',
       {
@@ -43,6 +47,7 @@ const testConfig = {
         },
       },
     ],
+    tsPreset,
   ],
 };
 

@@ -297,6 +297,10 @@ DynamicFlow.defaultProps = {
   loaderSize: Size.EXTRA_LARGE,
 };
 
+// this export is necessary for react-to-typescript-definitions
+// to be able to properly generate TS types, this is due to us wrapping this component in `withErrorBoundary` before exporting
+export { DynamicFlow };
+
 export default withErrorBoundary(DynamicFlow);
 
 function makeRequestStep(fetcher) {

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 
-import { FormControlType, Size } from '../common';
+import { FormControlType } from '../common';
 import { getControlType_Legacy } from '../common/requirements';
 import { getValidationFailures } from '../common/validation/validation-failures';
 import FormControl from '../formControl';
@@ -219,7 +219,7 @@ Field.propTypes = {
     }),
   ]),
   field: PropTypes.shape({
-    type: PropTypes.oneOf(Object.values(FieldTypes)).isRequired,
+    type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean', 'blob']).isRequired,
     label: PropTypes.string.isRequired,
     required: PropTypes.bool,
     disabled: PropTypes.bool,
@@ -228,8 +228,24 @@ Field.propTypes = {
     autoComplete: PropTypes.bool,
     placeholder: PropTypes.string,
     searchPlaceholder: PropTypes.string,
-    control: PropTypes.oneOf(Object.values(FormControlType)),
-    format: PropTypes.oneOf(Object.values(FieldFormats)),
+    control: PropTypes.oneOf([
+      'radio',
+      'checkbox',
+      'select',
+      'file',
+      'date',
+      'date-time',
+      'date-lookup',
+      'tel',
+      'number',
+      'hidden',
+      'password',
+      'text',
+      'textarea',
+      'upload',
+      'tab',
+    ]),
+    format: PropTypes.oneOf(['date', 'phone', 'base64url', 'password', 'email', 'uri']),
     displayPattern: PropTypes.string,
     help: PropTypes.shape({
       message: PropTypes.string,
@@ -287,7 +303,7 @@ Field.propTypes = {
         disabled: PropTypes.bool,
       }),
     ),
-    size: PropTypes.oneOf(Object.values(Size)),
+    size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
     validationMessages: PropTypes.shape({
       required: PropTypes.string,
       pattern: PropTypes.string,

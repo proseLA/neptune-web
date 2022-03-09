@@ -7,11 +7,11 @@ import { renderToString } from 'react-dom/server';
 import * as components from '.';
 
 const excluded = new Set([
-  'useSnackbar',
   'convertStepToLayout',
   'inlineReferences',
   'DynamicFlow',
   'HttpClient',
+  'translations',
 ]);
 
 function isNotExcluded(componentName) {

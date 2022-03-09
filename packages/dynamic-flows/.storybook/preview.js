@@ -12,7 +12,7 @@ import '@transferwise/icons/lib/styles/main.min.css';
 import 'currency-flags/dist/currency-flags.min.css';
 import '@transferwise/components/build/main.css';
 
-import translations from '../i18n';
+import translations from '../src/i18n';
 
 import '../src/main.css';
 import './storybook.css';

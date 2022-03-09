@@ -8,7 +8,11 @@ module.exports = {
   },
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: ['./packages/components/tsconfig.json', './packages/docs/tsconfig.json'],
+    project: [
+      './packages/components/tsconfig.json',
+      './packages/dynamic-flows/tsconfig.json',
+      './packages/docs/tsconfig.json',
+    ],
   },
   rules: {
     'jsdoc/require-jsdoc': 0,
