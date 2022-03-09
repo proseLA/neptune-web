@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [40.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.1.0...@transferwise/components@40.1.1) (2022-03-09)
+
+
+### Bug Fixes
+
+* **UploadInput:** passed `id` to the label over the input button ([#1354](https://github.com/transferwise/neptune-web/issues/1354)) ([2cdeb45](https://github.com/transferwise/neptune-web/commit/2cdeb454c1b4924fd42a686c0e2bdb4a905bbfd1))
+
+
+
+
+
 # [40.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.0.0...@transferwise/components@40.1.0) (2022-03-09)
 
 
