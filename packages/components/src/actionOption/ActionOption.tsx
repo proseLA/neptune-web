@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { ReactChild, ReactElement } from 'react';
 
-import Button from '../button';
-import { CommonProps, ControlType, Priority, Size } from '../common';
+import ActionButton from '../actionButton';
+import { CommonProps } from '../common';
 import Option from '../common/Option';
 
 type Props = {
@@ -55,17 +55,12 @@ const ActionOption = ({
     <Option
       {...sharedProps}
       button={
-        <Button
-          className="p-x-0"
-          aria-label={getAriaLabel()}
-          type={ControlType.ACCENT}
-          priority={Priority.TERTIARY}
-          size={Size.SMALL}
+        <ActionButton
           disabled={disabled}
+          aria-label={getAriaLabel()}
+          text={action as string}
           onClick={onClick}
-        >
-          {action}
-        </Button>
+        />
       }
     />
   );
