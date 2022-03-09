@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [40.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.0.0...@transferwise/components@40.1.0) (2022-03-09)
+
+
+### Features
+
+* integrate ActionButton side ActionOption instead of link ([#1351](https://github.com/transferwise/neptune-web/issues/1351)) ([b2e0e01](https://github.com/transferwise/neptune-web/commit/b2e0e010c7695f3225fbfb3d3fb7b91faae4401a))
+
+
+
+
+
 # [40.0.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@39.14.0...@transferwise/components@40.0.0) (2022-03-09)
 
 
