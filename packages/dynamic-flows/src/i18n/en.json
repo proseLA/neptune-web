@@ -1,17 +1,16 @@
 {
+  "dynamicFlows.ArraySchema.maxItemsError": "Please add {maxItems} or fewer.",
+  "dynamicFlows.ArraySchema.minItemsError": "Please add at least {minItems}.",
   "dynamicFlows.CameraCapture.NoCameraAccess.action": "Allow camera access",
   "dynamicFlows.CameraCapture.NoCameraAccess.paragraph": "We don’t have access to your camera. You can enable access in your browser’s settings",
   "dynamicFlows.CameraCapture.NoCameraAccess.title": "No access to camera",
   "dynamicFlows.ErrorBoundary.errorAlert": "Oops. Something went wrong...",
   "dynamicFlows.ErrorBoundary.retry": "Retry",
   "dynamicFlows.Help.ariaLabel": "Click here for more info.",
+  "dynamicFlows.MultipleFileUploadSchema.maxFileSizeError": "Sorry, that file is too big. Please upload a smaller file.",
+  "dynamicFlows.MultipleFileUploadSchema.maxItemsError": "Please upload {maxItems} or fewer files.",
+  "dynamicFlows.MultipleFileUploadSchema.minItemsError": "Please upload at least {minItems} file(s).",
   "dynamicFlows.PersistAsyncSchema.genericError": "Something went wrong, please try again later!",
   "dynamicFlows.ReadOnlySchema.no": "No",
-  "dynamicFlows.ReadOnlySchema.yes": "Yes",
-  "dynamicFlows.ArraySchema.minItemsError": "Please add at least {minItems}.",
-  "dynamicFlows.ArraySchema.maxItemsError": "Please add {maxItems} or fewer.",
-  "dynamicFlows.MultipleFileUploadSchema.minItemsError": "Please upload at least {minItems} file(s).",
-  "dynamicFlows.MultipleFileUploadSchema.maxItemsError": "Please upload {maxItems} or fewer files.",
-  "dynamicFlows.MultipleFileUploadSchema.maxFileSizeError": "Sorry, that file is too big. Please upload a smaller file.",
-  "dynamicFlows.DefaultErrorMessages.required": "Please fill out this field."
+  "dynamicFlows.ReadOnlySchema.yes": "Yes"
 }
