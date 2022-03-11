@@ -29,6 +29,6 @@ export const FileUploadBlob = () => {
   const schema = select('schema', schemas, blobMultipleFileUploadSchema);
 
   const initialFormState = { multiUpload: [] };
-  // const initialFormState = { multiUpload: [{ id: 131, status: 'success', filename: '23423.pdf' }] };
+  // const initialFormState = { multiUpload: ['1231'] };
   return <JsonSchemaFormWrapper schema={schema} initialModel={initialFormState} />;
 };

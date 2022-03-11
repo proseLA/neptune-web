@@ -2,25 +2,23 @@ import { UploadInput } from '@transferwise/components';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { usePersistAsync } from '../../../../common/hooks/usePersistAsync';
+import { useUniqueId } from '../../../../common/hooks/useUniqueId';
+import CommonMessages from '../../../../common/messages';
+import { toBase64, toKilobytes } from '../../../../common/utils/file-utils';
 import { getArrayValidationFailures } from '../../../../common/validation/validation-failures';
 import ControlFeedback from '../../../controlFeedback';
 
-const ONE_KB_IN_BYTES = 1024;
-
-const useUniqueId = (prefix) => {
-  const prefixString = prefix ? `${prefix}-` : '';
-  const [id] = useState(() => `${prefixString}${generateRandomValue()}`);
-  return id;
-};
+import MultiFileUploadMessages from './MultipleFileUploadSchema.messages';
 
 const MultipleFileUploadSchema = (props) => {
   const [inputChanged, setInputChanged] = useState(false);
 
-  const [files, setFiles] = useState(props.model);
+  const [files, setFiles] = useState(() => convertFileIdsToComponentFileObjects(props.model));
   const performPersistAsync = usePersistAsync(props.schema.items.persistAsync);
-  const fileInputName = useUniqueId('multi-upload-input');
+  const uid = useUniqueId('multi-upload-input');
 
   const { onChange, schema } = props;
 
@@ -35,7 +33,7 @@ const MultipleFileUploadSchema = (props) => {
   }
 
   const handleFileUpload = async (formData) => {
-    const userUploadedFile = formData.get(fileInputName);
+    const userUploadedFile = formData.get(uid);
     setInputChanged(true);
 
     const isBlobSchema = fileSchemaDescriptor.type === 'blob';
@@ -48,46 +46,63 @@ const MultipleFileUploadSchema = (props) => {
     }
   };
 
+  const defaultErrorMessages = useFormattedDefaultErrorMessages(props.schema);
+
+  function getValidationMessages() {
+    const { minItems, maxItems } = props.schema;
+    return {
+      ...(props.required && { required: defaultErrorMessages.requiredMessage }),
+      ...(minItems && { minItems: defaultErrorMessages.minItemsErrorMessage }),
+      ...(maxItems && { maxItems: defaultErrorMessages.maxItemsErrorMessage }),
+    };
+  }
+
   const validFiles = getSuccessfullyProcessedFiles(files);
-  const fileListValidationFailures = getArrayValidationFailures(validFiles, schema);
+  const fileIds = validFiles.map((file) => file.id);
+  const fileListValidationFailures = getArrayValidationFailures(fileIds, schema, props.required);
 
   const showError =
     Boolean(props.errors) ||
     ((inputChanged || props.submitted) && Boolean(fileListValidationFailures.length));
 
-  const fileSizeLimitInBytes = fileSchemaDescriptor.maxSize;
-  const fileSizeLimitInKiloBytes = Math.floor(fileSizeLimitInBytes / ONE_KB_IN_BYTES);
-
   return (
     <div className={classNames('form-group', { 'has-error': showError })}>
-      {/* eslint-disable jsx-a11y/label-has-for */}
-      <label className="d-block control-label">
-        {props.schema.items.title}
-        <UploadInput
-          multiple
-          className="form-control"
-          files={files}
-          fileInputName={fileInputName}
-          fileTypes={fileSchemaDescriptor.accepts}
-          sizeLimit={fileSizeLimitInKiloBytes}
-          maxFiles={props.schema.maxItems}
-          maxFilesErrorMessage={props.schema.validationMessages?.maxItems}
-          description={props.schema.items.description}
-          disabled={props.disabled}
-          onUploadFile={handleFileUpload}
-          onDeleteFile={() => Promise.resolve()}
-          onFilesChange={handleFilesChange}
-        />
-        <ControlFeedback
-          changed={inputChanged}
-          submitted={props.submitted}
-          errors={props.errors}
-          schema={props.schema}
-          validations={fileListValidationFailures}
-          focused={false}
-          blurred
-        />
+      <label className="d-block control-label" htmlFor={uid}>
+        {props.schema.title}
       </label>
+      <UploadInput
+        multiple
+        className="form-control"
+        files={files}
+        fileInputName={uid}
+        id={uid}
+        fileTypes={fileSchemaDescriptor.accepts}
+        sizeLimit={toKilobytes(fileSchemaDescriptor.maxSize)}
+        sizeLimitErrorMessage={
+          fileSchemaDescriptor.validationMessages?.maxSize ||
+          defaultErrorMessages.maxFileSizeErrorMessage
+        }
+        maxFiles={props.schema.maxItems}
+        maxFilesErrorMessage={
+          props.schema.validationMessages?.maxItems || defaultErrorMessages.maxItemsErrorMessage
+        }
+        uploadButtonTitle={fileSchemaDescriptor.title}
+        description={fileSchemaDescriptor.description}
+        disabled={props.disabled}
+        onUploadFile={handleFileUpload}
+        onDeleteFile={() => Promise.resolve()}
+        onFilesChange={handleFilesChange}
+      />
+      <ControlFeedback
+        changed={inputChanged}
+        submitted={props.submitted}
+        errors={props.errors}
+        schema={props.schema}
+        validations={fileListValidationFailures}
+        validationMessages={getValidationMessages()}
+        focused={false}
+        blurred
+      />
     </div>
   );
 };
@@ -98,6 +113,8 @@ const FileItemSchema = PropTypes.shape({
   accepts: PropTypes.arrayOf(PropTypes.string),
   maxSize: PropTypes.number,
   validationMessages: PropTypes.object,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 });
 
 MultipleFileUploadSchema.propTypes = {
@@ -109,8 +126,6 @@ MultipleFileUploadSchema.propTypes = {
     minItems: PropTypes.number,
     items: PropTypes.shape({
       type: PropTypes.string,
-      title: PropTypes.string,
-      description: PropTypes.string,
       persistAsync: PropTypes.shape({
         url: PropTypes.string.isRequired,
         method: PropTypes.string,
@@ -127,13 +142,7 @@ MultipleFileUploadSchema.propTypes = {
   errors: PropTypes.string,
   hideTitle: PropTypes.bool,
   locale: PropTypes.string,
-  model: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.array,
-    PropTypes.shape({}),
-  ]),
+  model: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
   onPersistAsync: PropTypes.func,
   required: PropTypes.bool,
@@ -149,19 +158,7 @@ MultipleFileUploadSchema.defaultProps = {
 
 export default MultipleFileUploadSchema;
 
-//Utils - - - - -
-
-//TODO: Refactor: This is duplicate logic as in CameraStep.js
-const toBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.addEventListener('load', () => resolve(reader.result));
-    reader.addEventListener('error', (error) => reject(error));
-  });
-};
-
-function generateRandomValue() {
+function generateRandomId() {
   return Math.floor(Math.random() * 10000000);
 }
 
@@ -177,11 +174,28 @@ function constructFileObject(response) {
   }
 
   return {
-    id: !isError ? response.data : generateRandomValue(),
+    id: !isError ? response.data : generateRandomId(),
     ...(isError ? { message: response.message } : response),
   };
 }
 
 function getSuccessfullyProcessedFiles(allFiles) {
   return allFiles.filter((file) => !file.error && file.status === 'succeeded');
+}
+function convertFileIdsToComponentFileObjects(fileIds) {
+  return fileIds.map((id) => ({ id, status: 'succeeded' }));
+}
+
+function useFormattedDefaultErrorMessages(schema) {
+  const { formatMessage } = useIntl();
+
+  const { minItems, maxItems } = schema;
+  const { maxFileSizeError, maxItemsError, minItemsError } = MultiFileUploadMessages;
+
+  return {
+    maxFileSizeErrorMessage: formatMessage(maxFileSizeError),
+    maxItemsErrorMessage: formatMessage(maxItemsError, { maxItems }),
+    minItemsErrorMessage: formatMessage(minItemsError, { minItems }),
+    requiredMessage: formatMessage(CommonMessages.required),
+  };
 }

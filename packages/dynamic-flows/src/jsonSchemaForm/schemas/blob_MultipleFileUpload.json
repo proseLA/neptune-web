@@ -5,9 +5,8 @@
       "type": "array",
       "minItems": 1,
       "maxItems": 5,
+      "title": "Multi upload title",
       "items": {
-        "title": "Invoice (optional)",
-        "description": "PNG, JPG, or PDF, less than 5mb",
         "type": "string",
         "persistAsync": {
           "url": "http://localhost:3001/v1/save-file/",
@@ -17,6 +16,8 @@
           "schema": {
             "type": "blob",
             "maxSize": 5242000,
+            "title": "Invoice (optional)",
+            "description": "PNG, JPG, or PDF, less than 5mb",
             "accepts": ["image/png", "image/jpg", "application/pdf"],
             "validationMessages": {
               "maxSize": "Your file is too large"

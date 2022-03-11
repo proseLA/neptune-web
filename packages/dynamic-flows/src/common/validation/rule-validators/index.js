@@ -1,7 +1,12 @@
-import { isString, isNumber, isArray, isUndefined } from '@transferwise/neptune-validation';
+import { isArray, isNumber, isString, isUndefined } from '@transferwise/neptune-validation';
 
 function isValidRequired(value, isRequired) {
   return !isRequired || !isUndefined(value);
+}
+
+function isValidRequiredArray(value, isRequired) {
+  const isNonEmptyArray = isArray(value) && value.length > 0;
+  return !isRequired || isNonEmptyArray;
 }
 
 function isValidMinLength(value, minLength) {
@@ -52,4 +57,5 @@ export {
   isValidMinimum,
   isValidMinItems,
   isValidMaxItems,
+  isValidRequiredArray,
 };

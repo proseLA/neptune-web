@@ -17,6 +17,7 @@ import {
   isValidMinimum,
   isValidMinItems,
   isValidMaxItems,
+  isValidRequiredArray,
 } from '../rule-validators';
 
 function getValidationFailures(value, schema, isRequired) {
@@ -140,9 +141,13 @@ function getConstValidationFailures(value, schema, isRequired) {
   return [];
 }
 
-function getArrayValidationFailures(value, schema) {
+function getArrayValidationFailures(value, schema, isRequired) {
   if (!isArray(value) && !isNull(value)) {
     return ['type'];
+  }
+
+  if (!isValidRequiredArray(value, isRequired)) {
+    return ['required'];
   }
 
   const failures = [];
