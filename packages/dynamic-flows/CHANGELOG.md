@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.0.2...@transferwise/dynamic-flows@18.1.0) (2022-03-11)
+
+
+### Features
+
+* **dynamic-flows:** MultipleUploadSchema: Correct the title description mapping and add default error messages ([#1355](https://github.com/transferwise/neptune-web/issues/1355)) ([7f72ee1](https://github.com/transferwise/neptune-web/commit/7f72ee1312eaaf4c955e79c756715b8e4b1beea7))
+
+
+
+
+
 ## [18.0.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.0.1...@transferwise/dynamic-flows@18.0.2) (2022-03-09)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
