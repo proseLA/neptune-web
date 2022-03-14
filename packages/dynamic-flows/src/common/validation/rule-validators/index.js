@@ -5,8 +5,7 @@ function isValidRequired(value, isRequired) {
 }
 
 function isValidRequiredArray(value, isRequired) {
-  const isNonEmptyArray = isArray(value) && value.length > 0;
-  return !isRequired || isNonEmptyArray;
+  return !isRequired || isArray(value);
 }
 
 function isValidMinLength(value, minLength) {

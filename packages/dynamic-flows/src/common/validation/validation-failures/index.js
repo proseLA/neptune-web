@@ -43,7 +43,7 @@ function getValidationFailures(value, schema, isRequired) {
     case 'boolean':
       return getBooleanValidationFailures(value, schema, isRequired);
     case 'array':
-      return getArrayValidationFailures(value, schema);
+      return getArrayValidationFailures(value, schema, isRequired);
     case 'object':
       return getObjectValidationFailures(value, schema);
     default:

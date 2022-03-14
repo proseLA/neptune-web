@@ -159,23 +159,6 @@ describe('Given a Multiple File Upload array schema', () => {
   });
 
   describe('Given Error scenarios exist', function () {
-    it('should show required error when submitted with no files', async () => {
-      const component = mount(
-        <FetcherProvider fetcher={mockFetcher}>
-          <MultipleFileUploadSchema
-            model={[]}
-            submitted
-            required
-            schema={multipleFileUploadSchemaObject}
-            onChange={onChangeSpy}
-          />
-        </FetcherProvider>,
-      );
-
-      const controlFeedback = component.find(ControlFeedback);
-      expect(controlFeedback.text()).toStrictEqual('Please fill out this field.');
-    });
-
     it('should show default min items error when submitted with no. of files less than expected', async () => {
       const schemaWithTwoMinFilesNeeded = {
         ...multipleFileUploadSchemaObject,

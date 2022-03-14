@@ -7,6 +7,7 @@ import {
   isValidPattern,
   isValidMinItems,
   isValidMaxItems,
+  isValidRequiredArray,
 } from '.';
 
 describe('Given a library for validating json schema rules', () => {
@@ -139,6 +140,26 @@ describe('Given a library for validating json schema rules', () => {
     });
     it('should return true if maxItems not defined', () => {
       expect(isValidMaxItems([], undefined)).toBe(true);
+    });
+  });
+
+  describe('when establishing validations an array', () => {
+    it('should return true all values for a non-required input', () => {
+      expect(isValidRequiredArray([1], false)).toBe(true);
+      expect(isValidRequiredArray([], false)).toBe(true);
+
+      expect(isValidRequiredArray(undefined, false)).toBe(true);
+      expect(isValidRequiredArray(null, false)).toBe(true);
+    });
+
+    it('should return true for only array values for a required input', () => {
+      expect(isValidRequiredArray([1], true)).toBe(true);
+      expect(isValidRequiredArray([], true)).toBe(true);
+    });
+
+    it('should return false for values for a required input', () => {
+      expect(isValidRequiredArray(null, true)).toBe(false);
+      expect(isValidRequiredArray(undefined, true)).toBe(false);
     });
   });
 });
