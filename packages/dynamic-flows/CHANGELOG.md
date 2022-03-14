@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.1.0...@transferwise/dynamic-flows@18.2.0) (2022-03-14)
+
+
+### Features
+
+* **dynamic-flows:** Update the array schema's "required" behaviour ([#1359](https://github.com/transferwise/neptune-web/issues/1359)) ([e74b016](https://github.com/transferwise/neptune-web/commit/e74b016555b286e174f98f06474a6b9f85c9f15a))
+
+
+
+
+
 # [18.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.0.2...@transferwise/dynamic-flows@18.1.0) (2022-03-11)
 
 
