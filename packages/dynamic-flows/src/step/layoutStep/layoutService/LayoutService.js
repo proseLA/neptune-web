@@ -135,7 +135,8 @@ function convertStepDecisionToDynamicDecision(options) {
 
 function convertStepDecisionOption(option) {
   return {
-    text: option.description,
+    title: option.title,
+    description: option.description,
     action: {
       title: option.title,
       method: 'GET',

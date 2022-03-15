@@ -40,7 +40,8 @@ describe('Given a utility service for handling dynamic layouts', () => {
           type: 'decision',
           options: [
             {
-              text: option1.description,
+              title: option1.title,
+              description: option1.description,
               action: {
                 disabled: undefined,
                 title: option1.title,
@@ -49,7 +50,8 @@ describe('Given a utility service for handling dynamic layouts', () => {
               },
             },
             {
-              text: undefined,
+              title: option2.title,
+              description: undefined,
               action: {
                 title: option2.title,
                 method: 'GET',
