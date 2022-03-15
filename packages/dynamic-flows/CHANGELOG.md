@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.2.0...@transferwise/dynamic-flows@18.2.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** LayoutService bug when converting decision steps ([#1357](https://github.com/transferwise/neptune-web/issues/1357)) ([0ae16b1](https://github.com/transferwise/neptune-web/commit/0ae16b133caeb2b1f6bdcdbf0075c197e4a89d65))
+
+
+
+
+
 # [18.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.1.0...@transferwise/dynamic-flows@18.2.0) (2022-03-14)
 
 
