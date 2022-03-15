@@ -1,6 +1,10 @@
+import { Button } from '@transferwise/components';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import { ArrayItemVariants, getListItemType } from '../../../common/schemaTypes/arraySchemaTypes';
+import ArrayItemEdit from '../arrayItemEdit';
+import ArrayItemSummary from '../arrayItemSummary';
 
 import MultipleFileUploadSchema from './multipleFileUploadSchema';
 
@@ -8,12 +12,67 @@ const ArrayListSchema = (props) => {
   const { FILE } = ArrayItemVariants;
   const arrayItemType = getListItemType(props.schema);
 
+  const [models, setModels] = useState([]);
+  const [summaries, setSummaries] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
+
+  const onChange = (index, newModel, triggerSchema, triggerModel) => {
+    models[index] = newModel;
+
+    const summary = summaries[index];
+
+    if (triggerSchema.providesTitle) {
+      summary.title = isOneOfConst(triggerSchema)
+        ? findOneOfTitle(triggerSchema, newModel)
+        : newModel;
+    }
+    if (triggerSchema.providesDescription) {
+      summary.description = isOneOfConst(triggerSchema)
+        ? findOneOfTitle(triggerSchema, newModel)
+        : newModel;
+    }
+
+    // TODO icon
+
+    summaries[index] = summary;
+
+    setModels(models);
+    setSummaries(summaries);
+    setEditIndex(null);
+
+    props.onChange(models, triggerSchema, triggerModel);
+  };
+
+  const onEdit = (index) => {
+    setEditIndex(index);
+  };
+
   if (arrayItemType === FILE) {
     return <MultipleFileUploadSchema {...props} />;
   }
 
-  throw new Error('Not implemented');
+  return (
+    <div>
+      {summaries.map((summary, index) => (
+        <ArrayItemSummary key={summary} summary={summary} onEdit={() => onEdit(index)} />
+      ))}
+      <Button onClick={createNew}>Add new</Button>
+      {editIndex !== null && (
+        <ArrayItemEdit schema={props.schema.items} model={models[editIndex]} onChange={onChange} />
+      )}
+    </div>
+  );
 };
+
+const isOneOfConst = (schema) => {
+  return schema.oneOf && schema.oneOf[0].const;
+};
+
+const findOneOfTitle = (schema, value) => {
+  return schema.oneOf.find((schema) => schema.const === value);
+};
+
+const createNew = () => {};
 
 ArrayListSchema.propTypes = {
   schema: PropTypes.shape({
