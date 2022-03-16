@@ -43,6 +43,7 @@ export const basic = () => {
     final: '/final',
     error: '/error',
     recipient_details: '/recipient-details',
+    persist_async: '/persist-async',
   };
 
   const flowUrl = select('step', steps, '/decision');

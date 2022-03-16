@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor, act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider, translations as componentTranslations } from '@transferwise/components';
 
@@ -41,6 +41,20 @@ const getFormStep = (overrides) => ({
           ],
           refreshFormOnChange: true,
           refreshFormUrl: '/example-account-refresh',
+        },
+        someToken: {
+          type: 'string',
+          title: 'Persist Async Card Number',
+          persistAsync: {
+            method: 'GET',
+            url: '/persist-async-upload',
+            param: 'cardNumber',
+            idProperty: 'cardToken',
+            schema: {
+              title: 'Enter your card number',
+              type: 'string',
+            },
+          },
         },
       },
     },
@@ -87,6 +101,9 @@ const mockFetcher = jest.fn((input, init) => {
         headers: { 'X-Df-Exit': 'true' },
       });
     }
+    case '/persist-async-upload': {
+      return delayedJsonResponse({ cardToken: 'QWERTYUIOP' }, { status: 201 });
+    }
     default:
       return delayedJsonResponse({});
   }
@@ -120,7 +137,7 @@ describe('e2E: Given a DynamicFlow component with a "initialStep" prop', () => {
     expect(accoutInput).toBeInTheDocument();
   });
 
-  describe('when updating a non-string schema with refreshFormOnChange', () => {
+  describe('when updating a non-debounceable schema with refreshFormOnChange', () => {
     it('does not debounce, and makes the request immediately', async () => {
       renderComponent();
 
@@ -175,6 +192,55 @@ describe('e2E: Given a DynamicFlow component with a "initialStep" prop', () => {
           method: 'POST',
         }),
       );
+    });
+  });
+
+  describe('when entering a value in a persist-async field', () => {
+    async function enterCardNumber() {
+      const input = await screen.findByLabelText('Enter your card number');
+      await act(async () => await userEvent.paste(input, '1234 5678 9012 3456'));
+      return input;
+    }
+
+    it("doesn't immediately post to the persist-async endpoint", async () => {
+      renderComponent();
+      await enterCardNumber();
+
+      expect(mockFetcher).toHaveBeenCalledTimes(0);
+    });
+
+    describe('and then focusing outside the field', () => {
+      async function blurTheCardNumberField() {
+        const input = await screen.findByLabelText('Enter your card number');
+        await act(async () => await fireEvent.blur(input));
+      }
+      it('posts to the persist-async endpoint', async () => {
+        renderComponent();
+        await enterCardNumber();
+        await blurTheCardNumberField();
+
+        await waitFor(() => {
+          expect(mockFetcher).toHaveBeenCalledWith(
+            '/persist-async-upload',
+            expect.objectContaining({
+              body: '{"cardNumber":"1234 5678 9012 3456"}',
+            }),
+          );
+        });
+      });
+
+      it('disables all action buttons during the persist-async operation', async () => {
+        renderComponent();
+        await enterCardNumber();
+
+        const submitButton = screen.getByText('Submit');
+
+        await blurTheCardNumberField();
+
+        expect(submitButton).toBeDisabled();
+
+        await waitFor(() => expect(submitButton).toBeEnabled());
+      });
     });
   });
 });

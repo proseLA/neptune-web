@@ -1,0 +1,35 @@
+{
+  "type": "form",
+  "title": "Persist Async",
+  "schemas": [
+    {
+      "$id": "the-schema",
+      "type": "object",
+      "title": "Some Object",
+      "properties": {
+        "nameToken": {
+          "type": "string",
+          "title": "Text input",
+          "persistAsync": {
+            "method": "GET",
+            "url": "/persist-async-upload",
+            "param": "name",
+            "idProperty": "nameToken",
+            "schema": {
+              "title": "Enter your name",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "actions": [
+    {
+      "title": "Submit Persist Async",
+      "url": "/persist-async-submit",
+      "method": "POST",
+      "type": "primary"
+    }
+  ]
+}

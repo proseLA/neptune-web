@@ -4,6 +4,7 @@ import decisionStep from '../examples/decision.json';
 import finalStep from '../examples/final.json';
 import formStep from '../examples/form.json';
 import layoutStep from '../examples/layout.json';
+import persistAsyncStep from '../examples/persist_async_step.json';
 import receiveStep from '../examples/recipient_details.json';
 import receiveStepRefresh from '../examples/recipient_details_refresh.json';
 import review from '../examples/review.json';
@@ -58,6 +59,16 @@ export async function mockFetcher(input, init) {
         console.log('schemaEtag', schemaEtag, 'requestEtag', requestEtag);
       }
       return respondWithEtag({ ...receiveStep, model: requestModel }, eTagFromStep(receiveStep));
+    }
+    case '/persist-async': {
+      return respondWith(persistAsyncStep);
+    }
+    case '/persist-async-upload': {
+      await wait(DELAY * 2); // extra delay - it's a bit upload!
+      return respondWith({ nameToken: `some-token-from-server-${JSON.parse(init.body).name}` });
+    }
+    case '/persist-async-submit': {
+      return respondWith(JSON.parse(init.body), { headers: { 'X-DF-Exit': true } });
     }
     case '/layout':
       return respondWith(layoutStep);

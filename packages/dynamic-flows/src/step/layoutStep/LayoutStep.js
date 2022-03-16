@@ -1,6 +1,7 @@
 import { isEmpty } from '@transferwise/neptune-validation';
 import PropTypes from 'prop-types';
 
+import { useDynamicFlow } from '../../common/contexts/dynamicFlowContext/dynamicFlowContext';
 import DynamicLayout from '../../layout';
 
 import { convertStepToLayout, inlineReferences } from './layoutService';
@@ -16,9 +17,13 @@ const getComponents = (step) => {
 };
 
 const LayoutStep = (props) => {
-  const { stepSpecification, submitted, model, errors, onModelChange, onAction } = props;
+  const { stepSpecification, submitted, model, errors, onModelChange } = props;
 
   const components = getComponents(stepSpecification);
+
+  const { refreshing, registerPersistAsyncPromise } = useDynamicFlow();
+
+  const onAction = !refreshing ? props.onAction : () => {};
 
   return (
     <DynamicLayout
@@ -28,6 +33,7 @@ const LayoutStep = (props) => {
       errors={errors}
       onAction={onAction}
       onModelChange={onModelChange}
+      onPersistAsync={registerPersistAsyncPromise}
     />
   );
 };
