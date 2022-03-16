@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [40.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.1.1...@transferwise/components@40.2.0) (2022-03-16)
+
+
+### Features
+
+* **components:** add showMediaAtAllSizes to Card ([#1360](https://github.com/transferwise/neptune-web/issues/1360)) ([062cc29](https://github.com/transferwise/neptune-web/commit/062cc299d36841cb6dbaa44f83307252c327a679))
+
+
+
+
+
 ## [40.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.1.0...@transferwise/components@40.1.1) (2022-03-09)
 
 
