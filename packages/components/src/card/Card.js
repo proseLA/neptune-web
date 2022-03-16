@@ -41,6 +41,7 @@ const Card = forwardRef((props, reference) => {
         media={icon}
         title={title}
         content={details}
+        showMediaAtAllSizes
         button={children && <Chevron orientation={isOpen ? Position.TOP : Position.BOTTOM} />}
         onClick={() => children && onClick(!isExpanded)}
       />
