@@ -1,14 +1,17 @@
 .tw-modal {
-  max-height: 100%;
+  &--scrollable {
+    max-height: 100%;
 
-  /* mobile viewport bug fix */
-  // stylelint-disable-next-line value-no-vendor-prefix
-  max-height: -webkit-fill-available;
+    /* mobile viewport bug fix */
+    // stylelint-disable-next-line value-no-vendor-prefix
+    max-height: -webkit-fill-available;
+  }
 
   .tw-modal-dialog {
     transition: transform 0.3s ease-out;
     transform: translateY(-25%);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: var(--color-background-elevated);
   }
 
   &.in {
@@ -18,17 +21,18 @@
   }
 
   .tw-modal-content {
-    background: var(--color-background-elevated);
     width: 100%;
 
     .tw-modal-body {
       flex: 1;
       word-break: break-word;
-      overflow-y: auto;
+
+      &--scrollable {
+        overflow-y: auto;
+      }
     }
 
     .tw-modal-header {
-      min-height: calc(var(--size-8) * 7);
       box-shadow: inset 0 -1px 0 0 rgb(226, 230, 232);
 
       &.modal--withoutborder {
@@ -79,10 +83,6 @@
 @media (--screen-sm) {
   .tw-modal {
     .tw-modal-content {
-      .tw-modal-header {
-        min-height: calc(var(--size-8) * 8);
-      }
-
       .tw-modal-header,
       .tw-modal-footer,
       .tw-modal-body {

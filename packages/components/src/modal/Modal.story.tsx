@@ -16,6 +16,7 @@ const Template = (props: { children: ReactNode }) => {
   const title = text('title', 'title');
   const className = text('class', '');
   const position = select('position', [Position.TOP, Position.CENTER], Position.CENTER);
+  const scroll = select('scroll', [Scroll.CONTENT, Scroll.VIEWPORT], Scroll.CONTENT);
 
   return (
     <>
@@ -32,6 +33,7 @@ const Template = (props: { children: ReactNode }) => {
         size={size}
         title={title}
         className={className}
+        scroll={scroll}
         footer={
           <Button block onClick={() => alert('clicked')}>
             Action

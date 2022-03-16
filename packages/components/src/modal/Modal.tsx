@@ -30,7 +30,6 @@ type ModalProps = CommonProps & {
   size?: SizeSmall | SizeMedium | SizeLarge | SizeExtraLarge;
   onClose: () => void;
   open: boolean;
-  /** @deprecated Scroll behaviour will always be "content" regardless of this property, you can remove it from your component  */
   scroll?: ScrollContent | ScrollViewport;
   position?: PositionTop | PositionCenter;
 };
@@ -68,7 +67,7 @@ const Modal = ({
   ) : (
     <Dimmer
       open={open}
-      scrollable={false}
+      scrollable={scroll === Scroll.VIEWPORT}
       className={classNames('d-flex', 'justify-content-center')}
       onClose={onClose}
     >
@@ -82,6 +81,7 @@ const Modal = ({
         <div
           className={classNames('tw-modal', 'd-flex', 'fade', 'outline-none', className, {
             'align-self-center': position === Position.CENTER,
+            'tw-modal--scrollable': scroll === Scroll.CONTENT,
           })}
           {...otherProps}
         >
@@ -120,7 +120,13 @@ const Modal = ({
                 {/* @ts-expect-error TODO: Remove this once CloseButton is migrated to TypeScript */}
                 <CloseButton onClick={onClose} />
               </div>
-              <div className="tw-modal-body">{body}</div>
+              <div
+                className={classNames('tw-modal-body', {
+                  'tw-modal-body--scrollable': scroll === Scroll.CONTENT,
+                })}
+              >
+                {body}
+              </div>
               {footer && (
                 <div
                   className={classNames(
