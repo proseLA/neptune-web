@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.2.1...@transferwise/dynamic-flows@18.3.0) (2022-03-16)
+
+
+### Features
+
+* **dynamic-flows:** Disable action buttons during persist-async ([#1356](https://github.com/transferwise/neptune-web/issues/1356)) ([b5d305d](https://github.com/transferwise/neptune-web/commit/b5d305d19a8502bc308ffd65b3ff0c77ae9f36ed))
+
+
+
+
+
 ## [18.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.2.0...@transferwise/dynamic-flows@18.2.1) (2022-03-15)
 
 
