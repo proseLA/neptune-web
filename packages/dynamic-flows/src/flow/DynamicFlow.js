@@ -12,7 +12,7 @@ import { isValidSchema } from '../common/validation/schema-validators';
 import { getValidModelParts } from '../common/validation/valid-model';
 import { CameraStep, LayoutStep } from '../step';
 
-import { withErrorBoundary } from './errorBoundary';
+import ErrorBoundary from './errorBoundary/ErrorBoundary';
 import { useDebouncedRefresh } from './useDebouncedRefresh';
 
 const EXIT_HEADER = 'X-Df-Exit';
@@ -52,6 +52,38 @@ const buildInitialModels = (model, schemas) => {
   return schemaIdToModelMap;
 };
 
+function makeRequestStep(fetcher) {
+  return function requestStep({ action, data, etag }) {
+    const { url, method } = action;
+    const body = method === 'GET' ? undefined : JSON.stringify(data);
+    return fetcher(url, {
+      method: method || 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': 'Tr4n5f3rw153',
+        ...(etag ? { 'If-None-Match': etag } : {}),
+      },
+      credentials: 'include',
+      body,
+    }).then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw response;
+    });
+  };
+}
+
+function getETag(headers) {
+  return headers.get('etag') || undefined;
+}
+
+function shouldTriggerRefresh(triggerSchema, triggerModel, lastTriggerModel) {
+  const isValid = () => isValidSchema(triggerModel, triggerSchema);
+  const wasValid = () => isValidSchema(lastTriggerModel, triggerSchema);
+  return triggerSchema?.refreshFormOnChange && (isValid() || wasValid());
+}
+
 /**
  * ## DynamicFlow
  *
@@ -62,7 +94,7 @@ const buildInitialModels = (model, schemas) => {
  *
  * @param props
  */
-const DynamicFlow = (props) => {
+const DynamicFlowComponent = (props) => {
   const {
     baseUrl,
     fetcher: propsFetcher,
@@ -275,7 +307,13 @@ const DynamicFlow = (props) => {
   );
 };
 
-DynamicFlow.propTypes = {
+const DynamicFlow = (props) => (
+  <ErrorBoundary onError={props.onError}>
+    <DynamicFlowComponent {...props} />
+  </ErrorBoundary>
+);
+
+DynamicFlowComponent.propTypes = DynamicFlow.propTypes = {
   baseUrl: PropTypes.string,
   fetcher: PropTypes.func,
   flowUrl: PropTypes.string,
@@ -287,7 +325,7 @@ DynamicFlow.propTypes = {
   loaderSize: PropTypes.string,
 };
 
-DynamicFlow.defaultProps = {
+DynamicFlowComponent.defaultProps = DynamicFlow.defaultProps = {
   flowUrl: '',
   onClose: () => {},
   onStepChange: () => {},
@@ -297,40 +335,4 @@ DynamicFlow.defaultProps = {
   loaderSize: Size.EXTRA_LARGE,
 };
 
-// this export is necessary for react-to-typescript-definitions
-// to be able to properly generate TS types, this is due to us wrapping this component in `withErrorBoundary` before exporting
-export { DynamicFlow };
-
-export default withErrorBoundary(DynamicFlow);
-
-function makeRequestStep(fetcher) {
-  return function requestStep({ action, data, etag }) {
-    const { url, method } = action;
-    const body = method === 'GET' ? undefined : JSON.stringify(data);
-    return fetcher(url, {
-      method: method || 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Access-Token': 'Tr4n5f3rw153',
-        ...(etag ? { 'If-None-Match': etag } : {}),
-      },
-      credentials: 'include',
-      body,
-    }).then((response) => {
-      if (response.ok) {
-        return response;
-      }
-      throw response;
-    });
-  };
-}
-
-function getETag(headers) {
-  return headers.get('etag') || undefined;
-}
-
-function shouldTriggerRefresh(triggerSchema, triggerModel, lastTriggerModel) {
-  const isValid = () => isValidSchema(triggerModel, triggerSchema);
-  const wasValid = () => isValidSchema(lastTriggerModel, triggerSchema);
-  return triggerSchema?.refreshFormOnChange && (isValid() || wasValid());
-}
+export default DynamicFlow;
