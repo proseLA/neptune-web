@@ -9,8 +9,8 @@ files:
       two_letters_code:
         zh-HK: zh
     update_option: update_as_unapproved
-  - source: /packages/dynamic-flows/i18n/en.json
-    translation: /packages/dynamic-flows/i18n/%two_letters_code%.%file_extension%
+  - source: /packages/dynamic-flows/src/i18n/en.json
+    translation: /packages/dynamic-flows/src/i18n/%two_letters_code%.%file_extension%
     languages_mapping:
       two_letters_code:
         zh-HK: zh
