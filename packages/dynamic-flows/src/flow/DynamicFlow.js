@@ -200,6 +200,9 @@ const DynamicFlowComponent = (props) => {
       const errorBody = await response.json();
       if (errorBody.validation) {
         setValidations(errorBody.validation);
+      } else if (errorBody.refreshFormUrl) {
+        const action = { url: errorBody.refreshFormUrl, method: 'POST' };
+        fetchRefresh(action, combineModels(stepAndModels.models), etag, null);
       } else {
         onError(errorBody, response.status);
       }

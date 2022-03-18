@@ -25,7 +25,7 @@ export function useDebouncedRefresh(fetchRefresh) {
     const debouncedFetchRefresh = retrieveOrCreate(key);
 
     debouncedFetchRefresh(action, data, etag);
-    if (!shouldDebounceSchema(schema)) {
+    if (!schema || !shouldDebounceSchema(schema)) {
       debouncedFetchRefresh.flush();
     }
   };

@@ -239,6 +239,8 @@ describe('Given a component for rendering a dynamic flow', () => {
         return rejectWith(new Response('some error string', { status: 500 }));
       case '/validationFailure':
         return rejectWithJsonResponse(validationErrorResponse);
+      case '/submitWithRefreshUrl':
+        return rejectWithJsonResponse({ refreshFormUrl: '/refresh-form-url' });
       default:
         return rejectWithJsonResponse(validationErrorResponse);
     }
@@ -668,6 +670,41 @@ describe('Given a component for rendering a dynamic flow', () => {
       it('should pass those errors to the layout', () => {
         expect(getStep().prop('errors')).toMatchObject(validationErrorResponse.validation);
         // TODO deal with global errors
+      });
+
+      it('should not trigger onStepChange', () => {
+        expect(onStepChange).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when we submit an action but we receive a refreshFormUrl', () => {
+      let component;
+      const getStep = () => component.find(LayoutStep);
+
+      beforeEach(async () => {
+        component = await mountAndWait(
+          <DynamicFlow
+            flowUrl={formUrl}
+            fetcher={mockFetcher}
+            onClose={onClose}
+            onStepChange={onStepChange}
+          />,
+        );
+        onStepChange.mockClear();
+
+        getStep().invoke('onModelChange')({ a: 1 }, thingSchema, 1, numberSchema);
+        getStep().invoke('onAction')({ method: 'POST', url: '/submitWithRefreshUrl' });
+        await waitAndUpdate(component);
+      });
+
+      it('should refresh step using the provided URL, without debouncing', () => {
+        expect(mockFetcher).toHaveBeenLastCalledWith(
+          '/refresh-form-url',
+          expect.objectContaining({
+            body: '{"a":1}',
+            method: 'POST',
+          }),
+        );
       });
 
       it('should not trigger onStepChange', () => {
