@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.3.3...@transferwise/dynamic-flows@18.4.0) (2022-03-18)
+
+
+### Features
+
+* **dynamic-flows:** add support for refresh on submit ([#1362](https://github.com/transferwise/neptune-web/issues/1362)) ([5106fb4](https://github.com/transferwise/neptune-web/commit/5106fb4390f265dd5ec889f0fdf3ec93fb872e24))
+
+
+
+
+
 ## [18.3.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.3.2...@transferwise/dynamic-flows@18.3.3) (2022-03-17)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
