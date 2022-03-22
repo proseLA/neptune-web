@@ -1,6 +1,6 @@
-import { formatAmount } from '@transferwise/formatting';
+import { formatAmount, getRateInAllFormats } from '@transferwise/formatting';
 
-export { formatAmount };
+export { formatAmount, getRateInAllFormats };
 
 // TODO: do not duplicate this between formatting and components
 const currencyDecimals = {
@@ -62,10 +62,9 @@ function getDecimalSeparator(locale) {
   return isNumberLocaleSupported() ? (1.1).toLocaleString(locale)[1] : '.';
 }
 
-export function parseAmount(number, currency, locale) {
+export function parseAmount(number, currency, locale, isRate) {
   const validLocale = getValidLocale(locale);
 
-  const precision = getCurrencyDecimals(currency);
   const groupSeparator = isNumberLocaleSupported() ? (1000).toLocaleString(validLocale)[1] : ',';
   const decimalSeparator = getDecimalSeparator(validLocale);
   const trimmedNumber = number.replace(/\s/g, '');
@@ -77,8 +76,16 @@ export function parseAmount(number, currency, locale) {
     new RegExp(`\\${decimalSeparator}`, 'g'),
     '.',
   );
+
+  if (isRate) {
+    const unformattedRate = parseFloat(parseFloat(numberWithStandardDecimalSeparator));
+    return Math.abs(unformattedRate);
+  }
+
+  const precision = getCurrencyDecimals(currency);
   const parsedAmount = parseFloat(
     parseFloat(numberWithStandardDecimalSeparator).toFixed(precision),
   );
+
   return Math.abs(parsedAmount);
 }

@@ -283,6 +283,35 @@ describe('Money Input', () => {
     expect(amountInput().prop('value')).toBe('formatted 123.45, en-US, eur');
   });
 
+  it('formats input as rate if isRate is on', () => {
+    numberFormatting.getRateInAllFormats = jest.fn(() => ({
+      suggested: {
+        format: 'equation', // either `equation` or `decimal`
+        output: '1 USD = 434.783 BRL',
+      },
+
+      formats: {
+        decimal: {
+          output: '0.123457', // Equivalent to the output of formatNumberToSignificantDigits(rate, locale, significantFigures)
+          significantFigures: 6,
+        },
+        equation: {
+          output: '1 USD = 434.783 BRL',
+          reference: 'target', // a.k.a. which currency is the left-hand side.
+          referenceMultiplier: 1, // a.k.a. left-hand anchor value.
+          calculationInDecimal: '434.783', // a.k.a. right-hand value.
+        },
+      },
+    }));
+    numberFormatting.parseAmount = jest.fn(parseFloat);
+    component.setProps({ isRate: true, targetCurrency: 'GBP' });
+
+    enterAmount(0.1234567);
+    blurAmount();
+
+    expect(amountInput().prop('value')).toBe('0.123457');
+  });
+
   it('parses the number you input and calls onAmountChange with it', () => {
     const onAmountChange = jest.fn();
     let assertions = 0;
