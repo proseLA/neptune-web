@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Select from '../select';
 import './MoneyInput.css';
 
-import { formatAmount, parseAmount } from './currencyFormatting';
+import { formatAmount, parseAmount, getRateInAllFormats } from './currencyFormatting';
 
 const Currency = Types.shape({
   header: Types.string,
@@ -16,8 +16,13 @@ const Currency = Types.shape({
 });
 const CUSTOM_ACTION = 'CUSTOM_ACTION';
 
-const formatAmountIfSet = (amount, currency, locale) => {
-  return amount ? formatAmount(amount, currency, locale) : '';
+const formatAmountIfSet = (amount, currency, locale, isRate) => {
+  if (amount) {
+    return isRate
+      ? getRateInAllFormats(amount, currency, 'GBP').formats.decimal.output
+      : formatAmount(amount, currency, locale);
+  }
+  return '';
 };
 
 export default class MoneyInput extends Component {
@@ -36,6 +41,7 @@ export default class MoneyInput extends Component {
     customActionLabel: Types.node,
     onCustomAction: Types.func,
     classNames: Types.objectOf(Types.string),
+    isRate: Types.bool,
   };
 
   static defaultProps = {
@@ -51,6 +57,7 @@ export default class MoneyInput extends Component {
     customActionLabel: '',
     onCustomAction: null,
     classNames: {},
+    isRate: false,
   };
 
   state = {
@@ -59,6 +66,7 @@ export default class MoneyInput extends Component {
       this.props.amount,
       this.props.selectedCurrency.currency,
       this.props.locale,
+      this.props.isRate,
     ),
   };
 
@@ -69,6 +77,7 @@ export default class MoneyInput extends Component {
           nextProps.amount,
           nextProps.selectedCurrency.currency,
           nextProps.locale,
+          this.props.isRate,
         ),
       });
     }
@@ -79,7 +88,12 @@ export default class MoneyInput extends Component {
     this.setState({
       formattedAmount: value,
     });
-    const parsed = parseAmount(value, this.props.selectedCurrency.currency, this.props.locale);
+    const parsed = parseAmount(
+      value,
+      this.props.selectedCurrency.currency,
+      this.props.locale,
+      this.props.isRate,
+    );
     if (!Number.isNaN(parsed)) {
       this.props.onAmountChange(parsed);
     }
@@ -110,6 +124,7 @@ export default class MoneyInput extends Component {
         previousState.formattedAmount,
         this.props.selectedCurrency.currency,
         this.props.locale,
+        this.props.isRate,
       );
       if (Number.isNaN(parsed)) {
         return {
@@ -121,6 +136,7 @@ export default class MoneyInput extends Component {
           parsed,
           this.props.selectedCurrency.currency,
           this.props.locale,
+          this.props.isRate,
         ),
       };
     });

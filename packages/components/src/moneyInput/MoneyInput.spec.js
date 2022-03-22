@@ -62,6 +62,7 @@ describe('Money Input', () => {
       amount: 1000,
       onAmountChange: jest.fn(),
       onCurrencyChange: jest.fn(),
+      isRate: false,
     };
     component = shallow(<MoneyInput {...props} />);
   });
@@ -453,5 +454,13 @@ describe('Money Input', () => {
     component.setProps({ locale: 'en-US', numberFormatPrecision: 3 });
     component.setProps({ placeholder: 12345.67 });
     expect(amountInput().prop('placeholder')).toBe('formatted 12345.67, en-US, eur');
+  });
+
+  it('formats input as rate if isRate is on', () => {
+    component.setProps({ isRate: true });
+
+    enterAmount(0.1234567);
+
+    expect(amountInput().prop('value')).toBe('0.123456');
   });
 });

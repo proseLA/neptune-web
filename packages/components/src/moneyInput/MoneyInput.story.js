@@ -1,6 +1,6 @@
 import React from 'react';
 import MoneyInput from './MoneyInput';
-import { select, number } from '@storybook/addon-knobs';
+import { select, number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -12,6 +12,7 @@ export const basic = () => {
   const size = select('size', ['sm', 'md', 'lg'], 'md');
   const locale = select('locale', ['en-GB', 'jp-JP'], 'en-GB');
   const amount = number('amount', 1000);
+  const isRate = boolean('isRate', true);
 
   return (
     <MoneyInput
@@ -51,6 +52,7 @@ export const basic = () => {
         currency: 'eur',
         searchable: 'Spain, Germany, France, Austria',
       }}
+      isRate={isRate}
     />
   );
 };
