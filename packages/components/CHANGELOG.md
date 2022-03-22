@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [40.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.0...@transferwise/components@40.2.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* **Modal:** re-enables scrolling based on content or viewport ([9882d92](https://github.com/transferwise/neptune-web/commit/9882d929e0fcd165c86bd0c2e56ac0c45e2561d2))
+
+
+
+
+
 # [40.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.1.1...@transferwise/components@40.2.0) (2022-03-16)
 
 
