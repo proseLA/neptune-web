@@ -37,8 +37,8 @@ const ControlFeedback = (props) => {
 };
 
 const validationMessagesProps = PropTypes.shape({
-  min: PropTypes.string,
-  max: PropTypes.string,
+  minimum: PropTypes.string,
+  maximum: PropTypes.string,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
   pattern: PropTypes.string,
@@ -65,8 +65,8 @@ ControlFeedback.defaultProps = {
   validations: [],
   validationMessages: {
     type: 'Incorrect type',
-    min: 'Value is too low',
-    max: 'Value it too high',
+    minimum: 'Value is too low',
+    maximum: 'Value is too high',
     minLength: 'Value is too short',
     maxLength: 'Value is too long',
     pattern: 'Incorrect format',

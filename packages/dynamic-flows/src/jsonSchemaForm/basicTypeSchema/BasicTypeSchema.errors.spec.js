@@ -5,30 +5,25 @@ import SchemaFormControl from '../schemaFormControl';
 
 import BasicTypeSchema from '.';
 
-function createProps() {
-  return {
-    schema: {
-      type: 'string',
-      minLength: 2,
-      title: 'Complete all sections',
-      default: '',
-    },
-    model: {},
-    errors: undefined,
-    required: true,
-    onChange: jest.fn(),
-    submitted: false,
-    translations: {
-      translationKey: 'example',
-    },
-  };
-}
 describe('Given a component for rendering basic type schemas', () => {
   describe('when submitted', () => {
     it('displays validation and server errors', () => {
-      const props = createProps();
-      props.model = '';
-
+      const props = {
+        schema: {
+          type: 'string',
+          minLength: 2,
+          title: 'Complete all sections',
+          default: '',
+        },
+        model: '',
+        errors: undefined,
+        required: true,
+        onChange: jest.fn(),
+        submitted: false,
+        translations: {
+          translationKey: 'example',
+        },
+      };
       const component = mount(<BasicTypeSchema {...props} />);
       const formControl = component.find(SchemaFormControl);
       const getControlFeedback = () => component.find(ControlFeedback);
@@ -60,6 +55,72 @@ describe('Given a component for rendering basic type schemas', () => {
 
       // expect the error to be hidden because model changed
       expect(getControlFeedback().text()).toBe('');
+    });
+  });
+});
+describe('Given a component for rendering a number schema', () => {
+  const schema = {
+    type: 'number',
+    minimum: 2,
+    maximum: 10,
+    title: 'Enter a number between 2 and 10',
+    default: '',
+  };
+
+  const props = {
+    errors: undefined,
+    required: true,
+    onChange: jest.fn(),
+    submitted: true,
+    translations: {
+      translationKey: 'example',
+    },
+  };
+
+  describe('when the schema has no default validation messages', () => {
+    describe('when submitted with value too low', () => {
+      it('displays the default validation error', () => {
+        const component = mount(<BasicTypeSchema {...props} schema={schema} model={1} />);
+        const getControlFeedback = () => component.find(ControlFeedback);
+
+        // expect the validation error to be displayed
+        expect(getControlFeedback().text()).toMatch(/Value is too low/i);
+      });
+    });
+    describe('when submitted with value too high', () => {
+      it('displays the default validation error', () => {
+        const component = mount(<BasicTypeSchema {...props} schema={schema} model={999} />);
+        const getControlFeedback = () => component.find(ControlFeedback);
+
+        // expect the validation error to be displayed
+        expect(getControlFeedback().text()).toMatch(/Value is too high/i);
+      });
+    });
+  });
+
+  describe('when the schema contains default validation messages', () => {
+    const schema = {
+      type: 'number',
+      minimum: 2,
+      maximum: 10,
+      title: 'Enter a number between 2 and 10',
+      default: '',
+      validationMessages: {
+        minimum: 'The number is too low',
+        maximum: 'The number is too high',
+      },
+    };
+    describe('when submitted with value too low', () => {
+      it('displays the validation error specified in the schema', () => {
+        const component = mount(<BasicTypeSchema {...props} schema={schema} model={1} />);
+        expect(component.find(ControlFeedback).text()).toMatch(/The number is too low/i);
+      });
+    });
+    describe('when submitted with value too high', () => {
+      it('displays the validation error specified in the schema', () => {
+        const component = mount(<BasicTypeSchema {...props} schema={schema} model={999} />);
+        expect(component.find(ControlFeedback).text()).toMatch(/The number is too high/i);
+      });
     });
   });
 });
