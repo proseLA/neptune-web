@@ -13,7 +13,9 @@ describe('Given a component for dynamically rendering reviews', () => {
   const option = {
     title: 'Option A',
     description: 'More information',
-    icon: 'email',
+    icon: {
+      name: 'email',
+    },
     action: {
       title: '',
       url: '/example',
@@ -41,7 +43,7 @@ describe('Given a component for dynamically rendering reviews', () => {
 
   it('should use the icon for the action icon', () => {
     expect(component.find(NavigationOption).prop('media')).toStrictEqual(
-      <DynamicIcon type={option.icon} />,
+      <DynamicIcon type={option.icon.name} />,
     );
   });
 
