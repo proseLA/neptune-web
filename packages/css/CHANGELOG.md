@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.4.0...@transferwise/neptune-css@12.4.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* border colors in tables ([#1374](https://github.com/transferwise/neptune-web/issues/1374)) ([1fcf525](https://github.com/transferwise/neptune-web/commit/1fcf5252896ca707be23e5b85647cf35354dd7fc))
+
+
+
+
+
 # [12.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.3.8...@transferwise/neptune-css@12.4.0) (2022-03-07)
 
 
