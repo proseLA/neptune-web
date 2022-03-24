@@ -4,13 +4,16 @@
   "title": "Create recipient",
   "actions": [
     {
+      "$id": "#submit",
       "title": "Confirm",
+      "type": "primary",
       "url": "/v2/accounts?additionalInfo=legacyType&isDfv3Request=true&ownedByCustomer=false&contactsEnabled=true&enableOptionalAddress=true&emailRecipientEnabled=false",
       "method": "POST"
     }
   ],
   "schemas": [
     {
+      "$id": "#form",
       "allOf": [
         {
           "type": "object",
@@ -316,5 +319,19 @@
     "details": { "targetUserId": "9859779" },
     "type": "UniqueId",
     "email": "match@wise.com"
-  }
+  },
+  "layout": [
+    {
+      "type": "form",
+      "schema": {
+        "$ref": "#form"
+      }
+    },
+    {
+      "type": "button",
+      "action": {
+        "$ref": "#submit"
+      }
+    }
+  ]
 }

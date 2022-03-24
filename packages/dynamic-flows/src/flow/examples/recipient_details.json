@@ -4,6 +4,7 @@
   "title": "Create recipient",
   "schemas": [
     {
+      "$id": "#form",
       "allOf": [
         {
           "type": "object",
@@ -250,9 +251,25 @@
   },
   "actions": [
     {
+      "$id": "#submit",
       "title": "Confirm",
       "url": "/submit",
-      "method": "POST"
+      "method": "POST",
+      "type": "primary"
+    }
+  ],
+  "layout": [
+    {
+      "type": "form",
+      "schema": {
+        "$ref": "#form"
+      }
+    },
+    {
+      "type": "button",
+      "action": {
+        "$ref": "#submit"
+      }
     }
   ]
 }
