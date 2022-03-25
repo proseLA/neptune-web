@@ -1,11 +1,16 @@
 import { InlineAlert } from '@transferwise/components';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+
+import controlFeedbackMessages from './ControlFeedback.messages';
 
 const ControlFeedback = (props) => {
-  // Use validation messages from the schema if possible.
+  const defaultValidationMessages = useDefaultValidationMessages();
+
   const validationMessages = {
-    ...props.validationMessages,
-    ...props.schema.validationMessages,
+    ...defaultValidationMessages, //       default validation messages
+    ...props.validationMessages, //        overridden by props
+    ...props.schema.validationMessages, // overriden by schema
   };
 
   const isErrorVisible = (props.submitted || !props.changed) && !!props.errors;
@@ -63,16 +68,18 @@ ControlFeedback.propTypes = {
 ControlFeedback.defaultProps = {
   errors: '',
   validations: [],
-  validationMessages: {
-    type: 'Incorrect type',
-    minimum: 'Value is too low',
-    maximum: 'Value is too high',
-    minLength: 'Value is too short',
-    maxLength: 'Value is too long',
-    pattern: 'Incorrect format',
-    required: 'Value is required...',
-  },
+  validationMessages: {},
   validationAsyncSuccessMessage: null,
 };
+
+function useDefaultValidationMessages() {
+  const { formatMessage } = useIntl();
+
+  const formattedMessages = {};
+  for (const key in controlFeedbackMessages) {
+    formattedMessages[key] = formatMessage(controlFeedbackMessages[key]);
+  }
+  return formattedMessages;
+}
 
 export default ControlFeedback;

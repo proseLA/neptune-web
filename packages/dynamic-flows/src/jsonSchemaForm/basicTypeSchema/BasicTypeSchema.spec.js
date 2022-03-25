@@ -1,6 +1,8 @@
+import { Provider } from '@transferwise/components';
 import { shallow, mount } from 'enzyme';
 
 import DynamicAlert from '../../layout/alert';
+import { getI18n } from '../../test-utils';
 import ControlFeedback from '../controlFeedback';
 import Help from '../help';
 import SchemaFormControl from '../schemaFormControl';
@@ -28,6 +30,11 @@ describe('Given a component for rendering basic type schemas', () => {
 
   const translations = {
     translationKey: 'example',
+  };
+
+  const mountOptions = {
+    wrappingComponent: Provider,
+    wrappingComponentProps: { i18n: getI18n() },
   };
 
   beforeEach(() => {
@@ -210,7 +217,7 @@ describe('Given a component for rendering basic type schemas', () => {
 
     describe('when submitted changes to true without a change to the model', () => {
       beforeEach(() => {
-        component = mount(<BasicTypeSchema {...props} required model={null} />);
+        component = mount(<BasicTypeSchema {...props} required model={null} />, mountOptions);
       });
 
       it('should update validations using the current model', () => {
@@ -246,7 +253,7 @@ describe('Given a component for rendering basic type schemas', () => {
       props = { schema, model, errors, required, onChange, submitted, translations };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
-      component = mount(<BasicTypeSchema {...props} />);
+      component = mount(<BasicTypeSchema {...props} />, mountOptions);
     });
 
     it('should call the onChange handler with the default', () => {
@@ -263,7 +270,7 @@ describe('Given a component for rendering basic type schemas', () => {
       props = { schema: constSchema, model, errors, required, onChange, submitted, translations };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
-      component = mount(<BasicTypeSchema {...props} />);
+      component = mount(<BasicTypeSchema {...props} />, mountOptions);
     });
 
     it('should call the onChange handler with the const', () => {
@@ -290,7 +297,7 @@ describe('Given a component for rendering basic type schemas', () => {
       props = { schema: enumSchema, model, errors, required, onChange, submitted, translations };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
-      component = mount(<BasicTypeSchema {...props} />);
+      component = mount(<BasicTypeSchema {...props} />, mountOptions);
     });
 
     it('should call the onChange handler with the const', () => {

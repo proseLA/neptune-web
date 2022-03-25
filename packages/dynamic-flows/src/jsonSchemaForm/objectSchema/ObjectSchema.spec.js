@@ -1,9 +1,16 @@
+import { Provider } from '@transferwise/components';
 import { mount, shallow } from 'enzyme';
 
 import DynamicAlert from '../../layout/alert';
+import { getI18n } from '../../test-utils';
 import GenericSchema from '../genericSchema';
 
 import ObjectSchema from './ObjectSchema';
+
+const mountOptions = {
+  wrappingComponent: Provider,
+  wrappingComponentProps: { i18n: getI18n() },
+};
 
 describe('Given a component for rendering object schemas', () => {
   let component;
@@ -243,7 +250,7 @@ describe('Given a component for rendering object schemas', () => {
     };
 
     beforeEach(() => {
-      component = mount(<ObjectSchema {...props} />);
+      component = mount(<ObjectSchema {...props} />, mountOptions);
 
       onChange.mockClear();
     });

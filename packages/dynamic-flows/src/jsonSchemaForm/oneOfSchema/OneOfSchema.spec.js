@@ -1,12 +1,19 @@
+import { Provider } from '@transferwise/components';
 import { shallow, mount } from 'enzyme';
 
 import DynamicAlert from '../../layout/alert';
+import { getI18n } from '../../test-utils';
 import ControlFeedback from '../controlFeedback';
 import GenericSchema from '../genericSchema';
 import Help from '../help';
 import SchemaFormControl from '../schemaFormControl';
 
 import OneOfSchema from '.';
+
+const mountOptions = {
+  wrappingComponent: Provider,
+  wrappingComponentProps: { i18n: getI18n() },
+};
 
 describe('Given a oneOfSchema component', () => {
   let component;
@@ -244,6 +251,7 @@ describe('Given a oneOfSchema component', () => {
           it('broadcasts onChange with the default value', () => {
             component = mount(
               <OneOfSchema {...props} schema={currencySchema} model={{}} onChange={onChange} />,
+              mountOptions,
             );
             expect(onChange).toHaveBeenLastCalledWith(
               currencySchema.default,
@@ -261,6 +269,7 @@ describe('Given a oneOfSchema component', () => {
                 schema={{ ...currencySchema, default: 'BANANA' }}
                 model={{}}
               />,
+              mountOptions,
             );
             const control = component.find(SchemaFormControl);
             expect(control.prop('value')).toBeNull();
@@ -274,6 +283,7 @@ describe('Given a oneOfSchema component', () => {
                 model={{}}
                 onChange={onChange}
               />,
+              mountOptions,
             );
             expect(onChange).not.toHaveBeenCalled();
           });

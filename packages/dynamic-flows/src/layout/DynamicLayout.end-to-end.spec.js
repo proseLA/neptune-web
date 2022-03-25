@@ -1,5 +1,7 @@
-import { InlineAlert } from '@transferwise/components';
+import { InlineAlert, Provider } from '@transferwise/components';
 import { mount } from 'enzyme';
+
+import { getI18n } from '../test-utils';
 
 import DynamicLayout from '.';
 
@@ -29,6 +31,11 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
   const button = { type: 'button', action };
   const box = { type: 'box', components: [form, button] };
 
+  const mountOptions = {
+    wrappingComponent: Provider,
+    wrappingComponentProps: { i18n: getI18n() },
+  };
+
   beforeEach(() => {
     onAction = jest.fn();
     onModelChange = jest.fn();
@@ -43,6 +50,7 @@ describe('E2E: Given a component for rendering a dynamic layout', () => {
         onModelChange={onModelChange}
         onPersistAsync={onPersistAsync}
       />,
+      mountOptions,
     );
   });
 
