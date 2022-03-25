@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.5...@transferwise/dynamic-flows@18.5.0) (2022-03-25)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** update en.json file after new messages were added in a previous PR ([#1376](https://github.com/transferwise/neptune-web/issues/1376)) ([e9ecfdd](https://github.com/transferwise/neptune-web/commit/e9ecfddd98897689a66fd6fc16fb0f48f074c2d3))
+
+
+### Features
+
+* **dynamic-flows:** localise default validation messages in ControlFeedback component ([#1375](https://github.com/transferwise/neptune-web/issues/1375)) ([c0b03e5](https://github.com/transferwise/neptune-web/commit/c0b03e5f0fdc2f0fbfc7256d644bec344a2afed7))
+
+
+
+
+
 ## [18.4.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.4...@transferwise/dynamic-flows@18.4.5) (2022-03-24)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
