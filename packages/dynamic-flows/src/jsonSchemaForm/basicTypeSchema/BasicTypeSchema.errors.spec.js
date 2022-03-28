@@ -27,9 +27,6 @@ describe('Given a component for rendering basic type schemas', () => {
         required: true,
         onChange: jest.fn(),
         submitted: false,
-        translations: {
-          translationKey: 'example',
-        },
       };
       const component = mount(<BasicTypeSchema {...props} />, mountOptions);
       const formControl = component.find(SchemaFormControl);
@@ -79,9 +76,6 @@ describe('Given a component for rendering a number schema', () => {
     required: true,
     onChange: jest.fn(),
     submitted: true,
-    translations: {
-      translationKey: 'example',
-    },
   };
 
   describe('when the schema has no default validation messages', () => {

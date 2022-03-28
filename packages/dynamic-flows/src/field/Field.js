@@ -161,7 +161,7 @@ export default class Field extends Component {
   }
 
   render() {
-    const { name, field, value, locale, label } = this.props;
+    const { name, field, value, label } = this.props;
 
     const control = field.control || getControlType_Legacy(field);
     const alert = this.updateAlert(control);
@@ -189,7 +189,6 @@ export default class Field extends Component {
           {...field}
           type={control}
           name={name}
-          locale={locale}
           value={value}
           onChange={(event) => this.onChange(event)}
           onFocus={(event) => this.onFocus(event)}
@@ -313,7 +312,6 @@ Field.propTypes = {
       max: PropTypes.string,
     }),
   }).isRequired,
-  locale: PropTypes.string,
   countryCode: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
@@ -324,7 +322,6 @@ Field.propTypes = {
 };
 
 Field.defaultProps = {
-  locale: 'en-GB',
   countryCode: null,
   value: null,
   errorMessage: null,

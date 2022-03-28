@@ -28,10 +28,6 @@ describe('Given a component for rendering basic type schemas', () => {
   const required = true;
   const submitted = false;
 
-  const translations = {
-    translationKey: 'example',
-  };
-
   const mountOptions = {
     wrappingComponent: Provider,
     wrappingComponentProps: { i18n: getI18n() },
@@ -45,7 +41,7 @@ describe('Given a component for rendering basic type schemas', () => {
     beforeEach(() => {
       model = 'foo';
 
-      props = { schema, model, errors, required, onChange, submitted, translations };
+      props = { schema, model, errors, required, onChange, submitted };
       component = shallow(<BasicTypeSchema {...props} />);
 
       formControl = component.find(SchemaFormControl);
@@ -174,7 +170,7 @@ describe('Given a component for rendering basic type schemas', () => {
       it('should broadcast null value for optional field when valid input changes to empty string', () => {
         model = 'foo';
         const isRequired = false;
-        props = { schema, model, errors, isRequired, onChange, submitted, translations };
+        props = { schema, model, errors, isRequired, onChange, submitted };
         component = shallow(<BasicTypeSchema {...props} />);
 
         formControl = component.find(SchemaFormControl);
@@ -250,7 +246,7 @@ describe('Given a component for rendering basic type schemas', () => {
   describe('when initialised without a model and there is a default', () => {
     beforeEach(() => {
       model = null;
-      props = { schema, model, errors, required, onChange, submitted, translations };
+      props = { schema, model, errors, required, onChange, submitted };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
       component = mount(<BasicTypeSchema {...props} />, mountOptions);
@@ -267,7 +263,7 @@ describe('Given a component for rendering basic type schemas', () => {
     beforeEach(() => {
       model = null;
 
-      props = { schema: constSchema, model, errors, required, onChange, submitted, translations };
+      props = { schema: constSchema, model, errors, required, onChange, submitted };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
       component = mount(<BasicTypeSchema {...props} />, mountOptions);
@@ -294,7 +290,7 @@ describe('Given a component for rendering basic type schemas', () => {
     beforeEach(() => {
       model = null;
 
-      props = { schema: enumSchema, model, errors, required, onChange, submitted, translations };
+      props = { schema: enumSchema, model, errors, required, onChange, submitted };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
       component = mount(<BasicTypeSchema {...props} />, mountOptions);

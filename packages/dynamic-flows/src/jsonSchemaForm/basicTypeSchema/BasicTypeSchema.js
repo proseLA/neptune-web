@@ -112,7 +112,6 @@ const BasicTypeSchema = (props) => {
             id={id}
             schema={props.schema}
             value={model}
-            locale={props.locale}
             disabled={props.disabled}
             onChange={onChange}
             onFocus={onFocus}
@@ -156,11 +155,9 @@ BasicTypeSchema.propTypes = {
   }).isRequired,
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   errors: PropTypes.string,
-  translations: PropTypes.shape({}),
   onChange: PropTypes.func.isRequired,
   submitted: PropTypes.bool.isRequired,
   required: PropTypes.bool,
-  locale: PropTypes.string,
   disabled: PropTypes.bool,
   onBlur: PropTypes.func,
   validationAsyncSuccessMessage: PropTypes.string,
@@ -169,9 +166,7 @@ BasicTypeSchema.propTypes = {
 BasicTypeSchema.defaultProps = {
   model: null,
   errors: null,
-  translations: {},
   required: false,
-  locale: 'en-GB',
   disabled: false,
   onBlur: null,
   validationAsyncSuccessMessage: null,

@@ -89,7 +89,6 @@ const SchemaFormControl = (props) => {
   const controlProps = {
     id: props.id,
     name: props.id,
-    locale: props.locale,
     label: props.schema.title,
     options,
     placeholder: props.schema.placeholder,
@@ -118,15 +117,11 @@ SchemaFormControl.propTypes = {
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  translations: PropTypes.shape({}),
-  locale: PropTypes.string,
   disabled: PropTypes.bool,
 };
 
 SchemaFormControl.defaultProps = {
   value: 'one',
-  translations: {},
-  locale: 'en-GB',
   onFocus: null,
   onBlur: null,
   disabled: false,

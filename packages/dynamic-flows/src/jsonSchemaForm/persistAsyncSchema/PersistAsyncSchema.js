@@ -44,7 +44,6 @@ PersistAsyncSchema.propTypes = {
     hidden: PropTypes.bool,
     help: PropTypes.shape({}),
   }).isRequired,
-  translations: PropTypes.shape({}),
   model: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -60,7 +59,6 @@ PersistAsyncSchema.propTypes = {
 };
 
 PersistAsyncSchema.defaultProps = {
-  translations: {},
   errors: null,
   required: false,
 };

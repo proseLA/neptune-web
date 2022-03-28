@@ -76,8 +76,6 @@ const ObjectSchema = (props) => {
               schema={props.schema.properties[propertyName]}
               model={props.model && props.model[propertyName]}
               errors={props.errors && props.errors[propertyName]}
-              locale={props.locale}
-              translations={props.translations}
               submitted={props.submitted}
               required={isRequired(propertyName)}
               disabled={props.disabled}
@@ -115,8 +113,6 @@ ObjectSchema.propTypes = {
   }).isRequired,
   model: PropTypes.shape({}),
   errors: PropTypes.shape({}),
-  locale: PropTypes.string,
-  translations: PropTypes.shape({}),
   onChange: PropTypes.func.isRequired,
   submitted: PropTypes.bool.isRequired,
   hideTitle: PropTypes.bool,
@@ -127,8 +123,6 @@ ObjectSchema.propTypes = {
 ObjectSchema.defaultProps = {
   model: null,
   errors: null,
-  locale: 'en-GB',
-  translations: {},
   hideTitle: false,
   disabled: false,
 };

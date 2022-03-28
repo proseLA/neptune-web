@@ -46,8 +46,6 @@ const AllOfSchema = (props) => {
               schema={schema}
               model={models[index]}
               errors={props.errors}
-              locale={props.locale}
-              translations={props.translations}
               submitted={props.submitted}
               disabled={props.disabled}
               onChange={(model, triggerSchema, triggerModel, lastTriggerModel) =>
@@ -77,8 +75,6 @@ AllOfSchema.propTypes = {
     PropTypes.shape({}),
   ]),
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
-  locale: PropTypes.string,
-  translations: PropTypes.shape({}),
   onChange: PropTypes.func.isRequired,
   submitted: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
@@ -88,8 +84,6 @@ AllOfSchema.propTypes = {
 AllOfSchema.defaultProps = {
   model: null,
   errors: null,
-  locale: 'en-GB',
-  translations: {},
   disabled: false,
 };
 

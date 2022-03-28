@@ -42,12 +42,7 @@ describe('Given a component from rendering allOf schemas', () => {
 
   const model = { string: 'a', number: 1, notInSchema: 1 };
   const errors = { string: 'error' };
-  const locale = 'en-GB';
   const submitted = false;
-
-  const translations = {
-    translationKey: 'example',
-  };
 
   let stringSchemaComponent;
   let numberSchemaComponent;
@@ -60,10 +55,8 @@ describe('Given a component from rendering allOf schemas', () => {
       schema,
       model,
       errors,
-      locale,
       onChange,
       submitted,
-      translations,
       onPersistAsync,
     };
     component = shallow(<AllOfSchema {...props} />);
@@ -98,16 +91,6 @@ describe('Given a component from rendering allOf schemas', () => {
   it('should pass the the errors to the generic schema components', () => {
     expect(stringSchemaComponent.prop('errors')).toBe(errors);
     expect(numberSchemaComponent.prop('errors')).toBe(errors);
-  });
-
-  it('should pass the locale to the generic-schema components', () => {
-    expect(stringSchemaComponent.prop('locale')).toBe(locale);
-    expect(numberSchemaComponent.prop('locale')).toBe(locale);
-  });
-
-  it('should pass the translations to the generic-schema components', () => {
-    expect(stringSchemaComponent.prop('translations')).toBe(translations);
-    expect(numberSchemaComponent.prop('translations')).toBe(translations);
   });
 
   it('should render the generic schemas inside appropriate width containers', () => {

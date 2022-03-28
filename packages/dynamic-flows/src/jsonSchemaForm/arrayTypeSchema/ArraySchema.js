@@ -43,15 +43,12 @@ ArraySchema.propTypes = {
   disabled: PropTypes.bool,
   errors: PropTypes.string,
   hideTitle: PropTypes.bool,
-  locale: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   submitted: PropTypes.bool.isRequired,
-  translations: PropTypes.shape({}),
 };
 
 ArraySchema.defaultProps = {
-  translations: {},
   errors: null,
   required: false,
 };

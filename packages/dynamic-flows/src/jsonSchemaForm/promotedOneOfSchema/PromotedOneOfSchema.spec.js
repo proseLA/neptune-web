@@ -19,9 +19,7 @@ describe('Given a PromotedOneOfSchema component', () => {
   let model;
 
   const errors = {};
-  const locale = 'en-GB';
   const submitted = false;
-  const translations = {};
 
   const promotedSchema = {
     type: 'object',
@@ -109,10 +107,8 @@ describe('Given a PromotedOneOfSchema component', () => {
         schema,
         model,
         errors,
-        locale,
         onChange,
         submitted,
-        translations,
         onPersistAsync,
       };
 
@@ -421,12 +417,10 @@ describe('Given a PromotedOneOfSchema component', () => {
 });
 
 const expectPropsToBeEqual = (wrapper, props) => {
-  expect(wrapper.props().locale).toBe(props.locale);
   expect(wrapper.props().model).toBe(props.model);
   expect(wrapper.props().onChange).toBe(props.onChange);
   expect(wrapper.props().submitted).toBe(props.submitted);
   expect(wrapper.props().errors).toBe(props.errors);
-  expect(wrapper.props().translations).toBe(props.translations);
   expect(wrapper.props().onPersistAsync).toBe(props.onPersistAsync);
 };
 

@@ -141,17 +141,14 @@ MultipleFileUploadSchema.propTypes = {
   disabled: PropTypes.bool,
   errors: PropTypes.string,
   hideTitle: PropTypes.bool,
-  locale: PropTypes.string,
   model: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
   onPersistAsync: PropTypes.func,
   required: PropTypes.bool,
   submitted: PropTypes.bool.isRequired,
-  translations: PropTypes.shape({}),
 };
 
 MultipleFileUploadSchema.defaultProps = {
-  translations: {},
   errors: null,
   required: false,
 };

@@ -83,7 +83,6 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     };
 
     const model = { string: 'foo' };
-    const locale = 'en-GB';
     const submitted = false;
     const disabled = false;
     props = {
@@ -92,7 +91,6 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
       errors,
       onChange,
       submitted,
-      locale,
       disabled,
       onPersistAsync,
       baseUrl,
@@ -325,7 +323,6 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
             errors={{}}
             submitted={false}
             baseUrl=""
-            locale="en-GB"
             onChange={(newModel) => {
               setModel(newModel);
               onChange(newModel);

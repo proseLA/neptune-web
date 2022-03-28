@@ -170,8 +170,6 @@ const OneOfSchema = (props) => {
               id={id}
               schema={schemaForSelect}
               value={schemaIndex}
-              translations={props.translations}
-              locale={props.locale}
               disabled={props.disabled}
               onChange={onChooseNewSchema}
               onFocus={onFocus}
@@ -196,8 +194,6 @@ const OneOfSchema = (props) => {
           schema={props.schema.oneOf[schemaIndex]}
           model={models[schemaIndex]}
           errors={props.errors}
-          locale={props.locale}
-          translations={props.translations}
           submitted={props.submitted}
           hideTitle
           disabled={props.disabled}
@@ -246,8 +242,6 @@ OneOfSchema.propTypes = {
     PropTypes.shape({}),
   ]),
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
-  locale: PropTypes.string,
-  translations: PropTypes.shape({}),
   onChange: PropTypes.func.isRequired,
   submitted: PropTypes.bool.isRequired,
   required: PropTypes.bool,
@@ -258,9 +252,7 @@ OneOfSchema.propTypes = {
 OneOfSchema.defaultProps = {
   model: null,
   errors: null,
-  locale: 'en-GB',
   required: false,
-  translations: {},
   disabled: false,
 };
 

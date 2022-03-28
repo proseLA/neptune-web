@@ -23,12 +23,10 @@ describe('Given a component for rendering a JSON schema form', () => {
       required: ['a'],
     };
     const model = { a: 2 };
-    const locale = 'en-GB';
     const onChange = jest.fn();
     const onPersistAsync = jest.fn();
     const submitted = false;
     const errors = { a: 'b' };
-    const translations = {};
     const baseUrl = 'some-test-url';
 
     props = {
@@ -36,9 +34,7 @@ describe('Given a component for rendering a JSON schema form', () => {
       model,
       onChange,
       submitted,
-      locale,
       errors,
-      translations,
       onPersistAsync,
       baseUrl,
     };
@@ -58,14 +54,6 @@ describe('Given a component for rendering a JSON schema form', () => {
 
     it('should pass the generic schema the errors', () => {
       expect(genericSchema.prop('errors')).toStrictEqual(props.errors);
-    });
-
-    it('should pass the generic schema the translations', () => {
-      expect(genericSchema.prop('translations')).toStrictEqual(props.translations);
-    });
-
-    it('should pass the generic schema the locale', () => {
-      expect(genericSchema.prop('locale')).toStrictEqual(props.locale);
     });
   });
 

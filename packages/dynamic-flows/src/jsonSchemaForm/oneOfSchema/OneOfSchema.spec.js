@@ -27,12 +27,7 @@ describe('Given a oneOfSchema component', () => {
 
   let model = { b: 2, c: 3 };
   const errors = { a: 'error' };
-  const locale = 'en-GB';
   const submitted = false;
-
-  const translations = {
-    translationKey: 'example',
-  };
 
   beforeEach(() => {
     onChange = jest.fn();
@@ -81,10 +76,8 @@ describe('Given a oneOfSchema component', () => {
         schema,
         model,
         errors,
-        locale,
         onChange,
         submitted,
-        translations,
         onPersistAsync,
       };
       component = shallow(<OneOfSchema {...props} />);
@@ -115,14 +108,6 @@ describe('Given a oneOfSchema component', () => {
 
     it('should pass errors to the nested generic schema component', () => {
       expect(genericSchema.prop('errors')).toStrictEqual(errors);
-    });
-
-    it('should pass locale to the nested generic schema component', () => {
-      expect(genericSchema.prop('locale')).toStrictEqual(locale);
-    });
-
-    it('should pass translations to the nested generic schema component', () => {
-      expect(genericSchema.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when some of the child schemas contain const properties', () => {
@@ -364,10 +349,8 @@ describe('Given a oneOfSchema component', () => {
         schema,
         model,
         errors,
-        locale,
         onChange,
         submitted,
-        translations,
         onPersistAsync,
       };
       component = shallow(<OneOfSchema {...props} />);
@@ -409,7 +392,6 @@ describe('Given a oneOfSchema component', () => {
       props = {
         schema,
         model,
-        locale,
         onChange,
         submitted,
         onPersistAsync,

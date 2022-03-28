@@ -28,7 +28,7 @@ describe('Given a component for rendering persist async blob schemas', () => {
   };
   const errors = undefined;
   const required = true;
-  const translations = {};
+
   const submitted = false;
   const model = null;
 
@@ -58,7 +58,6 @@ describe('Given a component for rendering persist async blob schemas', () => {
     props = {
       schema,
       onChange,
-      translations,
       submitted,
       errors,
       required,
