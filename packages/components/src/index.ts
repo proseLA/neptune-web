@@ -49,6 +49,7 @@ export { default as MoneyInput } from './moneyInput';
 export { default as NavigationOption } from './navigationOption';
 export { default as NavigationOptionsList } from './navigationOptionsList';
 export { default as Nudge } from './nudge';
+export { default as Option } from './common/Option';
 export { default as OverlayHeader } from './overlayHeader';
 export { default as PhoneNumberInput } from './phoneNumberInput';
 export { default as Popover } from './popover';
