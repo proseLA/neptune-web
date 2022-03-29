@@ -4,6 +4,7 @@ import { select } from '@storybook/addon-knobs';
 import { useState } from 'react';
 
 import DynamicFlow from './DynamicFlow';
+import dateStep from './examples/date.json';
 import decisionStep from './examples/decision.json';
 import finalStep from './examples/final.json';
 import formStep from './examples/form.json';
@@ -44,6 +45,7 @@ const onTrackableEvent = (...args) => {
 
 export const basic = () => {
   const steps = {
+    dateStep,
     decisionStep,
     finalStep,
     formStep,
@@ -54,7 +56,7 @@ export const basic = () => {
     review,
   };
 
-  const selectedInitialStep = select('Initial Step', steps, decisionStep);
+  const selectedInitialStep = select('Initial Step', steps, dateStep);
 
   const selectedInitialStepString = JSON.stringify(selectedInitialStep, null, 2);
   return (
