@@ -27,7 +27,9 @@ interface AnchorOptionProps extends BaseOptionProps {
 
 export type OptionProps = BaseOptionProps | AnchorOptionProps;
 
-const Option = forwardRef<HTMLElement, OptionProps>(
+export type ReferenceType = HTMLElement | HTMLAnchorElement;
+
+const Option = forwardRef<ReferenceType, OptionProps>(
   (
     {
       media = '',

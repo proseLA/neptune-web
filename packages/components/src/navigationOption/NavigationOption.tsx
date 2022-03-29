@@ -4,11 +4,11 @@ import { forwardRef } from 'react';
 import Chevron from '../chevron';
 import { Position } from '../common';
 import Option from '../common/Option';
-import { OptionProps } from '../common/Option/Option';
+import { OptionProps, ReferenceType } from '../common/Option/Option';
 
 type NavigationOptionProps = OptionProps;
 
-const NavigationOption = forwardRef<HTMLElement, NavigationOptionProps>(
+const NavigationOption = forwardRef<ReferenceType, NavigationOptionProps>(
   ({ as: component = 'button', disabled = false, onClick, className, ...rest }, reference) => {
     if ('href' in rest) {
       component = 'a';
