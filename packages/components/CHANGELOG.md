@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [40.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.3...@transferwise/components@40.3.0) (2022-03-29)
+
+
+### Features
+
+* **Card:** make icon property optional ([#1382](https://github.com/transferwise/neptune-web/issues/1382)) ([9d3cbbe](https://github.com/transferwise/neptune-web/commit/9d3cbbed515c9985bef6bc0bef9b82ff6a9beda9))
+
+
+
+
+
 ## [40.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.2...@transferwise/components@40.2.3) (2022-03-29)
 
 
