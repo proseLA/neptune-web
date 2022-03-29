@@ -55,7 +55,7 @@ describe('Option', () => {
   });
 
   it('has for attribute to label when prop is passed', () => {
-    expect(htmlFor()).toBeNull();
+    expect(htmlFor()).toBeUndefined();
     component.setProps({ htmlFor: 'some-id' });
     expect(htmlFor()).toBe('some-id');
   });
