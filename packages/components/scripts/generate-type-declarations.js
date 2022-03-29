@@ -25,7 +25,6 @@ const jsFiles = [
   { filename: 'Money', folder: 'money' },
   { filename: 'RadioOption', folder: 'radioOption' },
   { filename: 'CheckboxOption', folder: 'checkboxOption' },
-  { filename: 'NavigationOption', folder: 'navigationOption' },
   { filename: 'NavigationOptionsList', folder: 'navigationOptionsList' },
   { filename: 'DateLookup', folder: 'dateLookup' },
   { filename: 'PhoneNumberInput', folder: 'phoneNumberInput' },
