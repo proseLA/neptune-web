@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.5.3...@transferwise/dynamic-flows@18.6.0) (2022-03-29)
+
+
+### Features
+
+* **dynamic-flows:** update default validation messages ([#1379](https://github.com/transferwise/neptune-web/issues/1379)) ([c738eae](https://github.com/transferwise/neptune-web/commit/c738eae3cc7efd65b3d9b041381c0c62f8b476ed))
+
+
+
+
+
 ## [18.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.5.2...@transferwise/dynamic-flows@18.5.3) (2022-03-29)
 
 **Note:** Version bump only for package @transferwise/dynamic-flows
