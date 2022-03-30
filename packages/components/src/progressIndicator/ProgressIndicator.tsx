@@ -21,10 +21,12 @@ const ProgressIndicator = ({
     <div className={classNames('np-progress-indicator', className)}>
       <div className="np-progress-indicator__title h4">{title}</div>
       {description && <div className="small">{description}</div>}
-      <div className={'np-progress-indicator__background m-t-1'}>
+      <div className={'np-progress-indicator__bar m-t-1'}>
         <div
           style={{ width: bar }}
-          className={'np-progress-indicator__status np-progress-indicator__status--accent p-y-1'}
+          className={
+            'np-progress-indicator__bar__content np-progress-indicator__bar__content--accent p-y-1'
+          }
         />
       </div>
       <div className={'np-progress-indicator__value d-flex justify-content-end h4'}>{value}</div>
