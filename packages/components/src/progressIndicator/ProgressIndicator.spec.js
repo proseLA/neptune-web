@@ -5,7 +5,7 @@ import ProgressIndicator from './ProgressIndicator';
 
 describe('ProgressIndicator', () => {
   const props = {
-    bar: '80%',
+    progress: '80%',
     description: 'description',
     title: 'title',
     value: 'value',
@@ -27,10 +27,10 @@ describe('ProgressIndicator', () => {
       expect(screen.getByText('value')).toBeInTheDocument();
     });
 
-    it('renders the bar', () => {
-      const bar = document.querySelector('.np-progress-indicator__bar__content');
-      expect(bar).toBeInTheDocument();
-      expect(bar).toHaveStyle(`width: ${props.bar}`);
+    it('renders the progress', () => {
+      const progress = document.querySelector('.np-progress-indicator__bar__content');
+      expect(progress).toBeInTheDocument();
+      expect(progress).toHaveStyle(`width: ${props.progress}`);
     });
   });
 });

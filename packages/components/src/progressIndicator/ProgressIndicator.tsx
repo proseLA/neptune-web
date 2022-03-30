@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import './ProgressIndicator.css';
 
 type ProgressIndicatorProps = {
-  bar: string;
+  progress: string;
   className?: string;
   description?: string;
   title: string;
@@ -11,7 +11,7 @@ type ProgressIndicatorProps = {
 };
 
 const ProgressIndicator = ({
-  bar,
+  progress,
   className,
   description,
   title,
@@ -23,7 +23,7 @@ const ProgressIndicator = ({
       {description && <div className="small">{description}</div>}
       <div className={'np-progress-indicator__bar m-t-1'}>
         <div
-          style={{ width: bar }}
+          style={{ width: progress }}
           className={
             'np-progress-indicator__bar__content np-progress-indicator__bar__content--accent p-y-1'
           }
