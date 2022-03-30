@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { ReactElement } from 'react';
-import './ProgressIndicator.css';
 
 type ProgressIndicatorProps = {
   progress: string;
