@@ -1,0 +1,10 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { ProgressIndicator, Status, Size } from '@transferwise/components';
+import code from '../../../liveEditorCode/progressIndicator.code';
+
+<LiveEditorBlock code={code} scope={{ ProgressIndicator }} />
+<GeneratePropsTable componentName="ProgressIndicator" />
+
+export const meta = {
+  name: 'ProgressIndicator',
+};

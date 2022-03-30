@@ -1,41 +1,33 @@
 import classNames from 'classnames';
 import { ReactElement } from 'react';
-import { Sentiment } from '../common';
 import './ProgressIndicator.css';
 
 type ProgressIndicatorProps = {
-  status?: Sentiment;
-  width: number;
+  bar: string;
   className?: string;
-  limits: number[];
-  outro?: string;
+  description?: string;
+  title: string;
+  value: string;
 };
 
 const ProgressIndicator = ({
-  status,
-  width,
+  bar,
   className,
-  limits,
-  outro,
+  description,
+  title,
+  value,
 }: ProgressIndicatorProps): ReactElement | null => {
   return (
     <div className={classNames('np-progress-indicator', className)}>
-      <div className={classNames('np-progress-indicator__background', className)}>
+      <div className="np-progress-indicator__title h4">{title}</div>
+      {description && <div className="small">{description}</div>}
+      <div className={'np-progress-indicator__background m-t-1'}>
         <div
-          style={{ width: width }}
-          className={classNames('np-progress-indicator__status p-y-1', {
-            'np-progress-indicator__status--positive': status === Sentiment.POSITIVE,
-            'np-progress-indicator__status--warning': status === Sentiment.WARNING,
-            'np-progress-indicator__status--negative': status === Sentiment.NEGATIVE,
-          })}
-        ></div>
+          style={{ width: bar }}
+          className={'np-progress-indicator__status np-progress-indicator__status--accent p-y-1'}
+        />
       </div>
-      <div className={'np-progress-indicator__limits d-flex justify-content-between small'}>
-        {limits.map((limit) => (
-          <span key={limit}>{limit}</span>
-        ))}
-      </div>
-      {outro && <p className="m-t-1 small">{outro}</p>}
+      <div className={'np-progress-indicator__value d-flex justify-content-end h4'}>{value}</div>
     </div>
   );
 };
