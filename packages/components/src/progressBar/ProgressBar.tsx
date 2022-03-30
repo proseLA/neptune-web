@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { ReactElement } from 'react';
 
-type ProgressIndicatorProps = {
+type ProgressBarProps = {
   progress: string;
   className?: string;
   description?: string;
@@ -9,13 +9,13 @@ type ProgressIndicatorProps = {
   value: string;
 };
 
-const ProgressIndicator = ({
+const ProgressBar = ({
   progress,
   className,
   description,
   title,
   value,
-}: ProgressIndicatorProps): ReactElement | null => {
+}: ProgressBarProps): ReactElement | null => {
   return (
     <div className={classNames('np-progress-indicator', className)}>
       <div className="np-progress-indicator__title h4">{title}</div>
@@ -33,4 +33,4 @@ const ProgressIndicator = ({
   );
 };
 
-export default ProgressIndicator;
+export default ProgressBar;

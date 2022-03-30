@@ -1,14 +1,14 @@
 import { Sentiment } from '../common';
 
-import ProgressIndicator from './ProgressIndicator';
+import ProgressBar from './ProgressBar';
 
 export default {
-  component: ProgressIndicator,
-  title: 'ProgressIndicator',
+  component: ProgressBar,
+  title: 'ProgressBar',
 };
 
 export const Basic = () => (
-  <ProgressIndicator
+  <ProgressBar
     progress="80%"
     description="You have 3 days to reach your goal."
     title="Send 5,550 GBP"

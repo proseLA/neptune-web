@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '../test-utils';
 
-import ProgressIndicator from './ProgressIndicator';
+import ProgressBar from './ProgressBar';
 
-describe('ProgressIndicator', () => {
+describe('ProgressBar', () => {
   const props = {
     progress: '80%',
     description: 'description',
@@ -12,7 +12,7 @@ describe('ProgressIndicator', () => {
   };
   describe('by default', () => {
     beforeEach(() => {
-      render(<ProgressIndicator {...props} />);
+      render(<ProgressBar {...props} />);
     });
 
     it('renders the title', () => {
