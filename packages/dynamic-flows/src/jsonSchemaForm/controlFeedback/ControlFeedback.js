@@ -1,11 +1,12 @@
 import { InlineAlert } from '@transferwise/components';
+import { formatDate } from '@transferwise/formatting';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 
 import controlFeedbackMessages from './ControlFeedback.messages';
 
 const ControlFeedback = (props) => {
-  const defaultValidationMessages = useDefaultValidationMessages();
+  const defaultValidationMessages = useDefaultValidationMessages(props.schema);
 
   const validationMessages = {
     ...defaultValidationMessages, //       default validation messages
@@ -72,13 +73,29 @@ ControlFeedback.defaultProps = {
   validationAsyncSuccessMessage: null,
 };
 
-function useDefaultValidationMessages() {
-  const { formatMessage } = useIntl();
+function useDefaultValidationMessages(schema) {
+  const { formatMessage, locale } = useIntl();
 
-  const formattedMessages = {};
-  for (const key in controlFeedbackMessages) {
-    formattedMessages[key] = formatMessage(controlFeedbackMessages[key]);
+  const formattedMessages = {
+    type: formatMessage(controlFeedbackMessages.type),
+    minimum: formatMessage(controlFeedbackMessages.minimum, { minimum: schema.minimum }),
+    maximum: formatMessage(controlFeedbackMessages.maximum, { maximum: schema.maximum }),
+    minLength: formatMessage(controlFeedbackMessages.minLength, { minLength: schema.minLength }),
+    maxLength: formatMessage(controlFeedbackMessages.maxLength, { maxLength: schema.maxLength }),
+    pattern: formatMessage(controlFeedbackMessages.pattern),
+    required: formatMessage(controlFeedbackMessages.required),
+  };
+
+  if (schema.format === 'date') {
+    formattedMessages.minimum = formatMessage(controlFeedbackMessages.minimumDate, {
+      minimum: formatDate(new Date(schema.minimum), locale, { dateStyle: 'long' }),
+    });
+    formattedMessages.maximum = formatMessage(controlFeedbackMessages.maximumDate, {
+      maximum: formatDate(new Date(schema.maximum), locale, { dateStyle: 'long' }),
+    });
+    formattedMessages.pattern = formatMessage(controlFeedbackMessages.patternDate);
   }
+
   return formattedMessages;
 }
 

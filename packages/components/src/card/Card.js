@@ -64,7 +64,7 @@ Card.propTypes = {
   title: PropTypes.node.isRequired,
   details: PropTypes.node.isRequired,
   onClick: requiredIf(PropTypes.func, hasChildren),
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.node,
   children: PropTypes.node,
   id: PropTypes.string,
   className: PropTypes.string,

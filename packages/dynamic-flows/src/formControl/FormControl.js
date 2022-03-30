@@ -264,7 +264,7 @@ export default class FormControl extends PureComponent {
           />
         );
 
-      case FormControlType.DATELOOKUP:
+      case FormControlType.DATELOOKUP: {
         return (
           <DateLookup
             value={dateStringToDate(value)}
@@ -278,7 +278,7 @@ export default class FormControl extends PureComponent {
             onFocus={this.handleOnFocus}
           />
         );
-
+      }
       case FormControlType.TEL:
         return (
           <PhoneNumberInput

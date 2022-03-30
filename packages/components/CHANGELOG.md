@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [40.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.3...@transferwise/components@40.3.0) (2022-03-29)
+
+
+### Features
+
+* **Card:** make icon property optional ([#1382](https://github.com/transferwise/neptune-web/issues/1382)) ([9d3cbbe](https://github.com/transferwise/neptune-web/commit/9d3cbbed515c9985bef6bc0bef9b82ff6a9beda9))
+
+
+
+
+
+## [40.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.2...@transferwise/components@40.2.3) (2022-03-29)
+
+
+### Bug Fixes
+
+* **Badge:** default and ltr directions ([#1381](https://github.com/transferwise/neptune-web/issues/1381)) ([283d900](https://github.com/transferwise/neptune-web/commit/283d9008ba98be18dca11dc30993514e0d795b40))
+* **UploadInput:** border color ([be21247](https://github.com/transferwise/neptune-web/commit/be212471d90f33e1b22fb364447d8b7f2c287546))
+
+
+
+
+
 ## [40.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.1...@transferwise/components@40.2.2) (2022-03-24)
 
 **Note:** Version bump only for package @transferwise/components

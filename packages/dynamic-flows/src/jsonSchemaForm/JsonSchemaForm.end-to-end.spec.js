@@ -258,7 +258,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
         </Provider>,
       );
 
-      expect(screen.getByText('Value is required...')).toBeInTheDocument();
+      expect(screen.getByText('Please fill out this field.')).toBeInTheDocument();
     });
   });
 
