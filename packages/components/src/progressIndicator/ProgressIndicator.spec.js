@@ -28,7 +28,7 @@ describe('ProgressIndicator', () => {
     });
 
     it('renders the bar', () => {
-      const bar = document.querySelector('.np-progress-indicator__bar');
+      const bar = document.querySelector('.np-progress-indicator__bar__content');
       expect(bar).toBeInTheDocument();
       expect(bar).toHaveStyle(`width: ${props.bar}`);
     });
