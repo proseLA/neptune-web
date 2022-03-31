@@ -24,7 +24,7 @@ const ProgressBar = ({
         <span className="h4 d-block">{label}</span>
         {description && <span className="small">{description}</span>}
       </label>
-      <progress id={id} max={'100'} value={progress}>
+      <progress id={id} max="100" value={progress}>
         {progress}%
       </progress>
 

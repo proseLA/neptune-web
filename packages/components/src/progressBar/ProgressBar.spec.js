@@ -32,7 +32,7 @@ describe('ProgressBar', () => {
     it('renders the progress', () => {
       const progress = document.querySelector('progress');
       expect(progress).toBeInTheDocument();
-      expect(progress).toHaveValue('80');
+      expect(progress).toHaveValue(80);
     });
   });
 });
