@@ -5,18 +5,20 @@ import ProgressBar from './ProgressBar';
 
 describe('ProgressBar', () => {
   const props = {
-    progress: '80%',
     description: 'description',
-    title: 'title',
+    label: 'label',
+    progress: 80,
     value: 'value',
+    className: 'className',
+    id: 'id',
   };
   describe('by default', () => {
     beforeEach(() => {
       render(<ProgressBar {...props} />);
     });
 
-    it('renders the title', () => {
-      expect(screen.getByText('title')).toBeInTheDocument();
+    it('renders the label', () => {
+      expect(screen.getByText('label')).toBeInTheDocument();
     });
 
     it('renders the description', () => {
@@ -28,9 +30,9 @@ describe('ProgressBar', () => {
     });
 
     it('renders the progress', () => {
-      const progress = document.querySelector('.np-progress-indicator__bar__content');
+      const progress = document.querySelector('progress');
       expect(progress).toBeInTheDocument();
-      expect(progress).toHaveStyle(`width: ${props.progress}`);
+      expect(progress).toHaveValue('80');
     });
   });
 });

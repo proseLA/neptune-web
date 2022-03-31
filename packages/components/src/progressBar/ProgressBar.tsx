@@ -2,31 +2,33 @@ import classNames from 'classnames';
 import { ReactElement } from 'react';
 
 type ProgressBarProps = {
-  progress: string;
   className?: string;
   description?: string;
-  title: string;
+  id: string;
+  label: string;
+  progress: number;
   value: string;
 };
 
 const ProgressBar = ({
-  progress,
   className,
   description,
-  title,
+  id,
+  label,
+  progress,
   value,
 }: ProgressBarProps): ReactElement | null => {
   return (
-    <div className={classNames('np-progress-indicator', className)}>
-      <div className="np-progress-indicator__title h4">{title}</div>
-      {description && <div className="small">{description}</div>}
-      <div className="np-progress-indicator__bar m-t-1">
-        <div
-          style={{ width: progress }}
-          className="np-progress-indicator__bar__content np-progress-indicator__bar__content--accent p-y-1"
-        />
-      </div>
-      <div className="np-progress-indicator__value d-flex justify-content-end h4">{value}</div>
+    <div className={classNames('np-progress-bar', className)}>
+      <label className="np-progress-bar__label">
+        <span className="h4 d-block">{label}</span>
+        {description && <span className="small">{description}</span>}
+      </label>
+      <progress id={id} max={'100'} value={progress}>
+        {progress}%
+      </progress>
+
+      <p className="d-flex justify-content-end h4">{value}</p>
     </div>
   );
 };

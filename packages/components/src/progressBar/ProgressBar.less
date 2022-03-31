@@ -1,23 +1,31 @@
-.np-progress-indicator {
-  &__title {
-    color: var(--color-content-primary);
-  }
-
-  &__bar {
-    background-color: var(--color-background-neutral);
-    border-radius: var(--radius-small);
-    content: '';
-    width: 100%;
-
-    &__content {
-      &--accent {
-        background-color: var(--color-content-accent);
-        border-radius: var(--radius-small);
-      }
+.np-progress-bar {
+  &__label {
+    .h4 {
+      color: var(--color-content-primary);
     }
   }
 
-  &__value {
+  progress {
+    border-radius: var(--radius-small);
+    width: 100%;
+
+    &::-webkit-progress-bar {
+      background-color: var(--color-background-neutral);
+      border-radius: var(--radius-small);
+    }
+
+    &::-webkit-progress-value {
+      background-color: var(--color-content-accent);
+      border-radius: var(--radius-small);
+    }
+
+    &::-moz-progress-bar {
+      background-color: var(--color-content-accent);
+      border-radius: var(--radius-small);
+    }
+  }
+
+  p {
     color: var(--color-content-accent);
     margin-top: var(--size-4);
   }
