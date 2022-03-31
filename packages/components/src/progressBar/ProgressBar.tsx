@@ -20,7 +20,7 @@ const ProgressBar = ({
 }: ProgressBarProps): ReactElement | null => {
   return (
     <div className={classNames('np-progress-bar', className)}>
-      <label className="np-progress-bar__label">
+      <label className="np-progress-bar__label" htmlFor={id}>
         <span className="h4 d-block">{label}</span>
         {description && <span className="small">{description}</span>}
       </label>
