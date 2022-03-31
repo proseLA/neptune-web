@@ -10,7 +10,7 @@ const writer = new commonmark.HtmlRenderer({ safe: true });
 
 const NODE_TYPE_LIST = Object.values(MarkdownNodeType);
 
-const Markdown = ({ as: Element, children, className, allowList, blockList }) => {
+const Markdown = ({ as: Element, children, className, allowList, blockList, config }) => {
   if (!children) {
     return null;
   }
@@ -23,18 +23,20 @@ const Markdown = ({ as: Element, children, className, allowList, blockList }) =>
 
   const parser = (nodes) => {
     const parsed = reader.parse(nodes);
-
     if (allowList || blockList) {
       const toExclude = allowList ? difference(NODE_TYPE_LIST, allowList) : blockList;
-
       return stripNodes({ parsed, blockList: toExclude });
     }
     return parsed;
   };
 
   const createMarkup = () => {
+    const {
+      link: { target },
+    } = config;
+
     const parsed = parser(children);
-    return writer.render(parsed);
+    return writer.render(parsed).replace(/<a href="/g, `<a target="${target}" href="`);
   };
 
   return <Element className={className} dangerouslySetInnerHTML={{ __html: createMarkup() }} />;
@@ -107,6 +109,11 @@ Markdown.propTypes = {
       'thematic_break',
     ]),
   ),
+  config: PropTypes.shape({
+    link: PropTypes.shape({
+      target: PropTypes.oneOf(['_blank', '_self']),
+    }),
+  }),
 };
 
 Markdown.defaultProps = {
@@ -114,6 +121,11 @@ Markdown.defaultProps = {
   className: undefined,
   allowList: null,
   blockList: null,
+  config: {
+    link: {
+      target: '_self',
+    },
+  },
 };
 
 export default Markdown;
