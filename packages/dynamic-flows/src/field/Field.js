@@ -219,7 +219,7 @@ Field.propTypes = {
   ]),
   field: PropTypes.shape({
     type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean', 'blob']).isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     required: PropTypes.bool,
     disabled: PropTypes.bool,
     hidden: PropTypes.bool,
@@ -256,6 +256,8 @@ Field.propTypes = {
     pattern: PropTypes.string,
     minLength: PropTypes.number,
     maxLength: PropTypes.number,
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date),
     minimum: PropTypes.number,
     maximum: PropTypes.number,
     uploadProps: PropTypes.shape({
@@ -318,7 +320,7 @@ Field.propTypes = {
   onBlur: PropTypes.func,
   errorMessage: PropTypes.string,
   warningMessage: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
 
 Field.defaultProps = {

@@ -18,11 +18,11 @@ export const getCameraPermissionDeniedTrackingProperties = (error) => ({
 export const getCameraFeedStartedTrackingProperties = (props, videoStream) => {
   const videoTrack = (videoStream?.getVideoTracks() || [])[0];
 
-  const hardwareWidth = videoTrack?.getCapabilities()?.width?.max;
-  const hardwareHeight = videoTrack?.getCapabilities()?.height?.max;
+  const hardwareWidth = videoTrack?.getCapabilities?.()?.width?.max;
+  const hardwareHeight = videoTrack?.getCapabilities?.()?.height?.max;
 
-  const feedWidth = videoTrack?.getSettings()?.width;
-  const feedHeight = videoTrack?.getSettings()?.height;
+  const feedWidth = videoTrack?.getSettings?.()?.width;
+  const feedHeight = videoTrack?.getSettings?.()?.height;
 
   return {
     ...getDefaultTrackingProperties(),
