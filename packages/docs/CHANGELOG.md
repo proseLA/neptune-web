@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.23...@transferwise/neptune-docs@16.1.0) (2022-04-04)
+
+
+### Features
+
+* **ActionOption:** add showMediaCircle prop ([#1394](https://github.com/transferwise/neptune-web/issues/1394)) ([c82cc72](https://github.com/transferwise/neptune-web/commit/c82cc72e7ddce3c41d874be04bc045269477e374))
+
+
+
+
+
 ## [16.0.23](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.22...@transferwise/neptune-docs@16.0.23) (2022-04-01)
 
 **Note:** Version bump only for package @transferwise/neptune-docs
