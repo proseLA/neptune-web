@@ -12,8 +12,21 @@
     border-radius: var(--radius-small);
   }
 
+
   &::-moz-progress-bar {
     background-color: var(--color-content-accent);
     border-radius: var(--radius-small);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &::-webkit-progress-value {
+      transition: width 0.5s ease;
+      transition-delay: 0.2s;
+    }
+
+    &::-moz-progress-bar {
+      transition: width 0.5s ease;
+      transition-delay: 0.2s;
+    }
   }
 }
