@@ -87,13 +87,17 @@ function useDefaultValidationMessages(schema) {
   };
 
   if (schema.format === 'date') {
-    formattedMessages.minimum = formatMessage(controlFeedbackMessages.minimumDate, {
-      minimum: formatDate(new Date(schema.minimum), locale, { dateStyle: 'long' }),
-    });
-    formattedMessages.maximum = formatMessage(controlFeedbackMessages.maximumDate, {
-      maximum: formatDate(new Date(schema.maximum), locale, { dateStyle: 'long' }),
-    });
     formattedMessages.pattern = formatMessage(controlFeedbackMessages.patternDate);
+    if (schema.minimum) {
+      formattedMessages.minimum = formatMessage(controlFeedbackMessages.minimumDate, {
+        minimum: formatDate(new Date(schema.minimum), locale, { dateStyle: 'long' }),
+      });
+    }
+    if (schema.maximum) {
+      formattedMessages.maximum = formatMessage(controlFeedbackMessages.maximumDate, {
+        maximum: formatDate(new Date(schema.maximum), locale, { dateStyle: 'long' }),
+      });
+    }
   }
 
   return formattedMessages;

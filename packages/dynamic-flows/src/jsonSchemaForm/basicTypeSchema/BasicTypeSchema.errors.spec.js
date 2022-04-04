@@ -137,6 +137,22 @@ describe('Given a component for rendering a number schema', () => {
   });
 
   describe('when a string (date) schema has no default validation messages', () => {
+    describe('when schema does not contain minimum nor maximum values', () => {
+      it('does not display a validation error', () => {
+        const component = mount(
+          <BasicTypeSchema
+            {...props}
+            schema={{ type: 'string', format: 'date', title: 'Enter any date', default: '' }}
+            model="1999-12-31"
+          />,
+          mountOptions,
+        );
+        const getControlFeedback = () => component.find(ControlFeedback);
+
+        expect(getControlFeedback().text()).toMatch('');
+      });
+    });
+
     const schema = {
       type: 'string',
       format: 'date',
