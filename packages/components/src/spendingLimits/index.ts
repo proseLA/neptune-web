@@ -1,1 +1,1 @@
-export { default } from './SpendingLimits';
+export { default } from './SpendingLimit';

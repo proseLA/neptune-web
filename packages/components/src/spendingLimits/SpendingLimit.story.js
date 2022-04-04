@@ -1,14 +1,14 @@
-import SpendingLimits from './SpendingLimits';
+import SpendingLimit from './SpendingLimit';
 
 export default {
-  component: SpendingLimits,
-  title: 'SpendingLimits',
+  component: SpendingLimit,
+  title: 'SpendingLimit',
 };
 
 export const Basic = () => (
-  <SpendingLimits
+  <SpendingLimit
     description="You have 3 days to reach your goal."
-    id="spending-limits-id"
+    id="spending-limit-id"
     title="Send 5,550 GBP"
     progress={{ value: 50, max: 100 }}
     textEnd="200 GBP to go"

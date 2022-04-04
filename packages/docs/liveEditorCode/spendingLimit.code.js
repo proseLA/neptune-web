@@ -1,4 +1,4 @@
-<SpendingLimits
+<SpendingLimit
   description="You have 3 days to reach your goal."
   id="spending-limit-id"
   title="Send 5,550 GBP"

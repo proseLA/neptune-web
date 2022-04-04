@@ -1,0 +1,10 @@
+import { LiveEditorBlock, GeneratePropsTable } from '../../../utils';
+import { SpendingLimit } from '@transferwise/components';
+import code from '../../../liveEditorCode/spendingLimits.code';
+
+<LiveEditorBlock code={code} scope={{ SpendingLimit }} />
+<GeneratePropsTable componentName="SpendingLimit" />
+
+export const meta = {
+  name: 'SpendingLimit',
+};

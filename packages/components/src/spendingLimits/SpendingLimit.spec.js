@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '../test-utils';
 
-import SpendingLimits from './SpendingLimits';
+import SpendingLimit from './SpendingLimit';
 
-describe('SpendingLimits', () => {
+describe('SpendingLimit', () => {
   const props = {
     description: 'description',
     title: 'title',
@@ -14,7 +14,7 @@ describe('SpendingLimits', () => {
   };
   describe('by default', () => {
     beforeEach(() => {
-      render(<SpendingLimits {...props} />);
+      render(<SpendingLimit {...props} />);
     });
 
     it('renders the title', () => {

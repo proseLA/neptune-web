@@ -11,7 +11,7 @@ type SpendingLimitProps = {
   textEnd: string;
 };
 
-const SpendingLimits = ({
+const SpendingLimit = ({
   className,
   description,
   id,
@@ -20,7 +20,7 @@ const SpendingLimits = ({
   textEnd,
 }: SpendingLimitProps): ReactElement | null => {
   return (
-    <div className={classNames('np-spending-limits', className)}>
+    <div className={classNames('np-spending-limit', className)}>
       <label className="np-spending-limits__title" htmlFor={id}>
         <div className="h4">{title}</div>
         {description && <span className="small">{description}</span>}
@@ -31,4 +31,4 @@ const SpendingLimits = ({
   );
 };
 
-export default SpendingLimits;
+export default SpendingLimit;
