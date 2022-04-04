@@ -5,34 +5,17 @@ import Progress from './Progress';
 
 describe('Progress', () => {
   const props = {
-    description: 'description',
-    title: 'title',
-    progress: 80,
-    value: 'value',
-    className: 'className',
-    id: 'id',
+    progress: { value: 50, max: 100 },
   };
   describe('by default', () => {
     beforeEach(() => {
       render(<Progress {...props} />);
     });
 
-    it('renders the title', () => {
-      expect(screen.getByText('title')).toBeInTheDocument();
-    });
-
-    it('renders the description', () => {
-      expect(screen.getByText('description')).toBeInTheDocument();
-    });
-
-    it('renders the value', () => {
-      expect(screen.getByText('value')).toBeInTheDocument();
-    });
-
     it('renders the progress', () => {
       const progress = document.querySelector('progress');
       expect(progress).toBeInTheDocument();
-      expect(progress).toHaveValue(80);
+      expect(progress).toHaveValue(progress.value);
     });
   });
 });

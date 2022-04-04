@@ -1,20 +1,20 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '../test-utils';
 
-import Progress from './SpendingLimits';
+import SpendingLimits from './SpendingLimits';
 
-describe('Progress', () => {
+describe('SpendingLimits', () => {
   const props = {
     description: 'description',
     title: 'title',
-    progress: 80,
-    value: 'value',
+    progress: { value: 50, max: 100 },
+    textEnd: 'textEnd',
     className: 'className',
     id: 'id',
   };
   describe('by default', () => {
     beforeEach(() => {
-      render(<Progress {...props} />);
+      render(<SpendingLimits {...props} />);
     });
 
     it('renders the title', () => {
@@ -25,14 +25,8 @@ describe('Progress', () => {
       expect(screen.getByText('description')).toBeInTheDocument();
     });
 
-    it('renders the value', () => {
-      expect(screen.getByText('value')).toBeInTheDocument();
-    });
-
-    it('renders the progress', () => {
-      const progress = document.querySelector('progress');
-      expect(progress).toBeInTheDocument();
-      expect(progress).toHaveValue(80);
+    it('renders the textEnd', () => {
+      expect(screen.getByText('textEnd')).toBeInTheDocument();
     });
   });
 });
