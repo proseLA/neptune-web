@@ -26,7 +26,6 @@ const SpendingLimits = ({
         {description && <span className="small">{description}</span>}
       </label>
       <Progress id={id} progress={progress} />
-
       <p className="d-flex justify-content-end h4">{textEnd}</p>
     </div>
   );
