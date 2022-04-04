@@ -9,7 +9,7 @@ type ProgressProps = {
 
 const Progress = ({ className, id, progress }: ProgressProps): ReactElement | null => {
   return (
-    <progress id={id} {...progress} className={classnames('np-progress-bar', className)}>
+    <progress id={id} className={classnames('np-progress-bar', className)} {...progress}>
       {progress.value}%
     </progress>
   );

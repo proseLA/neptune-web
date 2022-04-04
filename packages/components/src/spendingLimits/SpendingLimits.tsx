@@ -20,9 +20,9 @@ const SpendingLimits = ({
   textEnd,
 }: SpendingLimitProps): ReactElement | null => {
   return (
-    <div className={classNames('np-progress-bar', className)}>
-      <label className="np-progress-bar__title" htmlFor={id}>
-        <span className="h4 d-block">{title}</span>
+    <div className={classNames('np-spending-limits', className)}>
+      <label className="np-spending-limits__title" htmlFor={id}>
+        <div className="h4">{title}</div>
         {description && <span className="small">{description}</span>}
       </label>
       <Progress id={id} progress={progress} />
