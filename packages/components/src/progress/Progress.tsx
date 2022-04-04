@@ -15,12 +15,7 @@ const Progress = ({ className, id, progress }: ProgressProps): ReactElement | nu
   });
 
   return (
-    <progress
-      id={id}
-      className={classnames('np-progress-bar', className)}
-      {...progress}
-      value={value}
-    >
+    <progress id={id} className={classnames('np-progress', className)} {...progress} value={value}>
       {value}%
     </progress>
   );
