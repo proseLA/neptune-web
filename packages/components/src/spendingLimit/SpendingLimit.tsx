@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ReactElement } from 'react';
+
 import Progress from '../progress';
 
 type SpendingLimitProps = {
