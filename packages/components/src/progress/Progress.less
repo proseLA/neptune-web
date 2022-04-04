@@ -1,0 +1,19 @@
+.np-progress-bar {
+  border-radius: var(--radius-small);
+  width: 100%;
+
+  &::-webkit-progress-bar {
+    background-color: var(--color-background-neutral);
+    border-radius: var(--radius-small);
+  }
+
+  &::-webkit-progress-value {
+    background-color: var(--color-content-accent);
+    border-radius: var(--radius-small);
+  }
+
+  &::-moz-progress-bar {
+    background-color: var(--color-content-accent);
+    border-radius: var(--radius-small);
+  }
+}

@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '../test-utils';
 
-import ProgressBar from './ProgressBar';
+import Progress from './SpendingLimits';
 
-describe('ProgressBar', () => {
+describe('Progress', () => {
   const props = {
     description: 'description',
-    label: 'label',
+    title: 'title',
     progress: 80,
     value: 'value',
     className: 'className',
@@ -14,11 +14,11 @@ describe('ProgressBar', () => {
   };
   describe('by default', () => {
     beforeEach(() => {
-      render(<ProgressBar {...props} />);
+      render(<Progress {...props} />);
     });
 
-    it('renders the label', () => {
-      expect(screen.getByText('label')).toBeInTheDocument();
+    it('renders the title', () => {
+      expect(screen.getByText('title')).toBeInTheDocument();
     });
 
     it('renders the description', () => {

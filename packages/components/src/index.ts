@@ -53,7 +53,7 @@ export { default as OverlayHeader } from './overlayHeader';
 export { default as PhoneNumberInput } from './phoneNumberInput';
 export { default as Popover } from './popover';
 export { default as ProcessIndicator } from './processIndicator';
-export { default as ProgressBar } from './progressBar';
+export { default as SpendingLimits } from './spendingLimits';
 export { default as Provider, DirectionProvider } from './provider';
 export { default as Radio } from './radio';
 export { default as RadioGroup } from './radioGroup';
