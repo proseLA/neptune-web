@@ -21,7 +21,7 @@ const SpendingLimit = ({
 }: SpendingLimitProps): ReactElement | null => {
   return (
     <div className={classNames('np-spending-limit', className)}>
-      <label className="np-spending-limits__title" htmlFor={id}>
+      <label className="np-spending-limit__title" htmlFor={id}>
         <div className="h4">{title}</div>
         {description && <span className="small">{description}</span>}
       </label>
