@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1740],{53150:function(a,b,c){(window.__NEXT_P=window.__NEXT_P||[]).push(["/blog/2021-11-30-november-release",function(){return c(36188)}])}},function(a){a.O(0,[9774,2888,179],function(){return a(a.s=53150)}),_N_E=a.O()}])

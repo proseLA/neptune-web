@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[4882],{83767:function(a,b,c){(window.__NEXT_P=window.__NEXT_P||[]).push(["/blog/2021-11-05-introducing-sections",function(){return c(15320)}])}},function(a){a.O(0,[9774,2888,179],function(){return a(a.s=83767)}),_N_E=a.O()}])

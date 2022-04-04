@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[466],{50307:function(a,b,c){(window.__NEXT_P=window.__NEXT_P||[]).push(["/styles/tokens/Typography",function(){return c(63198)}])}},function(a){a.O(0,[9774,2888,179],function(){return a(a.s=50307)}),_N_E=a.O()}])

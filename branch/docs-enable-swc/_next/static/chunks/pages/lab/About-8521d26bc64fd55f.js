@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[2725],{47294:function(a,b,c){(window.__NEXT_P=window.__NEXT_P||[]).push(["/lab/About",function(){return c(91003)}])}},function(a){a.O(0,[9774,2888,179],function(){return a(a.s=47294)}),_N_E=a.O()}])
