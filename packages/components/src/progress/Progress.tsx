@@ -1,5 +1,5 @@
-import { ReactElement, useEffect, useState } from 'react';
 import classnames from 'classnames';
+import { ReactElement, useEffect, useState } from 'react';
 
 type ProgressProps = {
   className?: string;
