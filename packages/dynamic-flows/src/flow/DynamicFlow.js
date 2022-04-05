@@ -35,7 +35,7 @@ const areModelsValid = (formModels, schemas) => {
   return !schemas?.some((schema) => !isValidSchema(formModels[schema.$id] || {}, schema));
 };
 
-const isSubmissionMethod = (method) => {
+const isSubmissionMethod = (method = 'POST') => {
   const submissionMethods = ['POST', 'PUT', 'PATCH'];
   return submissionMethods.includes(method.toUpperCase());
 };

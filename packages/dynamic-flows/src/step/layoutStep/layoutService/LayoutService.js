@@ -5,7 +5,7 @@ function convertStepToLayout(step) {
 
   // This condition is meant as a temporary hack until mobile platforms will be refactored to fully support the layout property
   if (step.layout) {
-    return addMissingTitleToStep(step);
+    return addMissingTitleAndDescriptionToStep(step);
   }
 
   switch (step.type) {
@@ -304,11 +304,12 @@ function getActionById(actions, id) {
   return actions.find((action) => action.$id === id);
 }
 
-function addMissingTitleToStep(step) {
-  if (step.title) {
-    return [convertStepTitleToDynamicHeading(step.title), ...step.layout];
-  }
-  return step.layout;
+function addMissingTitleAndDescriptionToStep(step) {
+  return [
+    ...(step.title ? [convertStepTitleToDynamicHeading(step.title)] : []),
+    ...(step.description ? [convertStepDescriptionToDynamicParagraph(step.description)] : []),
+    ...step.layout,
+  ];
 }
 
 export { convertStepToLayout, inlineReferences };
