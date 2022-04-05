@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [40.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.4.0...@transferwise/components@40.5.0) (2022-04-04)
+
+
+### Features
+
+* **ActionOption:** add showMediaCircle prop ([#1394](https://github.com/transferwise/neptune-web/issues/1394)) ([c82cc72](https://github.com/transferwise/neptune-web/commit/c82cc72e7ddce3c41d874be04bc045269477e374))
+
+
+
+
+
+# [40.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.3.0...@transferwise/components@40.4.0) (2022-03-31)
+
+
+### Features
+
+* markdown to optionally add `target=_blank` to links ([#1371](https://github.com/transferwise/neptune-web/issues/1371)) ([e1f7d29](https://github.com/transferwise/neptune-web/commit/e1f7d29bcfdf1a751405dd22ce6bc9a1602d7b90))
+
+
+
+
+
 # [40.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.3...@transferwise/components@40.3.0) (2022-03-29)
 
 

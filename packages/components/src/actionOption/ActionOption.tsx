@@ -14,6 +14,7 @@ type Props = {
   onClick: () => void;
   title: ReactChild;
   action: ReactChild;
+  showMediaCircle?: boolean;
 } & CommonProps;
 
 const ActionOption = ({
@@ -26,6 +27,7 @@ const ActionOption = ({
   complex,
   className,
   showMediaAtAllSizes,
+  showMediaCircle,
 }: Props): ReactElement => {
   const sharedProps = {
     media,
@@ -34,6 +36,7 @@ const ActionOption = ({
     complex,
     disabled,
     showMediaAtAllSizes,
+    showMediaCircle,
     className: classNames('tw-action-option', className),
   };
 

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.7.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.2...@transferwise/dynamic-flows@18.7.3) (2022-04-04)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** Fix date schema validation message ([#1395](https://github.com/transferwise/neptune-web/issues/1395)) ([fc903d5](https://github.com/transferwise/neptune-web/commit/fc903d593146e6e678e10cd5d8e3d755e36d660b))
+
+
+
+
+
+## [18.7.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.1...@transferwise/dynamic-flows@18.7.2) (2022-04-04)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [18.7.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.0...@transferwise/dynamic-flows@18.7.1) (2022-04-01)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [18.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.6.1...@transferwise/dynamic-flows@18.7.0) (2022-03-31)
+
+
+### Features
+
+* adding config to open link in info schema in a new tab ([#1386](https://github.com/transferwise/neptune-web/issues/1386)) ([381aca6](https://github.com/transferwise/neptune-web/commit/381aca6248ae926edbb9a418ad9f5832163d083b))
+
+
+
+
+
+## [18.6.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.6.0...@transferwise/dynamic-flows@18.6.1) (2022-03-31)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 # [18.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.5.3...@transferwise/dynamic-flows@18.6.0) (2022-03-29)
 
 
