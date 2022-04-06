@@ -397,12 +397,6 @@ describe('Select', () => {
     expect(component.find('ul').text()).not.toContain('ayy lmao');
   });
 
-  it('can be inverse coloured', () => {
-    expect(component.find('.btn-input').hasClass('btn-input-inverse')).toBe(false);
-    component.setProps({ inverse: true });
-    expect(component.find('.btn-input').hasClass('btn-input-inverse')).toBe(true);
-  });
-
   it('can be given a dropdown width', async () => {
     await openSelect();
     ['sm', 'md', 'lg'].forEach((dropdownWidth) => {

@@ -1,7 +1,7 @@
 @import (reference) '../variables/neptune-tokens.less';
 
 .footer {
-  background-color: var(--color-background-neutral);
+  background-color: var(--color-background-elevated);
   font-size: var(--font-size-14);
   line-height: var(--line-height-body);
   padding-top: calc(var(--size-8) * 10);
@@ -67,44 +67,6 @@
       &:focus {
         fill: var(--color-content-secondary);
       }
-    }
-  }
-
-  &.footer-inverse {
-    background: @color-navy-background-elevated;
-
-    .footer-link,
-    .link-icon {
-      color: @color-navy-content-primary;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: @color-navy-content-primary;
-      }
-
-      svg {
-        fill: @color-navy-content-primary;
-
-        &:hover,
-        &:active,
-        &:focus {
-          fill: @color-navy-content-primary;
-        }
-      }
-    }
-
-    .footer-title {
-      color: @color-navy-content-primary;
-    }
-
-    hr {
-      opacity: 0.1;
-    }
-
-    .tiny,
-    .body-3 {
-      color: @color-navy-content-primary;
     }
   }
 

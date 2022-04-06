@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import { Theme } from '../common';
-
 import AccordionItem from './AccordionItem';
 
-const Accordion = ({ items, onClick, indexOpen, theme }) => {
+const Accordion = ({ items, onClick, indexOpen }) => {
   const [itemsOpen, setItemsOpen] = useState(() =>
     items.map((value, index) => index === indexOpen),
   );
@@ -24,7 +22,6 @@ const Accordion = ({ items, onClick, indexOpen, theme }) => {
       open={itemsOpen[index]}
       onClick={() => handleOnClick(index)}
       {...item}
-      theme={theme}
     />
   ));
 };
@@ -40,13 +37,11 @@ Accordion.propTypes = {
     }),
   ).isRequired,
   onClick: PropTypes.func,
-  theme: PropTypes.oneOf(['light', 'dark']),
 };
 
 Accordion.defaultProps = {
   indexOpen: -1,
   onClick: null,
-  theme: Theme.LIGHT,
 };
 
 export default Accordion;

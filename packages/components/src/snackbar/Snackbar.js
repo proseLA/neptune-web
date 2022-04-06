@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Component } from 'react';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-import { Theme } from '../common';
 import { DirectionContext } from '../provider/direction';
 import withNextPortal from '../withNextPortal/withNextPortal';
 
@@ -46,10 +45,10 @@ export class Snackbar extends Component {
   };
 
   componentDidUpdate(previousProps) {
-    const { action, text, theme, timestamp } = this.props;
+    const { action, text, timestamp } = this.props;
 
     if (!previousProps.text) {
-      this.setState({ visible: true, action, text, theme }, () => {
+      this.setState({ visible: true, action, text }, () => {
         this.setLeaveTimeout();
       });
     } else if (previousProps.timestamp !== timestamp) {
@@ -58,19 +57,19 @@ export class Snackbar extends Component {
       if (this.state.visible) {
         this.setState({ visible: false }, () => {
           this.transitionTimeout = setTimeout(() => {
-            this.setState({ visible: true, action, text, theme });
+            this.setState({ visible: true, action, text });
             this.setLeaveTimeout();
           }, CSS_TRANSITION_DURATION);
         });
       } else {
-        this.setState({ visible: true, action, text, theme });
+        this.setState({ visible: true, action, text });
         this.setLeaveTimeout();
       }
     }
   }
 
   render() {
-    const { action, text, theme, visible } = this.state;
+    const { action, text, visible } = this.state;
     const { timeout } = this.props;
 
     return (
@@ -85,7 +84,7 @@ export class Snackbar extends Component {
           }}
           unmountOnExit
         >
-          <span className={`snackbar__text snackbar__text--${theme}`}>
+          <span className="snackbar__text">
             {text}
             {action ? (
               <button type="button" className="snackbar__text__action" onClick={action.onClick}>
@@ -107,14 +106,12 @@ Snackbar.propTypes = {
     onClick: PropTypes.func.isRequired,
   }),
   text: PropTypes.node.isRequired,
-  theme: PropTypes.oneOf(['light', 'dark']),
   timeout: PropTypes.number.isRequired,
   timestamp: PropTypes.number.isRequired,
 };
 
 Snackbar.defaultProps = {
   action: null,
-  theme: Theme.LIGHT,
 };
 
 export default withNextPortal(Snackbar);

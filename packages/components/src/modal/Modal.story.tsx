@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { select, text } from '@storybook/addon-knobs';
 import { ReactNode, useState } from 'react';
 
-import { Button, Modal, DateInput } from '..';
+import { Button, Modal, DateInput, Logo } from '..';
 import { Size, Scroll, Position } from '../common';
 
 export default {
@@ -23,6 +23,7 @@ const Template = (props: { children: ReactNode }) => {
       <Modal
         body={
           <>
+            <Logo />
             <DateInput value={new Date()} onChange={console && console.log} />
             <p className="m-t-4">{props.children}</p>
           </>

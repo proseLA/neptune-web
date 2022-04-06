@@ -1,7 +1,7 @@
 import { select } from '@storybook/addon-knobs';
 import { FastFlag as FastFlagIcon, Check } from '@transferwise/icons';
 
-import { Size, Scroll, Theme } from '../common';
+import { Size, Scroll } from '../common';
 import Modal from '../modal';
 
 import Accordion from './Accordion';
@@ -34,13 +34,7 @@ export const Basic = () => {
 
   const indexOpen = select('indexOpen', [0, 1, 2], 0);
 
-  const theme = select('Theme', [Theme.LIGHT, Theme.DARK], Theme.LIGHT);
-
-  return (
-    <div className={theme === 'dark' ? 'bg--dark p-a-3' : 'p-a-3'}>
-      <Accordion items={items} indexOpen={indexOpen} theme={theme} />
-    </div>
-  );
+  return <Accordion items={items} indexOpen={indexOpen} />;
 };
 
 export const WithIcons = () => {
@@ -65,15 +59,9 @@ export const WithIcons = () => {
     },
   ];
 
-  const theme = select('Theme', [Theme.LIGHT, Theme.DARK], Theme.LIGHT);
-
   const indexOpen = select('indexOpen', [0, 1, 2], 0);
 
-  return (
-    <div className={theme === 'dark' ? 'bg--dark p-a-3' : 'p-a-3'}>
-      <Accordion items={items} indexOpen={indexOpen} theme={theme} />
-    </div>
-  );
+  return <Accordion items={items} indexOpen={indexOpen} />;
 };
 
 export const inModal = () => {

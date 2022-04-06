@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import { Breakpoint } from '../common';
+import { Breakpoint, Theme } from '../common';
 import { isServerSide } from '../common/domHelpers';
-import { useClientWidth } from '../common/hooks';
+import { useClientWidth, useTheme } from '../common/hooks';
 
 import { LogoType } from './logoTypes';
 
@@ -17,7 +17,8 @@ const logoPaths = {
   WISE_FLAG: 'brand_flag.svg',
 };
 
-const Logo = ({ className, inverse, type }) => {
+const Logo = ({ className, type }) => {
+  const inverse = [Theme.NAVY, Theme.DARK].includes(useTheme());
   const [clientWidth] = useClientWidth({ ref: isServerSide() ? undefined : window });
   const isSmall = clientWidth < Breakpoint.SMALL;
   const path = isSmall ? logoPaths['WISE_FLAG'] : logoPaths[`${type}${inverse ? '_INVERSE' : ''}`];
@@ -33,15 +34,12 @@ const Logo = ({ className, inverse, type }) => {
 Logo.propTypes = {
   /** Extra classes applied to Logo */
   className: PropTypes.string,
-  /** If true, will use dark colours for dark on light theme */
-  inverse: PropTypes.bool,
   /** What type of logo to display */
   type: PropTypes.oneOf(['WISE', 'WISE_BUSINESS']),
 };
 
 Logo.defaultProps = {
   className: undefined,
-  inverse: false,
   type: LogoType.WISE,
 };
 

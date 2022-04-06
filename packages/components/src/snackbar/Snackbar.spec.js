@@ -97,7 +97,7 @@ describe('Snackbar', () => {
             <button
               type="button"
               className="button-trigger"
-              onClick={() => createSnackbar({ text: <span>test</span>, theme: 'dark' })}
+              onClick={() => createSnackbar({ text: <span>test</span> })}
             >
               Trigger
             </button>

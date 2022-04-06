@@ -454,7 +454,7 @@ export default class Select extends Component {
   }
 
   render() {
-    const { disabled, size, block, id, dropdownUp, inverse } = this.props;
+    const { disabled, size, block, id, dropdownUp } = this.props;
     const { open, shouldRenderWithPortal } = this.state;
     const s = this.style;
 
@@ -468,7 +468,6 @@ export default class Select extends Component {
       s('btn'),
       s('btn-input'),
       {
-        [`${s('btn-input-inverse')} ${s('btn-addon')}`]: inverse,
         [s('btn-xs')]: size === 'xs',
         [s('btn-sm')]: size === 'sm',
         [s('btn-md')]: size === 'md',
@@ -540,7 +539,6 @@ Select.propTypes = {
   id: PropTypes.string,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
-  inverse: PropTypes.bool,
   dropdownRight: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   dropdownWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -593,7 +591,6 @@ Select.defaultProps = {
   size: 'md',
   dropdownRight: null,
   dropdownWidth: null,
-  inverse: false,
   required: false,
   disabled: false,
   block: true,

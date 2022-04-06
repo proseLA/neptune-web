@@ -137,7 +137,7 @@
   left:0;
   z-index: @zindex-navbar-fixed;
   backface-visibility: hidden;
-  background-color: @color-navy-background-elevated;
+  background-color: var(--color-background-elevated);
 
   .navbar-nav > li {
     > a,
@@ -241,7 +241,7 @@
   font-weight: var(--font-weight-semi-bold);
   line-height: var(--line-height-body);
   margin-bottom: 8px;
-  color: @color-navy-content-primary;
+  color: var(--color-content-primary);
 
   .icon-bar:first-child {
     margin-top: 1px;
@@ -313,10 +313,6 @@
         }
 
         @media (--screen-md) {
-          .navbar-inverse & {
-            color: @color-navy-content-primary;
-          }
-
           &:hover {
             border-bottom-color: transparent;
             outline: 0;
@@ -640,7 +636,7 @@
   }
 
   .navbar-brand {
-    color: @color-navy-content-primary;
+    color: var(--color-content-primary);
 
     &:hover,
     &:focus {
@@ -748,97 +744,8 @@
   }
 }
 
-// Inverse navbar
-
-.navbar-inverse {
-  background-color: transparent;
-
-  .container,
-  .container-fluid {
-    border-color: var(--color-border-neutral);
-  }
-
-  .navbar-brand {
-    color: var(--color-content-primary);
-
-    &:hover,
-    &:focus {
-      color: var(--color-content-primary);
-      background-color: transparent;
-    }
-  }
-
-  .navbar-text {
-    color: @color-navy-content-primary;
-  }
-
-  .navbar-nav {
-    > li > a {
-      color: @color-navy-content-primary;
-
-      @media (--screen-md) {
-        border-bottom: 3px solid transparent;
-      }
-
-      &:hover,
-      &:focus {
-        color: var(--color-content-accent-hover);
-        background-color: transparent;
-      }
-    }
-
-    > .active {
-      > a,
-      > .dropdown-toggle {
-        color: var(--color-content-accent-active);
-        font-weight: var(--font-weight-bold);
-        &,
-        &:hover,
-        &:focus {
-          color: var(--color-content-accent-hover);
-          background-color: transparent;
-          border-color: transparent;
-        }
-      }
-    }
-
-    > .open > a,
-    .dropdown:focus-within > a {
-      &,
-      &:hover,
-      &:focus {
-        background-color: transparent;
-        color: var(--color-content-accent-hover);
-      }
-    }
-
-    @media (max-width: @grid-float-breakpoint-max) {
-      > li > a {
-        color: var(--color-content-primary);
-      }
-    }
-  }
-
-  .navbar-link {
-    color: @color-navy-content-primary;
-
-    &:hover {
-      color: var(--color-content-accent-hover);
-    }
-  }
-
-  .btn-link {
-    color: @color-navy-content-primary;
-
-    &:hover,
-    &:focus {
-      color: var(--color-content-accent-hover);
-    }
-  }
-}
-
 .navbar .navbar-brand,
-.navbar-inverse .navbar-brand {
+.navbar-brand {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   color: transparent;
@@ -971,7 +878,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      background-color: @color-navy-background-screen;
+      background-color: var(--color-background-screen);
       opacity: 0;
       transition: opacity 0.35s ease;
     }
@@ -1080,7 +987,7 @@
 
 @media (max-width: @screen-sm-max) {
   .navbar-static-top {
-    background-color: @color-navy-background-elevated;
+    background-color: var(--color-background-elevated);
     border-bottom-color: transparent;
   }
 }
@@ -1101,7 +1008,7 @@
 
 .navbar-title,
 .navbar-subtitle {
-  color: @color-navy-content-primary;
+  color: var(--color-content-primary);
   text-overflow: ellipsis;
   overflow-x: hidden;
   white-space: nowrap;
@@ -1127,7 +1034,7 @@
   padding-top: 16px;
   margin-top: -16px;
   padding-bottom: 0;
-  background-color: @color-navy-background-elevated;
+  background-color: var(--color-background-elevated);
   border-bottom: 1px solid var(--color-border-neutral);
 
   @media (min-width: @screen-lg-min) {
@@ -1171,7 +1078,7 @@
     .btn-info:not(.disabled, :disabled):hover,
     .btn-warning:not(.disabled, :disabled):hover,
     .btn-danger:not(.disabled, :disabled):hover {
-      color: @color-navy-content-primary;
+      color: var(--color-content-primary);
     }
 
     .form-control,
@@ -1209,7 +1116,7 @@
 // TODO this is a hack with no docs
 
 .simple-nav {
-  background-color: @color-navy-background-elevated;
+  background-color: var(--color-background-elevated);
 
   .navbar-nav > li > a {
     padding-top: (@navbar-padding-vertical + 4px);
@@ -1244,14 +1151,14 @@
 
 @media (min-width: @screen-lg-min) {
   .simple-nav {
-    background-color: var(--color-background-screen);
+    background-color: var(--color-background-elevated);
     border-bottom: 1px solid var(--color-border-neutral);
   }
 }
 
 @media (max-width: @screen-md-max) {
   .simple-nav .navbar-nav > li > a {
-    color: @color-navy-content-primary;
+    color: var(--color-content-primary);
 
     &:not(.disabled, :disabled):focus,
     &:not(.disabled, :disabled):hover,
@@ -1296,13 +1203,6 @@
       top: @navbar-secondary-height;
       border-top: var(--color-border-neutral) solid 1px;
       .left(0);
-    }
-
-    &.navbar-inverse {
-      &::before {
-        background-color: @color-navy-background-screen;
-        border-top: none;
-      }
     }
 
     .navbar-nav > li {

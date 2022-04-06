@@ -35,12 +35,7 @@ describe('FlowNavigationAvatar', () => {
       describe('AND avatar url', () => {
         it('renders the image', async () => {
           const { container } = render(
-            <Avatar
-              url="https://wise.com"
-              name={name}
-              profileType="BUSINESS"
-              avatarProps={{ theme: 'dark' }}
-            />,
+            <Avatar url="https://wise.com" name={name} profileType="BUSINESS" />,
           );
 
           expect(container.firstChild).toMatchSnapshot();
