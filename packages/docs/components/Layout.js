@@ -1,5 +1,5 @@
 import { DocSearch } from '@docsearch/react';
-import { Switch, Direction, Button, Priority, Logo } from '@transferwise/components';
+import { Switch, Direction, Button, Priority, Logo, useTheme } from '@transferwise/components';
 import { parseISO } from 'date-fns';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
@@ -28,15 +28,17 @@ const Layout = ({ children, router: { pathname } }) => {
   const editPath = `${githubURL}${pathname}.mdx`;
 
   const [direction, setDirection] = useDirection();
+  const globalTheme = useTheme();
 
   const firstContent = (
     <div className="Header__Fixed" role="navigation" aria-label="Primary navigation">
+      Global theme: {globalTheme}
       <div className="Header__Brand">
         <a href="https://wise.com/" target="_blank" rel="noreferrer">
-          <Logo inverse className="Logo" />
+          <Logo className="Logo" />
         </a>
       </div>
-      <ul className="Nav Nav--dark">
+      <ul className="Nav">
         <li>
           <DocSearch
             apiKey="a7106c2ce36353c2046f1d48a42be7bc"

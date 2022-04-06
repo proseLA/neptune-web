@@ -1,5 +1,3 @@
-@import '@transferwise/neptune-tokens/themes/navy/tokens.css';
-
 /* Typography */
 
 h1[id] + p,
@@ -108,14 +106,13 @@ p + h2[id] {
   margin-top: var(--size-24);
 }
 
-.Nav--dark .Nav__Link {
+.np-theme-navy .Nav__Link {
   color: var(--color-content-primary);
   border-bottom: 0;
   font-weight: var(--font-weight-bold);
 }
 
-/* TODO fix this while theming project */
-.Nav--dark .Nav__Link.active {
+.np-theme-navy .Nav__Link.active {
   background-color: var(--color-background-screen);
 }
 

@@ -1,3 +1,4 @@
+import { ThemeProvider, Theme } from '@transferwise/components';
 import PropTypes from 'prop-types';
 
 import Box from '../box';
@@ -16,22 +17,24 @@ const ThreeColumns = ({ firstContent, secondContent, thirdContent }) => {
       className="PageLayout__Inner"
     >
       {firstContent && (
-        <Box
-          size={{
-            default: 0,
-            xs: 0,
-            sm: 0,
-            md: 0,
-            lg: 200,
-            xl: 200,
-          }}
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          tagHtml="header"
-          className="Header np-theme-navy"
-        >
-          {firstContent}
-        </Box>
+        <ThemeProvider theme={Theme.NAVY}>
+          <Box
+            size={{
+              default: 0,
+              xs: 0,
+              sm: 0,
+              md: 0,
+              lg: 200,
+              xl: 200,
+            }}
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            tagHtml="header"
+            className="Header"
+          >
+            {firstContent}
+          </Box>
+        </ThemeProvider>
       )}
       {secondContent && (
         <Box
