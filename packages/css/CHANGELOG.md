@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.4.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.4.1...@transferwise/neptune-css@12.4.2) (2022-04-07)
+
+
+### Bug Fixes
+
+* style of list type should be none ([d0d0733](https://github.com/transferwise/neptune-web/commit/d0d073355e351b947aef0cc19156654bbf4bfb15))
+
+
+
+
+
 ## [12.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-css@12.4.0...@transferwise/neptune-css@12.4.1) (2022-03-24)
 
 
