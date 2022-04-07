@@ -38,6 +38,10 @@ module.exports = withTM(
       images: {
         disableStaticImages: true,
       },
+      swcMinify: true,
+      // experimental: {
+      //   emotion: true,
+      // },
       webpack(config) {
         config.module.rules.push({
           test: [/\.code.js$/, /\.txt$/],
