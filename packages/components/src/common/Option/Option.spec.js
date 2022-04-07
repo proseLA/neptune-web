@@ -1,4 +1,5 @@
 import { shallow } from 'enzyme';
+import { createRef } from 'react';
 
 import { render, screen } from '../../test-utils';
 
@@ -103,6 +104,14 @@ describe('Option', () => {
     expect(component.prop('href')).toBeFalsy();
     component.setProps({ href: 'https://example.com' });
     expect(component.prop('href')).toBe('https://example.com');
+  });
+
+  it('`ref` attribute is passed to Option and reference is created', () => {
+    const reference = createRef();
+
+    expect(reference.current).toBeFalsy();
+    render(<Option ref={reference} title="" content="" media={<span />} button={<span />} />);
+    expect(reference.current).toBeTruthy();
   });
 
   const hasDecisonClass = () => component.hasClass('decision');

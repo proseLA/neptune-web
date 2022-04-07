@@ -1,4 +1,5 @@
 import { shallow } from 'enzyme';
+import { createRef } from 'react';
 
 import Option from '../common/Option';
 import { render } from '../test-utils';
@@ -73,6 +74,14 @@ describe('Navigation option', () => {
     component.setProps({ className: 'test-class-name' });
 
     expect(option().props().className).toBe('np-navigation-option test-class-name');
+  });
+
+  it('`ref` attribute is passed to NavigationOption and reference is created', () => {
+    const reference = createRef();
+
+    expect(reference.current).toBeFalsy();
+    render(<NavigationOption ref={reference} title="" onClick={jest.fn()} />);
+    expect(reference.current).toBeTruthy();
   });
 
   const option = () => component.find(Option);
