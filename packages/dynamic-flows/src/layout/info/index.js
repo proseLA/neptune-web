@@ -7,7 +7,7 @@ import { getTextAlignmentAndMargin } from '../utils';
 const DynamicInfo = ({ component }) => {
   return (
     <div className={getTextAlignmentAndMargin(component)}>
-      <Markdown>{component.markdown}</Markdown>
+      <Markdown config={{ link: { target: '_blank' } }}>{component.markdown}</Markdown>
     </div>
   );
 };

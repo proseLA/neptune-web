@@ -67,6 +67,13 @@ describe('Modal', () => {
       expect(modalBody().text()).toBe('Some paragraph text');
     });
 
+    it('with scroll classes set', () => {
+      component.setProps({ body: <p>Some paragraph text</p>, scroll: 'content' });
+
+      expect(modal().hasClass('tw-modal--scrollable')).toBe(true);
+      expect(modalBody().hasClass('tw-modal-body--scrollable')).toBe(true);
+    });
+
     it('with no footer when `footer` not specified as prop', () => {
       component.setProps({ footer: null });
       expect(modalFooter()).toHaveLength(0);

@@ -8,7 +8,6 @@ import JsonSchemaForm from '../JsonSchemaForm';
 export const JsonSchemaFormWrapper = ({ schema, initialModel }) => {
   const stringError = text('error from server', '');
   const errors = { string: stringError };
-  const translationsFromProps = {};
   const submitted = boolean('submitted', false);
   const disabled = boolean('disabled', false);
 
@@ -20,7 +19,6 @@ export const JsonSchemaFormWrapper = ({ schema, initialModel }) => {
         schema={schema}
         model={model}
         errors={errors}
-        translations={translationsFromProps}
         submitted={submitted}
         disabled={disabled}
         baseUrl=""

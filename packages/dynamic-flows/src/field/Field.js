@@ -161,7 +161,7 @@ export default class Field extends Component {
   }
 
   render() {
-    const { name, field, value, locale, label } = this.props;
+    const { name, field, value, label } = this.props;
 
     const control = field.control || getControlType_Legacy(field);
     const alert = this.updateAlert(control);
@@ -189,7 +189,6 @@ export default class Field extends Component {
           {...field}
           type={control}
           name={name}
-          locale={locale}
           value={value}
           onChange={(event) => this.onChange(event)}
           onFocus={(event) => this.onFocus(event)}
@@ -220,7 +219,7 @@ Field.propTypes = {
   ]),
   field: PropTypes.shape({
     type: PropTypes.oneOf(['string', 'number', 'integer', 'boolean', 'blob']).isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     required: PropTypes.bool,
     disabled: PropTypes.bool,
     hidden: PropTypes.bool,
@@ -257,6 +256,8 @@ Field.propTypes = {
     pattern: PropTypes.string,
     minLength: PropTypes.number,
     maxLength: PropTypes.number,
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date),
     minimum: PropTypes.number,
     maximum: PropTypes.number,
     uploadProps: PropTypes.shape({
@@ -313,18 +314,16 @@ Field.propTypes = {
       max: PropTypes.string,
     }),
   }).isRequired,
-  locale: PropTypes.string,
   countryCode: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   errorMessage: PropTypes.string,
   warningMessage: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
 
 Field.defaultProps = {
-  locale: 'en-GB',
   countryCode: null,
   value: null,
   errorMessage: null,

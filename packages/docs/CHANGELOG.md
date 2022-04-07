@@ -3,6 +3,137 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.1.2](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.1.1...@transferwise/neptune-docs@16.1.2) (2022-04-05)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.1.1](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.1.0...@transferwise/neptune-docs@16.1.1) (2022-04-04)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+# [16.1.0](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.23...@transferwise/neptune-docs@16.1.0) (2022-04-04)
+
+
+### Features
+
+* **ActionOption:** add showMediaCircle prop ([#1394](https://github.com/transferwise/neptune-web/issues/1394)) ([c82cc72](https://github.com/transferwise/neptune-web/commit/c82cc72e7ddce3c41d874be04bc045269477e374))
+
+
+
+
+
+## [16.0.23](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.22...@transferwise/neptune-docs@16.0.23) (2022-04-01)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.22](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.21...@transferwise/neptune-docs@16.0.22) (2022-03-31)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.21](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.20...@transferwise/neptune-docs@16.0.21) (2022-03-31)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.20](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.19...@transferwise/neptune-docs@16.0.20) (2022-03-29)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.19](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.18...@transferwise/neptune-docs@16.0.19) (2022-03-29)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.18](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.17...@transferwise/neptune-docs@16.0.18) (2022-03-29)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.17](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.16...@transferwise/neptune-docs@16.0.17) (2022-03-28)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.16](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.15...@transferwise/neptune-docs@16.0.16) (2022-03-25)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.15](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.14...@transferwise/neptune-docs@16.0.15) (2022-03-24)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.14](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.13...@transferwise/neptune-docs@16.0.14) (2022-03-24)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.13](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.12...@transferwise/neptune-docs@16.0.13) (2022-03-23)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.12](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.11...@transferwise/neptune-docs@16.0.12) (2022-03-23)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
+## [16.0.11](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.10...@transferwise/neptune-docs@16.0.11) (2022-03-22)
+
+**Note:** Version bump only for package @transferwise/neptune-docs
+
+
+
+
+
 ## [16.0.10](https://github.com/transferwise/neptune-web/compare/@transferwise/neptune-docs@16.0.9...@transferwise/neptune-docs@16.0.10) (2022-03-18)
 
 **Note:** Version bump only for package @transferwise/neptune-docs

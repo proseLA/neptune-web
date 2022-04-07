@@ -1,9 +1,16 @@
+import { Provider } from '@transferwise/components';
 import { mount, shallow } from 'enzyme';
 
 import DynamicAlert from '../../layout/alert';
+import { getI18n } from '../../test-utils';
 import GenericSchema from '../genericSchema';
 
 import ObjectSchema from './ObjectSchema';
+
+const mountOptions = {
+  wrappingComponent: Provider,
+  wrappingComponentProps: { i18n: getI18n() },
+};
 
 describe('Given a component for rendering object schemas', () => {
   let component;
@@ -31,12 +38,7 @@ describe('Given a component for rendering object schemas', () => {
     number: 'too low',
   };
 
-  const locale = 'en-GB';
   const submitted = false;
-
-  const translations = {
-    translationKey: 'example',
-  };
 
   let stringSchemaComponent;
   let numberSchemaComponent;
@@ -49,10 +51,8 @@ describe('Given a component for rendering object schemas', () => {
       schema,
       model,
       errors,
-      locale,
       onChange,
       submitted,
-      translations,
       onPersistAsync,
     };
     component = shallow(<ObjectSchema {...props} />);
@@ -88,16 +88,6 @@ describe('Given a component for rendering object schemas', () => {
   it('should pass the relevant part of the errors to the generic schema components', () => {
     expect(stringSchemaComponent.prop('errors')).toBe(errors.string);
     expect(numberSchemaComponent.prop('errors')).toBe(errors.number);
-  });
-
-  it('should pass the locale to the generic-schema components', () => {
-    expect(stringSchemaComponent.prop('locale')).toBe(locale);
-    expect(numberSchemaComponent.prop('locale')).toBe(locale);
-  });
-
-  it('should pass the translations to the generic-schema components', () => {
-    expect(stringSchemaComponent.prop('translations')).toBe(translations);
-    expect(numberSchemaComponent.prop('translations')).toBe(translations);
   });
 
   describe('when a generic schema component triggers onChange', () => {
@@ -243,7 +233,7 @@ describe('Given a component for rendering object schemas', () => {
     };
 
     beforeEach(() => {
-      component = mount(<ObjectSchema {...props} />);
+      component = mount(<ObjectSchema {...props} />, mountOptions);
 
       onChange.mockClear();
     });

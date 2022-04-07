@@ -158,7 +158,6 @@ PersistAsyncBasicSchema.propTypes = {
     hidden: PropTypes.bool,
     help: PropTypes.shape({}),
   }).isRequired,
-  translations: PropTypes.shape({}),
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
   onChange: PropTypes.func.isRequired,
@@ -168,7 +167,6 @@ PersistAsyncBasicSchema.propTypes = {
 };
 
 PersistAsyncBasicSchema.defaultProps = {
-  translations: {},
   errors: null,
   required: false,
 };

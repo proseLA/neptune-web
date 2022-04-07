@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-key */
 import { MarkdownNodeType } from '../common';
-import { render } from '../test-utils';
+import { render, screen } from '../test-utils';
 
 import Markdown from './Markdown';
 
@@ -108,5 +109,33 @@ describe('Markdown', () => {
       ({ container } = render(<Markdown blockList={blockList}>{sublist}</Markdown>));
       expect(container).toContainHTML(sublistOut);
     });
+  });
+
+  describe('config.link.target', () => {
+    it('adds a target=_blank attribute when specified', () => {
+      render(
+        <Markdown config={{ link: { target: '_blank' } }}>{`# Heading
+
+- [first link](./first-link)
+- [second link](./second-link)  
+      `}</Markdown>,
+      );
+
+      expect(screen.getByText('first link').closest('a')).toHaveAttribute('target', '_blank');
+      expect(screen.getByText('second link').closest('a')).toHaveAttribute('target', '_blank');
+    });
+  });
+
+  it('adds a target=_self attribute when nothing specified', () => {
+    render(
+      <Markdown>{`# Heading
+
+- [first link](./first-link)
+- [second link](./second-link)  
+      `}</Markdown>,
+    );
+
+    expect(screen.getByText('first link').closest('a')).toHaveAttribute('target', '_self');
+    expect(screen.getByText('second link').closest('a')).toHaveAttribute('target', '_self');
   });
 });

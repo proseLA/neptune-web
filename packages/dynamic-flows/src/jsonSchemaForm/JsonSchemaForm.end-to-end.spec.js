@@ -1,7 +1,10 @@
 import '@testing-library/jest-dom';
 
 import { render, screen, act, fireEvent } from '@testing-library/react';
+import { Provider } from '@transferwise/components';
 import { useState } from 'react';
+
+import { getI18n } from '../test-utils';
 
 import JsonSchemaForm from './JsonSchemaForm';
 
@@ -80,7 +83,6 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
     };
 
     const model = { string: 'foo' };
-    const locale = 'en-GB';
     const submitted = false;
     const disabled = false;
     props = {
@@ -89,16 +91,19 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
       errors,
       onChange,
       submitted,
-      locale,
       disabled,
       onPersistAsync,
       baseUrl,
     };
   });
 
+  function renderWithProvider(component) {
+    return render(<Provider i18n={getI18n()}>{component}</Provider>);
+  }
+
   describe('when initialised', () => {
     beforeEach(() => {
-      render(<JsonSchemaForm {...props} />);
+      renderWithProvider(<JsonSchemaForm {...props} />);
     });
 
     it('should render text input control', () => {
@@ -147,7 +152,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
 
   describe('when the text input value changes', () => {
     beforeEach(() => {
-      render(<JsonSchemaForm {...props} />);
+      renderWithProvider(<JsonSchemaForm {...props} />);
 
       fireEvent.change(screen.getByLabelText('String'), { target: { value: 'new' } });
     });
@@ -165,7 +170,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
 
   describe('when the text input value changes to something invalid', () => {
     beforeEach(() => {
-      render(<JsonSchemaForm {...props} />);
+      renderWithProvider(<JsonSchemaForm {...props} />);
 
       fireEvent.change(screen.getByLabelText('String'), { target: { value: 'x' } });
     });
@@ -211,7 +216,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
 
   describe('when disabled', () => {
     it('should disable the controls', () => {
-      render(<JsonSchemaForm {...props} disabled />);
+      renderWithProvider(<JsonSchemaForm {...props} disabled />);
 
       const controls = ['textbox', 'radio', 'button', 'spinbutton'];
       controls.forEach((control) => {
@@ -243,13 +248,17 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
 
     beforeEach(() => {
       props = { ...props, schema: optionalSchema };
-      node = render(<JsonSchemaForm {...props} />);
+      node = renderWithProvider(<JsonSchemaForm {...props} />);
     });
 
     it('should display validation errors', () => {
-      node.rerender(<JsonSchemaForm {...props} schema={requiredSchema} submitted />);
+      node.rerender(
+        <Provider i18n={getI18n()}>
+          <JsonSchemaForm {...props} schema={requiredSchema} submitted />
+        </Provider>,
+      );
 
-      expect(screen.getByText('Value is required...')).toBeInTheDocument();
+      expect(screen.getByText('Please fill out this field.')).toBeInTheDocument();
     });
   });
 
@@ -314,7 +323,6 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
             errors={{}}
             submitted={false}
             baseUrl=""
-            locale="en-GB"
             onChange={(newModel) => {
               setModel(newModel);
               onChange(newModel);
@@ -323,7 +331,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
           />
         );
       };
-      const view = render(<JsonSchemaFormWithModelState />);
+      const view = renderWithProvider(<JsonSchemaFormWithModelState />);
 
       return { ...view };
     };

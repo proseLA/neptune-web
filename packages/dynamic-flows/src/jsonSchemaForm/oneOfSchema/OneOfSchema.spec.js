@@ -1,12 +1,19 @@
+import { Provider } from '@transferwise/components';
 import { shallow, mount } from 'enzyme';
 
 import DynamicAlert from '../../layout/alert';
+import { getI18n } from '../../test-utils';
 import ControlFeedback from '../controlFeedback';
 import GenericSchema from '../genericSchema';
 import Help from '../help';
 import SchemaFormControl from '../schemaFormControl';
 
 import OneOfSchema from '.';
+
+const mountOptions = {
+  wrappingComponent: Provider,
+  wrappingComponentProps: { i18n: getI18n() },
+};
 
 describe('Given a oneOfSchema component', () => {
   let component;
@@ -20,12 +27,7 @@ describe('Given a oneOfSchema component', () => {
 
   let model = { b: 2, c: 3 };
   const errors = { a: 'error' };
-  const locale = 'en-GB';
   const submitted = false;
-
-  const translations = {
-    translationKey: 'example',
-  };
 
   beforeEach(() => {
     onChange = jest.fn();
@@ -74,10 +76,8 @@ describe('Given a oneOfSchema component', () => {
         schema,
         model,
         errors,
-        locale,
         onChange,
         submitted,
-        translations,
         onPersistAsync,
       };
       component = shallow(<OneOfSchema {...props} />);
@@ -108,14 +108,6 @@ describe('Given a oneOfSchema component', () => {
 
     it('should pass errors to the nested generic schema component', () => {
       expect(genericSchema.prop('errors')).toStrictEqual(errors);
-    });
-
-    it('should pass locale to the nested generic schema component', () => {
-      expect(genericSchema.prop('locale')).toStrictEqual(locale);
-    });
-
-    it('should pass translations to the nested generic schema component', () => {
-      expect(genericSchema.prop('translations')).toStrictEqual(translations);
     });
 
     describe('when some of the child schemas contain const properties', () => {
@@ -244,6 +236,7 @@ describe('Given a oneOfSchema component', () => {
           it('broadcasts onChange with the default value', () => {
             component = mount(
               <OneOfSchema {...props} schema={currencySchema} model={{}} onChange={onChange} />,
+              mountOptions,
             );
             expect(onChange).toHaveBeenLastCalledWith(
               currencySchema.default,
@@ -261,6 +254,7 @@ describe('Given a oneOfSchema component', () => {
                 schema={{ ...currencySchema, default: 'BANANA' }}
                 model={{}}
               />,
+              mountOptions,
             );
             const control = component.find(SchemaFormControl);
             expect(control.prop('value')).toBeNull();
@@ -274,6 +268,7 @@ describe('Given a oneOfSchema component', () => {
                 model={{}}
                 onChange={onChange}
               />,
+              mountOptions,
             );
             expect(onChange).not.toHaveBeenCalled();
           });
@@ -354,10 +349,8 @@ describe('Given a oneOfSchema component', () => {
         schema,
         model,
         errors,
-        locale,
         onChange,
         submitted,
-        translations,
         onPersistAsync,
       };
       component = shallow(<OneOfSchema {...props} />);
@@ -399,7 +392,6 @@ describe('Given a oneOfSchema component', () => {
       props = {
         schema,
         model,
-        locale,
         onChange,
         submitted,
         onPersistAsync,

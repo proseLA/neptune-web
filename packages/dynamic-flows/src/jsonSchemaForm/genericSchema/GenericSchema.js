@@ -59,8 +59,6 @@ GenericSchemaForm.propTypes = {
     PropTypes.shape({}),
   ]),
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
-  locale: PropTypes.string,
-  translations: PropTypes.shape({}),
   onChange: PropTypes.func.isRequired,
   submitted: PropTypes.bool.isRequired,
   hideTitle: PropTypes.bool,
@@ -71,8 +69,6 @@ GenericSchemaForm.propTypes = {
 GenericSchemaForm.defaultProps = {
   model: null,
   errors: null,
-  locale: 'en-GB',
-  translations: {},
   hideTitle: false,
   disabled: false,
 };

@@ -1,11 +1,17 @@
 import { InlineAlert } from '@transferwise/components';
+import { formatDate } from '@transferwise/formatting';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+
+import controlFeedbackMessages from './ControlFeedback.messages';
 
 const ControlFeedback = (props) => {
-  // Use validation messages from the schema if possible.
+  const defaultValidationMessages = useDefaultValidationMessages(props.schema);
+
   const validationMessages = {
-    ...props.validationMessages,
-    ...props.schema.validationMessages,
+    ...defaultValidationMessages, //       default validation messages
+    ...props.validationMessages, //        overridden by props
+    ...props.schema.validationMessages, // overriden by schema
   };
 
   const isErrorVisible = (props.submitted || !props.changed) && !!props.errors;
@@ -37,8 +43,8 @@ const ControlFeedback = (props) => {
 };
 
 const validationMessagesProps = PropTypes.shape({
-  min: PropTypes.string,
-  max: PropTypes.string,
+  minimum: PropTypes.string,
+  maximum: PropTypes.string,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
   pattern: PropTypes.string,
@@ -63,16 +69,38 @@ ControlFeedback.propTypes = {
 ControlFeedback.defaultProps = {
   errors: '',
   validations: [],
-  validationMessages: {
-    type: 'Incorrect type',
-    min: 'Value is too low',
-    max: 'Value it too high',
-    minLength: 'Value is too short',
-    maxLength: 'Value is too long',
-    pattern: 'Incorrect format',
-    required: 'Value is required...',
-  },
+  validationMessages: {},
   validationAsyncSuccessMessage: null,
 };
+
+function useDefaultValidationMessages(schema) {
+  const { formatMessage, locale } = useIntl();
+
+  const formattedMessages = {
+    type: formatMessage(controlFeedbackMessages.type),
+    minimum: formatMessage(controlFeedbackMessages.minimum, { minimum: schema.minimum }),
+    maximum: formatMessage(controlFeedbackMessages.maximum, { maximum: schema.maximum }),
+    minLength: formatMessage(controlFeedbackMessages.minLength, { minLength: schema.minLength }),
+    maxLength: formatMessage(controlFeedbackMessages.maxLength, { maxLength: schema.maxLength }),
+    pattern: formatMessage(controlFeedbackMessages.pattern),
+    required: formatMessage(controlFeedbackMessages.required),
+  };
+
+  if (schema.format === 'date') {
+    formattedMessages.pattern = formatMessage(controlFeedbackMessages.patternDate);
+    if (schema.minimum) {
+      formattedMessages.minimum = formatMessage(controlFeedbackMessages.minimumDate, {
+        minimum: formatDate(new Date(schema.minimum), locale, { dateStyle: 'long' }),
+      });
+    }
+    if (schema.maximum) {
+      formattedMessages.maximum = formatMessage(controlFeedbackMessages.maximumDate, {
+        maximum: formatDate(new Date(schema.maximum), locale, { dateStyle: 'long' }),
+      });
+    }
+  }
+
+  return formattedMessages;
+}
 
 export default ControlFeedback;

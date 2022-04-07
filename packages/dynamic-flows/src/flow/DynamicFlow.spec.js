@@ -22,8 +22,6 @@ describe('Given a component for rendering a dynamic flow', () => {
   let onStepChange;
   let onError;
 
-  const translations = { 'neptune.CloseButton.ariaLabel': 'label' };
-
   const successAction = {
     label: 'Submit',
     method: 'POST',
@@ -1023,8 +1021,6 @@ describe('Given a component for rendering a dynamic flow', () => {
           onStepChange={onStepChange}
           onError={onError}
         />,
-        'en-GB',
-        translations,
       );
     });
 

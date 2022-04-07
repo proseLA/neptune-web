@@ -22,7 +22,6 @@ describe('Given a component for rendering validation async schemas', () => {
     },
   };
   const required = true;
-  const translations = {};
   const submitted = false;
 
   jest.spyOn(global, 'fetch').mockImplementation((input, init) => {
@@ -84,7 +83,6 @@ describe('Given a component for rendering validation async schemas', () => {
     props = {
       schema,
       onChange,
-      translations,
       submitted,
       required,
     };

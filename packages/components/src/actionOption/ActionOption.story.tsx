@@ -15,6 +15,7 @@ const Template = () => {
   const actionText = text('action', 'Action');
   const disabled = boolean('disabled', false);
   const showMediaAtAllSizes = boolean('showMediaAtAllSizes', false);
+  const showMediaCircle = boolean('showMediaCircle', false);
 
   return (
     <ActionOption
@@ -25,6 +26,7 @@ const Template = () => {
       complex={false}
       disabled={disabled}
       showMediaAtAllSizes={showMediaAtAllSizes}
+      showMediaCircle={showMediaCircle}
       onClick={action('Button Clicked')}
     />
   );

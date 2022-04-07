@@ -42,4 +42,12 @@ function mountWithProviders(
   );
 }
 
-export { mountWithProviders as mount, getMockFetchPromise, wait };
+function getI18n(
+  locale = 'en-GB',
+  // eslint-disable-next-line unicorn/no-object-as-default-parameter
+  messages = { ...componentTranslations['en'] },
+) {
+  return { locale, messages };
+}
+
+export { mountWithProviders as mount, getMockFetchPromise, wait, getI18n };

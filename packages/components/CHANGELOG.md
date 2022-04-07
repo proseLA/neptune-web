@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [40.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.4.0...@transferwise/components@40.5.0) (2022-04-04)
+
+
+### Features
+
+* **ActionOption:** add showMediaCircle prop ([#1394](https://github.com/transferwise/neptune-web/issues/1394)) ([c82cc72](https://github.com/transferwise/neptune-web/commit/c82cc72e7ddce3c41d874be04bc045269477e374))
+
+
+
+
+
+# [40.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.3.0...@transferwise/components@40.4.0) (2022-03-31)
+
+
+### Features
+
+* markdown to optionally add `target=_blank` to links ([#1371](https://github.com/transferwise/neptune-web/issues/1371)) ([e1f7d29](https://github.com/transferwise/neptune-web/commit/e1f7d29bcfdf1a751405dd22ce6bc9a1602d7b90))
+
+
+
+
+
+# [40.3.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.3...@transferwise/components@40.3.0) (2022-03-29)
+
+
+### Features
+
+* **Card:** make icon property optional ([#1382](https://github.com/transferwise/neptune-web/issues/1382)) ([9d3cbbe](https://github.com/transferwise/neptune-web/commit/9d3cbbed515c9985bef6bc0bef9b82ff6a9beda9))
+
+
+
+
+
+## [40.2.3](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.2...@transferwise/components@40.2.3) (2022-03-29)
+
+
+### Bug Fixes
+
+* **Badge:** default and ltr directions ([#1381](https://github.com/transferwise/neptune-web/issues/1381)) ([283d900](https://github.com/transferwise/neptune-web/commit/283d9008ba98be18dca11dc30993514e0d795b40))
+* **UploadInput:** border color ([be21247](https://github.com/transferwise/neptune-web/commit/be212471d90f33e1b22fb364447d8b7f2c287546))
+
+
+
+
+
+## [40.2.2](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.1...@transferwise/components@40.2.2) (2022-03-24)
+
+**Note:** Version bump only for package @transferwise/components
+
+
+
+
+
+## [40.2.1](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.2.0...@transferwise/components@40.2.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* **Modal:** re-enables scrolling based on content or viewport ([9882d92](https://github.com/transferwise/neptune-web/commit/9882d929e0fcd165c86bd0c2e56ac0c45e2561d2))
+
+
+
+
+
 # [40.2.0](https://github.com/transferwise/neptune-web/compare/@transferwise/components@40.1.1...@transferwise/components@40.2.0) (2022-03-16)
 
 

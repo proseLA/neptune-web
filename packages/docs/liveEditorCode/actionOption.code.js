@@ -6,6 +6,7 @@
       action="Action"
       onClick={console.log}
       media={<FastFlagIcon size={24} />}
+      showMediaCircle={true}
     />
   );
 };

@@ -38,14 +38,6 @@ JsonSchemaForm.propTypes = {
    */
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.shape({})]),
   /**
-   * The user's locale, this will affect the rendering of some components e.g. dates.
-   */
-  locale: PropTypes.string,
-  /**
-   * Translations used to enhance components.
-   */
-  translations: PropTypes.shape({}),
-  /**
    * Fires when the internal data model changes as a result of form interaction.
    *
    * Provide four params:
@@ -78,8 +70,6 @@ JsonSchemaForm.propTypes = {
 JsonSchemaForm.defaultProps = {
   model: null,
   errors: null,
-  locale: 'en-GB',
-  translations: {},
   disabled: false,
   baseUrl: '',
 };

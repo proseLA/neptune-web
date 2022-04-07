@@ -27,7 +27,6 @@ describe('Given a component for rendering persist async schemas', () => {
   };
   const errors = 'some error';
   const required = true;
-  const translations = {};
   const submitted = false;
 
   jest.spyOn(global, 'fetch').mockImplementation((input, init) => {
@@ -91,7 +90,6 @@ describe('Given a component for rendering persist async schemas', () => {
       schema,
       onChange,
       onPersistAsync,
-      translations,
       submitted,
       errors,
       required,

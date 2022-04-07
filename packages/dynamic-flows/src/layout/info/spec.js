@@ -10,12 +10,16 @@ describe('Given a component for dynamically rendering information with markdown'
   beforeEach(() => {
     spec = {
       component: 'info',
-      markdown: '### Title ###',
+      markdown: '### Title ###\n[first link](./first-link)',
     };
     component = shallow(<DynamicInfo component={spec} />);
   });
 
   it('should render the markdown in a markdown component', () => {
     expect(component.find(Markdown).contains(spec.markdown)).toBe(true);
+  });
+
+  it('should render links with target=_blank', () => {
+    expect(component.find(Markdown).html()).toMatch(/target="_blank"/);
   });
 });

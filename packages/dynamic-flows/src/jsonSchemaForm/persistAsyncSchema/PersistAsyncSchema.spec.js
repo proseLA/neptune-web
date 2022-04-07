@@ -9,7 +9,7 @@ describe('Given a component for rendering persist async schemas', () => {
   let onPersistAsync = jest.fn();
   const errors = 'some error';
   const required = true;
-  const translations = {};
+
   const submitted = false;
 
   const param = 'aParam';
@@ -61,7 +61,6 @@ describe('Given a component for rendering persist async schemas', () => {
       schema,
       onChange,
       onPersistAsync,
-      translations,
       submitted,
       errors,
       required,

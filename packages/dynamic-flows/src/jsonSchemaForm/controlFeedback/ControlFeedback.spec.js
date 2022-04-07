@@ -1,5 +1,7 @@
-import { InlineAlert } from '@transferwise/components';
-import { shallow } from 'enzyme';
+import { InlineAlert, Provider } from '@transferwise/components';
+import { mount } from 'enzyme';
+
+import { getI18n } from '../../test-utils';
 
 import ControlFeedback from '.';
 
@@ -40,7 +42,10 @@ describe('Given a component for rendering feedback next to controls', () => {
 
     props = { schema, validations, validationMessages };
     states = { changed, focused, blurred, submitted, errors };
-    component = shallow(<ControlFeedback {...states} {...props} />);
+    component = mount(<ControlFeedback {...states} {...props} />, {
+      wrappingComponent: Provider,
+      wrappingComponentProps: { i18n: getI18n() },
+    });
   });
 
   describe('when initialised without error', () => {

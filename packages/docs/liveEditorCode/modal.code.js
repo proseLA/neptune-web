@@ -21,6 +21,7 @@
         onClose={() => setOpen(false)}
         size={Size.MEDIUM}
         title="I'm a hipster!"
+        scroll={Scroll.VIEWPORT}
         className=""
         footer={
           <Button block onClick={() => alert('clicked')}>

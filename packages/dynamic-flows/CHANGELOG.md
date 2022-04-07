@@ -3,6 +3,157 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.3...@transferwise/dynamic-flows@18.8.0) (2022-04-05)
+
+
+### Features
+
+* Add description to decisions when available in the layout ([#1392](https://github.com/transferwise/neptune-web/issues/1392)) ([dc6aec2](https://github.com/transferwise/neptune-web/commit/dc6aec264f455f6151109b3df48463dd84b40f15))
+
+
+
+
+
+## [18.7.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.2...@transferwise/dynamic-flows@18.7.3) (2022-04-04)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** Fix date schema validation message ([#1395](https://github.com/transferwise/neptune-web/issues/1395)) ([fc903d5](https://github.com/transferwise/neptune-web/commit/fc903d593146e6e678e10cd5d8e3d755e36d660b))
+
+
+
+
+
+## [18.7.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.1...@transferwise/dynamic-flows@18.7.2) (2022-04-04)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [18.7.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.0...@transferwise/dynamic-flows@18.7.1) (2022-04-01)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [18.7.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.6.1...@transferwise/dynamic-flows@18.7.0) (2022-03-31)
+
+
+### Features
+
+* adding config to open link in info schema in a new tab ([#1386](https://github.com/transferwise/neptune-web/issues/1386)) ([381aca6](https://github.com/transferwise/neptune-web/commit/381aca6248ae926edbb9a418ad9f5832163d083b))
+
+
+
+
+
+## [18.6.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.6.0...@transferwise/dynamic-flows@18.6.1) (2022-03-31)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [18.6.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.5.3...@transferwise/dynamic-flows@18.6.0) (2022-03-29)
+
+
+### Features
+
+* **dynamic-flows:** update default validation messages ([#1379](https://github.com/transferwise/neptune-web/issues/1379)) ([c738eae](https://github.com/transferwise/neptune-web/commit/c738eae3cc7efd65b3d9b041381c0c62f8b476ed))
+
+
+
+
+
+## [18.5.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.5.2...@transferwise/dynamic-flows@18.5.3) (2022-03-29)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [18.5.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.5.1...@transferwise/dynamic-flows@18.5.2) (2022-03-29)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [18.5.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.5.0...@transferwise/dynamic-flows@18.5.1) (2022-03-28)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+# [18.5.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.5...@transferwise/dynamic-flows@18.5.0) (2022-03-25)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** update en.json file after new messages were added in a previous PR ([#1376](https://github.com/transferwise/neptune-web/issues/1376)) ([e9ecfdd](https://github.com/transferwise/neptune-web/commit/e9ecfddd98897689a66fd6fc16fb0f48f074c2d3))
+
+
+### Features
+
+* **dynamic-flows:** localise default validation messages in ControlFeedback component ([#1375](https://github.com/transferwise/neptune-web/issues/1375)) ([c0b03e5](https://github.com/transferwise/neptune-web/commit/c0b03e5f0fdc2f0fbfc7256d644bec344a2afed7))
+
+
+
+
+
+## [18.4.5](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.4...@transferwise/dynamic-flows@18.4.5) (2022-03-24)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [18.4.4](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.3...@transferwise/dynamic-flows@18.4.4) (2022-03-24)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [18.4.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.2...@transferwise/dynamic-flows@18.4.3) (2022-03-23)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
+## [18.4.2](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.1...@transferwise/dynamic-flows@18.4.2) (2022-03-23)
+
+
+### Bug Fixes
+
+* **dynamic-flows:** min/max validation messages ([#1370](https://github.com/transferwise/neptune-web/issues/1370)) ([33447bd](https://github.com/transferwise/neptune-web/commit/33447bdf74a558fdd0ad17f05ef9a58d8930a344))
+
+
+
+
+
+## [18.4.1](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.4.0...@transferwise/dynamic-flows@18.4.1) (2022-03-22)
+
+**Note:** Version bump only for package @transferwise/dynamic-flows
+
+
+
+
+
 # [18.4.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.3.3...@transferwise/dynamic-flows@18.4.0) (2022-03-18)
 
 

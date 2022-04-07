@@ -7,7 +7,7 @@ import { getMarginBottom } from '../utils';
 
 const getMedia = (option) => {
   if (option.icon) {
-    return <DynamicIcon type={option.icon} />;
+    return <DynamicIcon type={option.icon.name} />;
   } else if (option.image?.url) {
     // eslint-disable-next-line jsx-a11y/img-redundant-alt
     return <img src={option.image?.url} alt={option.image?.text} />;
@@ -51,7 +51,9 @@ DynamicDecision.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         action: actionModel.isRequired,
-        icon: PropTypes.string,
+        icon: PropTypes.shape({
+          name: PropTypes.string,
+        }),
         image: PropTypes.shape({
           url: PropTypes.string,
         }),

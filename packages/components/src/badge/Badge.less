@@ -38,15 +38,13 @@
     // Not possible to add a logical property (inset-inline-start) to replace left position inside a gradient.
     // RTL direction sorted out with conditional attributes.
 
-    [dir="ltr"] & {
-      mask-image:
-        radial-gradient(
-          circle at top calc(100% - var(--badge-mask-offset)) left calc(100% - var(--badge-mask-offset)),
-          transparent 0,
-          transparent calc(var(--badge-size) / 2 + var(--badge-mask)),
-          black calc(var(--badge-size) / 2 + var(--badge-mask) + 0.5px)
-        );
-    }
+    mask-image:
+      radial-gradient(
+        circle at top calc(100% - var(--badge-mask-offset)) left calc(100% - var(--badge-mask-offset)),
+        transparent 0,
+        transparent calc(var(--badge-size) / 2 + var(--badge-mask)),
+        black calc(var(--badge-size) / 2 + var(--badge-mask) + 0.5px)
+      );
 
     [dir="rtl"] & {
       mask-image:

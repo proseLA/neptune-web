@@ -1,6 +1,8 @@
+import { Provider } from '@transferwise/components';
 import { shallow, mount } from 'enzyme';
 
 import DynamicAlert from '../../layout/alert';
+import { getI18n } from '../../test-utils';
 import ControlFeedback from '../controlFeedback';
 import Help from '../help';
 import SchemaFormControl from '../schemaFormControl';
@@ -26,8 +28,9 @@ describe('Given a component for rendering basic type schemas', () => {
   const required = true;
   const submitted = false;
 
-  const translations = {
-    translationKey: 'example',
+  const mountOptions = {
+    wrappingComponent: Provider,
+    wrappingComponentProps: { i18n: getI18n() },
   };
 
   beforeEach(() => {
@@ -38,7 +41,7 @@ describe('Given a component for rendering basic type schemas', () => {
     beforeEach(() => {
       model = 'foo';
 
-      props = { schema, model, errors, required, onChange, submitted, translations };
+      props = { schema, model, errors, required, onChange, submitted };
       component = shallow(<BasicTypeSchema {...props} />);
 
       formControl = component.find(SchemaFormControl);
@@ -167,7 +170,7 @@ describe('Given a component for rendering basic type schemas', () => {
       it('should broadcast null value for optional field when valid input changes to empty string', () => {
         model = 'foo';
         const isRequired = false;
-        props = { schema, model, errors, isRequired, onChange, submitted, translations };
+        props = { schema, model, errors, isRequired, onChange, submitted };
         component = shallow(<BasicTypeSchema {...props} />);
 
         formControl = component.find(SchemaFormControl);
@@ -210,7 +213,7 @@ describe('Given a component for rendering basic type schemas', () => {
 
     describe('when submitted changes to true without a change to the model', () => {
       beforeEach(() => {
-        component = mount(<BasicTypeSchema {...props} required model={null} />);
+        component = mount(<BasicTypeSchema {...props} required model={null} />, mountOptions);
       });
 
       it('should update validations using the current model', () => {
@@ -243,10 +246,10 @@ describe('Given a component for rendering basic type schemas', () => {
   describe('when initialised without a model and there is a default', () => {
     beforeEach(() => {
       model = null;
-      props = { schema, model, errors, required, onChange, submitted, translations };
+      props = { schema, model, errors, required, onChange, submitted };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
-      component = mount(<BasicTypeSchema {...props} />);
+      component = mount(<BasicTypeSchema {...props} />, mountOptions);
     });
 
     it('should call the onChange handler with the default', () => {
@@ -260,10 +263,10 @@ describe('Given a component for rendering basic type schemas', () => {
     beforeEach(() => {
       model = null;
 
-      props = { schema: constSchema, model, errors, required, onChange, submitted, translations };
+      props = { schema: constSchema, model, errors, required, onChange, submitted };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
-      component = mount(<BasicTypeSchema {...props} />);
+      component = mount(<BasicTypeSchema {...props} />, mountOptions);
     });
 
     it('should call the onChange handler with the const', () => {
@@ -287,10 +290,10 @@ describe('Given a component for rendering basic type schemas', () => {
     beforeEach(() => {
       model = null;
 
-      props = { schema: enumSchema, model, errors, required, onChange, submitted, translations };
+      props = { schema: enumSchema, model, errors, required, onChange, submitted };
       // useEffect is not currently called when using shallow
       // https://github.com/airbnb/enzyme/issues/2086
-      component = mount(<BasicTypeSchema {...props} />);
+      component = mount(<BasicTypeSchema {...props} />, mountOptions);
     });
 
     it('should call the onChange handler with the const', () => {

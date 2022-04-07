@@ -47,17 +47,13 @@ describe.each(data)(
     let formControlComponent;
 
     const id = 'id';
-    const locale = 'en-GB';
-    const translations = {
-      translationKey: 'example',
-    };
 
     beforeEach(() => {
       onChange = jest.fn();
       onFocus = jest.fn();
       onBlur = jest.fn();
       events = { onChange, onFocus, onBlur };
-      sharedProps = { id, locale, translations };
+      sharedProps = { id };
 
       props = { ...events, ...sharedProps, value, schema };
 
@@ -87,17 +83,13 @@ describe('Given a component for rendering a form control based on a schema', () 
   let formControlComponent;
 
   const id = 'id';
-  const locale = 'en-GB';
-  const translations = {
-    translationKey: 'example',
-  };
 
   beforeEach(() => {
     onChange = jest.fn();
     onFocus = jest.fn();
     onBlur = jest.fn();
     events = { onChange, onFocus, onBlur };
-    sharedProps = { id, locale, translations };
+    sharedProps = { id };
     schema = { type: 'string' };
 
     props = { ...events, ...sharedProps, value, schema };
@@ -112,10 +104,6 @@ describe('Given a component for rendering a form control based on a schema', () 
 
   it('should pass the id to the FormControl', () => {
     expect(formControlComponent.prop('id')).toBe(id);
-  });
-
-  it('should pass the locale to the FormControl', () => {
-    expect(formControlComponent.prop('locale')).toBe(locale);
   });
 
   it('should tell the FormControl to allow autoComplete', () => {

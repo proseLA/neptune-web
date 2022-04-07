@@ -24,6 +24,22 @@ describe('ActionOption', () => {
     expect(screen.getByText('title')).toBeInTheDocument();
     expect(screen.getByText('content')).toBeInTheDocument();
     expect(screen.getByTestId('fast-flag')).toBeInTheDocument();
+    expect(document.querySelector('.np-option__no-media-circle')).not.toBeInTheDocument();
+  });
+
+  it('renders media not in circle', () => {
+    render(
+      <ActionOption
+        media={<FastFlag data-testid="fast-flag" />}
+        title="title"
+        content="content"
+        action="action"
+        showMediaCircle={false}
+        onClick={() => {}}
+      />,
+    );
+
+    expect(document.querySelector('.np-option__no-media-circle')).toBeInTheDocument();
   });
 
   it('fires the onClick handler when you click on the action', () => {
