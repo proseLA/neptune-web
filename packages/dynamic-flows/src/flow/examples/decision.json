@@ -2,6 +2,7 @@
   "type": "decision",
   "key": "decide-thing-type",
   "title": "Who do you want to send the money to?",
+  "description": "Choose one option",
   "layout": [
     {
       "type": "decision",
@@ -12,7 +13,10 @@
           "icon": {
             "name": "plus"
           },
-          "url": "/recipient"
+          "action": {
+            "title":"",
+            "url": "/recipient"
+          }
         },
         {
           "title": "Choose an existing recipient",
@@ -20,7 +24,10 @@
           "icon": {
             "name": "bank"
           },
-          "url": "/recipient"
+          "action": {
+            "title":"",
+            "url": "/existingRecipient"
+          }
         }
       ]
     }

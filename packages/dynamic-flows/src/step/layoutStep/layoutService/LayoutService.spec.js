@@ -347,6 +347,39 @@ describe('Given a utility service for handling dynamic layouts', () => {
 
       expect(convertStepToLayout(formStep)).toStrictEqual(finalLayout);
     });
+
+    it('should add title and description to existing layout', () => {
+      const formStep = {
+        type: 'form',
+        title: 'Step 1',
+        description: 'Please create a thing',
+        layout: [
+          {
+            options: [],
+          },
+        ],
+      };
+
+      const finalLayout = [
+        {
+          type: 'heading',
+          text: formStep.title,
+          size: 'lg',
+          margin: 'lg',
+          align: 'center',
+        },
+        {
+          type: 'paragraph',
+          text: formStep.description,
+          align: 'center',
+        },
+        {
+          options: [],
+        },
+      ];
+
+      expect(convertStepToLayout(formStep)).toStrictEqual(finalLayout);
+    });
   });
 
   describe('when asked to inline references by id', () => {

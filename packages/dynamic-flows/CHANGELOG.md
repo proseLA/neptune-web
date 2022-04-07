@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.8.0](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.3...@transferwise/dynamic-flows@18.8.0) (2022-04-05)
+
+
+### Features
+
+* Add description to decisions when available in the layout ([#1392](https://github.com/transferwise/neptune-web/issues/1392)) ([dc6aec2](https://github.com/transferwise/neptune-web/commit/dc6aec264f455f6151109b3df48463dd84b40f15))
+
+
+
+
+
 ## [18.7.3](https://github.com/transferwise/neptune-web/compare/@transferwise/dynamic-flows@18.7.2...@transferwise/dynamic-flows@18.7.3) (2022-04-04)
 
 
