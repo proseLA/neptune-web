@@ -82,7 +82,7 @@ describe('FormControl', () => {
 
     testChangeHandler(() => {
       component.find('button.dropdown-toggle').simulate('click');
-      component.find('li.tw-dropdown-item').last().simulate('click');
+      component.find('li.np-dropdown-item').last().simulate('click');
     }, '2');
 
     testBlurHandler(() => {

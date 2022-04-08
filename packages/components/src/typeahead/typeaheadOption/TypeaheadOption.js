@@ -12,8 +12,8 @@ const Option = (props) => {
     <li
       role="option"
       aria-selected="false"
-      className={classNames('typeahead__option tw-dropdown-item tw-dropdown-item--clickable', {
-        'tw-dropdown-item--focused': selected,
+      className={classNames('typeahead__option np-dropdown-item np-dropdown-item--clickable', {
+        'np-dropdown-item--focused': selected,
       })}
     >
       <a className="dropdown-item" href="#" onClick={onClick}>

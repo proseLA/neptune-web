@@ -1,19 +1,17 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { Component, createRef } from 'react';
-import Transition from 'react-transition-group/Transition';
+import { createRef, useState, useEffect, useRef } from 'react';
 
+import Button from '../button';
 import Chevron from '../chevron';
-import { Breakpoint } from '../common';
-import {
-  addClickClassToDocumentOnIos,
-  removeClickClassFromDocumentOnIos,
-} from '../common/domHelpers';
+import { Position, Size, Priority, stopPropagation } from '../common';
+import BottomSheet from '../common/bottomSheet';
+import { useLayout } from '../common/hooks';
 import KeyCodes from '../common/keyCodes';
-import Dimmer from '../dimmer';
-import SlidingPanel from '../slidingPanel';
+import Dropdown from '../common/panel';
+import Drawer from '../drawer';
 
-import { addClassAndTriggerReflow, removeClass } from './domHelpers';
+import messages from './Select.messages';
 import Option from './option';
 import SearchBox from './searchBox';
 
@@ -21,36 +19,16 @@ function clamp(from, to, value) {
   return Math.max(Math.min(to, value), from);
 }
 
-function actionableOption(option) {
-  return !option.header && !option.separator && !option.disabled;
+function isActionableOption({ header, separator, disabled }) {
+  return !header && !separator && !disabled;
 }
 
 const isFunction = (functionToCheck) =>
   functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 
-function stopPropagation(event) {
-  event.stopPropagation();
-  event.preventDefault();
-  if (event.nativeEvent && event.nativeEvent.stopImmediatePropagation) {
-    event.nativeEvent.stopImmediatePropagation();
-  }
-  // document listener does not use SyntheticEvents
-}
-
-function getShouldRenderWithPortal() {
-  return (
-    typeof document !== 'undefined' &&
-    typeof window !== 'undefined' &&
-    window.matchMedia &&
-    window.matchMedia(`(max-width: ${Breakpoint.SMALL}px)`).matches
-  );
-}
+const DEFAULT_SEARCH_VALUE = '';
 
 const OPTIONS_PAGE_SIZE = 100;
-
-const BOOTSTRAP_DROPDOWN_ANIMATION_TIME = 200;
-
-const defer = (fn) => setTimeout(fn, 0);
 
 const includesString = (string1, string2) => string1.toLowerCase().includes(string2.toLowerCase());
 
@@ -64,69 +42,33 @@ const defaultFilterFunction = (option, keyword) =>
   (option.currency && includesString(option.currency, keyword)) ||
   (option.searchStrings && arrayIncludesString(option.searchStrings, keyword));
 
-export default class Select extends Component {
-  static getDerivedStateFromProps(props, state) {
-    const hasActiveOptions = !!props.options.length;
+export default function Select(props) {
+  const s = (className) => props.classNames[className] || className;
+  const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState(DEFAULT_SEARCH_VALUE);
+  const [keyboardFocusedOptionIndex, setKeyboardFocusedOptionIndex] = useState(null);
+  const previousKeyboardFocusedOptionIndex = useRef();
+  const [numberOfOptionsShown, setNumberOfOptionsShown] = useState(OPTIONS_PAGE_SIZE);
+  const searchBoxReference = createRef();
+  const dropdownMenuReference = createRef();
+  const isSearchEnabled = !!props.onSearchChange || !!props.search;
 
-    if (state.open && (props.searchValue !== '' || state.searchValue !== '')) {
-      if (hasActiveOptions && state.keyboardFocusedOptionIndex === null) {
-        return {
-          keyboardFocusedOptionIndex: 0,
-        };
-      }
-      if (!hasActiveOptions && state.keyboardFocusedOptionIndex !== null) {
-        return {
-          keyboardFocusedOptionIndex: null,
-        };
-      }
-    }
+  const { isMobile } = useLayout();
 
-    return null;
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      searchValue: '',
-      keyboardFocusedOptionIndex: null,
-      numberOfOptionsShown: OPTIONS_PAGE_SIZE,
-    };
-    this.searchBoxRef = createRef();
-    this.dropdownMenuRef = createRef();
-  }
-
-  componentDidMount() {
-    this.setState({
-      shouldRenderWithPortal: getShouldRenderWithPortal(),
-    });
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  componentWillUnmount() {
-    this.close();
-    window.removeEventListener('resize', this.handleResize);
-  }
-
-  handleResize = () => {
-    this.setState({
-      shouldRenderWithPortal: getShouldRenderWithPortal(),
-    });
+  const handleOnClick = () => {
+    setOpen(true);
   };
 
-  getIndexWithoutHeadersForIndexWithHeaders(index) {
-    return this.getOptions().reduce((sum, option, currentIndex) => {
-      if (currentIndex < index && actionableOption(option)) {
-        return sum + 1;
-      }
-      return sum;
-    }, 0);
-  }
+  const handleTouchStart = (event) => {
+    if (event.currentTarget === event.target && open) {
+      handleCloseOptions();
+    }
+  };
 
-  handleOnFocus = (event) => this.props.onFocus && this.props.onFocus(event);
+  const handleOnFocus = (event) => props.onFocus && props.onFocus(event);
 
-  handleOnBlur = (event) => {
-    const { onBlur } = this.props;
+  const handleOnBlur = (event) => {
+    const { onBlur } = props;
     const { nativeEvent } = event;
     if (nativeEvent) {
       const elementReceivingFocus = nativeEvent.relatedTarget;
@@ -141,73 +83,71 @@ export default class Select extends Component {
     }
   };
 
-  getOptions = (options = this.props.options) => {
-    const { search } = this.props;
+  const getOptions = (options = props.options) => {
+    const { search } = props;
 
-    if (!search || !this.state.searchValue) {
+    if (!search || !searchValue) {
       return options;
     }
 
     const filterFunction = isFunction(search) ? search : defaultFilterFunction;
 
-    return options.filter((option) => filterFunction(option, this.state.searchValue));
+    return options.filter((option) => filterFunction(option, searchValue));
   };
 
-  handleSearchChange = (event) => {
-    this.setState({ numberOfOptionsShown: OPTIONS_PAGE_SIZE }); // Reset.
-    if (this.props.onSearchChange) {
-      this.props.onSearchChange(event.target.value);
+  const handleSearchChange = (event) => {
+    setNumberOfOptionsShown(OPTIONS_PAGE_SIZE);
+    if (props.onSearchChange) {
+      props.onSearchChange(event.target.value);
     } else {
-      this.setState({
-        searchValue: event.target.value,
-      });
+      setSearchValue(event.target.value);
     }
   };
 
-  handleKeyDown = (event) => {
-    const { open } = this.state;
+  const handleKeyDown = (event) => {
+    console.log('handleKeyDown');
     switch (event.keyCode) {
       case KeyCodes.UP:
         if (open) {
-          this.moveFocusWithDifference(-1);
+          moveFocusWithDifference(-1);
         } else {
-          this.open();
+          setOpen(true);
         }
         event.preventDefault();
         break;
       case KeyCodes.DOWN:
         if (open) {
-          this.moveFocusWithDifference(1);
+          moveFocusWithDifference(1);
         } else {
-          this.open();
+          setOpen(true);
         }
         event.preventDefault();
         break;
       case KeyCodes.SPACE:
-        if (event.target !== this.searchBoxRef.current) {
+        if (event.target !== searchBoxReference.current) {
           if (open) {
-            this.selectKeyboardFocusedOption();
+            selectKeyboardFocusedOption();
           } else {
-            this.open();
+            setOpen(true);
           }
           event.preventDefault();
         }
         break;
       case KeyCodes.ENTER:
         if (open) {
-          this.selectKeyboardFocusedOption();
+          selectKeyboardFocusedOption();
         } else {
-          this.open();
+          setOpen(true);
         }
         event.preventDefault();
         break;
       case KeyCodes.ESCAPE:
-        this.close();
+        handleCloseOptions();
         event.preventDefault();
         break;
       case KeyCodes.TAB:
         if (open) {
-          this.selectKeyboardFocusedOption();
+          selectKeyboardFocusedOption();
         }
         break;
       default:
@@ -215,160 +155,103 @@ export default class Select extends Component {
     }
   };
 
-  selectKeyboardFocusedOption() {
-    if (this.state.keyboardFocusedOptionIndex !== null) {
-      const index = this.state.keyboardFocusedOptionIndex;
-      this.selectOption(this.getOptions().filter(actionableOption)[index]);
+  function selectKeyboardFocusedOption() {
+    if (keyboardFocusedOptionIndex !== null) {
+      selectOption(getOptions().filter(isActionableOption)[keyboardFocusedOptionIndex]);
     }
   }
 
-  moveFocusWithDifference(difference) {
-    this.setState((previousState, previousProps) => {
-      const optionsWithoutHeaders = this.getOptions(previousProps.options).filter(actionableOption);
-      const selectedOptionIndex = optionsWithoutHeaders.reduce((optionIndex, current, index) => {
-        if (optionIndex !== null) {
-          return optionIndex;
-        }
-        if (previousProps.selected && previousProps.selected.value === current.value) {
-          return index;
-        }
-        return null;
-      }, null);
-      const previousFocusedIndex = previousState.keyboardFocusedOptionIndex;
-      let indexToStartMovingFrom = previousFocusedIndex;
-      if (previousFocusedIndex === null && selectedOptionIndex === null) {
-        return { keyboardFocusedOptionIndex: 0 };
+  function moveFocusWithDifference(difference) {
+    console.log('moveFocusWithDifference', difference);
+    const optionsWithoutHeaders = getOptions(props.options).filter(isActionableOption);
+    const selectedOptionIndex = optionsWithoutHeaders.reduce((optionIndex, current, index) => {
+      if (optionIndex !== null) {
+        return optionIndex;
       }
-      if (previousFocusedIndex === null && selectedOptionIndex !== null) {
-        indexToStartMovingFrom = selectedOptionIndex;
+      if (props.selected && props.selected.value === current.value) {
+        return index;
       }
-      const unClampedNewIndex = indexToStartMovingFrom + difference;
-      const newIndex = clamp(0, optionsWithoutHeaders.length - 1, unClampedNewIndex);
-      return { keyboardFocusedOptionIndex: newIndex };
-    });
+      return null;
+    }, null);
+    const previousFocusedIndex = previousKeyboardFocusedOptionIndex.current;
+    let indexToStartMovingFrom = previousFocusedIndex;
+    if (previousFocusedIndex === null && selectedOptionIndex === null) {
+      setKeyboardFocusedOptionIndex(0);
+    }
+    if (previousFocusedIndex === null && selectedOptionIndex !== null) {
+      indexToStartMovingFrom = selectedOptionIndex;
+    }
+    const unClampedNewIndex = indexToStartMovingFrom + difference;
+    const newIndex = clamp(0, optionsWithoutHeaders.length - 1, unClampedNewIndex);
+    setKeyboardFocusedOptionIndex(newIndex);
   }
 
-  open() {
-    // TODO: should also add breakpoint-specific overflow:hidden class to body
-    this.setState({ open: true }, () => {
-      const isTouchDevice =
-        typeof window !== 'undefined' &&
-        window.matchMedia &&
-        !!window.matchMedia('(pointer: coarse)').matches;
-      const searchable = !!this.props.onSearchChange || !!this.props.search;
+  useEffect(() => {
+    previousKeyboardFocusedOptionIndex.current = keyboardFocusedOptionIndex;
+  }, [keyboardFocusedOptionIndex]);
 
-      defer(() => {
-        if (!isTouchDevice && searchable && this.searchBoxRef.current) {
-          this.searchBoxRef.current.focus();
-        }
-
-        addClickClassToDocumentOnIos();
-        document.addEventListener('click', this.handleDocumentClick, false);
-      });
-    });
-  }
-
-  close() {
-    this.setState({ open: false, keyboardFocusedOptionIndex: null }, () => {
-      defer(() => {
-        removeClickClassFromDocumentOnIos();
-        document.removeEventListener('click', this.handleDocumentClick, false);
-      });
-    });
-  }
-
-  handleButtonClick = () => {
-    if (!this.props.disabled) {
-      this.open();
+  useEffect(() => {
+    const isTouchDevice = !!window?.matchMedia('(pointer: coarse)').matches;
+    const searchable = !!props.onSearchChange || !!props.search;
+    if (!isTouchDevice && searchable && searchBoxReference.current) {
+      searchBoxReference.current.focus();
     }
+  }, [open, props.onSearchChange, props.search, searchBoxReference]);
+
+  const handleCloseOptions = () => {
+    setOpen(false);
+    setKeyboardFocusedOptionIndex(null);
   };
 
-  handleDocumentClick = () => {
-    if (this.state.open) {
-      this.close();
-    }
-  };
-
-  handleTouchStart = (event) => {
-    if (event.currentTarget === event.target && this.state.open) {
-      this.close();
-    }
-  };
-
-  createSelectHandlerForOption(option) {
+  function createSelectHandlerForOption(option) {
     return (event) => {
       stopPropagation(event);
-      this.selectOption(option);
+      selectOption(option);
     };
   }
 
-  selectOption(option) {
-    if (option && !option.placeholder) {
-      this.props.onChange(option);
-    } else {
-      this.props.onChange(null);
-    }
-    this.close();
+  function selectOption(option) {
+    props.onChange(!option?.placeholder ? option : null);
+    handleCloseOptions();
   }
 
-  style = (className) => this.props.classNames[className] || className;
+  function Options() {
+    const { dropdownWidth, placeholder, required, searchPlaceholder } = props;
 
-  renderOptionsList() {
-    const {
-      dropdownRight,
-      dropdownWidth,
-      onSearchChange,
-      placeholder,
-      required,
-      search,
-      searchValue,
-      searchPlaceholder,
-    } = this.props;
-    const { open } = this.state;
-    const s = this.style;
-
-    const canSearch = !!onSearchChange || !!search;
-
-    const dropdownClass = classNames(s('tw-select'), s('dropdown-menu'), {
-      [s(`dropdown-menu-${dropdownRight}-right`)]: dropdownRight,
-      [s(`dropdown-menu-${dropdownWidth}`)]: dropdownWidth,
-      [s(`dropdown-menu--open`)]: open,
+    const dropdownClass = classNames(s('np-dropdown-menu'), {
+      [s(`np-dropdown-menu-${dropdownWidth}`)]: !isMobile,
     });
 
     return (
       <ul className={dropdownClass}>
-        {!required && !canSearch && placeholder ? this.renderPlaceHolderOption() : ''}
-        {canSearch && (
+        {!required && !isSearchEnabled && placeholder && <PlaceHolderOption />}
+        {isSearchEnabled && (
           <SearchBox
-            ref={this.searchBoxRef}
-            classNames={this.props.classNames}
-            value={searchValue || this.state.searchValue}
-            placeholder={searchPlaceholder}
-            onChange={this.handleSearchChange}
+            ref={searchBoxReference}
+            classNames={props.classNames}
+            value={props.searchValue || searchValue}
+            placeholder={searchPlaceholder || messages.searchPlaceholder}
+            onChange={handleSearchChange}
             onClick={stopPropagation}
           />
         )}
-        {this.renderOptions()}
-        {this.state.numberOfOptionsShown < this.getOptions().length ? this.renderShowMore() : ''}
+        {getOptions().slice(0, numberOfOptionsShown).map(renderOption)}
+        {numberOfOptionsShown < getOptions().length && <ShowMoreOption />}
       </ul>
     );
   }
 
-  renderOptions() {
-    return this.getOptions().slice(0, this.state.numberOfOptionsShown).map(this.renderOption);
-  }
-
-  renderShowMore() {
+  function ShowMoreOption() {
+    function handleOnClick(event) {
+      stopPropagation(event);
+      setNumberOfOptionsShown(numberOfOptionsShown + OPTIONS_PAGE_SIZE);
+    }
     return (
       /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
       <li
-        className={classNames(
-          this.style('tw-dropdown-item--clickable'),
-          this.style('tw-dropdown-item--divider'),
-          this.style('show-more'),
-        )}
-        onClick={this.showMore.bind(this)}
-        onKeyPress={this.showMore.bind(this)}
+        className={classNames(s('clickable'), s('border-bottom'), s('show-more'))}
+        onClick={handleOnClick}
+        onKeyPress={handleOnClick}
       >
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>...</a>
@@ -376,163 +259,163 @@ export default class Select extends Component {
     );
   }
 
-  showMore(event) {
-    stopPropagation(event);
-    this.setState((previousState) => ({
-      numberOfOptionsShown: previousState.numberOfOptionsShown + OPTIONS_PAGE_SIZE,
-    }));
-  }
-
-  renderPlaceHolderOption() {
-    const { placeholder } = this.props;
+  function PlaceHolderOption() {
+    const { placeholder } = props;
     return (
+      /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
       <li
-        className={classNames(
-          this.style('tw-dropdown-item--clickable'),
-          this.style('tw-dropdown-item--divider'),
-        )}
-        onClick={this.createSelectHandlerForOption({ placeholder })}
-        onKeyPress={this.createSelectHandlerForOption({ placeholder })}
+        className={classNames(s('clickable'), s('border-bottom'))}
+        onClick={createSelectHandlerForOption({ placeholder })}
+        onKeyPress={createSelectHandlerForOption({ placeholder })}
       >
         <a>{placeholder}</a>
       </li>
     );
   }
 
-  renderOption = (option, index) => {
-    if (option.separator) {
-      return <li key={index} className={this.style('divider')} />;
-    }
+  // eslint-disable-next-line react/prop-types
+  function SeparatorOption({ index }) {
+    return <li key={index} className={s('np-separator')} />;
+  }
 
-    if (option.header) {
-      return (
-        <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
-          key={index}
-          className={this.style('dropdown-header')}
-          onClick={stopPropagation}
-          onKeyPress={stopPropagation}
-        >
-          {option.header}
-        </li>
-      );
-    }
-
-    const isActive = this.props.selected && this.props.selected.value === option.value;
-    const isFocusedWithKeyboard =
-      this.state.keyboardFocusedOptionIndex ===
-      this.getIndexWithoutHeadersForIndexWithHeaders(index);
-
-    const className = classNames(
-      this.style('tw-dropdown-item'),
-      this.style('tw-dropdown-item--clickable'),
-      {
-        [this.style('active')]: isActive,
-        [this.style('tw-dropdown-item--focused')]: isFocusedWithKeyboard && !option.disabled,
-        [this.style('disabled')]: option.disabled,
-      },
-    );
+  // eslint-disable-next-line react/prop-types
+  function HeaderOption({ index, children }) {
     return (
-      <li
+      <li // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
         key={index}
-        className={className}
-        onClick={option.disabled ? stopPropagation : this.createSelectHandlerForOption(option)}
-        onKeyPress={option.disabled ? stopPropagation : this.createSelectHandlerForOption(option)}
+        className={s('np-dropdown-header')}
+        onClick={stopPropagation}
+        onKeyPress={stopPropagation}
       >
+        {children}
+      </li>
+    );
+  }
+
+  const renderOption = (option, index) => {
+    if (option.separator) {
+      return <SeparatorOption index={index} />;
+    }
+    if (option.header) {
+      return <HeaderOption />;
+    }
+
+    const isActive = props.selected && props.selected.value === option.value;
+    const isFocusedWithKeyboard =
+      !option.disabled &&
+      keyboardFocusedOptionIndex === getIndexWithoutHeadersForIndexWithHeaders(index);
+
+    const className = classNames(s('np-dropdown-item'), s('clickable'), {
+      [s('active')]: isActive,
+      [s('np-dropdown-item--focused')]: isFocusedWithKeyboard,
+      [s('disabled')]: option.disabled,
+    });
+
+    const handleOnClick = option.disabled ? stopPropagation : createSelectHandlerForOption(option);
+
+    return (
+      /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
+      <li key={index} className={className} onClick={handleOnClick} onKeyPress={handleOnClick}>
         <a disabled={option.disabled}>
-          <Option {...option} classNames={this.props.classNames} />
+          <Option {...option} classNames={props.classNames} />
         </a>
       </li>
     );
   };
 
-  renderButtonInternals() {
-    const { selected, placeholder } = this.props;
-    if (selected) {
-      return <Option {...selected} classNames={this.props.classNames} selected />;
+  function getIndexWithoutHeadersForIndexWithHeaders(index) {
+    return getOptions().reduce((sum, option, currentIndex) => {
+      if (currentIndex < index && isActionableOption(option)) {
+        return sum + 1;
+      }
+      return sum;
+    }, 0);
+  }
+
+  const {
+    disabled,
+    selected,
+    size,
+    block,
+    id,
+    dropdownUp,
+    searchPlaceholder,
+    placeholder,
+    inverse,
+  } = props;
+
+  const groupClass = classNames(s('np-select'), {
+    // [s('btn-block')]: block,
+  });
+
+  const hasActiveOptions = !!props.options.length;
+  if (open && (props.searchValue !== '' || searchValue !== '')) {
+    if (hasActiveOptions && keyboardFocusedOptionIndex === null) {
+      setKeyboardFocusedOptionIndex(0);
     }
-    return <span className={this.style('form-control-placeholder')}>{placeholder}</span>;
+    if (!hasActiveOptions && keyboardFocusedOptionIndex !== null) {
+      setKeyboardFocusedOptionIndex(null);
+    }
   }
 
-  render() {
-    const { disabled, size, block, id, dropdownUp, inverse } = this.props;
-    const { open, shouldRenderWithPortal } = this.state;
-    const s = this.style;
-
-    const groupClass = classNames(s('tw-select'), s('btn-group'), {
-      [s('btn-block')]: block,
-      [s('dropup')]: dropdownUp,
-      [s('dropdown')]: !dropdownUp,
-    });
-
-    const buttonClass = classNames(
-      s('btn'),
-      s('btn-input'),
-      {
-        [`${s('btn-input-inverse')} ${s('btn-addon')}`]: inverse,
-        [s('btn-xs')]: size === 'xs',
-        [s('btn-sm')]: size === 'sm',
-        [s('btn-md')]: size === 'md',
-        [s('btn-lg')]: size === 'lg',
-      },
-      s('dropdown-toggle'),
-    );
-
-    const openClass = s('open');
-    return (
-      // A transition is used here in order to mount and unmount the dropdown menu while retaining animations
-      <>
-        <div // eslint-disable-line jsx-a11y/no-static-element-interactions
-          ref={this.dropdownMenuRef}
-          className={groupClass}
-          onKeyDown={this.handleKeyDown}
-          onTouchMove={this.handleTouchStart}
-          onFocus={this.handleOnFocus}
-          onBlur={this.handleOnBlur}
-        >
-          <button
-            disabled={disabled}
-            className={buttonClass}
-            type="button"
-            id={id}
-            aria-expanded={open}
-            onClick={this.handleButtonClick}
+  return (
+    <div // eslint-disable-line jsx-a11y/no-static-element-interactions
+      ref={dropdownMenuReference}
+      className={groupClass}
+      onKeyDown={handleKeyDown}
+      onTouchMove={handleTouchStart}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+    >
+      <Button
+        id={id}
+        block={block}
+        size={size}
+        htmlType="button"
+        className={classNames(s('np-dropdown-toggle'), { inverse })}
+        priority={Priority.TERTIARY}
+        disabled={disabled}
+        aria-expanded={open}
+        onClick={handleOnClick}
+      >
+        {selected ? (
+          <Option {...selected} classNames={props.classNames} selected />
+        ) : (
+          <span className={s('form-control-placeholder')}>{placeholder}</span>
+        )}
+        <Chevron
+          disabled={disabled}
+          className={`${s('tw-icon')} ${s('tw-chevron-up-icon')} ${s('tw-chevron')} ${s(
+            'bottom',
+          )} ${s('np-select-chevron')}`}
+        />
+      </Button>
+      {isMobile ? (
+        isSearchEnabled ? (
+          <Drawer
+            headerTitle={searchPlaceholder || messages.searchPlaceholder}
+            open={open}
+            onClose={handleCloseOptions}
           >
-            {this.renderButtonInternals()}
-            <Chevron
-              disabled={disabled}
-              className={`${s('tw-icon')} ${s('tw-chevron-up-icon')} ${s('tw-chevron')} ${s(
-                'bottom',
-              )} ${s('tw-select-chevron')}`}
-            />
-          </button>
-          {!shouldRenderWithPortal ? (
-            <Transition
-              in={open}
-              timeout={BOOTSTRAP_DROPDOWN_ANIMATION_TIME}
-              onEntering={() => {
-                if (this.dropdownMenuRef.current) {
-                  addClassAndTriggerReflow(this.dropdownMenuRef.current, openClass);
-                }
-              }}
-              onExit={() => {
-                if (this.dropdownMenuRef.current) {
-                  removeClass(this.dropdownMenuRef.current, openClass);
-                }
-              }}
-            >
-              {(animationState) => animationState !== 'exited' && this.renderOptionsList()}
-            </Transition>
-          ) : (
-            <Dimmer open={open}>
-              <SlidingPanel open={open} position="bottom">
-                {this.renderOptionsList()}
-              </SlidingPanel>
-            </Dimmer>
-          )}
-        </div>
-      </>
-    );
-  }
+            <Options />
+          </Drawer>
+        ) : (
+          <BottomSheet open={open} onClose={handleCloseOptions}>
+            <Options />
+          </BottomSheet>
+        )
+      ) : (
+        <Dropdown
+          anchorRef={dropdownMenuReference}
+          open={open}
+          position={dropdownUp ? Position.TOP : Position.BOTTOM}
+          onClose={handleCloseOptions}
+        >
+          <Options />
+        </Dropdown>
+      )}
+    </div>
+  );
 }
 
 Select.propTypes = {
@@ -541,7 +424,6 @@ Select.propTypes = {
   required: PropTypes.bool,
   disabled: PropTypes.bool,
   inverse: PropTypes.bool,
-  dropdownRight: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   dropdownWidth: PropTypes.oneOf(['sm', 'md', 'lg']),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   block: PropTypes.bool,
@@ -590,9 +472,8 @@ Select.propTypes = {
 Select.defaultProps = {
   id: undefined,
   placeholder: undefined,
-  size: 'md',
-  dropdownRight: null,
-  dropdownWidth: null,
+  size: Size.MEDIUM,
+  dropdownWidth: Size.MEDIUM,
   inverse: false,
   required: false,
   disabled: false,
@@ -603,7 +484,7 @@ Select.defaultProps = {
   onSearchChange: undefined,
   search: false,
   searchValue: '',
-  searchPlaceholder: 'Search...',
+  searchPlaceholder: null,
   classNames: {},
   dropdownUp: false,
 };

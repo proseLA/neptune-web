@@ -22,7 +22,7 @@ export const Basic = () => {
 
   const placeholder = text('placeholder', 'Placeholder text');
   const inverse = boolean('inverse', false);
-  const block = boolean('block', true);
+  const block = boolean('block', false);
   const required = boolean('required', false);
   const dropdownUp = boolean('dropdownUp', false);
   const disabled = boolean('disabled', false);
@@ -45,6 +45,7 @@ export const Basic = () => {
       options={[
         { header: 'Basic' },
         { value: -1, label: 'A thing' },
+        { separator: true },
         { value: 0, label: 'A thing', note: 'with a note' },
         { value: 1, label: 'Another thing', secondary: 'with secondary text this time' },
         {
@@ -60,7 +61,6 @@ export const Basic = () => {
         { header: 'Currencies' },
         { value: 5, label: 'British pound', currency: 'gbp' },
         { value: 6, label: 'Euro', currency: 'eur' },
-        { separator: true },
         { value: 7, label: 'Something else' },
         { header: 'Options with searchable alternatives' },
         {

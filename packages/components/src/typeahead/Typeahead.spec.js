@@ -230,13 +230,13 @@ describe('Typeahead', () => {
   it('moves selected items when down and up keys pressed', () => {
     doTimes(3, () => input().simulate('keyDown', fakeKeyDownEventForKey(KeyCodes.DOWN)));
 
-    expect(option().at(2).parent().is('.tw-dropdown-item--focused')).toBe(true);
+    expect(option().at(2).parent().is('.np-dropdown-item--focused')).toBe(true);
 
     input().simulate('keyDown', fakeKeyDownEventForKey(KeyCodes.UP));
-    expect(option().at(1).parent().is('.tw-dropdown-item--focused')).toBe(true);
+    expect(option().at(1).parent().is('.np-dropdown-item--focused')).toBe(true);
 
     doTimes(5, () => input().simulate('keyDown', fakeKeyDownEventForKey(KeyCodes.DOWN)));
-    expect(option().last().parent().is('.tw-dropdown-item--focused')).toBe(true);
+    expect(option().last().parent().is('.np-dropdown-item--focused')).toBe(true);
   });
 
   it('adds new value as selected and clears the input when no option is highlighted and enter is pressed', () => {

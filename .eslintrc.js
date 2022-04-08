@@ -18,6 +18,7 @@ module.exports = {
     'jsdoc/require-jsdoc': 0,
     'jsdoc/require-param': 0,
     'jsdoc/require-returns': 0,
+    'react/function-component-definition': 0,
     'react/jsx-uses-react': 0,
     'react/react-in-jsx-scope': 0,
     'react/destructuring-assignment': [0, 'never'],

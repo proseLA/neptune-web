@@ -59,8 +59,8 @@ describe('Select', () => {
       userEvent.type(input, 'yo');
 
       // Not ideal, this higlights accessibility issues.
-      expect(container.querySelector('.tw-dropdown-item.tw-dropdown-item--focused')).toStrictEqual(
-        container.querySelector('.tw-dropdown-item'),
+      expect(container.querySelector('.np-dropdown-item.np-dropdown-item--focused')).toStrictEqual(
+        container.querySelector('.np-dropdown-item'),
       );
       expect(screen.getByText('yo')).toBeInTheDocument();
     });
@@ -172,11 +172,11 @@ describe('Select', () => {
       const input = screen.getByPlaceholderText('Search...');
       userEvent.type(input, 'HUF');
 
-      expect(container.querySelector('.tw-dropdown-item.tw-dropdown-item--focused')).toStrictEqual(
-        container.querySelector('.tw-dropdown-item'),
+      expect(container.querySelector('.np-dropdown-item.np-dropdown-item--focused')).toStrictEqual(
+        container.querySelector('.np-dropdown-item'),
       );
       expect(screen.getByText('Hungarian forint').parentElement.parentElement).toHaveClass(
-        'tw-dropdown-item tw-dropdown-item--clickable tw-dropdown-item--focused',
+        'np-dropdown-item np-dropdown-item--clickable np-dropdown-item--focused',
       );
     });
 
@@ -197,11 +197,11 @@ describe('Select', () => {
       const input = screen.getByPlaceholderText('Search...');
       userEvent.type(input, 'Tallinn');
 
-      expect(container.querySelector('.tw-dropdown-item.tw-dropdown-item--focused')).toStrictEqual(
-        container.querySelector('.tw-dropdown-item'),
+      expect(container.querySelector('.np-dropdown-item.np-dropdown-item--focused')).toStrictEqual(
+        container.querySelector('.np-dropdown-item'),
       );
       expect(screen.getByText('Estonia').parentElement.parentElement).toHaveClass(
-        'tw-dropdown-item tw-dropdown-item--clickable tw-dropdown-item--focused',
+        'np-dropdown-item np-dropdown-item--clickable np-dropdown-item--focused',
       );
     });
 

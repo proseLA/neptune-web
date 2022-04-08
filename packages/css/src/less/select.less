@@ -1,6 +1,9 @@
 @import (reference) '@transferwise/neptune-css/src/variables/neptune-tokens.less';
 @import (reference) './mixins/_logical-properties.less';
 
+// Used only by Angular select component
+// http://transferwise.github.io/styleguide-components/index.html#select
+// React Select component uses Select.less (`.np-select`) in components package
 .tw-select {
   .tw-icon {
     display: inline-block;
@@ -49,13 +52,11 @@
   }
 
   // tw-chevron-down-icon - Angular component
-  .dropdown-toggle .tw-select-chevron,
   .dropdown-toggle tw-chevron-down-icon > span { // stylelint-disable-line selector-type-no-unknown
     .margin-shorthand(0);
   }
 
   // tw-icon - Angular component
-  .dropdown-toggle > span > .tw-icon,
   .dropdown-toggle tw-icon span.tw-icon { // stylelint-disable-line selector-type-no-unknown
     position: static;
     display: inline-block;
@@ -66,6 +67,7 @@
   }
 }
 
+// open options in custom bottom sheet on mobile screens
 @media (--screen-xs-max) {
   .tw-select.dropdown-menu.dropdown-menu--open {
     max-height: 50vh;

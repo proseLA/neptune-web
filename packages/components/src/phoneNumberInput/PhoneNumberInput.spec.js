@@ -301,7 +301,7 @@ describe('Given a telephone number component', () => {
       component = mount(<PhoneNumberInput {...props} value="+12345678" />);
 
       component.find('button.dropdown-toggle').simulate('click', fakeEvent());
-      component.find('.tw-select-filter').simulate('change', { target: { value: '+124' } });
+      component.find('.np-select-filter').simulate('change', { target: { value: '+124' } });
       select = component.find(PREFIX_SELECT_SELECTOR);
       expect(+select.prop('options')[0].value).toBeLessThan(+select.prop('options')[1].value);
     });
@@ -320,7 +320,7 @@ describe('Given a telephone number component', () => {
 
   const changeSelectValue = (value) => {
     component.find('button.dropdown-toggle').simulate('click', fakeEvent());
-    component.find('.tw-select-filter').simulate('change', { target: { value } });
-    component.find('.tw-dropdown-item--clickable').simulate('click', fakeEvent());
+    component.find('.np-select-filter').simulate('change', { target: { value } });
+    component.find('.np-dropdown-item--clickable').simulate('click', fakeEvent());
   };
 });

@@ -6,8 +6,8 @@ import { forwardRef } from 'react';
 const SearchBox = forwardRef(({ classNames, onChange, onClick, placeholder, value }, reference) => {
   const style = (className) => classNames[className] || className;
   return (
-    <li className={style('tw-dropdown-item--divider')}>
-      <a className={`${style('tw-select-filter-link')} ${style('p-a-0')}`}>
+    <li className={style('np-dropdown-item--divider')}>
+      <a className={`${style('np-select-filter-link')} ${style('p-a-0')}`}>
         <div className={style('input-group')}>
           <span className={style('input-group-addon')}>
             <SearchIcon className={classnames(style('tw-icon'), style('tw-icon-search'))} />
@@ -15,7 +15,7 @@ const SearchBox = forwardRef(({ classNames, onChange, onClick, placeholder, valu
           <input
             ref={reference}
             type="text"
-            className={classnames(style('tw-select-filter'), style('form-control'))}
+            className={classnames(style('np-select-filter'), style('form-control'))}
             placeholder={placeholder}
             value={value}
             spellCheck="false"

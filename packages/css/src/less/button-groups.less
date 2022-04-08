@@ -349,7 +349,8 @@
       .right(8px);
     }
 
-    &.dropdown-toggle {
+    &.dropdown-toggle,
+    &.np-dropdown-toggle {
       .padding(right, 40px, 16px);
 
       overflow: hidden;
@@ -360,19 +361,14 @@
       }
     }
 
-    &.btn-sm.dropdown-toggle {
+    &.btn-sm.dropdown-toggle,
+    &.btn-sm.np-dropdown-toggle {
       .padding(right, 33px);
     }
   }
 
   .btn + .dropdown-toggle {
     flex: 0;
-
-    .caret {
-      position: relative;
-      top: 0;
-      .right(0);
-    }
   }
 }
 

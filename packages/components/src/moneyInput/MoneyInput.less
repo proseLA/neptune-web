@@ -26,7 +26,8 @@
 }
 
 // Fix chevron icon alignment (icons v2) in currency select button
-.tw-money-input .amount-currency-select-btn > .tw-select > .btn {
+.tw-money-input .amount-currency-select-btn > .tw-select > .btn,
+.tw-money-input .amount-currency-select-btn > .np-select > .btn {
   display: flex;
   align-items: center;
 
@@ -35,11 +36,13 @@
   }
 }
 
-.tw-money-input .amount-currency-select-btn > .tw-select > .btn-addon.dropdown-toggle {
+.tw-money-input .amount-currency-select-btn > .tw-select > .btn-addon.dropdown-toggle,
+.tw-money-input .amount-currency-select-btn > .np-select > .btn-addon.dropdown-toggle {
   .padding(right, var(--size-16), var(--size-16));
 }
 
-.tw-money-input .amount-currency-select-btn > .tw-select > .btn > span.tw-icon {
+.tw-money-input .amount-currency-select-btn > .tw-select > .btn > span.tw-icon,
+.tw-money-input .amount-currency-select-btn > .np-select > .btn > span.tw-icon {
   position: static;
   .padding(right, var(--size-16));
 }

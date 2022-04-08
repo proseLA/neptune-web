@@ -88,8 +88,8 @@ describe('Select', () => {
   const focusedOptionIndex = () => {
     let elementIndex = null;
     element('li').forEach((element_, index) => {
-      if (element_.is('.tw-dropdown-item--focused')) {
-        expect(element('.tw-dropdown-item--focused')).toHaveLength(1);
+      if (element_.is('.np-dropdown-item--focused')) {
+        expect(element('.np-dropdown-item--focused')).toHaveLength(1);
         elementIndex = index;
       }
     });
@@ -271,12 +271,12 @@ describe('Select', () => {
       });
 
       it('should render a disabled link for any disabled options', () => {
-        expect(component.find('li.tw-dropdown-item').first().text()).toStrictEqual('a thing');
+        expect(component.find('li.np-dropdown-item').first().text()).toStrictEqual('a thing');
       });
 
       describe('when a disabled option is clicked', () => {
         beforeEach(() => {
-          component.find('li.tw-dropdown-item').at(1).simulate('click', fakeEvent());
+          component.find('li.np-dropdown-item').at(1).simulate('click', fakeEvent());
         });
 
         it('should not close the dropdown', () => {
@@ -431,7 +431,7 @@ describe('Select', () => {
 
   it('allows you to move around items with arrow keys while ignoring headers, separators and disabled', async () => {
     const keyboardFocusIsOnElementWithIndex = (index) =>
-      findNthListElement(index).hasClass('tw-dropdown-item--focused');
+      findNthListElement(index).hasClass('np-dropdown-item--focused');
     component.setProps({
       options: [
         { value: 0, label: 'yo' },

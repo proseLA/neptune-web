@@ -48,7 +48,7 @@ describe('Typeahead Option', () => {
       selected: true,
     });
 
-    expect(component.is('.tw-dropdown-item--focused')).toBe(true);
+    expect(component.is('.np-dropdown-item--focused')).toBe(true);
   });
 
   it('calls onClick when clicked', () => {

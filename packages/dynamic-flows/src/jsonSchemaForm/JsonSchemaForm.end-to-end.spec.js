@@ -128,7 +128,7 @@ describe('E2E: Given a component for rendering a JSON schema form', () => {
 
     it('should render a select for the large enum schema', () => {
       const selectDropdownButton = screen.getByLabelText('Large Enum');
-      expect(selectDropdownButton.closest('div')).toHaveClass('tw-select');
+      expect(selectDropdownButton.closest('div')).toHaveClass('np-select');
     });
 
     it('should render the model value in the relevant control', () => {

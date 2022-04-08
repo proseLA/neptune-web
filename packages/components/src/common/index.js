@@ -1,5 +1,5 @@
 export { default as HistoryNavigator } from './historyNavigator';
-export { isServerSide, isBrowser } from './domHelpers';
+export * from './domHelpers';
 export { addNoScrollBodyClass, removeNoScrollBodyClass } from './DOMOperations';
 export * from './theme';
 export * from './direction';
