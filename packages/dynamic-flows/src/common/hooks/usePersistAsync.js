@@ -7,7 +7,7 @@ import {
   getErrorFromResponse,
   getIdFromResponse,
 } from '../../jsonSchemaForm/persistAsyncSchema/basic/PersistAsyncBasicSchema';
-import { isStatus2xx, isStatus422, QueryablePromise } from '../api/utils';
+import { isStatus2xx, isStatus422 } from '../api/utils';
 import { useFetcher } from '../contexts/fetcherContext';
 import { isValidSchema } from '../validation/schema-validators';
 
@@ -61,10 +61,10 @@ export const usePersistAsync = (persistAsyncSchema, onPersistAsync) => {
 
   async function performPersistAsync(persistAsyncModel) {
     try {
-      const persistAsyncFetch = new QueryablePromise(
-        fetcher(persistAsyncSchema.url, constructFetchInit(persistAsyncModel)),
+      const persistAsyncFetch = fetcher(
+        persistAsyncSchema.url,
+        constructFetchInit(persistAsyncModel),
       );
-
       onPersistAsync && onPersistAsync(persistAsyncFetch);
       const response = await persistAsyncFetch;
 

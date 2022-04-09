@@ -58,7 +58,7 @@ JsonSchemaForm.propTypes = {
   /**
    * Fires when any internal persist async is triggered and API call is underway.
    *
-   * Provides a QueryablePromise of the persist async call.
+   * Provides a Promise of the persist async call.
    */
   onPersistAsync: PropTypes.func.isRequired,
   /**

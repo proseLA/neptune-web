@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { FormControlType } from '../../../common';
-import { isStatus2xx, isStatus422, QueryablePromise } from '../../../common/api/utils';
+import { isStatus2xx, isStatus422 } from '../../../common/api/utils';
 import { useFetcher } from '../../../common/contexts/fetcherContext';
 import usePrevious from '../../../common/hooks/usePrevious';
 import { isValidSchema } from '../../../common/validation/schema-validators';
@@ -54,17 +54,15 @@ const PersistAsyncBasicSchema = (props) => {
     const requestBody = { [persistAsyncSpec.param]: currentPersistAsyncModel };
     setFieldSubmitted(true); // persist async initiated implied the field has been submitted
 
-    const persistAsyncFetch = new QueryablePromise(
-      fetcher(persistAsyncSpec.url, {
-        method: persistAsyncSpec.method,
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Access-Token': 'Tr4n5f3rw153',
-        },
-        body: JSON.stringify(requestBody),
-        signal,
-      }),
-    );
+    const persistAsyncFetch = fetcher(persistAsyncSpec.url, {
+      method: persistAsyncSpec.method,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Access-Token': 'Tr4n5f3rw153',
+      },
+      body: JSON.stringify(requestBody),
+      signal,
+    });
     props.onPersistAsync(persistAsyncFetch);
     const response = await persistAsyncFetch;
 

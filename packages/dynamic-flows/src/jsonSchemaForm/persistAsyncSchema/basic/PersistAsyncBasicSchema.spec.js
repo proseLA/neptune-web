@@ -155,10 +155,10 @@ describe('Given a component for rendering persist async schemas', () => {
             enterValueAndBlur('200--ok--fast-5ms');
           });
 
-          it('should trigger onPersistAsync correctly', () => {
+          it('should trigger onPersistAsync correctly', async () => {
             expect(onPersistAsync).toHaveBeenCalledTimes(1);
             const firstArgumentOfFirstCall = onPersistAsync.mock.calls[0][0];
-            expect(firstArgumentOfFirstCall.isPending()).toBe(true);
+            await expect(firstArgumentOfFirstCall).resolves.not.toThrow();
           });
 
           it('should broadcast the persist async response value', async () => {
